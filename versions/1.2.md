@@ -22,7 +22,7 @@ Version | Notes
 
 ## 3. Definitions
 
-- <a id="definitionResource"/>Resource: A `resource` in Swagger is a an entity that has a set of exposed operations. The entity can represent an actual object (pets, users..) or a set of logical operations collated together. It is up to the specification user to decide whether sub-resources should be referred to as part of their main resource or as a resource of their own.
+- <a name="definitionResource"/>Resource: A `resource` in Swagger is a an entity that has a set of exposed operations. The entity can represent an actual object (pets, users..) or a set of logical operations collated together. It is up to the specification user to decide whether sub-resources should be referred to as part of their main resource or as a resource of their own.
 For example, assume the following URL set:
     ```
   - /users      - GET
@@ -117,15 +117,15 @@ The table below shows the available fields to describe a data type. Note the `Va
 
 Field Name | Type | Validity |Description 
 ---|:---:|---|---
-<a id="dataTypeType"/>type | `string` | Any |**Required (if [`$ref`](#dataTypeRef) is not used).** The return type of the operation. The value MUST be one of the [Primitves](#431-primitives), `array` or a model's [`id`](#modelId).
-<a id="dataTypeRef"/>$ref | `string` | Any | **Required (if [`type`](#dataTypeType) is not used).** The [Model](#527-model-object) to be used. The value MUST be a model's [`id`](#modelId).
+<a name="dataTypeType"/>type | `string` | Any |**Required (if [`$ref`](#dataTypeRef) is not used).** The return type of the operation. The value MUST be one of the [Primitves](#431-primitives), `array` or a model's [`id`](#modelId).
+<a name="dataTypeRef"/>$ref | `string` | Any | **Required (if [`type`](#dataTypeType) is not used).** The [Model](#527-model-object) to be used. The value MUST be a model's [`id`](#modelId).
 <a name="dataTypeFormat"/>format | `string` | primitive | Fine-tuned primitive type definition. See [Primitives](#431-primitives) for further information. The value MUST be one that is defined under [Primitives](#431-primitives), corresponding to the right primitive [`type`](#dataTypeType).
-<a id="dataTypeDefaultValue"/>defaultValue | *special* | primitive | The default value to be used for the field. The value type MUST conform with the primitive's [`type`](#dataTypeType) value. 
-<a id="dataTypeEnum"/>enum | [`string`] | `string` | A fixed list of possible values. If this field is used in conjunction with the [`defaultValue`](#dataTypeDefaultValue) field, then the default value MUST be one of the values defined in the `enum`.
-<a id="dataTypeMinimum"/>minimum | `string` | `number`, `integer` | The minimum valid value for the type, inclusive. If this field is used in conjunction with the [`defaultValue`](#dataTypeDefaultValue) field, then the default value MUST be higher than or equal to this value. The value type is `string` and should represent the minimum numeric value. **Note**: This will change to a numeric value in the future.
-<a id="dataTypeMaximum"/>maximum | `string` | `number`, `integer` | The maximum valid value for the type, inclusive. If this field is used in conjunction with the [`defaultValue`](#dataTypeDefaultValue) field, then the default value MUST be lower than or equal to this value. The value type is `string` and should represent the maximum numeric value. **Note**: This will change to a numeric value in the future.
-<a id="dataTypeItems"/>items | [Items Object](#434-items-object) | `array` | **Required.** The type definition of the values in the container. A container MAY NOT be nested in another container. 
-<a id="dataTypeUniqueItems"/>uniqueItems | `boolean` | `array` | A flag to note whether the container allows duplicate values or not. If the value is set to `true`, then the `array` acts as a set.
+<a name="dataTypeDefaultValue"/>defaultValue | *special* | primitive | The default value to be used for the field. The value type MUST conform with the primitive's [`type`](#dataTypeType) value. 
+<a name="dataTypeEnum"/>enum | [`string`] | `string` | A fixed list of possible values. If this field is used in conjunction with the [`defaultValue`](#dataTypeDefaultValue) field, then the default value MUST be one of the values defined in the `enum`.
+<a name="dataTypeMinimum"/>minimum | `string` | `number`, `integer` | The minimum valid value for the type, inclusive. If this field is used in conjunction with the [`defaultValue`](#dataTypeDefaultValue) field, then the default value MUST be higher than or equal to this value. The value type is `string` and should represent the minimum numeric value. **Note**: This will change to a numeric value in the future.
+<a name="dataTypeMaximum"/>maximum | `string` | `number`, `integer` | The maximum valid value for the type, inclusive. If this field is used in conjunction with the [`defaultValue`](#dataTypeDefaultValue) field, then the default value MUST be lower than or equal to this value. The value type is `string` and should represent the maximum numeric value. **Note**: This will change to a numeric value in the future.
+<a name="dataTypeItems"/>items | [Items Object](#434-items-object) | `array` | **Required.** The type definition of the values in the container. A container MAY NOT be nested in another container. 
+<a name="dataTypeUniqueItems"/>uniqueItems | `boolean` | `array` | A flag to note whether the container allows duplicate values or not. If the value is set to `true`, then the `array` acts as a set.
 
 #### 4.3.4 Items Object
 
@@ -166,11 +166,11 @@ By default, this document SHOULD be served at the `/api-docs` path.
 
 Field Name | Type | Description
 ---|:---:|---
-<a id="rlSwaggerVersion"/>swaggerVersion | `string` | **Required.** Specifies the Swagger Specification version being used. It can be used by the Swagger UI and other clients to interpret the API listing. The value MUST be an existing Swagger specification version. <br>Currently, `"1.0"`, `"1.1"`, `"1.2"` are valid values. The field is of `string` value for possible non-numeric versions in the future (for example, "1.2a").
-<a id="rlApis"/>apis | [ [Resource Object](#512-resource-object) ] | **Required.** Lists the resources to be described by this specification implementation. They array can have 0 more elements.
-<a id="rlApiVersion"/>apiVersion| `string` | Provides the version of the application API (not to be confused by the [specification version](#rlSwaggerVersion)). 
-<a id="rlInfo"/>info | [Info Object](#513-info-object) | Provides metadata about the API. The metadata can be used by the clients if needed, and can be presented in the Swagger-UI for convenience.
-<a id="rlAuthorizations"/>authorizations | [Authorizations Object](#514-authorizations-object) | Provides information about the the authorization schemes allowed on his API. 
+<a name="rlSwaggerVersion"/>swaggerVersion | `string` | **Required.** Specifies the Swagger Specification version being used. It can be used by the Swagger UI and other clients to interpret the API listing. The value MUST be an existing Swagger specification version. <br>Currently, `"1.0"`, `"1.1"`, `"1.2"` are valid values. The field is of `string` value for possible non-numeric versions in the future (for example, "1.2a").
+<a name="rlApis"/>apis | [ [Resource Object](#512-resource-object) ] | **Required.** Lists the resources to be described by this specification implementation. They array can have 0 more elements.
+<a name="rlApiVersion"/>apiVersion| `string` | Provides the version of the application API (not to be confused by the [specification version](#rlSwaggerVersion)). 
+<a name="rlInfo"/>info | [Info Object](#513-info-object) | Provides metadata about the API. The metadata can be used by the clients if needed, and can be presented in the Swagger-UI for convenience.
+<a name="rlAuthorizations"/>authorizations | [Authorizations Object](#514-authorizations-object) | Provides information about the the authorization schemes allowed on his API. 
 
 #### 5.1.1 Object Example
 
@@ -242,8 +242,8 @@ The Resource object describes a [resource](#definitionResource) API endpoint in 
 
 Field Name | Type | Description  
 ---|:---:|---
-<a id="aePath"/>path | `string` | **Required.** A relative path to the [API declaration](#52-api-declaration) from the path used to retrieve this Resource Listing. This `path` does not necessarily have to correspond to the URL which actually serves this resource in the API but rather where the resource listing itself is served. The value SHOULD be in a relative (URL) path format.
-<a id="aeDescription"/>description | `string` | *Recommended.* A short description of the resource.    
+<a name="aePath"/>path | `string` | **Required.** A relative path to the [API declaration](#52-api-declaration) from the path used to retrieve this Resource Listing. This `path` does not necessarily have to correspond to the URL which actually serves this resource in the API but rather where the resource listing itself is served. The value SHOULD be in a relative (URL) path format.
+<a name="aeDescription"/>description | `string` | *Recommended.* A short description of the resource.    
 
 ##### 5.1.2.1 Object Example:
 
@@ -259,12 +259,12 @@ The object provides metadata about the API. The metadata can be used by the clie
 
 Field Name | Type | Description  
 ---|:---:|---
-<a id="infoTitle"/>title | `string` | **Required.** The title of the application.   
-<a id="infoDescription"/>description | `string` | **Required.** A short description of the application.   
-<a id="infoTermsOfServiceUrl"/>termsOfServiceUrl | `string` | A URL to the Terms of Service of the API.
-<a id="infoContact"/>contact | `string` | An email to be used for API-related correspondence.
-<a id="infoLicense"/>license | `string` | The license name used for the API. 
-<a id="infoLicenseUrl"/>licenseUrl | `string` | A URL to the license used for the API. 
+<a name="infoTitle"/>title | `string` | **Required.** The title of the application.   
+<a name="infoDescription"/>description | `string` | **Required.** A short description of the application.   
+<a name="infoTermsOfServiceUrl"/>termsOfServiceUrl | `string` | A URL to the Terms of Service of the API.
+<a name="infoContact"/>contact | `string` | An email to be used for API-related correspondence.
+<a name="infoLicense"/>license | `string` | The license name used for the API. 
+<a name="infoLicenseUrl"/>licenseUrl | `string` | A URL to the license used for the API. 
 
 ##### 5.1.3.1 Object Example:
 
@@ -297,7 +297,7 @@ Please note that the Authorizations Object is an object containing other object 
 
 Field Name | Type | Description 
 ---|:---:|---
-<a id="authorizationsAuthorizationName"/>{Authorization Name} | [Authorization Object](#515-authorization-object) | A new authorization definition. The name given to the {Authorization Name} is a friendly name that should be used when referring to the authorization scheme. In many cases, the {Authorization Name} used is the same as its type, but it can be anything.
+<a name="authorizationsAuthorizationName"/>{Authorization Name} | [Authorization Object](#515-authorization-object) | A new authorization definition. The name given to the {Authorization Name} is a friendly name that should be used when referring to the authorization scheme. In many cases, the {Authorization Name} used is the same as its type, but it can be anything.
 
 ##### 5.1.4.1 Object Example:
 ```js
@@ -346,11 +346,11 @@ In the table below, the `Validity` column imposes additional limitations to the 
 
 Field Name | Type | Validity | Description  
 ---|:---:|---|---
-<a id="authorizationType"/>type | `string` | Any | **Required.** The type of the authorization scheme. Values MUST be either `"basicAuth"`, `"apiKey"` or `"oauth2"`.   
-<a id="authorizationPassAs"/>passAs | `string` | `apiKey` | **Required.** Denotes how the API key must be passed. Valid values are `"header"` or `"query"`.
-<a id="authorizationKeyname"/>keyname | `string` | `apiKey` | **Required.** The name of the `header` or `query` parameter to be used when passing the API key.    
-<a id="authorizationScopes"/>scopes | [[Scope Object](#516-scope-object)] | `oauth2` | A list of supported OAuth2 scopes. 
-<a id="authorizationGrantTypes"/>grantTypes | [Grant Types Object](#517-scope-object) | `oauth2` | **Required.** Detailed information about the grant types supported by the oauth2 authorization scheme.
+<a name="authorizationType"/>type | `string` | Any | **Required.** The type of the authorization scheme. Values MUST be either `"basicAuth"`, `"apiKey"` or `"oauth2"`.   
+<a name="authorizationPassAs"/>passAs | `string` | `apiKey` | **Required.** Denotes how the API key must be passed. Valid values are `"header"` or `"query"`.
+<a name="authorizationKeyname"/>keyname | `string` | `apiKey` | **Required.** The name of the `header` or `query` parameter to be used when passing the API key.    
+<a name="authorizationScopes"/>scopes | [[Scope Object](#516-scope-object)] | `oauth2` | A list of supported OAuth2 scopes. 
+<a name="authorizationGrantTypes"/>grantTypes | [Grant Types Object](#517-scope-object) | `oauth2` | **Required.** Detailed information about the grant types supported by the oauth2 authorization scheme.
 
 ##### 5.1.5.1 Object Example:
 ```js
@@ -393,8 +393,8 @@ Describes an OAuth2 authorization scope.
 
 Field Name | Type | Description  
 ---|:---:|---
-<a id="scopeScope"/>scope | `string` | **Required.** The name of the scope.   
-<a id="scope"/>description | `string` | *Recommended.* A short description of the scope.   
+<a name="scopeScope"/>scope | `string` | **Required.** The name of the scope.   
+<a name="scope"/>description | `string` | *Recommended.* A short description of the scope.   
 
 ##### 5.1.6.1 Object Example:
 ```js
@@ -411,8 +411,8 @@ At least one of the grant types MUST be included (otherwise there's no need for 
 
 Field Name | Type | Description  
 ---|:---:|---
-<a id="grantTypesImplicit"/>implicit | [Implicit Object](#518-implicit-object) | The Implicit Grant flow definition.   
-<a id="grantTypesAuthorizationCode"/>authorization_code | [Authorization Code Object](#519-authorization-code-object) | The Authorization Code Grant flow definition.
+<a name="grantTypesImplicit"/>implicit | [Implicit Object](#518-implicit-object) | The Implicit Grant flow definition.   
+<a name="grantTypesAuthorizationCode"/>authorization_code | [Authorization Code Object](#519-authorization-code-object) | The Authorization Code Grant flow definition.
 
 ##### 5.1.7.1 Object Example:
 ```js
@@ -442,8 +442,8 @@ Provides details regarding the OAuth2's Implicit Grant flow type.
 
 Field Name | Type | Description  
 ---|:---:|---
-<a id="implicitLoginEndpoint"/>loginEndpoint | [Login Endpoint Object](#5110-login-endpoint-object) | **Required.** The login endpoint definition.   
-<a id="implicitTokenName"/>tokenName | `string` | An optional alternative name to standard "access_token" OAuth2 parameter.
+<a name="implicitLoginEndpoint"/>loginEndpoint | [Login Endpoint Object](#5110-login-endpoint-object) | **Required.** The login endpoint definition.   
+<a name="implicitTokenName"/>tokenName | `string` | An optional alternative name to standard "access_token" OAuth2 parameter.
 
 ##### 5.1.8.1 Object Example:
 ```js
@@ -460,8 +460,8 @@ Provides details regarding the OAuth2's Authorization Code Grant flow type.
 
 Field Name | Type | Description  
 ---|:---:|---
-<a id="acTokenRequestEndpoint"/>tokenRequestEndpoint | [Token Request Endpoint Object](#5111-token-request-endpoint-object) | **Required.** The token request endpoint definition.
-<a id="acTokenEndpoint"/>tokenEndpoint | [Token Endpoint Object](#5112-token-endpoint-object) | **Required.** The token endpoint definition.
+<a name="acTokenRequestEndpoint"/>tokenRequestEndpoint | [Token Request Endpoint Object](#5111-token-request-endpoint-object) | **Required.** The token request endpoint definition.
+<a name="acTokenEndpoint"/>tokenEndpoint | [Token Endpoint Object](#5112-token-endpoint-object) | **Required.** The token endpoint definition.
 
 ##### 5.1.9.1 Object Example:
 ```js
@@ -483,7 +483,7 @@ Provides details regarding the Implicit Grant's *authorization endpoint*.
 
 Field Name | Type | Description  
 ---|:---:|---
-<a id="leUrl"/>url | `string` | **Required.** The URL of the authorization endpoint for the implicit grant flow. The value SHOULD be in a URL format.   
+<a name="leUrl"/>url | `string` | **Required.** The URL of the authorization endpoint for the implicit grant flow. The value SHOULD be in a URL format.   
 
 ##### 5.1.10.1 Object Example:
 ```js
@@ -497,9 +497,9 @@ Provides details regarding the OAuth2's *Authorization Endpoint*.
 
 Field Name | Type | Description  
 ---|:---:|---
-<a id="treUrl"/>url | `string` | **Required.** The URL of the authorization endpoint for the authentication code grant flow. The value SHOULD be in a URL format.
-<a id="treCliendIdName"/>clientIdName | `string` | An optional alternative name to standard "client_id" OAuth2 parameter.
-<a id="treCliendSecretName"/>clientSecretName | `string` | An optional alternative name to standard "client_secret" OAuth2 parameter.
+<a name="treUrl"/>url | `string` | **Required.** The URL of the authorization endpoint for the authentication code grant flow. The value SHOULD be in a URL format.
+<a name="treCliendIdName"/>clientIdName | `string` | An optional alternative name to standard "client_id" OAuth2 parameter.
+<a name="treCliendSecretName"/>clientSecretName | `string` | An optional alternative name to standard "client_secret" OAuth2 parameter.
 
 ##### 5.1.11.1 Object Example:
 ```js
@@ -515,8 +515,8 @@ Provides details regarding the OAuth2's *Token Endpoint*.
 
 Field Name | Type | Description  
 ---|:---:|---
-<a id="teUrl"/>url | `string` | **Required.** The URL of the token endpoint for the authentication code grant flow. The value SHOULD be in a URL format.
-<a id="treTokenName"/>tokenName | `string` | An optional alternative name to standard "access_token" OAuth2 parameter.
+<a name="teUrl"/>url | `string` | **Required.** The URL of the token endpoint for the authentication code grant flow. The value SHOULD be in a URL format.
+<a name="treTokenName"/>tokenName | `string` | An optional alternative name to standard "access_token" OAuth2 parameter.
 
 ##### 5.1.12.1 Object Example:
 ```js
@@ -532,15 +532,15 @@ The API Declaration provides information about API exposed on a resource. There 
 
 Field Name | Type | Description 
 ---|:---:|---
-<a id="adSwaggerVersion"/>swaggerVersion | `string` | **Required.** Specifies the Swagger Specification version being used. It can be used by the Swagger UI and other clients to interpret the API listing. The value MUST be an existing Swagger specification version. <br>Currently, `"1.0"`, `"1.1"`, `"1.2"` are valid values.
-<a id="adApiVersion"/>apiVersion | `string` | Provides the version of the application API (not to be confused by the [specification version](#adSwaggerVersion)). 
-<a id="adBasePath"/>basePath | `string` | **Required.** The root URL serving the API. This field is important as while it is common to have the Resource Listing and API Declarations on the server providing the APIs themselves, it is not a requirement. The API specifications can be served using static files and not generated by the API server itself, so the URL for serving the API cannot always be derived from the URL serving the API specification. The value SHOULD be in the format of a URL.
-<a id="adResourcePath"/>resourcePath | `string` | The *relative* path to the resource, from the [`basePath`](#adBasePath), which this API Specification describes. The value MUST precede with a forward slash (`"/"`).
-<a id="adApis"/>apis | [[API Object](#522-api-object)] | **Required.** A list of the APIs exposed on this resource. There MUST NOT be more than one API Object per [`path`](#apiPath) in the array. 
-<a id="adModels"/>models | [Models Object](#526-models-object) | A list of the models available to this resource. Note that these need to be exposed separately for each API Declaration. 
-<a id="adProduces"/>produces | [`string`] | A list of MIME types the APIs on this resource can produce. This is global to all APIs but can be overridden on specific API calls. 
-<a id="adConsumes"/>consumes | [`string`] | A list of MIME types the APIs on this resource can consume. This is global to all APIs but can be overridden on specific API calls. 
-<a id="adAuthorizations"/>authorizations | [Authorizations Object](#5210-authorizations-object) | A list of authorizations schemes *required* for the operations listed in this API declaration. Individual operations may override this setting. If there are multiple authorization schemes described here, it means they're **all** applied. 
+<a name="adSwaggerVersion"/>swaggerVersion | `string` | **Required.** Specifies the Swagger Specification version being used. It can be used by the Swagger UI and other clients to interpret the API listing. The value MUST be an existing Swagger specification version. <br>Currently, `"1.0"`, `"1.1"`, `"1.2"` are valid values.
+<a name="adApiVersion"/>apiVersion | `string` | Provides the version of the application API (not to be confused by the [specification version](#adSwaggerVersion)). 
+<a name="adBasePath"/>basePath | `string` | **Required.** The root URL serving the API. This field is important as while it is common to have the Resource Listing and API Declarations on the server providing the APIs themselves, it is not a requirement. The API specifications can be served using static files and not generated by the API server itself, so the URL for serving the API cannot always be derived from the URL serving the API specification. The value SHOULD be in the format of a URL.
+<a name="adResourcePath"/>resourcePath | `string` | The *relative* path to the resource, from the [`basePath`](#adBasePath), which this API Specification describes. The value MUST precede with a forward slash (`"/"`).
+<a name="adApis"/>apis | [[API Object](#522-api-object)] | **Required.** A list of the APIs exposed on this resource. There MUST NOT be more than one API Object per [`path`](#apiPath) in the array. 
+<a name="adModels"/>models | [Models Object](#526-models-object) | A list of the models available to this resource. Note that these need to be exposed separately for each API Declaration. 
+<a name="adProduces"/>produces | [`string`] | A list of MIME types the APIs on this resource can produce. This is global to all APIs but can be overridden on specific API calls. 
+<a name="adConsumes"/>consumes | [`string`] | A list of MIME types the APIs on this resource can consume. This is global to all APIs but can be overridden on specific API calls. 
+<a name="adAuthorizations"/>authorizations | [Authorizations Object](#5210-authorizations-object) | A list of authorizations schemes *required* for the operations listed in this API declaration. Individual operations may override this setting. If there are multiple authorization schemes described here, it means they're **all** applied. 
 
 #### 5.2.1 Object Example
 ```js
@@ -696,7 +696,7 @@ The API Object describes one or more operations on a single [`path`](#apiPath). 
 
 Field Name | Type | Description 
 ---|:---:|---
-<a id="apiPath"/>path | `string` | **Required.** The relative path to the operation, from the [`basePath`](#adBasePath), which this operation describes. The value SHOULD be in a relative (URL) path format.
+<a name="apiPath"/>path | `string` | **Required.** The relative path to the operation, from the [`basePath`](#adBasePath), which this operation describes. The value SHOULD be in a relative (URL) path format.
 <a href="apiDescription"/>description | `string` | *Recommended.* A short description of the resource. 
 <a href="apiOperations" />operations | [[Operation Object](#523-operation-object)] | **Required.** A list of the API operations available on this path. The array may include 0 or more operations.
 
@@ -784,16 +784,16 @@ This is the only object where the [`type`](#dataTypeType) MAY have the value of 
 
 Field Name | Type | Description 
 ---|:---:|---
-<a id="operationMethod"/>method | `string` | **Required.** The HTTP method required to invoke this operation. The value MUST be one of the following values: `"GET"`, `"POST"`, `"PUT"`, `"PATCH"`, `"DELETE"`, `"OPTIONS"`. Note that the values MUST be in uppercase.
-<a id="operationSummary"/>summary | `string` | A short summary of what the operation does. For maximum readability in the swagger-ui, this field SHOULD be less than 120 characters.
-<a id="operationNotes"/>notes | `string` | A verbose explanation of the operation behavior.
-<a id="operationNickname"/>nickname |`string` | **Required.** A unique id for the operation that can be used by tools reading the output for further and easier manipulation. For example, Swagger-Codegen will use the nickname as the method name of the operation in the client it generates.
-<a id="operationAuthorizations"/>authorizations | [Authorizations Object](#5210-authorizations-object) | A list of authorizations required to execute this operation. While not mandatory, if used, it overrides the value given at the API Declaration's [authorizations](#adAuthorizations). In order to completely remove API Declaration's authorizations completely, an empty object (`{}`) may be applied.
-<a id="operationParameters"/>parameters | [[Parameter Object](#524-parameter-object)] | **Required.** The inputs to the operation. If no parameters are needed, an empty array MUST be included.
-<a id="operationResponseMessages"/>responseMessages | [[Response Message Object](#525-response-message-object)] | Lists the possible response statuses that can return from the operation. 
-<a id="operationProduces"/>produces | [`string`] | A list of MIME types this operation can produce. This is overrides the global [`produces`](#adProduces) definition at the root of the API Declaration. Each `string` value SHOULD represent a MIME type. 
-<a id="operationConsumes"/>consumes | [`string`] | A list of MIME types this operation can consume. This is overrides the global [`consumes`](#adConsumes) definition at the root of the API Declaration. Each `string` value SHOULD represent a MIME type. 
-<a id="operationDeprecated"/>deprecated | `string` | Declares this operation to be deprecated. Usage of the declared operation should be refrained.
+<a name="operationMethod"/>method | `string` | **Required.** The HTTP method required to invoke this operation. The value MUST be one of the following values: `"GET"`, `"POST"`, `"PUT"`, `"PATCH"`, `"DELETE"`, `"OPTIONS"`. Note that the values MUST be in uppercase.
+<a name="operationSummary"/>summary | `string` | A short summary of what the operation does. For maximum readability in the swagger-ui, this field SHOULD be less than 120 characters.
+<a name="operationNotes"/>notes | `string` | A verbose explanation of the operation behavior.
+<a name="operationNickname"/>nickname |`string` | **Required.** A unique id for the operation that can be used by tools reading the output for further and easier manipulation. For example, Swagger-Codegen will use the nickname as the method name of the operation in the client it generates.
+<a name="operationAuthorizations"/>authorizations | [Authorizations Object](#5210-authorizations-object) | A list of authorizations required to execute this operation. While not mandatory, if used, it overrides the value given at the API Declaration's [authorizations](#adAuthorizations). In order to completely remove API Declaration's authorizations completely, an empty object (`{}`) may be applied.
+<a name="operationParameters"/>parameters | [[Parameter Object](#524-parameter-object)] | **Required.** The inputs to the operation. If no parameters are needed, an empty array MUST be included.
+<a name="operationResponseMessages"/>responseMessages | [[Response Message Object](#525-response-message-object)] | Lists the possible response statuses that can return from the operation. 
+<a name="operationProduces"/>produces | [`string`] | A list of MIME types this operation can produce. This is overrides the global [`produces`](#adProduces) definition at the root of the API Declaration. Each `string` value SHOULD represent a MIME type. 
+<a name="operationConsumes"/>consumes | [`string`] | A list of MIME types this operation can consume. This is overrides the global [`consumes`](#adConsumes) definition at the root of the API Declaration. Each `string` value SHOULD represent a MIME type. 
+<a name="operationDeprecated"/>deprecated | `string` | Declares this operation to be deprecated. Usage of the declared operation should be refrained.
 
 ##### 5.2.3.1 Object Example
 
@@ -840,11 +840,11 @@ If [`type`](#dataTypeType) is [`File`](#434-file), the [`consumes`](#operationCo
 
 Field Name | Type | Description 
 ---|:---:|---
-<a id="parameterParamType"/>paramType | `string` | **Required.** The type of the parameter (that is, the location of the parameter in the request). The value MUST be one of these values: `"path"`, `"query"`, `"body"`, `"header"`, `"form"`. Note that the values MUST be lower case. 
-<a id="parameterName"/>name | `string` | **Required.** The unique name for the parameter. Each `name` MUST be unique, even if they are associated with different `paramType` values. Parameter names are *case sensitive*. <ul><li>If [`paramType`](#parameterParamType) is `"path"`, the `name` field MUST correspond to the associated path segment from the [`path`](#apiPath) field in the [API Object](#522-api-object). <li>If [`paramType`](#parameterParamType) is `"query"`, the `name` field corresponds to the query parameter name. <li>If [`paramType`](#parameterParamType) is `"body"`, the name is used only for Swagger-UI and Swagger-Codegen. In this case, the `name` MUST be `"body"`. <li>If [`paramType`](#parameterParamType) is `"form"`, the `name` field corresponds to the form parameter key. <li>If [`paramType`](#parameterParamType) is `"header"`, the `name` field corresponds to the header parameter key. </ul> See [here](#5241-name-examples) for some examples.
-<a id="parameterDescription"/>description | `string` | *Recommended.* A brief description of this parameter.
-<a id="parameterRequired"/>required | `boolean` | A flag to note whether this parameter is required. If this field is not included, it is equivalent to adding this field with the value `false`. The field MUST be included if [`paramType`](#parameterParamType) is `"path"` and MUST have the value `true`. 
-<a id="parameterAllowMultiple"/>allowMultiple | `boolean` | Another way to allow multiple values for a "query" parameter. If used, the query parameter may accept comma-separated values. The field may be used only if [`paramType`](#parameterParamType) is `"query"`, `"header"` or `"path"`.
+<a name="parameterParamType"/>paramType | `string` | **Required.** The type of the parameter (that is, the location of the parameter in the request). The value MUST be one of these values: `"path"`, `"query"`, `"body"`, `"header"`, `"form"`. Note that the values MUST be lower case. 
+<a name="parameterName"/>name | `string` | **Required.** The unique name for the parameter. Each `name` MUST be unique, even if they are associated with different `paramType` values. Parameter names are *case sensitive*. <ul><li>If [`paramType`](#parameterParamType) is `"path"`, the `name` field MUST correspond to the associated path segment from the [`path`](#apiPath) field in the [API Object](#522-api-object). <li>If [`paramType`](#parameterParamType) is `"query"`, the `name` field corresponds to the query parameter name. <li>If [`paramType`](#parameterParamType) is `"body"`, the name is used only for Swagger-UI and Swagger-Codegen. In this case, the `name` MUST be `"body"`. <li>If [`paramType`](#parameterParamType) is `"form"`, the `name` field corresponds to the form parameter key. <li>If [`paramType`](#parameterParamType) is `"header"`, the `name` field corresponds to the header parameter key. </ul> See [here](#5241-name-examples) for some examples.
+<a name="parameterDescription"/>description | `string` | *Recommended.* A brief description of this parameter.
+<a name="parameterRequired"/>required | `boolean` | A flag to note whether this parameter is required. If this field is not included, it is equivalent to adding this field with the value `false`. The field MUST be included if [`paramType`](#parameterParamType) is `"path"` and MUST have the value `true`. 
+<a name="parameterAllowMultiple"/>allowMultiple | `boolean` | Another way to allow multiple values for a "query" parameter. If used, the query parameter may accept comma-separated values. The field may be used only if [`paramType`](#parameterParamType) is `"query"`, `"header"` or `"path"`.
 
 ##### 5.2.4.1 Name Examples
 - If [`paramType`](#parameterParamType) is `"path"`, and assuming the `path` is `"/pet/{id}"`:
@@ -883,9 +883,9 @@ The Response Message Object describes a single possible response message that ca
 
 Field Name | Type | Description | 
 ---|:---:|---
-<a id="rmCode"/>code | `integer` | **Required.** The HTTP status code returned. The value SHOULD be one of the status codes as described in [RFC 2616 - Section 10](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
-<a id="rmMessage"/>message | `string` | **Required** The explanation for the status code. It SHOULD be the reason an error is received if an error status code is used.
-<a id="rmResponseModel"/>responseModel | `string` | The return type for the given response.
+<a name="rmCode"/>code | `integer` | **Required.** The HTTP status code returned. The value SHOULD be one of the status codes as described in [RFC 2616 - Section 10](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+<a name="rmMessage"/>message | `string` | **Required** The explanation for the status code. It SHOULD be the reason an error is received if an error status code is used.
+<a name="rmResponseModel"/>responseModel | `string` | The return type for the given response.
 
 ##### 5.2.5.1 Object Example
 
@@ -913,7 +913,7 @@ Please note that the Models Object is an object containing other object definiti
 
 Field Name | Type | Description 
 ---|:---:|---
-<a id="modelsModelname"/>{Model Name} | [Model Object](#527-model-object) | A new model definition. Note the actual name of the field is the name you're giving your model. For example, "Category", "Pet", "User".
+<a name="modelsModelname"/>{Model Name} | [Model Object](#527-model-object) | A new model definition. Note the actual name of the field is the name you're giving your model. For example, "Category", "Pet", "User".
 
 ##### 5.2.6.1 Object Example
 
@@ -940,10 +940,10 @@ A Model Object holds the definition of a new model for this API Declaration.
 
 Field Name | Type | Description  
 ---|:---:|---
-<a id="modelId"/>id | `string` | **Required.** A unique identifier for the model. This MUST be the name given to [{Model Name})(#modelsModelname). 
-<a id="modelDescription"/>description | `string` | A brief description of this model. 
-<a id="modelRequired"/>required | [`string`] | A definition of which properties MUST exist when a model instance is produced. The values MUST be the [`{Property Name}`](#propertiesPropertyName) of one of the [`properties`](#528-properties-object).
-<a id="modelProperties"/>properties | [Properties Object](#528-properties-object) | **Required.** A list of properties (fields) that are part of the model.
+<a name="modelId"/>id | `string` | **Required.** A unique identifier for the model. This MUST be the name given to [{Model Name})(#modelsModelname). 
+<a name="modelDescription"/>description | `string` | A brief description of this model. 
+<a name="modelRequired"/>required | [`string`] | A definition of which properties MUST exist when a model instance is produced. The values MUST be the [`{Property Name}`](#propertiesPropertyName) of one of the [`properties`](#528-properties-object).
+<a name="modelProperties"/>properties | [Properties Object](#528-properties-object) | **Required.** A list of properties (fields) that are part of the model.
 
 ##### 5.2.7.1 Object Example
 
@@ -996,7 +996,7 @@ Please note that the Properties Object is an object containing other object defi
 
 Field Name | Type | Description 
 ---|:---:|---
-<a id="propertiesPropertyName"/>{Property Name} | [Property Object](#529-property-object) | A new model property definition. Note the actual name of the field is the name you're giving your property. For example, "id", "name", "age".
+<a name="propertiesPropertyName"/>{Property Name} | [Property Object](#529-property-object) | A new model property definition. Note the actual name of the field is the name you're giving your property. For example, "id", "name", "age".
 
 ##### 5.2.8.1 Object Example
 ```js
@@ -1021,7 +1021,7 @@ Properties MUST NOT contain other properties. If there's a need for an internal 
 
 Field Name | Type | Description
 ---|:---:|---
-<a id="propertyDescription"/>description | `string` | *Recommended.* A brief description of this property.
+<a name="propertyDescription"/>description | `string` | *Recommended.* A brief description of this property.
 
 ##### 5.2.9.1 Object Examples
 
@@ -1072,7 +1072,7 @@ Please note that the Authorizations Object is an object containing other object 
 
 Field Name | Type | Description 
 ---|:---:|---
-<a id="adAuthorizationsAuthorizationName"/>{Authorization Name} | * | The authorization scheme to be used. The name given to the {Authorization Name} MUST be a friendly name that was given to an authorization scheme in the Resource Listing's [authorizations](#rlAuthorizations). If the friendly name describes an OAuth2 security scheme, the value should be of type \[[Scope Object](#5211-scope-object)\] (but may be an empty array to denote 'no scopes'). For all other authorization scheme types, the value MUST be an empty array. 
+<a name="adAuthorizationsAuthorizationName"/>{Authorization Name} | * | The authorization scheme to be used. The name given to the {Authorization Name} MUST be a friendly name that was given to an authorization scheme in the Resource Listing's [authorizations](#rlAuthorizations). If the friendly name describes an OAuth2 security scheme, the value should be of type \[[Scope Object](#5211-scope-object)\] (but may be an empty array to denote 'no scopes'). For all other authorization scheme types, the value MUST be an empty array. 
 
 ##### 5.2.10 Object Example:
 ```js
@@ -1095,8 +1095,8 @@ Describes an OAuth2 authorization scope. The scope described here MUST be descri
 
 Field Name | Type | Description  
 ---|:---:|---
-<a id="scopeScope"/>scope | `string` | **Required.** The name of the scope.   
-<a id="scope"/>description | `string` | *Recommended.* A short description of the scope.   
+<a name="scopeScope"/>scope | `string` | **Required.** The name of the scope.   
+<a name="scope"/>description | `string` | *Recommended.* A short description of the scope.   
 
 ##### 5.1.6.1 Object Example:
 ```js

@@ -1,6 +1,6 @@
 # The Swagger Specification
 
-Welcome to the Swagger Project.
+Welcome to the Swagger Project!
 
 The goal of Swagger is to assist in REST-ful API description and allow for simple automatic and manual integrations.
 The Swagger Specification is a set of guidelines and rules to produce such an API documentation, which is a common base for all other tools.
@@ -17,7 +17,7 @@ and some general information regarding the project.
 
 ## Current Version - 1.2
 
-The current version of the Swagger specification is 1.2 - and you can find it [here](1.2.md).
+The current version of the Swagger specification is 1.2 - and you can find it [here](versions/1.2.md).
 
 Please keep in mind that the other projects under Swagger use an independent version system.
 As such, don't confuse the version of the Swagger Specification they support and the version of that given library.

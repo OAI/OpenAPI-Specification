@@ -43,9 +43,9 @@ If you just want to see it work, check out the [pet store sample](http://swagger
 These are the projects that were created by the same people who authored the Swagger Specification:
 - [swagger-core](https://github.com/wordnik/swagger-core) - A Swagger implementation for Java/Scala. Has integration with JAX-RS (Jersey, Resteasy, CXF...), Servlets and Play Framework.
 - [swagger-js](https://github.com/wordnik/swagger-js) - A Swagger implementation for JavaScript.
-- [swagger-node-express] - A Swagger module for node.js with express module.
-- [swagger-ui] - A dependency-free collection of HTML, Javascript, and CSS assets that dynamically generate beautiful documentation from a Swagger-compliant API.
-- [swagger-codegen] - A template-driven engine to generate client code in different languages by parsing your Swagger documentation.
+- [swagger-node-express](https://github.com/wordnik/swagger-node-express) - A Swagger module for node.js with express module.
+- [swagger-ui](https://github.com/wordnik/swagger-ui) - A dependency-free collection of HTML, Javascript, and CSS assets that dynamically generate beautiful documentation from a Swagger-compliant API.
+- [swagger-codegen](https://github.com/wordnik/swagger-codegen) - A template-driven engine to generate client code in different languages by parsing your Swagger documentation.
 
 
 ### Community-Driven Language Integrations

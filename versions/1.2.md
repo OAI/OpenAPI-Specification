@@ -938,12 +938,16 @@ Field Name | Type | Description
 
 A Model Object holds the definition of a new model for this API Declaration.
 
+Models in Swagger allow for inheritance. The inheritance is controlled by two fields - [`subTypes`](#modelSubTypes) to give the name of the models extending this definition, and [`discriminator`](#modelDiscriminator) to support polymorphism. 
+
 Field Name | Type | Description  
 ---|:---:|---
 <a name="modelId"/>id | `string` | **Required.** A unique identifier for the model. This MUST be the name given to [{Model Name})(#modelsModelname). 
 <a name="modelDescription"/>description | `string` | A brief description of this model. 
 <a name="modelRequired"/>required | [`string`] | A definition of which properties MUST exist when a model instance is produced. The values MUST be the [`{Property Name}`](#propertiesPropertyName) of one of the [`properties`](#528-properties-object).
-<a name="modelProperties"/>properties | [Properties Object](#528-properties-object) | **Required.** A list of properties (fields) that are part of the model.
+<a name="modelProperties"/>properties | [Properties Object](#528-properties-object) | **Required.** A list of properties (fields) that are part of the model
+<a name="modelSubTypes"/>subTypes | [`string`] | List of the [model `id`s](#modelId) that inherit from this model. Sub models inherit all the properties of the parent model. Since inheritance is transitive, if the parent of a model inherits from another model, its sub-model will include all properties. As such, if you have `Foo->Bar->Baz`, then Baz will inherit the properties of Bar and Foo. There MUST NOT be a cyclic definition of inheritance. For example, if `Foo -> ... -> Bar`, having `Bar -> ... -> Foo` is not allowed. There also MUST NOT be a case of multiple inheritance. For example, `Foo -> Baz <- Bar` is not allowed. A sub-model definition MUST NOT override the [`properties`](#modelProperties) of any of its ancestors. All sub-models MUST be defined in the same [API Declaration](#52-api-declaration).
+<a name="modelDiscriminator"/>discriminator | `string` | MAY be included only if [`subTypes`](#modelSubTypes) is included. This field allows for polymorphism within the described inherited models. This field MAY be included at any base model but MUST NOT be included in a sub-model. The value of this field MUST be a name of one of the [`properties`](#modelProperties) in this model, and that field MUST be in the [`required`](#modelRequired) list. When used, the value of the *discriminator property* MUST be the name of parent or any of its sub-models (to any depth of inheritance).
 
 ##### 5.2.7.1 Object Example
 
@@ -977,6 +981,39 @@ Field Name | Type | Description
       "format": "date-time"
     }
   }
+}
+```
+
+##### 5.2.7.2 Inheritance Example
+
+Say we have a general Animal model, and a sub-model for Cat.
+
+```js
+"Animal": {
+  "id": "Animal",
+  "name": "Animal",
+  "properties": {
+    "id": {
+      "type": "long",
+      "required": false
+    },
+    "type": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "subTypes": ["Cat"],
+  "discriminator": "type"
+},
+"Cat": {
+  "id": "Cat",
+  "name": "Cat",
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": false
+    }
+  },
 }
 ```
 
@@ -1090,7 +1127,7 @@ Field Name | Type | Description
 }
 ```
 
-#### 5.1.6 Scope Object
+#### 5.2.11 Scope Object
 Describes an OAuth2 authorization scope. The scope described here MUST be described in the respective friendly name definition of the security scheme in the Resource Listing's [authorizations](#rlAuthorizations).
 
 Field Name | Type | Description  
@@ -1098,7 +1135,7 @@ Field Name | Type | Description
 <a name="scopeScope"/>scope | `string` | **Required.** The name of the scope.   
 <a name="scope"/>description | `string` | *Recommended.* A short description of the scope.   
 
-##### 5.1.6.1 Object Example:
+##### 5.2.11.1 Object Example:
 ```js
 {
   "scope": "email",

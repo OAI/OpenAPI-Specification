@@ -992,14 +992,16 @@ Say we have a general Animal model, and a sub-model for Cat.
 "Animal": {
   "id": "Animal",
   "name": "Animal",
+  "required": [
+    "id",
+    "type"
+  ],
   "properties": {
     "id": {
-      "type": "long",
-      "required": false
+      "type": "long"
     },
     "type": {
-      "type": "string",
-      "required": true
+      "type": "string"
     }
   },
   "subTypes": ["Cat"],
@@ -1008,10 +1010,12 @@ Say we have a general Animal model, and a sub-model for Cat.
 "Cat": {
   "id": "Cat",
   "name": "Cat",
+  "required": [
+    "likesMilk"
+  ],
   "properties": {
-    "name": {
-      "type": "string",
-      "required": false
+    "likesMilk": {
+      "type": "boolean"
     }
   },
 }

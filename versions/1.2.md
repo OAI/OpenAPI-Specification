@@ -14,11 +14,11 @@ The Swagger specification defines a set of files required to describe such an AP
 
 ## 2. Revision History
 
-Version | Notes
+Version | Date | Notes
 --- | ---
-1.2 | Initial release of the formal document. 
-1.1 | 
-1.0 | 
+1.2 | 2014-03-14 | Initial release of the formal document. 
+1.1 | 2012-08-22 | Release of Swagger 1.1
+1.0 | 2011-08-10 | First release of the Swagger Specification
 
 ## 3. Definitions
 

@@ -942,7 +942,7 @@ Models in Swagger allow for inheritance. The inheritance is controlled by two fi
 
 Field Name | Type | Description  
 ---|:---:|---
-<a name="modelId"/>id | `string` | **Required.** A unique identifier for the model. This MUST be the name given to [{Model Name})(#modelsModelname). 
+<a name="modelId"/>id | `string` | **Required.** A unique identifier for the model. This MUST be the name given to [{Model Name}](#modelsModelname). 
 <a name="modelDescription"/>description | `string` | A brief description of this model. 
 <a name="modelRequired"/>required | [`string`] | A definition of which properties MUST exist when a model instance is produced. The values MUST be the [`{Property Name}`](#propertiesPropertyName) of one of the [`properties`](#528-properties-object).
 <a name="modelProperties"/>properties | [Properties Object](#528-properties-object) | **Required.** A list of properties (fields) that are part of the model

@@ -167,7 +167,7 @@ By default, this document SHOULD be served at the `/api-docs` path.
 Field Name | Type | Description
 ---|:---:|---
 <a name="rlSwaggerVersion"/>swaggerVersion | `string` | **Required.** Specifies the Swagger Specification version being used. It can be used by the Swagger UI and other clients to interpret the API listing. The value MUST be an existing Swagger specification version. <br>Currently, `"1.0"`, `"1.1"`, `"1.2"` are valid values. The field is of `string` value for possible non-numeric versions in the future (for example, "1.2a").
-<a name="rlApis"/>apis | [ [Resource Object](#512-resource-object) ] | **Required.** Lists the resources to be described by this specification implementation. They array can have 0 more elements.
+<a name="rlApis"/>apis | [ [Resource Object](#512-resource-object) ] | **Required.** Lists the resources to be described by this specification implementation. The array can have 0 or more elements.
 <a name="rlApiVersion"/>apiVersion| `string` | Provides the version of the application API (not to be confused by the [specification version](#rlSwaggerVersion)). 
 <a name="rlInfo"/>info | [Info Object](#513-info-object) | Provides metadata about the API. The metadata can be used by the clients if needed, and can be presented in the Swagger-UI for convenience.
 <a name="rlAuthorizations"/>authorizations | [Authorizations Object](#514-authorizations-object) | Provides information about the the authorization schemes allowed on his API. 
@@ -528,7 +528,7 @@ Field Name | Type | Description
 
 ### 5.2 API Declaration
 
-The API Declaration provides information about API exposed on a resource. There should be one file per [Resource](#512-resource-object) described. The file MUST be served in the URL described by the [`path`](#aePath) field.  
+The API Declaration provides information about an API exposed on a resource. There should be one file per [Resource](#512-resource-object) described. The file MUST be served in the URL described by the [`path`](#aePath) field.
 
 Field Name | Type | Description 
 ---|:---:|---

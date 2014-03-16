@@ -45,7 +45,7 @@ For example, if a field is said to have an array value, the JSON array represent
 
 ```js
 {
-   "field" : [. . .]
+   "field" : [...]
 }
 ```
 
@@ -1101,13 +1101,13 @@ A "tags" field of type array containing Tag models.
 The object provides information about the authorization schemes enforced on this API. If used in the API Declaration's [authorizations](#adAuthorizations), it applies to all operations listed. If used in the Operation's [authorizations](#operationAuthorizations), it applies to the operation itself and may override the API Declaration's authorizations.
 If multiple authorization schemes are described, they are **all** required to perform the operations listed.
 
-Please note that the Authorizations Object is an object containing other object definitions and as such is structured as follows:
+Please note that the Authorizations Object is an object containing arrays of object definitions and as such is structured as follows:
 ```js
 {
-   "Authorization1" : {...},
-   "Authorization2" : {...},
+   "Authorization1" : [...],
+   "Authorization2" : [...],
    ...,
-   "AuthorizationN" : {...}
+   "AuthorizationN" : [...]
 }
 ```
 

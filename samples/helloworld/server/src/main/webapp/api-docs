@@ -1,0 +1,9 @@
+{
+  "swaggerVersion": "1.2",
+  "apis": [
+    {
+      "path": "http://localhost:8000/listings/greetings",
+      "description": "Generating greetings in our application."
+    }
+  ]
+}

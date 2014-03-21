@@ -19,6 +19,8 @@ and some general information regarding the project.
 
 The current version of the Swagger specification is 1.2 - and you can find it [here](versions/1.2.md).
 
+### [Swagger 1.2 Specification](versions/1.2.md)
+
 Please keep in mind that the other projects under Swagger use an independent version system.
 As such, don't confuse the version of the Swagger Specification they support and the version of that given library.
 For example, Swagger-Core with the version 1.3.2 supports Swagger Specification 1.2.

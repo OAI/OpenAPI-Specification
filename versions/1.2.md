@@ -350,7 +350,7 @@ Field Name | Type | Validity | Description
 <a name="authorizationPassAs"/>passAs | `string` | `apiKey` | **Required.** Denotes how the API key must be passed. Valid values are `"header"` or `"query"`.
 <a name="authorizationKeyname"/>keyname | `string` | `apiKey` | **Required.** The name of the `header` or `query` parameter to be used when passing the API key.    
 <a name="authorizationScopes"/>scopes | [[Scope Object](#516-scope-object)] | `oauth2` | A list of supported OAuth2 scopes. 
-<a name="authorizationGrantTypes"/>grantTypes | [Grant Types Object](#517-scope-object) | `oauth2` | **Required.** Detailed information about the grant types supported by the oauth2 authorization scheme.
+<a name="authorizationGrantTypes"/>grantTypes | [Grant Types Object](#517-grant-types-object) | `oauth2` | **Required.** Detailed information about the grant types supported by the oauth2 authorization scheme.
 
 ##### 5.1.5.1 Object Example:
 ```js

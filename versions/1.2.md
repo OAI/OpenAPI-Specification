@@ -698,7 +698,7 @@ Field Name | Type | Description
 ---|:---:|---
 <a name="apiPath"/>path | `string` | **Required.** The relative path to the operation, from the [`basePath`](#adBasePath), which this operation describes. The value SHOULD be in a relative (URL) path format.
 <a href="apiDescription"/>description | `string` | *Recommended.* A short description of the resource. 
-<a href="apiOperations" />operations | [[Operation Object](#523-operation-object)] | **Required.** A list of the API operations available on this path. The array may include 0 or more operations.
+<a href="apiOperations" />operations | [[Operation Object](#523-operation-object)] | **Required.** A list of the API operations available on this path. The array may include 0 or more operations. There MUST NOT be more than one Operation Object per [`method`](#operationMethod) in the array.
 
 ##### 5.2.2.1 Object Example:
 
@@ -778,13 +778,15 @@ Field Name | Type | Description
 #### 5.2.3 Operation Object
 The Operation Object describes a single operation on a [`path`](#apiPath).
 
+In the [`operations`](#apiOperations) array, there MUST be only one [`Operation Object`](#523-operation-object) per [`method`](#operationMethod).
+
 This object includes the [Data Type Fields](#433-data-type-fields) in order to describe the return value of the operation. The [`type`](#dataTypeType) field MUST be used to link to other models.
 
 This is the only object where the [`type`](#dataTypeType) MAY have the value of [`void`](#432-void) to indicate that the operation returns no value.
 
 Field Name | Type | Description 
 ---|:---:|---
-<a name="operationMethod"/>method | `string` | **Required.** The HTTP method required to invoke this operation. The value MUST be one of the following values: `"GET"`, `"POST"`, `"PUT"`, `"PATCH"`, `"DELETE"`, `"OPTIONS"`. Note that the values MUST be in uppercase.
+<a name="operationMethod"/>method | `string` | **Required.** The HTTP method required to invoke this operation. The value MUST be one of the following values: `"GET"`, `"POST"`, `"PUT"`, `"PATCH"`, `"DELETE"`, `"OPTIONS"`. Note that the values MUST be in uppercase. 
 <a name="operationSummary"/>summary | `string` | A short summary of what the operation does. For maximum readability in the swagger-ui, this field SHOULD be less than 120 characters.
 <a name="operationNotes"/>notes | `string` | A verbose explanation of the operation behavior.
 <a name="operationNickname"/>nickname |`string` | **Required.** A unique id for the operation that can be used by tools reading the output for further and easier manipulation. For example, Swagger-Codegen will use the nickname as the method name of the operation in the client it generates. The value MUST be alphanumeric and may include underscores. Whitespsace characters are not allowd.

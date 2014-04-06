@@ -795,7 +795,7 @@ Field Name | Type | Description
 <a name="operationResponseMessages"/>responseMessages | [[Response Message Object](#525-response-message-object)] | Lists the possible response statuses that can return from the operation. 
 <a name="operationProduces"/>produces | [`string`] | A list of MIME types this operation can produce. This is overrides the global [`produces`](#adProduces) definition at the root of the API Declaration. Each `string` value SHOULD represent a MIME type. 
 <a name="operationConsumes"/>consumes | [`string`] | A list of MIME types this operation can consume. This is overrides the global [`consumes`](#adConsumes) definition at the root of the API Declaration. Each `string` value SHOULD represent a MIME type. 
-<a name="operationDeprecated"/>deprecated | `string` | Declares this operation to be deprecated. Usage of the declared operation should be refrained.
+<a name="operationDeprecated"/>deprecated | `string` | Declares this operation to be deprecated. Usage of the declared operation should be refrained. Valid value MUST be either `"true"` or `"false"`. *Note:* This field will change to type `boolean` in the future.
 
 ##### 5.2.3.1 Object Example
 

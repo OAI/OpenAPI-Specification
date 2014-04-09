@@ -8,7 +8,7 @@ The Swagger specification is licensed under [The Apache License, Version 2.0](ht
 
 ## 1. Introduction
 
-Swagger is a project used to describe and document RESTful APIs.
+Swagger™  is a project used to describe and document RESTful APIs.
 
 The Swagger specification defines a set of files required to describe such an API. These files can then be used by the Swagger-UI project to display the API and Swagger-Codegen to generate clients in various languages. Additional utilities can also take advantage of the resulted files, for example, testing tools.
 

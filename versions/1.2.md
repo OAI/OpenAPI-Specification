@@ -895,7 +895,7 @@ Field Name | Type | Description |
   {
     "code": 404,
     "message": "no project found",
-    "responseType": "ErrorModel"
+    "responseModel": "ErrorModel"
   }
 ```
 

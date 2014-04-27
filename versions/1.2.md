@@ -124,7 +124,7 @@ Field Name | Type | Validity |Description
 <a name="dataTypeEnum"/>enum | [`string`] | `string` | A fixed list of possible values. If this field is used in conjunction with the [`defaultValue`](#dataTypeDefaultValue) field, then the default value MUST be one of the values defined in the `enum`.
 <a name="dataTypeMinimum"/>minimum | `string` | `number`, `integer` | The minimum valid value for the type, inclusive. If this field is used in conjunction with the [`defaultValue`](#dataTypeDefaultValue) field, then the default value MUST be higher than or equal to this value. The value type is `string` and should represent the minimum numeric value. **Note**: This will change to a numeric value in the future.
 <a name="dataTypeMaximum"/>maximum | `string` | `number`, `integer` | The maximum valid value for the type, inclusive. If this field is used in conjunction with the [`defaultValue`](#dataTypeDefaultValue) field, then the default value MUST be lower than or equal to this value. The value type is `string` and should represent the maximum numeric value. **Note**: This will change to a numeric value in the future.
-<a name="dataTypeItems"/>items | [Items Object](#434-items-object) | `array` | **Required.** The type definition of the values in the container. A container MAY NOT be nested in another container. 
+<a name="dataTypeItems"/>items | [Items Object](#434-items-object) | `array` | **Required.** The type definition of the values in the container. A container MUST NOT be nested in another container. 
 <a name="dataTypeUniqueItems"/>uniqueItems | `boolean` | `array` | A flag to note whether the container allows duplicate values or not. If the value is set to `true`, then the `array` acts as a set.
 
 #### 4.3.4 Items Object

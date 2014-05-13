@@ -1,0 +1,13 @@
+[
+    { "op": "add", "path": "/required/-", "value": "type" },
+    {
+        "op": "add",
+        "path": "/properties/type",
+        "value": { "enum": [ "boolean" ] }
+    },
+    {
+        "op": "add",
+        "path": "/properties/defaultValue",
+        "value": { "type": "boolean" }
+    }
+]

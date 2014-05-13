@@ -1,0 +1,4 @@
+[
+    { "op": "add", "path": "/required/-", "value": "$ref" },
+    { "op": "add", "path": "/properties/$ref", "value": { "type": "string" } }
+]

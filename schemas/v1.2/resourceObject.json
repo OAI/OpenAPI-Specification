@@ -1,0 +1,11 @@
+{
+    "id": "http://wordnik.github.io/schemas/v1.2/resourceObject.json#",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "required": [ "path" ],
+    "properties": {
+        "path": { "type": "string", "format": "uri" },
+        "description": { "type": "string" }
+    },
+    "additionalProperties": false
+}

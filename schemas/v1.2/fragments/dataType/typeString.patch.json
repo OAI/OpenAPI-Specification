@@ -1,0 +1,28 @@
+[
+    { "op": "add", "path": "/required/-", "value": "type" },
+    {
+        "op": "add",
+        "path": "/properties/type",
+        "value": { "enum": [ "string" ] }
+    },
+    {
+        "op": "add",
+        "path": "/properties/format",
+        "value": { "enum": [ "byte", "date", "date-time" ] }
+    },
+    {
+        "op": "add",
+        "path": "/properties/defaultValue",
+        "value": { "type": "string" }
+    },
+    {
+        "op": "add",
+        "path": "/properties/enum",
+        "value": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "type": "string" }
+        }
+    }
+]

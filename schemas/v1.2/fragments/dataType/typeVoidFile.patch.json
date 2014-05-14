@@ -1,8 +1,0 @@
-[
-    { "op": "add", "path": "/required/-", "value": "type" },
-    {
-        "op": "add",
-        "path": "/properties/type",
-        "value": { "enum": [ "void", "File" ] }
-    }
-]

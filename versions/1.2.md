@@ -150,7 +150,7 @@ For a complex type (model):
 }
 ```
 
-#### 4.3.4 `File`
+#### 4.3.5 `File`
 
 The `File` (case sensitive) is a special type used to denote file upload. Note that declaring a model with the name `File` may lead to various conflicts with third party tools and SHOULD be avoided. 
 

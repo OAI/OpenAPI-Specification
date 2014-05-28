@@ -36,7 +36,7 @@ This includes:
 
 ## See it in Action
 
-If you just want to see it work, check out the [pet store sample](http://swagger.wordnik.com).
+If you just want to see it work, check out the [pet store sample](http://petstore.swagger.wordnik.com).
 
 ## Additional Libraries
 

@@ -21,7 +21,7 @@ This repository contains the existing Swagger 1.2 specification as well as propo
 
 ## Structure
 
-
+Each section should contain v1.2 and v2.0 folders to avoid confusion between the versions.
 
 ## License
 

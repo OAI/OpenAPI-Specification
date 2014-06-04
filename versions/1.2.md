@@ -852,13 +852,13 @@ Field Name | Type | Description
 - If [`paramType`](#parameterParamType) is `"path"`, and assuming the `path` is `"/pet/{id}"`:
 
     ```js
-name: "id"
+"name": "id"
     ```
 
 - If [`paramType`](#parameterParamType) is `"query"`, and assuming the URL call is `"http://host/resource?limit=100"` (that is, there's a query parameter called `"limit"`:
 
     ```js
-name: "limit"
+"name": "limit"
     ```
 
 - If [`paramType`](#parameterParamType) is `"body"`:

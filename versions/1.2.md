@@ -864,18 +864,18 @@ name: "limit"
 - If [`paramType`](#parameterParamType) is `"body"`:
 
     ```js
-name: "body"
+"name": "body"
     ```
 
 ##### 5.2.4.2 Object Example
 
 ```js
 {
-  name: "body",
-  description: "Pet object that needs to be updated in the store",
-  required: true,
-  type: "Pet",
-  paramType: "body"
+  "name": "body",
+  "description": "Pet object that needs to be updated in the store",
+  "required": true,
+  "type": "Pet",
+  "paramType": "body"
 }
 ```
 

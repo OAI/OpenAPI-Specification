@@ -1,0 +1,183 @@
+
+{
+  "swagger": 2.0,
+  "baseUri": "http://my.api.com/v1",
+  "info": {
+    "version": "1.0.9-abcd",
+    "title": "Swagger Sample API",
+    "description": "A sample API that uses a petstore as an example to demonstrate features in the swagger-2.0 specification",
+    "termsOfServiceUrl": "http://helloreverb.com/terms/",
+    "contactUri": "mailto://apiteam@wordnik.com",
+    "license": "Creative Commons 4.0 International",
+    "licenseUrl": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "authorizations": {
+    "myAuth": {
+      "type": "oauth2",
+      "scopes": [
+        {
+          "write:pets": "Modify pets in your account"
+        },
+        {
+          "read:pets": "Read your pets"
+        }
+      ],
+      "flows": {
+        "implicit": {
+          "loginEndpoint": {
+            "url": "http://petstore.swagger.wordnik.com/oauth/dialog"
+          },
+          "tokenName": "access_token"
+        },
+        "authorization_code": {
+          "tokenRequestEndpoint": {
+            "url": "http://petstore.swagger.wordnik.com/oauth/requestToken",
+            "clientIdName": "client_id",
+            "clientSecretName": "client_secret"
+          },
+          "tokenEndpoint": {
+            "url": "http://petstore.swagger.wordnik.com/oauth/token",
+            "tokenName": "auth_code"
+          }
+        }
+      }
+    }
+  },
+  "resources": {
+    "schemes": [
+      "http",
+      "https"
+    ],
+    "authorizations": [
+      "read:pets"
+    ],
+    "produces": [
+      "application/json",
+      "application/xml"
+    ],
+    "/pets": {
+      "get": {
+        "summary": "Fetches pets by a filter",
+        "description": "Searches pets",
+        "nickname": "searchPets",
+        "parameters": [
+          {
+            "name": "substring",
+            "kind": "query",
+            "summary": "A substring to search pets by",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "type": "array",
+            "items": {
+              "$ref": "Pet"
+            }
+          }
+        }
+      }
+    },
+    "/pets/{petId}": {
+      "get": {
+        "summary": "Find pet by ID",
+        "description": "Returns a pet based on ID",
+        "nickname": "getPetById",
+        "produces": [
+          "application/json",
+          "application/xml",
+          "text/plain",
+          "text/html"
+        ],
+        "authorizations": [
+          {
+            "myAuth": [
+              "write:pets",
+              "read:pets"
+            ]
+          },
+          "yourAuth"
+        ],
+        "parameters": [
+          {
+            "name": "petId",
+            "kind": "path",
+            "summary": "ID of pet that needs to be fetched",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "csv"
+            }
+          },
+          {
+            "name": "verbose",
+            "description": "Expand the response and show extra data",
+            "required": false,
+            "type": "boolean",
+            "paramType": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "type": "Pet"
+          },
+          "400": {
+            "description": "Invalid ID supplied <= this is purely for documentation",
+            "type": "ErrorModel"
+          },
+          "404": {
+            "description": "Pet not found"
+          }
+        }
+      }
+    }
+  },
+  "models": {
+    "Pet": {
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "tag": {
+          "$ref": "Tag"
+        }
+      }
+    },
+    "Tag": {
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "ErrorModel": {
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

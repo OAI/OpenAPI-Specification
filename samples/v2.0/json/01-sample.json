@@ -1,103 +1,48 @@
+# externalization?
+# vendor & display extensions
+# response headers
+# authorization
 
 {
   "swagger": 2.0,
-  "baseUrl": "http://my.api.com/v1",
   "info": {
     "version": "1.0.9-abcd",
     "title": "Swagger Sample API",
     "description": "A sample API that uses a petstore as an example to demonstrate features in the swagger-2.0 specification",
-    "termsOfServiceUrl": "http://helloreverb.com/terms/",
-    "contactUrl": "mailto://apiteam@wordnik.com",
+    "termsOfService": "http://helloreverb.com/terms/",
+    "contact": "mailto://apiteam@wordnik.com",
     "license": "Creative Commons 4.0 International",
     "licenseUrl": "http://creativecommons.org/licenses/by/4.0/"
   },
-  "authorizations": {
-    "myAuth": {
-      "type": "oauth2",
-      "scopes": [
-        {
-          "write:pets": "Modify pets in your account"
-        },
-        {
-          "read:pets": "Read your pets"
-        }
-      ],
-      "flows": {
-        "implicit": {
-          "loginEndpoint": {
-            "url": "http://petstore.swagger.wordnik.com/oauth/dialog"
-          },
-          "tokenName": "access_token"
-        },
-        "authorization_code": {
-          "tokenRequestEndpoint": {
-            "url": "http://petstore.swagger.wordnik.com/oauth/requestToken",
-            "clientIdName": "client_id",
-            "clientSecretName": "client_secret"
-          },
-          "tokenEndpoint": {
-            "url": "http://petstore.swagger.wordnik.com/oauth/token",
-            "tokenName": "auth_code"
-          }
-        }
-      }
-    }
-  },
+  "host": "my.api.com",
+  "basePath": "/v1",
   "resources": {
     "schemes": [
       "http",
       "https"
     ],
-    "authorizations": [
-      "read:pets"
-    ],
     "produces": [
       "application/json",
       "application/xml"
     ],
-    "/pets": {
-      "get": {
-        "summary": "Fetches pets by a filter",
-        "description": "Searches pets",
-        "nickname": "searchPets",
-        "parameters": [
-          {
-            "name": "substring",
-            "kind": "query",
-            "summary": "A substring to search pets by",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": null,
-            "type": "array",
-            "items": {
-              "$ref": "Pet"
-            }
-          }
-        }
+    "/user": {
+      "post": {
+        "..."
       }
+    },
+    "/pets/findByTags": {
+      "$ref": "http://..."
     },
     "/pets/{petId}": {
       "get": {
         "summary": "Find pet by ID",
         "description": "Returns a pet based on ID",
-        "nickname": "getPetById",
+        "nickname": "getPetsById",
         "produces": [
           "application/json",
           "application/xml",
           "text/plain",
           "text/html"
-        ],
-        "authorizations": [
-          {
-            "myAuth": [
-              "write:pets",
-              "read:pets"
-            ]
-          },
-          "yourAuth"
         ],
         "parameters": [
           {
@@ -113,10 +58,10 @@
           },
           {
             "name": "verbose",
+            "kind": "query",
             "description": "Expand the response and show extra data",
             "required": false,
-            "type": "boolean",
-            "paramType": "query"
+            "type": "boolean"
           }
         ],
         "responses": {

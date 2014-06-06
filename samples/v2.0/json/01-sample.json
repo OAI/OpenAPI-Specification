@@ -25,14 +25,6 @@
       "application/json",
       "application/xml"
     ],
-    "/user": {
-      "post": {
-        "..."
-      }
-    },
-    "/pets/findByTags": {
-      "$ref": "http://..."
-    },
     "/pets/{petId}": {
       "get": {
         "summary": "Find pet by ID",

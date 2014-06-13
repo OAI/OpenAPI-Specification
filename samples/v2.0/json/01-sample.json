@@ -12,7 +12,7 @@
   "host": "my.api.com",
   "basePath": "/v1",
   "resources": {
-    "schemes": [
+    "transports": [
       "http",
       "https"
     ],

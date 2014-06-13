@@ -1,0 +1,81 @@
+{
+  "swagger": 2.0,
+  "info": {
+    "version": "1.0.9",
+    "title": "Swagger Sample API",
+    "description": "A sample API to demonstrate remote resource and model references",
+    "termsOfService": "http://helloreverb.com/terms/",
+    "contact": "mailto://apiteam@wordnik.com",
+    "license": "Creative Commons 4.0 International",
+    "licenseUrl": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "host": "my.api.com",
+  "basePath": "/v1",
+  "components": {
+    "$ref" : "02-remote-description-1.json"
+  },
+  "resources": {
+    "transports": [
+      "https"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "/pets/{petId}": {
+      "get": {
+        "summary": "Find pet by ID",
+        "description": "Returns a pet based on ID",
+        "nickname": "getPetsById",
+        "parameters": [
+          {
+            "name": "petId",
+            "kind": "path",
+            "summary": "ID of pet that needs to be fetched",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "csv"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "type": "Pet"
+          }
+        }
+      }
+    }
+  },
+  "models": {
+    "Pet": {
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "tag": {
+          "$ref": "Tag"
+        }
+      }
+    },
+    "Tag": {
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    }
+  }
+}

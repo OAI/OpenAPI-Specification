@@ -1,0 +1,47 @@
+{
+  "resources": {
+    "transports": [
+      "https"
+    ],
+    "/users/{id}": {
+      "get": {
+        "summary": "Retrieves users",
+        "description": "Returns a user based on ID",
+        "nickname": "getById",
+        "parameters": [
+          {
+            "name": "id",
+            "kind": "path",
+            "summary": "ID of user to retrieve",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "type": "User"
+          }
+        }
+      }
+    }
+  },
+  "models": {
+    "User": {
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

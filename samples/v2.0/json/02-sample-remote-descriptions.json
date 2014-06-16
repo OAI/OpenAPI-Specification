@@ -1,9 +1,9 @@
 {
   "swagger": 2.0,
   "info": {
-    "version": "1.0.9",
+    "version": "1.0.9-abcd",
     "title": "Swagger Sample API",
-    "description": "A sample API to demonstrate remote resource and model references",
+    "description": "A sample API that uses a petstore as an example to demonstrate features in the swagger-2.0 specification",
     "termsOfService": "http://helloreverb.com/terms/",
     "contact": "mailto://apiteam@wordnik.com",
     "license": "Creative Commons 4.0 International",
@@ -11,21 +11,29 @@
   },
   "host": "my.api.com",
   "basePath": "/v1",
-  "components": {
-    "$ref" : "02-remote-description-1.json"
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "refs": {
+    "02-remote-description-1.json"
   },
-  "resources": {
-    "transports": [
-      "https"
-    ],
-    "produces": [
-      "application/json"
-    ],
+  "paths": {
     "/pets/{petId}": {
       "get": {
         "summary": "Find pet by ID",
         "description": "Returns a pet based on ID",
         "nickname": "getPetsById",
+        "produces": [
+          "application/json",
+          "text/html"
+        ],
         "parameters": [
           {
             "name": "petId",
@@ -37,12 +45,26 @@
               "type": "string",
               "format": "csv"
             }
+          },
+          {
+            "name": "verbose",
+            "kind": "query",
+            "description": "Expand the response and show extra data",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "responses": {
           "200": {
             "description": null,
             "type": "Pet"
+          },
+          "400": {
+            "description": "Invalid ID supplied <= this is purely for documentation",
+            "type": "ErrorModel"
+          },
+          "404": {
+            "description": "Pet not found"
           }
         }
       }
@@ -74,6 +96,21 @@
         "id": {
           "type": "integer",
           "format": "int64"
+        }
+      }
+    },
+    "ErrorModel": {
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
         }
       }
     }

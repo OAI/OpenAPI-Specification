@@ -11,15 +11,18 @@
   },
   "host": "my.api.com",
   "basePath": "/v1",
-  "resources": {
-    "transports": [
-      "http",
-      "https"
-    ],
-    "produces": [
-      "application/json",
-      "application/xml"
-    ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json",
+    "application/xml"
+  ],
+  "paths": {
     "/pets/{petId}": {
       "get": {
         "summary": "Find pet by ID",
@@ -27,8 +30,6 @@
         "nickname": "getPetsById",
         "produces": [
           "application/json",
-          "application/xml",
-          "text/plain",
           "text/html"
         ],
         "parameters": [

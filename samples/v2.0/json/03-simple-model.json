@@ -10,7 +10,8 @@
         "id": {
           "type": "integer",
           "format": "int64",
-          "description": "the ID of the user"
+          "description": "the ID of the user",
+          "readOnly": true
         },
         "firstName": {
           "type": "string"
@@ -24,7 +25,8 @@
         "age": {
           "type": "integer",
           "format": "int32",
-          "min": 0
+          "min": 0,
+          "readOnly": true
         },
         "birthDate": {
           "type": "string",

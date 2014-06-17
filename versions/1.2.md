@@ -786,7 +786,7 @@ This is the only object where the [`type`](#dataTypeType) MAY have the value of 
 
 Field Name | Type | Description 
 ---|:---:|---
-<a name="operationMethod"/>method | `string` | **Required.** The HTTP method required to invoke this operation. The value MUST be one of the following values: `"GET"`, `"POST"`, `"PUT"`, `"PATCH"`, `"DELETE"`, `"OPTIONS"`. Note that the values MUST be in uppercase. 
+<a name="operationMethod"/>method | `string` | **Required.** The HTTP method required to invoke this operation. The value MUST be one of the following values: `"GET"`, `"HEAD"`, `"POST"`, `"PUT"`, `"PATCH"`, `"DELETE"`, `"OPTIONS"`. Note that the values MUST be in uppercase. 
 <a name="operationSummary"/>summary | `string` | A short summary of what the operation does. For maximum readability in the swagger-ui, this field SHOULD be less than 120 characters.
 <a name="operationNotes"/>notes | `string` | A verbose explanation of the operation behavior.
 <a name="operationNickname"/>nickname |`string` | **Required.** A unique id for the operation that can be used by tools reading the output for further and easier manipulation. For example, Swagger-Codegen will use the nickname as the method name of the operation in the client it generates. The value MUST be alphanumeric and may include underscores. Whitespsace characters are not allowd.

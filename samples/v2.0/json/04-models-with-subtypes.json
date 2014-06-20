@@ -1,11 +1,26 @@
 {
   "models": {
-    "Cat": {
-      "description": "A representation of a cat",
+    "Cat": {"$ref": "#/definitions/cat"},
+    "Dog": {"$ref": "#/definitions/dog"},
+    "Pet": {"$ref": "#/definitions/pet"}
+  }
+},
+{
+  "definitions": {
+    "pet": {
       "required": [
-        "huntingSkill"
+        "name"
       ],
       "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "cat": {
+      "description": "A representation of a cat",
+      "allOf": [{
+        "$ref": "#/definitions/pet",
         "huntingSkill": {
           "type": "string",
           "description": "The measured skill for hunting",
@@ -16,15 +31,19 @@
             "adventerous",
             "aggressive"
           ]
-        }
-      }
+        },
+        "required": [
+          "huntingSkill"
+        ]
+      }]
     },
-    "Dog": {
+    "dog": {
       "description": "A representation of a dog",
-      "required": [
-        "packSize"
-      ],
-      "properties": {
+      "allOf": [{
+        "$ref": "#/definitions/pet",
+        "required": [
+          "packSize"
+        ],
         "packSize": {
           "type": "integer",
           "format": "int32",
@@ -32,22 +51,7 @@
           "default": 0,
           "min": 0
         }
-      }
-    },
-    "Pet": {
-      "subTypes": [
-        "Cat",
-        "Dog"
-      ],
-      "discriminator": "animalType",
-      "required": [
-        "name"
-      ],
-      "properties": {
-        "name": {
-          "type": "string"
-        }
-      }
+      }]
     }
   }
 }

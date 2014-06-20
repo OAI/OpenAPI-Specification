@@ -3,9 +3,7 @@
     "Cat": {"$ref": "#/definitions/cat"},
     "Dog": {"$ref": "#/definitions/dog"},
     "Pet": {"$ref": "#/definitions/pet"}
-  }
-},
-{
+  },
   "definitions": {
     "pet": {
       "required": [

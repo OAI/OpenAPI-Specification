@@ -1,0 +1,53 @@
+{
+  "models": {
+    "Cat": {
+      "description": "A representation of a cat",
+      "required": [
+        "huntingSkill"
+      ],
+      "properties": {
+        "huntingSkill": {
+          "type": "string",
+          "description": "The measured skill for hunting",
+          "default": "lazy",
+          "enum": [
+            "clueless",
+            "lazy",
+            "adventerous",
+            "aggressive"
+          ]
+        }
+      }
+    },
+    "Dog": {
+      "description": "A representation of a dog",
+      "required": [
+        "packSize"
+      ],
+      "properties": {
+        "packSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": "the size of the pack the dog is from",
+          "default": 0,
+          "min": 0
+        }
+      }
+    },
+    "Pet": {
+      "subTypes": [
+        "Cat",
+        "Dog"
+      ],
+      "discriminator": "animalType",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

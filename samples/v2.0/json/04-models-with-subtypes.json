@@ -29,7 +29,7 @@
           "type": "integer",
           "format": "int32",
           "description": "the size of the pack the dog is from",
-          "default": "0",
+          "default": 0,
           "min": 0
         }
       }

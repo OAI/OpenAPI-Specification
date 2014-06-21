@@ -29,10 +29,7 @@
           },
           "required": [ "huntingSkill" ]
         }
-      ],
-      "extends": {
-        "$ref": "#/definitions/pet"
-      }
+      ]
     },
     "dog": {
       "description": "A representation of a dog",
@@ -49,10 +46,7 @@
         }
       ],
       "required": [ "name", "packSize" ],
-      "additionalAttributes": false,
-      "extends": {
-        "$ref": "#/definitions/pet"
-      }
+      "additionalAttributes": false
     },
     "fish": {
       "description": "A representation of a fish",
@@ -69,10 +63,7 @@
           "min": 0
         }
       ],
-      "required": [ "fins" ],
-      "extends": {
-        "$ref": "#/definitions/pet"
-      }
+      "required": [ "fins" ]
     }
   }
 }

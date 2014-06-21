@@ -21,9 +21,9 @@
   "produces": [
     "application/json"
   ],
-  "refs": {
+  "refs": [
     "02-remote-description-1.json"
-  },
+  ],
   "paths": {
     "/pets/{petId}": {
       "get": {

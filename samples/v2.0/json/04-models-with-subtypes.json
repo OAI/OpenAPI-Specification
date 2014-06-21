@@ -2,13 +2,12 @@
   "models": {
     "Cat": {"$ref": "#/definitions/cat"},
     "Dog": {"$ref": "#/definitions/dog"},
+    "Fish": {"$ref": "#/definitions/fish"},
     "Pet": {"$ref": "#/definitions/pet"}
   },
   "definitions": {
     "pet": {
-      "required": [
-        "name"
-      ],
+      "required": [ "name" ],
       "properties": {
         "name": {
           "type": "string"
@@ -17,31 +16,30 @@
     },
     "cat": {
       "description": "A representation of a cat",
-      "allOf": [{
-        "$ref": "#/definitions/pet",
-        "huntingSkill": {
-          "type": "string",
-          "description": "The measured skill for hunting",
-          "default": "lazy",
-          "enum": [
-            "clueless",
-            "lazy",
-            "adventerous",
-            "aggressive"
-          ]
+      "allOf": [
+        {
+          "$ref": "#/definitions/pet"
         },
-        "required": [
-          "huntingSkill"
-        ]
-      }]
+        {
+          "huntingSkill": {
+            "type": "string",
+            "description": "The measured skill for hunting",
+            "default": "lazy",
+            "enum": ["clueless", "lazy", "adventerous", "aggressive"]
+          },
+          "required": [ "huntingSkill" ]
+        }
+      ],
+      "extends": {
+        "$ref": "#/definitions/pet"
+      }
     },
     "dog": {
       "description": "A representation of a dog",
-      "allOf": [{
-        "$ref": "#/definitions/pet",
-        "required": [
-          "packSize"
-        ],
+      "properties": [
+        "name": {
+          "type": "string"
+        },
         "packSize": {
           "type": "integer",
           "format": "int32",
@@ -49,7 +47,32 @@
           "default": 0,
           "min": 0
         }
-      }]
+      ],
+      "required": [ "name", "packSize" ],
+      "additionalAttributes": false,
+      "extends": {
+        "$ref": "#/definitions/pet"
+      }
+    },
+    "fish": {
+      "description": "A representation of a fish",
+      "allOf": [
+        {
+          "$ref": "#/definitions/pet"
+        }
+      ],
+      "properties": [
+        "fins": {
+          "type": "integer",
+          "format": "int32",
+          "description": "count of fins",
+          "min": 0
+        }
+      ],
+      "required": [ "fins" ],
+      "extends": {
+        "$ref": "#/definitions/pet"
+      }
     }
   }
 }

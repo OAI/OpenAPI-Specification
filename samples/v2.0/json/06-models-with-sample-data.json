@@ -13,9 +13,7 @@
         },
         "address": {
           "type": "Address",
-          "description": "The employees primary address",
-          "default": "lazy",
-          "enum": ["clueless", "lazy", "adventerous", "aggressive"]
+          "description": "The employees primary address"
         }
       },
       "required": [ "firstName", "lastName", "address" ]

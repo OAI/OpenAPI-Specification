@@ -7,12 +7,12 @@
   },
   "definitions": {
     "pet": {
-      "required": [ "name" ],
       "properties": {
         "name": {
           "type": "string"
         }
-      }
+      },
+      "required": [ "name" ]
     },
     "cat": {
       "description": "A representation of a cat",
@@ -33,20 +33,21 @@
     },
     "dog": {
       "description": "A representation of a dog",
-      "required": [ "name", "packSize" ],
-      "properties": {
-        "name": {
-          "type": "string"
+      "allOf": [
+        {
+          "$ref": "#/definitions/pet"
         },
-        "packSize": {
-          "type": "integer",
-          "format": "int32",
-          "description": "the size of the pack the dog is from",
-          "default": 0,
-          "min": 0
+        {
+          "packSize": {
+            "type": "integer",
+            "format": "int32",
+            "description": "the size of the pack the dog is from",
+            "default": 0,
+            "min": 0
+          },
+          "required": [ "name", "packSize" ]
         }
-      },
-      "additionalAttributes": false
+      ]
     },
     "fish": {
       "description": "A representation of a fish",
@@ -55,13 +56,13 @@
           "$ref": "#/definitions/pet"
         },
         {
-          "required": [ "fins" ],
           "fins": {
             "type": "integer",
             "format": "int32",
             "description": "count of fins",
             "min": 0
-          }
+          },
+          "required": [ "fins" ]
         }
       ]
     }

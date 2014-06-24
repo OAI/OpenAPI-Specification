@@ -7,11 +7,13 @@
           "$ref": "#/models/Pet"
         },
         {
-          "huntingSkill": {
-            "type": "string",
-            "description": "The measured skill for hunting",
-            "default": "lazy",
-            "enum": ["clueless", "lazy", "adventerous", "aggressive"]
+          "properties": {
+            "huntingSkill": {
+              "type": "string",
+              "description": "The measured skill for hunting",
+              "default": "lazy",
+              "enum": ["clueless", "lazy", "adventerous", "aggressive"]
+            }
           },
           "required": [ "huntingSkill" ]
         }
@@ -24,12 +26,14 @@
           "$ref": "#/models/Pet"
         },
         {
-          "packSize": {
-            "type": "integer",
-            "format": "int32",
-            "description": "the size of the pack the dog is from",
-            "default": 0,
-            "min": 0
+          "properties": {
+            "packSize": {
+              "type": "integer",
+              "format": "int32",
+              "description": "the size of the pack the dog is from",
+              "default": 0,
+              "min": 0
+            }
           },
           "required": [ "name", "packSize" ]
         }
@@ -42,11 +46,13 @@
           "$ref": "#/models/Pet"
         },
         {
-          "fins": {
-            "type": "integer",
-            "format": "int32",
-            "description": "count of fins",
-            "min": 0
+          "properties": {
+            "fins": {
+              "type": "integer",
+              "format": "int32",
+              "description": "count of fins",
+              "min": 0
+            }
           },
           "required": [ "fins" ]
         }
@@ -54,13 +60,11 @@
     },
     "Pet": {
       "properties": {
-        "properties": {
-          "name": {
-            "type": "string"
-          }
-        },
-        "required": [ "name" ]
-      }
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [ "name" ]
     }
   }
 }

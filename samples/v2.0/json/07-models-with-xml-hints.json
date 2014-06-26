@@ -1,0 +1,47 @@
+{
+  "models": {
+    "Person": {
+      "description": "A representation of a person",
+      "required": [
+        "id",
+        "birthDate"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "the ID of the user",
+          "readOnly": true,
+          "xmlFormat": "attribute"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "middleInitial": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string",
+          "xmlFormat": "text"
+        },
+        "age": {
+          "type": "integer",
+          "format": "int32",
+          "min": 0,
+          "readOnly": true
+        },
+        "birthDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "address": {
+          "$ref": "Address",
+          "xmlNamespace": "abc"
+        }
+      }
+    }
+  }
+}

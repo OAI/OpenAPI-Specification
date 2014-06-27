@@ -8,7 +8,7 @@
       }
     },
     "400": {
-      "description": "Invalid ID supplied <= this is purely for documentation",
+      "description": "Invalid ID supplied",
       "type": "ErrorModel"
     },
     "404": {

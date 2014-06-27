@@ -1,0 +1,76 @@
+{
+  "/pets": {
+    "post": {
+      "summary": "Adds a Pet",
+      "description": "Adds a new Pet by HTML form post",
+      "nickname": "addPet",
+      "consumes": [
+        "application/x-www-form-urlencoded"
+      ],
+      "parameters": [
+        {
+          "name": "name",
+          "kind": "formData",
+          "summary": "Name of the pet to add",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "ownerId",
+          "kind": "formData",
+          "description": "The owner ID of the pet to add.  The owner must exist in the system",
+          "required": true,
+          "type": "integer",
+          "format": "int64"
+        }
+      ],
+      "responses": {
+        "201": {
+          "description": "a Pet was successfully created",
+          "type": "void"
+        },
+        "400": {
+          "description": "invalid input",
+          "type": "ErrorModel"
+        },
+        "409": {
+          "description": "pet with this name and owner already exists",
+          "type": "ErrorModel"
+        },
+        "404": {
+          "description": "ownerID does not exist"
+        }
+      }
+    }
+  },
+  "/pets/{petId}": {
+    "delete": {
+      "summary": "Deletes a pet",
+      "description": "Adds a new Pet by HTML form post",
+      "nickname": "addPet",
+      "consumes": [
+        "application/x-www-form-urlencoded"
+      ],
+      "parameters": [
+        {
+          "name": "petId",
+          "kind": "path",
+          "summary": "ID of pet to delete",
+          "required": true,
+          "type": "integer",
+          "format": "int64"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Pet successfully deleted",
+          "type": "StatusModel"
+        },
+        "410": {
+          "description": "Pet is already marked for deletion",
+          "type": "StatusModel"
+        }
+      }
+    }
+  }
+}

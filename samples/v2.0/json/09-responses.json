@@ -1,0 +1,22 @@
+{
+  "responses": {
+    "200": {
+      "description": "Returns an array of pets",
+      "type": "array",
+      "items": {
+        "$ref": "Pet"
+      }
+    },
+    "400": {
+      "description": "Invalid ID supplied <= this is purely for documentation",
+      "type": "ErrorModel"
+    },
+    "404": {
+      "description": "Pet not found"
+    },
+    "default": {
+      "description": "Invalid ID supplied <= this is purely for documentation",
+      "type": "ErrorModel"
+    }
+  }
+}

@@ -15,7 +15,7 @@
       "description": "Pet not found"
     },
     "default": {
-      "description": "Invalid ID supplied <= this is purely for documentation",
+      "description": "Some other terrible error",
       "type": "ErrorModel"
     }
   }

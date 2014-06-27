@@ -1,0 +1,26 @@
+{
+  "models": {
+    "StringToIntegerMap": {
+      "additionalProperties": {
+        "type": "integer",
+        "format": "int32"
+      }
+    },
+    "StringToStringMap": {
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "StringToDateMap": {
+      "additionalProperties": {
+        "type": "string",
+        "format": "date-time"
+      }
+    },
+    "NestedMap": {
+      "additionalProperties": {
+        "$ref": "StringToDateMap"
+      }
+    }
+  }
+}

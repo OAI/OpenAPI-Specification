@@ -1,0 +1,58 @@
+{
+  "models": {
+    "Employee": {
+      "description": "A representation of an employee",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "example": "Phil"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "Dirt"
+        },
+        "address": {
+          "type": "Address",
+          "description": "The employees primary address"
+        }
+      },
+      "required": [ "firstName", "lastName", "address" ]
+    },
+    "Address": {
+      "description": "An address",
+      "properties": {
+        "street1": {
+          "type": "string"
+        },
+        "street2": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "street1", "city", "state", "postalCode"
+      ],
+      "examples": [
+        {
+          "application/json": {
+            "street1": "12345 El Monte Blvd",
+            "city": "Los Altos Hills",
+            "state": "CA",
+            "postalCode": "94110"
+          },
+          "application/xml": {
+            "$ref": "http://foo/bar/examples/definitions/address/xml"
+          }
+        }
+      ]
+    }
+  }
+}

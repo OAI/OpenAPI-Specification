@@ -170,7 +170,7 @@ Field Name | Type | Description
 <a name="rlApis"/>apis | [ [Resource Object](#512-resource-object) ] | **Required.** Lists the resources to be described by this specification implementation. The array can have 0 or more elements.
 <a name="rlApiVersion"/>apiVersion| `string` | Provides the version of the application API (not to be confused by the [specification version](#rlSwaggerVersion)). 
 <a name="rlInfo"/>info | [Info Object](#513-info-object) | Provides metadata about the API. The metadata can be used by the clients if needed, and can be presented in the Swagger-UI for convenience.
-<a name="rlAuthorizations"/>authorizations | [Authorizations Object](#514-authorizations-object) | Provides information about the the authorization schemes allowed on his API. 
+<a name="rlAuthorizations"/>authorizations | [Authorizations Object](#514-authorizations-object) | Provides information about the authorization schemes allowed on his API.
 
 #### 5.1.1 Object Example
 
@@ -789,7 +789,7 @@ Field Name | Type | Description
 <a name="operationMethod"/>method | `string` | **Required.** The HTTP method required to invoke this operation. The value MUST be one of the following values: `"GET"`, `"HEAD"`, `"POST"`, `"PUT"`, `"PATCH"`, `"DELETE"`, `"OPTIONS"`. Note that the values MUST be in uppercase. 
 <a name="operationSummary"/>summary | `string` | A short summary of what the operation does. For maximum readability in the swagger-ui, this field SHOULD be less than 120 characters.
 <a name="operationNotes"/>notes | `string` | A verbose explanation of the operation behavior.
-<a name="operationNickname"/>nickname |`string` | **Required.** A unique id for the operation that can be used by tools reading the output for further and easier manipulation. For example, Swagger-Codegen will use the nickname as the method name of the operation in the client it generates. The value MUST be alphanumeric and may include underscores. Whitespsace characters are not allowd.
+<a name="operationNickname"/>nickname |`string` | **Required.** A unique id for the operation that can be used by tools reading the output for further and easier manipulation. For example, Swagger-Codegen will use the nickname as the method name of the operation in the client it generates. The value MUST be alphanumeric and may include underscores. Whitespace characters are not allowed.
 <a name="operationAuthorizations"/>authorizations | [Authorizations Object](#5210-authorizations-object) | A list of authorizations required to execute this operation. While not mandatory, if used, it overrides the value given at the API Declaration's [authorizations](#adAuthorizations). In order to completely remove API Declaration's authorizations completely, an empty object (`{}`) may be applied.
 <a name="operationParameters"/>parameters | [[Parameter Object](#524-parameter-object)] | **Required.** The inputs to the operation. If no parameters are needed, an empty array MUST be included.
 <a name="operationResponseMessages"/>responseMessages | [[Response Message Object](#525-response-message-object)] | Lists the possible response statuses that can return from the operation. 

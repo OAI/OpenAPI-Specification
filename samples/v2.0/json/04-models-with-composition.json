@@ -1,25 +1,21 @@
 {
   "models": {
-    "Cat": {"$ref": "#/definitions/cat"},
-    "Dog": {"$ref": "#/definitions/dog"},
-    "Fish": {"$ref": "#/definitions/fish"},
-    "Pet": {"$ref": "#/definitions/pet"}
+    "Cat": { "$ref": "#/definitions/cat" },
+    "Dog": { "$ref": "#/definitions/dog" },
+    "Fish": { "$ref": "#/definitions/fish" },
+    "Pet": { "$ref": "#/definitions/pet" }
   },
   "definitions": {
     "pet": {
       "properties": {
-        "name": {
-          "type": "string"
-        }
+        "name": { "type": "string" }
       },
       "required": [ "name" ]
     },
     "cat": {
       "description": "A representation of a cat",
       "allOf": [
-        {
-          "$ref": "#/definitions/pet"
-        },
+        { "$ref": "#/definitions/pet" },
         {
           "properties": {
             "huntingSkill": {
@@ -36,9 +32,7 @@
     "dog": {
       "description": "A representation of a dog",
       "allOf": [
-        {
-          "$ref": "#/definitions/pet"
-        },
+        { "$ref": "#/definitions/pet" },
         {
           "properties": {
             "packSize": {
@@ -56,9 +50,7 @@
     "fish": {
       "description": "A representation of a fish",
       "allOf": [
-        {
-          "$ref": "#/definitions/pet"
-        },
+        { "$ref": "#/definitions/pet" },
         {
           "properties": {
             "fins": {

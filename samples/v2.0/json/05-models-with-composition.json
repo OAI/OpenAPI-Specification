@@ -3,9 +3,7 @@
     "Cat": {
       "description": "A representation of a cat",
       "allOf": [
-        {
-          "$ref": "#/models/Pet"
-        },
+        { "$ref": "#/models/Pet" },
         {
           "properties": {
             "huntingSkill": {
@@ -22,9 +20,7 @@
     "Dog": {
       "description": "A representation of a dog",
       "allOf": [
-        {
-          "$ref": "#/models/Pet"
-        },
+        { "$ref": "#/models/Pet" },
         {
           "properties": {
             "packSize": {
@@ -42,9 +38,7 @@
     "Fish": {
       "description": "A representation of a fish",
       "allOf": [
-        {
-          "$ref": "#/models/Pet"
-        },
+        { "$ref": "#/models/Pet" },
         {
           "properties": {
             "fins": {

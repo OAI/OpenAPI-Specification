@@ -12,7 +12,11 @@
           "format": "int64",
           "description": "the ID of the user",
           "readOnly": true,
-          "xmlFormat": "attribute"
+          "xml": {
+            "attribute": true,
+            "namespaceURI": "http://example.org",
+            "prefix": "ns1"
+          }
         },
         "firstName": {
           "type": "string"
@@ -25,7 +29,9 @@
         },
         "notes": {
           "type": "string",
-          "xmlFormat": "text"
+          "xml": {
+            "text": true
+          }
         },
         "age": {
           "type": "integer",
@@ -39,7 +45,9 @@
         },
         "address": {
           "$ref": "Address",
-          "xmlNamespace": "abc"
+          "xml": {
+            "namespaceURI": "http://example.org"
+          }
         }
       }
     }

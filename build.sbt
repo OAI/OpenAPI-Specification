@@ -1,6 +1,6 @@
 name := "schema-test"
 
-scalaVersion := "2.9.1-1"
+scalaVersion := "2.10.4"
 
 libraryDependencies ++= Seq(
   "com.github.fge" % "json-schema-validator" % "2.1.7",

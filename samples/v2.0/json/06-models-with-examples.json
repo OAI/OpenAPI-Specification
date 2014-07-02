@@ -39,19 +39,6 @@
       },
       "required": [
         "street1", "city", "state", "postalCode"
-      ],
-      "examples": [
-        {
-          "application/json": {
-            "street1": "12345 El Monte Blvd",
-            "city": "Los Altos Hills",
-            "state": "CA",
-            "postalCode": "94110"
-          },
-          "application/xml": {
-            "$ref": "http://foo/bar/examples/definitions/address/xml"
-          }
-        }
       ]
     }
   }

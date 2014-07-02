@@ -55,11 +55,11 @@
         "responses": {
           "200": {
             "description": null,
-            "type": "Pet"
+            "$ref": "Pet"
           },
           "400": {
             "description": "Invalid ID supplied <= this is purely for documentation",
-            "type": "ErrorModel"
+            "$ref": "ErrorModel"
           },
           "404": {
             "description": "Pet not found"

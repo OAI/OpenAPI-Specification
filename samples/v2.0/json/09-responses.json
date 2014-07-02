@@ -9,14 +9,14 @@
     },
     "400": {
       "description": "Invalid ID supplied",
-      "type": "ErrorModel"
+      "$ref": "ErrorModel"
     },
     "404": {
       "description": "Pet not found"
     },
     "default": {
       "description": "Some other terrible error",
-      "type": "ErrorModel"
+      "$ref": "ErrorModel"
     }
   }
 }

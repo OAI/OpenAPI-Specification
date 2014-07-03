@@ -25,7 +25,7 @@
         "age": {
           "type": "integer",
           "format": "int32",
-          "min": 0,
+          "minimum": 0,
           "readOnly": true
         },
         "birthDate": {

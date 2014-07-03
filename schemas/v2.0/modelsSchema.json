@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "models": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [ "$ref" ],
+          "properties": {
+            "$ref": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/modelSchema.json"
+          }
+        }
+      ]
+    }
+  }
+}

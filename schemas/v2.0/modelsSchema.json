@@ -16,7 +16,7 @@
         {
           "type": "object",
           "additionalProperties": {
-            "$ref": "https://raw.githubusercontent.com/reverb/swagger-spec/master/schemas/v2.0/modelSchema.json"
+            "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/modelSchema.json"
           }
         }
       ]

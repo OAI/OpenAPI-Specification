@@ -1,5 +1,7 @@
 # The Swagger Specification
 
+[![Build Status](https://travis-ci.org/reverb/swagger-spec.svg?branch=master)](https://travis-ci.org/reverb/swagger-spec.svg?branch=master)
+
 ![](https://raw.github.com/wordnik/swagger-spec/master/swagger-logo.jpg)
 ## Welcome to the Swagger Project! 
 

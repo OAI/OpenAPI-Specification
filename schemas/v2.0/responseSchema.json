@@ -1,14 +1,32 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
-  "allOf": [{
-    "properties": {
-      "description": {
-        "type": "string"
+  "oneOf": [
+    {
+      "allOf": [{
+        "properties": {
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/propertySchema.json"
+      }]
+    },
+    {
+      "$ref": "#/definitions/voidResponse"
+    }
+  ],
+  "definitions": {
+    "voidResponse": {
+      "required": [ "type" ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [ "void" ]
+        }
       }
     }
-  },
-  {
-    "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/propertySchema.json"
-  }]
+  }
 }

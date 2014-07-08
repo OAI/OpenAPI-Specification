@@ -93,7 +93,7 @@
           }
         },
         {
-          "required": [ "type" ],
+          "required": [ "type", "format" ],
           "properties": {
             "type": {
               "type": "string",
@@ -121,7 +121,7 @@
           }
         },
         {
-          "required": [ "type" ],
+          "required": [ "type", "format" ],
           "properties": {
             "type": {
               "type": "string",

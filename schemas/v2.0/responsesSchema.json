@@ -9,7 +9,7 @@
           "type": "object",
           "patternProperties": {
             "^([0-9]*)|(default)$": {
-              "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/responseSchema.json"
+              "$ref": "https://raw.githubusercontent.com/reverb/swagger-spec/master/schemas/v2.0/responseSchema.json"
             }
           },
           "additionalProperties": false

@@ -10,7 +10,8 @@
     },
     "default": {
       "description": "oops",
-      "type": "integer"
+      "type": "integer",
+      "format": "int32"
     }
   }
 }

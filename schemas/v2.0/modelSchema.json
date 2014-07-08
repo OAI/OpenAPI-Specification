@@ -4,6 +4,20 @@
   "oneOf": [
     {
       "required": [
+        "additionalProperties"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "additionalProperties": {
+          "type": "object",
+          "$ref": "https://raw.githubusercontent.com/reverb/swagger-spec/master/schemas/v2.0/propertySchema.json"
+        }        
+      }
+    },
+    {
+      "required": [
         "properties"
       ],
       "properties": {

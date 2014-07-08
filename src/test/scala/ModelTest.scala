@@ -37,4 +37,31 @@ class ModelTest extends FlatSpec with ShouldMatchers {
       println(report)
     report.isSuccess should be (true)
   }
+
+  it should "validate a model with an int32 map" in {
+    val json = Source.fromFile("samples/v2.0/json/models/modelWithInt32Map.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    if(report.isSuccess == false)
+      println(report)
+    report.isSuccess should be (true)
+  }
+
+  it should "validate a model with an int64 map" in {
+    val json = Source.fromFile("samples/v2.0/json/models/modelWithInt64Map.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    if(report.isSuccess == false)
+      println(report)
+    report.isSuccess should be (true)
+  }
+
+  it should "validate a model with an date-time map" in {
+    val json = Source.fromFile("samples/v2.0/json/models/modelWithDateTimeMap.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    if(report.isSuccess == false)
+      println(report)
+    report.isSuccess should be (true)
+  }
 }

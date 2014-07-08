@@ -21,7 +21,7 @@
       }
     },
     {
-      "required": [ "type" ],
+      "required": [ "type", "items" ],
       "properties": {
         "description": {
           "type": "string"
@@ -35,7 +35,7 @@
         },
         "type": {
           "type": "string",
-          "enum": ["array"]
+          "enum": [ "array" ]
         },
         "items": {
           "$ref": "#/definitions/propertyObject"
@@ -68,6 +68,15 @@
     "propertyObject": {
       "oneOf": [
         {
+          "required": [ "$ref" ],
+          "properties": {
+            "$ref": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
           "required": [ "type" ],
           "properties": {
             "type": {
@@ -84,9 +93,7 @@
           }
         },
         {
-          "required": [
-            "type"
-          ],
+          "required": [ "type" ],
           "properties": {
             "type": {
               "type": "string",

@@ -128,9 +128,17 @@ class PropertyTest extends FlatSpec with ShouldMatchers {
     report.isSuccess should be (true)
   }
 
-
   it should "validate an array property with date-time" in {
     val json = Source.fromFile("samples/v2.0/json/models/properties/propertyWithDateTimeArray.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    if(report.isSuccess == false)
+      println(report)
+    report.isSuccess should be (true)
+  }
+
+  it should "validate an array property with complex type" in {
+    val json = Source.fromFile("samples/v2.0/json/models/properties/propertyWithComplexArray.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)

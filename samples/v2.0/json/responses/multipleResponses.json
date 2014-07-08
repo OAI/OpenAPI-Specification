@@ -1,0 +1,16 @@
+{
+  "responses": {
+    "200": {
+      "description": "simple string response",
+      "type": "string"
+    },
+    "201": {
+      "description": "object created",
+      "type": "void"
+    },
+    "default": {
+      "description": "oops",
+      "type": "integer"
+    }
+  }
+}

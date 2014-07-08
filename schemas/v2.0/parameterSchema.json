@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "allOf": [
+    {
+      "required": [ "name", "kind" ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        }
+      }
+    },
+    {
+      "oneOf": [
+        {
+          "allOf": [
+            {
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "enum": [ "query" ]
+                }
+              }
+            },
+            {
+              "$ref": "#/definitions/queryParameterDataType"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "definitions": {
+    "queryParameterDataType": {
+      "oneOf": [
+        {
+          "required": [ "type", "format" ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [ "string" ]
+            },
+            "format": {
+              "type": "string",
+              "enum": [ "date-time", "date" ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [ "string" ]
+            }
+          }
+        },
+        {
+          "required": [ "type", "format" ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [ "integer" ]
+            },
+            "format": {
+              "type": "string",
+              "enum": [ "int32", "int64" ]
+            }
+          }
+        },
+        {
+          "required": [ "type", "format" ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [ "number" ]
+            },
+            "format": {
+              "type": "string",
+              "enum": [ "float", "double" ]
+            }
+          }
+        },
+        {
+          "required": [ "type", "format" ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [ "array" ]
+            },
+            "items": {
+              "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/propertySchema.json"
+            },
+            "format": {
+              "type": "string",
+              "enum": [ "csv" ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

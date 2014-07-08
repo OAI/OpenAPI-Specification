@@ -1,5 +1,5 @@
 {
-  "description": "true",
+  "description": "This is a Map[String, Integer]",
   "additionalProperties": {
     "type": "integer",
     "format": "int32"

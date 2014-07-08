@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "allOf": [{
+    "properties": {
+      "description": {
+        "type": "string"
+      }
+    }
+  },
+  {
+    "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/propertySchema.json"
+  }]
+}

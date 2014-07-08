@@ -1,0 +1,7 @@
+{
+  "description": "A string array response",
+  "type": "array",
+  "items": {
+    "type": "string"
+  }
+}

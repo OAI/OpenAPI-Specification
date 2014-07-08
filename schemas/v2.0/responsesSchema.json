@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "required": [ "responses" ],
+  "properties": {
+    "responses": {
+      "oneOf": [
+        {
+          "type": "object",
+          "patternProperties": {
+            "^([0-9]*)|(default)$": {
+              "$ref": "https://raw.githubusercontent.com/reverb/swagger-spec/master/schemas/v2.0/responseSchema.json"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "required": [ "$ref" ],
+          "properties": {
+            "$ref": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

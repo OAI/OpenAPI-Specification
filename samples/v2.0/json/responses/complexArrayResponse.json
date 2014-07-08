@@ -1,0 +1,7 @@
+{
+  "description": "A complex object array response",
+  "type": "array",
+  "items": {
+    "$ref": "VeryComplexType"
+  }
+}

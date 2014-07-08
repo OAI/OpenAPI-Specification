@@ -1,0 +1,5 @@
+{
+  "description": "A date-time response",
+  "type": "string",
+  "format": "date-time"
+}

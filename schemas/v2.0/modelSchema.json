@@ -12,7 +12,7 @@
         },
         "additionalProperties": {
           "type": "object",
-          "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/propertySchema.json"
+          "$ref": "https://raw.githubusercontent.com/reverb/swagger-spec/master/schemas/v2.0/propertySchema.json"
         }        
       }
     },
@@ -27,7 +27,7 @@
         "properties": {
           "additionalProperties": {
             "type": "object",
-            "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/propertySchema.json"
+            "$ref": "https://raw.githubusercontent.com/reverb/swagger-spec/master/schemas/v2.0/propertySchema.json"
           }
         }
       }
@@ -64,7 +64,7 @@
                   "properties": {
                     "additionalProperties": {
                       "type": "object",
-                      "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/propertySchema.json"
+                      "$ref": "https://raw.githubusercontent.com/reverb/swagger-spec/master/schemas/v2.0/propertySchema.json"
                     }
                   }
                 }

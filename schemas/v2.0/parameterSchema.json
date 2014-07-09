@@ -240,18 +240,14 @@
           }
         },
         {
-          "required": [ "type", "format" ],
+          "required": [ "type", "items" ],
           "properties": {
             "type": {
               "type": "string",
               "enum": [ "array" ]
             },
             "items": {
-              "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/propertySchema.json#/definitions/primitivePropertyObject"
-            },
-            "format": {
-              "type": "string",
-              "enum": [ "csv" ]
+              "$ref": "https://raw.githubusercontent.com/reverb/swagger-spec/master/schemas/v2.0/propertySchema.json#/definitions/primitivePropertyObject"
             }
           }
         }
@@ -295,7 +291,7 @@
           }
         },
         {
-          "required": [ "type", "format" ],
+          "required": [ "type", "items", "format" ],
           "properties": {
             "type": {
               "type": "string",
@@ -315,7 +311,7 @@
               "enum": [ "array" ]
             },
             "items": {
-              "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/propertySchema.json#/definitions/propertyObject"
+              "$ref": "https://raw.githubusercontent.com/reverb/swagger-spec/master/schemas/v2.0/propertySchema.json#/definitions/propertyObject"
             },
             "format": {
               "type": "string",

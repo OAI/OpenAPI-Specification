@@ -154,11 +154,18 @@ class ParameterTest extends FlatSpec with ShouldMatchers {
   }
 
   it should "validate a string array form data parameter" in {
-      val json = Source.fromFile("samples/v2.0/json/resources/parameters/formDataStringArrayParameter.json").mkString
+    val json = Source.fromFile("samples/v2.0/json/resources/parameters/formDataStringArrayParameter.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
       println(report)
     report.isSuccess should be (true)
+  }
+
+  it should "fail to validate a complex form data parameter" in {
+    val json = Source.fromFile("samples/v2.0/json/resources/parameters/formDataComplexParameter.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    report.isSuccess should be (false)
   }
 }

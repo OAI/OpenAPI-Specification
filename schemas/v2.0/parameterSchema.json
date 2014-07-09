@@ -24,7 +24,7 @@
               "properties": {
                 "kind": {
                   "type": "string",
-                  "enum": [ "query" ]
+                  "enum": [ "query", "header", "path" ]
                 }
               }
             },
@@ -32,11 +32,146 @@
               "$ref": "#/definitions/queryParameterDataType"
             }
           ]
+        },
+        {
+          "required": [ "$ref" ],
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [ "body" ]
+            },
+            "$ref": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "required": [ "type" ],
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [ "body" ]
+            },
+            "type": {
+              "type": "string",
+              "enum": [ "integer", "number", "string" ]
+            }
+          }
+        },
+        {
+          "required": [ "type", "items" ],
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [ "body" ]
+            },
+            "type": {
+              "type": "string",
+              "enum": [ "array" ]
+            },
+            "items": {
+              "$ref": "#/definitions/bodyParameterDataType"
+            }
+          }
         }
       ]
     }
   ],
   "definitions": {
+    "bodyParameterDataType": {
+      "oneOf": [
+        {
+          "required": [ "$ref" ],
+          "properties": {
+            "$ref": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "required": [ "type" ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [ "string" ]
+            },
+            "format": {
+              "type": "string",
+              "enum": [ "date-time", "byte" ]
+            },
+            "example": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "required": [ "type", "format" ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [ "integer" ]
+            },
+            "format": {
+              "type": "string",
+              "enum": [ "int32", "int64" ]
+            },
+            "minimum": {
+              "type": "number"
+            },
+            "maximum": {
+              "type": "number"
+            },
+            "exclusiveMinimum": {
+              "type": "number"
+            },
+            "exclusiveMaximum": {
+              "type": "number"
+            },
+            "example": {
+              "type": "integer"
+            }
+          }
+        },
+        {
+          "required": [ "type", "format" ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [ "number" ]
+            },
+            "format": {
+              "type": "string",
+              "enum": [ "float", "double" ]
+            },
+            "minimum": {
+              "type": "number"
+            },
+            "maximum": {
+              "type": "number"
+            },
+            "exclusiveMinimum": {
+              "type": "number"
+            },
+            "exclusiveMaximum": {
+              "type": "number"
+            },
+            "example": {
+              "type": "number"
+            }
+          }
+        },
+        {
+          "required": [ "type" ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [ "boolean" ]
+            }
+          }
+        }
+      ]
+    },
     "queryParameterDataType": {
       "oneOf": [
         {
@@ -53,6 +188,7 @@
           }
         },
         {
+          "required": [ "type" ],
           "properties": {
             "type": {
               "type": "string",

@@ -1,0 +1,12 @@
+{
+  "name": "token",
+  "kind": "header",
+  "summary": "token to be passed as a header",
+  "required": true,
+  "type": "array",
+  "items": {
+    "type": "integer",
+    "format": "int64"
+  },
+  "format": "csv"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "id",
+  "kind": "query",
+  "summary": "a complex object which should not validate",
+  "required": true,
+  "$ref": "Pet"
+}

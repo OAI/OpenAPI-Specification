@@ -1,0 +1,8 @@
+{
+  "name": "id",
+  "kind": "body",
+  "summary": "id to add",
+  "required": true,
+  "type": "integer",
+  "format": "int64"
+}

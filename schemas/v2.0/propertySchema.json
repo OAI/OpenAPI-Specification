@@ -68,6 +68,87 @@
     "propertyObject": {
       "oneOf": [
         {
+          "required": [ "type" ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [ "string" ]
+            },
+            "format": {
+              "type": "string",
+              "enum": [ "date-time", "byte" ]
+            },
+            "example": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "required": [ "type", "format" ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [ "integer" ]
+            },
+            "format": {
+              "type": "string",
+              "enum": [ "int32", "int64" ]
+            },
+            "minimum": {
+              "type": "number"
+            },
+            "maximum": {
+              "type": "number"
+            },
+            "exclusiveMinimum": {
+              "type": "number"
+            },
+            "exclusiveMaximum": {
+              "type": "number"
+            },
+            "example": {
+              "type": "integer"
+            }
+          }
+        },
+        {
+          "required": [ "type", "format" ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [ "number" ]
+            },
+            "format": {
+              "type": "string",
+              "enum": [ "float", "double" ]
+            },
+            "minimum": {
+              "type": "number"
+            },
+            "maximum": {
+              "type": "number"
+            },
+            "exclusiveMinimum": {
+              "type": "number"
+            },
+            "exclusiveMaximum": {
+              "type": "number"
+            },
+            "example": {
+              "type": "number"
+            }
+          }
+        },
+        {
+          "required": [ "type" ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [ "boolean" ]
+            }
+          }
+        },
+        {
           "required": [ "$ref" ],
           "properties": {
             "$ref": {
@@ -75,7 +156,11 @@
             }
           },
           "additionalProperties": false
-        },
+        }
+      ]
+    },
+    "primitivePropertyObject": {
+      "oneOf": [
         {
           "required": [ "type" ],
           "properties": {

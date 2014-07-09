@@ -3,7 +3,7 @@
   "type": "object",
   "allOf": [
     {
-      "required": [ "name", "kind" ],
+      "required": [ "name" ],
       "properties": {
         "name": {
           "type": "string"
@@ -21,6 +21,7 @@
         {
           "allOf": [
             {
+              "required": [ "kind" ],
               "properties": {
                 "kind": {
                   "type": "string",
@@ -29,7 +30,23 @@
               }
             },
             {
-              "$ref": "#/definitions/queryParameterDataType"
+              "$ref": "#/definitions/serializableParameterDataType"
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "required": [ "kind" ],
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "enum": [ "formData" ]
+                }
+              }
+            },
+            {
+              "$ref": "#/definitions/formDataParameterDataType"
             }
           ]
         },
@@ -70,7 +87,7 @@
               "enum": [ "array" ]
             },
             "items": {
-              "$ref": "#/definitions/bodyParameterDataType"
+              "$ref": "#/definitions/serializableParameterDataType"
             }
           }
         }
@@ -172,7 +189,7 @@
         }
       ]
     },
-    "queryParameterDataType": {
+    "formDataParameterDataType": {
       "oneOf": [
         {
           "required": [ "type", "format" ],
@@ -223,6 +240,70 @@
           }
         },
         {
+          "required": [ "type", "items" ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [ "array" ]
+            },
+            "items": {
+              "$ref": "https://raw.githubusercontent.com/reverb/swagger-spec/master/schemas/v2.0/propertySchema.json#/definitions/primitivePropertyObject"
+            }
+          }
+        }
+      ]
+    },
+    "serializableParameterDataType": {
+      "oneOf": [
+        {
+          "required": [ "type", "format" ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [ "string" ]
+            },
+            "format": {
+              "type": "string",
+              "enum": [ "date-time", "date" ]
+            }
+          }
+        },
+        {
+          "required": [ "type" ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [ "string" ]
+            }
+          }
+        },
+        {
+          "required": [ "type", "format" ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [ "integer" ]
+            },
+            "format": {
+              "type": "string",
+              "enum": [ "int32", "int64" ]
+            }
+          }
+        },
+        {
+          "required": [ "type", "items", "format" ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [ "number" ]
+            },
+            "format": {
+              "type": "string",
+              "enum": [ "float", "double" ]
+            }
+          }
+        },
+        {
           "required": [ "type", "format" ],
           "properties": {
             "type": {
@@ -230,7 +311,7 @@
               "enum": [ "array" ]
             },
             "items": {
-              "$ref": "https://raw.githubusercontent.com/reverb/swagger-spec/master/schemas/v2.0/propertySchema.json"
+              "$ref": "https://raw.githubusercontent.com/reverb/swagger-spec/master/schemas/v2.0/propertySchema.json#/definitions/propertyObject"
             },
             "format": {
               "type": "string",

@@ -247,9 +247,7 @@
               "enum": [ "array" ]
             },
             "items": {
-              "type": {
-                "$ref": ""
-              }
+              "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/propertySchema.json#/definitions/primitivePropertyObject"
             },
             "format": {
               "type": "string",
@@ -317,7 +315,7 @@
               "enum": [ "array" ]
             },
             "items": {
-              "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/propertySchema.json"
+              "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/propertySchema.json#/definitions/propertyObject"
             },
             "format": {
               "type": "string",

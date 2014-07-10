@@ -23,7 +23,7 @@
     "application/xml"
   ],
   "paths": {
-    "/pets/{petId}": {
+    "fun": {
       "get": {
         "description": "Returns a pet based on ID",
         "summary": "Find pet by ID",
@@ -40,29 +40,19 @@
             "required": true,
             "type": "array",
             "items": {
-              "type": "string",
-              "format": "csv"
-            }
-          },
-          {
-            "name": "verbose",
-            "kind": "query",
-            "description": "Expand the response and show extra data",
-            "required": false,
-            "type": "boolean"
+              "type": "string"
+            },
+            "format": "csv"
           }
         ],
         "responses": {
           "200": {
-            "description": null,
+            "description": "pet response",
             "$ref": "Pet"
           },
-          "400": {
-            "description": "Invalid ID supplied <= this is purely for documentation",
+          "default": {
+            "description": "error payload",
             "$ref": "ErrorModel"
-          },
-          "404": {
-            "description": "Pet not found"
           }
         }
       }
@@ -78,30 +68,12 @@
           "type": "string"
         },
         "tag": {
-          "$ref": "Tag"
-        }
-      }
-    },
-    "Tag": {
-      "required": [
-        "id",
-        "name"
-      ],
-      "properties": {
-        "name": {
           "type": "string"
-        },
-        "id": {
-          "type": "integer",
-          "format": "int64"
         }
       }
     },
     "ErrorModel": {
-      "required": [
-        "code",
-        "message"
-      ],
+      "required": [ "code", "message" ],
       "properties": {
         "code": {
           "type": "integer",

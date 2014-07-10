@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "allOf": [
+    {
+      "required": [ "description", "responses" ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "nickname": {
+          "type": "string"
+        },
+        "produces": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/parameterSchema.json"
+          }
+        },
+        "responses": {
+          "type": "object",
+          "patternProperties": {
+            "^([0-9]*)$|^(default)$": {
+              "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/responseSchema.json"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "required": [
+    "version", "title", "contact", "license", "licenseUrl"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "termsOfService": {
+      "type": "string"
+    },
+    "contact": {
+      "type": "string"
+    },
+    "license": {
+      "type": "string"
+    },
+    "licenseUrl": {
+      "type": "string",
+      "pattern": "^(http)|(https)://(.*)$"
+    }
+  }
+}

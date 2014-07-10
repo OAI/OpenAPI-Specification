@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "allOf": [
+    {
+      "required": [ "swagger", "host", "basePath", "schemes", "paths" ],
+      "properties": {
+        "swagger": {
+          "type": "number",
+          "enum": [ 2.0 ]
+        },
+        "info": {
+          "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/apiInfoSchema.json"
+        },
+        "host": {
+          "type": "string"
+        },
+        "basePath": {
+          "type": "string"
+        },
+        "schemes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [ "http", "https", "ws", "wss" ]
+          }
+        },
+        "consumes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "produces": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "paths": {
+          "patternProperties": {
+            "^(fun)$": {
+              "patternProperties": {
+                "^(get)$|^(put)$|^(post)$|^(delete)$|^(options)$|^(head)$|^(patch)$": {
+                  "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/operationSchema.json"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/modelsSchema.json"
+    }
+  ]
+}

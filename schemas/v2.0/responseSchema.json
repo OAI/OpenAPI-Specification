@@ -1,31 +1,16 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
-  "oneOf": [
+  "allOf": [
     {
-      "allOf": [{
-        "properties": {
-          "description": {
-            "type": "string"
-          }
-        }
-      },
-      {
-        "$ref": "https://raw.githubusercontent.com/reverb/swagger-spec/master/schemas/v2.0/propertySchema.json"
-      }]
-    },
-    {
-      "$ref": "#/definitions/voidResponse"
-    }
-  ],
-  "definitions": {
-    "voidResponse": {
       "properties": {
-        "type": {
-          "type": "string",
-          "enum": [ "void" ]
+        "description": {
+          "type": "string"
         }
       }
+    },
+    {
+      "$ref": "https://raw.githubusercontent.com/reverb/swagger-spec/master/schemas/v2.0/propertySchema.json"
     }
-  }
+  ]
 }

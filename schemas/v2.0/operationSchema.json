@@ -23,14 +23,14 @@
         "parameters": {
           "type": "array",
           "items": {
-            "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/parameterSchema.json"
+            "$ref": "https://raw.githubusercontent.com/reverb/swagger-spec/master/schemas/v2.0/parameterSchema.json"
           }
         },
         "responses": {
           "type": "object",
           "patternProperties": {
             "^([0-9]*)$|^(default)$": {
-              "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/responseSchema.json"
+              "$ref": "https://raw.githubusercontent.com/reverb/swagger-spec/master/schemas/v2.0/responseSchema.json"
             }
           },
           "additionalProperties": false

@@ -1,13 +1,15 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
-  "allOf": [
+  "oneOf": [
     {
+      "required": [ "description" ],
       "properties": {
         "description": {
           "type": "string"
         }
-      }
+      },
+      "additionalProperties": false
     },
     {
       "$ref": "https://raw.githubusercontent.com/reverb/swagger-spec/master/schemas/v2.0/propertySchema.json"

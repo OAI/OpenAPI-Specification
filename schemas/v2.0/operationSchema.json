@@ -3,7 +3,7 @@
   "type": "object",
   "allOf": [
     {
-      "required": [ "description", "responses" ],
+      "required": [ "summary", "responses" ],
       "properties": {
         "description": {
           "type": "string"

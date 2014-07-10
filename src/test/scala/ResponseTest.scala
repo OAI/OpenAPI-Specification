@@ -56,7 +56,7 @@ class ResponseTest extends FlatSpec with ShouldMatchers {
     report.isSuccess should be (true)
   }
 
-  ignore should "validate a void response" in {
+  it should "validate a void response" in {
     val json = Source.fromFile("samples/v2.0/json/responses/voidResponse.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)

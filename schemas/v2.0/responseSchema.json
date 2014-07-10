@@ -20,7 +20,6 @@
   ],
   "definitions": {
     "voidResponse": {
-      "required": [ "type" ],
       "properties": {
         "type": {
           "type": "string",

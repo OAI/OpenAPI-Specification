@@ -39,7 +39,7 @@
         },
         "paths": {
           "patternProperties": {
-            "^(fun)$": {
+            "^(.*)$": {
               "patternProperties": {
                 "^(get)$|^(put)$|^(post)$|^(delete)$|^(options)$|^(head)$|^(patch)$": {
                   "$ref": "https://raw.githubusercontent.com/reverb/swagger-spec/master/schemas/v2.0/operationSchema.json"

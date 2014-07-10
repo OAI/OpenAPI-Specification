@@ -41,7 +41,7 @@
           "patternProperties": {
             "^(fun)$": {
               "patternProperties": {
-                "^(get)$|^(put)$|^(post)$|^(delete)$|^(options)$|^(head)$": {
+                "^(get)$|^(put)$|^(post)$|^(delete)$|^(options)$|^(head)$|^(patch)$": {
                   "$ref": "https://raw.githubusercontent.com/fehguy/swagger-spec/master/schemas/v2.0/operationSchema.json"
                 }
               },

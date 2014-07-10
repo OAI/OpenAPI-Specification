@@ -5,8 +5,7 @@
       "type": "string"
     },
     "201": {
-      "description": "object created",
-      "type": "void"
+      "description": "object created"
     },
     "default": {
       "description": "oops",

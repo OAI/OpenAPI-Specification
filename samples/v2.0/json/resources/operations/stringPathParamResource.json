@@ -1,7 +1,7 @@
 {
   "description": "Returns a pet based on ID",
   "summary": "Find pet by ID",
-  "nickname": "getPetsById",
+  "operationId": "getPetsById",
   "produces": [
     "application/json",
     "text/html"

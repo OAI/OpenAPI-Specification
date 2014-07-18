@@ -16,7 +16,7 @@ import org.scalatest.matchers.ShouldMatchers
 @RunWith(classOf[JUnitRunner])
 class ResourcesTest extends FlatSpec with ShouldMatchers {
   val mapper = new ObjectMapper
-  val schema = mapper.readTree(Source.fromFile("schemas/v2.0/resourceSchema.json").mkString)
+  val schema = mapper.readTree(Source.fromFile("schemas/v2.0/schema.json").mkString)
   val factory = JsonSchemaFactory.byDefault()
   val jsonSchema = factory.getJsonSchema(schema)
 

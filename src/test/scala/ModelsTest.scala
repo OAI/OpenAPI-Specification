@@ -16,9 +16,9 @@ import org.scalatest.matchers.ShouldMatchers
 @RunWith(classOf[JUnitRunner])
 class ModelsTest extends FlatSpec with ShouldMatchers {
   val mapper = new ObjectMapper
-  val schema = mapper.readTree(Source.fromFile("schemas/v2.0/modelsSchema.json").mkString)
+  val schema = mapper.readTree(Source.fromFile("schemas/v2.0/schema.json").mkString)
   val factory = JsonSchemaFactory.byDefault()
-  val jsonSchema = factory.getJsonSchema(schema)
+  val jsonSchema = factory.getJsonSchema(schema.get("definitions").get("model"))
 
   it should "validate a models hash" in {
     val json = Source.fromFile("samples/v2.0/json/models/models.json").mkString

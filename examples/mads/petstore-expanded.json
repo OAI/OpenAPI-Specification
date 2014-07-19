@@ -96,7 +96,7 @@
                         "kind": "body",
                         "description": "Pet to add to the store",
                         "required": true,
-                        "model": {"$ref": "#/models/petInput"}
+                        "model": {"$ref": "#/models/NewPet"}
                     }
                 ],
                 "responses": {
@@ -190,7 +190,7 @@
                 }
             }
         },
-        "petInput": {
+        "NewPet": {
             "allOf": [
                 {
                     "$ref": "Pet"

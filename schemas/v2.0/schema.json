@@ -3,7 +3,7 @@
 	"$schema": "http://json-schema.org/draft-04/schema#",
 
 	"type": "object",
-	"required": [ "swagger", "info", "host", "basePath", "paths" ],
+	"required": [ "swagger", "info", "host", "paths" ],
 
 	"definitions": {
 		"info": {

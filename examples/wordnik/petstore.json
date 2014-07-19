@@ -16,14 +16,23 @@
         "responses": {
           "200": {
             "description": "pet response",
-            "type": "array",
-            "items": {
-              "$ref": "#/models/Pet"
+            "model": {
+              "type": "array",
+              "items": {
+                "$ref": "#/models/Pet"
+              }
+            },
+            "headers": {
+              "x-expires": {
+                "type": "string"
+              }
             }
           },
           "default": {
             "description": "unexpected error",
-            "$ref": "#/models/ErrorModel"
+            "model": {
+              "$ref": "#/models/ErrorModel"
+            }
           }
         }
       }

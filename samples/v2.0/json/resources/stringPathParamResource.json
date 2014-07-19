@@ -55,11 +55,15 @@
         "responses": {
           "200": {
             "description": "pet response",
-            "$ref": "Pet"
+            "model": {
+              "$ref": "Pet"
+            }
           },
           "default": {
             "description": "error payload",
-            "$ref": "ErrorModel"
+            "model": {
+              "$ref": "ErrorModel"
+            }
           }
         }
       }

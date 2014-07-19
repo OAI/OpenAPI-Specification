@@ -114,7 +114,19 @@
 					"additionalProperties": false,
 					"patternProperties": {
 						"^([0-9]+)$|^(default)$": {
-							"$ref": "#/definitions/model"
+							"required": [ "description" ],
+							"properties": {
+								"description": {
+									"type": "string"
+								},
+								"model": {
+									"$ref": "#/definitions/model"
+								},
+								"headers": {
+									"$ref": "#/definitions/model"
+								}
+							},
+							"additionalProperties": false
 						}
 					}
 				}

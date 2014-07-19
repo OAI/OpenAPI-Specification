@@ -31,7 +31,7 @@
           "default": {
             "description": "unexpected error",
             "model": {
-              "$ref": "#/models/ErrorModel"
+              "$ref": "#/models/Error"
             }
           }
         }
@@ -57,7 +57,7 @@
         }
       }
     },
-    "ErrorModel": {
+    "Error": {
       "required": [
         "code",
         "message"

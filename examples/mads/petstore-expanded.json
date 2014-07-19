@@ -12,6 +12,7 @@
         "description": "A sample API that uses a petstore as an example to demonstrate features in the swagger-2.0 specification",
         "termsOfService": "http://helloreverb.com/terms/",
         "contact": {
+            "name": "Wordnik API Team",
             "email": "foo@bar.baz",
             "url": "http://madskristensen.net"
         },
@@ -35,7 +36,7 @@
         "/pets": {
             "get": {
                 "description": "Returns all pets from the system that the user has access to",
-                "nickname": "findPets",
+                "operationId": "findPets",
                 "produces": [
                     "application/json",
                     "application/xml",
@@ -48,38 +49,44 @@
                         "kind": "query",
                         "description": "tags to filter by",
                         "required": false,
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "format": "csv"
+                        "model": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "format": "csv"
+                        }
                     },
                     {
                         "name": "limit",
                         "kind": "query",
                         "description": "maximum number of results to return",
                         "required": false,
-                        "type": "integer",
-                        "format": "int32"
+                        "model": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "pet response",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/models/pet"
+                        "model": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/models/pet"
+                            }                            
                         }
                     },
                     "default": {
                         "description": "unexpected error",
-                        "$ref": "#/models/errorModel"
+                        "model": {"$ref": "#/models/errorModel"}
                     }
                 }
             },
             "post": {
                 "description": "Creates a new pet in the store.  Duplicates are allowed",
-                "nickname": "addPet",
+                "operationId": "addPet",
                 "produces": [
                     "application/json"
                 ],
@@ -89,17 +96,17 @@
                         "kind": "body",
                         "description": "Pet to add to the store",
                         "required": true,
-                        "$ref": "#/models/petInput"
+                        "model": {"$ref": "#/models/petInput"}
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "pet response",
-                        "$ref": "#/models/pet"
+                        "model": {"$ref": "#/models/pet"}
                     },
                     "default": {
                         "description": "unexpected error",
-                        "$ref": "#/models/errorModel"
+                        "model": {"$ref": "#/models/errorModel"}
                     }
                 }
             }
@@ -107,7 +114,7 @@
         "/pets/{id}": {
             "get": {
                 "description": "Returns a user based on a single ID, if the user does not have access to the pet",
-                "nickname": "findPetById",
+                "operationId": "findPetById",
                 "produces": [
                     "application/json",
                     "application/xml",
@@ -120,32 +127,36 @@
                         "kind": "path",
                         "description": "ID of pet to fetch",
                         "required": true,
-                        "type": "integer",
-                        "format": "int64"
+                        "model": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "pet response",
-                        "$ref": "Pet"
+                        "model": {"$ref": "Pet"}
                     },
                     "default": {
                         "description": "unexpected error",
-                        "$ref": "ErrorModel"
+                        "model": {"$ref": "ErrorModel"}
                     }
                 }
             },
             "delete": {
                 "description": "deletes a single pet based on the ID supplied",
-                "nickname": "deletePet",
+                "operationId": "deletePet",
                 "parameters": [
                     {
                         "name": "id",
                         "kind": "path",
                         "description": "ID of pet to delete",
                         "required": true,
-                        "type": "integer",
-                        "format": "int64"
+                        "model": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
                     }
                 ],
                 "responses": {
@@ -154,7 +165,7 @@
                     },
                     "default": {
                         "description": "unexpected error",
-                        "$ref": "ErrorModel"
+                        "model": {"$ref": "ErrorModel"}
                     }
                 }
             }

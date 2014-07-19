@@ -210,7 +210,8 @@
 					"type": "array",
 					"minItems": 1,
 					"items": { "$ref": "#/definitions/model" }
-				}
+				},
+				"descriminator": { "type": "string" }
 			}
 		}
 	},

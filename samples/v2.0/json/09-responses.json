@@ -1,4 +1,18 @@
 {
+  "models": {
+    "Error": {
+      "required": [ "code", "message" ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
   "responses": {
     "200": {
       "description": "Returns an array of pets",
@@ -9,14 +23,14 @@
     },
     "400": {
       "description": "Invalid ID supplied",
-      "$ref": "ErrorModel"
+      "$ref": "#/models/Error"
     },
     "404": {
       "description": "Pet not found"
     },
     "default": {
       "description": "Some other terrible error",
-      "$ref": "ErrorModel"
+      "$ref": "#/models/Error"
     }
   }
 }

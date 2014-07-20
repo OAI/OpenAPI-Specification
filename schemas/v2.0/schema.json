@@ -11,6 +11,11 @@
 			"description": "General information about the API.",
 			"required": [ "version", "title" ],
 			"additionalProperties": false,
+			"patternProperties": {
+				"^x-": {
+					"$ref": "#/definitions/vendorExtension"
+				}
+			},
 			"properties": {
 				"version": {
 					"type": "string",
@@ -77,6 +82,11 @@
 			"type": "object",
 			"required": [ "responses" ],
 			"additionalProperties": false,
+			"patternProperties": {
+				"^x-": {
+					"$ref": "#/definitions/vendorExtension"
+				}
+			},
 			"properties": {
 				"summary": {
 					"type": "string",
@@ -120,6 +130,9 @@
 			"patternProperties": {
 				"^([0-9]+)$|^(default)$": {
 					"$ref": "#/definitions/response"
+				},
+				"^x-": {
+					"$ref": "#/definitions/vendorExtension"
 				}
 			}
 		},
@@ -150,7 +163,11 @@
 		"parameter": {
 			"type": "object",
 			"required": [ "name", "in", "schema" ],
-			"additionalProperties": false,
+			"patternProperties": {
+				"^x-": {
+					"$ref": "#/definitions/vendorExtension"
+				}
+			},
 			"properties": {
 				"name": {
 					"type": "string",
@@ -178,6 +195,11 @@
 		"schema": {
 			"type": "object",
 			"description": "A deterministic version of a JSON Schema object.",
+			"patternProperties": {
+				"^x-": {
+					"$ref": "#/definitions/vendorExtension"
+				}
+			},
 			"properties": {
 				"$ref": { "type": "string" },
 				"format": { "type": "string" },
@@ -229,14 +251,12 @@
 			}
 		}
 	},
-
 	"additionalProperties": false,
 	"patternProperties": {
 		"^x-": {
 			"$ref": "#/definitions/vendorExtension"
 		}
 	},
-
 	"properties": {
 		"swagger": {
 			"type": "number",
@@ -281,10 +301,22 @@
 		"paths": {
 			"type": "object",
 			"description": "Relative paths to the individual endpoints. They should be relative to the 'basePath'.",
+
+			"patternProperties": {
+				"^x-": {
+					"$ref": "#/definitions/vendorExtension"
+				}
+			},
+
 			"additionalProperties": {
 				"type": "object",
 				"minProperties": 1,
 				"additionalProperties": false,
+				"patternProperties": {
+					"^x-": {
+						"$ref": "#/definitions/vendorExtension"
+					}
+				},
 				"properties": {
 					"get": {
 						"$ref": "#/definitions/operation"

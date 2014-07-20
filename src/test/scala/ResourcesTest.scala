@@ -26,8 +26,17 @@ class ResourcesTest extends FlatSpec with ShouldMatchers with TestBase {
     report.isSuccess should be (true)
   }
 
-  it should "validate a resource with common params" in {
+  it should "validate a spec with common params" in {
     val json = Source.fromFile("samples/v2.0/json/resources/commonParameters.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    if(report.isSuccess == false)
+      println(report)
+    report.isSuccess should be (true)
+  }
+
+  it should "validate a spec with vendor extensions" in {
+    val json = Source.fromFile("samples/v2.0/json/resources/vendorExtensionExamples.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)

@@ -1,14 +1,16 @@
 {
-  "responses": {
-    "200": {
-      "description": "simple string response",
+  "200": {
+    "description": "simple string response",
+    "schema": {
       "type": "string"
-    },
-    "201": {
-      "description": "object created"
-    },
-    "default": {
-      "description": "oops",
+    }
+  },
+  "201": {
+    "description": "object created"
+  },
+  "default": {
+    "description": "oops",
+    "schema": {
       "type": "integer",
       "format": "int32"
     }

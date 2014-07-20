@@ -1,7 +1,9 @@
 {
   "name": "token",
-  "kind": "header",
-  "summary": "token to be passed as a header",
+  "in": "header",
+  "description": "token to be passed as a header",
   "required": true,
-  "type": "string"
+  "schema": {
+    "type": "string"
+  }
 }

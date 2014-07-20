@@ -1,11 +1,13 @@
 {
   "name": "user",
-  "kind": "body",
-  "summary": "user to add to the system",
+  "in": "body",
+  "description": "user to add to the system",
   "required": true,
-  "type": "array",
-  "items": {
-    "type": "string"
-  },
-  "format": "csv"
+  "schema": {
+    "type": "array",
+    "items": {
+      "type": "string"
+    },
+    "format": "csv"
+  }
 }

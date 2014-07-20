@@ -9,28 +9,32 @@
   "parameters": [
     {
       "name": "petId",
-      "kind": "path",
-      "summary": "ID of pet that needs to be fetched",
+      "in": "path",
+      "description": "ID of pet that needs to be fetched",
       "required": true,
-      "type": "integer",
-      "format": "int64"
+      "schema": {
+        "type": "integer",
+        "format": "int64"        
+      }
     },
     {
       "name": "includeDetails",
-      "kind": "query",
-      "summary": "include details in response",
+      "in": "query",
+      "description": "include details in response",
       "required": true,
-      "type": "boolean"
+      "schema": {
+        "type": "boolean"
+      }
     }
   ],
   "responses": {
     "200": {
       "description": "a pet to be returned",
-      "$ref": "Pet"
+      "schema": {"$ref": "Pet"}
     },
     "default": {
       "description": "Unexpected error",
-      "$ref": "ErrorModel"
+      "schema": {"$ref": "ErrorModel"}
     }
   }
 }

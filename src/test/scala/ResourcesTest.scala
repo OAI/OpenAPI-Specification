@@ -4,8 +4,6 @@ import com.github.fge.jsonschema.main.{ JsonSchema, JsonSchemaFactory}
 import com.github.fge.jsonschema.core.report.ProcessingReport
 import com.github.fge.jackson.JsonLoader
 
-import com.fasterxml.jackson.databind.ObjectMapper
-
 import scala.io.Source
 
 import org.junit.runner.RunWith
@@ -14,9 +12,8 @@ import org.scalatest.FlatSpec
 import org.scalatest.matchers.ShouldMatchers
 
 @RunWith(classOf[JUnitRunner])
-class ResourcesTest extends FlatSpec with ShouldMatchers {
-  val mapper = new ObjectMapper
-  val schema = mapper.readTree(Source.fromFile("schemas/v2.0/schema.json").mkString)
+class ResourcesTest extends FlatSpec with ShouldMatchers with TestBase {
+  val schema = readSchema(true)
   val factory = JsonSchemaFactory.byDefault()
   val jsonSchema = factory.getJsonSchema(schema)
 

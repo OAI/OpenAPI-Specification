@@ -1,12 +1,14 @@
 {
   "name": "id",
-  "kind": "query",
-  "summary": "ID of the object to fetch",
+  "in": "query",
+  "description": "ID of the object to fetch",
   "required": true,
-  "type": "array",
-  "items": {
-    "type": "integer",
-    "format": "int64"
-  },
-  "format": "csv"
+  "schema": {
+    "type": "array",
+    "items": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "format": "csv"    
+  }
 }

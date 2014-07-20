@@ -108,40 +108,49 @@
 					}
 				},
 				"responses": {
-					"type": "object",
-					"description": "Response objects names can either be any valid HTTP status code or 'default'.",
-					"minProperties": 1,
-					"additionalProperties": false,
-					"patternProperties": {
-						"^([0-9]+)$|^(default)$": {
-							"required": [ "description" ],
-							"properties": {
-								"description": {
-									"type": "string"
-								},
-								"model": {
-									"$ref": "#/definitions/model"
-								},
-								"headers": {
-									"$ref": "#/definitions/model"
-								}
-							},
-							"additionalProperties": false
-						}
-					}
+					"$ref": "#/definitions/responses"
 				}
 			}
 		},
+		"responses": {
+			"type": "object",
+			"description": "Response objects names can either be any valid HTTP status code or 'default'.",
+			"minProperties": 1,
+			"additionalProperties": false,
+			"patternProperties": {
+				"^([0-9]+)$|^(default)$": {
+					"$ref": "#/definitions/response"
+				}
+			}
+		},
+		"response": {
+			"required": [ "description" ],
+			"properties": {
+				"description": {
+					"type": "string"
+				},
+				"schema": {
+					"$ref": "#/definitions/schema"
+				},
+				"headers": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/schema"
+					}
+				}
+			},
+			"additionalProperties": false
+		},
 		"parameter": {
 			"type": "object",
-			"required": [ "name", "kind", "model" ],
+			"required": [ "name", "in", "schema" ],
 			"additionalProperties": false,
 			"properties": {
 				"name": {
 					"type": "string",
 					"description": "The name of the parameter."
 				},
-				"kind": {
+				"in": {
 					"type": "string",
 					"description": "Determines the location of the parameter.",
 					"enum": [ "query", "header", "path", "formData", "body" ],
@@ -155,12 +164,12 @@
 					"type": "boolean",
 					"description": "Determines whether or not this parameter is required or optional."
 				},
-				"model": {
-					"$ref": "#/definitions/model"
+				"schema": {
+					"$ref": "#/definitions/schema"
 				}
 			}
 		},
-		"model": {
+		"schema": {
 			"type": "object",
 			"description": "A deterministic version of a JSON Schema object.",
 			"properties": {
@@ -179,11 +188,11 @@
 				"pattern": { "$ref": "http://json-schema.org/draft-04/schema#/properties/pattern" },
 				"items": {
 					"anyOf": [
-						{ "$ref": "#/definitions/model" },
+						{ "$ref": "#/definitions/schema" },
 						{
 							"type": "array",
 							"minItems": 1,
-							"items": { "$ref": "#/definitions/model" }
+							"items": { "$ref": "#/definitions/schema" }
 						}
 					],
 					"default": { }
@@ -196,12 +205,12 @@
 				"required": { "$ref": "http://json-schema.org/draft-04/schema#/definitions/stringArray" },
 				"definitions": {
 					"type": "object",
-					"additionalProperties": { "$ref": "#/definitions/model" },
+					"additionalProperties": { "$ref": "#/definitions/schema" },
 					"default": { }
 				},
 				"properties": {
 					"type": "object",
-					"additionalProperties": { "$ref": "#/definitions/model" },
+					"additionalProperties": { "$ref": "#/definitions/schema" },
 					"default": { }
 				},
 				"enum": { "$ref": "http://json-schema.org/draft-04/schema#/properties/enum" },
@@ -209,7 +218,7 @@
 				"allOf": {
 					"type": "array",
 					"minItems": 1,
-					"items": { "$ref": "#/definitions/model" }
+					"items": { "$ref": "#/definitions/schema" }
 				}
 			}
 		}
@@ -300,7 +309,7 @@
 			"type": "object",
 			"description": "One or more JSON objects describing the models being consumed and produced by the API.",
 			"additionalProperties": {
-				"$ref": "#/definitions/model"
+				"$ref": "#/definitions/schema"
 			}
 		}
 	}

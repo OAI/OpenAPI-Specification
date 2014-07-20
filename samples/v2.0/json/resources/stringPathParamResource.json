@@ -40,10 +40,10 @@
         "parameters": [
           {
             "name": "petId",
-            "kind": "path",
+            "in": "path",
             "description": "ID of pet that needs to be fetched",
             "required": true,
-            "model": {
+            "schema": {
               "type": "array",
               "items": {
                 "type": "string",
@@ -55,13 +55,13 @@
         "responses": {
           "200": {
             "description": "pet response",
-            "model": {
+            "schema": {
               "$ref": "Pet"
             }
           },
           "default": {
             "description": "error payload",
-            "model": {
+            "schema": {
               "$ref": "ErrorModel"
             }
           }

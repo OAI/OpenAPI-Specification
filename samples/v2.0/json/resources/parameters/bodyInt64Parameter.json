@@ -1,8 +1,10 @@
 {
   "name": "id",
-  "kind": "body",
-  "summary": "id to add",
+  "in": "body",
+  "description": "id to add",
   "required": true,
-  "type": "integer",
-  "format": "int64"
+  "schema": {
+    "type": "integer",
+    "format": "int64"
+  }
 }

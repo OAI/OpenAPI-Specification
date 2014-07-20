@@ -1,8 +1,10 @@
 {
   "name": "id",
-  "kind": "path",
-  "summary": "username to fetch",
+  "in": "path",
+  "description": "username to fetch",
   "required": true,
-  "type": "integer",
-  "format": "int64"
+  "schema": {
+    "type": "integer",
+    "format": "int64"    
+  }
 }

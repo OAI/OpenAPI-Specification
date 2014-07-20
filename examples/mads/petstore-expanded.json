@@ -46,10 +46,10 @@
                 "parameters": [
                     {
                         "name": "tags",
-                        "kind": "query",
+                        "in": "query",
                         "description": "tags to filter by",
                         "required": false,
-                        "model": {
+                        "schema": {
                             "type": "array",
                             "items": {
                                 "type": "string"
@@ -59,10 +59,10 @@
                     },
                     {
                         "name": "limit",
-                        "kind": "query",
+                        "in": "query",
                         "description": "maximum number of results to return",
                         "required": false,
-                        "model": {
+                        "schema": {
                             "type": "integer",
                             "format": "int32"
                         }
@@ -71,7 +71,7 @@
                 "responses": {
                     "200": {
                         "description": "pet response",
-                        "model": {
+                        "schema": {
                             "type": "array",
                             "items": {
                                 "$ref": "#/models/pet"
@@ -80,7 +80,7 @@
                     },
                     "default": {
                         "description": "unexpected error",
-                        "model": {"$ref": "#/models/errorModel"}
+                        "schema": {"$ref": "#/models/errorModel"}
                     }
                 }
             },
@@ -93,20 +93,20 @@
                 "parameters": [
                     {
                         "name": "pet",
-                        "kind": "body",
+                        "in": "body",
                         "description": "Pet to add to the store",
                         "required": true,
-                        "model": {"$ref": "#/models/petInput"}
+                        "schema": {"$ref": "#/models/petInput"}
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "pet response",
-                        "model": {"$ref": "#/models/pet"}
+                        "schema": {"$ref": "#/models/pet"}
                     },
                     "default": {
                         "description": "unexpected error",
-                        "model": {"$ref": "#/models/errorModel"}
+                        "schema": {"$ref": "#/models/errorModel"}
                     }
                 }
             }
@@ -124,10 +124,10 @@
                 "parameters": [
                     {
                         "name": "id",
-                        "kind": "path",
+                        "in": "path",
                         "description": "ID of pet to fetch",
                         "required": true,
-                        "model": {
+                        "schema": {
                             "type": "integer",
                             "format": "int64"
                         }
@@ -136,11 +136,11 @@
                 "responses": {
                     "200": {
                         "description": "pet response",
-                        "model": {"$ref": "Pet"}
+                        "schema": {"$ref": "Pet"}
                     },
                     "default": {
                         "description": "unexpected error",
-                        "model": {"$ref": "ErrorModel"}
+                        "schema": {"$ref": "ErrorModel"}
                     }
                 }
             },
@@ -150,10 +150,10 @@
                 "parameters": [
                     {
                         "name": "id",
-                        "kind": "path",
+                        "in": "path",
                         "description": "ID of pet to delete",
                         "required": true,
-                        "model": {
+                        "schema": {
                             "type": "integer",
                             "format": "int64"
                         }
@@ -165,7 +165,7 @@
                     },
                     "default": {
                         "description": "unexpected error",
-                        "model": {"$ref": "ErrorModel"}
+                        "schema": {"$ref": "ErrorModel"}
                     }
                 }
             }

@@ -16,21 +16,21 @@
         "responses": {
           "200": {
             "description": "pet response",
-            "model": {
+            "schema": {
               "type": "array",
               "items": {
                 "$ref": "#/models/Pet"
               }
             },
-            "headers": {
+            "headers": [{
               "x-expires": {
                 "type": "string"
               }
-            }
+            }]
           },
           "default": {
             "description": "unexpected error",
-            "model": {
+            "schema": {
               "$ref": "#/models/ErrorModel"
             }
           }

@@ -32,7 +32,7 @@
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "#/models/ErrorModel"
+              "$ref": "#/models/Error"
             }
           }
         }
@@ -58,7 +58,7 @@
         }
       }
     },
-    "ErrorModel": {
+    "Error": {
       "required": [
         "code",
         "message"

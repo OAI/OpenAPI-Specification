@@ -96,7 +96,7 @@
                         "in": "body",
                         "description": "Pet to add to the store",
                         "required": true,
-                        "schema": {"$ref": "#/models/petInput"}
+                        "schema": {"$ref": "#/models/NewPet"}
                     }
                 ],
                 "responses": {
@@ -190,7 +190,7 @@
                 }
             }
         },
-        "petInput": {
+        "NewPet": {
             "allOf": [
                 {
                     "$ref": "Pet"

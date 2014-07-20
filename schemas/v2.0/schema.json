@@ -124,6 +124,7 @@
 			}
 		},
 		"response": {
+			"type": "object",
 			"required": [ "description" ],
 			"properties": {
 				"description": {
@@ -140,6 +141,11 @@
 				}
 			},
 			"additionalProperties": false
+		},
+		"vendorExtension": {
+			"description": "Any property starting with _ is valid.",
+			"additionalProperties": true,
+			"additionalItems": true
 		},
 		"parameter": {
 			"type": "object",
@@ -224,11 +230,10 @@
 		}
 	},
 
+	"additionalProperties": false,
 	"patternProperties": {
-		"^_": {
-			"description": "Any property starting with _ is valid.",
-			"additionalProperties": true,
-			"additionalItems": true
+		"^x-": {
+			"$ref": "#/definitions/vendorExtension"
 		}
 	},
 
@@ -301,6 +306,12 @@
 					},
 					"patch": {
 						"$ref": "#/definitions/operation"
+					},
+					"parameters": {
+						"type": "array",
+						"items": {
+							"$ref": "#/definitions/parameter"
+						}
 					}
 				}
 			}

@@ -38,9 +38,9 @@
           "schema": {
             "type": "array",
             "items": {
-              "type": "string",
-              "format": "csv"
-            }
+              "type": "string"
+            },
+            "format": "csv"
           }
         }
       ],

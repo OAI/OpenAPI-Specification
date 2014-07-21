@@ -45,8 +45,8 @@
         }
       ],
       "get": {
-        "description": "Returns a pet based on ID",
-        "summary": "Find pet by ID",
+        "description": "Returns pets based on ID",
+        "summary": "Find pets by ID",
         "operationId": "getPetsById",
         "produces": [
           "application/json",
@@ -56,7 +56,10 @@
           "200": {
             "description": "pet response",
             "schema": {
-              "$ref": "Pet"
+              "type": "array",
+              "items": {
+                "$ref": "Pet"
+              }
             }
           },
           "default": {

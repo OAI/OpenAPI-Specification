@@ -9,7 +9,7 @@
 		"info": {
 			"type": "object",
 			"description": "General information about the API.",
-			"required": [ "version", "title", "contact", "license" ],
+			"required": [ "version", "title" ],
 			"additionalProperties": false,
 			"patternProperties": {
 				"^x-": {

@@ -214,6 +214,7 @@
 				"maxLength": { "$ref": "http://json-schema.org/draft-04/schema#/definitions/positiveInteger" },
 				"minLength": { "$ref": "http://json-schema.org/draft-04/schema#/definitions/positiveIntegerDefault0" },
 				"pattern": { "$ref": "http://json-schema.org/draft-04/schema#/properties/pattern" },
+				"discriminator": { "type": "string" },
 				"items": {
 					"anyOf": [
 						{ "$ref": "#/definitions/schema" },

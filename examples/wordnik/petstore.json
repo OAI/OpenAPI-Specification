@@ -2,7 +2,15 @@
   "swagger": 2.0,
   "info": {
     "version": "1.0.0",
-    "title": "Swagger Petstore"
+    "title": "Swagger Petstore",
+    "contact": {
+      "name": "wordnik api team",
+      "url": "http://developer.wordnik.com"
+    },
+    "license": {
+      "name": "Creative Commons 4.0 International",
+      "url": "http://creativecommons.org/licenses/by/4.0/"
+    }
   },
   "host": "http://petstore.swagger.wordnik.com",
   "basePath": "/api",

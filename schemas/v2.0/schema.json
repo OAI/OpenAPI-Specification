@@ -9,7 +9,7 @@
 		"info": {
 			"type": "object",
 			"description": "General information about the API.",
-			"required": [ "version", "title" ],
+			"required": [ "version", "title", "contact", "license" ],
 			"additionalProperties": false,
 			"patternProperties": {
 				"^x-": {
@@ -57,12 +57,12 @@
 				},
 				"license": {
 					"type": "object",
-					"required": [ "type" ],
+					"required": [ "name" ],
 					"additionalProperties": false,
 					"properties": {
-						"type": {
+						"name": {
 							"type": "string",
-							"description": "The name of the type of license. It's encouraged to use an OSI compatible license."
+							"description": "The name of the license type. It's encouraged to use an OSI compatible license."
 						},
 						"url": {
 							"type": "string",

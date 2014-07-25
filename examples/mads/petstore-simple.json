@@ -9,7 +9,7 @@
             "name": "Wordnik API Team"
         },
         "license": {
-            "type": "MIT"
+            "name": "MIT"
         }
     },
     "host": "http://petstore.swagger.wordnik.com/api",

@@ -221,6 +221,7 @@
 				"minLength": { "$ref": "http://json-schema.org/draft-04/schema#/definitions/positiveIntegerDefault0" },
 				"pattern": { "$ref": "http://json-schema.org/draft-04/schema#/properties/pattern" },
 				"discriminator": { "type": "string" },
+				"xml": { "$ref": "#/definitions/xml"},
 				"items": {
 					"anyOf": [
 						{ "$ref": "#/definitions/schema" },
@@ -256,6 +257,15 @@
 					"items": { "$ref": "#/definitions/schema" }
 				}
 			}
+		},
+		"xml": {
+			"properties": {
+				"namespace": { "type": "string" },
+				"prefix": { "type": "string" },
+				"attribute": { "type": "boolean" },
+				"wrapped": { "type": "boolean" }
+			},
+			"additionalProperties": false
 		}
 	},
 	"additionalProperties": false,

@@ -61,4 +61,13 @@ class ModelTest extends FlatSpec with ShouldMatchers with TestBase {
       println(report)
     report.isSuccess should be (true)
   }
+
+  it should "validate a model with xml properties" in {
+    val json = Source.fromFile("samples/v2.0/json/models/modelWithXmlAttributes.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    if(report.isSuccess == false)
+      println(report)
+    report.isSuccess should be (true)
+  }
 }

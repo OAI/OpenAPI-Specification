@@ -36,7 +36,6 @@
 				"contact": {
 					"type": "object",
 					"description": "Contact information for the owners of the API.",
-					"required": [ "name" ],
 					"additionalProperties": false,
 					"properties": {
 						"name": {
@@ -371,6 +370,11 @@
 			"additionalProperties": {
 				"$ref": "#/definitions/schema"
 			}
+		},
+		"security": {
+			"type": "object",
+			"description": "The definition of a security model",
+
 		}
 	}
 }

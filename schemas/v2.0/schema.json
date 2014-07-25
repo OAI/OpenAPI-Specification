@@ -370,11 +370,6 @@
 			"additionalProperties": {
 				"$ref": "#/definitions/schema"
 			}
-		},
-		"security": {
-			"type": "object",
-			"description": "The definition of a security model",
-
 		}
 	}
 }

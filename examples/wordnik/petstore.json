@@ -12,6 +12,7 @@
   "paths": {
     "/pets": {
       "get": {
+        "tags": [ "Pet Operations" ],
         "summary": "finds pets in the system",
         "responses": {
           "200": {

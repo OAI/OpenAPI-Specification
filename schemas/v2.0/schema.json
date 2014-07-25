@@ -88,6 +88,12 @@
 				}
 			},
 			"properties": {
+				"tags": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
 				"summary": {
 					"type": "string",
 					"description": "A brief summary of the operation."

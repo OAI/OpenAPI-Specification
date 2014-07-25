@@ -44,6 +44,15 @@ class ResourcesTest extends FlatSpec with ShouldMatchers with TestBase {
     report.isSuccess should be (true)
   }
 
+  it should "validate a spec with relative host" in {
+    val json = Source.fromFile("samples/v2.0/json/resources/resourceWithRelativeHost.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    if(report.isSuccess == false)
+      println(report)
+    report.isSuccess should be (true)
+  }
+
   it should "validate the wordnik petstore" in {
     val json = Source.fromFile("examples/wordnik/petstore.json").mkString
     val data = JsonLoader.fromString(json)

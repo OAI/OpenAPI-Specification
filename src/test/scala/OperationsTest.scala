@@ -34,4 +34,13 @@ class OperationsTest extends FlatSpec with ShouldMatchers with TestBase {
       println(report)
     report.isSuccess should be (true)
   }
+
+  it should "validate a resource with tags in the operation" in {
+    val json = Source.fromFile("samples/v2.0/json/resources/operations/operationWithTags.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    if(report.isSuccess == false)
+      println(report)
+    report.isSuccess should be (true)
+  }
 }

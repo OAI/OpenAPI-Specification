@@ -1,5 +1,5 @@
 {
-  "models": {
+  "schemas": {
     "Error": {
       "required": [ "code", "message" ],
       "properties": {

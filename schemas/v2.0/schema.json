@@ -349,9 +349,9 @@
 				}
 			}
 		},
-		"models": {
+		"schemas": {
 			"type": "object",
-			"description": "One or more JSON objects describing the models being consumed and produced by the API.",
+			"description": "One or more JSON objects describing the schemas being consumed and produced by the API.",
 			"additionalProperties": {
 				"$ref": "#/definitions/schema"
 			}

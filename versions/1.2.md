@@ -656,7 +656,7 @@ Field Name | Type | Description
       ]
     }
   ],
-  "models": {
+  "schemas": {
     "Order": {
       "id": "Order",
       "properties": {

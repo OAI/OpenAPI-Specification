@@ -72,7 +72,7 @@
       }
     }
   },
-  "models": {
+  "schemas": {
     "Pet": {
       "required": [
         "name"

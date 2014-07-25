@@ -1,5 +1,5 @@
 {
-  "models": {
+  "schemas": {
     "Person": {
       "description": "A representation of a person",
       "required": [

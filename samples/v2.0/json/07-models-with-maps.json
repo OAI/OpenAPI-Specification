@@ -1,5 +1,5 @@
 {
-  "models": {
+  "schemas": {
     "StringToIntegerMap": {
       "additionalProperties": {
         "type": "integer",

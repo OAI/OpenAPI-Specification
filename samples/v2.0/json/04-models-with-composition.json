@@ -1,5 +1,5 @@
 {
-  "models": {
+  "schemas": {
     "Cat": { "$ref": "#/definitions/Cat" },
     "Dog": { "$ref": "#/definitions/Dog" },
     "Fish": { "$ref": "#/definitions/Fish" },

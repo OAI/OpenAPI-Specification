@@ -38,7 +38,7 @@
       }
     }
   },
-  "models": {
+  "schemas": {
     "Pet": {
       "required": [
         "id",

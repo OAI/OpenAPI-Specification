@@ -163,7 +163,7 @@
             }
         }
     },
-    "models": {
+    "schemas": {
         "pet": {
             "required": [
                 "id",

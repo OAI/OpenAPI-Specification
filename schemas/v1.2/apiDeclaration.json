@@ -20,7 +20,7 @@
             "type": "array",
             "items": { "$ref": "#/definitions/apiObject" }
         },
-        "models": {
+        "schemas": {
             "type": "object",
             "additionalProperties": {
                 "$ref": "modelsObject.json#"

@@ -1,0 +1,16 @@
+{
+  "name": "swagger-validator",
+  "version": "0.0.1",
+  "description": "validates a file",
+  "author": {
+    "name": "Tony Tam",
+    "email": "fehguy@gmail.com",
+    "url": "http://developer.wordnik.com"
+  },
+  "license": "Apache",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "tv4": "~1.1.x",
+    "chai": "1.9.x"
+  }
+}

@@ -1,9 +1,3 @@
-// The "$ref" properties pointing to models have been changed to comply with JSON Schema syntax of linked resources.
-// Both "info/contact" and "info/license" has been expanded into common object structures found in both package.json
-// and bower.json files.
-// "summary" properties have been removed from objects that also specifies a "description" property.
-// The "paths/.../paramters/summary" properties have been renamed to "description"
-
 {
     "swagger": 2.0,
     "info": {

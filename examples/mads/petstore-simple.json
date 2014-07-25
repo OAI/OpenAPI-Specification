@@ -1,7 +1,3 @@
-// The same changes made in "petstore-expanded.json" also applies here, plus the following changes:
-// This simple schema uses the shorthand string versions of "info/contact" and "info/license".
-// It also removes the "basePath" property and instead appends it to the "host" property. "basePath" should be optional.
-
 {
     "swagger": 2.0,
     "info": {

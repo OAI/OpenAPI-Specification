@@ -24,11 +24,6 @@ paths:
     get: 
       description: Returns all pets from the system that the user has access to
       operationId: findPets
-      produces: 
-        - application/json
-        - application/xml
-        - text/xml
-        - text/html
       parameters: 
         - name: tags
           in: query
@@ -36,9 +31,9 @@ paths:
           required: false
           schema: 
             type: array
+            format: csv
             items: 
               type: string
-            format: csv
         - name: limit
           in: query
           description: maximum number of results to return

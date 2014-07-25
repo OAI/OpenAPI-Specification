@@ -35,8 +35,8 @@ class ModelsTest extends FlatSpec with ShouldMatchers with TestBase {
     report.isSuccess should be (true)
   }
 
-  it should "validate models with composition" in {
-    val json = Source.fromFile("samples/v2.0/json/05-models-with-composition.json").mkString
+  it should "validate models with examples" in {
+    val json = Source.fromFile("samples/v2.0/json/models/modelWithExamples.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -44,8 +44,8 @@ class ModelsTest extends FlatSpec with ShouldMatchers with TestBase {
     report.isSuccess should be (true)
   }
 
-  it should "validate models with " in {
-    val json = Source.fromFile("samples/v2.0/json/models/modelWithExamples.json").mkString
+  it should "validate models with composition" in {
+    val json = Source.fromFile("samples/v2.0/json/models/modelWithComposition.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)

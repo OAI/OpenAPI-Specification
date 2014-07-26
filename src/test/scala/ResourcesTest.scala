@@ -79,4 +79,13 @@ class ResourcesTest extends FlatSpec with ShouldMatchers with TestBase {
       println(report)
     report.isSuccess should be (true)
   }
+
+  it should "validate a sample with security" in {
+    val json = Source.fromFile("samples/v2.0/json/resources/securityExample.json").getLines.filter(!_.startsWith("//")).mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    if(report.isSuccess == false)
+      println(report)
+    report.isSuccess should be (true)
+  } 
 }

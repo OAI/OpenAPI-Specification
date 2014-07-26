@@ -124,6 +124,12 @@
 				},
 				"responses": {
 					"$ref": "#/definitions/responses"
+				},
+				"security": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/security"
+					}
 				}
 			}
 		},
@@ -257,6 +263,9 @@
 				}
 			}
 		},
+		"security": {
+
+		},
 		"xml": {
 			"properties": {
 				"namespace": { "type": "string" },
@@ -370,6 +379,9 @@
 			"additionalProperties": {
 				"$ref": "#/definitions/schema"
 			}
+		},
+		"security": {
+			"type": "array"
 		}
 	}
 }

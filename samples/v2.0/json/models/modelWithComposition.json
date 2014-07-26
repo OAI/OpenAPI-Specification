@@ -1,21 +1,9 @@
 {
   "schemas": {
-    "Cat": { "$ref": "#/definitions/Cat" },
-    "Dog": { "$ref": "#/definitions/Dog" },
-    "Fish": { "$ref": "#/definitions/Fish" },
-    "Pet": { "$ref": "#/definitions/Pet" }
-  },
-  "definitions": {
-    "Pet": {
-      "properties": {
-        "name": { "type": "string" }
-      },
-      "required": [ "name" ]
-    },
     "Cat": {
       "description": "A representation of a cat",
       "allOf": [
-        { "$ref": "#/definitions/Pet" },
+        { "$ref": "#/models/Pet" },
         {
           "properties": {
             "huntingSkill": {
@@ -32,7 +20,7 @@
     "Dog": {
       "description": "A representation of a dog",
       "allOf": [
-        { "$ref": "#/definitions/Pet" },
+        { "$ref": "#/models/Pet" },
         {
           "properties": {
             "packSize": {
@@ -50,7 +38,7 @@
     "Fish": {
       "description": "A representation of a fish",
       "allOf": [
-        { "$ref": "#/definitions/Pet" },
+        { "$ref": "#/models/Pet" },
         {
           "properties": {
             "fins": {
@@ -63,6 +51,18 @@
           "required": [ "fins" ]
         }
       ]
+    },
+    "Pet": {
+      "discriminator": "petType",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "petType": {
+          "type": "string"
+        }
+      },
+      "required": [ "name", "petType" ]
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "models": {
+  "schemas": {
     "Employee": {
       "description": "A representation of an employee",
       "properties": {

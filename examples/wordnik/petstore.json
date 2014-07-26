@@ -2,7 +2,15 @@
   "swagger": 2.0,
   "info": {
     "version": "1.0.0",
-    "title": "Swagger Petstore"
+    "title": "Swagger Petstore",
+    "contact": {
+      "name": "wordnik api team",
+      "url": "http://developer.wordnik.com"
+    },
+    "license": {
+      "name": "Creative Commons 4.0 International",
+      "url": "http://creativecommons.org/licenses/by/4.0/"
+    }
   },
   "host": "http://petstore.swagger.wordnik.com",
   "basePath": "/api",
@@ -12,33 +20,34 @@
   "paths": {
     "/pets": {
       "get": {
+        "tags": [ "Pet Operations" ],
         "summary": "finds pets in the system",
         "responses": {
           "200": {
             "description": "pet response",
-            "model": {
+            "schema": {
               "type": "array",
               "items": {
                 "$ref": "#/models/Pet"
               }
             },
-            "headers": {
+            "headers": [{
               "x-expires": {
                 "type": "string"
               }
-            }
+            }]
           },
           "default": {
             "description": "unexpected error",
-            "model": {
-              "$ref": "#/models/ErrorModel"
+            "schema": {
+              "$ref": "#/models/Error"
             }
           }
         }
       }
     }
   },
-  "models": {
+  "schemas": {
     "Pet": {
       "required": [
         "id",
@@ -57,7 +66,7 @@
         }
       }
     },
-    "ErrorModel": {
+    "Error": {
       "required": [
         "code",
         "message"

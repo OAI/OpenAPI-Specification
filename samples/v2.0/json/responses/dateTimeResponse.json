@@ -1,5 +1,7 @@
 {
   "description": "A date-time response",
-  "type": "string",
-  "format": "date-time"
+  "schema": {
+    "type": "string",
+    "format": "date-time"
+  }
 }

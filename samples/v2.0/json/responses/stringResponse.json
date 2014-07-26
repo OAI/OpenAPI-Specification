@@ -1,4 +1,6 @@
 {
   "description": "A simple string response",
-  "type": "string"
+  "schema": {
+    "type": "string"
+  }
 }

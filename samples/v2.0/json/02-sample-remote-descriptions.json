@@ -37,7 +37,7 @@
         "parameters": [
           {
             "name": "petId",
-            "kind": "path",
+            "in": "path",
             "summary": "ID of pet that needs to be fetched",
             "required": true,
             "type": "array",
@@ -48,7 +48,7 @@
           },
           {
             "name": "verbose",
-            "kind": "query",
+            "in": "query",
             "description": "Expand the response and show extra data",
             "required": false,
             "type": "boolean"
@@ -70,7 +70,7 @@
       }
     }
   },
-  "models": {
+  "schemas": {
     "Pet": {
       "required": [
         "name"

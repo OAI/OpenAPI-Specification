@@ -4,8 +4,6 @@ import com.github.fge.jsonschema.main.{ JsonSchema, JsonSchemaFactory}
 import com.github.fge.jsonschema.core.report.ProcessingReport
 import com.github.fge.jackson.JsonLoader
 
-import com.fasterxml.jackson.databind.ObjectMapper
-
 import scala.io.Source
 
 import org.junit.runner.RunWith
@@ -14,9 +12,8 @@ import org.scalatest.FlatSpec
 import org.scalatest.matchers.ShouldMatchers
 
 @RunWith(classOf[JUnitRunner])
-class ResourcesTest extends FlatSpec with ShouldMatchers {
-  val mapper = new ObjectMapper
-  val schema = mapper.readTree(Source.fromFile("schemas/v2.0/schema.json").mkString)
+class ResourcesTest extends FlatSpec with ShouldMatchers with TestBase {
+  val schema = readSchema(true)
   val factory = JsonSchemaFactory.byDefault()
   val jsonSchema = factory.getJsonSchema(schema)
 
@@ -29,8 +26,53 @@ class ResourcesTest extends FlatSpec with ShouldMatchers {
     report.isSuccess should be (true)
   }
 
-  it should "validate a the wordnik petstore" in {
+  it should "validate a spec with common params" in {
+    val json = Source.fromFile("samples/v2.0/json/resources/commonParameters.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    if(report.isSuccess == false)
+      println(report)
+    report.isSuccess should be (true)
+  }
+
+  it should "validate a spec with vendor extensions" in {
+    val json = Source.fromFile("samples/v2.0/json/resources/vendorExtensionExamples.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    if(report.isSuccess == false)
+      println(report)
+    report.isSuccess should be (true)
+  }
+
+  it should "validate a spec with relative host" in {
+    val json = Source.fromFile("samples/v2.0/json/resources/resourceWithRelativeHost.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    if(report.isSuccess == false)
+      println(report)
+    report.isSuccess should be (true)
+  }
+
+  it should "validate the wordnik petstore" in {
     val json = Source.fromFile("examples/wordnik/petstore.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    if(report.isSuccess == false)
+      println(report)
+    report.isSuccess should be (true)
+  }
+
+  it should "validate mads sample 1" in {
+    val json = Source.fromFile("examples/mads/petstore-simple.json").getLines.filter(!_.startsWith("//")).mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    if(report.isSuccess == false)
+      println(report)
+    report.isSuccess should be (true)
+  }
+
+  it should "validate mads sample 2" in {
+    val json = Source.fromFile("examples/mads/petstore-expanded.json").getLines.filter(!_.startsWith("//")).mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)

@@ -4,8 +4,6 @@ import com.github.fge.jsonschema.main.{ JsonSchema, JsonSchemaFactory}
 import com.github.fge.jsonschema.core.report.ProcessingReport
 import com.github.fge.jackson.JsonLoader
 
-import com.fasterxml.jackson.databind.ObjectMapper
-
 import scala.io.Source
 
 import org.junit.runner.RunWith
@@ -14,11 +12,10 @@ import org.scalatest.FlatSpec
 import org.scalatest.matchers.ShouldMatchers
 
 @RunWith(classOf[JUnitRunner])
-class ModelsTest extends FlatSpec with ShouldMatchers {
-  val mapper = new ObjectMapper
-  val schema = mapper.readTree(Source.fromFile("schemas/v2.0/schema.json").mkString)
+class ModelsTest extends FlatSpec with ShouldMatchers with TestBase {
+  val schema = readSchema(true)
   val factory = JsonSchemaFactory.byDefault()
-  val jsonSchema = factory.getJsonSchema(schema.get("definitions").get("model"))
+  val jsonSchema = factory.getJsonSchema(schema.get("definitions").get("schema"))
 
   it should "validate a models hash" in {
     val json = Source.fromFile("samples/v2.0/json/models/models.json").mkString
@@ -38,8 +35,8 @@ class ModelsTest extends FlatSpec with ShouldMatchers {
     report.isSuccess should be (true)
   }
 
-  it should "validate models with composition" in {
-    val json = Source.fromFile("samples/v2.0/json/05-models-with-composition.json").mkString
+  it should "validate models with examples" in {
+    val json = Source.fromFile("samples/v2.0/json/models/modelWithExamples.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -47,8 +44,8 @@ class ModelsTest extends FlatSpec with ShouldMatchers {
     report.isSuccess should be (true)
   }
 
-  it should "validate models with " in {
-    val json = Source.fromFile("samples/v2.0/json/models/modelWithExamples.json").mkString
+  it should "validate models with composition" in {
+    val json = Source.fromFile("samples/v2.0/json/models/modelWithComposition.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)

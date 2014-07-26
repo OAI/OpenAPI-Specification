@@ -1,7 +1,9 @@
 {
   "description": "A complex object array response",
-  "type": "array",
-  "items": {
-    "$ref": "VeryComplexType"
+  "schema": {
+    "type": "array",
+    "items": {
+      "$ref": "VeryComplexType"
+    }
   }
 }

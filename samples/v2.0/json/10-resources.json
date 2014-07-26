@@ -10,14 +10,14 @@
       "parameters": [
         {
           "name": "name",
-          "kind": "formData",
+          "in": "formData",
           "summary": "Name of the pet to add",
           "required": true,
           "type": "string"
         },
         {
           "name": "ownerId",
-          "kind": "formData",
+          "in": "formData",
           "description": "The owner ID of the pet to add.  The owner must exist in the system",
           "required": true,
           "type": "integer",
@@ -54,7 +54,7 @@
       "parameters": [
         {
           "name": "petId",
-          "kind": "path",
+          "in": "path",
           "summary": "ID of pet to delete",
           "required": true,
           "type": "integer",

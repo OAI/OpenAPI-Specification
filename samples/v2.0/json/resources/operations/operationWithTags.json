@@ -2,6 +2,7 @@
   "description": "Returns a pet based on ID",
   "summary": "Find pet by ID",
   "operationId": "getPetsById",
+  "tags": [ "foo", "bar"],
   "produces": [
     "application/json",
     "text/html"
@@ -14,18 +15,14 @@
       "required": true,
       "schema": {
         "type": "integer",
-        "format": "int64"
+        "format": "int64"        
       }
     }
   ],
   "responses": {
     "200": {
-      "description": "fun",
+      "description": "a pet to be returned",
       "schema": {"$ref": "Pet"}
-    },
-    "400": {
-      "description": "Invalid ID supplied <= this is purely for documentation",
-      "schema": {"$ref": "ErrorModel"}
     },
     "default": {
       "description": "Unexpected error",

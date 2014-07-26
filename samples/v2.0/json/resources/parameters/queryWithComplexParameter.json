@@ -1,7 +1,9 @@
 {
   "name": "id",
-  "kind": "query",
-  "summary": "a complex object which should not validate",
+  "in": "query",
+  "description": "a complex object which should not validate",
   "required": true,
-  "$ref": "Pet"
+  "schema": {
+    "$ref": "Pet"
+  }
 }

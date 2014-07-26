@@ -1,5 +1,5 @@
 {
-  "models": {
+  "schemas": {
     "User": {
       "required": [
         "id",
@@ -25,7 +25,7 @@
         "parameters": [
           {
             "name": "id",
-            "kind": "path",
+            "in": "path",
             "summary": "ID of user to retrieve",
             "required": true,
             "type": "integer",

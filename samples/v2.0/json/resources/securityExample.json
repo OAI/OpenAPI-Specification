@@ -28,12 +28,12 @@
   ],
   "security": [
     {
-      "oauth2": {}
+      "githubAuth": { "$ref": "#/definitions/security/github/accessCode" }
     },
     {
-      "apiKey": {
-        "name": "api_key",
-        "type": "header"
+      "internalApiKey": {
+        "type": "header",
+        "name": "api_key"
       }
     }
   ],
@@ -60,12 +60,12 @@
         "operationId": "getPetsById",
         "security": [
           {
-            "oauth2": {
+            "githubAuth": {
               "scopes": [ "user:read", "user:write" ]
             }
           },
           {
-            "apiKey":{}
+            "internalApiKey":{}
           }
         ],
         "produces": [
@@ -115,6 +115,47 @@
         },
         "message": {
           "type": "string"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "security": {
+      "github": {
+        "type": "oauth2",
+        "scopes": [
+          { "user":  "Grants read/write access to profile info only. Note that this scope includes user:email and user:follow." },
+          { "user:email": "Grants read access to a user’s email addresses." },
+          { "user:follow": "Grants access to follow or unfollow other users." },
+          { "public_repo": "Grants read/write access to code, commit statuses, and deployment statuses for public repositories and organizations." },
+          { "repo": "Grants read/write access to code, commit statuses, and deployment statuses for public and private repositories and organizations." },
+          { "repo_deployment": "Grants access to deployment statuses for public and private repositories. This scope is only necessary to grant other users or services access to deployment statuses, without granting access to the code." },
+          { "repo:status": "Grants read/write access to public and private repository commit statuses. This scope is only necessary to grant other users or services access to private repository commit statuses without granting access to the code." },
+          { "delete_repo": "Grants access to delete adminable repositories." },
+          { "notifications": "Grants read access to a user’s notifications. repo also provides this access." },
+          { "gist": "Grants write access to gists." },
+          { "read:repo_hook": "Grants read and ping access to hooks in public or private repositories." },
+          { "write:repo_hook": "Grants read, write, and ping access to hooks in public or private repositories." },
+          { "admin:repo_hook": "Grants read, write, ping, and delete access to hooks in public or private repositories." },
+          { "read:org": "Read-only access to organization, teams, and membership." },
+          { "write:org": "Publicize and unpublicize organization membership." },
+          { "admin:org": "Fully manage organization, teams, and memberships." },
+          { "read:public_key": "List and view details for public keys." },
+          { "write:public_key": "Create, list, and view details for public keys." },
+          { "admin:public_key": "Fully manage public keys." }
+        ],
+        "accessCode": {
+          "authorize": {
+            "url": "https://github.com/login/oauth/authorize"
+          },
+          "token": {
+            "url": "https://github.com/login/oauth/access_token"
+          }
+        },
+        "implicit": {
+          "login": {
+            "url": "http://petstore.swagger.wordnik.com/oauth/dialog"
+          }
         }
       }
     }

@@ -131,6 +131,14 @@
 				},
 				"responses": {
 					"$ref": "#/definitions/responses"
+				},
+				"schemes": {
+					"type": "array",
+					"description": "The transfer protocol of the API.",
+					"items": {
+						"type": "string",
+						"enum": [ "http", "https", "ws", "wss" ]
+					}
 				}
 			}
 		},

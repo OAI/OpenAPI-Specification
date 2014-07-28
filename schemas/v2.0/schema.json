@@ -72,6 +72,13 @@
 				}
 			}
 		},
+		"example": {
+			"type": "object",
+			"patternProperties": {
+				"^[a-z0-9-]+/[a-z0-9-+]+$": {}
+			},
+			"additionalProperties": false
+		},
 		"mimeType": {
 			"type": "string",
 			"pattern": "^[a-z0-9-]+/[a-z0-9-+]+$",
@@ -156,6 +163,9 @@
 					"items": {
 						"$ref": "#/definitions/schema"
 					}
+				},
+				"examples": {
+					"$ref": "#/definitions/example"
 				}
 			},
 			"additionalProperties": false
@@ -370,6 +380,9 @@
 			"additionalProperties": {
 				"$ref": "#/definitions/schema"
 			}
+		},
+		"security": {
+			"type": "array"
 		}
 	}
 }

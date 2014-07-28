@@ -28,7 +28,7 @@
     "application/xml"
   ],
   "paths": {
-    "fun": {
+    "/pets/{petId}": {
       "get": {
         "description": "Returns a pet based on ID",
         "summary": "Find pet by ID",

@@ -44,7 +44,7 @@
                             "items": {
                                 "type": "string"
                             },
-                            "format": "csv"                            
+                            "format": "csv"
                         }
                     },
                     {
@@ -54,7 +54,7 @@
                         "required": false,
                         "schema": {
                             "type": "integer",
-                            "format": "int32"                            
+                            "format": "int32"
                         }
                     }
                 ],
@@ -64,14 +64,14 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/models/pet"
-                            }                            
+                                "$ref": "#/schemas/pet"
+                            }
                         }
                     },
                     "default": {
                         "description": "unexpected error",
                         "schema": {
-                            "$ref": "#/models/errorModel"
+                            "$ref": "#/schemas/errorModel"
                         }
                     }
                 }
@@ -88,17 +88,17 @@
                         "in": "body",
                         "description": "Pet to add to the store",
                         "required": true,
-                        "schema": {"$ref": "#/models/petInput"}
+                        "schema": {"$ref": "#/schemas/petInput"}
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "pet response",
-                        "schema": {"$ref": "#/models/pet"}
+                        "schema": {"$ref": "#/schemas/pet"}
                     },
                     "default": {
                         "description": "unexpected error",
-                        "schema": {"$ref": "#/models/errorModel"}
+                        "schema": {"$ref": "#/schemas/errorModel"}
                     }
                 }
             }
@@ -132,7 +132,7 @@
                     },
                     "default": {
                         "description": "unexpected error",
-                        "schema": {"$ref": "ErrorModel"}
+                        "schema": {"$ref": "#/schemas/errorModel"}
                     }
                 }
             },
@@ -157,7 +157,7 @@
                     },
                     "default": {
                         "description": "unexpected error",
-                        "schema": {"$ref": "ErrorModel"}
+                        "schema": {"$ref": "#/schemas/errorModel"}
                     }
                 }
             }

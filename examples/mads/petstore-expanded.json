@@ -68,13 +68,13 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/models/pet"
-                            }                            
+                                "$ref": "#/schemas/pet"
+                            }
                         }
                     },
                     "default": {
                         "description": "unexpected error",
-                        "schema": {"$ref": "#/models/errorModel"}
+                        "schema": {"$ref": "#/schemas/errorModel"}
                     }
                 }
             },
@@ -90,17 +90,17 @@
                         "in": "body",
                         "description": "Pet to add to the store",
                         "required": true,
-                        "schema": {"$ref": "#/models/NewPet"}
+                        "schema": {"$ref": "#/schemas/newPet"}
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "pet response",
-                        "schema": {"$ref": "#/models/pet"}
+                        "schema": {"$ref": "#/schemas/pet"}
                     },
                     "default": {
                         "description": "unexpected error",
-                        "schema": {"$ref": "#/models/errorModel"}
+                        "schema": {"$ref": "#/schemas/errorModel"}
                     }
                 }
             }
@@ -159,7 +159,7 @@
                     },
                     "default": {
                         "description": "unexpected error",
-                        "schema": {"$ref": "ErrorModel"}
+                        "schema": {"$ref": "#/schemas/errorModel"}
                     }
                 }
             }
@@ -184,7 +184,7 @@
                 }
             }
         },
-        "NewPet": {
+        "newPet": {
             "allOf": [
                 {
                     "$ref": "Pet"

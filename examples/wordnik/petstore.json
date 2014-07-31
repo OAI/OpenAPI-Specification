@@ -12,7 +12,7 @@
       "url": "http://creativecommons.org/licenses/by/4.0/"
     }
   },
-  "host": "http://petstore.swagger.wordnik.com",
+  "host": "petstore.swagger.wordnik.com",
   "basePath": "/api",
   "schemes": [
     "http"

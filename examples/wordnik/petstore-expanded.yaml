@@ -9,7 +9,7 @@ info:
     email: foo@example.com
     url: http://madskristensen.net
   license:
-    type: MIT
+    name: MIT
     url: http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT
 host: http://petstore.swagger.wordnik.com
 basePath: /api

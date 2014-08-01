@@ -74,15 +74,15 @@ describe('YAML Samples', function() {
 })
 
 var validateWithTV4 = function(schema, data) {
-  var result = tv4.validateMultiple(data, schema) //, true, true);
-  assert(result.missing, [])
+  var result = tv4.validateMultiple(data, schema, true, true);
+  assert(result.missing.length == 0, "Missing schemas: " + result.missing)
   if (result.errors.length > 0) {
     for (i in result.errors) {
       // Remove stack trace so results are readable
       delete result.errors[i].stack;
     }
   }
-  assert(result.valid, true);
+  assert(result.valid == true, "Validation failed: " + JSON.stringify(result, null, "\t"));
 }
 
 var validateWithZSchema = function(schema, data) {
@@ -92,7 +92,7 @@ var validateWithZSchema = function(schema, data) {
       var error = validator.getLastError();
       throw new Error("ZSchema failed: " + JSON.stringify(error, null, "\t"));
   }
-  assert(valid, true)
+  assert(valid == true)
 
   // Async version
   // ZSchema.validate(data, schema)

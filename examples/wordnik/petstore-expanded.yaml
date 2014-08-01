@@ -33,18 +33,16 @@ paths:
           in: query
           description: tags to filter by
           required: false
-          schema:
-            type: array
-            format: csv
-            items:
-              type: string
+          type: array
+          format: csv
+          items:
+            type: string
         - name: limit
           in: query
           description: maximum number of results to return
           required: false
-          schema:
-            type: integer
-            format: int32
+          type: integer
+          format: int32
       responses:
         200:
           description: pet response

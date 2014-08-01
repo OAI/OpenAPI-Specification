@@ -25,6 +25,7 @@ paths:
           description: How many items to return at one time (max 100)
           required: false
           type: integer
+          format: int32
       responses: 
         200: 
           description: An paged array of pets

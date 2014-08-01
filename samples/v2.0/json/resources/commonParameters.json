@@ -35,13 +35,11 @@
           "in": "path",
           "description": "ID of pet to use",
           "required": true,
-          "schema": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "format": "csv"
-          }
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "collectionFormat": "csv"
         }
       ],
       "get": {

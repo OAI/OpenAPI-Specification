@@ -39,13 +39,11 @@
             "in": "query",
             "description": "tags to filter by",
             "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              },
-              "format": "csv"
-            }
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv"
           },
           {
             "name": "limit",

@@ -51,13 +51,11 @@
             "in": "path",
             "description": "ID of pet that needs to be fetched",
             "required": true,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "format": "csv"
-              }
-            }
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv"
           }
         ],
         "responses": {

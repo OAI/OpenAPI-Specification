@@ -43,13 +43,11 @@
             "in": "query",
             "description": "tags to filter by",
             "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              },
-              "format": "csv"
-            }
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv"
           },
           {
             "name": "limit",
@@ -129,10 +127,8 @@
             "in": "path",
             "description": "ID of pet to fetch",
             "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "responses": {
@@ -159,10 +155,8 @@
             "in": "path",
             "description": "ID of pet to delete",
             "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "responses": {

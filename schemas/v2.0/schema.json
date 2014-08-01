@@ -186,13 +186,13 @@
 		"parameter": {
 			"type": "object",
 			"required": [ "name", "in" ],
-			"patternProperties": {
-				"^x-": {
-					"$ref": "#/definitions/vendorExtension"
-				}
-			},
 			"oneOf": [
 				{
+					"patternProperties": {
+						"^x-": {
+							"$ref": "#/definitions/vendorExtension"
+						}
+					},
 					"properties": {
 						"name": {
 							"type": "string",
@@ -229,6 +229,11 @@
 					"additionalProperties": false
 				},
 				{
+					"patternProperties": {
+						"^x-": {
+							"$ref": "#/definitions/vendorExtension"
+						}
+					},
 					"properties": {
 						"name": {
 							"type": "string",

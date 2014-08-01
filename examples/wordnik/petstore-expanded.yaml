@@ -11,7 +11,7 @@ info:
   license:
     name: MIT
     url: http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT
-host: http://petstore.swagger.wordnik.com
+host: petstore.swagger.wordnik.com
 basePath: /api
 schemes:
   - http

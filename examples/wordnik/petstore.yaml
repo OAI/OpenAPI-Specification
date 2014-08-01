@@ -39,18 +39,18 @@ paths:
           description: unexpected error
           schema:
             $ref: Error
-      post:
-        summary: Create a pet
-        operationId: createPets
-        tags:
-          - pets
-        responses:
-          201:
-            description: Null response
-          default:
-            description: unexpected error
-            schema:
-              $ref: Error
+    post:
+      summary: Create a pet
+      operationId: createPets
+      tags:
+        - pets
+      responses:
+        201:
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: Error
   /pets/{petId}:
     get:
       summary: Info for a specific pet

@@ -35,7 +35,7 @@ class ParameterTest extends FlatSpec with ShouldMatchers with TestBase {
     report.isSuccess should be (true)
   }
 
-  ignore should "fail to validate a complex query parameter" in {
+  it should "fail to validate a complex query parameter" in {
     val json = Source.fromFile("samples/v2.0/json/resources/parameters/queryWithComplexParameter.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)

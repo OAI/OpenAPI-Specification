@@ -169,7 +169,7 @@
 				"headers": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/schema"
+						"$ref": "#/definitions/serializableType"
 					}
 				},
 				"examples": {
@@ -177,6 +177,23 @@
 				}
 			},
 			"additionalProperties": false
+		},
+		"serializableType": {
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": [ "string", "number", "boolean", "integer", "array" ]
+				},
+				"format": {
+					"type": "string"
+				},
+				"items": {
+					"type": "object"
+				},
+				"collectionFormat": {
+					"type": "string"
+				}
+			}
 		},
 		"vendorExtension": {
 			"description": "Any property starting with x- is valid.",

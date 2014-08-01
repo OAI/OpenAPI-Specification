@@ -5,3 +5,9 @@ script:
   - sbt ++$TRAVIS_SCALA_VERSION test
   - npm install
   - mocha
+env:
+  - VALIDATORS=tv4
+  - VALIDATORS=zschema
+matrix:
+  allow_failrues:
+    -env: VALIDATORS=tv4

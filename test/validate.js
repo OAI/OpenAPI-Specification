@@ -8,6 +8,7 @@ var yaml = require('js-yaml');
 var request = require("request")
 
 var schema = JSON.parse(fs.readFileSync("./schemas/v2.0/schema.json", 'utf8'));
+var validators = (process.env.VALIDATORS || "tv4,zschema").split(",")
 
 var setupTV4 = function() {
   var deferred = Q.defer();
@@ -50,12 +51,16 @@ describe('JSON Samples', function() {
   for(i in files) {
     var file = files[i];
     var data = JSON.parse(fs.readFileSync(file, 'utf8'));
-    it("should validate " + file + " with tv4", function() {
-      validateWithTV4(schema, data)
-    })
-    it("should validate " + file + " with zschema", function() {
-      validateWithZSchema(schema, data);
-    })
+    if (validators.indexOf("tv4") != -1) {
+      it("should validate " + file + " with tv4", function() {
+        validateWithTV4(schema, data)
+      })
+    }
+    if (validators.indexOf("zschema") != -1) {
+      it("should validate " + file + " with zschema", function() {
+        validateWithZSchema(schema, data);
+      })
+    }
   }
 })
 
@@ -64,12 +69,16 @@ describe('YAML Samples', function() {
   for(i in files) {
     var file = files[i];
     var data = yaml.safeLoad(fs.readFileSync(file, 'utf8'));
-    it("should validate " + file + " with tv4", function() {
-      validateWithTV4(schema, data)
-    })
-    it("should validate " + file + " with zschema", function() {
-      validateWithZSchema(schema, data);
-    })
+    if (validators.indexOf("tv4") != -1) {
+      it("should validate " + file + " with tv4", function() {
+        validateWithTV4(schema, data)
+      })
+    }
+    if (validators.indexOf("zschema") != -1) {
+      it("should validate " + file + " with zschema", function() {
+        validateWithZSchema(schema, data);
+      })
+    }
   }
 })
 

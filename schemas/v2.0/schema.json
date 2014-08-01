@@ -106,7 +106,12 @@
 				},
 				"description": {
 					"type": "string",
-					"description": "A longer description of the operation."
+					"description": "A longer description of the operation, markdown is allowed."
+				},
+				"docsUrl": {
+					"type": "string",
+					"format": "uri",
+					"description": "Location of external documentation."
 				},
 				"operationId": {
 					"type": "string",

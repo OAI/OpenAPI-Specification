@@ -3,10 +3,8 @@
   "in": "formData",
   "description": "user to add to the system",
   "required": true,
-  "schema": {
-    "type": "array",
-    "items": {
-      "type": "string"
-    }    
+  "type": "array",
+  "items": {
+    "type": "string"
   }
 }

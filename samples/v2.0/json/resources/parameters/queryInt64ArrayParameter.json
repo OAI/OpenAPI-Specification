@@ -3,12 +3,10 @@
   "in": "query",
   "description": "ID of the object to fetch",
   "required": true,
-  "schema": {
-    "type": "array",
-    "items": {
-      "type": "integer",
-      "format": "int64"
-    },
-    "format": "csv"    
-  }
+  "type": "array",
+  "items": {
+    "type": "integer",
+    "format": "int64"
+  },
+  "collectionFormat": "csv"    
 }

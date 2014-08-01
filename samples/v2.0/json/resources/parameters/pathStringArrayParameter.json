@@ -3,11 +3,9 @@
   "in": "path",
   "description": "usernames to pass",
   "required": true,
-  "schema": {
-    "type": "array",
-    "items": {
-      "type": "string"
-    },
-    "format": "csv"    
-  }
+  "type": "array",
+  "items": {
+    "type": "string"
+  },
+  "collectionFormat": "csv"    
 }

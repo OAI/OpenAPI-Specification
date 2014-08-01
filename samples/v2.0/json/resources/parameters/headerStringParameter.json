@@ -3,7 +3,5 @@
   "in": "header",
   "description": "token to be passed as a header",
   "required": true,
-  "schema": {
-    "type": "string"
-  }
+  "type": "string"
 }

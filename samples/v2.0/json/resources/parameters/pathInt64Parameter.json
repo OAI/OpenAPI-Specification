@@ -3,8 +3,6 @@
   "in": "path",
   "description": "username to fetch",
   "required": true,
-  "schema": {
-    "type": "integer",
-    "format": "int64"    
-  }
+  "type": "integer",
+  "format": "int64"    
 }

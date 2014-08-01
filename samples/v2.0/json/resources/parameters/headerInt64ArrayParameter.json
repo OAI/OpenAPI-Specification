@@ -3,12 +3,10 @@
   "in": "header",
   "description": "token to be passed as a header",
   "required": true,
-  "schema": {
-    "type": "array",
-    "items": {
-      "type": "integer",
-      "format": "int64"
-    },
-    "format": "csv"    
-  }
+  "type": "array",
+  "items": {
+    "type": "integer",
+    "format": "int64"
+  },
+  "collectionFormat": "csv"    
 }

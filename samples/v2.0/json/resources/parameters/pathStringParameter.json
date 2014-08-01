@@ -3,7 +3,5 @@
   "in": "path",
   "description": "username to fetch",
   "required": true,
-  "schema": {
-    "type": "string"
-  }
+  "type": "string"
 }

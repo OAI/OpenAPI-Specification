@@ -185,35 +185,76 @@
 		},
 		"parameter": {
 			"type": "object",
-			"required": [ "name", "in", "schema" ],
+			"required": [ "name", "in" ],
 			"patternProperties": {
 				"^x-": {
 					"$ref": "#/definitions/vendorExtension"
 				}
 			},
-			"properties": {
-				"name": {
-					"type": "string",
-					"description": "The name of the parameter."
+			"oneOf": [
+				{
+					"properties": {
+						"name": {
+							"type": "string",
+							"description": "The name of the parameter."
+						},
+						"in": {
+							"type": "string",
+							"description": "Determines the location of the parameter.",
+							"enum": [ "query", "header", "path", "formData" ],
+							"default": "query"
+						},
+						"description": {
+							"type": "string",
+							"description": "A brief description of the parameter. This could contain examples of use."
+						},
+						"required": {
+							"type": "boolean",
+							"description": "Determines whether or not this parameter is required or optional."
+						},
+						"type": {
+							"type": "string",
+							"enum": [ "string", "number", "boolean", "integer", "array" ]
+						},
+						"format": {
+							"type": "string"
+						},
+						"items": {
+							"type": "object"
+						},
+						"collectionFormat": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
 				},
-				"in": {
-					"type": "string",
-					"description": "Determines the location of the parameter.",
-					"enum": [ "query", "header", "path", "formData", "body" ],
-					"default": "query"
-				},
-				"description": {
-					"type": "string",
-					"description": "A brief description of the parameter. This could contain examples of use."
-				},
-				"required": {
-					"type": "boolean",
-					"description": "Determines whether or not this parameter is required or optional."
-				},
-				"schema": {
-					"$ref": "#/definitions/schema"
+				{
+					"properties": {
+						"name": {
+							"type": "string",
+							"description": "The name of the parameter."
+						},
+						"in": {
+							"type": "string",
+							"description": "Determines the location of the parameter.",
+							"enum": [ "body" ],
+							"default": "body"
+						},
+						"description": {
+							"type": "string",
+							"description": "A brief description of the parameter. This could contain examples of use."
+						},
+						"required": {
+							"type": "boolean",
+							"description": "Determines whether or not this parameter is required or optional."
+						},
+						"schema": {
+							"$ref": "#/definitions/schema"
+						}
+					},
+					"additionalProperties": false
 				}
-			}
+			]
 		},
 		"schema": {
 			"type": "object",

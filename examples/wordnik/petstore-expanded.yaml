@@ -87,9 +87,8 @@ paths:
           in: path
           description: ID of pet to fetch
           required: true
-          schema:
-            type: integer
-            format: int64
+          type: integer
+          format: int64
       responses:
         200:
           description: pet response
@@ -109,9 +108,8 @@ paths:
           in: path
           description: ID of pet to delete
           required: true
-          schema:
-            type: integer
-            format: int64
+          type: integer
+          format: int64
       responses:
         204:
           description: pet deleted

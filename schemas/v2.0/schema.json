@@ -303,7 +303,7 @@
 		"host": {
 			"type": "string",
 			"format": "uri",
-			"pattern": "^((?!\:\/\/).)*$/",
+			"pattern": "^((?!\\:\/\/).)*$/",
 			"description": "The fully qualified URI to the host of the API."
 		},
 		"basePath": {

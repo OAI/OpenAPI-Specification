@@ -70,7 +70,7 @@
       }
     }
   },
-  "schemas": {
+  "definitions": {
     "Pet": {
       "required": [
         "name"

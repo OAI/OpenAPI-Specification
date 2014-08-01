@@ -78,7 +78,7 @@
       }
     }
   },
-  "schemas": {
+  "definitions": {
     "Pet": {
       "x-vendor-model-property": {},
       "required": [

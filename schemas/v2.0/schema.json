@@ -94,9 +94,6 @@
 				}
 			},
 			"properties": {
-				"$ref": {
-					"type": "string"
-				},
 				"tags": {
 					"type": "array",
 					"items": {
@@ -419,6 +416,9 @@
 					}
 				},
 				"properties": {
+					"$ref": {
+						"type": "string"
+					},
 					"get": {
 						"$ref": "#/definitions/operation"
 					},

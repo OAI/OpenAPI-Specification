@@ -70,7 +70,7 @@ paths:
           description: unexpected error
           schema: 
             $ref: Error
-schemas: 
+definitions: 
   Pet: 
     required: 
       - id

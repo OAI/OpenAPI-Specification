@@ -47,7 +47,7 @@
       }
     }
   },
-  "schemas": {
+  "definitions": {
     "Pet": {
       "required": [
         "id",

@@ -54,10 +54,8 @@
             "in": "query",
             "description": "maximum number of results to return",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
+            "type": "integer",
+            "format": "int32"
           }
         ],
         "responses": {

@@ -13,10 +13,8 @@
       "in": "path",
       "description": "ID of pet that needs to be fetched",
       "required": true,
-      "schema": {
-        "type": "integer",
-        "format": "int64"        
-      }
+      "type": "integer",
+      "format": "int64"        
     }
   ],
   "responses": {

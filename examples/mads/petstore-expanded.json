@@ -7,7 +7,7 @@
     "termsOfService": "http://helloreverb.com/terms/",
     "contact": {
       "name": "Wordnik API Team",
-      "email": "foo@bar.baz",
+      "email": "foo@example.com",
       "url": "http://madskristensen.net"
     },
     "license": {

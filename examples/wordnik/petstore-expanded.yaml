@@ -6,12 +6,12 @@ info:
   termsOfService: http://helloreverb.com/terms/
   contact:
     name: Wordnik API Team
-    email: foo@bar.baz
+    email: foo@example.com
     url: http://madskristensen.net
   license:
-    type: MIT
+    name: MIT
     url: http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT
-host: http://petstore.swagger.wordnik.com
+host: petstore.swagger.wordnik.com
 basePath: /api
 schemes:
   - http
@@ -87,9 +87,8 @@ paths:
           in: path
           description: ID of pet to fetch
           required: true
-          schema:
-            type: integer
-            format: int64
+          type: integer
+          format: int64
       responses:
         200:
           description: pet response
@@ -109,9 +108,8 @@ paths:
           in: path
           description: ID of pet to delete
           required: true
-          schema:
-            type: integer
-            format: int64
+          type: integer
+          format: int64
       responses:
         204:
           description: pet deleted

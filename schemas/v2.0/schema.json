@@ -301,7 +301,7 @@
 				"maximum": { "$ref": "http://json-schema.org/draft-04/schema#/properties/maximum" },
 				"exclusiveMaximum": { "$ref": "http://json-schema.org/draft-04/schema#/properties/exclusiveMaximum" },
 				"minimum": { "$ref": "http://json-schema.org/draft-04/schema#/properties/minimum" },
-				"exclusiveMinimum": { "$ref": "http://json-schema.org/draft-04/schema#/properties/exclusiveMininum" },
+				"exclusiveMinimum": { "$ref": "http://json-schema.org/draft-04/schema#/properties/exclusiveMinimum" },
 				"maxLength": { "$ref": "http://json-schema.org/draft-04/schema#/definitions/positiveInteger" },
 				"minLength": { "$ref": "http://json-schema.org/draft-04/schema#/definitions/positiveIntegerDefault0" },
 				"pattern": { "$ref": "http://json-schema.org/draft-04/schema#/properties/pattern" },

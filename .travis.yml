@@ -10,5 +10,5 @@ env:
   - VALIDATORS=tv4
   - VALIDATORS=zschema
 matrix:
-  allow_failrues:
-    -env: VALIDATORS=tv4
+  allow_failures:
+    - env: VALIDATORS=tv4

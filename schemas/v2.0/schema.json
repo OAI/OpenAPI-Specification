@@ -27,7 +27,7 @@
 				},
 				"description": {
 					"type": "string",
-					"description": "A longer description of the API. Should be different from the title."
+					"description": "A longer description of the API. Should be different from the title.  Github-flavored markdown is allowed."
 				},
 				"termsOfService": {
 					"type": "string",
@@ -106,7 +106,7 @@
 				},
 				"description": {
 					"type": "string",
-					"description": "A longer description of the operation, markdown is allowed."
+					"description": "A longer description of the operation, github-flavored markdown is allowed."
 				},
 				"docsUrl": {
 					"type": "string",
@@ -228,7 +228,7 @@
 						},
 						"description": {
 							"type": "string",
-							"description": "A brief description of the parameter. This could contain examples of use."
+							"description": "A brief description of the parameter. This could contain examples of use.  Github-flavored markdown is allowed."
 						},
 						"required": {
 							"type": "boolean",

@@ -345,6 +345,7 @@
 		},
 		"xml": {
 			"properties": {
+				"name": { "type": "string"},
 				"namespace": { "type": "string" },
 				"prefix": { "type": "string" },
 				"attribute": { "type": "boolean" },

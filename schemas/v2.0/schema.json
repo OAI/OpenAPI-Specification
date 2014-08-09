@@ -125,6 +125,14 @@
 						"$ref": "#/definitions/mimeType"
 					}
 				},
+				"consumes": {
+					"type": "array",
+					"description": "A list of MIME types the API can consume.",
+					"additionalItems": false,
+					"items": {
+						"$ref": "#/definitions/mimeType"
+					}
+				},
 				"parameters": {
 					"type": "array",
 					"description": "The parameters needed to send a valid API call.",

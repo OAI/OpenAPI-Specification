@@ -9,7 +9,6 @@ Field Name | Type | Description
 <a name="infoTermsOfService"/>termsOfService | `string` | The Terms of Service for the API.
 <a name="infoContact"/>contact | [Contact Object](#contactObject) | The contact information for the exposed API.
 <a name="infoLicense"/>license | [License Object](#licenseObject) | The license information for the exposed API.
-<a name="infoLicenseUrl"/>licenseUrl | `string` | A URL to the license used for the API.
 <a name="infoVersion"/>version | `string` | **Required** Provides the version of the application API (not to be confused by the specification version).
 
 ##### Object Example:
@@ -27,7 +26,8 @@ Field Name | Type | Description
   "license": {
     "name": "Apache 2.0",
     "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-  }
+  },
+  "version": "1.0.1"
  }
 ```
 

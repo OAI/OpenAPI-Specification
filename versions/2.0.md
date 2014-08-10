@@ -5,7 +5,7 @@ The object provides metadata about the API. The metadata can be used by the clie
 Field Name | Type | Description
 ---|:---:|---
 <a name="infoTitle"/>title | `string` | **Required.** The title of the application.
-<a name="infoDescription"/>description | `string` | **Required.** A short description of the application.
+<a name="infoDescription"/>description | `string` | A short description of the application.
 <a name="infoTermsOfService"/>termsOfService | `string` | The Terms of Service for the API.
 <a name="infoContact"/>contact | [Contact Object](#contactObject) | The contact information for the exposed API.
 <a name="infoLicense"/>license | [License Object](#licenseObject) | The license information for the exposed API.

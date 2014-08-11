@@ -18,7 +18,7 @@ class PropertyTest extends FlatSpec with ShouldMatchers with TestBase {
   val jsonSchema = factory.getJsonSchema(schema.get("definitions").get("schema"))
 
   it should "validate a simple string property" in {
-    val json = Source.fromFile("samples/v2.0/json/models/properties/simpleStringProperty.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/properties/simpleStringProperty.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -27,7 +27,7 @@ class PropertyTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate a simple int32 property" in {
-    val json = Source.fromFile("samples/v2.0/json/models/properties/simpleInt32Property.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/properties/simpleInt32Property.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -36,7 +36,7 @@ class PropertyTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate a simple int64 property" in {
-    val json = Source.fromFile("samples/v2.0/json/models/properties/simpleInt64Property.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/properties/simpleInt64Property.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -45,7 +45,7 @@ class PropertyTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate a simple date-time property" in {
-    val json = Source.fromFile("samples/v2.0/json/models/properties/simpleDateTimeProperty.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/properties/simpleDateTimeProperty.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -54,7 +54,7 @@ class PropertyTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate a simple boolean property" in {
-    val json = Source.fromFile("samples/v2.0/json/models/properties/simpleBooleanProperty.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/properties/simpleBooleanProperty.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -63,7 +63,7 @@ class PropertyTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate a simple byte property" in {
-    val json = Source.fromFile("samples/v2.0/json/models/properties/simpleByteProperty.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/properties/simpleByteProperty.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -72,7 +72,7 @@ class PropertyTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate a property with $ref" in {
-    val json = Source.fromFile("samples/v2.0/json/models/properties/propertyWithRef.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/properties/propertyWithRef.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -81,7 +81,7 @@ class PropertyTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate an array property with string" in {
-    val json = Source.fromFile("samples/v2.0/json/models/properties/propertyWithStringArray.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/properties/propertyWithStringArray.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -90,7 +90,7 @@ class PropertyTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate an array property with int32" in {
-    val json = Source.fromFile("samples/v2.0/json/models/properties/propertyWithInt32Array.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/properties/propertyWithInt32Array.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -99,7 +99,7 @@ class PropertyTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate an array property with int64" in {
-    val json = Source.fromFile("samples/v2.0/json/models/properties/propertyWithInt64Array.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/properties/propertyWithInt64Array.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -108,7 +108,7 @@ class PropertyTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate an array property with boolean" in {
-    val json = Source.fromFile("samples/v2.0/json/models/properties/propertyWithBooleanArray.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/properties/propertyWithBooleanArray.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -117,7 +117,7 @@ class PropertyTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate an array property with byte" in {
-    val json = Source.fromFile("samples/v2.0/json/models/properties/propertyWithByteArray.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/properties/propertyWithByteArray.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -126,7 +126,7 @@ class PropertyTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate an array property with date-time" in {
-    val json = Source.fromFile("samples/v2.0/json/models/properties/propertyWithDateTimeArray.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/properties/propertyWithDateTimeArray.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -135,7 +135,7 @@ class PropertyTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate an array property with complex type" in {
-    val json = Source.fromFile("samples/v2.0/json/models/properties/propertyWithComplexArray.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/properties/propertyWithComplexArray.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)

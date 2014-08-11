@@ -11,10 +11,10 @@ var exitCode = 0;
 
 var json_paths = {
   examples: 'examples/**/*.json',
-  models: 'samples/v2.0/json/models/**/*.json',
-  resources: 'samples/v2.0/json/resources/**/*.json',
-  responses: 'samples/v2.0/json/responses/**/*.json'
-  // What are the other files in samples/v2.0/json/*.json
+  models: 'fixtures/v2.0/json/models/**/*.json',
+  resources: 'fixtures/v2.0/json/resources/**/*.json',
+  responses: 'fixtures/v2.0/json/responses/**/*.json'
+  // What are the other files in fixtures/v2.0/json/*.json
 };
 
 gulp.task('lint', function() {
@@ -26,9 +26,9 @@ gulp.task('lint', function() {
 });
 
 gulp.task('yaml2json', function(){
-  gulp.src('./samples/v2.0/yaml/**.yaml')
+  gulp.src('./fixtures/v2.0/yaml/**.yaml')
     .pipe(gulpyaml({ pretty: true }))
-      .pipe(gulp.dest('./samples/v2.0/json'));
+      .pipe(gulp.dest('./fixtures/v2.0/json'));
 
   gulp.src(json_paths.examples)
     .pipe(gulpyaml({ pretty: true }))
@@ -36,13 +36,13 @@ gulp.task('yaml2json', function(){
 });
 
 gulp.task('json2yaml', function(){
-  return gulp.src('./samples/v2.0/json/**/*.json')
+  return gulp.src('./fixtures/v2.0/json/**/*.json')
     .pipe(map(function(file, cb) {
         data = JSON.parse(file.contents);
         file.contents = new Buffer(String(YAML.stringify(data)));
         cb(null, file);
       }))
       .pipe(ext_replace('.yaml'))
-      .pipe(gulp.dest('samples/v2.0/yaml'));
+      .pipe(gulp.dest('fixtures/v2.0/yaml'));
 });
 

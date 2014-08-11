@@ -18,7 +18,7 @@ class ModelsTest extends FlatSpec with ShouldMatchers with TestBase {
   val jsonSchema = factory.getJsonSchema(schema.get("definitions").get("schema"))
 
   it should "validate a models hash" in {
-    val json = Source.fromFile("samples/v2.0/json/models/models.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/models.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -27,7 +27,7 @@ class ModelsTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate multiple models" in {
-    val json = Source.fromFile("samples/v2.0/json/models/multipleModels.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/multipleModels.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -36,7 +36,7 @@ class ModelsTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate models with examples" in {
-    val json = Source.fromFile("samples/v2.0/json/models/modelWithExamples.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/modelWithExamples.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -45,7 +45,7 @@ class ModelsTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate models with composition" in {
-    val json = Source.fromFile("samples/v2.0/json/models/modelWithComposition.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/modelWithComposition.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)

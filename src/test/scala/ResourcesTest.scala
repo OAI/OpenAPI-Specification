@@ -89,8 +89,8 @@ class ResourcesTest extends FlatSpec with ShouldMatchers with TestBase {
     report.isSuccess should be (true)
   }
 
-  it should "validate the wordnik petstore" in {
-    val json = Source.fromFile("examples/wordnik/petstore.json").mkString
+  it should "validate the petstore sample" in {
+    val json = Source.fromFile("examples/v2.0/json/petstore.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -98,8 +98,8 @@ class ResourcesTest extends FlatSpec with ShouldMatchers with TestBase {
     report.isSuccess should be (true)
   }
 
-  it should "validate mads sample 1" in {
-    val json = Source.fromFile("examples/mads/petstore-simple.json").getLines.filter(!_.startsWith("//")).mkString
+  it should "validate the petstore-simple sample" in {
+    val json = Source.fromFile("examples/v2.0/json/petstore-simple.json").getLines.filter(!_.startsWith("//")).mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -107,8 +107,8 @@ class ResourcesTest extends FlatSpec with ShouldMatchers with TestBase {
     report.isSuccess should be (true)
   }
 
-  it should "validate mads sample 2" in {
-    val json = Source.fromFile("examples/mads/petstore-expanded.json").getLines.filter(!_.startsWith("//")).mkString
+  it should "validate the petstore-expanded sample" in {
+    val json = Source.fromFile("examples/v2.0/json/petstore-expanded.json").getLines.filter(!_.startsWith("//")).mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)

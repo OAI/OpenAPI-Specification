@@ -18,7 +18,7 @@ class ModelTest extends FlatSpec with ShouldMatchers with TestBase {
   val jsonSchema = factory.getJsonSchema(schema.get("definitions").get("schema"))
 
   it should "validate a model with string property" in {
-    val json = Source.fromFile("samples/v2.0/json/models/modelWithStringProperty.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/modelWithStringProperty.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -27,7 +27,7 @@ class ModelTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate a model with multiple properties" in {
-    val json = Source.fromFile("samples/v2.0/json/models/modelWithMultipleProperties.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/modelWithMultipleProperties.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -36,7 +36,7 @@ class ModelTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate a model with an int32 map" in {
-    val json = Source.fromFile("samples/v2.0/json/models/modelWithInt32Map.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/modelWithInt32Map.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -45,7 +45,7 @@ class ModelTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate a model with an int64 map" in {
-    val json = Source.fromFile("samples/v2.0/json/models/modelWithInt64Map.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/modelWithInt64Map.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -54,7 +54,7 @@ class ModelTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate a model with an date-time map" in {
-    val json = Source.fromFile("samples/v2.0/json/models/modelWithDateTimeMap.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/modelWithDateTimeMap.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -63,7 +63,7 @@ class ModelTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate a model with xml properties" in {
-    val json = Source.fromFile("samples/v2.0/json/models/modelWithXmlAttributes.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/models/modelWithXmlAttributes.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)

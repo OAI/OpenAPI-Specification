@@ -18,7 +18,7 @@ class OperationsTest extends FlatSpec with ShouldMatchers with TestBase {
   val jsonSchema = factory.getJsonSchema(schema.get("definitions").get("operation"))
 
   it should "validate a resource with string path param" in {
-    val json = Source.fromFile("samples/v2.0/json/resources/operations/stringPathParamResource.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/resources/operations/stringPathParamResource.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -27,7 +27,7 @@ class OperationsTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate a resource with string path param and boolean query param" in {
-    val json = Source.fromFile("samples/v2.0/json/resources/operations/stringPathAndBoolQueryParamResource.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/resources/operations/stringPathAndBoolQueryParamResource.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -36,7 +36,7 @@ class OperationsTest extends FlatSpec with ShouldMatchers with TestBase {
   }
 
   it should "validate a resource with tags in the operation" in {
-    val json = Source.fromFile("samples/v2.0/json/resources/operations/operationWithTags.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/resources/operations/operationWithTags.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)

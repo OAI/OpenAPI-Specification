@@ -18,7 +18,7 @@ class ResponsesTest extends FlatSpec with ShouldMatchers with TestBase {
   val jsonSchema = factory.getJsonSchema(schema.get("definitions").get("responses"))
 
   it should "validate multiple responses" in {
-    val json = Source.fromFile("samples/v2.0/json/responses/multipleResponses.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/responses/multipleResponses.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)

@@ -109,9 +109,7 @@
           "description": "A longer description of the operation, github-flavored markdown is allowed."
         },
         "docsUrl": {
-          "type": "string",
-          "format": "uri",
-          "description": "Location of external documentation."
+          "$ref": "#/definitions/docsUrl"
         },
         "operationId": {
           "type": "string",
@@ -332,6 +330,7 @@
         "maxProperties": { "$ref": "http://json-schema.org/draft-04/schema#/definitions/positiveInteger" },
         "minProperties": { "$ref": "http://json-schema.org/draft-04/schema#/definitions/positiveIntegerDefault0" },
         "required": { "$ref": "http://json-schema.org/draft-04/schema#/definitions/stringArray" },
+        "docsUrl": { "$ref": "#/definitions/docsUrl" },
         "definitions": {
           "type": "object",
           "additionalProperties": { "$ref": "#/definitions/schema" },
@@ -376,6 +375,9 @@
     },
     "info": {
       "$ref": "#/definitions/info"
+    },
+    "docsUrl": {
+      "$ref": "#/definitions/docsUrl"
     },
     "host": {
       "type": "string",

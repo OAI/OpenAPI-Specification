@@ -6,6 +6,20 @@
   "required": [ "swagger", "info", "paths" ],
 
   "definitions": {
+    "externalDocs": {
+      "type": "object",
+      "description": "information about external documentation",
+      "required": [ "description", "url" ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "url"
+        }
+      }
+    },
     "info": {
       "type": "object",
       "description": "General information about the API.",
@@ -108,10 +122,8 @@
           "type": "string",
           "description": "A longer description of the operation, github-flavored markdown is allowed."
         },
-        "docsUrl": {
-          "type": "string",
-          "format": "uri",
-          "description": "Location of external documentation."
+        "externalDocs": {
+          "$ref": "#/definitions/externalDocs"
         },
         "operationId": {
           "type": "string",
@@ -332,6 +344,7 @@
         "maxProperties": { "$ref": "http://json-schema.org/draft-04/schema#/definitions/positiveInteger" },
         "minProperties": { "$ref": "http://json-schema.org/draft-04/schema#/definitions/positiveIntegerDefault0" },
         "required": { "$ref": "http://json-schema.org/draft-04/schema#/definitions/stringArray" },
+        "externalDocs": { "$ref": "#/definitions/externalDocs" },
         "definitions": {
           "type": "object",
           "additionalProperties": { "$ref": "#/definitions/schema" },
@@ -376,6 +389,9 @@
     },
     "info": {
       "$ref": "#/definitions/info"
+    },
+    "externalDocs": {
+      "$ref": "#/definitions/externalDocs"
     },
     "host": {
       "type": "string",
@@ -475,3 +491,4 @@
     }
   }
 }
+

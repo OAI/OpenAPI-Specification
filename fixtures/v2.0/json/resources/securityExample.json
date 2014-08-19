@@ -45,13 +45,11 @@
           "in": "path",
           "description": "ID of pet to use",
           "required": true,
-          "schema": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "format": "csv"
-          }
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "collectionFormat": "csv"
         }
       ],
       "get": {
@@ -92,7 +90,7 @@
       }
     }
   },
-  "schemas": {
+  "definitions": {
     "Pet": {
       "required": [
         "name"
@@ -117,9 +115,7 @@
           "type": "string"
         }
       }
-    }
-  },
-  "definitions": {
+    },
     "security": {
       "github": {
         "type": "oauth2",

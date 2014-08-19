@@ -164,6 +164,9 @@
             "type": "string",
             "enum": [ "http", "https", "ws", "wss" ]
           }
+        },
+        "security": {
+          "$ref": "#/definitions/security"
         }
       }
     },
@@ -406,6 +409,10 @@
         }
       }
     },
+    "security": {
+      "type": "array",
+      "description": "defines security requirements"
+    },
     "xml": {
       "properties": {
         "name": { "type": "string"},
@@ -490,8 +497,7 @@
       }
     },
     "security": {
-      "type": "array"
+      "$ref": "#/definitions/security"
     }
   }
 }
-

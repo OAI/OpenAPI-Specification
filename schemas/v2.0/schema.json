@@ -402,7 +402,9 @@
         },
         "enum": { "$ref": "http://json-schema.org/draft-04/schema#/properties/enum" },
         "type": { "$ref": "http://json-schema.org/draft-04/schema#/properties/type" },
-        "example": { "$ref": "#/definitions/example" },
+        "example": {
+          
+        },
         "allOf": {
           "type": "array",
           "minItems": 1,

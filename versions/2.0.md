@@ -5,20 +5,18 @@ This is the root document for the API specification. It combines what previously
 Field Name | Type | Description
 ---|:---:|---
 <a name="swaggerSwagger"/>swagger | `string` | **Required.** Specifies the Swagger Specification version being used. It can be used by the Swagger UI and other clients to interpret the API listing. The value MUST be `"2.0"`.
-<a name="swaggerInfo"/>info | [Info Object](#infoObject) | Provides metadata about the API. The metadata can be used by the clients if needed, and can be presented in the Swagger-UI for convenience.
+<a name="swaggerInfo"/>info | [Info Object](#infoObject) | **Required.** Provides metadata about the API. The metadata can be used by the clients if needed, and can be presented in the Swagger-UI for convenience.
 <a name="swaggerHost"/>host | `string` | The host serving the API. This MUST be the host only and does not include the scheme nor sub-paths. It MAY include a port. If the `host` is not included, the host serving the documentation is to be used. The `host` does not support [path templating](#pathTemplating).
-<a name="swaggerBasePath"/>basePath | `string` | The base path on which the API is served, which is relative to the [`host`](#swaggerHost). If it is not included, the API is served directly under the `host`. The value MUST start with a `/`. The `basePath` does not support [path templating](#pathTemplating). 
-<a name="swaggerSchemes"/>schemes | [`string`] | The transfer protocol of the API. Values MUST be from the list: `"http"`, `"https"`, `"ws"`, `"wss"`.
+<a name="swaggerBasePath"/>basePath | `string` | The base path on which the API is served, which is relative to the [`host`](#swaggerHost). If it is not included, the API is served directly under the `host`. The value MUST start with a leading slash (`/`). The `basePath` does not support [path templating](#pathTemplating). 
+<a name="swaggerSchemes"/>schemes | [`string`] | The transfer protocol of the API. Values MUST be from the list: `"http"`, `"https"`, `"ws"`, `"wss"`. If the `schemes` is not included, the default scheme to be used is the one used to access the specification.
 <a name="swaggerConsumes"/>consumes | [`string`] | A list of MIME types the APIs can consume. This is global to all APIs but can be overridden on specific API calls. Value MUST be as described under [Mime Types](#mimeTypes).
 <a name="swaggerProduces"/>produces | [`string`] | A list of MIME types the APIs can produce. This is global to all APIs but can be overridden on specific API calls. Value MUST be as described under [Mime Types](#mimeTypes).
-<a name="swaggerPaths"/>paths | [Paths Object](#pathsObject) | The available opereations for the API. **NB: the description will be expanded once the Paths Object is described.**
+<a name="swaggerPaths"/>paths | [Paths Object](#pathsObject) | **Required.** The available opereations for the API. **NB: the description will be expanded once the Paths Object is described.**
 <a name="swaggerDefinitions"/>definitions | [Definitions Object](#definitionsObject) | The schema definitions of the models as used throughout the specification.
 <a name="swaggerSecurity"/>security | ??? | **NB: To be completed once the schema is available**
 
-<a name="rlApis"/>apis | [ [Resource Object](#512-resource-object) ] | **Required.** Lists the resources to be described by this specification implementation. The array can have 0 or more elements.
-<a name="rlApiVersion"/>apiVersion| `string` | Provides the version of the application API (not to be confused by the [specification version](#rlSwaggerVersion)).
-
-<a name="rlAuthorizations"/>authorizations | [Authorizations Object](#514-authorizations-object) | Provides information about the authorization schemes allowed on this API.
+##### Object Example:
+**TODO: add sample** **
 
 
 #### Info Object <a name="infoObject"/>
@@ -92,10 +90,12 @@ Field Name | Type | Description
 }
 ```
 
-### Glossary
+### Format definitions and extensions
 
 #### Path Templating <a name="pathTemplating"/>
 Path templating refers to the usage of curly braces to mark a section of a URL path as replacable using path parameters. **NB: Need to add a more elaborate explanation (limitations, rules and so on)**.
 
 #### Mime Types <a name="mimeTypes"/>
 **NB: Need to add information about valid mime type structures.** **
+
+#### Path

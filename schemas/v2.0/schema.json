@@ -480,7 +480,7 @@
     },
     "paths": {
       "type": "object",
-      "description": "Relative paths to the individual endpoints. They should be relative to the 'basePath'.",
+      "description": "Relative paths to the individual endpoints. They must be relative to the 'basePath'.",
 
       "patternProperties": {
         "^x-": {

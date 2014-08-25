@@ -29,7 +29,7 @@
   ],
   "paths": {
     "/pets/{petId}": {
-      "$ref": "https://raw.githubusercontent.com/reverb/swagger-spec/master/samples/2.0/json/resources/resourceWithLinkedDefinitions_part1.json"
+      "$ref": "https://raw.githubusercontent.com/reverb/swagger-spec/master/fixtures/v2.0/json/resources/resourceWithLinkedDefinitions_part1.json"
     }
   },
   "definitions": {

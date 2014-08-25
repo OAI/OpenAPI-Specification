@@ -288,8 +288,7 @@
             "in": {
               "type": "string",
               "description": "Determines the location of the parameter.",
-              "enum": [ "query", "header", "path", "formData" ],
-              "default": "query"
+              "enum": [ "query", "header", "path", "formData" ]
             },
             "description": {
               "type": "string",
@@ -329,8 +328,7 @@
             "in": {
               "type": "string",
               "description": "Determines the location of the parameter.",
-              "enum": [ "body" ],
-              "default": "body"
+              "enum": [ "body" ]
             },
             "description": {
               "type": "string",

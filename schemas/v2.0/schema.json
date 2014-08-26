@@ -422,6 +422,20 @@
         "wrapped": { "type": "boolean" }
       },
       "additionalProperties": false
+    },
+    "tag": {
+      "type": "object",
+      "properties": {
+        "externalDocs": { "$ref": "#/definitions/externalDocs" }
+      },
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
+        },
+        "^/.*[^\/]$": {
+          "type": "string"
+        }
+      }
     }
   },
   "additionalProperties": false,
@@ -478,7 +492,6 @@
     "paths": {
       "type": "object",
       "description": "Relative paths to the individual endpoints. They must be relative to the 'basePath'.",
-
       "patternProperties": {
         "^x-": {
           "$ref": "#/definitions/vendorExtension"
@@ -498,6 +511,12 @@
     },
     "security": {
       "$ref": "#/definitions/security"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/tag"
+      }
     }
   }
 }

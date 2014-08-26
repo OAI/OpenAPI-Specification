@@ -993,7 +993,6 @@ Say we have a general Animal model, and a sub-model for Cat.
 ```js
 "Animal": {
   "id": "Animal",
-  "name": "Animal",
   "required": [
     "id",
     "type"
@@ -1011,7 +1010,6 @@ Say we have a general Animal model, and a sub-model for Cat.
 },
 "Cat": {
   "id": "Cat",
-  "name": "Cat",
   "required": [
     "likesMilk"
   ],

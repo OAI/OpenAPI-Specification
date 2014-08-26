@@ -172,7 +172,6 @@
     },
     "pathItem": {
       "type": "object",
-      "minProperties": 1,
       "additionalProperties": false,
       "patternProperties": {
         "^x-": {

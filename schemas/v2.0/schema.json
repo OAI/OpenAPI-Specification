@@ -9,7 +9,7 @@
     "externalDocs": {
       "type": "object",
       "description": "information about external documentation",
-      "required": [ "description", "url" ],
+      "required": [ "url" ],
       "properties": {
         "description": {
           "type": "string"

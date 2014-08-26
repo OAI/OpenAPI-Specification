@@ -151,7 +151,18 @@
           "minItems": 1,
           "additionalItems": false,
           "items": {
-            "$ref": "#/definitions/parameter"
+            "oneOf": [
+              { "$ref": "#/definitions/parameter" },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "$ref": {
+                    "type": "string"
+                  }
+                }
+              }
+            ]
           }
         },
         "responses": {
@@ -506,7 +517,10 @@
       "type": "object",
       "description": "One or more JSON objects describing the schemas being consumed and produced by the API.",
       "additionalProperties": {
-        "$ref": "#/definitions/schema"
+        "oneOf": [
+          { "$ref": "#/definitions/schema" },
+          { "$ref": "#/definitions/parameter" }
+        ]
       }
     },
     "security": {

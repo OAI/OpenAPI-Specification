@@ -14,6 +14,7 @@ Field Name | Type | Description
 <a name="swaggerPaths"/>paths | [Paths Object](#pathsObject) | **Required.** The available opereations for the API. **NB: the description will be expanded once the Paths Object is described.** It is valid to have an empty Paths Object if no APIs are exposed (for security reasons).
 <a name="swaggerDefinitions"/>definitions | [Definitions Object](#definitionsObject) | The schema definitions of the models as used throughout the specification.
 <a name="swaggerSecurity"/>security | ??? | **NB: To be completed once the schema is available**
+<a name="swaggerTags"/>tags | [[Tag Object](#tagObject)] | A list of tags used by the specification with additional metadata. The order of the tags can be used to reflect on their order by the parsing tools. Not all tags that are used by the [Operation Object](#operationObject) must be declared. The tags that are not declared may be organized randomly or based on the tools' logic.
 
 ##### Object Example:
 **TODO: add sample** **
@@ -175,8 +176,8 @@ If `[in](#parameterIn)` is any value other than `"body"`:
 
 Field Name | Type | Description
 ---|:---:|---
-<a name="parameterType"/>type | `string` | **Required.** The type of the parameter. Since the parameter is not located at the body, it is limited to simple types (that is, not an object). The value MUST be one of `"string"`, `"number"`, `"integer"`, `"boolean"`, `"array"` or `"file"`. **TODO: add restrictions to the file type, arrays.** **
-<a name="parameterFormat"/>format | `string` | The extending format for the previously mentioned `[type](#parameterType)`. **TODO: list legal values**
+<a name="parameterType"/>type | `string` | **Required.** The type of the parameter. Since the parameter is not located at the body, it is limited to simple types (that is, not an object). The value MUST be one of `"string"`, `"number"`, `"integer"`, `"boolean"`, `"array"` or `"file"`. **TODO: add restrictions to the file type, arrays.** 
+<a name="parameterFormat"/>format | `string` | The extending format for the previously mentioned `[type](#ptType)`. **TODO: list legal values**
 <a name="parameterItems"/>items | ??? | **TODO: Complete the description for this.**
 <a neme="parameterCollectionFormat"/>collectionFormat | `string` | Determines the format of the array if type array is used. **TODO: complete the list of possible values.**
 
@@ -184,8 +185,74 @@ Field Name | Type | Description
 ##### Patterned Fields
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="parameterExtensions"/>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details. 
+<a name="parameterExtensions"/>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
+
+#### Responses Object <a name="responsesObject"/>
+
+A container for the expected responses of an operation. The container maps a HTTP response code to the expected response. It is not expected from the documentation to necessarily cover all possible HTTP response codes, since they may not be known in advance. However, it is expected from the documenation to cover a successful operation response and any known errors.
+
+The `default` can be used a default response object for all HTTP codes that are not covered individually by the specification.
+
+The `Responses Object` MUST contain at least one response code, and it SHOULD be the response for a succesful operation call.
+
+##### Fixed Fields
+Field Name | Type | Description
+---|:---:|---
+<a name="responsesDefault"/>default | [Response Object](#responseObject) | The documentation of responses other than the ones declared for specific HTTP response codes. It can be used to cover undeclared responses.
+<a name="responsesCode"/>### [(*)](#statusCode) | [Response Object](#responseObject) | Any HTTP status code can be used as the propety name (one property per HTTP status code). Describes the expected response for that HTTP status code.
+
+<a name="statusCode"/>**(*)** - Any HTTP status code as described in the [HTTP protocol specification](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+
+##### Patterned Fields
+Field Pattern | Type | Description
+---|:---:|---
+<a name="parameterExtensions"/>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+
+
+#### Response Object <a name="responseObject"/>
+Describes a single response from an API Operation.
+
+##### Fixed Fields
+Field Name | Type | Description
+---|:---:|---
+<a name="responseDescription"/>description | `string` | **Required.** A short description of the response.
+<a name="responseSchema"/>schema | [Schema Object](#schemaObject) | A definition of the response structure. It can be a primitive, an array or an object.
+<a name="responseHeaders"/>headers | [[Serializable Type Object](#serializableTypeObject)] | A list of headers that may be sent with the response.
+<a name="responseExamples"/> examples | [Example Object](#exampleObject) | An example of the response message.
+
+#### Example Object <a name="exampleObject"/>
+
+Allows sharing examples for operation responses.
+
+##### Patterned Fields
+Field Pattern | Type | Description
+---|:---:|---
+<a name="exampleMimeType"/>{mime type} | ??? | The name of the property MUST be a one of the the Operation `produces` values (either implicit or inherited). The value SHOULD be an example of what such a response would look like.
+
+#### Serializable Type Object <a name="serializableTypeObject"/>
+
+Field Name | Type | Description
+---|:---:|---
+<a name="stType"/>type | `string` | **Required.** The type of the object. The value MUST be one of `"string"`, `"number"`, `"integer"`, `"boolean"`, or `"array"`.
+<a name="stFormat"/>format | `string` | The extending format for the previously mentioned `[type](#parameterType)`. **TODO: list legal values**
+<a name="stItems"/>items | ??? | **TODO: Complete the description for this.**
+<a neme="stCollectionFormat"/>collectionFormat | `string` | Determines the format of the array if type array is used. **TODO: complete the list of possible values.**
+
+#### Tag Object <a name="tagObject"/>
+
+Allows adding meta data to a single tag that is used by the [Operation Object](#operationObject). It is not mandatory to have a Tag Object per tag used there. Each Tag Object must describe a single tag.
+
+##### Fixed Fields
+Field Name | Type | Description
+---|:---:|---
+<a name="tagExternalDocs"/>extenralDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation for this tag.
+
+##### Patterned Fields
+Field Pattern | Type | Description
+---|:---:|---
+<a name="tagExtensions"/>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="tagDescription"/>{name} | `string` | 
 
 ### Format definitions and extensions
 
@@ -215,3 +282,5 @@ Due to various limitations in json-schema, some parts of the Swagger Specificati
 
 - Parameter must be unique within their given container list level. This refers to [Path Item's parameters](#pathItemParameters) and [Operation's parameters](#operationParameters).
 - The restrictions of the `[required](#parameterRequired)` field are not enforced by the schema. Check the property's description for further details.
+- There must be at least one response defined in the [Responses Obejct](#responsesObject), including the `default` response. This does not include vendor extension definitions.
+- In the [Example Object](#exampleObject) there's no validation in the schema that the property names (the mime types) are valid as described by the object.

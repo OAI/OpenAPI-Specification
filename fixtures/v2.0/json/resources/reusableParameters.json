@@ -34,8 +34,8 @@
         "summary": "Find pets by ID",
         "operationId": "getPetsById",
         "parameters": [
-          { "$ref": "#/definitions/skipParam" },
-          { "$ref": "#/definitions/limitParam" }
+          { "$ref": "#/parameters/skipParam" },
+          { "$ref": "#/parameters/limitParam" }
         ],
         "responses": {
           "200": {
@@ -57,7 +57,7 @@
       }
     }
   },
-  "definitions": {
+  "parameters": {
     "skipParam": {
       "name": "skip",
       "in": "query",
@@ -73,7 +73,9 @@
       "required": true,
       "type": "integer",
       "format": "int32"
-    },
+    }
+  },
+  "definitions": {
     "Pet": {
       "required": [
         "name"

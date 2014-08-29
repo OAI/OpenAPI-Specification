@@ -28,7 +28,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/models/Pet"
+                "$ref": "#/definitions/Pet"
               }
             },
             "headers": [{
@@ -40,7 +40,7 @@
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "#/models/Error"
+              "$ref": "#/definitions/Error"
             }
           }
         }

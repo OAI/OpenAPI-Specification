@@ -310,7 +310,7 @@
             },
             "type": {
               "type": "string",
-              "enum": [ "string", "number", "boolean", "integer", "array" ]
+              "enum": [ "string", "number", "boolean", "integer", "array", "file" ]
             },
             "format": {
               "type": "string"

@@ -4,7 +4,90 @@
 
   "type": "object",
   "required": [ "swagger", "info", "paths" ],
-
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-": {
+      "$ref": "#/definitions/vendorExtension"
+    }
+  },
+  "properties": {
+    "swagger": {
+      "type": "number",
+      "enum": [ 2.0 ],
+      "description": "The Swagger version of this document."
+    },
+    "info": {
+      "$ref": "#/definitions/info"
+    },
+    "externalDocs": {
+      "$ref": "#/definitions/externalDocs"
+    },
+    "host": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^((?!\\:\/\/).)*$",
+      "description": "The fully qualified URI to the host of the API."
+    },
+    "basePath": {
+      "type": "string",
+      "pattern": "^/",
+      "description": "The base path to the API. Example: '/api'."
+    },
+    "schemes": {
+      "type": "array",
+      "description": "The transfer protocol of the API.",
+      "items": {
+        "type": "string",
+        "enum": [ "http", "https", "ws", "wss" ]
+      }
+    },
+    "consumes": {
+      "type": "array",
+      "description": "A list of MIME types accepted by the API.",
+      "items": {
+        "$ref": "#/definitions/mimeType"
+      }
+    },
+    "produces": {
+      "type": "array",
+      "description": "A list of MIME types the API can produce.",
+      "items": {
+        "$ref": "#/definitions/mimeType"
+      }
+    },
+    "paths": {
+      "type": "object",
+      "description": "Relative paths to the individual endpoints. They must be relative to the 'basePath'.",
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
+        },
+        "^/.*[^\/]$": {
+          "$ref": "#/definitions/pathItem"
+        }
+      },
+      "additionalProperties": false
+    },
+    "definitions": {
+      "type": "object",
+      "description": "One or more JSON objects describing the schemas being consumed and produced by the API.",
+      "additionalProperties": { "$ref": "#/definitions/schema" }
+    },
+    "parameters": {
+      "type": "object",
+      "description": "One or more JSON representations for parameters",
+      "additionalProperties": { "$ref": "#/definitions/parameter" }
+    },
+    "security": {
+      "$ref": "#/definitions/security"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/tag"
+      }
+    }
+  },
   "definitions": {
     "externalDocs": {
       "type": "object",
@@ -151,7 +234,18 @@
           "minItems": 1,
           "additionalItems": false,
           "items": {
-            "$ref": "#/definitions/parameter"
+            "oneOf": [
+              { "$ref": "#/definitions/parameter" },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "$ref": {
+                    "type": "string"
+                  }
+                }
+              }
+            ]
           }
         },
         "responses": {
@@ -251,7 +345,7 @@
       "properties": {
         "type": {
           "type": "string",
-          "enum": [ "string", "number", "boolean", "integer", "array" ]
+          "enum": [ "string", "number", "boolean", "integer", "array", "file" ]
         },
         "format": {
           "type": "string"
@@ -299,7 +393,7 @@
             },
             "type": {
               "type": "string",
-              "enum": [ "string", "number", "boolean", "integer", "array", "file" ]
+              "enum": [ "string", "number", "boolean", "integer", "array" ]
             },
             "format": {
               "type": "string"
@@ -435,87 +529,6 @@
         "^/.*[^\/]$": {
           "type": "string"
         }
-      }
-    }
-  },
-  "additionalProperties": false,
-  "patternProperties": {
-    "^x-": {
-      "$ref": "#/definitions/vendorExtension"
-    }
-  },
-  "properties": {
-    "swagger": {
-      "type": "number",
-      "enum": [ 2.0 ],
-      "description": "The Swagger version of this document."
-    },
-    "info": {
-      "$ref": "#/definitions/info"
-    },
-    "externalDocs": {
-      "$ref": "#/definitions/externalDocs"
-    },
-    "host": {
-      "type": "string",
-      "format": "uri",
-      "pattern": "^((?!\\:\/\/).)*$",
-      "description": "The fully qualified URI to the host of the API."
-    },
-    "basePath": {
-      "type": "string",
-      "pattern": "^/",
-      "description": "The base path to the API. Example: '/api'."
-    },
-    "schemes": {
-      "type": "array",
-      "description": "The transfer protocol of the API.",
-      "items": {
-        "type": "string",
-        "enum": [ "http", "https", "ws", "wss" ]
-      }
-    },
-    "consumes": {
-      "type": "array",
-      "description": "A list of MIME types accepted by the API.",
-      "items": {
-        "$ref": "#/definitions/mimeType"
-      }
-    },
-    "produces": {
-      "type": "array",
-      "description": "A list of MIME types the API can produce.",
-      "items": {
-        "$ref": "#/definitions/mimeType"
-      }
-    },
-    "paths": {
-      "type": "object",
-      "description": "Relative paths to the individual endpoints. They must be relative to the 'basePath'.",
-      "patternProperties": {
-        "^x-": {
-          "$ref": "#/definitions/vendorExtension"
-        },
-        "^/.*[^\/]$": {
-          "$ref": "#/definitions/pathItem"
-        }
-      },
-      "additionalProperties": false
-    },
-    "definitions": {
-      "type": "object",
-      "description": "One or more JSON objects describing the schemas being consumed and produced by the API.",
-      "additionalProperties": {
-        "$ref": "#/definitions/schema"
-      }
-    },
-    "security": {
-      "$ref": "#/definitions/security"
-    },
-    "tags": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/tag"
       }
     }
   }

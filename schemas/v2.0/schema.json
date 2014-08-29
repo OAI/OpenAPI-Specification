@@ -71,7 +71,7 @@
     "definitions": {
       "type": "object",
       "description": "One or more JSON objects describing the schemas being consumed and produced by the API.",
-      "additionalProperties": { "$ref": "#/definitions/schema" },
+      "additionalProperties": { "$ref": "#/definitions/schema" }
     },
     "parameters": {
       "type": "object",

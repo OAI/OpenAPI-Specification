@@ -64,14 +64,14 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/schemas/pet"
+                "$ref": "#/definitions/pet"
               }
             }
           },
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "#/schemas/errorModel"
+              "$ref": "#/definitions/errorModel"
             }
           }
         }
@@ -89,7 +89,7 @@
             "description": "Pet to add to the store",
             "required": true,
             "schema": {
-              "$ref": "#/schemas/newPet"
+              "$ref": "#/definitions/newPet"
             }
           }
         ],
@@ -97,13 +97,13 @@
           "200": {
             "description": "pet response",
             "schema": {
-              "$ref": "#/schemas/pet"
+              "$ref": "#/definitions/pet"
             }
           },
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "#/schemas/errorModel"
+              "$ref": "#/definitions/errorModel"
             }
           }
         }
@@ -164,7 +164,7 @@
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "#/schemas/errorModel"
+              "$ref": "#/definitions/errorModel"
             }
           }
         }

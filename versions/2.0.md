@@ -1,28 +1,97 @@
+# Swagger RESTful API Documentation Specification
+
+#### Version 2.0
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](http://www.ietf.org/rfc/rfc2119.txt).
+
+The Swagger specification is licensed under [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html).
+
+## Introduction
+
+Swagger™  is a project used to describe and document RESTful APIs.
+
+The Swagger specification defines a set of files required to describe such an API. These files can then be used by the Swagger-UI project to display the API and Swagger-Codegen to generate clients in various languages. Additional utilities can also take advantage of the resulting files, such as testing tools.
+
+## Revision History
+
+Version | Date | Notes
+--- | --- | ---
+2.0 | 2014-09-08 | Release of Swagger 2.0
+1.2 | 2014-03-14 | Initial release of the formal document.
+1.1 | 2012-08-22 | Release of Swagger 1.1
+1.0 | 2011-08-10 | First release of the Swagger Specification
+
+## Definitions
+
+- <a name="pathTemplating"/>Path Templating
+Path templating refers to the usage of curly braces to mark a section of a URL path as replacable using path parameters. **NB: Need to add a more elaborate explanation (limitations, rules and so on)**.
+
+- <a name="mimeTypes"/>Mime Types 
+**NB: Need to add information about valid mime type structures.** **
+
+- Path
+
+## Specification
+
+### Format
+
+The files describing the RESTful API in accordance with the Swagger specification are represented as JSON objects and conform to the JSON standards.
+
+For example, if a field is said to have an array value, the JSON array representation will be used:
+
+```js
+{
+   "field" : [...]
+}
+```
+
+While the API is described using JSON it does not impose a JSON input/output to the API itself.
+
+All field names in the specification are **case sensitive**.
+
+The schema exposes two types of fields. Fixed fields, which have a declared name, and Patterned fields, which declare a regex pattern for the field name. Patterned fields can have multiple occurrences as long as each has a unique name. 
+
+### File Structure
+
+The Swagger representation of the API is made of a single file. However, parts of the definitions can be split into separate files, at the discretion of the user. This is applicable for `$ref` fields in the specification as follows from the [JSON Schema](http://json-schema.org) definitions.
+
+By convention, the Swagger specification file is named `swagger.json`.
+
+### Data Types
+
+**Not sure if this should be kept.**
+
+### Schema
+
 #### Swagger Object <a name="swaggerObject"/>
 
-This is the root document for the API specification. It combines what previously was the Resource Listing and API Declaration together into one document.
+This is the root document object for the API specification. It combines what previously was the Resource Listing and API Declaration (version 1.2 and earlier) together into one document.
+
+##### Fixed Fields
 
 Field Name | Type | Description
 ---|:---:|---
 <a name="swaggerSwagger"/>swagger | `string` | **Required.** Specifies the Swagger Specification version being used. It can be used by the Swagger UI and other clients to interpret the API listing. The value MUST be `"2.0"`.
-<a name="swaggerInfo"/>info | [Info Object](#infoObject) | **Required.** Provides metadata about the API. The metadata can be used by the clients if needed, and can be presented in the Swagger-UI for convenience.
+<a name="swaggerInfo"/>info | [Info Object](#infoObject) | **Required.** Provides metadata about the API. The metadata can be used by the clients if needed.
 <a name="swaggerHost"/>host | `string` | The host serving the API. This MUST be the host only and does not include the scheme nor sub-paths. It MAY include a port. If the `host` is not included, the host serving the documentation is to be used. The `host` does not support [path templating](#pathTemplating).
 <a name="swaggerBasePath"/>basePath | `string` | The base path on which the API is served, which is relative to the [`host`](#swaggerHost). If it is not included, the API is served directly under the `host`. The value MUST start with a leading slash (`/`). The `basePath` does not support [path templating](#pathTemplating). 
 <a name="swaggerSchemes"/>schemes | [`string`] | The transfer protocol of the API. Values MUST be from the list: `"http"`, `"https"`, `"ws"`, `"wss"`. If the `schemes` is not included, the default scheme to be used is the one used to access the specification.
 <a name="swaggerConsumes"/>consumes | [`string`] | A list of MIME types the APIs can consume. This is global to all APIs but can be overridden on specific API calls. Value MUST be as described under [Mime Types](#mimeTypes).
 <a name="swaggerProduces"/>produces | [`string`] | A list of MIME types the APIs can produce. This is global to all APIs but can be overridden on specific API calls. Value MUST be as described under [Mime Types](#mimeTypes).
-<a name="swaggerPaths"/>paths | [Paths Object](#pathsObject) | **Required.** The available opereations for the API. **NB: the description will be expanded once the Paths Object is described.** It is valid to have an empty Paths Object if no APIs are exposed (for security reasons).
-<a name="swaggerDefinitions"/>definitions | [Definitions Object](#definitionsObject) | The schema definitions of the models as used throughout the specification.
+<a name="swaggerPaths"/>paths | [Paths Object](#pathsObject) | **Required.** The available paths and operations for the API.
+<a name="swaggerDefinitions"/>definitions | [Definitions Object](#definitionsObject) | The schema (model) definitions of the models as used throughout the specification.
 <a name="swaggerSecurity"/>security | ??? | **NB: To be completed once the schema is available**
 <a name="swaggerTags"/>tags | [[Tag Object](#tagObject)] | A list of tags used by the specification with additional metadata. The order of the tags can be used to reflect on their order by the parsing tools. Not all tags that are used by the [Operation Object](#operationObject) must be declared. The tags that are not declared may be organized randomly or based on the tools' logic.
 
 ##### Object Example:
-**TODO: add sample** **
+**TODO: add sample**
 
 
 #### Info Object <a name="infoObject"/>
 
 The object provides metadata about the API. The metadata can be used by the clients if needed, and can be presented in the Swagger-UI for convenience.
+
+##### Fixed Fields
 
 Field Name | Type | Description
 ---|:---:|---
@@ -57,6 +126,8 @@ Field Name | Type | Description
 
 Contact information for the exposed API.
 
+##### Fixed Fields
+
 Field Name | Type | Description
 ---|:---:|---
 <a name="contactName"/>name | `string` | The identifying name of the contact person/organization.
@@ -77,6 +148,8 @@ Field Name | Type | Description
 
 License information for the exposed API.
 
+##### Fixed Fields
+
 Field Name | Type | Description
 ---|:---:|---
 <a name="licenseName"/>name | `string` | ** Required.** The license name used for the API.
@@ -96,6 +169,8 @@ Field Name | Type | Description
 Holds the relative paths to the individual endpoints. They should be relative to the 'basePath'.
 The Paths may be empty, due to [ACL constraints](#securityFiltering).
 
+##### Patterned Fields
+
 Field Pattern | Type | Description
 ---|:---:|---
 <a name="pathsPath"/>^/.*[^\/]$ | [Path Item Object](#pathItemObject) | A relative path to an individual endpoint. The field name MUST begin with a slash and MUST NOT end with a slash. [Path templating](#pathTemplating) is allowed.
@@ -103,14 +178,18 @@ Field Pattern | Type | Description
 
 ##### Object Example
 
+**TODO: add example.**
+
 #### Path Item Object <a name="pathItemObject"/>
 
 Describes the operations available on a single path.
 A Path Item may be empty, due to [ACL constraints](#securityFiltering). The path itself is still exposed to the documentation viewer but they will not know which operations and parameters are available.
 
+##### Fixed Fields
+
 Field Name | Type | Description
 ---|:---:|---
-<a name="pathItemRef"/>$ref | `string` | Allows for an external definiton of this path item. **NB: expands on external definitions.**
+<a name="pathItemRef"/>$ref | `string` | Allows for an external definiton of this path item. The referenced stucture MUST be in the format of a [Path Item Object](#pathItemObject).
 <a name="pathItemGet"/>get | [Operation Object](#operationObject) | A definition of a GET operation on this path.
 <a name="pathItemPut"/>put | [Operation Object](#operationObject) | A definition of a PUT operation on this path.
 <a name="pathItemPost"/>post | [Operation Object](#operationObject) | A definition of a POST operation on this path.
@@ -120,12 +199,21 @@ Field Name | Type | Description
 <a name="pathItemPatch"/>patch | [Operation Object](#operationObject) | A definition of a PATCH operation on this path.
 <a name="pathItemParameters"/>parameters | [[Parameter Object](#parameterObject)] | A list of parameters that are applicable for all the operations described under this path. These parameters can be overriden at the operation level, but cannot be removed there. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a [name](#parameterName) and [location](#parameterIn).
 
+##### Patterned Fields
+
 Field Pattern | Type | Description
 ---|:---:|---
 <a name="pathItemExtensions"/>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details. 
 
+##### Object Example
+
+**TODO: add example.**
 
 #### Operation Object <a name="operationObject"/>
+
+Describes a single API operation on a path.
+
+##### Fixed Fields
 
 Field Name | Type | Description
 ---|:---:|---
@@ -141,9 +229,16 @@ Field Name | Type | Description
 <a name="operationSchemes"/>schemes | [`string`] | The transfer protocol for the operation. Values MUST be from the list: `"http"`, `"https"`, `"ws"`, `"wss"`. The value overrides the Swagger Object `[schemes](#swaggerSchemes)` definition. 
 <a name="operationSecurity"/>security | ??? | ???
 
+##### Patterned Objects 
+
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="operationExtensions"/>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details. 
+<a name="operationExtensions"/>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+
+#### Object Example
+
+**TODO: add example.**
+
 
 #### External Documentation Object <a name="externalDocumentationObject"/>
 
@@ -241,6 +336,8 @@ Field Name | Type | Description
 
 #### Tag Object <a name="tagObject"/>
 
+**TODO: Update this when the format is updated.** **
+
 Allows adding meta data to a single tag that is used by the [Operation Object](#operationObject). It is not mandatory to have a Tag Object per tag used there. Each Tag Object must describe a single tag.
 
 ##### Fixed Fields
@@ -254,15 +351,69 @@ Field Pattern | Type | Description
 <a name="tagExtensions"/>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 <a name="tagDescription"/>{name} | `string` | 
 
-### Format definitions and extensions
 
-#### Path Templating <a name="pathTemplating"/>
-Path templating refers to the usage of curly braces to mark a section of a URL path as replacable using path parameters. **NB: Need to add a more elaborate explanation (limitations, rules and so on)**.
+#### Schema Object <a name="schemaObject"/>
 
-#### Mime Types <a name="mimeTypes"/>
-**NB: Need to add information about valid mime type structures.** **
+The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays. This object is based on the [JSON Schema Specification Draft 4](http://json-schema.org/) and uses a predefined subset of it. On top of this subset, there are extensions provided by this specification to allow for more complete documentation.
 
-#### Path
+The following properties are taken directly from the JSON Schema definition and follow the same specifications:
+- $ref
+- format
+- title
+- description
+- default
+- multipleOf
+- maximum
+- exclusiveMaximum
+- minimum
+- exclusiveMinimum
+- maxLength
+- minLength
+- pattern
+- maxItems
+- minItems
+- uniqueItems
+- maxProperties
+- minProperties
+- required
+- enum
+- type
+
+The following properties are taken from the JSON Schema definition but their definitions were adjusted to the Swagger Specification. Their definition is the same as the one from JSON Schema, only where the original definition references the JSON Schema definition, the [Schema Object](#schemaObject) definition is used instead.
+- items
+- allOf
+- definitions
+- properties
+
+Other than the JSON Schema subset fields, the following fields may be used for further schema documentation.
+
+##### Fixed Fields
+Field Name | Type | Description
+---|:---:|---
+<a name="schemaDiscriminator"/>discriminator | `string` | Adds support for polymorphism. The discriminator is the schema property name that is used to differentiate between other schemas that inherit this schema. The property name used MUST be defined at this schema and it MUST be in the `required` property list. When used, the value MUST be the name of this schema or any schema that inherits it.
+<a name="schemaXml"/>xml | [XML Object](#xmlObject) | This MAY be used only on properties schemas. It has no effect on root schemas. Adds Additional metadata to describe the XML representation format of this property.
+<a name="schemaExternalDocs"/>extenralDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation for this schema.
+<a name="schemaExample"/>example | Object | A free-form property to include a an example of an instance for this schema.
+
+
+
+**TODO: Add explanation about composition and inheritance in the new spec.**
+
+#### XML Object <a name="xmlObject"/>
+
+A metadata object that allows for more fine-tuned XML model definitions.
+
+##### Fixed Fields
+Field Name | Type | Description
+---|:---:|---
+<a name="xmlName"/>name | `string` | Replaces the name of the element/attribute used for the described schema property.
+<a name="xmlNamespace"/>namespace | `string` | The URL of the namespace definition. Value SHOULD be in the form of a URL.
+<a name="xmlPrefix"/>prefix | `string` | The prefix to be used for the [name](#xmlName).
+<a name="xmlAttribute"/>attribute | `boolean` | Declares whether the property definition translates to an attribute instead of an element. Default value is `false`.
+<a name="xmlWrapped"/>wrapped | `boolean` | MAY be used only for an array definition. Signifies whether the array is wrapped (for example, `<books><book/><book/></books>`) or unwrapped (`<book/><book/>`). Default value is `true`.
+
+
+
 
 #### Vendor Extensions
 

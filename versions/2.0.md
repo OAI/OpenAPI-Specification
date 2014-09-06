@@ -235,31 +235,40 @@ Field Pattern | Type | Description
 ---|:---:|---
 <a name="operationExtensions"/>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
-#### Object Example
+##### Object Example
 
 **TODO: add example.**
 
 
 #### External Documentation Object <a name="externalDocumentationObject"/>
 
+Allows referencing an external resource for extended documentation.
+
+##### Fixed Fields
+
 Field Name | Type | Description
 ---|:---:|---
 <a name="externalDocDescription"/>description | `string` | A short description of the target documentation.
 <a name="externalDocUrl"/>url | `string` | **Required.** The URL for the target documentation. Value MUST be in the format of a URL.
 
+##### Object Example
+
+**TODO: add example.**
+
+
 #### Parameter Object <a name="parameterObject"/>
 
 Describes a single operation parameter.
 
- A unique parameter is defined by a combination of a [name](#parameterName) and [location](#parameterIn).
+A unique parameter is defined by a combination of a [name](#parameterName) and [location](#parameterIn).
 
 ##### Fixed Fields
 Field Name | Type | Description
 ---|:---:|---
-<a name="parameterName"/>name | `string` | **Required.** The name of the parameter. **TODO: Add name restrictions.**
+<a name="parameterName"/>name | `string` | **Required.** The name of the parameter. Parameter names are *case sensitive*. <ul><li>If [`in`](#parameterIn) is `"path"`, the `name` field MUST correspond to the associated path segment from the [path](#pathsPath) field in the [Paths Object](#pathsObject). See [Path Templating](#pathTemplating) for further information.<li>If [`in`](#parameterIn) is `"body"`, then the `name` MUST be `"body"`. <li>For all other cases, the `name` corresponds to the parameter name used based on the [`in`](#parameterIn) property.</ul>
 <a name="parameterIn"/>in | `string` | **Required.** The location of the parameter. Possible values are "query", "header", "path", "formData" or "body".
 <a name="parameterDescription"/>description | `string` | A brief description of the parameter. This could contain examples of use.  Github-flavored markdown is allowed.
-<a name="parameterRequired"/>required | `boolean` | Determines whether this parameter is mandatory. If the parameter is `in` "path", this property is **required** and its value MUST be `true`. Otherwise, the property MAY be included and its default value is `false`. 
+<a name="parameterRequired"/>required | `boolean` | Determines whether this parameter is mandatory. If the parameter is [`in`](#parameterIn) "path", this property is **required** and its value MUST be `true`. Otherwise, the property MAY be included and its default value is `false`. 
 
 If `[in](#parameterIn)` is `"body"`:
 
@@ -271,10 +280,10 @@ If `[in](#parameterIn)` is any value other than `"body"`:
 
 Field Name | Type | Description
 ---|:---:|---
-<a name="parameterType"/>type | `string` | **Required.** The type of the parameter. Since the parameter is not located at the body, it is limited to simple types (that is, not an object). The value MUST be one of `"string"`, `"number"`, `"integer"`, `"boolean"`, `"array"` or `"file"`. **TODO: add restrictions to the file type, arrays.** 
-<a name="parameterFormat"/>format | `string` | The extending format for the previously mentioned `[type](#ptType)`. **TODO: list legal values**
-<a name="parameterItems"/>items | ??? | **TODO: Complete the description for this.**
-<a neme="parameterCollectionFormat"/>collectionFormat | `string` | Determines the format of the array if type array is used. **TODO: complete the list of possible values.**
+<a name="parameterType"/>type | `string` | **Required.** The type of the parameter. Since the parameter is not located at the request body, it is limited to simple types (that is, not an object). The value MUST be one of `"string"`, `"number"`, `"integer"`, `"boolean"`, `"array"` or `"file"`. If `type` is `"file"`, the [`consumes`](#operationConsumes) MUST be `"multipart/form-data"` and the parameter MUST be [`in`](#paramterIn) `"formData"`. 
+<a name="parameterFormat"/>format | `string` | The extending format for the previously mentioned [`type`](#parameterType).
+<a name="parameterItems"/>items | [Schema Object](#schemaObject) | **Required if [`type`](#parameterType) is "array".** Describes the type of items in the array. While the [Schema Object](#schemaObject) allows for model definition, the types allowed in an array are restricted to primitives (`"string"`, `"number"`, `"integer"`, `"boolean"`). Files and models are not allowed. Nested arrays are also not allowed. Arrays MUST always be of a single type.
+<a neme="parameterCollectionFormat"/>collectionFormat | `string` | Determines the format of the array if type array is used. Possible values are: <ul><li>`csv` - comma separated values `foo,bar`. <li>`ssv` - space separated values `foo bar`. <li>`tsv` - tab separated values `foo\tbar`. <li>`pipes` - pipe separated values <code>foo&#124;bar</code>. <li>`multi` - corresponds to multiple parameter instances instead of multiple values for a single instance `foo=bar&foo=baz`. This is valid only for parameters [`in`](#parameterIn) "query" or "formData". </ul> Default value is `csv`.
 
 
 ##### Patterned Fields
@@ -282,6 +291,9 @@ Field Pattern | Type | Description
 ---|:---:|---
 <a name="parameterExtensions"/>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
+##### Object Example
+
+**TODO: add example.**
 
 #### Responses Object <a name="responsesObject"/>
 
@@ -295,15 +307,18 @@ The `Responses Object` MUST contain at least one response code, and it SHOULD be
 Field Name | Type | Description
 ---|:---:|---
 <a name="responsesDefault"/>default | [Response Object](#responseObject) | The documentation of responses other than the ones declared for specific HTTP response codes. It can be used to cover undeclared responses.
-<a name="responsesCode"/>### [(*)](#statusCode) | [Response Object](#responseObject) | Any HTTP status code can be used as the propety name (one property per HTTP status code). Describes the expected response for that HTTP status code.
-
-<a name="statusCode"/>**(*)** - Any HTTP status code as described in the [HTTP protocol specification](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 
 ##### Patterned Fields
 Field Pattern | Type | Description
 ---|:---:|---
+<a name="responsesCode"/>### [(*)](#statusCode) | [Response Object](#responseObject) | Any HTTP status code can be used as the propety name (one property per HTTP status code). Describes the expected response for that HTTP status code.
 <a name="parameterExtensions"/>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
+<a name="statusCode"/>**(*)** - Any HTTP status code as described in the [HTTP protocol specification](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+
+##### Object Example
+
+**TODO: add example.**
 
 #### Response Object <a name="responseObject"/>
 Describes a single response from an API Operation.
@@ -312,9 +327,13 @@ Describes a single response from an API Operation.
 Field Name | Type | Description
 ---|:---:|---
 <a name="responseDescription"/>description | `string` | **Required.** A short description of the response.
-<a name="responseSchema"/>schema | [Schema Object](#schemaObject) | A definition of the response structure. It can be a primitive, an array or an object.
-<a name="responseHeaders"/>headers | [[Serializable Type Object](#serializableTypeObject)] | A list of headers that may be sent with the response.
+<a name="responseSchema"/>schema | [Schema Object](#schemaObject) | A definition of the response structure. It can be a primitive, an array or an object. If this field does not exist, it means no content is returned as part of the response.
+<a name="responseHeaders"/>headers | [[Serializable Type Object](#serializableTypeObject)] | A list of headers that are sent with the response.
 <a name="responseExamples"/> examples | [Example Object](#exampleObject) | An example of the response message.
+
+##### Object Example
+
+**TODO: add example.**
 
 #### Example Object <a name="exampleObject"/>
 
@@ -323,16 +342,24 @@ Allows sharing examples for operation responses.
 ##### Patterned Fields
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="exampleMimeType"/>{mime type} | ??? | The name of the property MUST be a one of the the Operation `produces` values (either implicit or inherited). The value SHOULD be an example of what such a response would look like.
+<a name="exampleMimeType"/>{mime type} | Any | The name of the property MUST be a one of the the Operation `produces` values (either implicit or inherited). The value SHOULD be an example of what such a response would look like.
+
+##### Object Example
+
+**TODO: add example.**
 
 #### Serializable Type Object <a name="serializableTypeObject"/>
 
 Field Name | Type | Description
 ---|:---:|---
 <a name="stType"/>type | `string` | **Required.** The type of the object. The value MUST be one of `"string"`, `"number"`, `"integer"`, `"boolean"`, or `"array"`.
-<a name="stFormat"/>format | `string` | The extending format for the previously mentioned `[type](#parameterType)`. **TODO: list legal values**
-<a name="stItems"/>items | ??? | **TODO: Complete the description for this.**
-<a neme="stCollectionFormat"/>collectionFormat | `string` | Determines the format of the array if type array is used. **TODO: complete the list of possible values.**
+<a name="stFormat"/>format | `string` | The extending format for the previously mentioned `[type](#parameterType)`.
+<a name="stItems"/>items | [Schema Object](#schemaObject) | **Required if [`type`](#stType) is "array".** While the [Schema Object](#schemaObject) allows for model definition, the types allowed in an array are restricted to primitives (`"string"`, `"number"`, `"integer"`, `"boolean"`). Files and models are not allowed. Nested arrays are also not allowed. Arrays MUST always be of a single type.
+<a neme="stCollectionFormat"/>collectionFormat | `string` | Determines the format of the array if type array is used. Possible values are: <ul><li>`csv` - comma separated values `foo,bar`. <li>`ssv` - space separated values `foo bar`. <li>`tsv` - tab separated values `foo\tbar`. <li>`pipes` - pipe separated values <code>foo&#124;bar</code>. </ul> Default value is `csv`.
+
+##### Object Example
+
+**TODO: add example.**
 
 #### Tag Object <a name="tagObject"/>
 
@@ -382,7 +409,6 @@ The following properties are taken directly from the JSON Schema definition and 
 The following properties are taken from the JSON Schema definition but their definitions were adjusted to the Swagger Specification. Their definition is the same as the one from JSON Schema, only where the original definition references the JSON Schema definition, the [Schema Object](#schemaObject) definition is used instead.
 - items
 - allOf
-- definitions
 - properties
 
 Other than the JSON Schema subset fields, the following fields may be used for further schema documentation.
@@ -410,7 +436,7 @@ Field Name | Type | Description
 <a name="xmlNamespace"/>namespace | `string` | The URL of the namespace definition. Value SHOULD be in the form of a URL.
 <a name="xmlPrefix"/>prefix | `string` | The prefix to be used for the [name](#xmlName).
 <a name="xmlAttribute"/>attribute | `boolean` | Declares whether the property definition translates to an attribute instead of an element. Default value is `false`.
-<a name="xmlWrapped"/>wrapped | `boolean` | MAY be used only for an array definition. Signifies whether the array is wrapped (for example, `<books><book/><book/></books>`) or unwrapped (`<book/><book/>`). Default value is `true`.
+<a name="xmlWrapped"/>wrapped | `boolean` | MAY be used only for an array definition. Signifies whether the array is wrapped (for example, `<books><book/><book/></books>`) or unwrapped (`<book/><book/>`). Default value is `false`.
 
 
 

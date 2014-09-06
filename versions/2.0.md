@@ -227,6 +227,7 @@ Field Name | Type | Description
 <a name="operationParameters"/>parameters | [[Parameter Object](#parameterObject)] | A list of parameters that are applicable for this operation. If a parameter is already defined at the [Path Item](#pathItemParameters), the new definition will override it, but can never remove it. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a [name](#parameterName) and [location](#parameterIn).
 <a name="operationResponses"/>responses | [Responses Object](#responsesObject) | **Required.** The list of possible responses as they are returned from executing this operation.
 <a name="operationSchemes"/>schemes | [`string`] | The transfer protocol for the operation. Values MUST be from the list: `"http"`, `"https"`, `"ws"`, `"wss"`. The value overrides the Swagger Object `[schemes](#swaggerSchemes)` definition. 
+<a name="operationDeprecated"/>deprecated | `boolean` | Declares this operation to be deprecated. Usage of the declared operation should be refrained. Default value is `false`.
 <a name="operationSecurity"/>security | ??? | ???
 
 ##### Patterned Objects 
@@ -363,21 +364,23 @@ Field Name | Type | Description
 
 #### Tag Object <a name="tagObject"/>
 
-**TODO: Update this when the format is updated.** **
-
-Allows adding meta data to a single tag that is used by the [Operation Object](#operationObject). It is not mandatory to have a Tag Object per tag used there. Each Tag Object must describe a single tag.
+Allows adding meta data to a single tag that is used by the [Operation Object](#operationObject). It is not mandatory to have a Tag Object per tag used there.
 
 ##### Fixed Fields
 Field Name | Type | Description
 ---|:---:|---
+<a name="tagName"/>name | `string` | **Required.** The name of the tag.
+<a name="tagDescription"/>description | `string` | A short description for the tag.
 <a name="tagExternalDocs"/>extenralDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation for this tag.
 
 ##### Patterned Fields
 Field Pattern | Type | Description
 ---|:---:|---
 <a name="tagExtensions"/>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
-<a name="tagDescription"/>{name} | `string` | 
 
+##### Object Example
+
+**TODO: add example.**
 
 #### Schema Object <a name="schemaObject"/>
 
@@ -421,9 +424,11 @@ Field Name | Type | Description
 <a name="schemaExternalDocs"/>extenralDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation for this schema.
 <a name="schemaExample"/>example | Object | A free-form property to include a an example of an instance for this schema.
 
-
-
 **TODO: Add explanation about composition and inheritance in the new spec.**
+
+##### Object Example
+
+**TODO: add example.**
 
 #### XML Object <a name="xmlObject"/>
 
@@ -438,10 +443,10 @@ Field Name | Type | Description
 <a name="xmlAttribute"/>attribute | `boolean` | Declares whether the property definition translates to an attribute instead of an element. Default value is `false`.
 <a name="xmlWrapped"/>wrapped | `boolean` | MAY be used only for an array definition. Signifies whether the array is wrapped (for example, `<books><book/><book/></books>`) or unwrapped (`<book/><book/>`). Default value is `false`.
 
+##### Object Example
 
+**TODO: add example.**
 
-
-#### Vendor Extensions
 
 ### Security Filtering
 

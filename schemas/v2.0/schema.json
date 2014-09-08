@@ -78,9 +78,8 @@
       "description": "One or more JSON representations for parameters",
       "additionalProperties": { "$ref": "#/definitions/parameter" }
     },
-    "security": {
-      "$ref": "#/definitions/security"
-    },
+    "responses": { "$ref": "#/definitions/responses" },
+    "security": { "$ref": "#/definitions/security" },
     "tags": {
       "type": "array",
       "items": {

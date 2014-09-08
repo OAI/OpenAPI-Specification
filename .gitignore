@@ -4,3 +4,5 @@
 *.iws
 target
 atlassian-ide-plugin.xml
+node_modules/
+Gemfile.lock

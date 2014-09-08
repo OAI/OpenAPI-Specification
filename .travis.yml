@@ -1,0 +1,14 @@
+language: scala
+scala:
+   - 2.10.4
+script:
+  - npm install
+  - gulp lint
+  - sbt ++$TRAVIS_SCALA_VERSION test
+  - mocha
+env:
+  - VALIDATORS=tv4
+  - VALIDATORS=zschema
+matrix:
+  allow_failures:
+    - env: VALIDATORS=tv4

@@ -260,7 +260,7 @@
           }
         },
         "security": {
-          "$ref": "#/definitions/security"
+          "$ref": "#/definitions/securityRequirement"
         }
       }
     },
@@ -499,8 +499,11 @@
       }
     },
     "security": {
-      "type": "array",
-      "description": "defines security requirements"
+      "description": "defines security definitions"
+    },
+    "securityRequirement": {
+      "description": "defines a security requirement",
+      "type": "array"
     },
     "xml": {
       "properties": {

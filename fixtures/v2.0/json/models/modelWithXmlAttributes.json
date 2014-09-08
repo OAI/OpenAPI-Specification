@@ -1,5 +1,8 @@
 {
   "description": "this model serves xml and json structures",
+  "xml": {
+    "name": "XMLModel"
+  },
   "properties": {
     "id": {
       "type": "integer",

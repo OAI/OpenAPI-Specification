@@ -481,11 +481,6 @@
         "minProperties": { "$ref": "http://json-schema.org/draft-04/schema#/definitions/positiveIntegerDefault0" },
         "required": { "$ref": "http://json-schema.org/draft-04/schema#/definitions/stringArray" },
         "externalDocs": { "$ref": "#/definitions/externalDocs" },
-        "definitions": {
-          "type": "object",
-          "additionalProperties": { "$ref": "#/definitions/schema" },
-          "default": { }
-        },
         "properties": {
           "type": "object",
           "additionalProperties": { "$ref": "#/definitions/schema" },

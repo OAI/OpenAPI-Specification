@@ -23,13 +23,27 @@ Version | Date | Notes
 
 ## Definitions
 
-- <a name="pathTemplating"/>Path Templating
-Path templating refers to the usage of curly braces to mark a section of a URL path as replacable using path parameters. **NB: Need to add a more elaborate explanation (limitations, rules and so on)**.
+##### <a name="pathTemplating"/>Path Templating
+Path templating refers to the usage of curly braces ({}) to mark a section of a URL path as replacable using path parameters.
 
-- <a name="mimeTypes"/>Mime Types 
-**NB: Need to add information about valid mime type structures.** **
+##### <a name="mimeTypes"/>Mime Types
+Mime type definitions are spread across several resources. The mime type definitions should be in compliance to the [wikipedia](http://en.wikipedia.org/wiki/Internet_media_type#Naming) definition.
 
-- Path
+Some examples of possible mime type definitions:
+```
+  text/plain; charset=utf-8
+  application/json
+  application/vnd.github+json
+  application/vnd.github.v3+json
+  application/vnd.github.v3.raw+json
+  application/vnd.github.v3.text+json
+  application/vnd.github.v3.html+json
+  application/vnd.github.v3.full+json
+  application/vnd.github.v3.diff
+  application/vnd.github.v3.patch
+```
+##### <a name="httpCodes"/>HTTP Status Codes
+The HTTP Status Codes are used to indicate the status of the executed operation. The available status codes are described by [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 
 ## Specification
 
@@ -90,7 +104,7 @@ Field Name | Type | Description
 ---|:---:|---
 <a name="swaggerSwagger"/>swagger | `string` | **Required.** Specifies the Swagger Specification version being used. It can be used by the Swagger UI and other clients to interpret the API listing. The value MUST be `"2.0"`.
 <a name="swaggerInfo"/>info | [Info Object](#infoObject) | **Required.** Provides metadata about the API. The metadata can be used by the clients if needed.
-<a name="swaggerHost"/>host | `string` | The host serving the API. This MUST be the host only and does not include the scheme nor sub-paths. It MAY include a port. If the `host` is not included, the host serving the documentation is to be used. The `host` does not support [path templating](#pathTemplating).
+<a name="swaggerHost"/>host | `string` | The host (name or ip) serving the API. This MUST be the host only and does not include the scheme nor sub-paths. It MAY include a port. If the `host` is not included, the host serving the documentation is to be used (incluing the port). The `host` does not support [path templating](#pathTemplating).
 <a name="swaggerBasePath"/>basePath | `string` | The base path on which the API is served, which is relative to the [`host`](#swaggerHost). If it is not included, the API is served directly under the `host`. The value MUST start with a leading slash (`/`). The `basePath` does not support [path templating](#pathTemplating). 
 <a name="swaggerSchemes"/>schemes | [`string`] | The transfer protocol of the API. Values MUST be from the list: `"http"`, `"https"`, `"ws"`, `"wss"`. If the `schemes` is not included, the default scheme to be used is the one used to access the specification.
 <a name="swaggerConsumes"/>consumes | [`string`] | A list of MIME types the APIs can consume. This is global to all APIs but can be overridden on specific API calls. Value MUST be as described under [Mime Types](#mimeTypes).
@@ -193,7 +207,7 @@ The Paths may be empty, due to [ACL constraints](#securityFiltering).
 
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="pathsPath"/>/{path} | [Path Item Object](#pathItemObject) | A relative path to an individual endpoint. The field name MUST begin with a slash. [Path templating](#pathTemplating) is allowed.
+<a name="pathsPath"/>/{path} | [Path Item Object](#pathItemObject) | A relative path to an individual endpoint. The field name MUST begin with a slash. The path is appended to the [`basePath`](#swaggerBasePath) in order to construct the full URL. [Path templating](#pathTemplating) is allowed.
 <a name="pathsExtensions"/>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details. 
 
 ##### Object Example
@@ -237,7 +251,7 @@ Describes a single API operation on a path.
 
 Field Name | Type | Description
 ---|:---:|---
-<a name="operationTags"/>tags | [`string`] | A list of tags for API documentation control. See [Tags](#tags) for more information.
+<a name="operationTags"/>tags | [`string`] | A list of tags for API documentation control. Tags can be used for logical grouping of operations by resources or any other qualifier.
 <a name="operationSummary"/>summary | `string` | A short summary of what the operation does. For maximum readability in the swagger-ui, this field SHOULD be less than 120 characters.
 <a name="operationDescription"/>description | `string` | A verbose explanation of the operation behavior. [GFM syntax](https://help.github.com/articles/github-flavored-markdown) can be used for rich text representation.
 <a name="operationExternalDocs"/>externalDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation for this operation.
@@ -375,10 +389,9 @@ Field Name | Type | Description
 ##### Patterned Fields
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="responsesCode"/>### [(*)](#statusCode) | [Response Object](#responseObject) <span>&#124;</span> [Reference Object](#referenceObject) | Any HTTP status code can be used as the propety name (one property per HTTP status code). Describes the expected response for that HTTP status code.  [Reference Object](#referenceObject) can be used to link to a response that is defined at the [Swagger Object's responses](#swaggerResponses) section.
+<a name="responsesCode"/>{[HTTP Status Code](#httpCodes)} | [Response Object](#responseObject) <span>&#124;</span> [Reference Object](#referenceObject) | Any [HTTP status code](#httpCodes) can be used as the propety name (one property per HTTP status code). Describes the expected response for that HTTP status code.  [Reference Object](#referenceObject) can be used to link to a response that is defined at the [Swagger Object's responses](#swaggerResponses) section.
 <a name="parameterExtensions"/>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
-<a name="statusCode"/>**(*)** - Any HTTP status code as described in the [HTTP protocol specification](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 
 ##### Object Example
 
@@ -419,7 +432,7 @@ Allows sharing examples for operation responses.
 ##### Patterned Fields
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="exampleMimeType"/>{mime type} | Any | The name of the property MUST be a one of the the Operation `produces` values (either implicit or inherited). The value SHOULD be an example of what such a response would look like.
+<a name="exampleMimeType"/>{[mime type](#mimeTypes)} | Any | The name of the property MUST be a one of the the Operation `produces` values (either implicit or inherited). The value SHOULD be an example of what such a response would look like. 
 
 ##### Object Example
 
@@ -522,6 +535,7 @@ Other than the JSON Schema subset fields, the following fields may be used for f
 Field Name | Type | Description
 ---|:---:|---
 <a name="schemaDiscriminator"/>discriminator | `string` | Adds support for polymorphism. The discriminator is the schema property name that is used to differentiate between other schemas that inherit this schema. The property name used MUST be defined at this schema and it MUST be in the `required` property list. When used, the value MUST be the name of this schema or any schema that inherits it.
+<a name="schenaReadOnly"/>readOnly | `boolean` | Relevant only for Schema `"properties"` definitions. Declares the property as "read only". This means that it MAY be sent as part of a response but MUST NOT be sent as part of the request. Properties marked as `readOnly` being `true` SHOULD NOT be in the `required` list of the defined schema. Default value is `false`.
 <a name="schemaXml"/>xml | [XML Object](#xmlObject) | This MAY be used only on properties schemas. It has no effect on root schemas. Adds Additional metadata to describe the XML representation format of this property.
 <a name="schemaExternalDocs"/>externalDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation for this schema.
 <a name="schemaExample"/>example | Object | A free-form property to include a an example of an instance for this schema.

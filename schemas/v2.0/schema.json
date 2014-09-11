@@ -171,13 +171,13 @@
     "example": {
       "type": "object",
       "patternProperties": {
-        "^[a-z0-9-]+/[a-z0-9-+]+$": {}
+        "^[a-z0-9-]+/[a-z0-9\\-+]+$": {}
       },
       "additionalProperties": false
     },
     "mimeType": {
       "type": "string",
-      "pattern": "^[\\sa-z0-9-+;\\.=\\/]+$",
+      "pattern": "^[\\sa-z0-9\\-+;\\.=\\/]+$",
       "description": "The MIME type of the HTTP message."
     },
     "operation": {
@@ -488,7 +488,7 @@
         "enum": { "$ref": "http://json-schema.org/draft-04/schema#/properties/enum" },
         "type": { "$ref": "http://json-schema.org/draft-04/schema#/properties/type" },
         "example": {
-          
+
         },
         "allOf": {
           "type": "array",

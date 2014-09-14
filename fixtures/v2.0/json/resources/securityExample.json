@@ -90,7 +90,7 @@
       }
     }
   },
-  "security": {
+  "securityDefinitions": {
     "github": {
       "type": "oauth2",
       "scopes": [

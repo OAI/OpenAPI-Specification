@@ -24,7 +24,7 @@ Version | Date | Notes
 ## Definitions
 
 ##### <a name="pathTemplating"/>Path Templating
-Path templating refers to the usage of curly braces ({}) to mark a section of a URL path as replacable using path parameters.
+Path templating refers to the usage of curly braces ({}) to mark a section of a URL path as replaceable using path parameters.
 
 ##### <a name="mimeTypes"/>Mime Types
 Mime type definitions are spread across several resources. The mime type definitions should be in compliance to the [wikipedia](http://en.wikipedia.org/wiki/Internet_media_type#Naming) definition.
@@ -104,7 +104,7 @@ Field Name | Type | Description
 ---|:---:|---
 <a name="swaggerSwagger"/>swagger | `string` | **Required.** Specifies the Swagger Specification version being used. It can be used by the Swagger UI and other clients to interpret the API listing. The value MUST be `"2.0"`.
 <a name="swaggerInfo"/>info | [Info Object](#infoObject) | **Required.** Provides metadata about the API. The metadata can be used by the clients if needed.
-<a name="swaggerHost"/>host | `string` | The host (name or ip) serving the API. This MUST be the host only and does not include the scheme nor sub-paths. It MAY include a port. If the `host` is not included, the host serving the documentation is to be used (incluing the port). The `host` does not support [path templating](#pathTemplating).
+<a name="swaggerHost"/>host | `string` | The host (name or ip) serving the API. This MUST be the host only and does not include the scheme nor sub-paths. It MAY include a port. If the `host` is not included, the host serving the documentation is to be used (including the port). The `host` does not support [path templating](#pathTemplating).
 <a name="swaggerBasePath"/>basePath | `string` | The base path on which the API is served, which is relative to the [`host`](#swaggerHost). If it is not included, the API is served directly under the `host`. The value MUST start with a leading slash (`/`). The `basePath` does not support [path templating](#pathTemplating). 
 <a name="swaggerSchemes"/>schemes | [`string`] | The transfer protocol of the API. Values MUST be from the list: `"http"`, `"https"`, `"ws"`, `"wss"`. If the `schemes` is not included, the default scheme to be used is the one used to access the specification.
 <a name="swaggerConsumes"/>consumes | [`string`] | A list of MIME types the APIs can consume. This is global to all APIs but can be overridden on specific API calls. Value MUST be as described under [Mime Types](#mimeTypes).
@@ -113,7 +113,7 @@ Field Name | Type | Description
 <a name="swaggerDefinitions"/>definitions | [Definitions Object](#definitionsObject) | An object to hold data types produced and consumed by operations.
 <a name="swaggerParameters"/>parameters | [Parameters Definitions Object](#parametersDefinitionsObject) | An object to hold parameters that can be used across operations. This property *does not* define global parameters for all operations.
 <a name="swaggerResponses"/>responses | [Responses Definitions Object](#responsesDefinitionsObject) | An object to hold responses that can be used across operations. This property *does not* define global responses for all operations.
-<a name="swaggerSecurity"/>security | ??? | **NB: To be completed once the schema is available**
+<a name="swaggerSecurity"/>security | ??? | **TODO: To be completed once the schema is available**
 <a name="swaggerTags"/>tags | [[Tag Object](#tagObject)] | A list of tags used by the specification with additional metadata. The order of the tags can be used to reflect on their order by the parsing tools. Not all tags that are used by the [Operation Object](#operationObject) must be declared. The tags that are not declared may be organized randomly or based on the tools' logic.
 <a name="swaggerExternalDocs"/>externalDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation.
 
@@ -223,7 +223,7 @@ A Path Item may be empty, due to [ACL constraints](#securityFiltering). The path
 
 Field Name | Type | Description
 ---|:---:|---
-<a name="pathItemRef"/>$ref | `string` | Allows for an external definiton of this path item. The referenced stucture MUST be in the format of a [Path Item Object](#pathItemObject). If there are conflicts between the referenced definition and this Path Item's definition, the behavior is *undefined*.
+<a name="pathItemRef"/>$ref | `string` | Allows for an external definition of this path item. The referenced structure MUST be in the format of a [Path Item Object](#pathItemObject). If there are conflicts between the referenced definition and this Path Item's definition, the behavior is *undefined*.
 <a name="pathItemGet"/>get | [Operation Object](#operationObject) | A definition of a GET operation on this path.
 <a name="pathItemPut"/>put | [Operation Object](#operationObject) | A definition of a PUT operation on this path.
 <a name="pathItemPost"/>post | [Operation Object](#operationObject) | A definition of a POST operation on this path.
@@ -231,7 +231,7 @@ Field Name | Type | Description
 <a name="pathItemOptions"/>options | [Operation Object](#operationObject) | A definition of a OPTIONS operation on this path.
 <a name="pathItemHead"/>head | [Operation Object](#operationObject) | A definition of a HEAD operation on this path.
 <a name="pathItemPatch"/>patch | [Operation Object](#operationObject) | A definition of a PATCH operation on this path.
-<a name="pathItemParameters"/>parameters | [[Parameter Object](#parameterObject) <span>&#124;</span> [Reference Object](#referenceObject)] | A list of parameters that are applicable for all the operations described under this path. These parameters can be overriden at the operation level, but cannot be removed there. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a [name](#parameterName) and [location](#parameterIn). The list can use the [Reference Object](#referenceObject) to link to parameters that are defined at the [Swagger Object's parameters](#swaggerParameters).
+<a name="pathItemParameters"/>parameters | [[Parameter Object](#parameterObject) <span>&#124;</span> [Reference Object](#referenceObject)] | A list of parameters that are applicable for all the operations described under this path. These parameters can be overridden at the operation level, but cannot be removed there. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a [name](#parameterName) and [location](#parameterIn). The list can use the [Reference Object](#referenceObject) to link to parameters that are defined at the [Swagger Object's parameters](#swaggerParameters).
 
 ##### Patterned Fields
 
@@ -351,7 +351,7 @@ An limited subset of JSON-Schema's items object. It is used by parameter definit
 ##### Fixed Fields
 Field Name | Type | Description
 ---|:---:|---
-<a name="itemsType"/>type | `string` | **Required.** The internal type of the array. The value MUST be one of `"string"`, `"number"`, `"integer"`, `"boolean"`, or `"array"`. Files and models are not alllowed.
+<a name="itemsType"/>type | `string` | **Required.** The internal type of the array. The value MUST be one of `"string"`, `"number"`, `"integer"`, `"boolean"`, or `"array"`. Files and models are not allowed.
 <a name="itemsFormat"/>format | `string` | The extending format for the previously mentioned [`type`](#parameterType). See [Data Type Formats](#dataTypeFormat) for further details.
 <a name="itemsItems"/>items | [Items Object](#itemsObject) | **Required if [`type`](#itemsType) is "array".** Describes the type of items in the array.
 <a name="itemsCollectionFormat"/>collectionFormat | `string` | Determines the format of the array if type array is used. Possible values are: <ul><li>`csv` - comma separated values `foo,bar`. <li>`ssv` - space separated values `foo bar`. <li>`tsv` - tab separated values `foo\tbar`. <li>`pipes` - pipe separated values <code>foo&#124;bar</code>. </ul> Default value is `csv`.
@@ -375,11 +375,11 @@ Field Name | Type | Description
 
 #### Responses Object <a name="responsesObject"/>
 
-A container for the expected responses of an operation. The container maps a HTTP response code to the expected response. It is not expected from the documentation to necessarily cover all possible HTTP response codes, since they may not be known in advance. However, it is expected from the documenation to cover a successful operation response and any known errors.
+A container for the expected responses of an operation. The container maps a HTTP response code to the expected response. It is not expected from the documentation to necessarily cover all possible HTTP response codes, since they may not be known in advance. However, it is expected from the documentation to cover a successful operation response and any known errors.
 
 The `default` can be used a default response object for all HTTP codes that are not covered individually by the specification.
 
-The `Responses Object` MUST contain at least one response code, and it SHOULD be the response for a succesful operation call.
+The `Responses Object` MUST contain at least one response code, and it SHOULD be the response for a successful operation call.
 
 ##### Fixed Fields
 Field Name | Type | Description
@@ -389,7 +389,7 @@ Field Name | Type | Description
 ##### Patterned Fields
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="responsesCode"/>{[HTTP Status Code](#httpCodes)} | [Response Object](#responseObject) <span>&#124;</span> [Reference Object](#referenceObject) | Any [HTTP status code](#httpCodes) can be used as the propety name (one property per HTTP status code). Describes the expected response for that HTTP status code.  [Reference Object](#referenceObject) can be used to link to a response that is defined at the [Swagger Object's responses](#swaggerResponses) section.
+<a name="responsesCode"/>{[HTTP Status Code](#httpCodes)} | [Response Object](#responseObject) <span>&#124;</span> [Reference Object](#referenceObject) | Any [HTTP status code](#httpCodes) can be used as the property name (one property per HTTP status code). Describes the expected response for that HTTP status code.  [Reference Object](#referenceObject) can be used to link to a response that is defined at the [Swagger Object's responses](#swaggerResponses) section.
 <a name="parameterExtensions"/>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 
@@ -535,7 +535,7 @@ Other than the JSON Schema subset fields, the following fields may be used for f
 Field Name | Type | Description
 ---|:---:|---
 <a name="schemaDiscriminator"/>discriminator | `string` | Adds support for polymorphism. The discriminator is the schema property name that is used to differentiate between other schemas that inherit this schema. The property name used MUST be defined at this schema and it MUST be in the `required` property list. When used, the value MUST be the name of this schema or any schema that inherits it.
-<a name="schenaReadOnly"/>readOnly | `boolean` | Relevant only for Schema `"properties"` definitions. Declares the property as "read only". This means that it MAY be sent as part of a response but MUST NOT be sent as part of the request. Properties marked as `readOnly` being `true` SHOULD NOT be in the `required` list of the defined schema. Default value is `false`.
+<a name="schemaReadOnly"/>readOnly | `boolean` | Relevant only for Schema `"properties"` definitions. Declares the property as "read only". This means that it MAY be sent as part of a response but MUST NOT be sent as part of the request. Properties marked as `readOnly` being `true` SHOULD NOT be in the `required` list of the defined schema. Default value is `false`.
 <a name="schemaXml"/>xml | [XML Object](#xmlObject) | This MAY be used only on properties schemas. It has no effect on root schemas. Adds Additional metadata to describe the XML representation format of this property.
 <a name="schemaExternalDocs"/>externalDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation for this schema.
 <a name="schemaExample"/>example | Object | A free-form property to include a an example of an instance for this schema.
@@ -565,7 +565,7 @@ Field Name | Type | Description
 
 #### Definitions Object <a name="definitionsObject"/>
 
-An object to hold data types that can be consumed and producd by operations. These data types can be primitives, arrays or models.
+An object to hold data types that can be consumed and produced by operations. These data types can be primitives, arrays or models.
 
 ##### Patterned Fields
 
@@ -626,4 +626,4 @@ The reasoning behind it is to allow an additional layer of access control over t
 
 Two examples for this:
 1. The [Paths Object](#pathsObject) may be empty. It may be counterintuitive, but this may tell the viewer that they got to the right place, but can't access any documentation. They'd still have access to the [Info Object](#infoObject) which may contain additional information regarding authentication.
-2. The [Path Item Object](#pathItemObject) may be empty. In this case, the viewier will be aware that the path exists, but will not be able to see any of its operations or parameters. This is different than hiding the path itself from the [Paths Object](#pathsObject) so the user will not be aware of its existence. This allows the documentation provider a finer control over what the viewer can see.
+2. The [Path Item Object](#pathItemObject) may be empty. In this case, the viewer will be aware that the path exists, but will not be able to see any of its operations or parameters. This is different than hiding the path itself from the [Paths Object](#pathsObject) so the user will not be aware of its existence. This allows the documentation provider a finer control over what the viewer can see.

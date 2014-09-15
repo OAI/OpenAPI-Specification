@@ -1,20 +1,19 @@
+# this is an example of the Uber API
+# as a demonstration of an API spec in YAML
 swagger: 2
 info:
   title: Uber API
   description: Move your app forward with the Uber API
-  version: 1.0.0
+  version: "1.0.0"
+# the domain of the service
 host: api.uber.com
+# array of all schemes that your API supports
 schemes:
   - https
+# will be prefixed to all paths
 basePath: /v1
 produces:
   - application/json
-# security: 
-#  - oauth2: 
-#    $ref: security/github/accessCode
-#  - apitoken: 
-#    type: "header"
-#    name: "api_key"
 paths:
   /products:
     get:
@@ -26,18 +25,22 @@ paths:
           description: Latitude component of location.
           required: true
           type: number
+          format: double
         - name: longitude
           in: query
           description: Longitude component of location.
           required: true
           type: number
+          format: double
       tags: 
         - Products
       responses:  
         200:
           description: An array of products
           schema:
-            $ref: Products
+            type: array
+            items:
+              $ref: Product
         default:
           description: Unexpected error
           schema:
@@ -52,28 +55,34 @@ paths:
           description: Latitude component of start location.
           required: true
           type: number
+          format: double
         - name: start_longitude
           in: query
           description: Longitude component of start location.
           required: true
           type: number
+          format: double
         - name: end_latitude
           in: query
           description: Latitude component of end location.
           required: true
           type: number
+          format: double
         - name: end_longitude
           in: query
           description: Longitude component of end location.
           required: true
           type: number
+          format: double
       tags: 
         - Estimates
       responses:  
         200:
           description: An array of price estimates by product
           schema:
-            $ref: PriceEstimates
+            type: array
+            items:
+              $ref: PriceEstimate
         default:
           description: Unexpected error
           schema:
@@ -87,13 +96,18 @@ paths:
           in: query
           description: Latitude component of start location.
           required: true
+          type: number
+          format: double
         - name: start_longitude
           in: query
           description: Longitude component of start location.
           required: true
+          type: number
+          format: double
         - name: customer_uuid
           in: query
           type: string
+          format: uuid
           description: Unique customer identifier to be used for experience customization.
         - name: product_id
           in: query
@@ -105,7 +119,9 @@ paths:
         200:
           description: An array of products
           schema:
-            $ref: Products
+            type: array
+            items:
+              $ref: Product
         default:
           description: Unexpected error
           schema:
@@ -133,10 +149,12 @@ paths:
         - name: offset
           in: query
           type: integer
+          format: int32
           description: Offset the list of returned results by this amount. Default is zero.
         - name: limit
           in: query
-          type: integer 
+          type: integer
+          format: int32 
           description: Number of items to retrieve. Default is 5, maximum is 100.
       tags: 
         - User
@@ -167,10 +185,6 @@ definitions:
       image:
         type: string
         description: Image URL representing the product.
-  Products:
-    type: array
-    items:
-      $ref: Product
   PriceEstimate:
     properties:
       product_id:
@@ -194,10 +208,6 @@ definitions:
       surge_multiplier:
         type: number
         description: Expected surge multiplier. Surge is active if surge_multiplier is greater than 1. Price estimate already factors in the surge multiplier.
-  PriceEstimates:
-    type: array
-    items:
-      $ref: PriceEstimate
   Profile:
     properties:
       first_name:
@@ -224,12 +234,15 @@ definitions:
     properties:
       offset:
         type: integer
+        format: int32
         description: Position in pagination.
       limit:
         type: integer
+        format: int32
         description: Number of items to retrieve (100 max).
       count:
         type: integer
+        format: int32
         description: Total number of items available.
       history:
         type: array
@@ -242,4 +255,4 @@ definitions:
       message:
         type: string
       fields:
-        type: object
+        type: string

@@ -62,7 +62,7 @@
         "^x-": {
           "$ref": "#/definitions/vendorExtension"
         },
-        "^/.*[^\/]$": {
+        "^\/$|^\/.*[^\/]$": {
           "$ref": "#/definitions/pathItem"
         }
       },
@@ -523,7 +523,7 @@
         "^x-": {
           "$ref": "#/definitions/vendorExtension"
         },
-        "^/.*[^\/]$": {
+        "^\/$|^\/.*[^\/]$": {
           "type": "string"
         }
       }

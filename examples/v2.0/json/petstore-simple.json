@@ -129,7 +129,7 @@
           "200": {
             "description": "pet response",
             "schema": {
-              "$ref": "Pet"
+              "$ref": "#/definitions/pet"
             }
           },
           "default": {
@@ -189,7 +189,7 @@
     "petInput": {
       "allOf": [
         {
-          "$ref": "Pet"
+          "$ref": "pet"
         },
         {
           "required": [

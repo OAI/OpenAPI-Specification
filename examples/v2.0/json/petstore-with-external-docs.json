@@ -141,13 +141,13 @@
           "200": {
             "description": "pet response",
             "schema": {
-              "$ref": "Pet"
+              "$ref": "#/definitions/pet"
             }
           },
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "ErrorModel"
+              "$ref": "#/definitions/errorModel"
             }
           }
         }
@@ -205,7 +205,7 @@
     "newPet": {
       "allOf": [
         {
-          "$ref": "Pet"
+          "$ref": "pet"
         },
         {
           "required": [

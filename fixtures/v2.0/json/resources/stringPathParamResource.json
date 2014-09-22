@@ -1,5 +1,5 @@
 {
-  "swagger": 2.0,
+  "swagger": "2.0",
   "info": {
     "version": "1.0.9-abcd",
     "title": "Swagger Sample API",

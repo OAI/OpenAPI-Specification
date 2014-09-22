@@ -159,5 +159,5 @@ class ResourcesTest extends FlatSpec with ShouldMatchers with TestBase {
     if(report.isSuccess == false)
       println(report)
     report.isSuccess should be (true)
-  }//
+  }*/
 }

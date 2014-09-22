@@ -12,8 +12,8 @@
   },
   "properties": {
     "swagger": {
-      "type": "number",
-      "enum": [ 2.0 ],
+      "type": "string",
+      "enum": [ "2.0" ],
       "description": "The Swagger version of this document."
     },
     "info": {

@@ -370,6 +370,7 @@
         "name",
         "in"
       ],
+      "additionalProperties": false,
       "anyOf": [
         {
           "patternProperties": {
@@ -455,8 +456,7 @@
                     "collectionFormat": {
                       "type": "string"
                     }
-                  },
-                  "additionalProperties": false
+                  }
                 }
               ]
             },
@@ -464,7 +464,6 @@
               "required": [
                 "schema"
               ],
-              "additionalProperties": false,
               "properties": {
                 "name": {
                   "type": "string",

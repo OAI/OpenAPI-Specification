@@ -152,7 +152,7 @@ class ResourcesTest extends FlatSpec with ShouldMatchers with TestBase {
     report.isSuccess should be (true)
   }
 
-  it should "validate online petstore" in {
+  ignore should "validate online petstore" in {
     val json = Source.fromURL("http://petstore.swagger.wordnik.com/v2/swagger.json").getLines.filter(!_.startsWith("//")).mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)

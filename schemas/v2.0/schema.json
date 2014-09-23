@@ -370,7 +370,7 @@
         "name",
         "in"
       ],
-      "allOf": [
+      "anyOf": [
         {
           "patternProperties": {
             "^x-": {
@@ -390,7 +390,7 @@
               "required": [
                 "type"
               ],
-              "allOf": [
+              "anyOf": [
                 {
                   "oneOf": [
                     {

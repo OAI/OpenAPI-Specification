@@ -402,8 +402,7 @@
                     "formData"
                   ]
                 }
-              },
-              "additionalProperties": false
+              }
             },
             {
               "properties": {
@@ -421,8 +420,7 @@
                     "path"
                   ]
                 }
-              },
-              "additionalProperties": false
+              }
             }
           ],
           "properties": {
@@ -449,7 +447,8 @@
             "collectionFormat": {
               "type": "string"
             }
-          }
+          },
+          "additionalProperties": false
         },
         {
           "required": [

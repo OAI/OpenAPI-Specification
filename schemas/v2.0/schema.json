@@ -53,7 +53,7 @@
       "$ref": "#/definitions/definitions"
     },
     "parameters": {
-      "$ref": "#/definitions/parametersDefinitions"
+      "$ref": "#/definitions/parameterDefinitions"
     },
     "responses": {
       "$ref": "#/definitions/responses"

@@ -117,7 +117,7 @@ The table below shows the available fields to describe a data type. The `Validit
 
 Field Name | Type | Validity |Description
 ---|:---:|---|---
-<a name="dataTypeType"/>type | `string` | Any |**Required (if [`$ref`](#dataTypeRef) is not used).** The return type of the operation. The value MUST be one of the [Primitves](#431-primitives), `array` or a model's [`id`](#modelId).
+<a name="dataTypeType"/>type | `string` | Any |**Required (if [`$ref`](#dataTypeRef) is not used).** The return type of the operation. The value MUST be one of the [Primitives](#431-primitives), `array` or a model's [`id`](#modelId).
 <a name="dataTypeRef"/>$ref | `string` | Any | **Required (if [`type`](#dataTypeType) is not used).** The [Model](#527-model-object) to be used. The value MUST be a model's [`id`](#modelId).
 <a name="dataTypeFormat"/>format | `string` | primitive | Fine-tuned primitive type definition. See [Primitives](#431-primitives) for further information. The value MUST be one that is defined under [Primitives](#431-primitives), corresponding to the right primitive [`type`](#dataTypeType).
 <a name="dataTypeDefaultValue"/>defaultValue | *special* | primitive | The default value to be used for the field. The value type MUST conform with the primitive's [`type`](#dataTypeType) value.

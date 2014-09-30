@@ -383,9 +383,6 @@
         },
         "name": {
           "type": "string",
-          "enum": [
-            "body"
-          ],
           "description": "The name of the parameter."
         },
         "in": {

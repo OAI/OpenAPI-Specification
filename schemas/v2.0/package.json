@@ -1,0 +1,15 @@
+{
+  "name": "swagger-schema-official",
+  "version": "2.0.0-b6411e9",
+  "description": "Swagger JSON Schema ",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "swagger",
+    "schema",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC"
+}

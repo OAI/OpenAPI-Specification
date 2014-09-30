@@ -364,131 +364,165 @@
       "additionalProperties": true,
       "additionalItems": true
     },
-    "parameter": {
+    "bodyParameter": {
       "type": "object",
       "required": [
         "name",
-        "in"
+        "in",
+        "schema"
       ],
-      "additionalProperties": false,
-      "anyOf": [
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
+        }
+      },
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "A brief description of the parameter. This could contain examples of use.  Github-flavored markdown is allowed."
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "body"
+          ],
+          "description": "The name of the parameter."
+        },
+        "in": {
+          "type": "string",
+          "description": "Determines the location of the parameter.",
+          "enum": [
+            "body"
+          ]
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Determines whether or not this parameter is required or optional."
+        },
+        "schema": {
+          "$ref": "#/definitions/schema"
+        }
+      },
+      "additionalProperties": false
+    },
+    "nonBodyParameter": {
+      "type": "object",
+      "required": [
+        "name",
+        "in",
+        "type"
+      ],
+      "oneOf": [
         {
+          "additionalProperties": false,
           "patternProperties": {
             "^x-": {
               "$ref": "#/definitions/vendorExtension"
             }
           },
           "properties": {
+            "required": {
+              "type": "boolean",
+              "description": "Determines whether or not this parameter is required or optional."
+            },
+            "in": {
+              "type": "string",
+              "description": "Determines the location of the parameter.",
+              "enum": [
+                "query",
+                "header",
+                "formData"
+              ]
+            },
             "description": {
               "type": "string",
               "description": "A brief description of the parameter. This could contain examples of use.  Github-flavored markdown is allowed."
+            },
+            "name": {
+              "type": "string",
+              "description": "The name of the parameter."
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "string",
+                "number",
+                "boolean",
+                "integer",
+                "array"
+              ]
+            },
+            "format": {
+              "type": "string"
+            },
+            "items": {
+              "type": "object"
+            },
+            "collectionFormat": {
+              "type": "string"
             }
           }
         },
         {
-          "oneOf": [
-            {
-              "required": [
-                "type"
+          "additionalProperties": false,
+          "patternProperties": {
+            "^x-": {
+              "$ref": "#/definitions/vendorExtension"
+            }
+          },
+          "properties": {
+            "required": {
+              "type": "boolean",
+              "enum": [
+                true
               ],
-              "anyOf": [
-                {
-                  "oneOf": [
-                    {
-                      "properties": {
-                        "required": {
-                          "type": "boolean",
-                          "description": "Determines whether or not this parameter is required or optional."
-                        },
-                        "in": {
-                          "type": "string",
-                          "description": "Determines the location of the parameter.",
-                          "enum": [
-                            "query",
-                            "header",
-                            "formData"
-                          ]
-                        }
-                      }
-                    },
-                    {
-                      "properties": {
-                        "required": {
-                          "type": "boolean",
-                          "enum": [
-                            true
-                          ],
-                          "description": "Determines whether or not this parameter is required or optional."
-                        },
-                        "in": {
-                          "type": "string",
-                          "description": "Determines the location of the parameter.",
-                          "enum": [
-                            "path"
-                          ]
-                        }
-                      }
-                    }
-                  ]
-                },
-                {
-                  "properties": {
-                    "name": {
-                      "type": "string",
-                      "description": "The name of the parameter."
-                    },
-                    "type": {
-                      "type": "string",
-                      "enum": [
-                        "string",
-                        "number",
-                        "boolean",
-                        "integer",
-                        "array"
-                      ]
-                    },
-                    "format": {
-                      "type": "string"
-                    },
-                    "items": {
-                      "type": "object"
-                    },
-                    "collectionFormat": {
-                      "type": "string"
-                    }
-                  }
-                }
+              "description": "Determines whether or not this parameter is required or optional."
+            },
+            "in": {
+              "type": "string",
+              "description": "Determines the location of the parameter.",
+              "enum": [
+                "path"
               ]
             },
-            {
-              "required": [
-                "schema"
-              ],
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "enum": [
-                    "body"
-                  ],
-                  "description": "The name of the parameter."
-                },
-                "in": {
-                  "type": "string",
-                  "description": "Determines the location of the parameter.",
-                  "enum": [
-                    "body"
-                  ]
-                },
-                "required": {
-                  "type": "boolean",
-                  "description": "Determines whether or not this parameter is required or optional."
-                },
-                "schema": {
-                  "$ref": "#/definitions/schema"
-                }
-              }
+            "description": {
+              "type": "string",
+              "description": "A brief description of the parameter. This could contain examples of use.  Github-flavored markdown is allowed."
+            },
+            "name": {
+              "type": "string",
+              "description": "The name of the parameter."
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "string",
+                "number",
+                "boolean",
+                "integer",
+                "array"
+              ]
+            },
+            "format": {
+              "type": "string"
+            },
+            "items": {
+              "type": "object"
+            },
+            "collectionFormat": {
+              "type": "string"
             }
-          ]
+          }
+        }
+      ]
+    },
+    "parameter": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/bodyParameter"
+        },
+        {
+          "$ref": "#/definitions/nonBodyParameter"
         }
       ]
     },

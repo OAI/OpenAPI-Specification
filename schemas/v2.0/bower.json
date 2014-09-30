@@ -1,0 +1,15 @@
+{
+  "name": "swagger-schema",
+  "version": "2.0.0-b6411e9",
+  "homepage": "https://github.com/wordnik/swagger-schema",
+  "authors": [
+    "''"
+  ],
+  "description": "Swagger JSON Schema",
+  "keywords": [
+    "swagger",
+    "schema",
+    "api"
+  ],
+  "license": "MIT"
+}

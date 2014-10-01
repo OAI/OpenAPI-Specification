@@ -358,31 +358,7 @@
     "headers": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "serializableType"
-      }
-    },
-    "serializableType": {
-      "properties": {
-        "type": {
-          "type": "string",
-          "enum": [
-            "string",
-            "number",
-            "boolean",
-            "integer",
-            "array",
-            "file"
-          ]
-        },
-        "format": {
-          "type": "string"
-        },
-        "items": {
-          "type": "object"
-        },
-        "collectionFormat": {
-          "type": "string"
-        }
+        "$ref": "#/definitions/primitivesItems"
       }
     },
     "vendorExtension": {

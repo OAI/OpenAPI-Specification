@@ -347,16 +347,19 @@
           "$ref": "#/definitions/schema"
         },
         "headers": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/serializableType"
-          }
+          "$ref": "#/definitions/headers"
         },
         "examples": {
           "$ref": "#/definitions/example"
         }
       },
       "additionalProperties": false
+    },
+    "headers": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "serializableType"
+      }
     },
     "serializableType": {
       "properties": {
@@ -941,6 +944,9 @@
     },
     "uniqueItems": {
       "$ref": "http://json-schema.org/draft-04/schema#/properties/uniqueItems"
+    },
+    "enum": {
+      "$ref": "http://json-schema.org/draft-04/schema#/properties/enum"
     }
   }
 }

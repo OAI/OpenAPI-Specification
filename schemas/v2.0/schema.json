@@ -325,6 +325,7 @@
         },
         {
           "type": "object",
+          "additionalProperties": false,
           "properties": {
             "$ref": {
               "type": "string"
@@ -718,7 +719,6 @@
     },
     "primitivesItems": {
       "type": "object",
-      "additionalProperties": false,
       "properties": {
         "type": {
           "type": "string",

@@ -325,7 +325,6 @@
         },
         {
           "type": "object",
-          "additionalProperties": false,
           "properties": {
             "$ref": {
               "type": "string"

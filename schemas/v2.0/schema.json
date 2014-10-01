@@ -358,9 +358,76 @@
     "headers": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "#/definitions/primitivesItems"
+        "$ref": "#/definitions/header"
       }
     },
+    "header": {
+       "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "string",
+            "number",
+            "integer",
+            "boolean",
+            "array"
+          ]
+        },
+        "format": {
+          "type": "string"
+        },
+        "items": {
+          "$ref": "#/definitions/primitivesItems"
+        },
+        "collectionFormat": {
+          "$ref": "#/definitions/collectionFormat"
+        },
+        "default": {
+          "$ref": "#/definitions/default"
+        },
+        "maximum": {
+          "$ref": "#/definitions/maximum"
+        },
+        "exclusiveMaximum": {
+          "$ref": "#/definitions/exclusiveMaximum"
+        },
+        "minimum": {
+          "$ref": "#/definitions/minimum"
+        },
+        "exclusiveMinimum": {
+          "$ref": "#/definitions/exclusiveMinimum"
+        },
+        "maxLength": {
+          "$ref": "#/definitions/maxLength"
+        },
+        "minLength": {
+          "$ref": "#/definitions/minLength"
+        },
+        "pattern": {
+          "$ref": "#/definitions/pattern"
+        },
+        "maxItems": {
+          "$ref": "#/definitions/maxItems"
+        },
+        "minItems": {
+          "$ref": "#/definitions/minItems"
+        },
+        "uniqueItems": {
+          "$ref": "#/definitions/uniqueItems"
+        },
+        "enum": {
+          "$ref": "#/definitions/enum"
+        },
+        "multipleOf": {
+          "$ref": "#/definitions/multipleOf"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+      },
     "vendorExtension": {
       "description": "Any property starting with x- is valid.",
       "additionalProperties": true,
@@ -719,6 +786,7 @@
     },
     "primitivesItems": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "type": {
           "type": "string",

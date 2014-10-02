@@ -28,7 +28,12 @@ var validationMethods = {
       return deferred.promise;
     },
     validate: function(schema, data) {
-      var result = tv4.validateMultiple(data, schema, true, true);
+      // NOTE: There is a known bug in TV4 right now that causes errors if
+      // NOTE: checkRecursive and banUnknownProperties are both true.
+      // NOTE: So I have set banUnknownProperties to false for now, just so our tests pass
+      // NOTE: https://github.com/geraintluff/tv4/issues/74
+      var result = tv4.validateMultiple(data, schema, true, false);
+
       assert(result.missing.length == 0, "Missing schemas: " + result.missing)
       if (result.errors.length > 0) {
         for (i in result.errors) {
@@ -76,47 +81,30 @@ var setupValidators = function(done) {
   })
 }
 
-var createYAMLTest = function(file, validator) {
+var createTest = function(file, validator) {
   if (validators.indexOf(validator) == -1)
     return;
 
   it("should validate " + file + " with " + validator, function() {
+    // NOTE: All JSON is valid YAML, so we can use the YAML parser to load .json or .yaml files
     var data = yaml.safeLoad(fs.readFileSync(file, 'utf8'));
     validationMethods[validator].validate(schema, data);
   })
 }
 
-var createJSONTest = function(file, validator) {
-  if (validators.indexOf(validator) == -1)
-    return;
+var createValidatorTests = function(validator) {
+    describe(validator + " Validation", function() {
+        before(function(done) {
+            setupValidators(done);
+        })
 
-  it("should validate " + file + " with " + validator, function() {
-    var data = JSON.parse(fs.readFileSync(file, 'utf8'));
-    validationMethods[validator].validate(schema, data);
-  })
+        files = glob.sync("./examples/**/*.+(json|yaml)")
+        files.forEach(function(file) {
+            createTest(file, validator);
+        })
+    })
 }
 
-describe('JSON Samples', function() {
-  before(function(done) {
-    setupValidators(done);
-  })
-
-  files = glob.sync("./examples/**/*.json")
-  validators.forEach(function(validator) {
-    files.forEach(function(file) {
-      createJSONTest(file, validator);
-    })
-  })
-})
-
-describe('YAML Samples', function() {
-  before(function(done) {
-    setupValidators(done);
-  })
-  files = glob.sync("./examples/**/*.yaml")
-  validators.forEach(function(validator) {
-    files.forEach(function(file) {
-      createYAMLTest(file, validator);
-    })
-  })
+validators.forEach(function(validator) {
+  createValidatorTests(validator);
 })

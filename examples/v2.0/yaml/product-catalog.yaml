@@ -1,0 +1,623 @@
+swagger: 2.0
+info:
+  version: "1.0.0"
+  title: Product Catalog
+  description: |
+    A simple product catalog, with some additional complexity added to demonstrate some advanced usages of Swagger.
+
+    + All paths support CORS pre-flight requests and return the appropriate headers
+
+    + Some operations are tagged as being "admin-only" or "editor-only", so if a user without the appropriate permissions attempts those operations, a 401 error is returned
+
+    + Global "consumes" and "produces" are defined, but some operations override these
+
+    + All POST/PUT/PATCH/DELETE operations require an "api-key" header; otherwise a 402 error is returned
+
+    + Several objects are reused via JSON Schema references ($ref)
+
+    + Several objects are reused via YAML refernces (&ref and *ref) in places where the Swagger schema doesn't allow $ref
+
+host: productcatalog.com:3000
+basePath: /api/v1
+schemes:
+  - http
+consumes:
+  - application/json
+  - application/xml
+produces:
+  - product/catalog       # proprietary MIME type (not real)
+  - application/json
+  - application/xml
+  - text/plain
+
+# ========================================================
+# Type Definitions
+# ========================================================
+definitions:
+  user:
+    description: a registered user
+    required: [username, name]
+    properties:
+      username:
+        type: string
+        description: username must be unique
+      name:
+        type: object
+        description: the user's *actual* name
+        required: [firstName]
+        properties:
+          firstName:
+            type: string
+          lastName:
+            type: string
+      email:
+        type: string
+      telephone:
+        type: integer
+        minimum: 1000000000
+      lastLoginDate:
+        type: string
+        format: date-time
+        description: when the user last logged in (set by the server)
+        readOnly: true
+      roles:
+        type: array
+        items:
+          type: string
+          description: a user role, such as "admin", "readonly", etc.
+        minItems: 1
+        uniqueItems: true
+        description: determines what the user is allowed to do in the API
+    example:
+      username: jdoe
+      name:
+        firstName: John
+        lastName: Doe
+      email: john.doe@abc.com
+      telephone: 5551234567
+      lastLoginDate: 2015-05-11T14-00-32Z
+
+  product:
+    description: a product in the catalog
+    required: [id, name, price]
+    properties:
+      id:
+        type: integer
+        description: the unique product ID
+      name:
+        type: string
+      price:
+        type: number
+        format: double
+        minimum: 0
+        exclusiveMinimum: true
+      size:
+        type: string
+        enum: [small, medium, large, x-large]
+      color:
+        type: string
+      description:
+        type: string
+      reviews:
+        type: array
+        items:
+          type: object
+          required: [datePosted, user, rating]
+          properties:
+            datePosted:
+              type: string
+              format: date-time
+            user:
+              $ref: "#/definitions/user"
+            rating:
+              type: number
+              format: float
+              minimum: 0
+              maximum: 5
+            comment:
+              type: string
+    example:
+      id: 123
+      name: Widget
+      price: 12.99
+      size: large
+      color: blue
+      description: Lorem ipsum dolor sit amet...
+      reviews:
+        - datePosted: 2014-05-15T13:24:45Z
+          user:
+            username: jdoe
+            name:
+              firstName: John
+              lastName: Doe
+            email: john.doe@abc.com
+          rating: 3.5
+          comment: Lorem ipsum dolor sit amet...
+        - datePosted: 2014-07-02T08:17:05Z
+          user:
+            username: bsmit
+            name:
+              firstName: Bob
+              lastName: Smith
+            email: bob.smith@abc.com
+          rating: 5
+
+# ========================================================
+# Common Parameter Definitions
+# ========================================================
+parameters:
+  # All POST/PUT/PATCH/DELETE operations require a valid "api-key" header
+  # otherwise, an HTTP 402 (Payment Required) error is returned.
+  api-key:
+    name: api-key
+    in: header
+    type: integer
+    required: true
+    minimum: 10000
+    maximum: 50000
+    multipleOf: 250
+    exclusiveMinimum: true
+    exclusiveMaximum: true
+    description: the client's API access key
+
+# ========================================================
+# Common Response Definitions
+# ========================================================
+responses:
+  # All error messages will be plain text
+  x-error-headers: &error-headers
+    Content-Type:
+      type: string
+      default: text/plain
+  x-error-schema: &error-schema
+    type: string
+    description: The error message
+
+  400: &400
+    headers: *error-headers
+    schema: *error-schema
+    description: the request was invalid, usually due to an invalid JSON body
+    examples:
+      text/plain: Bad Request
+
+  401: &401
+    headers: *error-headers
+    schema: *error-schema
+    description: invalid login credentials, or permission denied
+    examples:
+      text/plain: Unauthorized
+
+  402: &402
+    headers: *error-headers
+    schema: *error-schema
+    description: the "api-key" header is missing or invalid. Or your account has been deactivated.
+    examples:
+      text/plain: Payment Required
+
+  404: &404
+    headers: *error-headers
+    schema: *error-schema
+    description: invalid URL, or the item at that URL no longer exists
+    examples:
+      text/plain: Not Found
+
+  409: &409
+    headers: *error-headers
+    schema: *error-schema
+    description: cannot create a new resource at the same URL as an already-existing resource
+    examples:
+      text/plain: Conflict
+
+  500: &500
+    headers: *error-headers
+    schema: *error-schema
+    description: the request failed due to a server-side error
+    examples:
+      text/plain: Internal Server Error
+
+# ========================================================
+# REST Paths
+# ========================================================
+paths:
+  # All paths support the OPTIONS verb
+  x-options: &options
+    summary: CORS pre-flight request
+    parameters:
+      - name: Origin
+        in: header
+        type: string
+        required: true
+      - name: Access-Control-Request-Method
+        in: header
+        type: string
+      - name: Access-Control-Request-Headers
+        in: header
+        type: array
+        items:
+          type: string
+    consumes: []
+    produces: [text/plain]   # OPTIONS response is always plain text
+    responses:
+      200:
+        description: CORS request is allowed
+        schema:
+          type: string
+        headers:
+          Content-Type:
+            type: string
+            default: text/plain
+          Access-Control-Allow-Origin:
+            type: string
+            description: will echo back the "Origin" request header
+          Vary:
+            type: string
+            description: will echo back the "Origin" request header
+          Access-Control-Allow-Methods:
+            type: array
+            items:
+              type: string
+            collectionFormat: csv
+            description: a list of the HTTP verbs that are allowed
+          Access-Control-Allow-Headers:
+            type: array
+            items:
+              type: string
+            collectionFormat: csv
+            description: will echo back the "Access-Control-Request-Headers" request header
+      403:
+        headers: *error-headers
+        schema: *error-schema
+        description: CORS request is not allowed (such as if the "Access-Conrol-Request-Method" is not allowed)
+        examples:
+          text/plain: Forbidden
+
+
+  /users:
+    options: *options
+
+    # ========================================================
+    # GET /users
+    # ========================================================
+    get:
+      summary: returns all users
+      tags:
+        - admin-only # Only admins can view the full list of users
+      consumes: []   # Don't allow any body content
+      responses:
+        # Success!
+        200:
+          description: returns a list of users
+          headers:
+            Content-Type:
+              type: string
+              default: application/json
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/user"
+
+        # Not an admin user
+        401: *401
+
+        # Server-side error
+        500: *500
+
+
+  /users/{username}:
+    options: *options
+
+    # ========================================================
+    # GET /users/{username}
+    # ========================================================
+    get:
+      summary: returns a single user
+      responses:
+        # Success!
+        200:
+          description: returns the user
+          headers:
+            Content-Type:
+              type: string
+              default: application/json
+          schema:
+            $ref: "#/definitions/user"
+
+        # {username} not found
+        404: *500
+
+        # Server-Side error
+        500: *500
+
+
+  /products:
+    options: *options
+
+    # ========================================================
+    # GET /products
+    # ========================================================
+    get:
+      summary: returns all products in the catalog
+      description: >
+        by default, complete product objects are returned, but this can be a lot of data.
+        If the "*?summary=true*" query is set, then only the required properties are returned.
+      parameters:
+        - name: summary
+          in: query
+          type: boolean
+          required: false
+          description: determines whether to return full objects (the default) or summary objects
+      responses:
+        # Success!
+        200:
+          description: returns a list of products
+          headers:
+            Content-Type:
+              type: string
+              default: application/json
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/product"
+
+        # Server-side error
+        500: *500
+
+
+    # ========================================================
+    # POST /products
+    # ========================================================
+    post:
+      summary: creates a new product
+      description: >
+        the new product is created at a URL beneath the given URL.
+        The response will include a "Location" header with the new URL,
+        so you can use that to GET the product later.
+      tags:
+        - admin-only # Only admins can create a new product
+      parameters:
+        - $ref: "#/parameters/api-key"
+        - name: product
+          in: body
+          required: true
+          description: the new product
+          schema:
+            $ref: "#/definitions/product"
+      responses:
+        # Success!
+        201:
+          description: the product was successfully created
+          headers:
+            Content-Type:
+              type: string
+              default: application/json
+            Location:
+              type: string
+              description: the URL of the new product (i.e. "/products/{productId}")
+          schema:
+            $ref: "#/definitions/product"
+
+        # Badly-formed JSON request
+        400: *400
+
+        # Not an admin user
+        401: *401
+
+        # Missing/invalid api-key
+        402: *402
+
+        # Server-side error
+        500: *500
+
+
+  /products/{productId}:
+    parameters:
+      - name: productId
+        in: path
+        type: integer
+        format: int32   # No product IDs > 2147483647!!!
+        required: true
+        description: the ID of the product to get/update
+
+    options: *options
+
+    # ========================================================
+    # GET /product/{productId}
+    # ========================================================
+    get:
+      summary: returns a single product
+      responses:
+        # Success!
+        200:
+          description: returns the product
+          headers:
+            Content-Type:
+              type: string
+              default: application/json
+          schema:
+            $ref: "#/definitions/product"
+
+        # {productId} not found
+        404: *404
+
+        # Server-side error
+        500: *500
+
+
+    # ========================================================
+    # POST /product/{productId}
+    # ========================================================
+    post:
+      summary: creates a new product
+      description: >
+        the new product is created at the given URL.
+        If an existing product is already at the URL, then an
+        HTTP 409 (Conflict) error is returned
+      tags:
+        - admin-only # Only admins can create a new product
+      parameters:
+        - $ref: "#/parameters/api-key"
+        - name: product
+          in: body
+          required: true
+          description: the new product
+          schema:
+            $ref: "#/definitions/product"
+      responses:
+        # Success!
+        201:
+          description: the product was successfully created
+          headers:
+            Content-Type:
+              type: string
+              default: application/json
+            Location:
+              type: string
+              description: the URL of the new product (i.e. "/products/{productId}")
+          schema:
+            $ref: "#/definitions/product"
+
+        # Badly-formed JSON request
+        400: *400
+
+        # Not an admin user
+        401: *401
+
+        # Missing/invalid api-key
+        402: *402
+
+        # Conflicts with an existing product
+        409: *409
+
+        # Server-side error
+        500: *500
+
+
+    # ========================================================
+    # PATCH /product/{productId}
+    # ========================================================
+    patch:
+      summary: updates an existing product
+      description: >
+        an existing product must already be at the given URL.
+        the request body only needs to contain the fields that you want to
+        update.
+      tags:
+        - editor-only # Only editors can edit product info
+      parameters:
+        - $ref: "#/parameters/api-key"
+        - name: product
+          in: body
+          required: true
+          description: >
+            the product object to merge with the existing product.
+            All required properties must be set. All other properties can be included or ommitted.
+            Any included properties will overwrite the corresponding property on the existing product.
+            If an included property has a null value, the corresponding existing property will be nulled.
+          schema:
+            $ref: "#/definitions/product"
+      responses:
+        # Success!
+        200:
+          description: returns the full, updated product
+          headers:
+            Content-Type:
+              type: string
+              default: application/json
+          schema:
+            $ref: "#/definitions/product"
+
+        # Badly-formed JSON request
+        400: *400
+
+        # Not an editor
+        401: *401
+
+        # Missing/invalid api-key
+        402: *402
+
+        # {productId} not found
+        404: *404
+
+        # Server-side error
+        500: *500
+
+
+    # ========================================================
+    # PUT /product/{productId}
+    # ========================================================
+    put:
+      summary: replaces a product with a new product
+      description: >
+        if there is no existing product at the given URL, then the new product will be created.
+        if an existing product is already at that URL, it is completely replaced with the new product.
+      tags:
+        - admin-only # Only admins can replace a product
+      parameters:
+        - $ref: "#/parameters/api-key"
+        - name: product
+          in: body
+          required: true
+          description: the new product
+          schema:
+            $ref: "#/definitions/product"
+      consumes:
+        # This is just to demonstrate an operation overriding the global "consumes" setting
+        - product/catalog       # proprietary MIME type (not real)
+        - application/soap+xml  # SOAP
+      responses:
+        # Success!
+        201:
+          description: returns the new product
+          headers:
+            Content-Type:
+              type: string
+              default: application/json
+          schema:
+            $ref: "#/definitions/product"
+
+        # Badly-formed JSON request
+        400: *400
+
+        # Not an editor
+        401: *401
+
+        # Missing/invalid api-key
+        402: *402
+
+        # Server-side error
+        500: *500
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+...

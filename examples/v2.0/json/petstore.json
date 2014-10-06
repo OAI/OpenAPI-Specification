@@ -31,11 +31,11 @@
                 "$ref": "#/definitions/Pet"
               }
             },
-            "headers": [{
+            "headers": {
               "x-expires": {
                 "type": "string"
               }
-            }]
+            }
           },
           "default": {
             "description": "unexpected error",

@@ -79,7 +79,8 @@
       "additionalProperties": { "$ref": "#/definitions/parameter" }
     },
     "responses": { "$ref": "#/definitions/responses" },
-    "security": { "$ref": "#/definitions/security" },
+    "security": { "$ref": "#/definitions/securityRequirement" },
+    "securityDefinitions": { "$ref": "#/definitions/securityDefinitions" },
     "tags": {
       "type": "array",
       "items": {
@@ -497,8 +498,8 @@
         }
       }
     },
-    "security": {
-      "description": "defines security definitions"
+    "securityDefinitions": {
+      "description": "security definitions for the API"
     },
     "securityRequirement": {
       "description": "defines a security requirement",

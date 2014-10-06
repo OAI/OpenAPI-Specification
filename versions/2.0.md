@@ -77,7 +77,7 @@ Primitive data types in the Swagger Specification are based on the types support
 
 An additional primitive data type `"file"` is used by the [Parameter Object](#parameterObject) and the [Response Object](#responseObject) to set the parameter type or the response as being a file.
 
-<a name="dataTypeFormat"/>Primitives have an optional modifier property `format`. Swagger uses several known formats to more finely define the data type being used. However, the `format` property is an open `string`-valued property, and can have any value to support documentation needs. Formats such as `"email"`, `"uuid"`, etc., can be even though they are not defined by this specification. The formats defined by the Swagger Specification are:
+<a name="dataTypeFormat"/>Primitives have an optional modifier property `format`. Swagger uses several known formats to more finely define the data type being used. However, the `format` property is an open `string`-valued property, and can have any value to support documentation needs. Formats such as `"email"`, `"uuid"`, etc., can be used even though they are not defined by this specification. The formats defined by the Swagger Specification are:
 
 
 Common Name | [`type`](#dataTypeType) | [`format`](#dataTypeFormat) | Comments

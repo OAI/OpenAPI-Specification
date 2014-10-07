@@ -158,6 +158,7 @@
     },
     "definitions": {
       "type": "object",
+      "additionalProperties": false,
       "description": "One or more JSON objects describing the schemas being consumed and produced by the API.",
       "additionalProperties": {
         "$ref": "#/definitions/schema"
@@ -165,6 +166,7 @@
     },
     "parameterDefinitions": {
       "type": "object",
+      "additionalProperties": false,
       "description": "One or more JSON representations for parameters",
       "additionalProperties": {
         "$ref": "#/definitions/parameter"
@@ -172,6 +174,7 @@
     },
     "responseDefinitions": {
       "type": "object",
+      "additionalProperties": false,
       "description": "One or more JSON representations for parameters",
       "additionalProperties": {
         "$ref": "#/definitions/response"
@@ -194,7 +197,7 @@
         }
       }
     },
-    "example": {
+    "examples": {
       "type": "object",
       "patternProperties": {
         "^[a-z0-9-]+/[a-z0-9\\-+]+$": {}
@@ -324,13 +327,7 @@
           "$ref": "#/definitions/response"
         },
         {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "$ref": {
-              "type": "string"
-            }
-          }
+          "$ref": "#/definitions/jsonReference"
         }
       ]
     },
@@ -350,7 +347,7 @@
           "$ref": "#/definitions/headers"
         },
         "examples": {
-          "$ref": "#/definitions/example"
+          "$ref": "#/definitions/examples"
         }
       },
       "additionalProperties": false
@@ -362,7 +359,7 @@
       }
     },
     "header": {
-       "type": "object",
+      "type": "object",
       "additionalProperties": false,
       "properties": {
         "type": {
@@ -427,7 +424,7 @@
           "type": "string"
         }
       }
-      },
+    },
     "vendorExtension": {
       "description": "Any property starting with x- is valid.",
       "additionalProperties": true,
@@ -719,27 +716,6 @@
         "pattern": {
           "$ref": "http://json-schema.org/draft-04/schema#/properties/pattern"
         },
-        "discriminator": {
-          "type": "string"
-        },
-        "xml": {
-          "$ref": "#/definitions/xml"
-        },
-        "items": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/schema"
-            },
-            {
-              "type": "array",
-              "minItems": 1,
-              "items": {
-                "$ref": "#/definitions/schema"
-              }
-            }
-          ],
-          "default": {}
-        },
         "maxItems": {
           "$ref": "http://json-schema.org/draft-04/schema#/definitions/positiveInteger"
         },
@@ -758,8 +734,33 @@
         "required": {
           "$ref": "http://json-schema.org/draft-04/schema#/definitions/stringArray"
         },
-        "externalDocs": {
-          "$ref": "#/definitions/externalDocs"
+        "enum": {
+          "$ref": "http://json-schema.org/draft-04/schema#/properties/enum"
+        },
+        "type": {
+          "$ref": "http://json-schema.org/draft-04/schema#/properties/type"
+        },
+        "items": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/schema"
+            },
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/definitions/schema"
+              }
+            }
+          ],
+          "default": {}
+        },
+        "allOf": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/schema"
+          }
         },
         "properties": {
           "type": "object",
@@ -768,20 +769,20 @@
           },
           "default": {}
         },
-        "enum": {
-          "$ref": "http://json-schema.org/draft-04/schema#/properties/enum"
+        "discriminator": {
+          "type": "string"
         },
-        "type": {
-          "$ref": "http://json-schema.org/draft-04/schema#/properties/type"
+        "readOnly": {
+          "type": "boolean",
+          "default": false
         },
-        "example": {},
-        "allOf": {
-          "type": "array",
-          "minItems": 1,
-          "items": {
-            "$ref": "#/definitions/schema"
-          }
-        }
+        "xml": {
+          "$ref": "#/definitions/xml"
+        },
+        "externalDocs": {
+          "$ref": "#/definitions/externalDocs"
+        },
+        "example": {}
       }
     },
     "primitivesItems": {
@@ -867,17 +868,29 @@
           "type": "string"
         },
         "attribute": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "wrapped": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         }
       },
       "additionalProperties": false
     },
     "tag": {
       "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
       "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
         "externalDocs": {
           "$ref": "#/definitions/externalDocs"
         }
@@ -885,9 +898,6 @@
       "patternProperties": {
         "^x-": {
           "$ref": "#/definitions/vendorExtension"
-        },
-        "^/.*[^/]$": {
-          "type": "string"
         }
       }
     },
@@ -909,13 +919,7 @@
             "$ref": "#/definitions/parameter"
           },
           {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "$ref": {
-                "type": "string"
-              }
-            }
+            "$ref": "#/definitions/jsonReference"
           }
         ]
       },
@@ -990,6 +994,15 @@
     },
     "enum": {
       "$ref": "http://json-schema.org/draft-04/schema#/properties/enum"
+    },
+    "jsonReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "$ref": {
+          "type": "string"
+        }
+      }
     }
   }
 }

@@ -33,7 +33,7 @@
   ],
   "tags": [
     {
-      "foo": "bar"
+      "name": "pets"
     }
   ],
   "paths": {

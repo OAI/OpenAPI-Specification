@@ -852,7 +852,7 @@
     "security": {
       "type": "array",
       "items": {
-        "$ref": "securityRequirement"
+        "$ref": "#/definitions/securityRequirement"
       },
       "uniqueItems": true
     },

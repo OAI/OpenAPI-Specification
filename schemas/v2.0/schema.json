@@ -265,7 +265,7 @@
           "default": false
         },
         "security": {
-          "$ref": "#/definitions/securityRequirement"
+          "$ref": "#/definitions/security"
         }
       }
     },
@@ -850,11 +850,21 @@
       }
     },
     "security": {
-      "description": "defines security definitions"
+      "type": "array",
+      "items": {
+        "$ref": "securityRequirement"
+      },
+      "uniqueItems": true
     },
     "securityRequirement": {
-      "description": "defines a security requirement",
-      "type": "array"
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      }
     },
     "xml": {
       "properties": {

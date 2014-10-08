@@ -61,6 +61,9 @@
     "security": {
       "$ref": "#/definitions/security"
     },
+    "securityDefinitions": {
+      "$ref": "#/definitions/securityDefinitions"
+    },
     "tags": {
       "type": "array",
       "items": {
@@ -158,27 +161,24 @@
     },
     "definitions": {
       "type": "object",
-      "additionalProperties": false,
-      "description": "One or more JSON objects describing the schemas being consumed and produced by the API.",
       "additionalProperties": {
         "$ref": "#/definitions/schema"
-      }
+      },
+      "description": "One or more JSON objects describing the schemas being consumed and produced by the API."
     },
     "parameterDefinitions": {
       "type": "object",
-      "additionalProperties": false,
-      "description": "One or more JSON representations for parameters",
       "additionalProperties": {
         "$ref": "#/definitions/parameter"
-      }
+      },
+      "description": "One or more JSON representations for parameters"
     },
     "responseDefinitions": {
       "type": "object",
-      "additionalProperties": false,
-      "description": "One or more JSON representations for parameters",
       "additionalProperties": {
         "$ref": "#/definitions/response"
-      }
+      },
+      "description": "One or more JSON representations for parameters"
     },
     "externalDocs": {
       "type": "object",
@@ -899,6 +899,222 @@
         "^x-": {
           "$ref": "#/definitions/vendorExtension"
         }
+      }
+    },
+    "securityDefinitions": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "$ref": "#/definitions/basicAuthenticationSecurity"
+          },
+          {
+            "$ref": "#/definitions/apiKeySecurity"
+          },
+          {
+            "$ref": "#/definitions/oauth2ImplicitSecurity"
+          },
+          {
+            "$ref": "#/definitions/oauth2PasswordSecurity"
+          },
+          {
+            "$ref": "#/definitions/oauth2ApplicationSecurity"
+          },
+          {
+            "$ref": "#/definitions/oauth2AccessCodeSecurity"
+          }
+        ]
+      }
+    },
+    "basicAuthenticationSecurity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "basic"
+          ]
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "apiKeySecurity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "in"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "apiKey"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "in": {
+          "type": "string",
+          "enum": [
+            "header",
+            "query"
+          ]
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "oauth2ImplicitSecurity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "flow",
+        "authorizationUrl"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "oauth2"
+          ]
+        },
+        "flow": {
+          "type": "string",
+          "enum": [
+            "implicit"
+          ]
+        },
+        "scopes": {
+          "$ref": "#/definitions/oauth2Scopes"
+        },
+        "authorizationUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "oauth2PasswordSecurity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "flow",
+        "tokenUrl"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "oauth2"
+          ]
+        },
+        "flow": {
+          "type": "string",
+          "enum": [
+            "password"
+          ]
+        },
+        "scopes": {
+          "$ref": "#/definitions/oauth2Scopes"
+        },
+        "tokenUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "oauth2ApplicationSecurity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "flow",
+        "tokenUrl"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "oauth2"
+          ]
+        },
+        "flow": {
+          "type": "string",
+          "enum": [
+            "application"
+          ]
+        },
+        "scopes": {
+          "$ref": "#/definitions/oauth2Scopes"
+        },
+        "tokenUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "oauth2AccessCodeSecurity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "flow",
+        "authorizationUrl",
+        "tokenUrl"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "oauth2"
+          ]
+        },
+        "flow": {
+          "type": "string",
+          "enum": [
+            "accessCode"
+          ]
+        },
+        "scopes": {
+          "$ref": "#/definitions/oauth2Scopes"
+        },
+        "authorizationUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "tokenUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "oauth2Scopes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
       }
     },
     "mediaTypeList": {

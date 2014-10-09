@@ -466,7 +466,8 @@
         },
         "required": {
           "type": "boolean",
-          "description": "Determines whether or not this parameter is required or optional."
+          "description": "Determines whether or not this parameter is required or optional.",
+          "default": false
         },
         "schema": {
           "$ref": "#/definitions/schema"
@@ -492,7 +493,8 @@
           "properties": {
             "required": {
               "type": "boolean",
-              "description": "Determines whether or not this parameter is required or optional."
+              "description": "Determines whether or not this parameter is required or optional.",
+              "default": false
             },
             "in": {
               "type": "string",

@@ -325,6 +325,15 @@
         "^x-": {
           "$ref": "#/definitions/vendorExtension"
         }
+      },
+      "not": {
+        "type": "object",
+        "additionalProperties": false,
+        "patternProperties": {
+          "^x-": {
+            "$ref": "#/definitions/vendorExtension"
+          }
+        }
       }
     },
     "responseValue": {

@@ -106,43 +106,49 @@
           "description": "The terms of service for the API."
         },
         "contact": {
-          "type": "object",
-          "description": "Contact information for the owners of the API.",
-          "additionalProperties": false,
-          "properties": {
-            "name": {
-              "type": "string",
-              "description": "The identifying name of the contact person/organization."
-            },
-            "url": {
-              "type": "string",
-              "description": "The URL pointing to the contact information.",
-              "format": "uri"
-            },
-            "email": {
-              "type": "string",
-              "description": "The email address of the contact person/organization.",
-              "format": "email"
-            }
-          }
+          "$ref": "#/definitions/contact"
         },
         "license": {
-          "type": "object",
-          "required": [
-            "name"
-          ],
-          "additionalProperties": false,
-          "properties": {
-            "name": {
-              "type": "string",
-              "description": "The name of the license type. It's encouraged to use an OSI compatible license."
-            },
-            "url": {
-              "type": "string",
-              "description": "The URL pointing to the license.",
-              "format": "uri"
-            }
-          }
+          "$ref": "#/definitions/license"
+        }
+      }
+    },
+    "contact": {
+      "type": "object",
+      "description": "Contact information for the owners of the API.",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The identifying name of the contact person/organization."
+        },
+        "url": {
+          "type": "string",
+          "description": "The URL pointing to the contact information.",
+          "format": "uri"
+        },
+        "email": {
+          "type": "string",
+          "description": "The email address of the contact person/organization.",
+          "format": "email"
+        }
+      }
+    },
+    "license": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the license type. It's encouraged to use an OSI compatible license."
+        },
+        "url": {
+          "type": "string",
+          "description": "The URL pointing to the license.",
+          "format": "uri"
         }
       }
     },

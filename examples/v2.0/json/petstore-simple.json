@@ -12,7 +12,8 @@
       "name": "MIT"
     }
   },
-  "host": "petstore.swagger.wordnik.com/api",
+  "host": "petstore.swagger.wordnik.com",
+  "basePath": "/api",
   "schemes": [
     "http"
   ],

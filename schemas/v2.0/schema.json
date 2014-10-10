@@ -484,6 +484,275 @@
       },
       "additionalProperties": false
     },
+    "headerParameterSubSchema": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
+        }
+      },
+      "properties": {
+        "required": {
+          "type": "boolean",
+          "description": "Determines whether or not this parameter is required or optional.",
+          "default": false
+        },
+        "in": {
+          "type": "string",
+          "description": "Determines the location of the parameter.",
+          "enum": [
+            "header"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "description": "A brief description of the parameter. This could contain examples of use.  Github-flavored markdown is allowed."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the parameter."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "string",
+            "number",
+            "boolean",
+            "integer",
+            "array",
+            "file"
+          ]
+        },
+        "format": {
+          "type": "string"
+        },
+        "items": {
+          "$ref": "#/definitions/primitivesItems"
+        },
+        "collectionFormat": {
+          "$ref": "#/definitions/collectionFormat"
+        },
+        "default": {
+          "$ref": "#/definitions/default"
+        },
+        "maximum": {
+          "$ref": "#/definitions/maximum"
+        },
+        "exclusiveMaximum": {
+          "$ref": "#/definitions/exclusiveMaximum"
+        },
+        "minimum": {
+          "$ref": "#/definitions/minimum"
+        },
+        "exclusiveMinimum": {
+          "$ref": "#/definitions/exclusiveMinimum"
+        },
+        "maxLength": {
+          "$ref": "#/definitions/maxLength"
+        },
+        "minLength": {
+          "$ref": "#/definitions/minLength"
+        },
+        "pattern": {
+          "$ref": "#/definitions/pattern"
+        },
+        "maxItems": {
+          "$ref": "#/definitions/maxItems"
+        },
+        "minItems": {
+          "$ref": "#/definitions/minItems"
+        },
+        "uniqueItems": {
+          "$ref": "#/definitions/uniqueItems"
+        },
+        "enum": {
+          "$ref": "#/definitions/enum"
+        },
+        "multipleOf": {
+          "$ref": "#/definitions/multipleOf"
+        }
+      }
+    },
+    "formDataQueryParameterSubSchema": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
+        }
+      },
+      "properties": {
+        "required": {
+          "type": "boolean",
+          "description": "Determines whether or not this parameter is required or optional.",
+          "default": false
+        },
+        "in": {
+          "type": "string",
+          "description": "Determines the location of the parameter.",
+          "enum": [
+            "formData",
+            "query"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "description": "A brief description of the parameter. This could contain examples of use.  Github-flavored markdown is allowed."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the parameter."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "string",
+            "number",
+            "boolean",
+            "integer",
+            "array",
+            "file"
+          ]
+        },
+        "format": {
+          "type": "string"
+        },
+        "items": {
+          "$ref": "#/definitions/primitivesItems"
+        },
+        "collectionFormat": {
+          "$ref": "#/definitions/collectionFormatWithMulti"
+        },
+        "default": {
+          "$ref": "#/definitions/default"
+        },
+        "maximum": {
+          "$ref": "#/definitions/maximum"
+        },
+        "exclusiveMaximum": {
+          "$ref": "#/definitions/exclusiveMaximum"
+        },
+        "minimum": {
+          "$ref": "#/definitions/minimum"
+        },
+        "exclusiveMinimum": {
+          "$ref": "#/definitions/exclusiveMinimum"
+        },
+        "maxLength": {
+          "$ref": "#/definitions/maxLength"
+        },
+        "minLength": {
+          "$ref": "#/definitions/minLength"
+        },
+        "pattern": {
+          "$ref": "#/definitions/pattern"
+        },
+        "maxItems": {
+          "$ref": "#/definitions/maxItems"
+        },
+        "minItems": {
+          "$ref": "#/definitions/minItems"
+        },
+        "uniqueItems": {
+          "$ref": "#/definitions/uniqueItems"
+        },
+        "enum": {
+          "$ref": "#/definitions/enum"
+        },
+        "multipleOf": {
+          "$ref": "#/definitions/multipleOf"
+        }
+      }
+    },
+    "pathParameterSubSchema": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
+        }
+      },
+      "properties": {
+        "required": {
+          "type": "boolean",
+          "enum": [
+            true
+          ],
+          "description": "Determines whether or not this parameter is required or optional."
+        },
+        "in": {
+          "type": "string",
+          "description": "Determines the location of the parameter.",
+          "enum": [
+            "path"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "description": "A brief description of the parameter. This could contain examples of use.  Github-flavored markdown is allowed."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the parameter."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "string",
+            "number",
+            "boolean",
+            "integer",
+            "array"
+          ]
+        },
+        "format": {
+          "type": "string"
+        },
+        "items": {
+          "$ref": "#/definitions/primitivesItems"
+        },
+        "collectionFormat": {
+          "$ref": "#/definitions/collectionFormat"
+        },
+        "default": {
+          "$ref": "#/definitions/default"
+        },
+        "maximum": {
+          "$ref": "#/definitions/maximum"
+        },
+        "exclusiveMaximum": {
+          "$ref": "#/definitions/exclusiveMaximum"
+        },
+        "minimum": {
+          "$ref": "#/definitions/minimum"
+        },
+        "exclusiveMinimum": {
+          "$ref": "#/definitions/exclusiveMinimum"
+        },
+        "maxLength": {
+          "$ref": "#/definitions/maxLength"
+        },
+        "minLength": {
+          "$ref": "#/definitions/minLength"
+        },
+        "pattern": {
+          "$ref": "#/definitions/pattern"
+        },
+        "maxItems": {
+          "$ref": "#/definitions/maxItems"
+        },
+        "minItems": {
+          "$ref": "#/definitions/minItems"
+        },
+        "uniqueItems": {
+          "$ref": "#/definitions/uniqueItems"
+        },
+        "enum": {
+          "$ref": "#/definitions/enum"
+        },
+        "multipleOf": {
+          "$ref": "#/definitions/multipleOf"
+        }
+      }
+    },
     "nonBodyParameter": {
       "type": "object",
       "required": [
@@ -493,185 +762,13 @@
       ],
       "oneOf": [
         {
-          "additionalProperties": false,
-          "patternProperties": {
-            "^x-": {
-              "$ref": "#/definitions/vendorExtension"
-            }
-          },
-          "properties": {
-            "required": {
-              "type": "boolean",
-              "description": "Determines whether or not this parameter is required or optional.",
-              "default": false
-            },
-            "in": {
-              "type": "string",
-              "description": "Determines the location of the parameter.",
-              "enum": [
-                "query",
-                "header",
-                "formData"
-              ]
-            },
-            "description": {
-              "type": "string",
-              "description": "A brief description of the parameter. This could contain examples of use.  Github-flavored markdown is allowed."
-            },
-            "name": {
-              "type": "string",
-              "description": "The name of the parameter."
-            },
-            "type": {
-              "type": "string",
-              "enum": [
-                "string",
-                "number",
-                "boolean",
-                "integer",
-                "array",
-                "file"
-              ]
-            },
-            "format": {
-              "type": "string"
-            },
-            "items": {
-              "$ref": "#/definitions/primitivesItems"
-            },
-            "collectionFormat": {
-              "$ref": "#/definitions/collectionFormat"
-            },
-            "default": {
-              "$ref": "#/definitions/default"
-            },
-            "maximum": {
-              "$ref": "#/definitions/maximum"
-            },
-            "exclusiveMaximum": {
-              "$ref": "#/definitions/exclusiveMaximum"
-            },
-            "minimum": {
-              "$ref": "#/definitions/minimum"
-            },
-            "exclusiveMinimum": {
-              "$ref": "#/definitions/exclusiveMinimum"
-            },
-            "maxLength": {
-              "$ref": "#/definitions/maxLength"
-            },
-            "minLength": {
-              "$ref": "#/definitions/minLength"
-            },
-            "pattern": {
-              "$ref": "#/definitions/pattern"
-            },
-            "maxItems": {
-              "$ref": "#/definitions/maxItems"
-            },
-            "minItems": {
-              "$ref": "#/definitions/minItems"
-            },
-            "uniqueItems": {
-              "$ref": "#/definitions/uniqueItems"
-            },
-            "enum": {
-              "$ref": "#/definitions/enum"
-            },
-            "multipleOf": {
-              "$ref": "#/definitions/multipleOf"
-            }
-          }
+          "$ref": "#/definitions/headerParameterSubSchema"
         },
         {
-          "additionalProperties": false,
-          "patternProperties": {
-            "^x-": {
-              "$ref": "#/definitions/vendorExtension"
-            }
-          },
-          "properties": {
-            "required": {
-              "type": "boolean",
-              "enum": [
-                true
-              ],
-              "description": "Determines whether or not this parameter is required or optional."
-            },
-            "in": {
-              "type": "string",
-              "description": "Determines the location of the parameter.",
-              "enum": [
-                "path"
-              ]
-            },
-            "description": {
-              "type": "string",
-              "description": "A brief description of the parameter. This could contain examples of use.  Github-flavored markdown is allowed."
-            },
-            "name": {
-              "type": "string",
-              "description": "The name of the parameter."
-            },
-            "type": {
-              "type": "string",
-              "enum": [
-                "string",
-                "number",
-                "boolean",
-                "integer",
-                "array"
-              ]
-            },
-            "format": {
-              "type": "string"
-            },
-            "items": {
-              "$ref": "#/definitions/primitivesItems"
-            },
-            "collectionFormat": {
-              "$ref": "#/definitions/collectionFormat"
-            },
-            "default": {
-              "$ref": "#/definitions/default"
-            },
-            "maximum": {
-              "$ref": "#/definitions/maximum"
-            },
-            "exclusiveMaximum": {
-              "$ref": "#/definitions/exclusiveMaximum"
-            },
-            "minimum": {
-              "$ref": "#/definitions/minimum"
-            },
-            "exclusiveMinimum": {
-              "$ref": "#/definitions/exclusiveMinimum"
-            },
-            "maxLength": {
-              "$ref": "#/definitions/maxLength"
-            },
-            "minLength": {
-              "$ref": "#/definitions/minLength"
-            },
-            "pattern": {
-              "$ref": "#/definitions/pattern"
-            },
-            "maxItems": {
-              "$ref": "#/definitions/maxItems"
-            },
-            "minItems": {
-              "$ref": "#/definitions/minItems"
-            },
-            "uniqueItems": {
-              "$ref": "#/definitions/uniqueItems"
-            },
-            "enum": {
-              "$ref": "#/definitions/enum"
-            },
-            "multipleOf": {
-              "$ref": "#/definitions/multipleOf"
-            }
-          }
+          "$ref": "#/definitions/formDataQueryParameterSubSchema"
+        },
+        {
+          "$ref": "#/definitions/pathParameterSubSchema"
         }
       ]
     },
@@ -1183,6 +1280,16 @@
       "uniqueItems": true
     },
     "collectionFormat": {
+      "type": "string",
+      "enum": [
+        "csv",
+        "ssv",
+        "tsv",
+        "pipes"
+      ],
+      "default": "csv"
+    },
+    "collectionFormatWithMulti": {
       "type": "string",
       "enum": [
         "csv",

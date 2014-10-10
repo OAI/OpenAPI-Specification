@@ -319,7 +319,7 @@
       "minProperties": 1,
       "additionalProperties": false,
       "patternProperties": {
-        "^([0-9]+)$|^(default)$": {
+        "^([0-9]{3})$|^(default)$": {
           "$ref": "#/definitions/responseValue"
         },
         "^x-": {

@@ -519,8 +519,7 @@
             "number",
             "boolean",
             "integer",
-            "array",
-            "file"
+            "array"
           ]
         },
         "format": {
@@ -573,7 +572,95 @@
         }
       }
     },
-    "formDataQueryParameterSubSchema": {
+    "queryParameterSubSchema": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
+        }
+      },
+      "properties": {
+        "required": {
+          "type": "boolean",
+          "description": "Determines whether or not this parameter is required or optional.",
+          "default": false
+        },
+        "in": {
+          "type": "string",
+          "description": "Determines the location of the parameter.",
+          "enum": [
+            "formData",
+            "query"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "description": "A brief description of the parameter. This could contain examples of use.  Github-flavored markdown is allowed."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the parameter."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "string",
+            "number",
+            "boolean",
+            "integer",
+            "array"          ]
+        },
+        "format": {
+          "type": "string"
+        },
+        "items": {
+          "$ref": "#/definitions/primitivesItems"
+        },
+        "collectionFormat": {
+          "$ref": "#/definitions/collectionFormatWithMulti"
+        },
+        "default": {
+          "$ref": "#/definitions/default"
+        },
+        "maximum": {
+          "$ref": "#/definitions/maximum"
+        },
+        "exclusiveMaximum": {
+          "$ref": "#/definitions/exclusiveMaximum"
+        },
+        "minimum": {
+          "$ref": "#/definitions/minimum"
+        },
+        "exclusiveMinimum": {
+          "$ref": "#/definitions/exclusiveMinimum"
+        },
+        "maxLength": {
+          "$ref": "#/definitions/maxLength"
+        },
+        "minLength": {
+          "$ref": "#/definitions/minLength"
+        },
+        "pattern": {
+          "$ref": "#/definitions/pattern"
+        },
+        "maxItems": {
+          "$ref": "#/definitions/maxItems"
+        },
+        "minItems": {
+          "$ref": "#/definitions/minItems"
+        },
+        "uniqueItems": {
+          "$ref": "#/definitions/uniqueItems"
+        },
+        "enum": {
+          "$ref": "#/definitions/enum"
+        },
+        "multipleOf": {
+          "$ref": "#/definitions/multipleOf"
+        }
+      }
+    },
+    "formDataParameterSubSchema": {
       "additionalProperties": false,
       "patternProperties": {
         "^x-": {
@@ -765,7 +852,10 @@
           "$ref": "#/definitions/headerParameterSubSchema"
         },
         {
-          "$ref": "#/definitions/formDataQueryParameterSubSchema"
+          "$ref": "#/definitions/formDataParameterSubSchema"
+        },
+        {
+          "$ref": "#/definitions/queryParameterSubSchema"
         },
         {
           "$ref": "#/definitions/pathParameterSubSchema"

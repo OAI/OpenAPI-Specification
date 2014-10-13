@@ -68,7 +68,8 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/tag"
-      }
+      },
+      "uniqueItems": true
     },
     "externalDocs": {
       "$ref": "#/definitions/externalDocs"

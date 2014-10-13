@@ -1,4 +1,4 @@
-swagger: 2
+swagger: "2.0"
 info:
   title: Simple API overview
   version: v2

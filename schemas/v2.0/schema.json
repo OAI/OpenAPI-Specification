@@ -589,7 +589,6 @@
           "type": "string",
           "description": "Determines the location of the parameter.",
           "enum": [
-            "formData",
             "query"
           ]
         },
@@ -608,7 +607,8 @@
             "number",
             "boolean",
             "integer",
-            "array"          ]
+            "array"
+          ]
         },
         "format": {
           "type": "string"
@@ -677,8 +677,7 @@
           "type": "string",
           "description": "Determines the location of the parameter.",
           "enum": [
-            "formData",
-            "query"
+            "formData"
           ]
         },
         "description": {

@@ -1157,6 +1157,11 @@
         "description": {
           "type": "string"
         }
+      },
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
+        }
       }
     },
     "apiKeySecurity": {
@@ -1186,6 +1191,11 @@
         },
         "description": {
           "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
         }
       }
     },
@@ -1220,6 +1230,11 @@
         "description": {
           "type": "string"
         }
+      },
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
+        }
       }
     },
     "oauth2PasswordSecurity": {
@@ -1253,6 +1268,11 @@
         "description": {
           "type": "string"
         }
+      },
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
+        }
       }
     },
     "oauth2ApplicationSecurity": {
@@ -1285,6 +1305,11 @@
         },
         "description": {
           "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
         }
       }
     },
@@ -1323,6 +1348,11 @@
         },
         "description": {
           "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
         }
       }
     },

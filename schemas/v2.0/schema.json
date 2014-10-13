@@ -1070,6 +1070,8 @@
       }
     },
     "xml": {
+      "type": "object",
+      "additionalProperties": false,
       "properties": {
         "name": {
           "type": "string"
@@ -1088,8 +1090,7 @@
           "type": "boolean",
           "default": false
         }
-      },
-      "additionalProperties": false
+      }
     },
     "tag": {
       "type": "object",

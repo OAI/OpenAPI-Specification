@@ -3,8 +3,8 @@
   "schema": {
     "type": "string"
   },
-  "headers": [
-    { "is-dog": {"type": "boolean"} },
-    { "is-cat": {"type": "boolean"} }
-  ]
+  "headers": {
+    "is-dog": {"type": "boolean"},
+    "is-cat": {"type": "boolean"}
+  }
 }

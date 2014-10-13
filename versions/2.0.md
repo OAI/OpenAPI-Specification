@@ -646,7 +646,7 @@ Allows the definition of a security scheme that can be used by the operations. S
 
 ##### Fixed Fields
 Field Name | Type | Validity | Description
----|:---:|---
+---|:---:|---|---
 <a name="securitySchemeType"/>type | `string` | Any | **Required.** The type of the security scheme. Valid values are `"basic"`, `"apiKey"` or `"oauth2"`.
 <a name="securitySchemeDescription"/>description | `string` | Any | A short description for security scheme.
 <a name="securitySchemeName"/>name | `string` | `apiKey` | **Required.** The name of the header or query parameter to be used.
@@ -658,6 +658,8 @@ Field Name | Type | Validity | Description
 
 ##### Patterned Fields
 
+Field Name | Type | Description 
+---|:---:|---
 <a name="securitySchemeExtensions"/>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### Object Example

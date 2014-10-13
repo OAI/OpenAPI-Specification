@@ -113,8 +113,9 @@ Field Name | Type | Description
 <a name="swaggerDefinitions"/>definitions | [Definitions Object](#definitionsObject) | An object to hold data types produced and consumed by operations.
 <a name="swaggerParameters"/>parameters | [Parameters Definitions Object](#parametersDefinitionsObject) | An object to hold parameters that can be used across operations. This property *does not* define global parameters for all operations.
 <a name="swaggerResponses"/>responses | [Responses Definitions Object](#responsesDefinitionsObject) | An object to hold responses that can be used across operations. This property *does not* define global responses for all operations.
-<a name="swaggerSecurity"/>security | ??? | **TODO: To be completed once the schema is available**
-<a name="swaggerTags"/>tags | [[Tag Object](#tagObject)] | A list of tags used by the specification with additional metadata. The order of the tags can be used to reflect on their order by the parsing tools. Not all tags that are used by the [Operation Object](#operationObject) must be declared. The tags that are not declared may be organized randomly or based on the tools' logic.
+<a name="swaggerSecurityDefinitions"/>securityDefinitions | [Security Definitions Object](#securityDefinitionsObject) | Security scheme definitinos that can be used across the specification.
+<a name="swaggerSecurity"/>security | [[Security Requirement Object](#securityRequirementObject)] | A declaration of which security schemes are applied for the API as a whole. The list of values describes alternative security schemes that can be used (that is, there is a logical OR between the security requirements). Individual operations can override this definition.
+<a name="swaggerTags"/>tags | [[Tag Object](#tagObject)] | A list of tags used by the specification with additional metadata. The order of the tags can be used to reflect on their order by the parsing tools. Not all tags that are used by the [Operation Object](#operationObject) must be declared. The tags that are not declared may be organized randomly or based on the tools' logic. Each tag name in the list MUST be unique.
 <a name="swaggerExternalDocs"/>externalDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation.
 
 ##### Object Example:
@@ -135,6 +136,12 @@ Field Name | Type | Description
 <a name="infoContact"/>contact | [Contact Object](#contactObject) | The contact information for the exposed API.
 <a name="infoLicense"/>license | [License Object](#licenseObject) | The license information for the exposed API.
 <a name="infoVersion"/>version | `string` | **Required** Provides the version of the application API (not to be confused by the specification version).
+
+##### Patterned Objects 
+
+Field Pattern | Type | Description
+---|:---:|---
+<a name="operationExtensions"/>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### Object Example:
 
@@ -186,7 +193,7 @@ License information for the exposed API.
 
 Field Name | Type | Description
 ---|:---:|---
-<a name="licenseName"/>name | `string` | ** Required.** The license name used for the API.
+<a name="licenseName"/>name | `string` | **Required.** The license name used for the API.
 <a name="licenseUrl"/>url | `string` | A URL to the license used for the API. MUST be in the format of a URL.
 
 ##### Object Example:
@@ -231,7 +238,7 @@ Field Name | Type | Description
 <a name="pathItemOptions"/>options | [Operation Object](#operationObject) | A definition of a OPTIONS operation on this path.
 <a name="pathItemHead"/>head | [Operation Object](#operationObject) | A definition of a HEAD operation on this path.
 <a name="pathItemPatch"/>patch | [Operation Object](#operationObject) | A definition of a PATCH operation on this path.
-<a name="pathItemParameters"/>parameters | [[Parameter Object](#parameterObject) <span>&#124;</span> [Reference Object](#referenceObject)] | A list of parameters that are applicable for all the operations described under this path. These parameters can be overridden at the operation level, but cannot be removed there. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a [name](#parameterName) and [location](#parameterIn). The list can use the [Reference Object](#referenceObject) to link to parameters that are defined at the [Swagger Object's parameters](#swaggerParameters).
+<a name="pathItemParameters"/>parameters | [[Parameter Object](#parameterObject) <span>&#124;</span> [Reference Object](#referenceObject)] | A list of parameters that are applicable for all the operations described under this path. These parameters can be overridden at the operation level, but cannot be removed there. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a [name](#parameterName) and [location](#parameterIn). The list can use the [Reference Object](#referenceObject) to link to parameters that are defined at the [Swagger Object's parameters](#swaggerParameters). There can be one "body" parameter at most.
 
 ##### Patterned Fields
 
@@ -258,11 +265,11 @@ Field Name | Type | Description
 <a name="operationId"/>operationId | `string` | A friendly name for the operation. The id MUST be unique among all operations described in the API. Tools and libraries MAY use the operation id to uniquely identify an operation.
 <a name="operationConsumes"/>consumes | [`string`] | A list of MIME types the operation can consume. This overrides the `[consumes](#swaggerConsumes)` definition at the Swagger Object. An empty value MAY be used to clear the global definition. Value MUST be as described under [Mime Types](#mimeTypes).
 <a name="operationProduces"/>produces | [`string`] | A list of MIME types the operation can produce. This overrides the `[produces](#swaggerProduces)` definition at the Swagger Object. An empty value MAY be used to clear the global definition. Value MUST be as described under [Mime Types](#mimeTypes).
-<a name="operationParameters"/>parameters | [[Parameter Object](#parameterObject) <span>&#124;</span> [Reference Object](#referenceObject)] | A list of parameters that are applicable for this operation. If a parameter is already defined at the [Path Item](#pathItemParameters), the new definition will override it, but can never remove it. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a [name](#parameterName) and [location](#parameterIn). The list can use the [Reference Object](#referenceObject) to link to parameters that are defined at the [Swagger Object's parameters](#swaggerParameters).
+<a name="operationParameters"/>parameters | [[Parameter Object](#parameterObject) <span>&#124;</span> [Reference Object](#referenceObject)] | A list of parameters that are applicable for this operation. If a parameter is already defined at the [Path Item](#pathItemParameters), the new definition will override it, but can never remove it. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a [name](#parameterName) and [location](#parameterIn). The list can use the [Reference Object](#referenceObject) to link to parameters that are defined at the [Swagger Object's parameters](#swaggerParameters). There can be one "body" parameter at most.
 <a name="operationResponses"/>responses | [Responses Object](#responsesObject) | **Required.** The list of possible responses as they are returned from executing this operation.
-<a name="operationSchemes"/>schemes | [`string`] | The transfer protocol for the operation. Values MUST be from the list: `"http"`, `"https"`, `"ws"`, `"wss"`. The value overrides the Swagger Object `[schemes](#swaggerSchemes)` definition. 
+<a name="operationSchemes"/>schemes | [`string`] | The transfer protocol for the operation. Values MUST be from the list: `"http"`, `"https"`, `"ws"`, `"wss"`. The value overrides the Swagger Object [`schemes`](#swaggerSchemes) definition. 
 <a name="operationDeprecated"/>deprecated | `boolean` | Declares this operation to be deprecated. Usage of the declared operation should be refrained. Default value is `false`.
-<a name="operationSecurity"/>security | ??? | ???
+<a name="operationSecurity"/>security | [[Security Requirement Object](#securityRequirementObject)] | A declaration of which security schemes are applied for this operation. The list of values describes alternative security schemes that can be used (that is, there is a logical OR between the security requirements). This definition overrides any declared top-level [`security`](#swaggerSecurity). To remove a top-level security declaration, an empty array can be used.
 
 ##### Patterned Objects 
 
@@ -297,10 +304,19 @@ Describes a single operation parameter.
 
 A unique parameter is defined by a combination of a [name](#parameterName) and [location](#parameterIn).
 
+There are five possible parameter types.
+* Path - Used together with [Path Templating](#pathTemplating), where the parameter value is actually part of the operation's URL. This does not include the host or base path of the API. For example, in `/items/{itemId}`, the path parameter is `itemId`.
+* Query - Parameters that are appended to the URL. For example, in `/items?id=###`, the query parameter is `id`.
+* Header - Custom headers that are expected as part of the request.
+* Body - The payload that's appended to the HTTP request. Since there can only be one payload, there can only be *one* body parameter. The name of the body parameter has no effect on the parameter itself and is used for documentation purposes only. Since Form parameters are also in the payload, body and form parameters cannot exist together for the same operation.
+* Form - Used to describe the payload of an HTTP request when either `application/x-www-form-urlencoded` or `multipart/form-data` are used as the content type of the request (in Swagger's definition, the [`consumes`](#operationConsumes) property of an operation). This is the only parameter type that can be used to send files, thus supporting the `file` type. Since form parameters are sent in the payload, they cannot be declared together with a body parameter for the same operation. Form parameters have a different format based on the content-type used (for further details, consult http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4):
+  * `application/x-www-form-urlencoded` - Similar to the format of Query parameters but as a payload. For example, `foo=1&bar=swagger` - both `foo` and `bar` are form parameters. This is normally used for simple parameters that are being transferred.
+  * `multipart/form-data` - each parameter takes a section in the payload with an internal header. For example, for the header `Content-Disposition: form-data; name="submit-name"` the name of the parameter is `submit-name`. This type of form parameters is more commonly used for file transfers.
+
 ##### Fixed Fields
 Field Name | Type | Description
 ---|:---:|---
-<a name="parameterName"/>name | `string` | **Required.** The name of the parameter. Parameter names are *case sensitive*. <ul><li>If [`in`](#parameterIn) is `"path"`, the `name` field MUST correspond to the associated path segment from the [path](#pathsPath) field in the [Paths Object](#pathsObject). See [Path Templating](#pathTemplating) for further information.<li>If [`in`](#parameterIn) is `"body"`, then the `name` MUST be `"body"`. <li>For all other cases, the `name` corresponds to the parameter name used based on the [`in`](#parameterIn) property.</ul>
+<a name="parameterName"/>name | `string` | **Required.** The name of the parameter. Parameter names are *case sensitive*. <ul><li>If [`in`](#parameterIn) is `"path"`, the `name` field MUST correspond to the associated path segment from the [path](#pathsPath) field in the [Paths Object](#pathsObject). See [Path Templating](#pathTemplating) for further information.<li>For all other cases, the `name` corresponds to the parameter name used based on the [`in`](#parameterIn) property.</ul>
 <a name="parameterIn"/>in | `string` | **Required.** The location of the parameter. Possible values are "query", "header", "path", "formData" or "body".
 <a name="parameterDescription"/>description | `string` | A brief description of the parameter. This could contain examples of use.  [GFM syntax](https://help.github.com/articles/github-flavored-markdown) can be used for rich text representation.
 <a name="parameterRequired"/>required | `boolean` | Determines whether this parameter is mandatory. If the parameter is [`in`](#parameterIn) "path", this property is **required** and its value MUST be `true`. Otherwise, the property MAY be included and its default value is `false`. 
@@ -315,7 +331,7 @@ If [`in`](#parameterIn) is any value other than `"body"`:
 
 Field Name | Type | Description
 ---|:---:|---
-<a name="parameterType"/>type | `string` | **Required.** The type of the parameter. Since the parameter is not located at the request body, it is limited to simple types (that is, not an object). The value MUST be one of `"string"`, `"number"`, `"integer"`, `"boolean"`, `"array"` or `"file"`. If `type` is `"file"`, the [`consumes`](#operationConsumes) MUST be `"multipart/form-data"` and the parameter MUST be [`in`](#parameterIn) `"formData"`. 
+<a name="parameterType"/>type | `string` | **Required.** The type of the parameter. Since the parameter is not located at the request body, it is limited to simple types (that is, not an object). The value MUST be one of `"string"`, `"number"`, `"integer"`, `"boolean"`, `"array"` or `"file"`. If `type` is `"file"`, the [`consumes`](#operationConsumes) MUST be either `"multipart/form-data"` or `" application/x-www-form-urlencoded"` and the parameter MUST be [`in`](#parameterIn) `"formData"`.
 <a name="parameterFormat"/>format | `string` | The extending format for the previously mentioned [`type`](#parameterType). See [Data Type Formats](#dataTypeFormat) for further details.
 <a name="parameterItems"/>items | [Items Object](#itemsObject) | **Required if [`type`](#parameterType) is "array".** Describes the type of items in the array.
 <a name="parameterCollectionFormat"/>collectionFormat | `string` | Determines the format of the array if type array is used. Possible values are: <ul><li>`csv` - comma separated values `foo,bar`. <li>`ssv` - space separated values `foo bar`. <li>`tsv` - tab separated values `foo\tbar`. <li>`pipes` - pipe separated values <code>foo&#124;bar</code>. <li>`multi` - corresponds to multiple parameter instances instead of multiple values for a single instance `foo=bar&foo=baz`. This is valid only for parameters [`in`](#parameterIn) "query" or "formData". </ul> Default value is `csv`.
@@ -418,7 +434,7 @@ List the headers that can be sent as part of a response.
 ##### Patterned Fields
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="headersName"/>{name} | [Serializable Type Object](#serializableTypeObject) | The name of the property corresponds to the name of the header. The value describes the type of the header.
+<a name="headersName"/>{name} | [Header Object](#headerObject) | The name of the property corresponds to the name of the header. The value describes the type of the header.
 
 ##### Object Example
 
@@ -438,27 +454,28 @@ Field Pattern | Type | Description
 
 **TODO: add example.**
 
-#### Serializable Type Object <a name="serializableTypeObject"/>
+#### Header Object <a name="headerObject"/>
 
 Field Name | Type | Description
 ---|:---:|---
-<a name="stType"/>type | `string` | **Required.** The type of the object. The value MUST be one of `"string"`, `"number"`, `"integer"`, `"boolean"`, or `"array"`.
-<a name="stFormat"/>format | `string` | The extending format for the previously mentioned [`type`](#stType). See [Data Type Formats](#dataTypeFormat) for further details.
-<a name="stItems"/>items | [Items Object](#itemsObject) | **Required if [`type`](#stType) is "array".** Describes the type of items in the array.
-<a name="stCollectionFormat"/>collectionFormat | `string` | Determines the format of the array if type array is used. Possible values are: <ul><li>`csv` - comma separated values `foo,bar`. <li>`ssv` - space separated values `foo bar`. <li>`tsv` - tab separated values `foo\tbar`. <li>`pipes` - pipe separated values <code>foo&#124;bar</code>. </ul> Default value is `csv`.
-<a name="stDefault"/>default | * | Sets a default value to the data type. The type of the value depends on the defined [`type`](#stType). See http://json-schema.org/latest/json-schema-validation.html#anchor101.
-<a name="stMaximum"/>maximum | `number` | See http://json-schema.org/latest/json-schema-validation.html#anchor17.
-<a name="stMaximum"/>exclusiveMaximum | `boolean` | See http://json-schema.org/latest/json-schema-validation.html#anchor17.
-<a name="stMinimum"/>minimum | `number` | See http://json-schema.org/latest/json-schema-validation.html#anchor21.
-<a name="stExclusiveMinimum"/>exclusiveMinimum | `boolean` | See http://json-schema.org/latest/json-schema-validation.html#anchor21.
-<a name="stMaxLength"/>maxLength | `integer` | See http://json-schema.org/latest/json-schema-validation.html#anchor26.
-<a name="stMinLength"/>minLength | `integer` | See http://json-schema.org/latest/json-schema-validation.html#anchor29.
-<a name="stPattern"/>pattern | `string` | See http://json-schema.org/latest/json-schema-validation.html#anchor33.
-<a name="stMaxItems"/>maxItems | `integer` | See http://json-schema.org/latest/json-schema-validation.html#anchor42.
-<a name="stMinItems"/>minItems | `integer` | See http://json-schema.org/latest/json-schema-validation.html#anchor45.
-<a name="stUniqueItems"/>uniqueItems | `boolean` | See http://json-schema.org/latest/json-schema-validation.html#anchor49.
-<a name="stEnum"/>enum | [*] | See http://json-schema.org/latest/json-schema-validation.html#anchor76.
-<a name="stMultipleOf"/>multipleOf | `number` | See http://json-schema.org/latest/json-schema-validation.html#anchor14.
+<a name="headerDescription"/>description | `string` | A short description of the header.
+<a name="headerType"/>type | `string` | **Required.** The type of the object. The value MUST be one of `"string"`, `"number"`, `"integer"`, `"boolean"`, or `"array"`.
+<a name="headerFormat"/>format | `string` | The extending format for the previously mentioned [`type`](#stType). See [Data Type Formats](#dataTypeFormat) for further details.
+<a name="headerItems"/>items | [Items Object](#itemsObject) | **Required if [`type`](#stType) is "array".** Describes the type of items in the array.
+<a name="headerCollectionFormat"/>collectionFormat | `string` | Determines the format of the array if type array is used. Possible values are: <ul><li>`csv` - comma separated values `foo,bar`. <li>`ssv` - space separated values `foo bar`. <li>`tsv` - tab separated values `foo\tbar`. <li>`pipes` - pipe separated values <code>foo&#124;bar</code>. </ul> Default value is `csv`.
+<a name="headerDefault"/>default | * | Sets a default value to the data type. The type of the value depends on the defined [`type`](#stType). See http://json-schema.org/latest/json-schema-validation.html#anchor101.
+<a name="headerMaximum"/>maximum | `number` | See http://json-schema.org/latest/json-schema-validation.html#anchor17.
+<a name="headerMaximum"/>exclusiveMaximum | `boolean` | See http://json-schema.org/latest/json-schema-validation.html#anchor17.
+<a name="headerMinimum"/>minimum | `number` | See http://json-schema.org/latest/json-schema-validation.html#anchor21.
+<a name="headerExclusiveMinimum"/>exclusiveMinimum | `boolean` | See http://json-schema.org/latest/json-schema-validation.html#anchor21.
+<a name="headerMaxLength"/>maxLength | `integer` | See http://json-schema.org/latest/json-schema-validation.html#anchor26.
+<a name="headerMinLength"/>minLength | `integer` | See http://json-schema.org/latest/json-schema-validation.html#anchor29.
+<a name="headerPattern"/>pattern | `string` | See http://json-schema.org/latest/json-schema-validation.html#anchor33.
+<a name="headerMaxItems"/>maxItems | `integer` | See http://json-schema.org/latest/json-schema-validation.html#anchor42.
+<a name="headerMinItems"/>minItems | `integer` | See http://json-schema.org/latest/json-schema-validation.html#anchor45.
+<a name="headerUniqueItems"/>uniqueItems | `boolean` | See http://json-schema.org/latest/json-schema-validation.html#anchor49.
+<a name="headerEnum"/>enum | [*] | See http://json-schema.org/latest/json-schema-validation.html#anchor76.
+<a name="headerMultipleOf"/>multipleOf | `number` | See http://json-schema.org/latest/json-schema-validation.html#anchor14.
 
 ##### Object Example
 
@@ -604,6 +621,76 @@ This does *not* define global operation responses.
 Field Pattern | Type | Description
 ---|:---:|---
 <a name="rdName"/>{name} | [Response Object](#responseObject) | A single response definition, mapping a "name" to the response it defines.
+
+##### Object Example
+
+**TODO: add example.**
+
+#### Security Definitions Object <a name="securityDefinitionsObject"/>
+
+A declaration of the security schemes available to be used in the specification. This does not enfroce the security schemes on the operations and only serves to provide the relevant details for each scheme.
+
+##### Patterned Fields
+Field Pattern | Type | Description
+---|:---:|---
+<a name="sdName"/>{name} | [Security Scheme Object](#securitySchemeObject) | A single security scheme definition, mapping a "name" to the scheme it defines.
+
+##### Object Example
+
+**TODO: add example.**
+
+
+#### Security Scheme Object <a name="securitySchemeObject"/>
+
+Allows the definition of a security scheme that can be used by the operations. Supported schemes are basic authentication, an API key (either as a header or as a query parameter) and OAuth2's common flows (implicit, password, application and access code).
+
+##### Fixed Fields
+Field Name | Type | Validity | Description
+---|:---:|---
+<a name="securitySchemeType"/>type | `string` | Any | **Required.** The type of the security scheme. Valid values are `"basic"`, `"apiKey"` or `"oauth2"`.
+<a name="securitySchemeDescription"/>description | `string` | Any | A short description for security scheme.
+<a name="securitySchemeName"/>name | `string` | `apiKey` | **Required.** The name of the header or query parameter to be used.
+<a name="securitySchemeIn"/>in | `string` | `apiKey` | **Required** The location of the API key. Valid values are `"query"` or `"header"`.
+<a name="securitySchemeFlow"/>flow | `string` | `oauth2` | **Required.** The flow used by the OAuth2 security scheme. Valid values are `"implicit"`, `"password"`, `"application"` or `"accessCode"`.
+<a name="securitySchemeAuthorizationUrl"/>authorizationUrl | `string` | `oauth2` (`"implicit"`, `"accessCode"`) | **Required.** The authorization URL to be used for this flow. This SHOULD be in the form of a URL.
+<a name="securitySchemeTokenUrl"/>tokenUrl | `string` | `oauth2` (`"password"`, `"application"`, `"accessCode"`) | **Required.** The token URL to be used for this flow. This SHOULD be in the form of a URL.
+<a name="securitySchemeScopes"/>scopes | [Scopes Object](#scopesObject) | `oauth2` | **Required.** The available scopes for the OAuth2 security scheme.
+
+##### Patterned Fields
+
+<a name="securitySchemeExtensions"/>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+
+##### Object Example
+
+**TODO: add example.**
+
+
+#### Scopes Object <a name="scopesObject"/>
+
+Lists the available scopes for an OAuth2 security scheme.
+
+##### Patterned Fields
+
+Field Pattern | Type | Description
+---|:---:|---
+<a name="scopesName"/>{name} | `string` | Maps between a name of a scope to a short description of it (as the value of the property).
+
+##### Object Example
+
+**TODO: add example.**
+
+
+#### Security Requirement Object <a name="securityRequirementObject"/>
+
+Lists the required security schemes to execute this operation. The object can have multiple security schemes declared in it which are all required (that is, there is a logical AND between the schemes).
+
+The name used for each property MUST correspond to a security scheme declared in the [Security Definitions](#securityDefinitionsObject).
+
+##### Patterned Fields
+
+Field Pattern | Type | Description
+---|:---:|---
+<a name="securityRequirementsName"/>{name} | [`string`] | Each name must correspond to a security scheme which is declared in the [Security Definitions](#securityDefinitions). If the security scheme is of type `"oauth2"`, then the value is a list of scope names required for the execution. For other security scheme types, the array MUST be empty.
 
 ##### Object Example
 

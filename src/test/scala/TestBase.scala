@@ -8,7 +8,7 @@ import scala.io.Source
  **/
 trait TestBase {
   val mapper = new ObjectMapper
-  val host = "https://raw.githubusercontent.com/wordnik/swagger-spec/master/schemas/v2.0/schema.json"
+  val host = "http://swagger.io/v2/schema.json"
   // val host = "http://localhost:8000/schema.json"
 
   def readSchema(makeQualified: Boolean = true) = {

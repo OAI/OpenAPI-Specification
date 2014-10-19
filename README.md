@@ -1,3 +1,5 @@
+# Note!  The swagger-spec will be moving from the wordnik organization to swagger-api!
+
 # The Swagger Specification
 
 [![Build Status](https://travis-ci.org/wordnik/swagger-spec.svg?branch=master)](https://travis-ci.org/wordnik/swagger-spec)

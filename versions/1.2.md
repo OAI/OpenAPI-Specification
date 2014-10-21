@@ -677,8 +677,8 @@ Field Name | Type | Description
           "description": "Order Status",
           "enum": [
             "placed",
-            " approved",
-            " delivered"
+            "approved",
+            "delivered"
           ]
         },
         "shipDate": {

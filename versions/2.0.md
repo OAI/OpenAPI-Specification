@@ -628,7 +628,7 @@ Field Pattern | Type | Description
 
 #### Security Definitions Object <a name="securityDefinitionsObject"/>
 
-A declaration of the security schemes available to be used in the specification. This does not enfroce the security schemes on the operations and only serves to provide the relevant details for each scheme.
+A declaration of the security schemes available to be used in the specification. This does not enforce the security schemes on the operations and only serves to provide the relevant details for each scheme.
 
 ##### Patterned Fields
 Field Pattern | Type | Description

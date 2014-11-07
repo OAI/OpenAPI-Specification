@@ -429,7 +429,7 @@ Field Name | Type | Description
 **TODO: add example.**
 
 #### Headers Object <a name="headersObject"/>
-List the headers that can be sent as part of a response.
+Lists the headers that can be sent as part of a response.
 
 ##### Patterned Fields
 Field Pattern | Type | Description
@@ -448,7 +448,7 @@ Allows sharing examples for operation responses.
 ##### Patterned Fields
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="exampleMimeType"/>{[mime type](#mimeTypes)} | Any | The name of the property MUST be a one of the the Operation `produces` values (either implicit or inherited). The value SHOULD be an example of what such a response would look like. 
+<a name="exampleMimeType"/>{[mime type](#mimeTypes)} | Any | The name of the property MUST be one of the Operation `produces` values (either implicit or inherited). The value SHOULD be an example of what such a response would look like. 
 
 ##### Object Example
 

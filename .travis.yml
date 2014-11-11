@@ -1,14 +1,18 @@
 language: scala
 scala:
-   - 2.10.4
+- 2.10.4
 script:
-  - npm install
-  - gulp lint
-  - sbt ++$TRAVIS_SCALA_VERSION test
-  - mocha
+- npm install
+- gulp lint
+- sbt ++$TRAVIS_SCALA_VERSION test
+- mocha
 env:
+  matrix:
   - VALIDATORS=tv4
   - VALIDATORS=zschema
+  global:
+  - secure: B2nXpGl+q0N8eGSXsrYZZ7zqs2KKoEIQbIqHE24xDtviPBy7bf679oy65cGm03CA+eyF1eJAq/lE4/kfBTXLbCrRQ72azYRDz5+Cp3svXJJNvU6jVqxCrOc+G5WEg9+SUPvPSfki5BDvRPOXPA0bja/lEnYBQyU+gdKLdBKoFDc=
+  - secure: Xz6g5Ea7FLzT3KPxtGYEcf/PRGxH7Q+S/iibkA5+vPvmpbeJhqAJ5JHTSQKKAGL/WgVH6BxlYr1uvPuOBsZo+F6Icyhlad+FA3ngvC44NfIQCn1sDoV1kD0K1HOz/k7o41pSqPnmivJyNt7wqte1qwKdCxEDxwQm0mWl2wOYgUc=
 matrix:
   allow_failures:
-    - env: VALIDATORS=tv4
+  - env: VALIDATORS=tv4

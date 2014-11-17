@@ -27,7 +27,7 @@ Version | Date | Notes
 Path templating refers to the usage of curly braces ({}) to mark a section of a URL path as replaceable using path parameters.
 
 ##### <a name="mimeTypes"/>Mime Types
-Mime type definitions are spread across several resources. The mime type definitions should be in compliance to the [wikipedia](http://en.wikipedia.org/wiki/Internet_media_type#Naming) definition.
+Mime type definitions are spread across several resources. The mime type definitions should be in compliance with [RFC 6838](http://tools.ietf.org/html/rfc6838).
 
 Some examples of possible mime type definitions:
 ```

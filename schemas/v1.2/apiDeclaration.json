@@ -54,7 +54,8 @@
             "items": {
                 "type": "string",
                 "format": "mime-type"
-            }
+            },
+            "uniqueItems": true
         }
     }
 }

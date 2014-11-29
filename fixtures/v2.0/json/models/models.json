@@ -1,5 +1,5 @@
 {
-  "schemas": {
+  "definitions": {
     "Pet": {
       "properties": {
         "name": {

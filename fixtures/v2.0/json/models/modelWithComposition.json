@@ -1,5 +1,5 @@
 {
-  "schemas": {
+  "definitions": {
     "Cat": {
       "description": "A representation of a cat",
       "allOf": [

@@ -10,7 +10,7 @@
               "type": "string",
               "description": "The measured skill for hunting",
               "default": "lazy",
-              "enum": ["clueless", "lazy", "adventerous", "aggressive"]
+              "enum": ["clueless", "lazy", "adventurous", "aggressive"]
             }
           },
           "required": [ "huntingSkill" ]

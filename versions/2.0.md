@@ -707,7 +707,7 @@ The extensions properties are always prefixed by `"x-"` and can have any valid J
 
 The extensions may or may not be supported by the available tooling, but those may be extended as well to add requested support (if tools are internal or open-sourced).
 
-### Security Filtering
+### Security Filtering <a name="securityFiltering"/>
 
 Some objects in the Swagger specification may be declared and remain empty, or completely be removed, even though they are inherently the core of the API documentation. 
 

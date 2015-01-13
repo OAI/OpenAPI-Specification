@@ -71,15 +71,6 @@ class PropertyTest extends FlatSpec with ShouldMatchers with TestBase {
     report.isSuccess should be (true)
   }
 
-  it should "validate a property with $ref" in {
-    val json = Source.fromFile("fixtures/v2.0/json/models/properties/propertyWithRef.json").mkString
-    val data = JsonLoader.fromString(json)
-    val report = jsonSchema.validate(data)
-    if(report.isSuccess == false)
-      println(report)
-    report.isSuccess should be (true)
-  }
-
   it should "validate an array property with string" in {
     val json = Source.fromFile("fixtures/v2.0/json/models/properties/propertyWithStringArray.json").mkString
     val data = JsonLoader.fromString(json)

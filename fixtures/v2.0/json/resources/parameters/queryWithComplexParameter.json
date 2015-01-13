@@ -4,6 +4,6 @@
   "description": "a complex object which should not validate",
   "required": true,
   "schema": {
-    "$ref": "Pet"
+    "$ref": "#/definitions/Pet"
   }
 }

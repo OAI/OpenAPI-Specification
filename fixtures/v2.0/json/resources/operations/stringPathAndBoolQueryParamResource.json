@@ -26,11 +26,11 @@
   "responses": {
     "200": {
       "description": "a pet to be returned",
-      "schema": {"$ref": "Pet"}
+      "schema": {"$ref": "#/definitions/Pet"}
     },
     "default": {
       "description": "Unexpected error",
-      "schema": {"$ref": "ErrorModel"}
+      "schema": {"$ref": "#/definitions/ErrorModel"}
     }
   }
 }

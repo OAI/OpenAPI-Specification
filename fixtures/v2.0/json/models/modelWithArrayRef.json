@@ -10,7 +10,7 @@
     "children": {
       "type": "array",
       "items": {
-        "$ref": "Person"
+        "$ref": "#/definitions/Person"
       }
     }
   }

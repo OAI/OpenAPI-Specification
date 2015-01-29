@@ -118,9 +118,6 @@ Field Name | Type | Description
 <a name="swaggerTags"></a>tags | [[Tag Object](#tagObject)] | A list of tags used by the specification with additional metadata. The order of the tags can be used to reflect on their order by the parsing tools. Not all tags that are used by the [Operation Object](#operationObject) must be declared. The tags that are not declared may be organized randomly or based on the tools' logic. Each tag name in the list MUST be unique.
 <a name="swaggerExternalDocs"></a>externalDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation.
 
-##### Object Example:
-**TODO: add sample**
-
 
 #### <a name="infoObject"></a>Info Object
 
@@ -153,7 +150,7 @@ Field Pattern | Type | Description
   "contact": {
     "name": "API Support",
     "url": "http://www.swagger.io/support",
-    "email": "support@swagger.io",
+    "email": "support@swagger.io"
   },
   "license": {
     "name": "Apache 2.0",
@@ -219,7 +216,29 @@ Field Pattern | Type | Description
 
 ##### Object Example
 
-**TODO: add example.**
+```js
+{
+  "/pets": {
+    "get": {
+      "description": "Returns all pets from the system that the user has access to",
+      "produces": [
+        "application/json"
+      ],
+      "responses": {
+        "200": {
+          "description": "A list of pets.",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/pet"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
 
 #### <a name="pathItemObject"></a>Path Item Object
 
@@ -248,7 +267,49 @@ Field Pattern | Type | Description
 
 ##### Object Example
 
-**TODO: add example.**
+```js
+{
+  "get": {
+    "description": "Returns pets based on ID",
+    "summary": "Find pets by ID",
+    "operationId": "getPetsById",
+    "produces": [
+      "application/json",
+      "text/html"
+    ],
+    "responses": {
+      "200": {
+        "description": "pet response",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Pet"
+          }
+        }
+      },
+      "default": {
+        "description": "error payload",
+        "schema": {
+          "$ref": "#/definitions/ErrorModel"
+        }
+      }
+    }
+  },
+  "parameters": [
+    {
+      "name": "id",
+      "in": "path",
+      "description": "ID of pet to use",
+      "required": true,
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "collectionFormat": "csv"
+    }
+  ]
+}
+```
 
 #### <a name="operationObject"></a>Operation Object
 
@@ -279,7 +340,62 @@ Field Pattern | Type | Description
 
 ##### Object Example
 
-**TODO: add example.**
+```js
+{
+  "tags": [
+    "pet"
+  ],
+  "summary": "Updates a pet in the store with form data",
+  "description": "",
+  "operationId": "updatePetWithForm",
+  "consumes": [
+    "application/x-www-form-urlencoded"
+  ],
+  "produces": [
+    "application/json",
+    "application/xml"
+  ],
+  "parameters": [
+    {
+      "name": "petId",
+      "in": "path",
+      "description": "ID of pet that needs to be updated",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "name",
+      "in": "formData",
+      "description": "Updated name of the pet",
+      "required": false,
+      "type": "string"
+    },
+    {
+      "name": "status",
+      "in": "formData",
+      "description": "Updated status of the pet",
+      "required": false,
+      "type": "string"
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "Pet updated."
+    },
+    "405": {
+      "description": "Invalid input"
+    }
+  },
+  "security": [
+    {
+      "petstore_auth": [
+        "write:pets",
+        "read:pets"
+      ]
+    }
+  ]
+}
+```
 
 
 #### <a name="externalDocumentationObject"></a>External Documentation Object
@@ -295,8 +411,12 @@ Field Name | Type | Description
 
 ##### Object Example
 
-**TODO: add example.**
-
+```js
+{
+  "description": "Find more info here",
+  "url": "https://swagger.io"
+}
+```
 
 #### <a name="parameterObject"></a>Parameter Object
 
@@ -358,7 +478,93 @@ Field Pattern | Type | Description
 
 ##### Object Example
 
-**TODO: add example.**
+###### Body Parameters
+
+A body parameter with a referenced schema definition (normally for a model definition):
+```js
+{
+  "name": "user",
+  "in": "body",
+  "description": "user to add to the system",
+  "required": true,
+  "schema": {
+    "$ref": "#/definitions/User"
+  }
+}
+```
+
+A body parameter that is an array of string values:
+```js
+{
+  "name": "user",
+  "in": "body",
+  "description": "user to add to the system",
+  "required": true,
+  "schema": {
+    "type": "array",
+    "items": {
+      "type": "string"
+    }
+  }
+}
+```
+
+###### Other Parameters
+
+A header parameter with an array of 64 bit integer numbers:
+
+```js
+{
+  "name": "token",
+  "in": "header",
+  "description": "token to be passed as a header",
+  "required": true,
+  "type": "array",
+  "items": {
+    "type": "integer",
+    "format": "int64"
+  },
+  "collectionFormat": "csv"    
+}
+```
+
+A path parameter of a string value:
+```js
+{
+  "name": "username",
+  "in": "path",
+  "description": "username to fetch",
+  "required": true,
+  "type": "string"
+}
+```
+
+An optional query parameter of a string value, allowing multiple values by repeating the query parameter:
+```js
+{
+  "name": "id",
+  "in": "query",
+  "description": "ID of the object to fetch",
+  "required": false,
+  "type": "array",
+  "items": {
+    "type": "string"
+  },
+  "collectionFormat": "multi"
+}
+```
+
+A form data with file type for a file upload:
+```js
+{
+  "name": "avatar",
+  "in": "formData",
+  "description": "The avatar of the user",
+  "required": true,
+  "type": "file"
+}
+```
+
 
 #### <a name="itemsObject"></a>Items Object
 
@@ -387,7 +593,27 @@ Field Name | Type | Description
 
 ##### Object Example
 
-**TODO: add example.**
+Items must be of type  string and have the minimum length of  2 characters:
+
+```js
+{
+    "type": "string",
+    "minLength": 2
+}
+```
+
+An array of arrays, the internal array being of type integer, numbers must be between 0 and 63 (inclusive):
+
+```js
+{
+    "type": "array",
+    "items": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 63
+    }
+}
+```
 
 #### <a name="responsesObject"></a>Responses Object
 
@@ -411,7 +637,24 @@ Field Pattern | Type | Description
 
 ##### Object Example
 
-**TODO: add example.**
+A 200 response for successful operation and a default response for others (implying an error):
+
+```js
+{
+  "200": {
+    "description": "a pet to be returned",
+    "schema": {
+      "$ref": "#/definitions/Pet"
+    }
+  },
+  "default": {
+    "description": "Unexpected error",
+    "schema": {
+      "$ref": "#/definitions/ErrorModel"
+    }
+  }
+}
+```
 
 #### <a name="responseObject"></a>Response Object
 Describes a single response from an API Operation.
@@ -426,7 +669,53 @@ Field Name | Type | Description
 
 ##### Object Example
 
-**TODO: add example.**
+Response of an array of a complex type:
+
+```js
+{
+  "description": "A complex object array response",
+  "schema": {
+    "type": "array",
+    "items": {
+      "$ref": "#/definitions/VeryComplexType"
+    }
+  }
+}
+```
+
+Response with a string type:
+
+```js
+{
+  "description": "A simple string response",
+  "schema": {
+    "type": "string"
+  }
+}
+```
+
+Response with headers:
+
+```js
+{
+  "description": "A simple string response",
+  "schema": {
+    "type": "string"
+  },
+  "headers": {
+    "is-dog": {"type": "boolean"},
+    "is-cat": {"type": "boolean"}
+  }
+}
+```
+
+Response with no return value:
+
+```js
+{
+  "description": "object created"
+}
+```
 
 #### <a name="headersObject"></a>Headers Object
 Lists the headers that can be sent as part of a response.
@@ -438,8 +727,24 @@ Field Pattern | Type | Description
 
 ##### Object Example
 
-**TODO: add example.**
+Rate-limit headers:
 
+```js
+{
+    "X-Rate-Limit-Limit": {
+        "description": "The number of allowed requests in the current period",
+        "type": "integer"
+    },
+    "X-Rate-Limit-Remaining": {
+        "description": "The number of remaining requests in the current period",
+        "type": "integer"
+    },
+    "X-Rate-Limit-Reset": {
+        "description": "The number of seconds left in the current period",
+        "type": "integer"
+    }
+}
+```
 
 #### <a name="exampleObject"></a>Example Object
 
@@ -452,7 +757,19 @@ Field Pattern | Type | Description
 
 ##### Object Example
 
-**TODO: add example.**
+Example response for application/json mimetype of a Pet data type:
+
+```js
+{
+  "application/json": {
+    "name": "Puma",
+    "type": "Dog",
+    "color": "Black",
+    "gender": "Female",
+    "breed": "Mixed"
+  }
+}```
+
 
 #### <a name="headerObject"></a>Header Object
 
@@ -479,7 +796,14 @@ Field Name | Type | Description
 
 ##### Object Example
 
-**TODO: add example.**
+A simple header with of an integer type:
+
+```js
+{
+  "description": "The number of allowed requests in the current period",
+  "type": "integer"
+}
+```
 
 #### <a name="tagObject"></a>Tag Object
 
@@ -499,7 +823,13 @@ Field Pattern | Type | Description
 
 ##### Object Example
 
-**TODO: add example.**
+```js
+{
+	"name": "pet",
+	"description": "Pets operations"
+}
+```
+
 
 #### <a name="referenceObject"></a>Reference Object
 
@@ -512,7 +842,11 @@ Field Name | Type | Description
 
 ##### Object Example
 
-**TODO: add example.**
+```js
+{
+	"$ref": "#/definitions/Pet"
+}
+``` 
 
 #### <a name="schemaObject"></a>Schema Object
 
@@ -592,7 +926,32 @@ Field Pattern | Type | Description
 
 ##### Object Example
 
-**TODO: add example.**
+```js
+{
+  "Category": {
+    "properties": {
+      "id": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "name": {
+        "type": "string"
+      }
+    }
+  },
+  "Tag": {
+    "properties": {
+      "id": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "name": {
+        "type": "string"
+      }
+    }
+  }
+}
+```
 
 #### <a name="parametersDefinitionsObject"></a>Parameters Definitions Object
 
@@ -608,7 +967,26 @@ Field Pattern | Type | Description
 
 ##### Object Example
 
-**TODO: add example.**
+```js
+{
+  "skipParam": {
+    "name": "skip",
+    "in": "query",
+    "description": "number of items to skip",
+    "required": true,
+    "type": "integer",
+    "format": "int32"
+  },
+  "limitParam": {
+    "name": "limit",
+    "in": "query",
+    "description": "max records to return",
+    "required": true,
+    "type": "integer",
+    "format": "int32"
+  }
+}
+```
 
 #### <a name="responsesDefinitionsObject"></a>Responses Definitions Object
 
@@ -624,7 +1002,22 @@ Field Pattern | Type | Description
 
 ##### Object Example
 
-**TODO: add example.**
+```js
+{
+  "NotFound": {
+    "description": "Entity not found."
+  },
+  "IllegalInput": {
+  	"description": "Illegal input for operation."
+  },
+  "GeneralError": {
+  	"description": "General Error",
+  	"schema": {
+  		"$ref": "#/definitions/GeneralError"
+  	}
+  }
+}
+```
 
 #### <a name="securityDefinitionsObject"></a>Security Definitions Object
 
@@ -637,7 +1030,24 @@ Field Pattern | Type | Description
 
 ##### Object Example
 
-**TODO: add example.**
+```js
+{
+  "api_key": {
+    "type": "apiKey",
+    "name": "api_key",
+    "in": "header"
+  },
+  "petstore_auth": {
+    "type": "oauth2",
+    "authorizationUrl": "http://swagger.io/api/oauth/dialog",
+    "flow": "implicit",
+    "scopes": {
+      "write:pets": "modify pets in your account",
+      "read:pets": "read your pets"
+    }
+  }
+}
+```
 
 
 #### <a name="securitySchemeObject"></a>Security Scheme Object
@@ -664,8 +1074,36 @@ Field Name | Type | Description
 
 ##### Object Example
 
-**TODO: add example.**
+###### Basic Authentication Sample
 
+```js
+{
+  "type": "basic"
+}
+```
+
+###### API Key Sample
+
+```js
+{
+  "type": "apiKey",
+  "name": "api_key",
+  "in": "header"
+}
+```
+###### Implicit OAuth2 Sample
+
+```js
+{
+  "type": "oauth2",
+  "authorizationUrl": "http://swagger.io/api/oauth/dialog",
+  "flow": "implicit",
+  "scopes": {
+    "write:pets": "modify pets in your account",
+    "read:pets": "read your pets"
+  }
+}
+```
 
 #### <a name="scopesObject"></a>Scopes Object
 
@@ -679,7 +1117,12 @@ Field Pattern | Type | Description
 
 ##### Object Example
 
-**TODO: add example.**
+```js
+{
+  "write:pets": "modify pets in your account",
+  "read:pets": "read your pets"
+}
+```
 
 
 #### <a name="securityRequirementObject"></a>Security Requirement Object
@@ -696,8 +1139,24 @@ Field Pattern | Type | Description
 
 ##### Object Example
 
-**TODO: add example.**
+###### Non-OAuth2 Security Requirement
 
+```js
+{
+  "api_key": []
+}
+```
+
+###### OAuth2 Security Requirement
+
+```js
+{
+  "petstore_auth": [
+    "write:pets",
+    "read:pets"
+  ]
+}
+```
 
 ### <a name="vendorExtensions"></a>Specification Extensions
 

@@ -1,0 +1,25 @@
+{
+  "name": "user",
+  "in": "body",
+  "description": "user to add to the system",
+  "required": true,
+  "schema": {
+    "type": "object",
+    "required": [ "name", "id" ],
+    "properties": {
+    	"id": {
+    		"type": "integer",
+    		"format": "int64"
+    	},
+    	"name": {
+    		"type": "string"
+    	},
+    	"keys": {
+    		"type": "array",
+    		"items": {
+    			"type": "integer"
+    		}
+    	}
+    }
+  }
+}

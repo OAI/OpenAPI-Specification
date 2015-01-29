@@ -25,4 +25,20 @@ class ResponsesTest extends FlatSpec with ShouldMatchers with TestBase {
       println(report)
     report.isSuccess should be (true)
   }
+
+  // Negative tests
+
+ it should "fail validation on no responses" in {
+    val json = Source.fromFile("fixtures/v2.0/json/responses/negative/noResponses.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    report.isSuccess should be (false)
+  }
+
+  it should "fail validation on no responses with vendor extension" in {
+    val json = Source.fromFile("fixtures/v2.0/json/responses/negative/noResponsesWithVendorExtension.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    report.isSuccess should be (false)
+  }
 }

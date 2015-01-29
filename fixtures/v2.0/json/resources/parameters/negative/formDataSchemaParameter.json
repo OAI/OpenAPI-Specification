@@ -1,0 +1,9 @@
+{
+  "name": "firstName",
+  "in": "formData",
+  "description": "users first name",
+  "required": true,
+  "schema": {
+  	"$ref": "#/definitions/Nothing"
+  }
+}

@@ -8,6 +8,6 @@
     "items": {
       "type": "string"
     },
-    "format": "csv"
+    "collectionFormat": "csv"
   }
 }

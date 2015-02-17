@@ -703,8 +703,18 @@ Response with headers:
     "type": "string"
   },
   "headers": {
-    "is-dog": {"type": "boolean"},
-    "is-cat": {"type": "boolean"}
+    "X-Rate-Limit-Limit": {
+      "description": "The number of allowed requests in the current period",
+      "type": "integer"
+    },
+    "X-Rate-Limit-Remaining": {
+      "description": "The number of remaining requests in the current period",
+      "type": "integer"
+    },
+    "X-Rate-Limit-Reset": {
+      "description": "The number of seconds left in the current period",
+      "type": "integer"
+    }
   }
 }
 ```
@@ -846,7 +856,7 @@ Field Name | Type | Description
 {
 	"$ref": "#/definitions/Pet"
 }
-``` 
+```
 
 #### <a name="schemaObject"></a>Schema Object
 
@@ -885,34 +895,476 @@ Other than the JSON Schema subset fields, the following fields may be used for f
 ##### Fixed Fields
 Field Name | Type | Description
 ---|:---:|---
-<a name="schemaDiscriminator"></a>discriminator | `string` | Adds support for polymorphism. The discriminator is the schema property name that is used to differentiate between other schemas that inherit this schema. The property name used MUST be defined at this schema and it MUST be in the `required` property list. When used, the value MUST be the name of this schema or any schema that inherits it.
+<a name="schemaDiscriminator"></a>discriminator | `string` | Adds support for polymorphism. The discriminator is the schema property name that is used to differentiate between other schema that inherit this schema. The property name used MUST be defined at this schema and it MUST be in the `required` property list. When used, the value MUST be the name of this schema or any schema that inherits it.
 <a name="schemaReadOnly"></a>readOnly | `boolean` | Relevant only for Schema `"properties"` definitions. Declares the property as "read only". This means that it MAY be sent as part of a response but MUST NOT be sent as part of the request. Properties marked as `readOnly` being `true` SHOULD NOT be in the `required` list of the defined schema. Default value is `false`.
 <a name="schemaXml"></a>xml | [XML Object](#xmlObject) | This MAY be used only on properties schemas. It has no effect on root schemas. Adds Additional metadata to describe the XML representation format of this property.
 <a name="schemaExternalDocs"></a>externalDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation for this schema.
 <a name="schemaExample"></a>example | Object | A free-form property to include a an example of an instance for this schema.
 
-**TODO: Add explanation about composition and inheritance in the new spec.**
+###### Composition and Inheritance (Polymorphism)
+
+Swagger allows combining and extending model definitions using the `allOf` property of JSON Schema, in effect offering model composition. `allOf` takes in an array of object definitions that are validated *independently* but together compose a single object. 
+
+While composition offers model extensibility, it does not imply a hierarchy between the models. To support polymorphism, Swagger adds the support of the `discriminator` field. When used, the `discriminator` will be the name of the property used to decide which schema definition is used to validate the structure of the model. As such, the `discriminator` field MUST be a required field. The value of the chosen property has to be the friendly name given to the model under the `definitions` property. As such, inline schema definitions, which do not have a given id, *cannot* be used in polymorphism.
+
+###### XML Modeling
+
+The [xml](#schemaXml) property allows extra definitions when translating the JSON definition to XML. The [XML Object](#xmlObject) contains additional information about the available options.
 
 ##### Object Example
 
-**TODO: add example.**
+###### Primitive Sample
+
+Unlike previous versions of Swagger, Schema definitions can be used to describe primitive and arrays as well.
+
+```js
+{
+    "type": "string",
+    "format": "email"
+}
+```
+
+###### Simple Model
+
+```js
+{
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "address": {
+      "$ref": "#/definitions/Address"
+    },
+    "age": {
+      "type": "integer",
+      "format": "int32",
+      "minimum": 0
+    }
+  }
+}
+```
+
+###### Model with Map/Dictionary Properties
+
+For a simple string to string mapping:
+
+```js
+{
+  "type": "object",
+  "additionalProperties": {
+    "type": "string"
+  }
+}
+```
+
+For a string to model mapping:
+
+```js
+{
+  "type": "object",
+  "additionalProperties": {
+    "$ref": "#/definitions/ComplexModel"
+  }
+}
+```
+
+###### Model with Example
+
+```js
+{
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "name": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "example": {
+    "name": "Puma",
+    "id": 1
+  }
+}
+```
+
+###### Models with Composition
+
+```js
+{
+  "definitions": {
+    "ErrorModel": {
+      "type": "object",
+      "required": [
+        "message",
+        "code"
+      ],
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 600
+        }
+      }
+    },
+    "ExtendedErrorModel": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ErrorModel"
+        },
+        {
+          "type": "object",
+          "required": [
+            "rootCause"
+          ],
+          "properties": {
+            "rootCause": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+###### Models with Polymorphism Support
+
+```js
+{
+  "definitions": {
+    "Pet": {
+      "discriminator": "petType",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "petType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "petType"
+      ]
+    }
+  },
+  "Cat": {
+    "description": "A representation of a cat",
+    "allOf": [
+      {
+        "$ref": "#/definitions/Pet"
+      },
+      {
+        "properties": {
+          "huntingSkill": {
+            "type": "string",
+            "description": "The measured skill for hunting",
+            "default": "lazy",
+            "enum": [
+              "clueless",
+              "lazy",
+              "adventurous",
+              "aggressive"
+            ]
+          }
+        },
+        "required": [
+          "huntingSkill"
+        ]
+      }
+    ]
+  },
+  "Dog": {
+    "description": "A representation of a dog",
+    "allOf": [
+      {
+        "$ref": "#/definitions/Pet"
+      },
+      {
+        "properties": {
+          "packSize": {
+            "type": "integer",
+            "format": "int32",
+            "description": "the size of the pack the dog is from",
+            "default": 0,
+            "minimum": 0
+          }
+        },
+        "required": [
+          "packSize"
+        ]
+      }
+    ]
+  }
+}
+```
 
 #### <a name="xmlObject"></a>XML Object
 
 A metadata object that allows for more fine-tuned XML model definitions.
 
+When using arrays, XML element names are *not* inferred (for singular/plural forms) and the `name` property should be used to add that information. See examples for expected behavior.
+
+
+
 ##### Fixed Fields
 Field Name | Type | Description
 ---|:---:|---
-<a name="xmlName"></a>name | `string` | Replaces the name of the element/attribute used for the described schema property.
+<a name="xmlName"></a>name | `string` | Replaces the name of the element/attribute used for the described schema property. When defined within the Items Object (`items`), it will affect the name of the individual XML elements within the list. When defined alongside `type` being `array` (outside the `items`), it will affect the wrapping element and only if `wrapped` is `true`. If `wrapped` is `false`, it will be ignored.
 <a name="xmlNamespace"></a>namespace | `string` | The URL of the namespace definition. Value SHOULD be in the form of a URL.
 <a name="xmlPrefix"></a>prefix | `string` | The prefix to be used for the [name](#xmlName).
 <a name="xmlAttribute"></a>attribute | `boolean` | Declares whether the property definition translates to an attribute instead of an element. Default value is `false`.
-<a name="xmlWrapped"></a>wrapped | `boolean` | MAY be used only for an array definition. Signifies whether the array is wrapped (for example, `<books><book/><book/></books>`) or unwrapped (`<book/><book/>`). Default value is `false`.
+<a name="xmlWrapped"></a>wrapped | `boolean` | MAY be used only for an array definition. Signifies whether the array is wrapped (for example, `<books><book/><book/></books>`) or unwrapped (`<book/><book/>`). Default value is `false`. The definition takes effect only when defined alongside `type` being `array` (outside the `items`).
 
 ##### Object Example
 
-**TODO: add example.**
+The examples of the XML object definitions are included inside a property definition of a [Schema Object](#schemaObject) with a sample of the XML representation of it.
+
+###### No XML Element
+
+Basic string property:
+
+```js
+{
+    "animals": {
+        "type": "string"
+    }
+}
+```
+
+```xml
+<animals>...</animals>
+```
+
+Basic string array property ([`wrapped`](#xmlWrapped) is `false` by default):
+
+```js
+{
+    "animals": {
+        "type": "array",
+        "items": {
+            "type": "string"
+        }
+    }
+}
+```
+
+```xml
+<animals>...</animals>
+<animals>...</animals>
+<animals>...</animals>
+```
+
+###### XML Name Replacement
+
+```js
+{
+  "animals": {
+    "type": "string",
+    "xml": {
+      "name": "animal"
+    }
+  }
+}
+```
+
+```xml
+<animal>...</animal>
+```
+
+
+###### XML Attribute, Prefix and Namespace
+
+In this example, a full model definition is shown.
+
+```js
+{
+  "Person": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "format": "int32",
+        "xml": {
+          "attribute": true
+        },
+        "name": {
+          "type": "string",
+          "xml": {
+            "namespace": "http://swagger.io/schema/sample",
+            "prefix": "sample"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+```xml
+<Person id="123">
+    <sample:name xlmns:sample="http://swagger.io/schema/sample">example</sample:name>
+</Person>
+```
+
+###### XML Arrays
+
+Changing the element names:
+
+```js
+{
+  "animals": {
+    "type": "array",
+    "items": {
+      "type": "string",
+      "xml": {
+        "name": "animal"
+      }
+    }
+  }
+}
+```
+
+```xml
+<animal>value</animal>
+<animal>value</animal>
+```
+
+The external `name` property has no effect on the XML:
+
+```js
+{
+  "animals": {
+    "type": "array",
+    "items": {
+      "type": "string",
+      "xml": {
+        "name": "animal"
+      }
+    },
+    "xml": {
+      "name": "aliens"
+    }
+  }
+}
+```
+
+```xml
+<animal>value</animal>
+<animal>value</animal>
+```
+
+Even when the array is wrapped, if no name is explicitly defined, the same name will be used both internally and externally:
+
+```js
+{
+  "animals": {
+    "type": "array",
+    "items": {
+      "type": "string"
+    },
+    "xml": {
+      "wrapped": true
+    }
+  }
+}
+```
+
+```xml
+<animals>
+  <animals>value</animals>
+  <animals>value</animals>
+</animals>
+```
+
+To overcome the above example, the following definition can be used:
+
+```js
+{
+  "animals": {
+    "type": "array",
+    "items": {
+      "type": "string",
+      "xml": {
+        "name": "animal"
+      }
+    },
+    "xml": {
+      "wrapped": true
+    }
+  }
+}
+```
+
+```xml
+<animals>
+  <animal>value</animal>
+  <animal>value</animal>
+</animals>
+```
+
+Affecting both internal and external names:
+
+```js
+{
+  "animals": {
+    "type": "array",
+    "items": {
+      "type": "string",
+      "xml": {
+        "name": "animal"
+      }
+    },
+    "xml": {
+      "name": "aliens",
+      "wrapped": false
+    }
+  }
+}
+```
+
+```xml
+<aliens>
+  <animal>value</animal>
+  <animal>value</animal>
+</aliens>
+```
+
+If we change the external element but not the internal ones:
+
+```js
+{
+  "animals": {
+    "type": "array",
+    "items": {
+      "type": "string"
+    },
+    "xml": {
+      "name": "aliens",
+      "wrapped": true
+    }
+  }
+}
+```
+
+```xml
+<aliens>
+  <aliens>value</aliens>
+  <aliens>value</aliens>
+</aliens>
+```
 
 #### <a name="definitionsObject"></a>Definitions Object
 

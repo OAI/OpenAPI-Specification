@@ -140,7 +140,7 @@ Field Pattern | Type | Description
 ---|:---:|---
 <a name="operationExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
-##### Object Example:
+##### Info Object Example:
 
 ```js
 {
@@ -186,7 +186,7 @@ Field Name | Type | Description
 <a name="contactUrl"></a>url | `string` | The URL pointing to the contact information. MUST be in the format of a URL.
 <a name="contactEmail"></a>email | `string` | The email address of the contact person/organization. MUST be in the format of an email address.
 
-##### Object Example:
+##### Contact Object Example:
 
 ```js
 {
@@ -213,7 +213,7 @@ Field Name | Type | Description
 <a name="licenseName"></a>name | `string` | **Required.** The license name used for the API.
 <a name="licenseUrl"></a>url | `string` | A URL to the license used for the API. MUST be in the format of a URL.
 
-##### Object Example:
+##### License Object Example:
 
 ```js
 {
@@ -239,7 +239,7 @@ Field Pattern | Type | Description
 <a name="pathsPath"></a>/{path} | [Path Item Object](#pathItemObject) | A relative path to an individual endpoint. The field name MUST begin with a slash. The path is appended to the [`basePath`](#swaggerBasePath) in order to construct the full URL. [Path templating](#pathTemplating) is allowed.
 <a name="pathsExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details. 
 
-##### Object Example
+##### Paths Object Example
 
 ```js
 {
@@ -305,7 +305,7 @@ Field Pattern | Type | Description
 ---|:---:|---
 <a name="pathItemExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details. 
 
-##### Object Example
+##### Path Item Object Example
 
 ```js
 {
@@ -408,7 +408,7 @@ Field Pattern | Type | Description
 ---|:---:|---
 <a name="operationExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
-##### Object Example
+##### Operation Object Example
 
 ```js
 {
@@ -517,7 +517,7 @@ Field Name | Type | Description
 <a name="externalDocDescription"></a>description | `string` | A short description of the target documentation. [GFM syntax](https://help.github.com/articles/github-flavored-markdown) can be used for rich text representation.
 <a name="externalDocUrl"></a>url | `string` | **Required.** The URL for the target documentation. Value MUST be in the format of a URL.
 
-##### Object Example
+##### External Documentation Object Example
 
 ```js
 {
@@ -589,7 +589,7 @@ Field Pattern | Type | Description
 <a name="parameterExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 
-##### Object Example
+##### Parameter Object Examples
 
 ###### Body Parameters
 
@@ -762,7 +762,7 @@ Field Name | Type | Description
 <a name="itemsEnum"></a>enum | [*] | See http://json-schema.org/latest/json-schema-validation.html#anchor76.
 <a name="itemsMultipleOf"></a>multipleOf | `number` | See http://json-schema.org/latest/json-schema-validation.html#anchor14.
 
-##### Object Example
+##### Items Object Examples
 
 Items must be of type  string and have the minimum length of  2 characters:
 
@@ -819,7 +819,7 @@ Field Pattern | Type | Description
 <a name="parameterExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 
-##### Object Example
+##### Responses Object Example
 
 A 200 response for successful operation and a default response for others (implying an error):
 
@@ -862,7 +862,7 @@ Field Name | Type | Description
 <a name="responseHeaders"></a>headers | [Headers Object](#headersObject) | A list of headers that are sent with the response.
 <a name="responseExamples"></a>examples | [Example Object](#exampleObject) | An example of the response message.
 
-##### Object Example
+##### Response Object Examples
 
 Response of an array of a complex type:
 
@@ -964,7 +964,7 @@ Field Pattern | Type | Description
 ---|:---:|---
 <a name="headersName"></a>{name} | [Header Object](#headerObject) | The name of the property corresponds to the name of the header. The value describes the type of the header.
 
-##### Object Example
+##### Headers Object Example
 
 Rate-limit headers:
 
@@ -1006,7 +1006,7 @@ Field Pattern | Type | Description
 ---|:---:|---
 <a name="exampleMimeType"></a>{[mime type](#mimeTypes)} | Any | The name of the property MUST be one of the Operation `produces` values (either implicit or inherited). The value SHOULD be an example of what such a response would look like. 
 
-##### Object Example
+##### Example Object Example
 
 Example response for application/json mimetype of a Pet data type:
 
@@ -1054,7 +1054,7 @@ Field Name | Type | Description
 <a name="headerEnum"></a>enum | [*] | See http://json-schema.org/latest/json-schema-validation.html#anchor76.
 <a name="headerMultipleOf"></a>multipleOf | `number` | See http://json-schema.org/latest/json-schema-validation.html#anchor14.
 
-##### Object Example
+##### Header Object Example
 
 A simple header with of an integer type:
 
@@ -1086,7 +1086,7 @@ Field Pattern | Type | Description
 ---|:---:|---
 <a name="tagExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
-##### Object Example
+##### Tag Object Example
 
 ```js
 {
@@ -1109,7 +1109,7 @@ Field Name | Type | Description
 ---|:---:|---
 <a name="referenceRef"></a>$ref | `string` | **Required.** The reference string. 
 
-##### Object Example
+##### Reference Object Example
 
 ```js
 {
@@ -1174,7 +1174,7 @@ While composition offers model extensibility, it does not imply a hierarchy betw
 
 The [xml](#schemaXml) property allows extra definitions when translating the JSON definition to XML. The [XML Object](#xmlObject) contains additional information about the available options.
 
-##### Object Example
+##### Schema Object Examples
 
 ###### Primitive Sample
 
@@ -1503,7 +1503,7 @@ Field Name | Type | Description
 <a name="xmlAttribute"></a>attribute | `boolean` | Declares whether the property definition translates to an attribute instead of an element. Default value is `false`.
 <a name="xmlWrapped"></a>wrapped | `boolean` | MAY be used only for an array definition. Signifies whether the array is wrapped (for example, `<books><book/><book/></books>`) or unwrapped (`<book/><book/>`). Default value is `false`. The definition takes effect only when defined alongside `type` being `array` (outside the `items`).
 
-##### Object Example
+##### XML Object Examples
 
 The examples of the XML object definitions are included inside a property definition of a [Schema Object](#schemaObject) with a sample of the XML representation of it.
 
@@ -1848,7 +1848,7 @@ Field Pattern | Type | Description
 ---|:---:|---
 <a name="definitionsName"></a>{name} | [Schema Object](#schemaObject) | A single definition, mapping a "name" to the schema it defines.
 
-##### Object Example
+##### Definitions Object Example
 
 ```js
 {
@@ -1906,7 +1906,7 @@ Field Pattern | Type | Description
 ---|:---:|---
 <a name="pdName"></a>{name} | [Parameter Object](#parameterObject) | A single parameter definition, mapping a "name" to the parameter it defines.
 
-##### Object Example
+##### Parameters Definition Object Example
 
 ```js
 {
@@ -1959,7 +1959,7 @@ Field Pattern | Type | Description
 ---|:---:|---
 <a name="rdName"></a>{name} | [Response Object](#responseObject) | A single response definition, mapping a "name" to the response it defines.
 
-##### Object Example
+##### Responses Definitions Object Example
 
 ```js
 {
@@ -1998,7 +1998,7 @@ Field Pattern | Type | Description
 ---|:---:|---
 <a name="sdName"></a>{name} | [Security Scheme Object](#securitySchemeObject) | A single security scheme definition, mapping a "name" to the scheme it defines.
 
-##### Object Example
+##### Security Definitions Object Example
 
 ```js
 {
@@ -2055,7 +2055,7 @@ Field Name | Type | Description
 ---|:---:|---
 <a name="securitySchemeExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
-##### Object Example
+##### Security Scheme Object Example
 
 ###### Basic Authentication Sample
 
@@ -2118,7 +2118,7 @@ Field Pattern | Type | Description
 ---|:---:|---
 <a name="scopesName"></a>{name} | `string` | Maps between a name of a scope to a short description of it (as the value of the property).
 
-##### Object Example
+##### Scopes Object Example
 
 ```js
 {
@@ -2144,7 +2144,7 @@ Field Pattern | Type | Description
 ---|:---:|---
 <a name="securityRequirementsName"></a>{name} | [`string`] | Each name must correspond to a security scheme which is declared in the [Security Definitions](#securityDefinitions). If the security scheme is of type `"oauth2"`, then the value is a list of scope names required for the execution. For other security scheme types, the array MUST be empty.
 
-##### Object Example
+##### Security Requirement Object Examples
 
 ###### Non-OAuth2 Security Requirement
 

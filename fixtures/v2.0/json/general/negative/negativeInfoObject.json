@@ -1,0 +1,12 @@
+{
+  "description": "This is a sample server Petstore server.",
+  "termsOfService": "http://swagger.io/terms/",
+  "contact": {
+    "name": "API Support",
+    "url": "http://www.swagger.io/support",
+    "email": "support@swagger.io"
+  },
+  "license": {
+    "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+  }
+ }

@@ -18,7 +18,7 @@ class ParameterTest extends FlatSpec with ShouldMatchers with TestBase {
   val jsonSchema = factory.getJsonSchema(schema.get("definitions").get("parameter"))
 
   it should "validate a string query parameter" in {
-    val json = Source.fromFile("fixtures/v2.0/json/resources/parameters/queryStringParameter.json").mkString
+    val json = Source.fromFile("fixtures/v2.0/json/resources/parameters/queryInt64Parameter.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     if(report.isSuccess == false)
@@ -33,13 +33,6 @@ class ParameterTest extends FlatSpec with ShouldMatchers with TestBase {
     if(report.isSuccess == false)
       println(report)
     report.isSuccess should be (true)
-  }
-
-  it should "fail to validate a complex query parameter" in {
-    val json = Source.fromFile("fixtures/v2.0/json/resources/parameters/queryWithComplexParameter.json").mkString
-    val data = JsonLoader.fromString(json)
-    val report = jsonSchema.validate(data)
-    report.isSuccess should be (false)
   }
 
   it should "validate a string header parameter" in {
@@ -141,6 +134,15 @@ class ParameterTest extends FlatSpec with ShouldMatchers with TestBase {
     report.isSuccess should be (true)
   }
 
+  it should "validate a complex body with inline schema parameter" in {
+    val json = Source.fromFile("fixtures/v2.0/json/resources/parameters/bodyComplexInlineParameter.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    if(report.isSuccess == false)
+      println(report)
+    report.isSuccess should be (true)
+  }
+
   it should "validate an int64 form data parameter" in {
     val json = Source.fromFile("fixtures/v2.0/json/resources/parameters/formDataInt64Parameter.json").mkString
     val data = JsonLoader.fromString(json)
@@ -159,10 +161,103 @@ class ParameterTest extends FlatSpec with ShouldMatchers with TestBase {
     report.isSuccess should be (true)
   }
 
-  ignore should "fail to validate a complex form data parameter" in {
-    val json = Source.fromFile("fixtures/v2.0/json/resources/parameters/formDataComplexParameter.json").mkString
+  // Negative tests
+
+  it should "fail to validate a complex form data parameter" in {
+    val json = Source.fromFile("fixtures/v2.0/json/resources/parameters/negative/formDataComplexParameter.json").mkString
     val data = JsonLoader.fromString(json)
     val report = jsonSchema.validate(data)
     report.isSuccess should be (false)
   }
+
+  it should "fail to validate form data parameter with schema" in {
+    val json = Source.fromFile("fixtures/v2.0/json/resources/parameters/negative/formDataSchemaParameter.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    report.isSuccess should be (false)
+  }
+
+  it should "fail to validate a complex query parameter" in {
+    val json = Source.fromFile("fixtures/v2.0/json/resources/parameters/negative/queryComplexParameter.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    report.isSuccess should be (false)
+  }
+
+  it should "fail to validate query parameter with schema" in {
+    val json = Source.fromFile("fixtures/v2.0/json/resources/parameters/negative/querySchemaParameter.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    report.isSuccess should be (false)
+  }
+
+  it should "fail to validate a header data parameter" in {
+    val json = Source.fromFile("fixtures/v2.0/json/resources/parameters/negative/headerComplexParameter.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    report.isSuccess should be (false)
+  }
+
+  it should "fail to validate header parameter with schema" in {
+    val json = Source.fromFile("fixtures/v2.0/json/resources/parameters/negative/headerSchemaParameter.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    report.isSuccess should be (false)
+  }
+
+  it should "fail to validate a complex path parameter" in {
+    val json = Source.fromFile("fixtures/v2.0/json/resources/parameters/negative/pathComplexParameter.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    report.isSuccess should be (false)
+  }
+
+  it should "fail to validate path parameter with schema" in {
+    val json = Source.fromFile("fixtures/v2.0/json/resources/parameters/negative/pathSchemaParameter.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    report.isSuccess should be (false)
+  }
+
+  it should "fail to validate body parameter with type file" in {
+    val json = Source.fromFile("fixtures/v2.0/json/resources/parameters/negative/bodyFileParameter.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    report.isSuccess should be (false)
+  }
+
+  it should "fail to validate header parameter with type file" in {
+    val json = Source.fromFile("fixtures/v2.0/json/resources/parameters/negative/headerFileParameter.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    report.isSuccess should be (false)
+  }
+
+  it should "fail to validate path parameter with type file" in {
+    val json = Source.fromFile("fixtures/v2.0/json/resources/parameters/negative/pathFileParameter.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    report.isSuccess should be (false)
+  }
+
+  it should "fail to validate query parameter with type file" in {
+    val json = Source.fromFile("fixtures/v2.0/json/resources/parameters/negative/queryFileParameter.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    report.isSuccess should be (false)
+  }
+
+  it should "fail to validate body parameter non schema type" in {
+    val json = Source.fromFile("fixtures/v2.0/json/resources/parameters/negative/bodyNonSchemaParameter.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    report.isSuccess should be (false)
+  }
+
+  it should "fail to validate non-required path parameter" in {
+    val json = Source.fromFile("fixtures/v2.0/json/resources/parameters/negative/pathNonRequiredStringParameter.json").mkString
+    val data = JsonLoader.fromString(json)
+    val report = jsonSchema.validate(data)
+    report.isSuccess should be (false)
+  }  
 }

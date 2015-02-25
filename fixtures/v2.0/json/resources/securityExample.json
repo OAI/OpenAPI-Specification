@@ -74,14 +74,14 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "Pet"
+                "$ref": "#/definitions/Pet"
               }
             }
           },
           "default": {
             "description": "error payload",
             "schema": {
-              "$ref": "ErrorModel"
+              "$ref": "#/definitions/ErrorModel"
             }
           }
         }

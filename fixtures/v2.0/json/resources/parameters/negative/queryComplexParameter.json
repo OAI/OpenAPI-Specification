@@ -1,0 +1,7 @@
+{
+  "name": "firstName",
+  "in": "query",
+  "description": "users first name",
+  "required": true,
+  "$ref": "#/definitions/Nothing"
+}

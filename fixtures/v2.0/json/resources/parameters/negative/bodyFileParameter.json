@@ -1,0 +1,9 @@
+{
+  "name": "username",
+  "in": "body",
+  "description": "username to fetch",
+  "required": true,
+  "schema": {
+  	"type": "file"
+  }
+}

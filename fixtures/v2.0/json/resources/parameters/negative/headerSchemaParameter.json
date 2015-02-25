@@ -1,0 +1,9 @@
+{
+  "name": "firstName",
+  "in": "header",
+  "description": "users first name",
+  "required": true,
+  "schema": {
+  	"$ref": "#/definitions/Nothing"
+  }
+}

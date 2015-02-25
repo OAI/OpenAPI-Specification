@@ -54,7 +54,7 @@
           "200": {
             "description": "pet response",
             "schema": {
-              "$ref": "Pet"
+              "$ref": "#/definitions/Pet"
             },
             "examples": {
               "application/json": {
@@ -75,7 +75,7 @@
           "default": {
             "description": "error payload",
             "schema": {
-              "$ref": "ErrorModel"
+              "$ref": "#/definitions/ErrorModel"
             }
           }
         }

@@ -19,15 +19,15 @@
   "responses": {
     "200": {
       "description": "fun",
-      "schema": {"$ref": "Pet"}
+      "schema": {"$ref": "#/definitions/Pet"}
     },
     "400": {
       "description": "Invalid ID supplied <= this is purely for documentation",
-      "schema": {"$ref": "ErrorModel"}
+      "schema": {"$ref": "#/definitions/ErrorModel"}
     },
     "default": {
       "description": "Unexpected error",
-      "schema": {"$ref": "ErrorModel"}
+      "schema": {"$ref": "#/definitions/ErrorModel"}
     }
   }
 }

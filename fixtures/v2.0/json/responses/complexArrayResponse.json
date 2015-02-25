@@ -3,7 +3,7 @@
   "schema": {
     "type": "array",
     "items": {
-      "$ref": "VeryComplexType"
+      "$ref": "#/definitions/VeryComplexType"
     }
   }
 }

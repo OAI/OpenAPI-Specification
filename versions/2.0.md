@@ -49,7 +49,8 @@ The HTTP Status Codes are used to indicate the status of the executed operation.
 
 ### Format
 
-The files describing the RESTful API in accordance with the Swagger specification are represented as JSON objects and conform to the JSON standards.
+The files describing the RESTful API in accordance with the Swagger specification are represented as JSON objects and conform to the JSON standards. YAML, being a superset of JSON, can be used as well to 
+represent a Swagger specification file.
 
 For example, if a field is said to have an array value, the JSON array representation will be used:
 

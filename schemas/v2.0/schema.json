@@ -605,6 +605,11 @@
           "type": "string",
           "description": "The name of the parameter."
         },
+        "allowEmptyValue": {
+          "type": "boolean",
+          "default": false,
+          "description": "allows sending a parameter by name only or with an empty value."
+        },
         "type": {
           "type": "string",
           "enum": [
@@ -692,6 +697,11 @@
         "name": {
           "type": "string",
           "description": "The name of the parameter."
+        },
+        "allowEmptyValue": {
+          "type": "boolean",
+          "default": false,
+          "description": "allows sending a parameter by name only or with an empty value."
         },
         "type": {
           "type": "string",

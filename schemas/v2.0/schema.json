@@ -1003,7 +1003,8 @@
           "$ref": "#/definitions/externalDocs"
         },
         "example": {}
-      }
+      },
+      "additionalProperties": false
     },
     "primitivesItems": {
       "type": "object",

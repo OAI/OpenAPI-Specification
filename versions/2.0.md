@@ -1127,8 +1127,10 @@ $ref: '#/definitions/Pet'
 
 The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays. This object is based on the [JSON Schema Specification Draft 4](http://json-schema.org/) and uses a predefined subset of it. On top of this subset, there are extensions provided by this specification to allow for more complete documentation.
 
+Further information about the properties can be found in [JSON Schema Core](http://json-schema.org/latest/json-schema-core.html) and [JSON Schema Validation](http://json-schema.org/latest/json-schema-validation.html). Unless stated otherwise, the property definitions follow the JSON Schema specification as referenced here.
+
 The following properties are taken directly from the JSON Schema definition and follow the same specifications:
-- $ref
+- $ref - As a [JSON Reference](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03)
 - format (See [Data Type Formats](#dataTypeFormat) for further details)
 - title
 - description ([GFM syntax](https://help.github.com/articles/github-flavored-markdown) can be used for rich text representation)

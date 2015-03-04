@@ -125,8 +125,7 @@ definitions:
         type: string
   NewPet:
     allOf:
-      - Pet:
-          $ref: '#/definitions/Pet'
+      - $ref: '#/definitions/Pet'
       - required:
           - name
         properties:

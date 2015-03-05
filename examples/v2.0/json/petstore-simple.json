@@ -4,15 +4,15 @@
     "version": "1.0.0",
     "title": "Swagger Petstore",
     "description": "A sample API that uses a petstore as an example to demonstrate features in the swagger-2.0 specification",
-    "termsOfService": "http://helloreverb.com/terms/",
+    "termsOfService": "http://swagger.io/terms/",
     "contact": {
-      "name": "Wordnik API Team"
+      "name": "Swagger API Team"
     },
     "license": {
       "name": "MIT"
     }
   },
-  "host": "petstore.swagger.wordnik.com",
+  "host": "petstore.swagger.io",
   "basePath": "/api",
   "schemes": [
     "http"
@@ -61,14 +61,14 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/pet"
+                "$ref": "#/definitions/Pet"
               }
             }
           },
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "#/definitions/errorModel"
+              "$ref": "#/definitions/ErrorModel"
             }
           }
         }
@@ -86,7 +86,7 @@
             "description": "Pet to add to the store",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/petInput"
+              "$ref": "#/definitions/PetInput"
             }
           }
         ],
@@ -94,13 +94,13 @@
           "200": {
             "description": "pet response",
             "schema": {
-              "$ref": "#/definitions/pet"
+              "$ref": "#/definitions/Pet"
             }
           },
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "#/definitions/errorModel"
+              "$ref": "#/definitions/ErrorModel"
             }
           }
         }
@@ -130,13 +130,13 @@
           "200": {
             "description": "pet response",
             "schema": {
-              "$ref": "#/definitions/pet"
+              "$ref": "#/definitions/Pet"
             }
           },
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "#/definitions/errorModel"
+              "$ref": "#/definitions/ErrorModel"
             }
           }
         }
@@ -161,7 +161,7 @@
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "#/definitions/errorModel"
+              "$ref": "#/definitions/ErrorModel"
             }
           }
         }
@@ -169,7 +169,7 @@
     }
   },
   "definitions": {
-    "pet": {
+    "Pet": {
       "required": [
         "id",
         "name"
@@ -187,10 +187,10 @@
         }
       }
     },
-    "petInput": {
+    "PetInput": {
       "allOf": [
         {
-          "$ref": "pet"
+          "$ref": "#/definitions/Pet"
         },
         {
           "required": [
@@ -205,7 +205,7 @@
         }
       ]
     },
-    "errorModel": {
+    "ErrorModel": {
       "required": [
         "code",
         "message"

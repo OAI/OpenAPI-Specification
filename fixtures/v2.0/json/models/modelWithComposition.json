@@ -1,20 +1,18 @@
 {
-  "definitions": {
-    "Pet": {
-      "discriminator": "petType",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "petType": {
-          "type": "string"
-        }
+  "Pet": {
+    "discriminator": "petType",
+    "properties": {
+      "name": {
+        "type": "string"
       },
-      "required": [
-        "name",
-        "petType"
-      ]
-    }
+      "petType": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "name",
+      "petType"
+    ]
   },
   "Cat": {
     "description": "A representation of a cat",

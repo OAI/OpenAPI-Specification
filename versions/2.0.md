@@ -1159,6 +1159,7 @@ The following properties are taken from the JSON Schema definition but their def
 - items
 - allOf
 - properties
+- additionalProperties
 
 Other than the JSON Schema subset fields, the following fields may be used for further schema documentation.
 

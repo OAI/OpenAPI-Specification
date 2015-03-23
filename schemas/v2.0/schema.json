@@ -214,7 +214,7 @@
     },
     "mimeType": {
       "type": "string",
-      "pattern": "^[\\sa-z0-9\\-+;\\.=\\/]+$",
+      "pattern": "[a-zA-Z0-9!#$%^&\\*_\\-\\+{}\\|'.`~]+/[a-zA-Z0-9!#$%^&\\*_\\-\\+{}\\|'.`~]+",
       "description": "The MIME type of the HTTP message."
     },
     "operation": {

@@ -4,11 +4,11 @@
     "version": "1.0.0",
     "title": "Swagger Petstore",
     "description": "A sample API that uses a petstore as an example to demonstrate features in the swagger-2.0 specification",
-    "termsOfService": "http://helloreverb.com/terms/",
+    "termsOfService": "http://swagger.io/terms/",
     "contact": {
-      "name": "Wordnik API Team",
-      "email": "foo@example.com",
-      "url": "http://madskristensen.net"
+      "name": "Swagger API Team",
+      "email": "apiteam@swagger.io",
+      "url": "http://swagger.io"
     },
     "license": {
       "name": "MIT",
@@ -17,9 +17,9 @@
   },
   "externalDocs": {
     "description": "find more info here",
-    "url": "https://helloreverb.com/about"
+    "url": "https://swagger.io/about"
   },
-  "host": "petstore.swagger.wordnik.com",
+  "host": "petstore.swagger.io",
   "basePath": "/api",
   "schemes": [
     "http"
@@ -37,7 +37,7 @@
         "operationId": "findPets",
         "externalDocs": {
           "description": "find more info here",
-          "url": "https://helloreverb.com/about"
+          "url": "https://swagger.io/about"
         },
         "produces": [
           "application/json",
@@ -72,14 +72,14 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/pet"
+                "$ref": "#/definitions/Pet"
               }
             }
           },
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "#/definitions/errorModel"
+              "$ref": "#/definitions/ErrorModel"
             }
           }
         }
@@ -97,7 +97,7 @@
             "description": "Pet to add to the store",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/newPet"
+              "$ref": "#/definitions/NewPet"
             }
           }
         ],
@@ -105,13 +105,13 @@
           "200": {
             "description": "pet response",
             "schema": {
-              "$ref": "#/definitions/pet"
+              "$ref": "#/definitions/Pet"
             }
           },
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "#/definitions/errorModel"
+              "$ref": "#/definitions/ErrorModel"
             }
           }
         }
@@ -141,13 +141,13 @@
           "200": {
             "description": "pet response",
             "schema": {
-              "$ref": "#/definitions/pet"
+              "$ref": "#/definitions/Pet"
             }
           },
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "#/definitions/errorModel"
+              "$ref": "#/definitions/ErrorModel"
             }
           }
         }
@@ -172,7 +172,7 @@
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "#/definitions/errorModel"
+              "$ref": "#/definitions/ErrorModel"
             }
           }
         }
@@ -180,14 +180,14 @@
     }
   },
   "definitions": {
-    "pet": {
+    "Pet": {
       "required": [
         "id",
         "name"
       ],
       "externalDocs": {
         "description": "find more info here",
-        "url": "https://helloreverb.com/about"
+        "url": "https://swagger.io/about"
       },
       "properties": {
         "id": {
@@ -202,10 +202,10 @@
         }
       }
     },
-    "newPet": {
+    "NewPet": {
       "allOf": [
         {
-          "$ref": "pet"
+          "$ref": "#/definitions/Pet"
         },
         {
           "required": [
@@ -220,7 +220,7 @@
         }
       ]
     },
-    "errorModel": {
+    "ErrorModel": {
       "required": [
         "code",
         "message"

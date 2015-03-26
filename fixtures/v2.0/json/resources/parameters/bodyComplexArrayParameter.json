@@ -7,7 +7,6 @@
     "type": "array",
     "items": {
       "type": "string"
-    },
-    "collectionFormat": "csv"
+    }
   }
 }

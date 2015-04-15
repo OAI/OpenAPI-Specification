@@ -900,6 +900,9 @@
         "format": {
           "type": "string"
         },
+        "id": {
+          "$ref": "http://json-schema.org/draft-04/schema#/properties/id"
+        },
         "title": {
           "$ref": "http://json-schema.org/draft-04/schema#/properties/title"
         },

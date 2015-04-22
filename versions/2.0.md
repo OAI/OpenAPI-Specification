@@ -571,7 +571,7 @@ Field Name | Type | Description
 <a name="parameterAllowEmptyValue"/>allowEmptyValue | `boolean` | Sets the ability to pass empty-valued parameters. This is valid only for either `query` or `formData` parameters and allows you to send a parameter with a name only or  an empty value. Default value is `false`.
 <a name="parameterItems"></a>items | [Items Object](#itemsObject) | **Required if [`type`](#parameterType) is "array".** Describes the type of items in the array.
 <a name="parameterCollectionFormat"></a>collectionFormat | `string` | Determines the format of the array if type array is used. Possible values are: <ul><li>`csv` - comma separated values `foo,bar`. <li>`ssv` - space separated values `foo bar`. <li>`tsv` - tab separated values `foo\tbar`. <li>`pipes` - pipe separated values <code>foo&#124;bar</code>. <li>`multi` - corresponds to multiple parameter instances instead of multiple values for a single instance `foo=bar&foo=baz`. This is valid only for parameters [`in`](#parameterIn) "query" or "formData". </ul> Default value is `csv`.
-<a name="parameterDefault"></a>default | * | Sets a default value to the parameter. The type of the value depends on the defined [`type`](#parameterType). See http://json-schema.org/latest/json-schema-validation.html#anchor101.
+<a name="parameterDefault"></a>default | * | Sets a default value to the parameter. See http://json-schema.org/latest/json-schema-validation.html#anchor101. Unlike JSON Schema this value MUST conform to the defined [`type`](#parameterType) for this parameter.
 <a name="parameterMaximum"></a>maximum | `number` | See http://json-schema.org/latest/json-schema-validation.html#anchor17.
 <a name="parameterExclusiveMaximum"></a>exclusiveMaximum | `boolean` | See http://json-schema.org/latest/json-schema-validation.html#anchor17.
 <a name="parameterMinimum"></a>minimum | `number` | See http://json-schema.org/latest/json-schema-validation.html#anchor21.
@@ -751,7 +751,7 @@ Field Name | Type | Description
 <a name="itemsFormat"></a>format | `string` | The extending format for the previously mentioned [`type`](#parameterType). See [Data Type Formats](#dataTypeFormat) for further details.
 <a name="itemsItems"></a>items | [Items Object](#itemsObject) | **Required if [`type`](#itemsType) is "array".** Describes the type of items in the array.
 <a name="itemsCollectionFormat"></a>collectionFormat | `string` | Determines the format of the array if type array is used. Possible values are: <ul><li>`csv` - comma separated values `foo,bar`. <li>`ssv` - space separated values `foo bar`. <li>`tsv` - tab separated values `foo\tbar`. <li>`pipes` - pipe separated values <code>foo&#124;bar</code>. </ul> Default value is `csv`.
-<a name="itemsDefault"></a>default | * | Sets a default value to the data type. The type of the value depends on the defined [`type`](#itemsType). See http://json-schema.org/latest/json-schema-validation.html#anchor101.
+<a name="itemsDefault"></a>default | * | Sets a default value to the data type. See http://json-schema.org/latest/json-schema-validation.html#anchor101. Unlike JSON Schema this value MUST conform to the defined [`type`](#itemsType) for the data type.
 <a name="itemsMaximum"></a>maximum | `number` | See http://json-schema.org/latest/json-schema-validation.html#anchor17.
 <a name="itemsMaximum"></a>exclusiveMaximum | `boolean` | See http://json-schema.org/latest/json-schema-validation.html#anchor17.
 <a name="itemsMinimum"></a>minimum | `number` | See http://json-schema.org/latest/json-schema-validation.html#anchor21.
@@ -1043,7 +1043,7 @@ Field Name | Type | Description
 <a name="headerFormat"></a>format | `string` | The extending format for the previously mentioned [`type`](#stType). See [Data Type Formats](#dataTypeFormat) for further details.
 <a name="headerItems"></a>items | [Items Object](#itemsObject) | **Required if [`type`](#stType) is "array".** Describes the type of items in the array.
 <a name="headerCollectionFormat"></a>collectionFormat | `string` | Determines the format of the array if type array is used. Possible values are: <ul><li>`csv` - comma separated values `foo,bar`. <li>`ssv` - space separated values `foo bar`. <li>`tsv` - tab separated values `foo\tbar`. <li>`pipes` - pipe separated values <code>foo&#124;bar</code>. </ul> Default value is `csv`.
-<a name="headerDefault"></a>default | * | Sets a default value to the data type. The type of the value depends on the defined [`type`](#stType). See http://json-schema.org/latest/json-schema-validation.html#anchor101.
+<a name="headerDefault"></a>default | * | Sets a default value for the header. See http://json-schema.org/latest/json-schema-validation.html#anchor101. Unlike JSON Schema this value MUST conform to the defined [`type`](#headerDefault) for the header.
 <a name="headerMaximum"></a>maximum | `number` | See http://json-schema.org/latest/json-schema-validation.html#anchor17.
 <a name="headerMaximum"></a>exclusiveMaximum | `boolean` | See http://json-schema.org/latest/json-schema-validation.html#anchor17.
 <a name="headerMinimum"></a>minimum | `number` | See http://json-schema.org/latest/json-schema-validation.html#anchor21.
@@ -1137,7 +1137,7 @@ The following properties are taken directly from the JSON Schema definition and 
 - format (See [Data Type Formats](#dataTypeFormat) for further details)
 - title
 - description ([GFM syntax](https://help.github.com/articles/github-flavored-markdown) can be used for rich text representation)
-- default
+- default (Unlike JSON Schema, the value MUST conform to the defined type for the Schema Object)
 - multipleOf
 - maximum
 - exclusiveMaximum

@@ -134,7 +134,7 @@ Field Name | Type | Description
 <a name="infoTermsOfService"></a>termsOfService | `string` | The Terms of Service for the API.
 <a name="infoContact"></a>contact | [Contact Object](#contactObject) | The contact information for the exposed API.
 <a name="infoLicense"></a>license | [License Object](#licenseObject) | The license information for the exposed API.
-<a name="infoVersion"></a>version | `string` | **Required** Provides the version of the application API (not to be confused by the specification version).
+<a name="infoVersion"></a>version | `string` | **Required** Provides the version of the application API (not to be confused with the specification version).
 
 ##### Patterned Objects 
 

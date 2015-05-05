@@ -45,7 +45,7 @@ paths:
         200:
           description: An array of products
           schema:
-            $ref: "#/definitions/Products"
+            $ref: "#/definitions/ProductList"
         default:
           description: Unexpected error
           schema:
@@ -190,7 +190,7 @@ definitions:
       image:
         type: string
         description: Image URL representing the product.
-  Products:
+  ProductList:
     properties:
       products:
         description: Contains the list of products

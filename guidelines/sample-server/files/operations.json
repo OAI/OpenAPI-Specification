@@ -1,0 +1,23 @@
+{
+  "health": {
+    "get": {
+      "tags": [
+        "admin"
+      ],
+      "summary": "Returns server health information",
+      "operationId": "getHealth",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [],
+      "responses": {
+        "200": {
+          "description": "Health information from the server",
+          "schema": {
+            "$ref": "http://localhost:8000/models.json#/Health"
+          }
+        }
+      }
+    }
+  }
+}

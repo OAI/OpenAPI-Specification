@@ -1,0 +1,44 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Sample server to demonstrate object reuse",
+    "version": "1.0.0",
+    "title": "Swagger sample"
+  },
+  "paths": {
+    "/health": {
+      "$ref": "http://localhost:8000/operations.json#/health"
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Returns users in the system",
+        "operationId": "getUsers",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "http://localhost:8000/parameters.json#/query/skip"
+          },
+          {
+            "$ref": "http://localhost:8000/parameters.json#/query/limit"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Users in the system",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "http://localhost:8000/models.json#/Health"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "author": {
+    "name": "Tony Tam",
+    "email": "fehguy@gmail.com",
+    "url": "https://github.com/fehguy"
+  },
+  "dependencies": {
+    "cors": "^2.5.3",
+    "http-server"   :  "https://github.com/leeroybrun/node-http-server/tarball/master"
+  }
+}

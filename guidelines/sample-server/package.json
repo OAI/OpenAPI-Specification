@@ -7,6 +7,6 @@
   },
   "dependencies": {
     "cors": "^2.5.3",
-    "http-server"   :  "https://github.com/leeroybrun/node-http-server/tarball/master"
+    "http-server":  "0.8.0"
   }
 }

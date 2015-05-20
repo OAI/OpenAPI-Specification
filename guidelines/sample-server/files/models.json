@@ -81,5 +81,23 @@
         "format": "double"
       }
     }
+  },
+  "ErrorMessage": {
+    "description": "A shared model for error message",
+    "required" : ["error-code","reason"],
+    "properties": {
+      "error-code": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "reason": {
+        "description": "the reason for this error",
+        "type": "string"
+      },
+      "description": {
+        "description": "an optional longer description of this error message",
+        "type": "string"
+      }
+    }
   }
 }

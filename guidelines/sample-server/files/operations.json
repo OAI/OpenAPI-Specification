@@ -16,8 +16,12 @@
           "schema": {
             "$ref": "http://localhost:8000/models.json#/Health"
           }
+        },
+        "404": {
+          "$ref": "http://localhost:8000/responses.json#/NotFoundError"
         }
       }
     }
   }
 }
+

@@ -2,7 +2,7 @@
   "NotFoundError": {
     "description": "Entity not found",
     "schema": {
-      "$ref": "http://localhost:8080/models.json#/ErrorMessage"
+      "$ref": "http://localhost:8000/models.json#/ErrorMessage"
     }
   }
 }

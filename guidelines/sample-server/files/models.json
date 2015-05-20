@@ -84,7 +84,7 @@
   },
   "ErrorMessage": {
     "description": "A shared model for error message",
-    "required" : ["error-code","reason"],
+    "required" : ["errorCode","reason"],
     "properties": {
       "errorCode": {
         "type": "integer",

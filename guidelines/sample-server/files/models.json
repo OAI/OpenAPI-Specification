@@ -1,5 +1,6 @@
 {
   "Model": {
+    "type": "object",
     "description": "A simple model",
     "properties": {
       "id": {
@@ -13,6 +14,7 @@
     }
   },
   "Tag": {
+    "type": "object",
     "description": "A tag entity in the system",
     "properties": {
       "name": {
@@ -21,6 +23,7 @@
     }
   },
   "Health": {
+    "type": "object",
     "description": "An object representing the health of a server",
     "required": [
       "liveThreadCount",
@@ -52,6 +55,7 @@
     }
   },
   "JVMMemory": {
+    "type": "object",
     "required": [
       "allocated",
       "max",
@@ -79,6 +83,25 @@
       "percentUsed": {
         "type": "number",
         "format": "double"
+      }
+    }
+  },
+  "ErrorMessage": {
+    "type": "object",
+    "description": "A shared model for error message",
+    "required" : ["errorCode","reason"],
+    "properties": {
+      "errorCode": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "reason": {
+        "description": "the reason for this error",
+        "type": "string"
+      },
+      "description": {
+        "description": "an optional longer description of this error message",
+        "type": "string"
       }
     }
   }

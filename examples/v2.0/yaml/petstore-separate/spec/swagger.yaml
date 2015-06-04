@@ -37,11 +37,11 @@ paths:
           schema:
             type: array
             items:
-              $ref: 'definitions.yaml#/Pet'
+              $ref: 'Pet.yaml'
         default:
           description: unexpected error
           schema:
-            $ref: '../petstore-separate-common.yaml#/Error'
+            $ref: '../common/Error.yaml'
     post:
       description: Creates a new pet in the store.  Duplicates are allowed
       operationId: addPet
@@ -51,16 +51,16 @@ paths:
           description: Pet to add to the store
           required: true
           schema:
-            $ref: 'definitions.yaml#/NewPet'
+            $ref: 'NewPet.yaml'
       responses:
         200:
           description: pet response
           schema:
-            $ref: 'definitions.yaml#/Pet'
+            $ref: 'Pet.yaml'
         default:
           description: unexpected error
           schema:
-            $ref: '../petstore-separate-common.yaml#/Error'
+            $ref: '../common/Error.yaml'
   /pets/{id}:
     get:
       description: Returns a user based on a single ID, if the user does not have access to the pet
@@ -76,11 +76,11 @@ paths:
         200:
           description: pet response
           schema:
-            $ref: 'definitions.yaml#/Pet'
+            $ref: 'Pet.yaml'
         default:
           description: unexpected error
           schema:
-            $ref: '../petstore-separate-common.yaml#/Error'
+            $ref: '../common/Error.yaml'
     delete:
       description: deletes a single pet based on the ID supplied
       operationId: deletePet
@@ -97,4 +97,4 @@ paths:
         default:
           description: unexpected error
           schema:
-            $ref: '../petstore-separate-common.yaml#/Error'
+            $ref: '../common/Error.yaml'

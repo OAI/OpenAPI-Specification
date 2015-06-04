@@ -15,10 +15,8 @@ paths:
       produces:
         - "application/json"
       parameters:
-        -
-          $ref: "http://localhost:8000/parameters.yaml#/query/skip"
-        -
-          $ref: "http://localhost:8000/parameters.yaml#/query/limit"
+        - $ref: "http://localhost:8000/parameters.yaml#/query/skip"
+        - $ref: "http://localhost:8000/parameters.yaml#/query/limit"
       responses:
         200:
           description: "Users in the system"

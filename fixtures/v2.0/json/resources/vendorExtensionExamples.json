@@ -1,17 +1,17 @@
 {
   "swagger": "2.0",
-  "x-reverb": {
+  "x-swagger": {
     "addAnythingYouWant": true
   },
   "info": {
-    "x-reverb-info": "this is an example",
+    "x-swagger-info": "this is an example",
     "version": "1.0.9-abcd",
     "title": "Swagger Sample API",
     "description": "A sample API that uses a petstore as an example to demonstrate features in the swagger-2.0 specification",
-    "termsOfService": "http://helloreverb.com/terms/",
+    "termsOfService": "http://swagger.io/terms/",
     "contact": {
-      "name": "wordnik api team",
-      "url": "http://developer.wordnik.com"
+      "name": "Swagger API Team",
+      "url": "http://swagger.io"
     },
     "license": {
       "name": "Creative Commons 4.0 International",
@@ -32,7 +32,7 @@
     "application/xml"
   ],
   "paths": {
-    "x-reverb-path-info": "vendor info",
+    "x-swagger-path-info": "vendor info",
     "/pets": {
       "x-vendor-method": {},
       "get": {

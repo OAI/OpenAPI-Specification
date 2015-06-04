@@ -229,7 +229,7 @@ Field Name | Type | Description
   "info": {
     "title": "Swagger Sample App",
     "description": "This is a sample server Petstore server.  You can find out more about Swagger \n    at <a href=\"http://swagger.wordnik.com\">http://swagger.wordnik.com</a> or on irc.freenode.net, #swagger.  For this sample,\n    you can use the api key \"special-key\" to test the authorization filters",
-    "termsOfServiceUrl": "http://helloreverb.com/terms/",
+    "termsOfServiceUrl": "http://swagger.io/terms/",
     "contact": "apiteam@wordnik.com",
     "license": "Apache 2.0",
     "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0.html"
@@ -272,7 +272,7 @@ Field Name | Type | Description
 {
   "title": "Swagger Sample App",
   "description": "This is a sample server Petstore server.",
-  "termsOfServiceUrl": "http://helloreverb.com/terms/",
+  "termsOfServiceUrl": "http://swagger.io/terms/",
   "contact": "apiteam@wordnik.com",
   "license": "Apache 2.0",
   "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0.html"

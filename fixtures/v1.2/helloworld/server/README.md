@@ -1,6 +1,6 @@
 # All-in-one Static Hello World Sample
 
-This sample project provides an all-one-one package demo for the Hello World sample described in the [wiki](https://github.com/wordnik/swagger-spec/wiki/Hello-World-Sample).
+This sample project provides an all-one-one package demo for the Hello World sample described in the [wiki](https://github.com/swagger-api/swagger-spec/wiki/Hello-World-Sample).
 
 ## Requirements
 

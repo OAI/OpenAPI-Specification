@@ -1,5 +1,5 @@
 {
-    "id": "http://wordnik.github.io/schemas/v1.2/resourceObject.json#",
+    "id": "http://swagger-api.github.io/schemas/v1.2/resourceObject.json#",
     "$schema": "http://json-schema.org/draft-04/schema#",
     "type": "object",
     "required": [ "path" ],

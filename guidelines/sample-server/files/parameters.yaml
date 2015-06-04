@@ -1,0 +1,17 @@
+query:
+  skip:
+    name: "skip"
+    in: "query"
+    description: "Results to skip when paginating through a result set"
+    required: false
+    minimum: 0
+    type: "integer"
+    format: "int32"
+  limit:
+    name: "limit"
+    in: "query"
+    description: "Maximum number of results to return"
+    required: false
+    minimum: 0
+    type: "integer"
+    format: "int32"

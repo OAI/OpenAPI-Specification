@@ -45,11 +45,13 @@ paths:
         200:
           description: An array of products
           schema:
-            $ref: "#/definitions/ProductList"
+            type: array
+            items:
+              $ref: '#/definitions/Product'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
   /estimates/price:
     get:
       summary: Price Estimates
@@ -87,11 +89,11 @@ paths:
           schema:
             type: array
             items:
-              $ref: "#/definitions/PriceEstimate"
+              $ref: '#/definitions/PriceEstimate'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
   /estimates/time:
     get:
       summary: Time Estimates
@@ -126,11 +128,11 @@ paths:
           schema:
             type: array
             items:
-              $ref: "#/definitions/Product"
+              $ref: '#/definitions/Product'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
   /me:
     get:
       summary: User Profile
@@ -141,11 +143,11 @@ paths:
         200:
           description: Profile information for a user
           schema:
-            $ref: "#/definitions/Profile"
+            $ref: '#/definitions/Profile'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
   /history:
     get:
       summary: User Activity
@@ -167,11 +169,11 @@ paths:
         200:
           description: History information for the given user
           schema:
-            $ref: "#/definitions/Activities"
+            $ref: '#/definitions/Activities'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
 definitions:
   Product:
     properties:
@@ -259,7 +261,7 @@ definitions:
       history:
         type: array
         items:
-          $ref: "#/definitions/Activity"
+          - $ref: '#/definitions/Activity'
   Error:
     properties:
       code:
@@ -269,4 +271,3 @@ definitions:
         type: string
       fields:
         type: string
-        

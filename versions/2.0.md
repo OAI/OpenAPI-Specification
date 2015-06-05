@@ -1135,6 +1135,7 @@ $ref: '#/definitions/Pet'
 
 ```yaml
 $ref: 'Pet.yaml'
+```
 
 ##### Relative Files With Embedded Schema Example
 ```js
@@ -1145,7 +1146,7 @@ $ref: 'Pet.yaml'
 
 ```yaml
 $ref: 'definitions.yaml#/Pet'
-
+```
 
 #### <a name="schemaObject"></a>Schema Object
 

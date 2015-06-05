@@ -113,10 +113,17 @@ describe('YAML Samples', function() {
   before(function(done) {
     setupValidators(done);
   })
+  exclusions = ["./examples/v2.0/yaml/petstore-separate/common/Error.yaml",
+  "./examples/v2.0/yaml/petstore-separate/spec/NewPet.yaml",
+  "./examples/v2.0/yaml/petstore-separate/spec/Pet.yaml",
+  "./examples/v2.0/yaml/petstore-separate/spec/parameters.yaml"]
+
   files = glob.sync("./examples/**/*.yaml")
   validators.forEach(function(validator) {
     files.forEach(function(file) {
-      createYAMLTest(file, validator);
+      if (exclusions.indexOf(file) == -1) {
+        createYAMLTest(file, validator);
+      }
     })
   })
 })

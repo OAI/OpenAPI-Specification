@@ -170,6 +170,7 @@
   },
   "definitions": {
     "Pet": {
+      "type": "object",
       "required": [
         "id",
         "name"
@@ -188,6 +189,7 @@
       }
     },
     "PetInput": {
+      "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/Pet"
@@ -206,6 +208,7 @@
       ]
     },
     "ErrorModel": {
+      "type": "object",
       "required": [
         "code",
         "message"

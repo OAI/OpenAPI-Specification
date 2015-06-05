@@ -158,6 +158,7 @@
   },
   "definitions": {
     "Pet": {
+      "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/NewPet"
@@ -176,6 +177,7 @@
       ]
     },
     "NewPet": {
+      "type": "object",
       "required": [
         "name"
       ],
@@ -189,6 +191,7 @@
       }
     },
     "Error": {
+      "type": "object",
       "required": [
         "code",
         "message"

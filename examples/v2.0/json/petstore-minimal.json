@@ -46,6 +46,7 @@
   },
   "definitions": {
     "Pet": {
+      "type": "object",
       "required": [
         "id",
         "name"

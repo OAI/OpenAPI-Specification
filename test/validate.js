@@ -100,11 +100,19 @@ describe('JSON Samples', function() {
   before(function(done) {
     setupValidators(done);
   })
+  exclusions = ["./examples/v2.0/json/petstore-separate/common/Error.json",
+  "./examples/v2.0/json/petstore-separate/spec/NewPet.json",
+  "./examples/v2.0/json/petstore-separate/spec/Pet.json",
+  "./examples/v2.0/json/petstore-separate/spec/parameters.json"]
 
   files = glob.sync("./examples/**/*.json")
   validators.forEach(function(validator) {
     files.forEach(function(file) {
-      createJSONTest(file, validator);
+      if (exclusions.indexOf(file) == -1) {
+        createJSONTest(file, validator);
+      } else {
+        //TODO: validate separate schema files in exclusion list
+      }
     })
   })
 })
@@ -113,10 +121,19 @@ describe('YAML Samples', function() {
   before(function(done) {
     setupValidators(done);
   })
+  exclusions = ["./examples/v2.0/yaml/petstore-separate/common/Error.yaml",
+  "./examples/v2.0/yaml/petstore-separate/spec/NewPet.yaml",
+  "./examples/v2.0/yaml/petstore-separate/spec/Pet.yaml",
+  "./examples/v2.0/yaml/petstore-separate/spec/parameters.yaml"]
+
   files = glob.sync("./examples/**/*.yaml")
   validators.forEach(function(validator) {
     files.forEach(function(file) {
-      createYAMLTest(file, validator);
+      if (exclusions.indexOf(file) == -1) {
+        createYAMLTest(file, validator);
+      } else {
+        //TODO: validate separate schema files in exclusion list
+      }
     })
   })
 })

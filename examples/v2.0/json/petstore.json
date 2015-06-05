@@ -49,6 +49,7 @@
   },
   "definitions": {
     "Pet": {
+      "type": "object",
       "required": [
         "id",
         "name"
@@ -67,6 +68,7 @@
       }
     },
     "Error": {
+      "type": "object",
       "required": [
         "code",
         "message"

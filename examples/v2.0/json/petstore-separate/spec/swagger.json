@@ -4,9 +4,9 @@
     "version": "1.0.0",
     "title": "Swagger Petstore",
     "description": "A sample API that uses a petstore as an example to demonstrate features in the swagger-2.0 specification",
-    "termsOfService": "http://swagger.io/terms/",
+    "termsOfService": "http://helloreverb.com/terms/",
     "contact": {
-      "name": "Swagger API Team",
+      "name": "Wordnik API Team",
       "email": "foo@example.com",
       "url": "http://madskristensen.net"
     },
@@ -15,7 +15,7 @@
       "url": "http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT"
     }
   },
-  "host": "petstore.swagger.io",
+  "host": "petstore.swagger.wordnik.com",
   "basePath": "/api",
   "schemes": [
     "http"
@@ -33,23 +33,10 @@
         "operationId": "findPets",
         "parameters": [
           {
-            "name": "tags",
-            "in": "query",
-            "description": "tags to filter by",
-            "required": false,
-            "type": "array",
-            "collectionFormat": "csv",
-            "items": {
-              "type": "string"
-            }
+            "$ref": "parameters.yaml#/tagsParam"
           },
           {
-            "name": "limit",
-            "in": "query",
-            "description": "maximum number of results to return",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
+            "$ref": "parameters.yaml#/limitsParam"
           }
         ],
         "responses": {
@@ -58,14 +45,14 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Pet"
+                "$ref": "Pet.yaml"
               }
             }
           },
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": "../common/Error.yaml"
             }
           }
         }
@@ -80,7 +67,7 @@
             "description": "Pet to add to the store",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/NewPet"
+              "$ref": "NewPet.yaml"
             }
           }
         ],
@@ -88,13 +75,13 @@
           "200": {
             "description": "pet response",
             "schema": {
-              "$ref": "#/definitions/Pet"
+              "$ref": "Pet.yaml"
             }
           },
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": "../common/Error.yaml"
             }
           }
         }
@@ -118,13 +105,13 @@
           "200": {
             "description": "pet response",
             "schema": {
-              "$ref": "#/definitions/Pet"
+              "$ref": "Pet.yaml"
             }
           },
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": "../common/Error.yaml"
             }
           }
         }
@@ -149,60 +136,9 @@
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": "../common/Error.yaml"
             }
           }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "Pet": {
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/NewPet"
-        },
-        {
-          "required": [
-            "id"
-          ],
-          "properties": {
-            "id": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        }
-      ]
-    },
-    "NewPet": {
-      "type": "object",
-      "required": [
-        "name"
-      ],
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "tag": {
-          "type": "string"
-        }
-      }
-    },
-    "Error": {
-      "type": "object",
-      "required": [
-        "code",
-        "message"
-      ],
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
         }
       }
     }

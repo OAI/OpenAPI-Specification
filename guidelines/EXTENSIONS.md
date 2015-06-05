@@ -24,31 +24,33 @@ For example, a vendor extension that adds apis.json specific metadata a Swagger 
     "version": "1.0",
     "title": "Analysis",
     "description" : "Provides access to blog posts and analysis across the API Evangelist network.",
-    "x-apis-json-image": "https://s3.amazonaws.com/kinlane-productions/api-evangelist/t-shirts/KL_InApiWeTrust-1000.png",
-    "x-apis-json-humanURL": "http://developer.apievangelist.com",
-    "x-apis-json-baseURL": "http://api.apievangelist.com/definitions/Analysis",
-    "x-apis-json-tags": [
-        "blog",
-        "industry",
-        "analysis",
-        "new",
-        "API",
-        "Application Programming Interface"
-    ],
-    "x-apis-json-properties": [
-        {
-            "type": "X-signup",
-            "url": "https://apievangelist.3scale.net/"
-        },
-        {
-            "type": "X-blog",
-            "url": "http://developer.apievangelist.com/blog/"
-        },
-        {
-            "type": "X-apicommonsmanifest",
-            "url": "https://raw.githubusercontent.com/kinlane/analysis-api/master/api-commons-manifest.json"
-        }
-    ],
+    "x-apis-json" : {
+        "image": "https://s3.amazonaws.com/kinlane-productions/api-evangelist/t-shirts/KL_InApiWeTrust-1000.png",
+        "humanURL": "http://developer.apievangelist.com",
+        "baseURL": "http://api.apievangelist.com/definitions/Analysis",
+        "tags": [
+            "blog",
+            "industry",
+            "analysis",
+            "new",
+            "API",
+            "Application Programming Interface"
+        ],
+        "properties": [
+            {
+                "type": "X-signup",
+                "url": "https://apievangelist.3scale.net/"
+            },
+            {
+                "type": "X-blog",
+                "url": "http://developer.apievangelist.com/blog/"
+            },
+            {
+                "type": "X-apicommonsmanifest",
+                "url": "https://raw.githubusercontent.com/kinlane/analysis-api/master/api-commons-manifest.json"
+            }
+        ],
+     }
   },
   "basePath": "/",
   "paths": {

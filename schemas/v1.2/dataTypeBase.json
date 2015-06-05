@@ -1,5 +1,5 @@
 {
-    "id": "http://wordnik.github.io/schemas/v1.2/dataTypeBase.json#",
+    "id": "http://swagger-api.github.io/schemas/v1.2/dataTypeBase.json#",
     "$schema": "http://json-schema.org/draft-04/schema#",
     "description": "Data type fields (section 4.3.3)",
     "type": "object",

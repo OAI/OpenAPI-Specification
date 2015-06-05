@@ -1126,6 +1126,27 @@ Field Name | Type | Description
 $ref: '#/definitions/Pet'
 ```
 
+##### Relative Schema File Example
+```js
+{
+  "$ref": "Pet.json"
+}
+```
+
+```yaml
+$ref: 'Pet.yaml'
+
+##### Relative Files With Embedded Schema Example
+```js
+{
+  "$ref": "definitions.json#/Pet"
+}
+```
+
+```yaml
+$ref: 'definitions.yaml#/Pet'
+
+
 #### <a name="schemaObject"></a>Schema Object
 
 The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays. This object is based on the [JSON Schema Specification Draft 4](http://json-schema.org/) and uses a predefined subset of it. On top of this subset, there are extensions provided by this specification to allow for more complete documentation.

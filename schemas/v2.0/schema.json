@@ -770,6 +770,7 @@
           "$ref": "#/definitions/vendorExtension"
         }
       },
+      "required": ["required"],
       "properties": {
         "required": {
           "type": "boolean",

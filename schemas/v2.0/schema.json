@@ -1484,6 +1484,7 @@
     },
     "jsonReference": {
       "type": "object",
+      "required": ["$ref"],
       "additionalProperties": false,
       "properties": {
         "$ref": {

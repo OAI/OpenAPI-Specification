@@ -873,7 +873,10 @@
         {
           "$ref": "#/definitions/pathParameterSubSchema"
         }
-      ]
+      ],
+      "not": {
+        "$ref": "#/definitions/arrayWithoutItems"
+      }
     },
     "parameter": {
       "oneOf": [
@@ -1004,6 +1007,9 @@
         },
         "example": {}
       },
+      "not": {
+        "$ref": "#/definitions/arrayWithoutItems"
+      },
       "additionalProperties": false
     },
     "primitivesItems": {
@@ -1068,6 +1074,9 @@
         "multipleOf": {
           "$ref": "#/definitions/multipleOf"
         }
+      },
+      "not": {
+        "$ref": "#/definitions/arrayWithoutItems"
       }
     },
     "security": {
@@ -1489,6 +1498,23 @@
         "$ref": {
           "type": "string"
         }
+      }
+    },
+    "arrayWithoutItems": {
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "array"
+          ]
+        }
+      },
+      "not": {
+        "required": [
+          "items"
+        ]
       }
     }
   }

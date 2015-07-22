@@ -27,9 +27,8 @@
     },
     "host": {
       "type": "string",
-      "format": "uri",
       "pattern": "^[^{}/ :\\\\]+(?::\\d+)?$",
-      "description": "The fully qualified URI to the host of the API."
+      "description": "The host (name or ip) of the API. Example: 'swagger.io'"
     },
     "basePath": {
       "type": "string",

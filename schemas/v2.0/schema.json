@@ -101,7 +101,7 @@
         },
         "description": {
           "type": "string",
-          "description": "A longer description of the API. Should be different from the title.  Github-flavored markdown is allowed."
+          "description": "A longer description of the API. Should be different from the title.  GitHub-flavored markdown is allowed."
         },
         "termsOfService": {
           "type": "string",
@@ -241,7 +241,7 @@
         },
         "description": {
           "type": "string",
-          "description": "A longer description of the operation, github-flavored markdown is allowed."
+          "description": "A longer description of the operation, GitHub-flavored markdown is allowed."
         },
         "externalDocs": {
           "$ref": "#/definitions/externalDocs"
@@ -464,7 +464,7 @@
       "properties": {
         "description": {
           "type": "string",
-          "description": "A brief description of the parameter. This could contain examples of use.  Github-flavored markdown is allowed."
+          "description": "A brief description of the parameter. This could contain examples of use.  GitHub-flavored markdown is allowed."
         },
         "name": {
           "type": "string",
@@ -510,7 +510,7 @@
         },
         "description": {
           "type": "string",
-          "description": "A brief description of the parameter. This could contain examples of use.  Github-flavored markdown is allowed."
+          "description": "A brief description of the parameter. This could contain examples of use.  GitHub-flavored markdown is allowed."
         },
         "name": {
           "type": "string",
@@ -598,7 +598,7 @@
         },
         "description": {
           "type": "string",
-          "description": "A brief description of the parameter. This could contain examples of use.  Github-flavored markdown is allowed."
+          "description": "A brief description of the parameter. This could contain examples of use.  GitHub-flavored markdown is allowed."
         },
         "name": {
           "type": "string",
@@ -691,7 +691,7 @@
         },
         "description": {
           "type": "string",
-          "description": "A brief description of the parameter. This could contain examples of use.  Github-flavored markdown is allowed."
+          "description": "A brief description of the parameter. This could contain examples of use.  GitHub-flavored markdown is allowed."
         },
         "name": {
           "type": "string",
@@ -787,7 +787,7 @@
         },
         "description": {
           "type": "string",
-          "description": "A brief description of the parameter. This could contain examples of use.  Github-flavored markdown is allowed."
+          "description": "A brief description of the parameter. This could contain examples of use.  GitHub-flavored markdown is allowed."
         },
         "name": {
           "type": "string",

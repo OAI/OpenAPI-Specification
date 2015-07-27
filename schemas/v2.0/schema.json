@@ -955,7 +955,15 @@
           "$ref": "http://json-schema.org/draft-04/schema#/properties/enum"
         },
         "additionalProperties": {
-          "$ref": "http://json-schema.org/draft-04/schema#/properties/additionalProperties"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/schema"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "default": {}
         },
         "type": {
           "$ref": "http://json-schema.org/draft-04/schema#/properties/type"

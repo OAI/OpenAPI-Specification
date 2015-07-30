@@ -353,7 +353,14 @@
           "type": "string"
         },
         "schema": {
-          "$ref": "#/definitions/schema"
+          "oneOf": [
+            {
+              "$ref": "#/definitions/schema"
+            },
+            {
+              "$ref": "#/definitions/fileSchema"
+            }
+          ]
         },
         "headers": {
           "$ref": "#/definitions/headers"
@@ -766,7 +773,9 @@
           "$ref": "#/definitions/vendorExtension"
         }
       },
-      "required": ["required"],
+      "required": [
+        "required"
+      ],
       "properties": {
         "required": {
           "type": "boolean",
@@ -1003,6 +1012,47 @@
         },
         "xml": {
           "$ref": "#/definitions/xml"
+        },
+        "externalDocs": {
+          "$ref": "#/definitions/externalDocs"
+        },
+        "example": {}
+      },
+      "additionalProperties": false
+    },
+    "fileSchema": {
+      "type": "object",
+      "description": "A deterministic version of a JSON Schema object.",
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
+        }
+      },
+      "properties": {
+        "format": {
+          "type": "string"
+        },
+        "title": {
+          "$ref": "http://json-schema.org/draft-04/schema#/properties/title"
+        },
+        "description": {
+          "$ref": "http://json-schema.org/draft-04/schema#/properties/description"
+        },
+        "default": {
+          "$ref": "http://json-schema.org/draft-04/schema#/properties/default"
+        },
+        "required": {
+          "$ref": "http://json-schema.org/draft-04/schema#/definitions/stringArray"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "file"
+          ]
+        },
+        "readOnly": {
+          "type": "boolean",
+          "default": false
         },
         "externalDocs": {
           "$ref": "#/definitions/externalDocs"
@@ -1489,7 +1539,9 @@
     },
     "jsonReference": {
       "type": "object",
-      "required": ["$ref"],
+      "required": [
+        "$ref"
+      ],
       "additionalProperties": false,
       "properties": {
         "$ref": {

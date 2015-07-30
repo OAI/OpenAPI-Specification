@@ -248,7 +248,7 @@
         },
         "operationId": {
           "type": "string",
-          "description": "A friendly name of the operation"
+          "description": "A unique identifier of the operation."
         },
         "produces": {
           "description": "A list of MIME types the API can produce.",

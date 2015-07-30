@@ -246,7 +246,8 @@ definitions:
         description: Total number of items available.
       history:
         type: array
-        $ref: Activity
+        items:
+          $ref: Activity
   Error:
     properties:
       code:

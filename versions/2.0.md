@@ -864,6 +864,7 @@ Field Name | Type | Description
 <a name="responseSchema"></a>schema | [Schema Object](#schemaObject) | A definition of the response structure. It can be a primitive, an array or an object. If this field does not exist, it means no content is returned as part of the response. As an extension to the [Schema Object](#schemaObject), its root `type` value may also be `"file"`. This SHOULD be accompanied by a relevant `produces` mime-type.
 <a name="responseHeaders"></a>headers | [Headers Object](#headersObject) | A list of headers that are sent with the response.
 <a name="responseExamples"></a>examples | [Example Object](#exampleObject) | An example of the response message.
+<a name="responseExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details. 
 
 ##### Response Object Examples
 
@@ -966,7 +967,7 @@ Lists the headers that can be sent as part of a response.
 Field Pattern | Type | Description
 ---|:---:|---
 <a name="headersName"></a>{name} | [Header Object](#headerObject) | The name of the property corresponds to the name of the header. The value describes the type of the header.
-
+<a name="headersExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details. 
 ##### Headers Object Example
 
 Rate-limit headers:
@@ -1191,8 +1192,9 @@ Field Name | Type | Description
 <a name="schemaDiscriminator"></a>discriminator | `string` | Adds support for polymorphism. The discriminator is the schema property name that is used to differentiate between other schema that inherit this schema. The property name used MUST be defined at this schema and it MUST be in the `required` property list. When used, the value MUST be the name of this schema or any schema that inherits it.
 <a name="schemaReadOnly"></a>readOnly | `boolean` | Relevant only for Schema `"properties"` definitions. Declares the property as "read only". This means that it MAY be sent as part of a response but MUST NOT be sent as part of the request. Properties marked as `readOnly` being `true` SHOULD NOT be in the `required` list of the defined schema. Default value is `false`.
 <a name="schemaXml"></a>xml | [XML Object](#xmlObject) | This MAY be used only on properties schemas. It has no effect on root schemas. Adds Additional metadata to describe the XML representation format of this property.
-<a name="schemaExternalDocs"></a>externalDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation for this schema.
+<a name="schemaExternalDocs"></a>externalDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation for this schema. 
 <a name="schemaExample"></a>example | Any | A free-form property to include a an example of an instance for this schema.
+<a name="schemaExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details. 
 
 ###### Composition and Inheritance (Polymorphism)
 
@@ -1935,6 +1937,7 @@ This does *not* define global operation parameters.
 Field Pattern | Type | Description
 ---|:---:|---
 <a name="pdName"></a>{name} | [Parameter Object](#parameterObject) | A single parameter definition, mapping a "name" to the parameter it defines.
+<a name="parametersExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details. 
 
 ##### Parameters Definition Object Example
 

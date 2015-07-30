@@ -206,10 +206,7 @@
     },
     "examples": {
       "type": "object",
-      "patternProperties": {
-        "^[a-z0-9-]+/[a-z0-9\\-+]+$": {}
-      },
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "mimeType": {
       "type": "string",

@@ -133,6 +133,11 @@
           "description": "The email address of the contact person/organization.",
           "format": "email"
         }
+      },
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
+        }
       }
     },
     "license": {
@@ -150,6 +155,11 @@
           "type": "string",
           "description": "The URL pointing to the license.",
           "format": "uri"
+        }
+      },
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
         }
       }
     },
@@ -201,6 +211,11 @@
         "url": {
           "type": "string",
           "format": "uri"
+        }
+      },
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
         }
       }
     },
@@ -369,7 +384,12 @@
           "$ref": "#/definitions/examples"
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
+        }
+      }
     },
     "headers": {
       "type": "object",
@@ -444,6 +464,11 @@
         },
         "description": {
           "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
         }
       }
     },
@@ -1123,6 +1148,11 @@
         "multipleOf": {
           "$ref": "#/definitions/multipleOf"
         }
+      },
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
+        }
       }
     },
     "security": {
@@ -1162,6 +1192,11 @@
         "wrapped": {
           "type": "boolean",
           "default": false
+        }
+      },
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/definitions/vendorExtension"
         }
       }
     },

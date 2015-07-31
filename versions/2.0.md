@@ -120,6 +120,11 @@ Field Name | Type | Description
 <a name="swaggerTags"></a>tags | [[Tag Object](#tagObject)] | A list of tags used by the specification with additional metadata. The order of the tags can be used to reflect on their order by the parsing tools. Not all tags that are used by the [Operation Object](#operationObject) must be declared. The tags that are not declared may be organized randomly or based on the tools' logic. Each tag name in the list MUST be unique.
 <a name="swaggerExternalDocs"></a>externalDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation.
 
+##### Patterned Objects 
+
+Field Pattern | Type | Description
+---|:---:|---
+<a name="swaggerExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 #### <a name="infoObject"></a>Info Object
 
@@ -188,6 +193,12 @@ Field Name | Type | Description
 <a name="contactUrl"></a>url | `string` | The URL pointing to the contact information. MUST be in the format of a URL.
 <a name="contactEmail"></a>email | `string` | The email address of the contact person/organization. MUST be in the format of an email address.
 
+##### Patterned Objects 
+
+Field Pattern | Type | Description
+---|:---:|---
+<a name="contactExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+
 ##### Contact Object Example:
 
 ```js
@@ -214,6 +225,12 @@ Field Name | Type | Description
 ---|:---:|---
 <a name="licenseName"></a>name | `string` | **Required.** The license name used for the API.
 <a name="licenseUrl"></a>url | `string` | A URL to the license used for the API. MUST be in the format of a URL.
+
+##### Patterned Objects 
+
+Field Pattern | Type | Description
+---|:---:|---
+<a name="licenseExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### License Object Example:
 
@@ -519,6 +536,12 @@ Field Name | Type | Description
 <a name="externalDocDescription"></a>description | `string` | A short description of the target documentation. [GFM syntax](https://help.github.com/articles/github-flavored-markdown) can be used for rich text representation.
 <a name="externalDocUrl"></a>url | `string` | **Required.** The URL for the target documentation. Value MUST be in the format of a URL.
 
+##### Patterned Objects 
+
+Field Pattern | Type | Description
+---|:---:|---
+<a name="externalDocExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+
 ##### External Documentation Object Example
 
 ```js
@@ -765,6 +788,12 @@ Field Name | Type | Description
 <a name="itemsEnum"></a>enum | [*] | See http://json-schema.org/latest/json-schema-validation.html#anchor76.
 <a name="itemsMultipleOf"></a>multipleOf | `number` | See http://json-schema.org/latest/json-schema-validation.html#anchor14.
 
+##### Patterned Objects 
+
+Field Pattern | Type | Description
+---|:---:|---
+<a name="operationExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+
 ##### Items Object Examples
 
 Items must be of type  string and have the minimum length of  2 characters:
@@ -864,7 +893,12 @@ Field Name | Type | Description
 <a name="responseSchema"></a>schema | [Schema Object](#schemaObject) | A definition of the response structure. It can be a primitive, an array or an object. If this field does not exist, it means no content is returned as part of the response. As an extension to the [Schema Object](#schemaObject), its root `type` value may also be `"file"`. This SHOULD be accompanied by a relevant `produces` mime-type.
 <a name="responseHeaders"></a>headers | [Headers Object](#headersObject) | A list of headers that are sent with the response.
 <a name="responseExamples"></a>examples | [Example Object](#exampleObject) | An example of the response message.
-<a name="responseExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details. 
+
+##### Patterned Objects 
+
+Field Pattern | Type | Description
+---|:---:|---
+<a name="responseExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### Response Object Examples
 
@@ -967,7 +1001,7 @@ Lists the headers that can be sent as part of a response.
 Field Pattern | Type | Description
 ---|:---:|---
 <a name="headersName"></a>{name} | [Header Object](#headerObject) | The name of the property corresponds to the name of the header. The value describes the type of the header.
-<a name="headersExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details. 
+
 ##### Headers Object Example
 
 Rate-limit headers:
@@ -1057,6 +1091,12 @@ Field Name | Type | Description
 <a name="headerUniqueItems"></a>uniqueItems | `boolean` | See http://json-schema.org/latest/json-schema-validation.html#anchor49.
 <a name="headerEnum"></a>enum | [*] | See http://json-schema.org/latest/json-schema-validation.html#anchor76.
 <a name="headerMultipleOf"></a>multipleOf | `number` | See http://json-schema.org/latest/json-schema-validation.html#anchor14.
+
+##### Patterned Objects 
+
+Field Pattern | Type | Description
+---|:---:|---
+<a name="headerExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### Header Object Example
 
@@ -1194,7 +1234,12 @@ Field Name | Type | Description
 <a name="schemaXml"></a>xml | [XML Object](#xmlObject) | This MAY be used only on properties schemas. It has no effect on root schemas. Adds Additional metadata to describe the XML representation format of this property.
 <a name="schemaExternalDocs"></a>externalDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation for this schema. 
 <a name="schemaExample"></a>example | Any | A free-form property to include a an example of an instance for this schema.
-<a name="schemaExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details. 
+
+##### Patterned Objects 
+
+Field Pattern | Type | Description
+---|:---:|---
+<a name="schemaExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ###### Composition and Inheritance (Polymorphism)
 
@@ -1534,6 +1579,12 @@ Field Name | Type | Description
 <a name="xmlPrefix"></a>prefix | `string` | The prefix to be used for the [name](#xmlName).
 <a name="xmlAttribute"></a>attribute | `boolean` | Declares whether the property definition translates to an attribute instead of an element. Default value is `false`.
 <a name="xmlWrapped"></a>wrapped | `boolean` | MAY be used only for an array definition. Signifies whether the array is wrapped (for example, `<books><book/><book/></books>`) or unwrapped (`<book/><book/>`). Default value is `false`. The definition takes effect only when defined alongside `type` being `array` (outside the `items`).
+
+##### Patterned Objects 
+
+Field Pattern | Type | Description
+---|:---:|---
+<a name="operationExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### XML Object Examples
 
@@ -1937,7 +1988,6 @@ This does *not* define global operation parameters.
 Field Pattern | Type | Description
 ---|:---:|---
 <a name="pdName"></a>{name} | [Parameter Object](#parameterObject) | A single parameter definition, mapping a "name" to the parameter it defines.
-<a name="parametersExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details. 
 
 ##### Parameters Definition Object Example
 
@@ -2150,6 +2200,12 @@ Lists the available scopes for an OAuth2 security scheme.
 Field Pattern | Type | Description
 ---|:---:|---
 <a name="scopesName"></a>{name} | `string` | Maps between a name of a scope to a short description of it (as the value of the property).
+
+##### Patterned Objects 
+
+Field Pattern | Type | Description
+---|:---:|---
+<a name="scopesExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### Scopes Object Example
 

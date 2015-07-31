@@ -145,7 +145,7 @@ Field Name | Type | Description
 
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="operationExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="infoExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### Info Object Example:
 
@@ -792,7 +792,7 @@ Field Name | Type | Description
 
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="operationExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="itemsExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### Items Object Examples
 
@@ -848,7 +848,7 @@ Field Name | Type | Description
 Field Pattern | Type | Description
 ---|:---:|---
 <a name="responsesCode"></a>{[HTTP Status Code](#httpCodes)} | [Response Object](#responseObject) <span>&#124;</span> [Reference Object](#referenceObject) | Any [HTTP status code](#httpCodes) can be used as the property name (one property per HTTP status code). Describes the expected response for that HTTP status code.  [Reference Object](#referenceObject) can be used to link to a response that is defined at the [Swagger Object's responses](#swaggerResponses) section.
-<a name="parameterExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="responsesExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 
 ##### Responses Object Example
@@ -1584,7 +1584,7 @@ Field Name | Type | Description
 
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="operationExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="xmlExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### XML Object Examples
 

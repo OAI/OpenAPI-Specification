@@ -88,7 +88,8 @@ long | `integer` | `int64` | signed 64 bits
 float | `number` | `float` | |
 double | `number` | `double` | |
 string | `string` | | |
-byte | `string` | `byte` | |
+byte | `string` | `byte` | base64 encoded characters
+binary | `string` | `binary` | any sequence of octets
 boolean | `boolean` | | |
 date | `string` | `date` | As defined by `full-date` - [RFC3339](http://xml2rfc.ietf.org/public/rfc/html/rfc3339.html#anchor14)
 dateTime | `string` | `date-time` | As defined by `date-time` - [RFC3339](http://xml2rfc.ietf.org/public/rfc/html/rfc3339.html#anchor14)

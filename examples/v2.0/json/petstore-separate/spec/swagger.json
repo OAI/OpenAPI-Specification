@@ -33,10 +33,10 @@
         "operationId": "findPets",
         "parameters": [
           {
-            "$ref": "parameters.yaml#/tagsParam"
+            "$ref": "parameters.json#/tagsParam"
           },
           {
-            "$ref": "parameters.yaml#/limitsParam"
+            "$ref": "parameters.json#/limitsParam"
           }
         ],
         "responses": {
@@ -45,14 +45,14 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "Pet.yaml"
+                "$ref": "Pet.json"
               }
             }
           },
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "../common/Error.yaml"
+              "$ref": "../common/Error.json"
             }
           }
         }
@@ -67,7 +67,7 @@
             "description": "Pet to add to the store",
             "required": true,
             "schema": {
-              "$ref": "NewPet.yaml"
+              "$ref": "NewPet.json"
             }
           }
         ],
@@ -75,13 +75,13 @@
           "200": {
             "description": "pet response",
             "schema": {
-              "$ref": "Pet.yaml"
+              "$ref": "Pet.json"
             }
           },
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "../common/Error.yaml"
+              "$ref": "../common/Error.json"
             }
           }
         }
@@ -105,13 +105,13 @@
           "200": {
             "description": "pet response",
             "schema": {
-              "$ref": "Pet.yaml"
+              "$ref": "Pet.json"
             }
           },
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "../common/Error.yaml"
+              "$ref": "../common/Error.json"
             }
           }
         }
@@ -136,7 +136,7 @@
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "../common/Error.yaml"
+              "$ref": "../common/Error.json"
             }
           }
         }

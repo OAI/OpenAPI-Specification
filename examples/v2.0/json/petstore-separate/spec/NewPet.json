@@ -2,7 +2,7 @@
   "type": "object",
   "allOf": [
     {
-      "$ref": "Pet.yaml"
+      "$ref": "Pet.json"
     },
     {
       "required": [

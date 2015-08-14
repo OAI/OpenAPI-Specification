@@ -52,6 +52,9 @@
     "definitions": {
       "$ref": "#/definitions/definitions"
     },
+    "pathDefinitions": {
+      "$ref": "#/definitions/paths"
+    },
     "parameters": {
       "$ref": "#/definitions/parameterDefinitions"
     },

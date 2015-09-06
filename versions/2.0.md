@@ -766,7 +766,7 @@ type: file
 
 #### <a name="itemsObject"></a>Items Object
 
-An limited subset of JSON-Schema's items object. It is used by parameter definitions that are not located [`in`](#parameterIn) `"body"`.
+A limited subset of JSON-Schema's items object. It is used by parameter definitions that are not located [`in`](#parameterIn) `"body"`.
 
 ##### Fixed Fields
 Field Name | Type | Description

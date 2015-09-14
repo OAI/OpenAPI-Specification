@@ -1349,6 +1349,7 @@ additionalProperties:
 
 ```js
 {
+  "type": "object",
   "properties": {
     "id": {
       "type": "integer",
@@ -1369,6 +1370,7 @@ additionalProperties:
 ```
 
 ```yaml
+type: object
 properties:
   id:
     type: integer
@@ -1457,6 +1459,7 @@ definitions:
 {
   "definitions": {
     "Pet": {
+      "type": "object",
       "discriminator": "petType",
       "properties": {
         "name": {
@@ -1479,6 +1482,7 @@ definitions:
         "$ref": "#/definitions/Pet"
       },
       {
+        "type": "object",
         "properties": {
           "huntingSkill": {
             "type": "string",
@@ -1505,6 +1509,7 @@ definitions:
         "$ref": "#/definitions/Pet"
       },
       {
+        "type": "object",
         "properties": {
           "packSize": {
             "type": "integer",
@@ -1526,6 +1531,7 @@ definitions:
 ```yaml
 definitions:
   Pet:
+    type: object
     discriminator: petType
     properties:
       name:
@@ -1539,7 +1545,8 @@ Cat:
   description: A representation of a cat
   allOf:
   - $ref: '#/definitions/Pet'
-  - properties:
+  - type: object
+    properties:
       huntingSkill:
         type: string
         description: The measured skill for hunting
@@ -1555,7 +1562,8 @@ Dog:
   description: A representation of a dog
   allOf:
   - $ref: '#/definitions/Pet'
-  - properties:
+  - type: object
+    properties:
       packSize:
         type: integer
         format: int32
@@ -1937,6 +1945,7 @@ Field Pattern | Type | Description
 ```js
 {
   "Category": {
+    "type": "object",
     "properties": {
       "id": {
         "type": "integer",
@@ -1948,6 +1957,7 @@ Field Pattern | Type | Description
     }
   },
   "Tag": {
+    "type": "object",
     "properties": {
       "id": {
         "type": "integer",
@@ -1963,6 +1973,7 @@ Field Pattern | Type | Description
 
 ```yaml
 Category:
+  type: object
   properties:
     id:
       type: integer
@@ -1970,6 +1981,7 @@ Category:
     name:
       type: string
 Tag:
+  type: object
   properties:
     id:
       type: integer

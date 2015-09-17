@@ -16,6 +16,7 @@
   "devDependencies": {
     "glob": "^4.0.5",
     "gulp": "~3.8.x",
+    "gulp-doctoc": "^0.1.2",
     "gulp-ext-replace": "^0.1.0",
     "gulp-jsonlint": "0.0.3",
     "gulp-util": "^3.0.0",

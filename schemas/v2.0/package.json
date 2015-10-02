@@ -1,6 +1,6 @@
 {
   "name": "swagger-schema-official",
-  "version": "2.0.0-96305d9",
+  "version": "2.0.0-d79c205",
   "description": "Swagger JSON Schema ",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

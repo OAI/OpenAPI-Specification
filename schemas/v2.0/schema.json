@@ -1053,6 +1053,9 @@
           "$ref": "#/definitions/vendorExtension"
         }
       },
+      "required": [
+        "type"
+      ],
       "properties": {
         "format": {
           "type": "string"

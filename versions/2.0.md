@@ -1708,7 +1708,7 @@ Person:
       format: int32
       xml:
         attribute: true
-      name:
+    name:
         type: string
         xml:
           namespace: http://swagger.io/schema/sample

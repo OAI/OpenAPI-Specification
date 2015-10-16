@@ -39,12 +39,24 @@
       "$ref": "#/definitions/schemesList"
     },
     "consumes": {
-      "description": "A list of MIME types accepted by the API.",
-      "$ref": "#/definitions/mediaTypeList"
+      "allOf": [
+        {
+          "$ref": "#/definitions/mediaTypeList"
+        },
+        {
+          "description": "A list of MIME types accepted by the API."
+        }
+      ]
     },
     "produces": {
-      "description": "A list of MIME types the API can produce.",
-      "$ref": "#/definitions/mediaTypeList"
+      "allOf": [
+        {
+          "$ref": "#/definitions/mediaTypeList"
+        },
+        {
+          "description": "A list of MIME types the API can produce."
+        }
+      ]
     },
     "paths": {
       "$ref": "#/definitions/paths"
@@ -262,12 +274,24 @@
           "description": "A unique identifier of the operation."
         },
         "produces": {
-          "description": "A list of MIME types the API can produce.",
-          "$ref": "#/definitions/mediaTypeList"
+          "allOf": [
+            {
+              "$ref": "#/definitions/mediaTypeList"
+            },
+            {
+              "description": "A list of MIME types the API can produce."
+            }
+          ]
         },
         "consumes": {
-          "description": "A list of MIME types the API can consume.",
-          "$ref": "#/definitions/mediaTypeList"
+          "allOf": [
+            {
+              "$ref": "#/definitions/mediaTypeList"
+            },
+            {
+              "description": "A list of MIME types the API can consume."
+            }
+          ]
         },
         "parameters": {
           "$ref": "#/definitions/parametersList"

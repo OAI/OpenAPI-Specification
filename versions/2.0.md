@@ -1709,10 +1709,10 @@ Person:
       xml:
         attribute: true
     name:
-        type: string
-        xml:
-          namespace: http://swagger.io/schema/sample
-          prefix: sample
+      type: string
+      xml:
+        namespace: http://swagger.io/schema/sample
+        prefix: sample
 ```
 
 ```xml

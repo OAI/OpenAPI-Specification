@@ -292,7 +292,7 @@ Field Pattern | Type | Description
     produces:
     - application/json
     responses:
-      200:
+      '200':
         description: A list of pets.
         schema:
           type: array
@@ -380,7 +380,7 @@ get:
   - application/json
   - text/html
   responses:
-    200:
+    '200':
       description: pet response
       schema:
         type: array
@@ -515,9 +515,9 @@ parameters:
   required: false
   type: string
 responses:
-  200:
+  '200':
     description: Pet updated.
-  405:
+  '405':
     description: Invalid input
 security:
 - petstore_auth:
@@ -874,7 +874,7 @@ A 200 response for successful operation and a default response for others (imply
 ```
 
 ```yaml
-200:
+'200':
   description: a pet to be returned
   schema:
     $ref: '#/definitions/Pet'

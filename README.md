@@ -1,4 +1,4 @@
-# The OpenAPI Specification (formerly-known-as The Swagger Specification)
+# The OpenAPI Specification (fka The Swagger Specification)
 
 [![Build Status](https://travis-ci.org/swagger-api/swagger-spec.svg?branch=master)](https://travis-ci.org/swagger-api/swagger-spec)
 

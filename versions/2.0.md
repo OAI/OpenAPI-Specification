@@ -1,4 +1,5 @@
-# Swagger RESTful API Documentation Specification
+# OpenAPI Specification
+## (fka Swagger RESTful API Documentation Specification)
 
 #### Version 2.0
 
@@ -6,7 +7,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 The Swagger specification is licensed under [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html).
 
-## Introduction
+## Introductions
 
 Swagger™  is a project used to describe and document RESTful APIs.
 

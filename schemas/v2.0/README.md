@@ -21,4 +21,4 @@ npm install --save swagger-schema-official@1.2.0
 
 ## License
 
- MIT
+Apache-2.0

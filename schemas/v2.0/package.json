@@ -11,5 +11,6 @@
     "api"
   ],
   "author": "",
+  "main": "./schema.json",
   "license": "Apache-2.0"
 }

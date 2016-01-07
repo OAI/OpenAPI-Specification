@@ -53,7 +53,7 @@ Looking to see how you can create your own OpenAPI definition, present it or oth
 
 ## License
 
-Copyright 2015 The Linux Foundation
+Copyright 2016 The Linux Foundation
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

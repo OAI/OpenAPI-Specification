@@ -391,6 +391,3 @@ You can refer to it from a response definition:
   }
 }
 ```
-
-### Constraints
-* Referenced objects must be to JSON structures.  YAML reuse structures may be supported in a future version.

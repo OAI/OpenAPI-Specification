@@ -7,17 +7,54 @@ We encourage reuse and patterns through references.
 The following types are reusable, as defined by the spec:
 
 * Parameters
-* Models (or Schema Objects in general)
+* Models (_or Schema Objects in general_)
 * Responses
 * Operations (_Operations can only be remote references_)
 
 ## Reuse strategy
 
-When reusing components in an API design, a reference is created from the definition to target entity. The references are maintained in the structure, and can be updated by modifying the source definitions. This is different from a "copy on design" approach where references are injected into the design itself.
+When authoring API design documents, common object definitions can be utilized to avoid duplication. For example, imagine multiple path definitions that each share a common path parameter, or a common response structure. The OpenAPI specification allows reuse of common object definitions through the use of "references".
 
-The reuse technique is transparent between JSON or YAML and is lossless when converting between the two.
+A reference a construct in your API design document that indicates "the content for this portion of the document is defined elsewhere". To create a reference, at the location in your document where you want to reuse some other definition, create an object that has a `$ref` property whose value is a URI pointing to where the definition is (more on this in later sections). 
 
-YAML anchors are technically allowed but break the general reuse strategy in OpenAPI Specification, since anchors are "injected" into a single document.  They are not recommended.
+OpenAPI's provides reference capabilities using the [JSON Reference](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03) specification. 
+
+### JSON Example
+
+``` json
+{
+  // ... 
+  definitions: {
+    Person: {
+      type: 'object',
+      properties: {
+        friends: {
+          type: 'array',
+          items: {
+            $ref: '#/definitions/Person'
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### YAML Example
+
+``` yaml
+# ...
+definitions:
+  Person:
+    type: object
+    properties:
+      friends:
+        type: array
+        items:
+          $ref: '#/definitions/Person'
+```
+
+Note: YAML has a very similar feature, [YAML anchors](http://yaml.org/spec/1.2/spec.html#id2765878). Examples from this point will only be in JSON, using JSON References.
 
 ## Techniques
 
@@ -46,6 +83,7 @@ An example of a local definition reference:
 
 _Example from https://github.com/OAI/OpenAPI-Specification/blob/master/examples/v2.0/json/petstore.json_
 ``` json
+          // ... 
           "200": {
             "description": "pet response",
             "schema": {
@@ -65,6 +103,7 @@ Files can be referred to in relative paths to the current document.
 _Example from https://github.com/OAI/OpenAPI-Specification/tree/master/examples/v2.0/json/petstore-separate/spec/swagger.json_
 
 ``` json
+// ... 
 "responses": {
 	"default": {
 		"description": "unexpected error",
@@ -79,6 +118,7 @@ Remote references may also reference properties within the relative remote file.
 
 _Example from https://github.com/OAI/OpenAPI-Specification/tree/master/examples/v2.0/json/petstore-separate/spec/swagger.json_
 ``` json
+// ... 
 "parameters": [
 	{
 		"$ref": "parameters.json#/tagsParam"
@@ -233,7 +273,7 @@ To include these parameters, you would need to add them individually as such:
 
 ### Operations
 
-Again, Operations can be shared across files.  Although the reusability of operations will be less than with Parameters and models. For this example, we will share a common `health` resource so that all APIs can reference it:
+Again, Operations can be shared across files.  Although the reusability of operations will be less than with Parameters and Definitions. For this example, we will share a common `health` resource so that all APIs can reference it:
 
 Refer to [Guidelines for Referencing](#guidelines-for-referencing) for referencing strategies.
 

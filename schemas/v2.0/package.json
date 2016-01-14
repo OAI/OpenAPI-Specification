@@ -3,7 +3,7 @@
   "version": "2.0.0-bab6bed",
   "description": "Swagger JSON Schema ",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./test.js"
   },
   "keywords": [
     "swagger",
@@ -11,5 +11,9 @@
     "api"
   ],
   "author": "",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "json-schema": "^0.2.2",
+    "jsonschema": "^1.0.2"
+  }
 }

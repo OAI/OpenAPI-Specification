@@ -1,72 +1,38 @@
 # Reuse Philosophy
+
 We encourage reuse and patterns through references.
 
 ## What is reusable
+
 The following types are reusable, as defined by the spec:
 
-* Operations
 * Parameters
+* Models (_or Schema Objects in general_)
 * Responses
-* Models (or Schema Objects in general)
+* Operations (_Operations can only be remote references_)
 
 ## Reuse strategy
-When reusing components in an API design, a pointer is created from the definition to target design.  The references are maintained in the structure, and can be updated by modifying the source definitions.  This is different from a "copy on design" approach where references are injected into the design itself.
 
-The reuse technique is transparent between JSON or YAML and is lossless when converting between the two.
+When authoring API design documents, common object definitions can be utilized to avoid duplication. For example, imagine multiple path definitions that each share a common path parameter, or a common response structure. The OpenAPI specification allows reuse of common object definitions through the use of "references".
 
-YAML anchors are technically allowed but break the general reuse strategy in Swagger, since anchors are "injected" into a single document.  They are not recommended.
+A reference is a construct in your API design document that indicates "the content for this portion of the document is defined elsewhere". To create a reference, at the location in your document where you want to reuse some other definition, create an object that has a `$ref` property whose value is a URI pointing to where the definition is (more on this in later sections). 
 
-Referenes can be made either inside the Swagger definition file or to external files. References are done using [JSON Reference](http://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03).
+OpenAPI's provides reference capabilities using the [JSON Reference](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03) specification. 
 
-## Techniques
+### JSON Example
 
-### Guidelines for Referencing
-
-When referencing internally, the target references have designated locations:
-
-* Parameters -> `parameters`
-* Responses -> `responses`
-* Models (and general Schema Objects) -> `definitions`
-
-Operations can only be referenced externally.
-
-An example for an internal reference - `#/definitions/MyModel`. All references are canonical and must be a qualified [JSON Pointer](http://tools.ietf.org/html/rfc6901). For example, simply referencing `MyModel` is not allowed, even if there are no other definitions of it in the file.
-
-When referencing externally, use a valid URI as the reference value. If your referenced file contains only one definition that should be used, you can refer to the file directly. For example:
-
-_Assuming file https://my.company.com/definitions/Model.json_
-```json
+``` js
 {
-  "description": "A simple model",
-  "type": "object",
-  "properties": {
-    "id": {
-      "type": "integer"
-    }
-  }
-}
-```
-
-The reference would be `https://my.company.com/definitions/Model.json`.
-
-_Assuming file https://my.company.com/definitions/models.json_
-```json
-{
-  "models": {
-    "Model": {
-      "description": "A simple model",
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer"
-        }
-    },
-    "Tag": {
-      "description": "A tag entity in the system",
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
+  // ... 
+  definitions: {
+    Person: {
+      type: 'object',
+      properties: {
+        friends: {
+          type: 'array',
+          items: {
+            $ref: '#/definitions/Person'
+          }
         }
       }
     }
@@ -74,12 +40,101 @@ _Assuming file https://my.company.com/definitions/models.json_
 }
 ```
 
-The reference to the `Model` model would be `https://my.company.com/definitions/models.json#/models/Model`. Make sure you include the full path to the model itself, including its containers if needed.
+### YAML Example
 
-Whether you reference definitions internally or externally, you can never override or change their definitions from the referring location. The definitions can only be used as-is.
+``` yaml
+# ...
+definitions:
+  Person:
+    type: object
+    properties:
+      friends:
+        type: array
+        items:
+          $ref: '#/definitions/Person'
+```
 
-### Definitions
-Reuse schema definitions by creating a repository of definitions.  This is done by simply hosting a file or set of files for commonly used definitions across a company or organization.  In the case of multiple files, the models can be referenced directly as such:
+Note: YAML has a very similar feature, [YAML anchors](http://yaml.org/spec/1.2/spec.html#id2765878). Examples from this point will only be in JSON, using JSON References.
+
+## Techniques
+
+### Guidelines for Referencing
+
+All references should follow the [JSON Reference](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03) specification.
+
+JSON Reference provides guidance on the resolution of references, notably:
+
+> If the URI contained in the JSON Reference value is a relative URI,
+then the base URI resolution MUST be calculated according to
+[RFC3986], section 5.2. Resolution is performed relative to the
+referring document.
+
+Whether you reference definitions locally or remote, you can never override or change their definitions from the referring location. The definitions can only be used as-is.
+
+#### Local references
+
+When referencing locally (within the current document), the target references should follow the conventions, as defined by the spec:
+
+* Parameters -> `#/parameters`
+* Responses -> `#/responses`
+* Definitions (Models/Schema) -> `#/definitions`
+
+An example of a local definition reference:
+
+_Example from https://github.com/OAI/OpenAPI-Specification/blob/master/examples/v2.0/json/petstore.json_
+``` json
+          // ... 
+          "200": {
+            "description": "pet response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Pet"
+              }
+            }
+```
+
+#### Remote references
+
+##### Relative path
+
+Files can be referred to in relative paths to the current document. 
+
+_Example from https://github.com/OAI/OpenAPI-Specification/tree/master/examples/v2.0/json/petstore-separate/spec/swagger.json_
+
+``` json
+// ... 
+"responses": {
+	"default": {
+		"description": "unexpected error",
+		"schema": {
+			"$ref": "../common/Error.json"
+		}
+	}
+}
+```
+
+Remote references may also reference properties within the relative remote file.
+
+_Example from https://github.com/OAI/OpenAPI-Specification/tree/master/examples/v2.0/json/petstore-separate/spec/swagger.json_
+``` json
+// ... 
+"parameters": [
+	{
+		"$ref": "parameters.json#/tagsParam"
+	},
+	{
+		"$ref": "parameters.json#/limitsParam"
+	}
+]
+```
+
+
+##### URL
+
+Remote files can be hosted on an HTTP server (rather than the local file system). 
+
+One risk of this approach is that environment specific issues could arise if DNS is not taken into account (as the reference can only contain one hostname).
 
 _Assuming file https://my.company.com/definitions/Model.json_
 ```json
@@ -92,14 +147,14 @@ _Assuming file https://my.company.com/definitions/Model.json_
       "format": "int64"
     },
     "tag": {
-      "description": "a complex, shared property.  Note the absolute reference",
+      "description": "A complex, shared property.  Note the absolute reference",
       "$ref": "https://my.company.com/definitions/Tag.json"
     }
   }
 }
 ```
 
-For a single file, you can package the definitions in an object:
+Remote references may also reference properties within the remote file.
 
 _Assuming file https://my.company.com/definitions/models.json_
 ```json
@@ -133,8 +188,20 @@ _Assuming file https://my.company.com/definitions/models.json_
 ```
 
 
+### Definitions
+
+Reuse schema definitions by creating a repository of definitions.  This is done by simply hosting a file or set of files for commonly used definitions across a company or organization.
+
+Refer to [Guidelines for Referencing](#guidelines-for-referencing) for referencing strategies.
+
+
 ### Parameters
-Similar to model schemas, you can create a repository of `parameters` to describe the common entities that appear throughout a set of systems.  Using the same technique as above, you can host on either a single or multiple files.  For simplicity, the example below assumes a single file.
+
+Similar to model schemas, you can create a repository of `parameters` to describe the common entities that appear throughout a set of systems.  
+
+Refer to [Guidelines for Referencing](#guidelines-for-referencing) for referencing strategies.
+
+Using the same technique as above, you can host on either a single or multiple files.  For simplicity, the example below assumes a single file.
 
 _Assuming file https://my.company.com/parameters/parameters.json_
 
@@ -205,7 +272,10 @@ To include these parameters, you would need to add them individually as such:
 ```
 
 ### Operations
-Again, Operations can be shared across files.  Although the reusability of operations will be less than with Parameters and models. For this example, we will share a common `health` resource so that all APIs can reference it:
+
+Again, Operations can be shared across files.  Although the reusability of operations will be less than with Parameters and Definitions. For this example, we will share a common `health` resource so that all APIs can reference it:
+
+Refer to [Guidelines for Referencing](#guidelines-for-referencing) for referencing strategies.
 
 ```json
 {
@@ -246,7 +316,8 @@ Which points to the reference in the `operations.json` file:
 Remember, you cannot override the definitions, but in this case, you can add additional operations on the same path level.
 
 ### Responses
-Just like the other objects, responses can be reused as well.
+
+Refer to [Guidelines for Referencing](#guidelines-for-referencing) for referencing strategies.
 
 Assume the file `responses.json`:
 
@@ -299,6 +370,3 @@ You can refer to it from a response definition:
   }
 }
 ```
-
-### Constraints
-* Referenced objects must be to JSON structures.  YAML reuse structures may be supported in a future version.

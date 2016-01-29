@@ -1718,7 +1718,7 @@ Person:
 
 ```xml
 <Person id="123">
-    <sample:name xlmns:sample="http://swagger.io/schema/sample">example</sample:name>
+    <sample:name xmlns:sample="http://swagger.io/schema/sample">example</sample:name>
 </Person>
 ```
 

@@ -1,4 +1,4 @@
-## Objective of this Document
+## Development Guidelines
 
 Establish guidelines which build a transparent, open mechanism for deciding how to change the specification.  The TCB will initially follow these processes when merging changes from external contributors or from the TCB itself, and adjust them as it makes sense.
 

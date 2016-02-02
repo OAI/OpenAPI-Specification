@@ -10,12 +10,14 @@ You can see the current process for development inside the OpenAPI Specification
 
 ## Participation
 
-The OpenAPI Specification is a community driven, open project hosted by the Linux Foundation. It encourages participation from individuals and companies alike.  If you wish to participate in the evolution of the OpenAPI Specification, please consider the following:
+The OpenAPI Specification is a community driven, open project hosted by the Linux Foundation. The OAI encourages participation from individuals and companies alike. If you wish to participate in the evolution of the OpenAPI Specification, please consider the following:
 
 * Review the [current specification](). The human-readable markdown file _is the source of truth_ for the specification.
 * Review the [development](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/DEVELOPMENT.md) process so it's clear how the spec is evolving.
 * Check the [issues](https://github.com/OAI/OpenAPI-Specification/issues) and [pull requests](https://github.com/OAI/OpenAPI-Specification/pulls) to see if someone has already documented your idea or feedback on the specification. You can follow an existing conversation by adding a comment to the existing issue or PR.
-* Create an issue to describe a concern and/or a pull request to provide a solution. If providing a pull request, please ensure you are adding comments regarding the **Approving Changes** section of the [development](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/DEVELOPMENT.md) guideline.
+* Create an issue to describe a new concern along with, if possible, a proposed solution.
+
+Be aware that all feedback cannot be accommodated and there may be solid arguments to/from a change being appropriate for the specification.
 
 ## License
 

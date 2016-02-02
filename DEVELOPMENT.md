@@ -1,14 +1,14 @@
 ## Development Guidelines
 
-Establish guidelines which build a transparent, open mechanism for deciding how to change the specification.  The TCB will initially follow these processes when merging changes from external contributors or from the TCB itself, and adjust them as it makes sense.
+This document intends to establish guidelines which build a transparent, open mechanism for deciding how to evolve the OpenAPI Specification. The Open API Technical Contributor Board will initially follow these processes when merging changes from external contributors or from the TCB itself. This guideline document will be adjusted as it makes sense.
 
 ## OAI Specification Driving factors
 
-The spec should be use-case driven.  We can write support for hypothetical use cases as we see fit, but they should be backed by realistic scenarios
+The OpenAPI Specification should be use-case driven.  We can write support for hypothetical use cases as we see fit, but they should be backed by realistic scenarios
 
-## Specification change criteria
+## Specification Change Criteria
 
-The specification _will change_ from the 2.0 version.  We should typically do so when any of the following criteria are met:
+The specification _will change_ from the original 2.0 version.  We should typically do so when any of the following criteria are met:
 
  - Clarity.  The current "way" something is done doesn't make sense, is complicated, or not clear
  - Consistency.  A portion of the specification is not consistent with the rest, or the industry standard terminology
@@ -25,7 +25,7 @@ The specification _will change_ from the 2.0 version.  We should typically do so
  - Examples of how something is described _currently_ vs. the proposed solution should accompany any change proposal
  - New features should be done in feature branches which, upon approval, be merged into the OpenAPI.next branch.
  - Use labels for the workflow of specification changes.  For example, this may be labeled as `proposed`, `needs migration review`, `needs tooling review`, `needs documentation`, `rejected`, `needs approval`.  These labels must be assigned by project committers
- - An issue will be opened for each feature change.  Embedded in the issue OR ideally linked in a file via PR, a document should be supplied for use cases for the change
+ - An issue will be opened for each feature change.  Embedded in the issue OR ideally linked in a file via pull-request (PR), a document should be supplied for use cases for the change
  - A PR will be used to describe the _proposed_ solution, and linked to the original issue
  - Not all committers will contribute to ever single proposed change.  There may be many open proposals at once, and multiple efforts may happen in parallel
  - When the OpenApi.next spec is complete and approved for release, the branch will be merged to master.
@@ -46,5 +46,6 @@ No change should be approved until there is documentation for it, supplied in an
 
 We should always be as transparent as possible.  Sometimes there will be discussions that use customer names, sensitive use cases, etc.  These must be anonymized, discussed in a private repository, or offline
 
- - Offline Discussions should live in issues.
+ - Asynchronous discussions should live in the GitHub issues for this project
  - Realtime discussions should be in a public chat such as IRC or Slack
+

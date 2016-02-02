@@ -17,7 +17,7 @@ The OpenAPI Specification is a community driven, open project hosted by the Linu
 * Check the [issues](https://github.com/OAI/OpenAPI-Specification/issues) and [pull requests](https://github.com/OAI/OpenAPI-Specification/pulls) to see if someone has already documented your idea or feedback on the specification. You can follow an existing conversation by adding a comment to the existing issue or PR.
 * Create an issue to describe a new concern along with, if possible, a proposed solution.
 
-Be aware that all feedback cannot be accommodated and there may be solid arguments to/from a change being appropriate for the specification.
+Be aware that not all feedback can be accommodated and there may be solid arguments to/from a change being appropriate for the specification.
 
 ## License
 

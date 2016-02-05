@@ -180,7 +180,7 @@
     }
   },
   "definitions": {
-     "Pet": {
+    "Pet": {
       "type": "object",
       "allOf": [
         {

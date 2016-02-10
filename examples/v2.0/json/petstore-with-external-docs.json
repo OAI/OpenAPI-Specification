@@ -211,7 +211,7 @@
         },
         {
           "required": [
-            "name"
+            "id"
           ],
           "properties": {
             "id": {

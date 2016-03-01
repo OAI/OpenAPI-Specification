@@ -87,6 +87,7 @@
           {
             "name": "petId",
             "in": "path",
+            "required": true,
             "description": "The id of the pet to retrieve",
             "type": "string"
           }

@@ -1,6 +1,6 @@
 # The OpenAPI Specification (fka The Swagger Specification)
 
-[![Build Status](https://travis-ci.org/swagger-api/swagger-spec.svg?branch=master)](https://travis-ci.org/swagger-api/swagger-spec)
+[![Build Status](https://travis-ci.org/OAI/OpenAPI-Specification.svg?branch=master)](https://travis-ci.org/OAI/OpenAPI-Specification)
 
 ![](https://avatars3.githubusercontent.com/u/16343502?v=3&s=200)
 

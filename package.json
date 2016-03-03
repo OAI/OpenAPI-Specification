@@ -11,22 +11,22 @@
   "readmeFilename": "README.md",
   "dependencies": {
     "tv4": "~1.1.x",
-    "chai": "1.9.x"
+    "chai": "3.2.x"
   },
   "devDependencies": {
-    "glob": "^4.0.5",
-    "gulp": "~3.8.x",
-    "gulp-ext-replace": "^0.1.0",
-    "gulp-jsonlint": "0.0.3",
-    "gulp-util": "^3.0.0",
-    "gulp-yaml": "0.0.3",
-    "js-yaml": "^3.1.0",
+    "glob": "^5.0.14",
+    "gulp": "~3.9.x",
+    "gulp-ext-replace": "^0.2.0",
+    "gulp-jsonlint": "1.1.0",
+    "gulp-util": "^3.0.6",
+    "gulp-yaml": "0.2.4",
+    "js-yaml": "^3.3.1",
     "json2yaml": "^1.0.3",
-    "jsonschema": "^1.0.0",
+    "jsonschema": "^1.0.2",
     "map-stream": "^0.1.0",
-    "mocha": "^1.21.3",
-    "q": "^1.0.1",
-    "request": "^2.39.0",
-    "z-schema": "^2.4.9"
+    "mocha": "^2.2.5",
+    "q": "^1.4.1",
+    "request": "^2.60.0",
+    "z-schema": "^3.12.0"
   }
 }

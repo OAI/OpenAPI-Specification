@@ -42,7 +42,7 @@ paths:
       tags: 
         - Products
       responses:  
-        200:
+        "200":
           description: An array of products
           schema:
             type: array
@@ -84,7 +84,7 @@ paths:
       tags: 
         - Estimates
       responses:  
-        200:
+        "200":
           description: An array of price estimates by product
           schema:
             type: array
@@ -123,7 +123,7 @@ paths:
       tags: 
         - Estimates
       responses:  
-        200:
+        "200":
           description: An array of products
           schema:
             type: array
@@ -140,7 +140,7 @@ paths:
       tags: 
         - User
       responses:
-        200:
+        "200":
           description: Profile information for a user
           schema:
             $ref: '#/definitions/Profile'
@@ -166,7 +166,7 @@ paths:
       tags: 
         - User
       responses:
-        200:
+        "200":
           description: History information for the given user
           schema:
             $ref: '#/definitions/Activities'

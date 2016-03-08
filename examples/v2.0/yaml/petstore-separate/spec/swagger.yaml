@@ -32,7 +32,7 @@ paths:
         - $ref: 'parameters.yaml#/tagsParam'
         - $ref: 'parameters.yaml#/limitsParam'
       responses:
-        200:
+        "200":
           description: pet response
           schema:
             type: array
@@ -53,7 +53,7 @@ paths:
           schema:
             $ref: 'NewPet.yaml'
       responses:
-        200:
+        "200":
           description: pet response
           schema:
             $ref: 'Pet.yaml'
@@ -73,7 +73,7 @@ paths:
           type: integer
           format: int64
       responses:
-        200:
+        "200":
           description: pet response
           schema:
             $ref: 'Pet.yaml'
@@ -92,7 +92,7 @@ paths:
           type: integer
           format: int64
       responses:
-        204:
+        "204":
           description: pet deleted
         default:
           description: unexpected error

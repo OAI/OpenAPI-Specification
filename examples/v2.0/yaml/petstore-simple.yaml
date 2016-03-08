@@ -45,7 +45,7 @@
             type: "integer"
             format: "int32"
         responses: 
-          200: 
+          "200":
             description: "pet response"
             schema: 
               type: "array"
@@ -69,7 +69,7 @@
             schema: 
               $ref: "#/definitions/NewPet"
         responses: 
-          200: 
+          "200":
             description: "pet response"
             schema: 
               $ref: "#/definitions/Pet"
@@ -95,7 +95,7 @@
             type: "integer"
             format: "int64"
         responses: 
-          200: 
+          "200":
             description: "pet response"
             schema: 
               $ref: "#/definitions/Pet"
@@ -115,7 +115,7 @@
             type: "integer"
             format: "int64"
         responses: 
-          204: 
+          "204":
             description: "pet deleted"
           default: 
             description: "unexpected error"

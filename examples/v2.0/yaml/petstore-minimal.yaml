@@ -24,7 +24,7 @@
         produces: 
           - "application/json"
         responses: 
-          200: 
+          "200":
             description: "A list of pets."
             schema: 
               type: "array"

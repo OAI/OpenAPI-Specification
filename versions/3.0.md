@@ -71,7 +71,7 @@ The schema exposes two types of fields. Fixed fields, which have a declared name
 
 The OAS representation of the API is made of a single file. However, parts of the definitions can be split into separate files, at the discretion of the user. This is applicable for `$ref` fields in the specification as follows from the [JSON Schema](http://json-schema.org) definitions.
 
-By convention, the OAS specification file is named `swagger.json`.
+By convention, the Open API Specification (OAS) file is named `swagger.json`.
 
 ### Data Types
 
@@ -98,7 +98,7 @@ password | `string` | `password` | Used to hint UIs the input needs to be obscur
 
 ### Schema
 
-#### <a name="oasObject"></a>OAS Object
+#### <a name="oasObject"></a>OpenAPI Object
 
 This is the root document object for the API specification. It combines what previously was the Resource Listing and API Declaration (version 1.2 and earlier) together into one document.
 
@@ -106,7 +106,7 @@ This is the root document object for the API specification. It combines what pre
 
 Field Name | Type | Description
 ---|:---:|---
-<a name="oasSwagger"></a>oas | `string` | **Required.** Specifies the Swagger Specification version being used. It can be used by the Swagger UI and other clients to interpret the API listing. The value MUST be `"2.0"`.
+<a name="oasSwagger"></a>swagger | `string` | **Required.** Specifies the OpenAPI Specification version being used. It can be used by the Swagger UI and other clients to interpret the API listing. The value MUST be `"2.0"`.
 <a name="oasInfo"></a>info | [Info Object](#infoObject) | **Required.** Provides metadata about the API. The metadata can be used by the clients if needed.
 <a name="oasHost"></a>host | `string` | The host (name or ip) serving the API. This MUST be the host only and does not include the scheme nor sub-paths. It MAY include a port. If the `host` is not included, the host serving the documentation is to be used (including the port). The `host` does not support [path templating](#pathTemplating).
 <a name="oasBasePath"></a>basePath | `string` | The base path on which the API is served, which is relative to the [`host`](#oasHost). If it is not included, the API is served directly under the `host`. The value MUST start with a leading slash (`/`). The `basePath` does not support [path templating](#pathTemplating). 

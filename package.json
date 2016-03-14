@@ -1,0 +1,32 @@
+{
+  "name": "swagger-validator",
+  "version": "0.0.1",
+  "description": "validates a file",
+  "author": {
+    "name": "Tony Tam",
+    "email": "fehguy@gmail.com",
+    "url": "http://swagger.io"
+  },
+  "license": "Apache",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "tv4": "~1.1.x",
+    "chai": "1.9.x"
+  },
+  "devDependencies": {
+    "glob": "^4.0.5",
+    "gulp": "~3.8.x",
+    "gulp-ext-replace": "^0.1.0",
+    "gulp-jsonlint": "0.0.3",
+    "gulp-util": "^3.0.0",
+    "gulp-yaml": "0.0.3",
+    "js-yaml": "^3.1.0",
+    "json2yaml": "^1.0.3",
+    "jsonschema": "^1.0.0",
+    "map-stream": "^0.1.0",
+    "mocha": "^1.21.3",
+    "q": "^1.0.1",
+    "request": "^2.39.0",
+    "z-schema": "^2.4.9"
+  }
+}

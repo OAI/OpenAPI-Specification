@@ -110,7 +110,7 @@ Field Name | Type | Description
 <a name="oasInfo"></a>info | [Info Object](#infoObject) | **Required.** Provides metadata about the API. The metadata can be used by the clients if needed.
 <a name="oasHost"></a>host | `string` | The host (name or ip) serving the API. This MUST be the host only and does not include the scheme nor sub-paths. It MAY include a port. If the `host` is not included, the host serving the documentation is to be used (including the port). The `host` does not support [path templating](#pathTemplating).
 <a name="oasBasePath"></a>basePath | `string` | The base path on which the API is served, which is relative to the [`host`](#oasHost). If it is not included, the API is served directly under the `host`. The value MUST start with a leading slash (`/`). The `basePath` does not support [path templating](#pathTemplating). 
-<a name="oasSchemes"></a>schemes | [`string`] | The transfer protocol of the API. Values MUST be from the list: `"http"`, `"https"`, `"ws"`, `"wss"`. If the `schemes` is not included, the default scheme to be used is the one used to access the Swagger definition itself.
+<a name="oasSchemes"></a>schemes | [`string`] | The transfer protocol of the API. Values MUST be from the list: `"http"`, `"https"`, `"ws"`, `"wss"`. If the `schemes` is not included, the default scheme to be used is the one used to access the OpenAPI definition itself.
 <a name="oasConsumes"></a>consumes | [`string`] | A list of MIME types the APIs can consume. This is global to all APIs but can be overridden on specific API calls. Value MUST be as described under [Mime Types](#mimeTypes).
 <a name="oasProduces"></a>produces | [`string`] | A list of MIME types the APIs can produce. This is global to all APIs but can be overridden on specific API calls. Value MUST be as described under [Mime Types](#mimeTypes).
 <a name="oasPaths"></a>paths | [Paths Object](#pathsObject) | **Required.** The available paths and operations for the API.
@@ -126,7 +126,7 @@ Field Name | Type | Description
 
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="oasExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="oasExtensions"></a>^x- | Any | Allows extensions to the OAS Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 #### <a name="infoObject"></a>Info Object
 
@@ -147,7 +147,7 @@ Field Name | Type | Description
 
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="infoExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="infoExtensions"></a>^x- | Any | Allows extensions to the OpenAPI Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### Info Object Example:
 
@@ -199,7 +199,7 @@ Field Name | Type | Description
 
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="contactExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="contactExtensions"></a>^x- | Any | Allows extensions to the OpenAPI Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### Contact Object Example:
 
@@ -232,7 +232,7 @@ Field Name | Type | Description
 
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="licenseExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="licenseExtensions"></a>^x- | Any | Allows extensions to the OpenAPI Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### License Object Example:
 
@@ -258,7 +258,7 @@ The Paths may be empty, due to [ACL constraints](#securityFiltering).
 Field Pattern | Type | Description
 ---|:---:|---
 <a name="pathsPath"></a>/{path} | [Path Item Object](#pathItemObject) | A relative path to an individual endpoint. The field name MUST begin with a slash. The path is appended to the [`basePath`](#oasBasePath) in order to construct the full URL. [Path templating](#pathTemplating) is allowed.
-<a name="pathsExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details. 
+<a name="pathsExtensions"></a>^x- | Any | Allows extensions to the OpenAPI Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details. 
 
 ##### Paths Object Example
 
@@ -318,13 +318,13 @@ Field Name | Type | Description
 <a name="pathItemOptions"></a>options | [Operation Object](#operationObject) | A definition of a OPTIONS operation on this path.
 <a name="pathItemHead"></a>head | [Operation Object](#operationObject) | A definition of a HEAD operation on this path.
 <a name="pathItemPatch"></a>patch | [Operation Object](#operationObject) | A definition of a PATCH operation on this path.
-<a name="pathItemParameters"></a>parameters | [[Parameter Object](#parameterObject) <span>&#124;</span> [Reference Object](#referenceObject)] | A list of parameters that are applicable for all the operations described under this path. These parameters can be overridden at the operation level, but cannot be removed there. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a [name](#parameterName) and [location](#parameterIn). The list can use the [Reference Object](#referenceObject) to link to parameters that are defined at the [Swagger Object's parameters](#oasParameters). There can be one "body" parameter at most.
+<a name="pathItemParameters"></a>parameters | [[Parameter Object](#parameterObject) <span>&#124;</span> [Reference Object](#referenceObject)] | A list of parameters that are applicable for all the operations described under this path. These parameters can be overridden at the operation level, but cannot be removed there. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a [name](#parameterName) and [location](#parameterIn). The list can use the [Reference Object](#referenceObject) to link to parameters that are defined at the [OpenAPI Object's parameters](#oasParameters). There can be one "body" parameter at most.
 
 ##### Patterned Fields
 
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="pathItemExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details. 
+<a name="pathItemExtensions"></a>^x- | Any | Allows extensions to the OpenAPI Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details. 
 
 ##### Path Item Object Example
 
@@ -415,11 +415,11 @@ Field Name | Type | Description
 <a name="operationDescription"></a>description | `string` | A verbose explanation of the operation behavior. [GFM syntax](https://help.github.com/articles/github-flavored-markdown) can be used for rich text representation.
 <a name="operationExternalDocs"></a>externalDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation for this operation.
 <a name="operationId"></a>operationId | `string` | Unique string used to identify the operation. The id MUST be unique among all operations described in the API. Tools and libraries MAY use the operationId to uniquely identify an operation, therefore, it is recommended to follow common programming naming conventions.
-<a name="operationConsumes"></a>consumes | [`string`] | A list of MIME types the operation can consume. This overrides the [`consumes`](#oasConsumes) definition at the Swagger Object. An empty value MAY be used to clear the global definition. Value MUST be as described under [Mime Types](#mimeTypes).
-<a name="operationProduces"></a>produces | [`string`] | A list of MIME types the operation can produce. This overrides the [`produces`](#oasProduces) definition at the Swagger Object. An empty value MAY be used to clear the global definition. Value MUST be as described under [Mime Types](#mimeTypes).
-<a name="operationParameters"></a>parameters | [[Parameter Object](#parameterObject) <span>&#124;</span> [Reference Object](#referenceObject)] | A list of parameters that are applicable for this operation. If a parameter is already defined at the [Path Item](#pathItemParameters), the new definition will override it, but can never remove it. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a [name](#parameterName) and [location](#parameterIn). The list can use the [Reference Object](#referenceObject) to link to parameters that are defined at the [Swagger Object's parameters](#oasParameters). There can be one "body" parameter at most.
+<a name="operationConsumes"></a>consumes | [`string`] | A list of MIME types the operation can consume. This overrides the [`consumes`](#oasConsumes) definition at the OpenAPI Object. An empty value MAY be used to clear the global definition. Value MUST be as described under [Mime Types](#mimeTypes).
+<a name="operationProduces"></a>produces | [`string`] | A list of MIME types the operation can produce. This overrides the [`produces`](#oasProduces) definition at the OpenAPI Object. An empty value MAY be used to clear the global definition. Value MUST be as described under [Mime Types](#mimeTypes).
+<a name="operationParameters"></a>parameters | [[Parameter Object](#parameterObject) <span>&#124;</span> [Reference Object](#referenceObject)] | A list of parameters that are applicable for this operation. If a parameter is already defined at the [Path Item](#pathItemParameters), the new definition will override it, but can never remove it. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a [name](#parameterName) and [location](#parameterIn). The list can use the [Reference Object](#referenceObject) to link to parameters that are defined at the [OpenAPI Object's parameters](#oasParameters). There can be one "body" parameter at most.
 <a name="operationResponses"></a>responses | [Responses Object](#responsesObject) | **Required.** The list of possible responses as they are returned from executing this operation.
-<a name="operationSchemes"></a>schemes | [`string`] | The transfer protocol for the operation. Values MUST be from the list: `"http"`, `"https"`, `"ws"`, `"wss"`. The value overrides the Swagger Object [`schemes`](#oasSchemes) definition. 
+<a name="operationSchemes"></a>schemes | [`string`] | The transfer protocol for the operation. Values MUST be from the list: `"http"`, `"https"`, `"ws"`, `"wss"`. The value overrides the OpenAPI Object [`schemes`](#oasSchemes) definition. 
 <a name="operationDeprecated"></a>deprecated | `boolean` | Declares this operation to be deprecated. Usage of the declared operation should be refrained. Default value is `false`.
 <a name="operationSecurity"></a>security | [[Security Requirement Object](#securityRequirementObject)] | A declaration of which security schemes are applied for this operation. The list of values describes alternative security schemes that can be used (that is, there is a logical OR between the security requirements). This definition overrides any declared top-level [`security`](#oasSecurity). To remove a top-level security declaration, an empty array can be used.
 
@@ -427,7 +427,7 @@ Field Name | Type | Description
 
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="operationExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="operationExtensions"></a>^x- | Any | Allows extensions to the OpenAPI Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### Operation Object Example
 
@@ -542,7 +542,7 @@ Field Name | Type | Description
 
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="externalDocExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="externalDocExtensions"></a>^x- | Any | Allows extensions to the OpenAPI Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### External Documentation Object Example
 
@@ -569,7 +569,7 @@ There are five possible parameter types.
 * Query - Parameters that are appended to the URL. For example, in `/items?id=###`, the query parameter is `id`.
 * Header - Custom headers that are expected as part of the request.
 * Body - The payload that's appended to the HTTP request. Since there can only be one payload, there can only be *one* body parameter. The name of the body parameter has no effect on the parameter itself and is used for documentation purposes only. Since Form parameters are also in the payload, body and form parameters cannot exist together for the same operation.
-* Form - Used to describe the payload of an HTTP request when either `application/x-www-form-urlencoded`, `multipart/form-data` or both are used as the content type of the request (in Swagger's definition, the [`consumes`](#operationConsumes) property of an operation). This is the only parameter type that can be used to send files, thus supporting the `file` type. Since form parameters are sent in the payload, they cannot be declared together with a body parameter for the same operation. Form parameters have a different format based on the content-type used (for further details, consult http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4):
+* Form - Used to describe the payload of an HTTP request when either `application/x-www-form-urlencoded`, `multipart/form-data` or both are used as the content type of the request (in the OpenAPI Specifications's definition, the [`consumes`](#operationConsumes) property of an operation). This is the only parameter type that can be used to send files, thus supporting the `file` type. Since form parameters are sent in the payload, they cannot be declared together with a body parameter for the same operation. Form parameters have a different format based on the content-type used (for further details, consult http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4):
   * `application/x-www-form-urlencoded` - Similar to the format of Query parameters but as a payload. For example, `foo=1&bar=swagger` - both `foo` and `bar` are form parameters. This is normally used for simple parameters that are being transferred.
   * `multipart/form-data` - each parameter takes a section in the payload with an internal header. For example, for the header `Content-Disposition: form-data; name="submit-name"` the name of the parameter is `submit-name`. This type of form parameters is more commonly used for file transfers.
 
@@ -614,7 +614,7 @@ Field Name | Type | Description
 ##### Patterned Fields
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="parameterExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="parameterExtensions"></a>^x- | Any | Allows extensions to the OpenAPI Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 
 ##### Parameter Object Examples
@@ -794,7 +794,7 @@ Field Name | Type | Description
 
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="itemsExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="itemsExtensions"></a>^x- | Any | Allows extensions to the OpenAPI Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### Items Object Examples
 
@@ -844,13 +844,13 @@ The `Responses Object` MUST contain at least one response code, and it SHOULD be
 ##### Fixed Fields
 Field Name | Type | Description
 ---|:---:|---
-<a name="responsesDefault"></a>default | [Response Object](#responseObject) <span>&#124;</span> [Reference Object](#referenceObject) | The documentation of responses other than the ones declared for specific HTTP response codes. It can be used to cover undeclared responses. [Reference Object](#referenceObject) can be used to link to a response that is defined at the [Swagger Object's responses](#oasResponses) section.
+<a name="responsesDefault"></a>default | [Response Object](#responseObject) <span>&#124;</span> [Reference Object](#referenceObject) | The documentation of responses other than the ones declared for specific HTTP response codes. It can be used to cover undeclared responses. [Reference Object](#referenceObject) can be used to link to a response that is defined at the [OpenAPI Object's responses](#oasResponses) section.
 
 ##### Patterned Fields
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="responsesCode"></a>{[HTTP Status Code](#httpCodes)} | [Response Object](#responseObject) <span>&#124;</span> [Reference Object](#referenceObject) | Any [HTTP status code](#httpCodes) can be used as the property name (one property per HTTP status code). Describes the expected response for that HTTP status code.  [Reference Object](#referenceObject) can be used to link to a response that is defined at the [Swagger Object's responses](#oasResponses) section.
-<a name="responsesExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="responsesCode"></a>{[HTTP Status Code](#httpCodes)} | [Response Object](#responseObject) <span>&#124;</span> [Reference Object](#referenceObject) | Any [HTTP status code](#httpCodes) can be used as the property name (one property per HTTP status code). Describes the expected response for that HTTP status code.  [Reference Object](#referenceObject) can be used to link to a response that is defined at the [OpenAPI Object's responses](#oasResponses) section.
+<a name="responsesExtensions"></a>^x- | Any | Allows extensions to the OpenAPI Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 
 ##### Responses Object Example
@@ -900,7 +900,7 @@ Field Name | Type | Description
 
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="responseExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="responseExtensions"></a>^x- | Any | Allows extensions to the OpenAPI Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### Response Object Examples
 
@@ -1098,7 +1098,7 @@ Field Name | Type | Description
 
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="headerExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="headerExtensions"></a>^x- | Any | Allows extensions to the OpenAPI Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### Header Object Example
 
@@ -1130,7 +1130,7 @@ Field Name | Type | Description
 ##### Patterned Fields
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="tagExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="tagExtensions"></a>^x- | Any | Allows extensions to the OpenAPI Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### Tag Object Example
 
@@ -1220,7 +1220,7 @@ The following properties are taken directly from the JSON Schema definition and 
 - enum
 - type
 
-The following properties are taken from the JSON Schema definition but their definitions were adjusted to the Swagger Specification. Their definition is the same as the one from JSON Schema, only where the original definition references the JSON Schema definition, the [Schema Object](#schemaObject) definition is used instead.
+The following properties are taken from the JSON Schema definition but their definitions were adjusted to the OpenAPI Specification. Their definition is the same as the one from JSON Schema, only where the original definition references the JSON Schema definition, the [Schema Object](#schemaObject) definition is used instead.
 - items
 - allOf
 - properties
@@ -1241,13 +1241,13 @@ Field Name | Type | Description
 
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="schemaExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="schemaExtensions"></a>^x- | Any | Allows extensions to the OpenAPI Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ###### Composition and Inheritance (Polymorphism)
 
-Swagger allows combining and extending model definitions using the `allOf` property of JSON Schema, in effect offering model composition. `allOf` takes in an array of object definitions that are validated *independently* but together compose a single object. 
+The OpenAPI Specification allows combining and extending model definitions using the `allOf` property of JSON Schema, in effect offering model composition. `allOf` takes in an array of object definitions that are validated *independently* but together compose a single object. 
 
-While composition offers model extensibility, it does not imply a hierarchy between the models. To support polymorphism, Swagger adds the support of the `discriminator` field. When used, the `discriminator` will be the name of the property used to decide which schema definition is used to validate the structure of the model. As such, the `discriminator` field MUST be a required field. The value of the chosen property has to be the friendly name given to the model under the `definitions` property. As such, inline schema definitions, which do not have a given id, *cannot* be used in polymorphism.
+While composition offers model extensibility, it does not imply a hierarchy between the models. To support polymorphism, OpenAPI Specification adds the support of the `discriminator` field. When used, the `discriminator` will be the name of the property used to decide which schema definition is used to validate the structure of the model. As such, the `discriminator` field MUST be a required field. The value of the chosen property has to be the friendly name given to the model under the `definitions` property. As such, inline schema definitions, which do not have a given id, *cannot* be used in polymorphism.
 
 ###### XML Modeling
 
@@ -1257,7 +1257,7 @@ The [xml](#schemaXml) property allows extra definitions when translating the JSO
 
 ###### Primitive Sample
 
-Unlike previous versions of Swagger, Schema definitions can be used to describe primitive and arrays as well.
+Unlike previous versions of Swagger, OpenAPI Schema definitions can be used to describe primitive and arrays as well.
 
 ```js
 {
@@ -1594,7 +1594,7 @@ Field Name | Type | Description
 
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="xmlExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="xmlExtensions"></a>^x- | Any | Allows extensions to the OpenAPI Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### XML Object Examples
 
@@ -2150,7 +2150,7 @@ Field Name | Type | Validity | Description
 
 Field Name | Type | Description 
 ---|:---:|---
-<a name="securitySchemeExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="securitySchemeExtensions"></a>^x- | Any | Allows extensions to the OpenAPI Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### Security Scheme Object Example
 
@@ -2219,7 +2219,7 @@ Field Pattern | Type | Description
 
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="scopesExtensions"></a>^x- | Any | Allows extensions to the Swagger Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
+<a name="scopesExtensions"></a>^x- | Any | Allows extensions to the OpenAPI Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 ##### Scopes Object Example
 
@@ -2280,7 +2280,7 @@ petstore_auth:
 
 ### <a name="vendorExtensions"></a>Specification Extensions
 
-While the Swagger Specification tries to accommodate most use cases, additional data can be added to extend the specification at certain points.
+While the OpenAPI Specification tries to accommodate most use cases, additional data can be added to extend the specification at certain points.
 
 The extensions properties are always prefixed by `"x-"` and can have any valid JSON format value.
 
@@ -2288,7 +2288,7 @@ The extensions may or may not be supported by the available tooling, but those m
 
 ### <a name="securityFiltering"></a>Security Filtering
 
-Some objects in the Swagger specification may be declared and remain empty, or completely be removed, even though they are inherently the core of the API documentation. 
+Some objects in the OpenAPI Specification may be declared and remain empty, or completely be removed, even though they are inherently the core of the API documentation. 
 
 The reasoning behind it is to allow an additional layer of access control over the documentation itself. While not part of the specification itself, certain libraries may choose to allow access to parts of the documentation based on some form of authentication/authorization.
 

@@ -1,0 +1,9 @@
+sudo: false
+script:
+  - npm install
+env:
+  - VALIDATORS=tv4
+  - VALIDATORS=zschema
+matrix:
+  allow_failures:
+    - env: VALIDATORS=tv4

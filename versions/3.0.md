@@ -50,7 +50,7 @@ The HTTP Status Codes are used to indicate the status of the executed operation.
 
 ### Format
 
-The files describing the RESTful API in accordance with the Open API Specification are represented as JSON objects and conform to the JSON standards. YAML, being a superset of JSON, can be used as well to 
+The files describing the RESTful API in accordance with the OpenAPI Specification are represented as JSON objects and conform to the JSON standards. YAML, being a superset of JSON, can be used as well to 
 represent a OAS (OpenAPI Specification) file.
 
 For example, if a field is said to have an array value, the JSON array representation will be used:
@@ -71,7 +71,7 @@ The schema exposes two types of fields. Fixed fields, which have a declared name
 
 The OAS representation of the API is made of a single file. However, parts of the definitions can be split into separate files, at the discretion of the user. This is applicable for `$ref` fields in the specification as follows from the [JSON Schema](http://json-schema.org) definitions.
 
-By convention, the Open API Specification (OAS) file is named `swagger.json`.
+By convention, the OpenAPI Specification (OAS) file is named `swagger.json`.
 
 ### Data Types
 
@@ -569,7 +569,7 @@ There are five possible parameter types.
 * Query - Parameters that are appended to the URL. For example, in `/items?id=###`, the query parameter is `id`.
 * Header - Custom headers that are expected as part of the request.
 * Body - The payload that's appended to the HTTP request. Since there can only be one payload, there can only be *one* body parameter. The name of the body parameter has no effect on the parameter itself and is used for documentation purposes only. Since Form parameters are also in the payload, body and form parameters cannot exist together for the same operation.
-* Form - Used to describe the payload of an HTTP request when either `application/x-www-form-urlencoded`, `multipart/form-data` or both are used as the content type of the request (in the OpenAPI Specifications's definition, the [`consumes`](#operationConsumes) property of an operation). This is the only parameter type that can be used to send files, thus supporting the `file` type. Since form parameters are sent in the payload, they cannot be declared together with a body parameter for the same operation. Form parameters have a different format based on the content-type used (for further details, consult http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4):
+* Form - Used to describe the payload of an HTTP request when either `application/x-www-form-urlencoded`, `multipart/form-data` or both are used as the content type of the request (in the OpenAPI Specification's definition, the [`consumes`](#operationConsumes) property of an operation). This is the only parameter type that can be used to send files, thus supporting the `file` type. Since form parameters are sent in the payload, they cannot be declared together with a body parameter for the same operation. Form parameters have a different format based on the content-type used (for further details, consult http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4):
   * `application/x-www-form-urlencoded` - Similar to the format of Query parameters but as a payload. For example, `foo=1&bar=swagger` - both `foo` and `bar` are form parameters. This is normally used for simple parameters that are being transferred.
   * `multipart/form-data` - each parameter takes a section in the payload with an internal header. For example, for the header `Content-Disposition: form-data; name="submit-name"` the name of the parameter is `submit-name`. This type of form parameters is more commonly used for file transfers.
 

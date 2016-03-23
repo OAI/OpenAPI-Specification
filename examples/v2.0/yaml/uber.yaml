@@ -261,7 +261,7 @@ definitions:
       history:
         type: array
         items:
-          - $ref: '#/definitions/Activity'
+          $ref: '#/definitions/Activity'
   Error:
     properties:
       code:

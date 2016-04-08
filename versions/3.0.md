@@ -586,6 +586,7 @@ Field Name | Type | Description
 <a name="parameterIn"></a>in | `string` | **Required.** The location of the parameter. Possible values are "query", "header", "path", "formData" or "body".
 <a name="parameterDescription"></a>description | `string` | A brief description of the parameter. This could contain examples of use.  [GFM syntax](https://help.github.com/articles/github-flavored-markdown) can be used for rich text representation.
 <a name="parameterRequired"></a>required | `boolean` | Determines whether this parameter is mandatory. If the parameter is [`in`](#parameterIn) "path", this property is **required** and its value MUST be `true`. Otherwise, the property MAY be included and its default value is `false`. 
+<a name="parameterDeprecated"></a> deprecated | `boolean` | Specifies that a parameter is deprecated and should be transitioned out of usage.
 
 If [`in`](#parameterIn) is `"body"`:
 
@@ -1242,6 +1243,7 @@ Field Name | Type | Description
 <a name="schemaXml"></a>xml | [XML Object](#xmlObject) | This MAY be used only on properties schemas. It has no effect on root schemas. Adds Additional metadata to describe the XML representation format of this property.
 <a name="schemaExternalDocs"></a>externalDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation for this schema. 
 <a name="schemaExample"></a>example | Any | A free-form property to include a an example of an instance for this schema.
+<a name="schemaDeprecated"></a> deprecated | `boolean` | Specifies that a schema is deprecated and should be transitioned out of usage.
 
 ##### Patterned Objects 
 

@@ -1945,7 +1945,11 @@ An object to hold data types that can be consumed and produced by operations. Th
 
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="definitionsName"></a>{name} | [Schema Object](#schemaObject) | A single definition, mapping a "name" to the schema it defines.
+<a name="definitionsName"></a>{name} | [Schema Object](#schemaObject) | A single definition, mapping a "name" to the schema it defines.  The following characters are legal in the `definitionsName`: `a-zA-Z0-9.-_()[]\/`
+
+The following characters are illegal in the `definitionsName`: `"'`
+
+In addition, high-level characters are not legal in the `definitionsName`.  The name may be used to namespace the definitions--it is the tooling vendor's job to ensure that the namespace is honored.
 
 ##### Definitions Object Example
 

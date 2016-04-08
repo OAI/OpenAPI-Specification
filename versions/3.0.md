@@ -113,12 +113,14 @@ Field Name | Type | Description
 <a name="oasSchemes"></a>schemes | [`string`] | The transfer protocol of the API. Values MUST be from the list: `"http"`, `"https"`, `"ws"`, `"wss"`. If the `schemes` is not included, the default scheme to be used is the one used to access the OpenAPI definition itself.
 <a name="oasConsumes"></a>consumes | [`string`] | A list of MIME types the APIs can consume. This is global to all APIs but can be overridden on specific API calls. Value MUST be as described under [Mime Types](#mimeTypes).
 <a name="oasProduces"></a>produces | [`string`] | A list of MIME types the APIs can produce. This is global to all APIs but can be overridden on specific API calls. Value MUST be as described under [Mime Types](#mimeTypes).
+<a name="oasResponses"></a>responses | [Responses]
 <a name="oasPaths"></a>paths | [Paths Object](#pathsObject) | **Required.** The available paths and operations for the API.
-<a name="oasDefinitions"></a>definitions | [Definitions Object](#definitionsObject) | An object to hold data types produced and consumed by operations.
+<a name="oasSchemas"></a>schemas | [Schemas Object](#schemasObject) | An element to hold various schemas for the specification.
+~~<a name="oasDefinitions"></a>definitions | [Definitions Object](#definitionsObject) | An object to hold data types produced and consumed by operations.
 <a name="oasParameters"></a>parameters | [Parameters Definitions Object](#parametersDefinitionsObject) | An object to hold parameters that can be used across operations. This property *does not* define global parameters for all operations.
 <a name="oasResponses"></a>responses | [Responses Definitions Object](#responsesDefinitionsObject) | An object to hold responses that can be used across operations. This property *does not* define global responses for all operations.
 <a name="oasSecurityDefinitions"></a>securityDefinitions | [Security Definitions Object](#securityDefinitionsObject) | Security scheme definitions that can be used across the specification.
-<a name="oasSecurity"></a>security | [[Security Requirement Object](#securityRequirementObject)] | A declaration of which security schemes are applied for the API as a whole. The list of values describes alternative security schemes that can be used (that is, there is a logical OR between the security requirements). Individual operations can override this definition.
+<a name="oasSecurity"></a>security | [[Security Requirement Object](#securityRequirementObject)] | A declaration of which security schemes are applied for the API as a whole. The list of values describes alternative security schemes that can be used (that is, there is a logical OR between the security requirements). Individual operations can override this definition.~~
 <a name="oasTags"></a>tags | [[Tag Object](#tagObject)] | A list of tags used by the specification with additional metadata. The order of the tags can be used to reflect on their order by the parsing tools. Not all tags that are used by the [Operation Object](#operationObject) must be declared. The tags that are not declared may be organized randomly or based on the tools' logic. Each tag name in the list MUST be unique.
 <a name="oasExternalDocs"></a>externalDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation.
 
@@ -247,6 +249,21 @@ Field Pattern | Type | Description
 name: Apache 2.0
 url: http://www.apache.org/licenses/LICENSE-2.0.html
 ```
+
+#### <a name="schemasObject"></a>Schemas Object
+
+Holds a set of schemas for different aspects of the OAS.  The intention is to put reusable components into a single location, allowing reuse from this and other OAS documents.
+
+##### Fixed Fields
+
+Field Pattern | Type | Description
+<a name="definitionsObject"></a> | [Definitions Object](#definitionsObject) | A hash containing payload definitions for the specification.
+<a name="responsesDefinitionsObject"></a>Responses Definitions Object | Reusable responses objects.
+<a name="parametersDefinitionsObject"></a> | [Parameters Definitions Object](#parametersDefinitionsObject) |
+An object to hold parameters to be reused across operations. Parameter definitions can be referenced to the ones defined here.
+<a name="responseHeadersDefinitionsObject"></a> | [Response Headers Definitions Object](#responseHeadersDefinitionsObject) | Response headers to reuse across the specification.
+<a name="securityDefinitionsObject"></a>[Security Definitions Object](#securityDefinitionsObject) | Security definitions to reuse across the specification.
+
 
 #### <a name="pathsObject"></a>Paths Object
 

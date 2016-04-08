@@ -855,7 +855,7 @@ Field Name | Type | Description
 ##### Patterned Fields
 Field Pattern | Type | Description
 ---|:---:|---
-<a name="responsesCode"></a>{[HTTP Status Code](#httpCodes)} | [Response Object](#responseObject) <span>&#124;</span> [Reference Object](#referenceObject) | Any [HTTP status code](#httpCodes) can be used as the property name (one property per HTTP status code). Describes the expected response for that HTTP status code.  [Reference Object](#referenceObject) can be used to link to a response that is defined at the [OpenAPI Object's responses](#oasResponses) section.
+<a name="responsesCode"></a>{[HTTP Status Code](#httpCodes)} | [Response Object](#responseObject) <span>&#124;</span> [Reference Object](#referenceObject) | Any [HTTP status code](#httpCodes) can be used as the property name (one property per HTTP status code). Describes the expected response for that HTTP status code.  [Reference Object](#referenceObject) can be used to link to a response that is defined at the [OpenAPI Object's responses](#oasResponses) section. This field must quoted for compatibility between JSON and YAML (i.e. "200"), and may contain a regular expression for pattern matching, such as `'^2[\d]{2}'`.
 <a name="responsesExtensions"></a>^x- | Any | Allows extensions to the OpenAPI Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. See [Vendor Extensions](#vendorExtensions) for further details.
 
 

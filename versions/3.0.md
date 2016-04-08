@@ -311,6 +311,7 @@ A Path Item may be empty, due to [ACL constraints](#securityFiltering). The path
 Field Name | Type | Description
 ---|:---:|---
 <a name="pathItemRef"></a>$ref | `string` | Allows for an external definition of this path item. The referenced structure MUST be in the format of a [Path Item Object](#pathItemObject). If there are conflicts between the referenced definition and this Path Item's definition, the behavior is *undefined*.
+<a name="pathItemDescription"></a>description | An optional, string description, intended to apply to all operations in this path.
 <a name="pathItemGet"></a>get | [Operation Object](#operationObject) | A definition of a GET operation on this path.
 <a name="pathItemPut"></a>put | [Operation Object](#operationObject) | A definition of a PUT operation on this path.
 <a name="pathItemPost"></a>post | [Operation Object](#operationObject) | A definition of a POST operation on this path.

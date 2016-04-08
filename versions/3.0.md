@@ -1152,6 +1152,51 @@ name: pet
 description: Pets operations
 ```
 
+#### <a name="examplesObject"></a>Examples Object
+
+Anywhere an `example` may be given, allow a $ref object.  This does mean that `example` can be either a string primitive or an object, like `additionalProperties`:
+
+```yaml
+# in a model
+definitions:
+  properties:
+    name:
+      type: string
+      example:
+        $ref: http://foo.bar#/examples/name-example.json
+
+# in a parameter:
+  parameters:
+    - name: address
+      in: body
+      schema:
+        $ref: '#/definitions/Address'
+      examples:
+        'application/json':
+          $ref: http://foo.bar#/examples/address-example.json
+        'application/xml':
+          $ref: http://foo.bar#/examples/address-example.xml
+        'text/plain':
+          $ref: http://foo.bar#/examples/address-example.txt
+        default:
+          $ref: http://foo.bar#/examples/address-example.whatever
+    - name: zip
+      in: query
+      type: string
+      format: zip
+      example: 
+        $ref: http://foo.bar#/examples/zip-example
+# in a response:
+  responses:
+    200:
+      description: your car appointment has been booked
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+      examples:
+        'application/json':
+          $ref: http://foo.bar#/examples/address-example.json
+```
+
 #### <a name="referenceObject"></a>Reference Object
 
 A simple object to allow referencing other definitions in the specification. It can be used to reference parameters and responses that are defined at the top level for reuse.

@@ -1154,7 +1154,11 @@ description: Pets operations
 
 #### <a name="examplesObject"></a>Examples Object
 
-Anywhere an `example` may be given, allow a $ref object.  This does mean that `example` can be either a string primitive or an object, like `additionalProperties`:
+Anywhere an `example` may be given, allow a $ref object.  This does mean that `example`, structurally, can be either a string primitive or an object, like `additionalProperties`.
+
+In locations where the field being provided an `example` is a scalar value _or_ has it's content-type definition determined by a higher-level construct (a response payload, for example, uses the `produces` attribute to select the correct message format), the plural `examples` shall be used, and the payload format be specified as a key to the example.
+
+In all cases, the payload is expected to be compatible with the type schema for the value that it is accompanying. Tooling vendors may choose to valide compatibility automatically, and reject the example value(s) if they are not compatible.
 
 ```yaml
 # in a model
@@ -1163,9 +1167,9 @@ definitions:
     name:
       type: string
       example:
-        $ref: http://foo.bar#/examples/name-example.json
+        $ref: http://foo.bar#/examples/name-example
 
-# in a parameter:
+# in a parameter, note the plural `examples` as the content-type is set by `consumes`:
   parameters:
     - name: address
       in: body
@@ -1173,25 +1177,25 @@ definitions:
         $ref: '#/definitions/Address'
       examples:
         'application/json':
-          $ref: http://foo.bar#/examples/address-example.json
+          $ref: 'http://foo.bar#/examples/address-example.json'
         'application/xml':
-          $ref: http://foo.bar#/examples/address-example.xml
+          $ref: 'http://foo.bar#/examples/address-example.xml'
         'text/plain':
-          $ref: http://foo.bar#/examples/address-example.txt
+          $ref: 'http://foo.bar#/examples/address-example.txt'
         default:
-          $ref: http://foo.bar#/examples/address-example.whatever
-    - name: zip
-      in: query
-      type: string
-      format: zip
+          $ref: 'http://foo.bar#/examples/address-example.whatever'
+    - name: 'zip'
+      in: 'query'
+      type: 'string'
+      format: 'zip'
       example: 
-        $ref: http://foo.bar#/examples/zip-example
-# in a response:
+        $ref: 'http://foo.bar#/examples/zip-example'
+# in a response, note the plural `examples`:
   responses:
     200:
       description: your car appointment has been booked
-        schema:
-          $ref: '#/definitions/SuccessResponse'
+      schema:
+        $ref: '#/definitions/SuccessResponse'
       examples:
         'application/json':
           $ref: http://foo.bar#/examples/address-example.json

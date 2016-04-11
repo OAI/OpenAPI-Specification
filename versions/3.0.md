@@ -71,7 +71,7 @@ The schema exposes two types of fields. Fixed fields, which have a declared name
 
 The OAS representation of the API is made of a single file. However, parts of the definitions can be split into separate files, at the discretion of the user. This is applicable for `$ref` fields in the specification as follows from the [JSON Schema](http://json-schema.org) definitions.
 
-By convention, the OpenAPI Specification (OAS) file is named `oas.json`.
+By convention, the OpenAPI Specification (OAS) file is named `openapi.json` or `openapi.yaml`.
 
 ### Data Types
 
@@ -106,8 +106,7 @@ This is the root document object for the API specification. It combines what pre
 
 Field Name | Type | Description
 ---|:---:|---
-<a name="oasSwagger"></a>swagger | `string` | **Required.** Specifies the OpenAPI Specification version being used. It can be used by tooling vendors and clients to interpret the version.  The structure shall be `major`.`minor`.`patch`, where `patch` versions _must_ be compatible with the existing `major`.`minor` tooling. Typically patch versions will be introduced to address errors in the documentation, and tooling should typically be compatible with the corresponding `major`.`minor` (3.0.*). Patch versions will correspond to patches of this document.
-<a name="oasSchema"></a>schema | `string` | An optional URL to a formal OAS schema. If present, tooling _may_ choose to use this for validating the document, and the location _must_ be a formally approved OAS schema produced by the OpenAPI working group.
+<a name="oasVersion"></a>openapi | `string` | **Required.** Specifies the OpenAPI Specification version being used. It can be used by tooling vendors and clients to interpret the version.  The structure shall be `major`.`minor`.`patch`, where `patch` versions _must_ be compatible with the existing `major`.`minor` tooling. Typically patch versions will be introduced to address errors in the documentation, and tooling should typically be compatible with the corresponding `major`.`minor` (3.0.*). Patch versions will correspond to patches of this document.
 <a name="oasInfo"></a>info | [Info Object](#infoObject) | **Required.** Provides metadata about the API. The metadata can be used by the clients if needed.
 <a name="oasHost"></a>host | `string` | The host (name or ip) serving the API. This MUST be the host only and does not include the scheme nor sub-paths. It MAY include a port. If the `host` is not included, the host serving the documentation is to be used (including the port). The `host` does not support [path templating](#pathTemplating).
 <a name="oasBasePath"></a>basePath | `string` | The base path on which the API is served, which is relative to the [`host`](#oasHost). If it is not included, the API is served directly under the `host`. The value MUST start with a leading slash (`/`). The `basePath` does not support [path templating](#pathTemplating). 

@@ -108,9 +108,7 @@ Field Name | Type | Description
 ---|:---:|---
 <a name="oasVersion"></a>openapi | `string` | **Required.** Specifies the OpenAPI Specification version being used. It can be used by tooling vendors and clients to interpret the version.  The structure shall be `major`.`minor`.`patch`, where `patch` versions _must_ be compatible with the existing `major`.`minor` tooling. Typically patch versions will be introduced to address errors in the documentation, and tooling should typically be compatible with the corresponding `major`.`minor` (3.0.*). Patch versions will correspond to patches of this document.
 <a name="oasInfo"></a>info | [Info Object](#infoObject) | **Required.** Provides metadata about the API. The metadata can be used by the clients if needed.
-<a name="oasHost"></a>host | `string` | The host (name or ip) serving the API. This MUST be the host only and does not include the scheme nor sub-paths. It MAY include a port. If the `host` is not included, the host serving the documentation is to be used (including the port). The `host` does not support [path templating](#pathTemplating).
-<a name="oasBasePath"></a>basePath | `string` | The base path on which the API is served, which is relative to the [`host`](#oasHost). If it is not included, the API is served directly under the `host`. The value MUST start with a leading slash (`/`). The `basePath` does not support [path templating](#pathTemplating). 
-<a name="oasSchemes"></a>schemes | [`string`] | The transfer protocol of the API. Values MUST be from the list: `"http"`, `"https"`, `"ws"`, `"wss"`. If the `schemes` is not included, the default scheme to be used is the one used to access the OpenAPI definition itself.
+<a name="oasHosts"></a>hosts | [Hosts Object](#hostsObject) | An array of Host objects which provide `scheme`, `host`, `port`, and `basePath` in an associative manner.
 <a name="oasConsumes"></a>consumes | [`string`] | A list of MIME types the APIs can consume. This is global to all APIs but can be overridden on specific API calls. Value MUST be as described under [Mime Types](#mimeTypes).
 <a name="oasProduces"></a>produces | [`string`] | A list of MIME types the APIs can produce. This is global to all APIs but can be overridden on specific API calls. Value MUST be as described under [Mime Types](#mimeTypes).
 <a name="oasPaths"></a>paths | [Paths Object](#pathsObject) | **Required.** The available paths and operations for the API.
@@ -182,6 +180,18 @@ license:
   url: http://www.apache.org/licenses/LICENSE-2.0.html
 version: 1.0.1
 ```
+
+#### <a name="hostObject"></a>Host Object
+
+An object representing a Host.
+
+##### Fixed Fields
+
+Field Name | Type | Description
+---|:---:|---
+<a name="oasHost"></a>host | `string` | The host (name or ip) serving the API. This MUST be the host only and does not include the scheme nor sub-paths. It MAY include a port. If the `host` is not included, the host serving the documentation is to be used (including the port). The `host` does not support [path templating](#pathTemplating).
+<a name="oasBasePath"></a>basePath | `string` | The base path on which the API is served, which is relative to the [`host`](#oasHost). If it is not included, the API is served directly under the `host`. The value MUST start with a leading slash (`/`). The `basePath` does not support [path templating](#pathTemplating). 
+<a name="oasScheme"></a>scheme | `string` | The transfer protocol of the API. Values MUST be from the list: `"http"`, `"https"`, `"ws"`, `"wss"`. If the `scheme` is not included, the default scheme to be used is the one used to access the OpenAPI definition itself.
 
 #### <a name="contactObject"></a>Contact Object
 

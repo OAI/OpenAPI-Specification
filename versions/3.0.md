@@ -591,6 +591,8 @@ There are five possible parameter types.
   * `application/x-www-form-urlencoded` - Similar to the format of Query parameters but as a payload. For example, `foo=1&bar=swagger` - both `foo` and `bar` are form parameters. This is normally used for simple parameters that are being transferred.
   * `multipart/form-data` - each parameter takes a section in the payload with an internal header. For example, for the header `Content-Disposition: form-data; name="submit-name"` the name of the parameter is `submit-name`. This type of form parameters is more commonly used for file transfers.
 
+For complex parameter schemas, a serialization strategy is required. For parameter of type `in: body`, the serialization will be handled by the `consumes` attribute.  For all other types, a serialization strategy must be declared.
+
 ##### Fixed Fields
 Field Name | Type | Description
 ---|:---:|---
@@ -599,35 +601,7 @@ Field Name | Type | Description
 <a name="parameterDescription"></a>description | `string` | A brief description of the parameter. This could contain examples of use.  [GFM syntax](https://help.github.com/articles/github-flavored-markdown) can be used for rich text representation.
 <a name="parameterRequired"></a>required | `boolean` | Determines whether this parameter is mandatory. If the parameter is [`in`](#parameterIn) "path", this property is **required** and its value MUST be `true`. Otherwise, the property MAY be included and its default value is `false`. 
 <a name="parameterDeprecated"></a> deprecated | `boolean` | Specifies that a parameter is deprecated and should be transitioned out of usage.
-
-If [`in`](#parameterIn) is `"body"`:
-
-Field Name | Type | Description
----|:---:|---
-<a name="parameterSchema"></a>schema | [Schema Object](#schemaObject) | **Required.** The schema defining the type used for the body parameter.
-
-If [`in`](#parameterIn) is any value other than `"body"`:
-
-Field Name | Type | Description
----|:---:|---
-<a name="parameterType"></a>type | `string` | **Required.** The type of the parameter. Since the parameter is not located at the request body, it is limited to simple types (that is, not an object). The value MUST be one of `"string"`, `"number"`, `"integer"`, `"boolean"`, `"array"` or `"file"`. If `type` is `"file"`, the [`consumes`](#operationConsumes) MUST be either `"multipart/form-data"`, `" application/x-www-form-urlencoded"` or both and the parameter MUST be [`in`](#parameterIn) `"formData"`.
-<a name="parameterFormat"></a>format | `string` | The extending format for the previously mentioned [`type`](#parameterType). See [Data Type Formats](#dataTypeFormat) for further details.
-<a name="parameterAllowEmptyValue"/>allowEmptyValue | `boolean` | Sets the ability to pass empty-valued parameters. This is valid only for either `query` or `formData` parameters and allows you to send a parameter with a name only or  an empty value. Default value is `false`.
-<a name="parameterItems"></a>items | [Items Object](#itemsObject) | **Required if [`type`](#parameterType) is "array".** Describes the type of items in the array.
-<a name="parameterCollectionFormat"></a>collectionFormat | `string` | Determines the format of the array if type array is used. Possible values are: <ul><li>`csv` - comma separated values `foo,bar`. <li>`ssv` - space separated values `foo bar`. <li>`tsv` - tab separated values `foo\tbar`. <li>`pipes` - pipe separated values <code>foo&#124;bar</code>. <li>`multi` - corresponds to multiple parameter instances instead of multiple values for a single instance `foo=bar&foo=baz`. This is valid only for parameters [`in`](#parameterIn) "query" or "formData". </ul> Default value is `csv`.
-<a name="parameterDefault"></a>default | * | Declares the value of the parameter that the server will use if none is provided, for example a "count" to control the number of results per page might default to 100 if not supplied by the client in the request. (Note: "default" has no meaning for required parameters.)  See http://json-schema.org/latest/json-schema-validation.html#anchor101. Unlike JSON Schema this value MUST conform to the defined [`type`](#parameterType) for this parameter.
-<a name="parameterMaximum"></a>maximum | `number` | See http://json-schema.org/latest/json-schema-validation.html#anchor17.
-<a name="parameterExclusiveMaximum"></a>exclusiveMaximum | `boolean` | See http://json-schema.org/latest/json-schema-validation.html#anchor17.
-<a name="parameterMinimum"></a>minimum | `number` | See http://json-schema.org/latest/json-schema-validation.html#anchor21.
-<a name="parameterExclusiveMinimum"></a>exclusiveMinimum | `boolean` | See http://json-schema.org/latest/json-schema-validation.html#anchor21.
-<a name="parameterMaxLength"></a>maxLength | `integer` | See http://json-schema.org/latest/json-schema-validation.html#anchor26.
-<a name="parameterMinLength"></a>minLength | `integer` | See http://json-schema.org/latest/json-schema-validation.html#anchor29.
-<a name="parameterPattern"></a>pattern | `string` | See http://json-schema.org/latest/json-schema-validation.html#anchor33.
-<a name="parameterMaxItems"></a>maxItems | `integer` | See http://json-schema.org/latest/json-schema-validation.html#anchor42.
-<a name="parameterMinItems"></a>minItems | `integer` | See http://json-schema.org/latest/json-schema-validation.html#anchor45.
-<a name="parameterUniqueItems"></a>uniqueItems | `boolean` | See http://json-schema.org/latest/json-schema-validation.html#anchor49.
-<a name="parameterEnum"></a>enum | [*] | See http://json-schema.org/latest/json-schema-validation.html#anchor76.
-<a name="parameterMultipleOf"></a>multipleOf | `number` | See http://json-schema.org/latest/json-schema-validation.html#anchor14.
+<a name="parameterSchema"></a>schema | [Schema Object](#schemaObject) | The schema defining the type used for the parameter.
 
 
 ##### Patterned Fields
@@ -699,10 +673,12 @@ A header parameter with an array of 64 bit integer numbers:
   "in": "header",
   "description": "token to be passed as a header",
   "required": true,
-  "type": "array",
-  "items": {
-    "type": "integer",
-    "format": "int64"
+  "schema": {
+    "type": "array",
+    "items": {
+      "type": "integer",
+      "format": "int64"
+    }
   },
   "collectionFormat": "csv"
 }
@@ -713,11 +689,12 @@ name: token
 in: header
 description: token to be passed as a header
 required: true
-type: array
-items:
-  type: integer
-  format: int64
-collectionFormat: csv
+schema:
+  type: array
+  items:
+    type: integer
+    format: int64
+  collectionFormat: csv
 ```
 
 A path parameter of a string value:
@@ -727,7 +704,9 @@ A path parameter of a string value:
   "in": "path",
   "description": "username to fetch",
   "required": true,
-  "type": "string"
+  "schema": {
+    "type": "string"
+  }
 }
 ```
 
@@ -736,7 +715,8 @@ name: username
 in: path
 description: username to fetch
 required: true
-type: string
+schema:
+  type: string
 ```
 
 An optional query parameter of a string value, allowing multiple values by repeating the query parameter:
@@ -746,9 +726,11 @@ An optional query parameter of a string value, allowing multiple values by repea
   "in": "query",
   "description": "ID of the object to fetch",
   "required": false,
-  "type": "array",
-  "items": {
-    "type": "string"
+  "schema": {
+    "type": "array",
+    "items": {
+      "type": "string"
+    }
   },
   "collectionFormat": "multi"
 }
@@ -759,10 +741,11 @@ name: id
 in: query
 description: ID of the object to fetch
 required: false
-type: array
-items:
-  type: string
-collectionFormat: multi
+schema:
+  type: array
+  items:
+    type: string
+  collectionFormat: multi
 ```
 
 A form data with file type for a file upload:
@@ -772,7 +755,9 @@ A form data with file type for a file upload:
   "in": "formData",
   "description": "The avatar of the user",
   "required": true,
-  "type": "file"
+  "schema": {
+    "type": "file"
+  }
 }
 ```
 
@@ -781,7 +766,8 @@ name: avatar
 in: formData
 description: The avatar of the user
 required: true
-type: file
+schema:
+  type: file
 ```
 
 #### <a name="itemsObject"></a>Items Object

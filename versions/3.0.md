@@ -255,8 +255,7 @@ Holds a set of schemas for different aspects of the OAS.  The intention is to pu
 Field Pattern | Type | Description
 <a name="definitionsObject"></a> | [Definitions Object](#definitionsObject) | A hash containing payload definitions for the specification.
 <a name="responsesDefinitionsObject"></a>Responses Definitions Object | Reusable responses objects.
-<a name="parametersDefinitionsObject"></a> | [Parameters Definitions Object](#parametersDefinitionsObject) |
-An object to hold parameters to be reused across operations. Parameter definitions can be referenced to the ones defined here.
+<a name="parametersDefinitionsObject"></a> | [Parameters Definitions Object](#parametersDefinitionsObject) | An object to hold parameters to be reused across operations. Parameter definitions can be referenced to the ones defined here.
 <a name="responseHeadersDefinitionsObject"></a> | [Response Headers Definitions Object](#responseHeadersDefinitionsObject) | Response headers to reuse across the specification.
 <a name="securityDefinitionsObject"></a>[Security Definitions Object](#securityDefinitionsObject) | Security definitions to reuse across the specification.
 

@@ -111,11 +111,9 @@ Field Name | Type | Description
 <a name="oasHosts"></a>hosts | [Hosts Object](#hostsObject) | An array of Host objects which provide `scheme`, `host`, `port`, and `basePath` in an associative manner.
 <a name="oasConsumes"></a>consumes | [`string`] | A list of MIME types the APIs can consume. This is global to all APIs but can be overridden on specific API calls. Value MUST be as described under [Mime Types](#mimeTypes).
 <a name="oasProduces"></a>produces | [`string`] | A list of MIME types the APIs can produce. This is global to all APIs but can be overridden on specific API calls. Value MUST be as described under [Mime Types](#mimeTypes).
+<a name="oasResponses"></a>responses | [Responses]
 <a name="oasPaths"></a>paths | [Paths Object](#pathsObject) | **Required.** The available paths and operations for the API.
-<a name="oasDefinitions"></a>definitions | [Definitions Object](#definitionsObject) | An object to hold data types produced and consumed by operations.
-<a name="oasParameters"></a>parameters | [Parameters Definitions Object](#parametersDefinitionsObject) | An object to hold parameters that can be used across operations. This property *does not* define global parameters for all operations.
-<a name="oasResponses"></a>responses | [Responses Definitions Object](#responsesDefinitionsObject) | An object to hold responses that can be used across operations. This property *does not* define global responses for all operations.
-<a name="oasSecurityDefinitions"></a>securityDefinitions | [Security Definitions Object](#securityDefinitionsObject) | Security scheme definitions that can be used across the specification.
+<a name="oasSchemas"></a>components | [Components Object](#componentsObject) | An element to hold various schemas for the specification.
 <a name="oasSecurity"></a>security | [[Security Requirement Object](#securityRequirementObject)] | A declaration of which security schemes are applied for the API as a whole. The list of values describes alternative security schemes that can be used (that is, there is a logical OR between the security requirements). Individual operations can override this definition.
 <a name="oasTags"></a>tags | [[Tag Object](#tagObject)] | A list of tags used by the specification with additional metadata. The order of the tags can be used to reflect on their order by the parsing tools. Not all tags that are used by the [Operation Object](#operationObject) must be declared. The tags that are not declared may be organized randomly or based on the tools' logic. Each tag name in the list MUST be unique.
 <a name="oasExternalDocs"></a>externalDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation.
@@ -257,6 +255,21 @@ Field Pattern | Type | Description
 name: Apache 2.0
 url: http://www.apache.org/licenses/LICENSE-2.0.html
 ```
+
+#### <a name="componentsObject"></a>Components Object
+
+Holds a set of schemas for different aspects of the OAS.  The intention is to put reusable components into a single location, allowing reuse from this and other OAS documents.
+
+##### Fixed Fields
+
+Field Pattern | Type | Description
+---|:---:|---
+<a name="definitionsObject"></a> | [Definitions Object](#definitionsObject) | A hash containing payload definitions for the specification.
+<a name="responsesDefinitionsObject"></a> | Responses Definitions Object | Reusable responses objects.
+<a name="parametersDefinitionsObject"></a> | [Parameters Definitions Object](#parametersDefinitionsObject) | An object to hold parameters to be reused across operations. Parameter definitions can be referenced to the ones defined here.
+<a name="responseHeadersDefinitionsObject"></a> | [Response Headers Definitions Object](#responseHeadersDefinitionsObject) | Response headers to reuse across the specification.
+<a name="securityDefinitionsObject"></a> | [Security Definitions Object](#securityDefinitionsObject) | Security definitions to reuse across the specification.
+
 
 #### <a name="pathsObject"></a>Paths Object
 
@@ -582,7 +595,7 @@ Describes a single operation parameter.
 
 A unique parameter is defined by a combination of a [name](#parameterName) and [location](#parameterIn).
 
-There are five possible parameter types.
+There are six possible parameter types.
 * Path - Used together with [Path Templating](#pathTemplating), where the parameter value is actually part of the operation's URL. This does not include the host or base path of the API. For example, in `/items/{itemId}`, the path parameter is `itemId`.
 * Query - Parameters that are appended to the URL. For example, in `/items?id=###`, the query parameter is `id`.
 * Header - Custom headers that are expected as part of the request.
@@ -591,13 +604,16 @@ There are five possible parameter types.
   * `application/x-www-form-urlencoded` - Similar to the format of Query parameters but as a payload. For example, `foo=1&bar=swagger` - both `foo` and `bar` are form parameters. This is normally used for simple parameters that are being transferred.
   * `multipart/form-data` - each parameter takes a section in the payload with an internal header. For example, for the header `Content-Disposition: form-data; name="submit-name"` the name of the parameter is `submit-name`. This type of form parameters is more commonly used for file transfers.
 
+* Cookie - Used to pass a specific cookie value to the API.
+
+
 For complex parameter schemas, a serialization strategy is required. For parameter of type `in: body`, the serialization will be handled by the `consumes` attribute.  For all other types, a serialization strategy must be declared.
 
 ##### Fixed Fields
 Field Name | Type | Description
 ---|:---:|---
 <a name="parameterName"></a>name | `string` | **Required.** The name of the parameter. Parameter names are *case sensitive*. <ul><li>If [`in`](#parameterIn) is `"path"`, the `name` field MUST correspond to the associated path segment from the [path](#pathsPath) field in the [Paths Object](#pathsObject). See [Path Templating](#pathTemplating) for further information.<li>For all other cases, the `name` corresponds to the parameter name used based on the [`in`](#parameterIn) property.</ul>
-<a name="parameterIn"></a>in | `string` | **Required.** The location of the parameter. Possible values are "query", "header", "path", "formData" or "body".
+<a name="parameterIn"></a>in | `string` | **Required.** The location of the parameter. Possible values are "query", "header", "path", "formData", "body", or "cookie".
 <a name="parameterDescription"></a>description | `string` | A brief description of the parameter. This could contain examples of use.  [GFM syntax](https://help.github.com/articles/github-flavored-markdown) can be used for rich text representation.
 <a name="parameterRequired"></a>required | `boolean` | Determines whether this parameter is mandatory. If the parameter is [`in`](#parameterIn) "path", this property is **required** and its value MUST be `true`. Otherwise, the property MAY be included and its default value is `false`. 
 <a name="parameterDeprecated"></a> deprecated | `boolean` | Specifies that a parameter is deprecated and should be transitioned out of usage.

@@ -346,11 +346,9 @@
         },
         "history": {
           "type": "array",
-          "items": [
-            {
+          "items": {
               "$ref": "#/definitions/Activity"
-            }
-          ]
+           }
         }
       }
     },

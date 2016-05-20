@@ -1,5 +1,5 @@
 {
-    "id": "https://raw.githubusercontent.com/swagger-api/swagger-spec/master/schemas/v1.2/parameterObject.json#",
+    "id": "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/schemas/v1.2/parameterObject.json#",
     "$schema": "http://json-schema.org/draft-04/schema#",
     "type": "object",
     "allOf": [

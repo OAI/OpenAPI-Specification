@@ -89,4 +89,4 @@ An API consumer reading these parameter definitions could interpret this as havi
 
 ## Annotations
 
-The Swagger specific annotations currently available for jax-rs APIs do not support the addition of extension data.
+The Swagger-specific annotations currently available for jax-rs APIs do not support the addition of extension data.

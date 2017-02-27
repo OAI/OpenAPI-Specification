@@ -27,7 +27,7 @@ The specification _will change_ from the original 2.0 version.  We should typica
  - Use labels for the workflow of specification changes.  For example, this may be labeled as `proposed`, `needs migration review`, `needs tooling review`, `needs documentation`, `rejected`, `needs approval`.  These labels must be assigned by project committers
  - An issue will be opened for each feature change.  Embedded in the issue OR ideally linked in a file via pull-request (PR), a document should be supplied for use cases for the change
  - A PR will be used to describe the _proposed_ solution, and linked to the original issue
- - Not all committers will contribute to ever single proposed change.  There may be many open proposals at once, and multiple efforts may happen in parallel
+ - Not all committers will contribute to every single proposed change.  There may be many open proposals at once, and multiple efforts may happen in parallel
  - When the OpenApi.next spec is complete and approved for release, the branch will be merged to master.
 
 ## Approving Changes

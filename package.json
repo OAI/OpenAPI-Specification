@@ -18,6 +18,7 @@
     "jsonschema": "^1.0.0",
     "lodash": "^4.5.1",
     "map-stream": "^0.1.0",
+    "mdv": "^1.0.1",
     "mocha": "^2.4.5",
     "z-schema": "^3.16.1"
   }

@@ -2,7 +2,14 @@ sudo: false
 language: scala
 scala:
    - 2.10.4
+install:
+  - rm -rf ~/.nvm
+  - curl -L https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sh
+  - source ~/.nvm/nvm.sh
+  - nvm install 6.1
+  - nvm use 6.1
 script:
   - npm install
   - npm test
   - sbt ++$TRAVIS_SCALA_VERSION test
+  - find . -type f -not -path "./node_modules/*" -name "*.md" | xargs node node_modules/mdv/mdv

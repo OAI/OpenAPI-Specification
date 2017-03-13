@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/OAI/OpenAPI-Specification.svg?branch=master)](https://travis-ci.org/OAI/OpenAPI-Specification)
 
-![](https://avatars3.githubusercontent.com/u/16343502?v=3&s=200)
+![OAI Logo](https://avatars3.githubusercontent.com/u/16343502?v=3&s=200)
 
 **The OAS 3.0.0-RC0 Spec can be [found here](https://github.com/OAI/OpenAPI-Specification/blob/3.0.0-rc0/versions/3.0.md)**
 

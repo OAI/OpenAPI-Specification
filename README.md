@@ -1,5 +1,7 @@
 # The OpenAPI Specification
 
+### [Draft implementations of tooling supporting the 3.0.0 specification can be found here](https://github.com/OAI/OpenAPI-Specification/blob/master/IMPLEMENTATIONS.md)
+
 This is the working branch for the next version of the OpenAPI Specification. You can read more about the Open API Initiative (OAI) at [https://openapis.org](https://openapis.org).
 
 The current, released version of the OpenAPI Specification is 2.0, through donation of the Swagger Specification to the OAI by SmartBear Software.  If you are interested in the release specification, please see the [master branch](https://github.com/OAI/OpenAPI-Specification/blob/master/README.md) of this project.

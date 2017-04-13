@@ -14,7 +14,7 @@ Low-Level tooling
 |----------------|--------------|----------|---------------------|
 | swagger-parser | [GitHub/swagger-api](https://github.com/swagger-api/swagger-parser/tree/feature/3.0.0-rc0) | Java | Swagger 1.0, 1.1, 1.2, 2.0 to Open API Specification converter |
 | swagger-models | [GitHub/swagger-api](https://github.com/swagger-api/swagger-core/tree/feature/3.0.0-rc0/modules/swagger-models) | Java | Open API 3.0 Java Pojos |
-
+| KaiZen OpenAPI Parser | [GitHub/RepreZen/KaiZen-OpenAPI-Parser](https://github.com/RepreZen/KaiZen-OpenAPI-Parser) | Java | High-performance Parser, Validator, and Java Object Model for OpenAPI 3.x |
 
 
 User Interfaces

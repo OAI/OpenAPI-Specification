@@ -7,6 +7,7 @@ to create the best possible 3.0.0 specification includes feedback from end-users
 and tooling creators alike, and it is strongly encouraged that draft tooling be
 made available for early users of the OAS.
 
+These tools are not necessarily endorsed by the OAI.
 
 #### Low-Level tooling
 

@@ -2,9 +2,8 @@
 
 [![Build Status](https://travis-ci.org/OAI/OpenAPI-Specification.svg?branch=master)](https://travis-ci.org/OAI/OpenAPI-Specification)
 
-## Looking for the upcoming 3.0 version?  See here
-
-[The pre-release OAS 3.0.0 Specification Branch](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/README.md)**
+## Looking for the upcoming 3.0 version?  See here:
+[The pre-release OAS 3.0.0 Specification Branch](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/README.md)
 
 ![](https://avatars3.githubusercontent.com/u/16343502?v=3&s=200)
 

@@ -55,7 +55,7 @@ paths:
       description: Creates a new pet in the store.  Duplicates are allowed
       operationId: addPet
       parameters:
-        - name: pet
+        - name: body
           in: body
           description: Pet to add to the store
           required: true

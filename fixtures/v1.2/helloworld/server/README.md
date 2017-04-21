@@ -10,11 +10,11 @@ This samples requires Java 5 or above and [Maven](http://maven.apache.org) insta
 
 In your favorite command-line, run:
 
-```
+```shell
 mvn jetty:run
 ```
 
 Then in your favorite web browser, open:
-```
+```text
 http://localhost:8000
 ```

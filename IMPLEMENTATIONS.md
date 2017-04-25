@@ -37,3 +37,4 @@ These tools are not necessarily endorsed by the OAI.
 |----------------|--------------|----------|---------------------|
 | baucis-openapi3 | [Github/metadevpro/baucis-openapi3](https://github.com/metadevpro/baucis-openapi3) | Node.js | [Baucis.js](https://github.com/wprl/baucis) plugin for generating OpenAPI 3.0 compliant API contracts |
 | Google Gnostic | [GitHub/googleapis/gnostic](https://github.com/googleapis/gnostic) | Go | Compile OpenAPI descriptions into equivalent Protocol Buffer representations |
+| AutoRest | [Github/azure/autorest](https://github.com/azure/autorest/) | Varies | The AutoRest tool generates client libraries for accessing RESTful web services | 

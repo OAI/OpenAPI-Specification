@@ -179,7 +179,14 @@
           "$ref": "#/definitions/vendorExtension"
         },
         "^/": {
-          "$ref": "#/definitions/pathItem"
+          "oneOf": [
+            {
+              "$ref": "#/definitions/pathItem"
+            },
+            {
+              "$ref": "#/definitions/jsonReference"
+            }
+          ]
         }
       },
       "additionalProperties": false
@@ -187,7 +194,14 @@
     "definitions": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "#/definitions/schema"
+        "oneOf": [
+          {
+            "$ref": "#/definitions/schema"
+          },
+          {
+            "$ref": "#/definitions/jsonReference"
+          }
+        ]
       },
       "description": "One or more JSON objects describing the schemas being consumed and produced by the API."
     },
@@ -312,9 +326,6 @@
         }
       },
       "properties": {
-        "$ref": {
-          "type": "string"
-        },
         "get": {
           "$ref": "#/definitions/operation"
         },
@@ -390,6 +401,9 @@
             },
             {
               "$ref": "#/definitions/fileSchema"
+            },
+            {
+              "$ref": "#/definitions/jsonReference"
             }
           ]
         },
@@ -527,7 +541,14 @@
           "default": false
         },
         "schema": {
-          "$ref": "#/definitions/schema"
+          "oneOf": [
+            {
+              "$ref": "#/definitions/schema"
+            },
+            {
+              "$ref": "#/definitions/jsonReference"
+            }
+          ]
         }
       },
       "additionalProperties": false
@@ -941,9 +962,6 @@
         }
       },
       "properties": {
-        "$ref": {
-          "type": "string"
-        },
         "format": {
           "type": "string"
         },
@@ -1007,6 +1025,9 @@
               "$ref": "#/definitions/schema"
             },
             {
+              "$ref": "#/definitions/jsonReference"
+            },
+            {
               "type": "boolean"
             }
           ],
@@ -1021,10 +1042,20 @@
               "$ref": "#/definitions/schema"
             },
             {
+              "$ref": "#/definitions/jsonReference"
+            },
+            {
               "type": "array",
               "minItems": 1,
               "items": {
-                "$ref": "#/definitions/schema"
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/schema"
+                  },
+                  {
+                    "$ref": "#/definitions/jsonReference"
+                  }
+                ]
               }
             }
           ],
@@ -1034,13 +1065,27 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "$ref": "#/definitions/schema"
+            "oneOf": [
+              {
+                "$ref": "#/definitions/schema"
+              },
+              {
+                "$ref": "#/definitions/jsonReference"
+              }
+            ]
           }
         },
         "properties": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/schema"
+            "oneOf": [
+              {
+                "$ref": "#/definitions/schema"
+              },
+              {
+                "$ref": "#/definitions/jsonReference"
+              }
+            ]
           },
           "default": {}
         },
@@ -1596,7 +1641,6 @@
       "required": [
         "$ref"
       ],
-      "additionalProperties": false,
       "properties": {
         "$ref": {
           "type": "string"

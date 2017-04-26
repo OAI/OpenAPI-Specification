@@ -1,0 +1,79 @@
+Model:
+  type: "object"
+  description: "A simple model"
+  properties:
+    id:
+      type: "integer"
+      format: "int64"
+    tag:
+      $ref: "https://my.company.com/definitions/models.yaml#/models/Tag"
+Tag:
+  type: "object"
+  description: "A tag entity in the system"
+  properties:
+    name:
+      type: "string"
+Health:
+  type: "object"
+  description: "An object representing the health of a server"
+  required:
+    - "liveThreadCount"
+    - "peakThreadCount"
+    - "startedThreadCount"
+    - "daemonThreadCount"
+    - "jvmMemory"
+  properties:
+    liveThreadCount:
+      type: "integer"
+      format: "int32"
+    peakThreadCount:
+      type: "integer"
+      format: "int32"
+    startedThreadCount:
+      type: "integer"
+      format: "int32"
+    daemonThreadCount:
+      type: "integer"
+      format: "int32"
+    jvmMemory:
+      $ref: "http://localhost:8000/models.yaml#/JVMMemory"
+JVMMemory:
+  type: "object"
+  required:
+    - "allocated"
+    - "max"
+    - "free"
+    - "used"
+    - "percentUsed"
+  properties:
+    allocated:
+      type: "integer"
+      format: "int64"
+    max:
+      type: "integer"
+      format: "int64"
+    free:
+      type: "integer"
+      format: "int64"
+    used:
+      type: "integer"
+      format: "int64"
+    percentUsed:
+      type: "number"
+      format: "double"
+ErrorMessage:
+  type: "object"
+  description: "A shared model for error message"
+  required:
+    - "errorCode"
+    - "reason"
+  properties:
+    errorCode:
+      type: "integer"
+      format: "int64"
+    reason:
+      description: "the reason for this error"
+      type: "string"
+    description:
+      description: "an optional longer description of this error message"
+      type: "string"

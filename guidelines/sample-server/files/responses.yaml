@@ -1,0 +1,4 @@
+NotFoundError:
+  description: "Entity not found"
+  schema:
+    $ref: "http://localhost:8000/models.yaml#/ErrorMessage"

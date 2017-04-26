@@ -1,0 +1,28 @@
+swagger: "2.0"
+info:
+  description: "Sample server to demonstrate object reuse"
+  version: "1.0.0"
+  title: "Swagger sample"
+paths:
+  /health:
+    $ref: "http://localhost:8000/operations.yaml#/health"
+  /users:
+    get:
+      tags:
+        - "users"
+      summary: "Returns users in the system"
+      operationId: "getUsers"
+      produces:
+        - "application/json"
+      parameters:
+        - $ref: "http://localhost:8000/parameters.yaml#/query/skip"
+        - $ref: "http://localhost:8000/parameters.yaml#/query/limit"
+      responses:
+        200:
+          description: "Users in the system"
+          schema:
+            type: "array"
+            items:
+              $ref: "http://localhost:8000/models.yaml#/Health"
+        404:
+          $ref: "http://localhost:8000/responses.yaml#/NotFoundError"

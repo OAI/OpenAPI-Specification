@@ -22,6 +22,17 @@
       ],
       "description": "The Swagger version of this document."
     },
+    "$schema": {
+      "allOf": [
+        {
+          "$ref": "http://json-schema.org/draft-04/schema#/properties/$schema"
+        },
+        {
+          "description": "JSON schema for validation of this Swagger specification",
+          "default": "http://swagger.io/schemas/v2.0/schema.json"
+        }
+      ]
+    },
     "info": {
       "$ref": "#/definitions/info"
     },

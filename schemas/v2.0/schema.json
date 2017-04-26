@@ -1007,10 +1007,12 @@
               "$ref": "#/definitions/schema"
             },
             {
-              "type": "boolean"
+              "description": "false",
+              "type": "boolean",
+              "enum": [ false ]
             }
           ],
-          "default": {}
+          "default": false
         },
         "type": {
           "$ref": "http://json-schema.org/draft-04/schema#/properties/type"

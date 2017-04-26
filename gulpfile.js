@@ -6,6 +6,7 @@ var ext_replace = require('gulp-ext-replace');
 var map = require('map-stream');
 var YAML = require('json2yaml');
 var gutil = require('gulp-util');
+var toc = require('gulp-doctoc');
 
 var exitCode = 0;
 
@@ -46,3 +47,8 @@ gulp.task('json2yaml', function(){
       .pipe(gulp.dest('fixtures/v2.0/yaml'));
 });
 
+gulp.task('markdown', function() {
+	gulp.src('./versions/**/*.md')
+		.pipe(toc())
+		.pipe(gulp.dest('./docs'));
+});

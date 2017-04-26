@@ -8,6 +8,7 @@
     "chai": "^3.5.0",
     "glob": "^7.0.0",
     "gulp": "~3.8.x",
+    "gulp-doctoc": "^0.1.2",
     "gulp-ext-replace": "^0.1.0",
     "gulp-jsonlint": "0.0.3",
     "gulp-util": "^3.0.0",

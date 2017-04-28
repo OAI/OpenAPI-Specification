@@ -1,4 +1,4 @@
-openapi: "3.0.0-RC0"
+openapi: "3.0.0"
 info:
   title: Simple API overview
   version: v2
@@ -10,7 +10,7 @@ paths:
       responses:
         200:
           description: |-
-            200 300 response
+            200 response
           content:
             application/json:
               examples: 
@@ -42,7 +42,7 @@ paths:
                  }
         300:
           description: |-
-            200 300 response
+            300 response
           content:
             application/json: 
               examples: 
@@ -80,7 +80,7 @@ paths:
       responses:
         200:
           description: |-
-            200 203 response
+            200 response
           content:
             application/json: 
               examples:
@@ -124,7 +124,7 @@ paths:
                   }
         203:
           description: |-
-            200 203 response
+            203 response
           content:
             application/json: 
               examples:

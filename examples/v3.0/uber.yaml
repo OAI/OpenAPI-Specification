@@ -1,6 +1,6 @@
 # this is an example of the Uber API
 # as a demonstration of an API spec in YAML
-openapi: "3.0.0-RC0"
+openapi: "3.0.0"
 info:
   title: Uber API
   description: Move your app forward with the Uber API

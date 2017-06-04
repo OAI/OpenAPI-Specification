@@ -289,8 +289,7 @@ components:
     Error:
       properties:
         code:
-          type: integer
-          format: int32
+          type: string
         message:
           type: string
         fields:

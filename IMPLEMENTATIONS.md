@@ -1,10 +1,9 @@
 ### Implementations
 
-Below is a list of known tooling implementing the 3.0.0 specification. Because
-the 3.0.0 specification has not yet been released, please consult the details of
-any projects listed below for notes about stability and roadmap.  The process 
+Below is a list of known tooling that implements the 3.0.0 specification. Because
+the 3.0.0 specification has not yet been released, refer to the details of projects listed below for any notes about stability and roadmap.  The process 
 to create the best possible 3.0.0 specification includes feedback from end-users
-and tooling creators alike, and it is strongly encouraged that draft tooling be
+and tooling creators. We strongly encourage draft tooling be
 made available for early users of the OAS.
 
 These tools are not necessarily endorsed by the OAI.
@@ -25,7 +24,7 @@ These tools are not necessarily endorsed by the OAI.
 
 | Title          | Project Link | Language |Description                          |
 |----------------|--------------|----------|---------------------|
-| openapi-viewer | [GitHub/koumoul/openapi-viewer](https://github.com/koumoul-dev/openapi-viewer) | Vue.js | Browse and test a REST API described with the OpenAPI 3.0 Specification |
+| openapi-viewer | [GitHub/koumoul/openapi-viewer](https://github.com/koumoul-dev/openapi-viewer) | Vue.js | Browse and test a REST API described with the OpenAPI 3.0 Specification. |
 
 
 #### Server Implementations
@@ -35,5 +34,5 @@ These tools are not necessarily endorsed by the OAI.
 
 | Title          | Project Link | Language |Description                          |
 |----------------|--------------|----------|---------------------|
-| baucis-openapi3 | [Github/metadevpro/baucis-openapi3](https://github.com/metadevpro/baucis-openapi3) | Node.js | [Baucis.js](https://github.com/wprl/baucis) plugin for generating OpenAPI 3.0 compliant API contracts |
-| Google Gnostic | [GitHub/googleapis/gnostic](https://github.com/googleapis/gnostic) | Go | Compile OpenAPI descriptions into equivalent Protocol Buffer representations |
+| baucis-openapi3 | [Github/metadevpro/baucis-openapi3](https://github.com/metadevpro/baucis-openapi3) | Node.js | [Baucis.js](https://github.com/wprl/baucis) plugin for generating OpenAPI 3.0 compliant API contracts. |
+| Google Gnostic | [GitHub/googleapis/gnostic](https://github.com/googleapis/gnostic) | Go | Compile OpenAPI descriptions into equivalent Protocol Buffer representations. |

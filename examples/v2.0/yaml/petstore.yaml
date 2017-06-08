@@ -5,7 +5,7 @@ info:
   license:
     name: MIT
 host: petstore.swagger.io
-basePath: /v1
+basePath: /v2
 schemes:
   - http
 consumes:

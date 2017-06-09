@@ -38,7 +38,7 @@ For each change in the specification we should _always_ consider the following:
  - Tooling.  Strive to support code generation, software interfaces, and spec generation techniques.  Some features may be impossible to support in different frameworks/languages.  These should be documented and considered during the change approval process.
  - Visualization.  Can the specification change be graphically visualized somehow in a UI or other interface?
 
-Spec changes should be approved by a majority of the committers.  Approval can be given by commenting on the issue itself, for example, "Approved by @fehguy".  After voting criteria is met, any committer can merge the PR. (**TODO: we will want to formalize what voting criteria actually is).
+Spec changes should be approved by a majority of the committers.  Approval can be given by commenting on the issue itself, for example, "Approved by @fehguy".  After voting criteria is met, any committer can merge the PR. (**TODO**: we will want to formalize what voting criteria actually is).
 
 No change should be approved until there is documentation for it, supplied in an accompanying PR.
 

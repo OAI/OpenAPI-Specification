@@ -20,6 +20,15 @@ These tools are not necessarily endorsed by the OAI.
 | Tavis.OpenApi | [GitHub/tavis-sofware/Tavis.OpenApi](https://github.com/tavis-software/Tavis.OpenApi/) | dotnet | C# based parser with definition validation and migration support from V2 |
 
 
+#### Editors
+
+| Title          | Project Link | Language |Description                          |
+|----------------|--------------|----------|---------------------|
+| KaiZen OpenAPI Editor | [GitHub/RepreZen/KaiZen-OpenAPI-Editor](https://github.com/RepreZen/KaiZen-OpenAPI-Editor) | Java | Eclipse Editor for OpenAPI 2.0 and 3.0 |
+| RepreZen API Studio | [RepreZen.com/OpenAPI](https://www.reprezen.com/OpenAPI) | Java | Commercial desktop IDE for API design, documentation & development |
+| OpenApi-gui | [GitHub/Mermade/openapi-gui](https://github.com/Mermade/openapi-gui) | Node.js | GUI / visual editor for creating and editing OpenApi / Swagger definitions |
+
+
 #### User Interfaces
 
 | Title          | Project Link | Language |Description                          |

@@ -46,11 +46,11 @@ paths:
                         userData:
                           $ref: '#/components/schemas/UserLogData'
               responses:
-                202:
+                '202':
                   description: |
                     Your server implementation should return this HTTP status code
                     if the data was received successfully
-                204:
+                '204':
                   description: |
                     Your server should return this HTTP status code if no longer interested
                     in further updates

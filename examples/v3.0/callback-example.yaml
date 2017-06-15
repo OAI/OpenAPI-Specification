@@ -14,7 +14,7 @@ paths:
             format: uri
             example: https://tonys-server.com
       responses:
-        201:
+        '201':
           description: subscription successfully created
           content:
             application/json:

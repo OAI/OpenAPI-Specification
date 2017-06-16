@@ -2,6 +2,5 @@
 * Jason Harmon [@jharmn](https://github.com/jharmn)
 * Jeremy Whitlock [@whitlockjc](https://github.com/whitlockjc)
 * Marsh Gardiner [@earth2marsh](https://github.com/earth2marsh)
-* Rob Dolin [@RobDolinMS](https://github.com/robdolinms)
 * Ron Ratovsky [@webron](https://github.com/webron)
 * Tony Tam [@fehguy](https://github.com/fehguy)

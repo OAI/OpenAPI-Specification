@@ -32,7 +32,7 @@ paths:
         onData:
           # when data is sent, it will be sent to the `callbackUrl` provided
           # when making the subscription PLUS the suffix `/data`
-          $request.query.callbackUrl/data:
+          {$request.query.callbackUrl}/data:
             post:
               requestBody:
                 description: subscription payload

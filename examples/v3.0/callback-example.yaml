@@ -1,3 +1,7 @@
+openapi: 3.0.0
+info: 
+  title: Callback Example
+  version: 1.0.0
 paths:
   /streams:
     post:
@@ -32,7 +36,7 @@ paths:
         onData:
           # when data is sent, it will be sent to the `callbackUrl` provided
           # when making the subscription PLUS the suffix `/data`
-          {$request.query.callbackUrl}/data:
+          '{$request.query.callbackUrl}/data':
             post:
               requestBody:
                 description: subscription payload

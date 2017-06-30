@@ -254,6 +254,10 @@
           },
           "uniqueItems": true
         },
+        "version": {
+          "type": "string",
+          "description": "The API version of the operation"
+        },
         "summary": {
           "type": "string",
           "description": "A brief summary of the operation."

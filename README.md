@@ -1,4 +1,4 @@
-# The OpenAPI Specification (fka The Swagger Specification)
+# The OpenAPI Specification (originally cloned from The Swagger Specification)
 
 [![Build Status](https://travis-ci.org/OAI/OpenAPI-Specification.svg?branch=master)](https://travis-ci.org/OAI/OpenAPI-Specification)
 
@@ -26,7 +26,7 @@ The current version of the OpenAPI specification is 2.0 - and you can find it [h
 
 ### [OpenAPI 2.0 Specification](versions/2.0.md)
 
-This repository contains the existing Swagger 1.2, 2.0 specifications as well as proposals for the next version of the specification, which will be called the OpenAPI Specification 3.0.  The proposals live in the [OpenAPI.next](https://github.com/OAI/OpenAPI-Specification/tree/OpenAPI.next) branch.
+This repository contains the existing Swagger 1.2 and Swagger 2.0 specifications, the OpenAPI Specification 2.0 which is identical to the Swagger 2.0 specification, as well as proposals for the next version of the specification, which will be called the OpenAPI Specification 3.0.  The proposals live in the [OpenAPI.next](https://github.com/OAI/OpenAPI-Specification/tree/OpenAPI.next) branch.
 
 ## Structure
 

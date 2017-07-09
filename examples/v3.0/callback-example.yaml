@@ -1,7 +1,4 @@
-openapi: 3.0.0
-info: 
-  title: Callback Example
-  version: 1.0.0
+# ...
 paths:
   /streams:
     post:
@@ -48,7 +45,7 @@ paths:
                           type: string
                           format: date-time
                         userData:
-                          $ref: '#/components/schemas/UserLogData'
+                          type: string
               responses:
                 '202':
                   description: |

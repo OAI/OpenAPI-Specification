@@ -18,7 +18,15 @@
     "jsonschema": "^1.0.0",
     "lodash": "^4.5.1",
     "map-stream": "^0.1.0",
+<<<<<<< HEAD
     "mocha": "^2.4.5",
     "z-schema": "^3.16.1"
+=======
+    "mdv": "^1.0.3",
+    "mocha": "^1.21.3",
+    "q": "^1.0.1",
+    "request": "^2.39.0",
+    "z-schema": "^2.4.9"
+>>>>>>> origin/Play
   }
 }

@@ -24,13 +24,13 @@
       "200": {
         "description": "pet response",
         "schema": {
-          "$ref": "#/definitions/Pet"
+          "$ref": "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/fixtures/v2.0/json/resources/resourceWithLinkedDefinitions.json#/definitions/Pet"
         }
       },
       "default": {
         "description": "error payload",
         "schema": {
-          "$ref": "#/definitions/ErrorModel"
+          "$ref": "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/fixtures/v2.0/json/resources/resourceWithLinkedDefinitions.json#/definitions/ErrorModel"
         }
       }
     }

@@ -6,8 +6,7 @@ required:
 properties:
   openapi:
     type: string
-    enum:
-      - 3.0.0
+    pattern: ^3\.0\.\d(-.+)?$
   info:
     $ref: '#/definitions/Info'
   externalDocs:
@@ -34,10 +33,12 @@ additionalProperties: false
 definitions:
   Reference:
     type: object
+    required:
+      - $ref
     properties:
       $ref:
         type: string
-        format: uri-ref
+        format: uriref
   Info:
     type: object
     required:
@@ -50,7 +51,7 @@ definitions:
         type: string
       termsOfService:
         type: string
-        format: uri-ref
+        format: uriref
       contact:
         $ref: '#/definitions/Contact'
       license:
@@ -69,7 +70,7 @@ definitions:
         type: string
       url:
         type: string
-        format: uri-ref
+        format: uriref
       email:
         type: string
         format: email
@@ -86,7 +87,7 @@ definitions:
         type: string
       url:
         type: string
-        format: uri-ref
+        format: uriref
     patternProperties:
       '^x-': {}
     additionalProperties: false
@@ -98,7 +99,7 @@ definitions:
     properties:
       url:
         type: string
-        format: uri-ref
+        format: uriref
       description:
         type: string
       variables:
@@ -254,21 +255,50 @@ definitions:
       type:
         type: string
         enum:
-         - array
-         - boolean
-         - integer
-         - number
-         - object
-         - string
+          - array
+          - boolean
+          - integer
+          - number
+          - object
+          - string
       not:
-        $ref: '#/definitions/Schema'
+        oneOf:
+          - $ref: '#/definitions/Schema'
+          - $ref: '#/definitions/Reference'
+      allOf:
+        type: array
+        items:
+          oneOf:
+            - $ref: '#/definitions/Schema'
+            - $ref: '#/definitions/Reference'
+      oneOf:
+        type: array
+        items:
+          oneOf:
+            - $ref: '#/definitions/Schema'
+            - $ref: '#/definitions/Reference'
+      anyOf:
+        type: array
+        items:
+          oneOf:
+            - $ref: '#/definitions/Schema'
+            - $ref: '#/definitions/Reference'
+      items:
+        type: array
+        items:
+          oneOf:
+            - $ref: '#/definitions/Schema'
+            - $ref: '#/definitions/Reference'
       properties:
         type: object
         additionalProperties:
-          $ref: '#/definitions/Schema'
+          oneOf:
+            - $ref: '#/definitions/Schema'
+            - $ref: '#/definitions/Reference'
       additionalProperties:
         oneOf:
           - $ref: '#/definitions/Schema'
+          - $ref: '#/definitions/Reference'
           - type: boolean
         default: true
       description:
@@ -276,9 +306,6 @@ definitions:
       format:
         type: string
       default: {}
-      $ref:
-        type: string
-        format: uri-ref
       nullable:
         type: boolean
         default: false
@@ -327,7 +354,7 @@ definitions:
       attribute:
         type: boolean
         default: false
-      wrapperd:
+      wrapped:
         type: boolean
         default: false
     patternProperties:
@@ -383,6 +410,8 @@ definitions:
 
   MediaTypeWithExamples:
     type: object
+    required:
+      - examples
     properties:
       schema:
         oneOf:
@@ -409,17 +438,28 @@ definitions:
         type: string
       description:
         type: string
-      value:
-        type: string
+      value: {}
       externalValue:
         type: string
-        format: uri-ref
+        format: uriref
     patternProperties:
       '^x-': {}
     additionalProperties: false
 
   Header:
+    oneOf:
+      - $ref: '#/definitions/HeaderWithSchema'
+      - $ref: '#/definitions/HeaderWithContent'
+
+  HeaderWithSchema:
+    oneOf:
+      - $ref: '#/definitions/HeaderWithSchemaWithExample'
+      - $ref: '#/definitions/HeaderWithSchemaWithExamples'
+
+  HeaderWithSchemaWithExample:
     type: object
+    required:
+      - schema
     properties:
       description:
         type: string
@@ -439,24 +479,81 @@ definitions:
         default: simple
       explode:
         type: boolean
+      allowReserved:
+        type: boolean
+        default: false
+      schema:
+        oneOf:
+          - $ref: '#/definitions/Schema'
+          - $ref: '#/definitions/Reference'
+      example: {}
+    patternProperties:
+      '^x-': {}
+    additionalProperties: false  
+
+  HeaderWithSchemaWithExamples:
+    type: object
+    required:
+      - schema
+      - examples
+    properties:
+      description:
+        type: string
+      required:
+        type: boolean
+        default: false
+      deprecated:
+        type: boolean
+        default: false
+      allowEmptyValue:
+        type: boolean
+        default: false
+      style:
+        type: string
         enum:
-          - false
+          - simple
+        default: simple
+      explode:
+        type: boolean
+      allowReserved:
+        type: boolean
         default: false
       schema:
         oneOf:
           - $ref: '#/definitions/Schema'
           - $ref: '#/definitions/Reference'
       examples:
-        type: array
-        items:
+        type: object
+        additionalProperties:
           oneOf:
             - $ref: '#/definitions/Example'
             - $ref: '#/definitions/Reference'
-      example: {}
+    patternProperties:
+      '^x-': {}
+    additionalProperties: false
+
+  HeaderWithContent:
+    type: object
+    required:
+      - content
+    properties:
+      description:
+        type: string
+      required:
+        type: boolean
+        default: false
+      deprecated:
+        type: boolean
+        default: false
+      allowEmptyValue:
+        type: boolean
+        default: false
       content:
         type: object
         additionalProperties:
           $ref: '#/definitions/MediaType'
+        minProperties: 1
+        maxProperties: 1
     patternProperties:
       '^x-': {}
     additionalProperties: false
@@ -557,8 +654,6 @@ definitions:
     additionalProperties: false
 
   Responses:
-    allOf:
-      - $ref: '#/definitions/Extensions'    
     type: object
     properties:
       default:
@@ -577,6 +672,7 @@ definitions:
       type: object
       patternProperties:
         '^x-': {}
+      additionalProperties: false
  
 
   SecurityRequirement:
@@ -610,7 +706,7 @@ definitions:
         type: string
       url:
         type: string
-        format: uri-ref
+        format: uriref
     patternProperties:
       '^x-': {}
     additionalProperties: false
@@ -825,6 +921,7 @@ definitions:
       - in
       - schema
       - required
+      - examples
     properties:
       name:
         type: string
@@ -876,6 +973,7 @@ definitions:
       - name
       - in
       - schema
+      - examples
     properties:
       name:
         type: string
@@ -927,6 +1025,7 @@ definitions:
       - name
       - in
       - schema
+      - examples
     properties:
       name:
         type: string
@@ -975,6 +1074,7 @@ definitions:
       - name
       - in
       - schema
+      - examples
     properties:
       name:
         type: string
@@ -1187,8 +1287,8 @@ definitions:
         type: string
       type:
         type: string
-          enum:
-            - http
+        enum:
+          - http
       description:
         type: string
     patternProperties:
@@ -1255,10 +1355,10 @@ definitions:
     properties:
       authorizationUrl:
         type: string
-        format: uri-ref
+        format: uriref
       refreshUrl:
         type: string
-        format: uri-ref
+        format: uriref
       scopes:
         type: object
         additionalProperties:
@@ -1274,10 +1374,10 @@ definitions:
     properties:
       tokenUrl:
         type: string
-        format: uri-ref
+        format: uriref
       refreshUrl:
         type: string
-        format: uri-ref
+        format: uriref
       scopes:
         type: object
         additionalProperties:
@@ -1293,10 +1393,10 @@ definitions:
     properties:
       tokenUrl:
         type: string
-        format: uri-ref
+        format: uriref
       refreshUrl:
         type: string
-        format: uri-ref
+        format: uriref
       scopes:
         type: object
         additionalProperties:
@@ -1313,13 +1413,13 @@ definitions:
     properties:
       authorizationUrl:
         type: string
-        format: uri-ref
+        format: uriref
       tokenUrl:
         type: string
-        format: uri-ref
+        format: uriref
       refreshUrl:
         type: string
-        format: uri-ref
+        format: uriref
       scopes:
         type: object
         additionalProperties:
@@ -1338,7 +1438,7 @@ definitions:
     properties:
       operationRef:
         type: string
-        format: uri-ref
+        format: uriref
       parameters:
         type: object
         additionalProperties: {}

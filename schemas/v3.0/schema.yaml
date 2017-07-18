@@ -99,7 +99,6 @@ definitions:
     properties:
       url:
         type: string
-        format: uriref
       description:
         type: string
       variables:

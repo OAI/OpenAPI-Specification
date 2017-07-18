@@ -284,11 +284,9 @@ definitions:
             - $ref: '#/definitions/Schema'
             - $ref: '#/definitions/Reference'
       items:
-        type: array
-        items:
-          oneOf:
-            - $ref: '#/definitions/Schema'
-            - $ref: '#/definitions/Reference'
+        oneOf:
+          - $ref: '#/definitions/Schema'
+          - $ref: '#/definitions/Reference'
       properties:
         type: object
         additionalProperties:

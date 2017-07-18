@@ -634,7 +634,9 @@ definitions:
       callbacks:
         type: object
         additionalProperties:
-          $ref: '#/definitions/Callback'
+          oneOf:
+            - $ref: '#/definitions/Callback'
+            - $ref: '#/definitions/Reference'
       deprecated:
         type: boolean
         default: false

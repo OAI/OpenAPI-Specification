@@ -1315,7 +1315,7 @@ definitions:
     type: object
     required:
       - type
-      - openIdConnect
+      - openIdConnectUrl
     properties:
       type:
         type: string
@@ -1472,7 +1472,6 @@ definitions:
       $ref: '#/definitions/PathItem'
     patternProperties:
       '^x-': {}
-    additionalProperties: false
 
   Encoding:
     type: object

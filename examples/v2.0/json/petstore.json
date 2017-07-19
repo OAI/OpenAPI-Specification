@@ -3,38 +3,100 @@
   "info": {
     "version": "1.0.0",
     "title": "Swagger Petstore",
-    "contact": {
-      "name": "Swagger API Team",
-      "url": "http://swagger.io"
-    },
     "license": {
-      "name": "Creative Commons 4.0 International",
-      "url": "http://creativecommons.org/licenses/by/4.0/"
+      "name": "MIT"
     }
   },
   "host": "petstore.swagger.io",
-  "basePath": "/api",
+  "basePath": "/v1",
   "schemes": [
     "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
   ],
   "paths": {
     "/pets": {
       "get": {
-        "tags": [ "Pet Operations" ],
-        "summary": "finds pets in the system",
+        "summary": "List all pets",
+        "operationId": "listPets",
+        "tags": [
+          "pets"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "How many items to return at one time (max 100)",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "pet response",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Pet"
+            "description": "An paged array of pets",
+            "headers": {
+              "x-next": {
+                "type": "string",
+                "description": "A link to the next page of responses"
               }
             },
-            "headers": {
-              "x-expires": {
-                "type": "string"
-              }
+            "schema": {
+              "$ref": "#/definitions/Pets"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a pet",
+        "operationId": "createPets",
+        "tags": [
+          "pets"
+        ],
+        "responses": {
+          "201": {
+            "description": "Null response"
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/pets/{petId}": {
+      "get": {
+        "summary": "Info for a specific pet",
+        "operationId": "showPetById",
+        "tags": [
+          "pets"
+        ],
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "description": "The id of the pet to retrieve",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/Pets"
             }
           },
           "default": {
@@ -49,7 +111,6 @@
   },
   "definitions": {
     "Pet": {
-      "type": "object",
       "required": [
         "id",
         "name"
@@ -67,8 +128,13 @@
         }
       }
     },
+    "Pets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Pet"
+      }
+    },
     "Error": {
-      "type": "object",
       "required": [
         "code",
         "message"

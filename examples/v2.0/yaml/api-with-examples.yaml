@@ -10,7 +10,7 @@ paths:
       produces:
       - application/json
       responses:
-        200:
+        "200":
           description: |-
             200 300 response
           examples:
@@ -41,7 +41,7 @@ paths:
                       }
                   ]
               }
-        300:
+        "300":
           description: |-
             200 300 response
           examples:
@@ -79,7 +79,7 @@ paths:
       produces:
       - application/json
       responses:
-        200:
+        "200":
           description: |-
             200 203 response
           examples:
@@ -122,7 +122,7 @@ paths:
                       ]
                   }
               }
-        203:
+        "203":
           description: |-
             200 203 response
           examples:

@@ -86,7 +86,7 @@
             "description": "Pet to add to the store",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/PetInput"
+              "$ref": "#/definitions/NewPet"
             }
           }
         ],
@@ -171,32 +171,13 @@
   "definitions": {
     "Pet": {
       "type": "object",
-      "required": [
-        "id",
-        "name"
-      ],
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "name": {
-          "type": "string"
-        },
-        "tag": {
-          "type": "string"
-        }
-      }
-    },
-    "PetInput": {
-      "type": "object",
       "allOf": [
         {
-          "$ref": "#/definitions/Pet"
+          "$ref": "#/definitions/NewPet"
         },
         {
           "required": [
-            "name"
+            "id"
           ],
           "properties": {
             "id": {
@@ -206,6 +187,20 @@
           }
         }
       ]
+    },
+    "NewPet": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
+        }
+      }
     },
     "ErrorModel": {
       "type": "object",

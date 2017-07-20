@@ -1,21 +1,21 @@
-# Swagger Extensions
+# OpenAPI Extensions
 
-The Swagger 2.0 specification allows for custom properties to be added at several places within a Swagger definition, allowing
+The OpenAPI Specification version 2.0 allows for custom properties to be added at several places within an OpenAPI definition, allowing
 API providers to extend the meta-data provided for their REST APIs as needed. Extension properties are always 
 prefixed by "x-" and can have any valid JSON format value. 
 
 Currently extension properties are supported in the following definition objects:
   
-* within the [info object](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#info-object)
-* within the [paths object](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#paths-object)
-* within the [path-item object](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#path-item-object)
-* within the [operation object](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#operationObject) 
-* within the [parameter object](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#parameterObject)
-* within the [responses object](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#responses-object)
-* within the [tag object](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#tag-object)
-* within the [security-scheme object](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#security-scheme-object)
+* within the [info object](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/2.0.md#info-object)
+* within the [paths object](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/2.0.md#paths-object)
+* within the [path-item object](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/2.0.md#path-item-object)
+* within the [operation object](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/2.0.md#operationObject) 
+* within the [parameter object](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/2.0.md#parameterObject)
+* within the [responses object](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/2.0.md#responses-object)
+* within the [tag object](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/2.0.md#tag-object)
+* within the [security-scheme object](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/2.0.md#security-scheme-object)
 
-For example, a vendor extension that adds apis.json specific metadata a Swagger definition might look as follows:
+For example, a vendor extension that adds apis.json specific metadata to an OpenAPI definition might look as follows:
  
 ```json
 {
@@ -59,8 +59,8 @@ For example, a vendor extension that adds apis.json specific metadata a Swagger 
 }
 ```
 
-This could be used by corresponding tooling that builds apis.json files for swagger definitions, the advantage being that all metadata
-for a Swagger API is within one definition instead of spread out amongst multiple files.
+This could be used by corresponding tooling that builds apis.json files for OpenAPI definitions, the advantage being that all metadata
+for the API is within one definition instead of spread out amongst multiple files.
 
 Another (simplified) example could be how to specify a [JWE encryption](http://hdknr.github.io/docs/identity/jwe.html) policy to parameters,
  for example as follows:
@@ -89,4 +89,4 @@ An API consumer reading these parameter definitions could interpret this as havi
 
 ## Annotations
 
-The Swagger-specific annotations currently available for jax-rs APIs do not support the addition of extension data.
+The OpenAPI-specific annotations currently available for jax-rs APIs do not support the addition of extension data.

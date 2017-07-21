@@ -32,7 +32,7 @@ If you just want to see it work, check out the [list of current examples](exampl
 
 ## Tools and Libraries
 
-Looking to see how you can create your own OpenAPI definition, present it or otherwise use it? Check out the growing
+Looking to see how you can create your own OpenAPI definition, present it, or otherwise use it? Check out the growing
 [list of 3.0 Implementations](IMPLEMENTATIONS.md).
 
 ## Participation

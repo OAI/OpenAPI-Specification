@@ -39,7 +39,7 @@ Looking to see how you can create your own OpenAPI definition, present it or oth
 
 The current process for development of the OpenAPI Specification is described in 
 [Development Guidelines](DEVELOPMENT.md).
-Development of the next version of the OpenAPI Specification is guided by the [Technical Developer Community](https://www.openapis.org/participate/how-to-contribute/governance#TDC) and governed by the [TDC Contributors](CONTRIBUTORS.md). This group of committers bring their API expertise, incorporate feedback from the community, and expand the group of committers as appropriate. All development activity on the future specification will be performed as features and merged into this branch. Upon release of the future specification, this branch will be merged to master.
+Development of the next version of the OpenAPI Specification is guided by the [Technical Developer Community](https://www.openapis.org/participate/how-to-contribute/governance#TDC). This group of committers bring their API expertise, incorporate feedback from the community, and expand the group of committers as appropriate. All development activity on the future specification will be performed as features and merged into this branch. Upon release of the future specification, this branch will be merged to master.
 
 The Open API Initiative encourages participation from individuals and companies alike. 
 If you want to participate in the evolution of the OpenAPI Specification, consider taking the following actions:

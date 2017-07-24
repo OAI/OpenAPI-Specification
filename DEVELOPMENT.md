@@ -20,7 +20,7 @@ The specification _will change_ from the original 2.0 version.  We should typica
 ## Tracking Process
 
  - Use GitHub for all spec designs, use cases, and so on.
- - As with 2.0, the **human readable** document is the source of truth.  If using a JSON Schema again to document the spec, it is secondary to the human documentation.  The documentation should live in a *.md file, in parallel to the 2.0 document (versions/3.0.md for example).
+ - As with 2.0, the **human readable** document is the source of truth.  If using a JSON Schema again to document the spec, it is secondary to the human documentation.  The documentation should live in a *.md file, in parallel to the 2.0 document (versions/3.0.0.md for example).
  - The `master` branch shall remain the current, released OpenAPI Specification (i.e., 2.0).  We will work in an OpenAPI.next branch, which shall be described and linked to on the **default** README.md on master.
  - Examples of how something is described _currently_ vs. the proposed solution should accompany any change proposal.
  - New features should be done in feature branches which, upon approval, are merged into the OpenAPI.next branch.

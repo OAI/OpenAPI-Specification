@@ -115,7 +115,9 @@ definitions:
       - default
     properties:
       enum:
-        type: string
+        type: array
+        items:
+          type: string
       default:
         type: string
       description:

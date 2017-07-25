@@ -1,6 +1,6 @@
 # OpenAPI Extensions
 
-The OpenAPI Specification version 2.0 allows for custom properties to be added at several places within an OpenAPI definition, allowing
+The OpenAPI Specification version 2.0 allows for custom properties to be added at several places within an OpenAPI document., allowing
 API providers to extend the meta-data provided for their REST APIs as needed. Extension properties are always 
 prefixed by "x-" and can have any valid JSON format value. 
 

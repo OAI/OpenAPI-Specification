@@ -21,7 +21,7 @@ The current version of the OpenAPI specification is [OpenAPI Specification 3.0](
 
 ### Previous Versions
 
-This repository also contains the [OpenAPI Specification 2.0](versions/2.0), which is identical to the Swagger 2.0 specification before it was renamed to “OpenAPI Specification”, 
+This repository also contains the [OpenAPI Specification 2.0](versions/2.0.md), which is identical to the Swagger 2.0 specification before it was renamed to “OpenAPI Specification”, 
 as well as the Swagger 1.2 and Swagger 2.0 specifications.
 
 Each folder in this repository, such as [examples](examples) and [schemas](schemas), should contain folders pertaining to the current and previous versions of the specification.

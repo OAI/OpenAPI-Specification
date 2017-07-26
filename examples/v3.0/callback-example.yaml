@@ -1,3 +1,4 @@
+# ...
 paths:
   /streams:
     post:
@@ -32,7 +33,7 @@ paths:
         onData:
           # when data is sent, it will be sent to the `callbackUrl` provided
           # when making the subscription PLUS the suffix `/data`
-          {$request.query.callbackUrl}/data:
+          '{$request.query.callbackUrl}/data':
             post:
               requestBody:
                 description: subscription payload
@@ -44,7 +45,7 @@ paths:
                           type: string
                           format: date-time
                         userData:
-                          $ref: '#/components/schemas/UserLogData'
+                          type: string
               responses:
                 '202':
                   description: |

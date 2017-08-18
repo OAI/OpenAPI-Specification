@@ -18,6 +18,7 @@ These tools are not necessarily endorsed by the OAI.
 | openapi3-ts | [GitHub/metadevpro/openapi3-ts](https://github.com/metadevpro/openapi3-ts) | TypeScript | TS Model & utils for OpenAPI 3.0.x contracts |
 | swagger2openapi | [GitHub/mermade/swagger2openapi](https://github.com/mermade/swagger2openapi) | Node.js | An OpenAPI / Swagger 2.0 to OpenAPI 3.0.x converter and validator |
 | Tavis.OpenApi | [GitHub/tavis-sofware/Tavis.OpenApi](https://github.com/tavis-software/Tavis.OpenApi/) | dotnet | C# based parser with definition validation and migration support from V2 |
+| odata-openapi | [GitHub/oasis-tcs/odata-openapi](https://github.com/oasis-tcs/odata-openapi) | XSLT | OData 4.0 to OpenAPI 3.0.0 converter |
 
 
 #### Editors

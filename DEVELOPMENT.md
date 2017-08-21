@@ -24,7 +24,7 @@ The specification _will change_ from the original 2.0 version.  We should typica
  - At any given time, there would be _at most_ 4 work branches. The branches would exist if work has started on them. Assuming a current version of 3.0.0:
    - `master` - Current stable version. No PRs would be accepted directly to modify the specification. PRs against supporting files can be accepted.
    - `v3.0.1` - The next PATCH version of the specification. This would include non-breaking changes such as typo fixes, document fixes, wording clarifications.
-   - `v3.1.0` - The naxt MINOR version.
+   - `v3.1.0` - The next MINOR version.
    - `v4.0.0` - The next MAJOR version.
  - The `master` branch shall remain the current, released OpenAPI Specification.  We will describe and link the work branch(es) on the **default** README.md on master.
  - Examples of how something is described _currently_ vs. the proposed solution should accompany any change proposal.

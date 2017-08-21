@@ -1,6 +1,6 @@
 ## Development Guidelines
 
-This document intends to establish guidelines which build a transparent, open mechanism for deciding how to evolve the OpenAPI Specification. The Open API Technical Contributor Board will initially follow these processes when merging changes from external contributors or from the TCB itself. This guideline document will be adjusted as practicality dictates.
+This document establishes guidelines which build a transparent, open mechanism for deciding how to evolve the OpenAPI Specification. The OpenAPI Technical Developer Community (TDC) will initially follow these processes when merging changes. This guideline document will be adjusted as practicality dictates.
 
 ## OAI Specification Driving factors
 
@@ -38,7 +38,7 @@ For each change in the specification we should _always_ consider the following:
  - Tooling.  Strive to support code generation, software interfaces, and spec generation techniques.  Some features may be impossible to support in different frameworks/languages.  These should be documented and considered during the change approval process.
  - Visualization.  Can the specification change be graphically visualized somehow in a UI or other interface?
 
-Spec changes should be approved by a majority of the committers.  Approval can be given by commenting on the issue itself, for example, "Approved by @fehguy".  After voting criteria is met, any committer can merge the PR. (**TODO**: we will want to formalize what voting criteria actually is).
+Spec changes should be approved by a majority of the maintainers.  Approval can be given by commenting on the pull request (PR) itself, for example, "Approved by @fehguy" or "LGTM".  After voting criteria is met, any maintainer can merge the PR. (**TODO**: we will want to formalize what voting criteria actually is).
 
 No change should be approved until there is documentation for it, supplied in an accompanying PR.
 
@@ -47,5 +47,5 @@ No change should be approved until there is documentation for it, supplied in an
 We should always be as transparent as possible.  Sometimes there will be discussions that use customer names, sensitive use cases, and so on.  These must be anonymized, discussed in a private repository, or conducted offline.
 
  - Asynchronous discussions should live in the GitHub issues for this project.
- - Realtime discussions should be in a public chat such as IRC or Slack.
+ - Realtime discussions should be in a public chat such as IRC or the #spec channel on the OpenAPI Slack.
 

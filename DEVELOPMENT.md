@@ -1,6 +1,6 @@
 ## Development Guidelines
 
-This document intends to establish guidelines which build a transparent, open mechanism for deciding how to evolve the OpenAPI Specification. The Open API Technical Contributor Board will initially follow these processes when merging changes from external contributors or from the TCB itself. This guideline document will be adjusted as practicality dictates.
+This document intends to establish guidelines which build a transparent, open mechanism for deciding how to evolve the OpenAPI Specification. The Open API Technical Developer Community will initially follow these processes when merging changes from external contributors or from the TDC itself. This guideline document will be adjusted as practicality dictates.
 
 ## OAI Specification Driving factors
 
@@ -21,14 +21,19 @@ The specification _will change_ from the original 2.0 version.  We should typica
 
  - Use GitHub for all spec designs, use cases, and so on.
  - As with 2.0, the **human readable** document is the source of truth.  If using a JSON Schema again to document the spec, it is secondary to the human documentation.  The documentation should live in a *.md file, in parallel to the 2.0 document (versions/3.0.0.md for example).
- - The `master` branch shall remain the current, released OpenAPI Specification (i.e., 2.0).  We will work in an OpenAPI.next branch, which shall be described and linked to on the **default** README.md on master.
+ - At any given time, there would be _at most_ 4 work branches. The branches would exist if work has started on them. Assuming a current version of 3.0.0:
+   - `master` - Current stable version. No PRs would be accepted directly to modify the specification. PRs against supporting files can be accepted.
+   - `v3.0.1` - The next PATCH version of the specification. This would include non-breaking changes such as typo fixes, document fixes, wording clarifications.
+   - `v3.1.0` - The naxt MINOR version.
+   - `v4.0.0` - The next MAJOR version.
+ - The `master` branch shall remain the current, released OpenAPI Specification.  We will describe and link the work branch(es) on the **default** README.md on master.
  - Examples of how something is described _currently_ vs. the proposed solution should accompany any change proposal.
- - New features should be done in feature branches which, upon approval, are merged into the OpenAPI.next branch.
+ - New features should be done in feature branches/forks which, upon approval, are merged into the proper work branch.
  - Use labels for the workflow of specification changes.  Examples of labels are `proposed`, `needs migration review`, `needs tooling review`, `needs documentation`, `rejected`, and `needs approval`.  These labels must be assigned by project committers.
  - An issue will be opened for each feature change.  Embedded in the issue, or ideally linked in a file via pull-request (PR), a document about use cases should be supplied with the change.
  - A PR will be used to describe the _proposed_ solution, and linked to the original issue.
  - Not all committers will contribute to every single proposed change.  There may be many open proposals at once, and multiple efforts may happen in parallel.
- - When the OpenApi.next spec is complete and approved for release, the branch will be merged to master.
+ - When the a work branch is ready and approved, the branch will be merged to master.
 
 ## Approving Changes
 

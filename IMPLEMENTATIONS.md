@@ -45,3 +45,9 @@ These tools are not necessarily endorsed by the OAI.
 | baucis-openapi3 | [Github/metadevpro/baucis-openapi3](https://github.com/metadevpro/baucis-openapi3) | Node.js | [Baucis.js](https://github.com/wprl/baucis) plugin for generating OpenAPI 3.0 compliant API contracts. |
 | Google Gnostic | [GitHub/googleapis/gnostic](https://github.com/googleapis/gnostic) | Go | Compile OpenAPI descriptions into equivalent Protocol Buffer representations. |
 | serverless-openapi-documentation | [GitHub/temando/serverless-openapi-documentation](https://github.com/temando/serverless-openapi-documentation) | Typescript | Serverless 1.0 plugin to generate OpenAPI V3 documentation from serverless configuration |
+
+#### Other tools
+
+| Title          | Project Link | Language |Description                          |
+|----------------|--------------|----------|---------------------|
+| Open Api Spec Library | [faragorn/open-api-specs](https://github.com/faragorn/open-api-specs) | | A collective list of OpenAPI Specifications for different APIs |

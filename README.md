@@ -43,7 +43,9 @@ Looking to see how you can create your own OpenAPI definition, present it, or ot
 
 The current process for development of the OpenAPI Specification is described in 
 [Development Guidelines](DEVELOPMENT.md).
-Development of the next version of the OpenAPI Specification is guided by the [Technical Developer Community](https://www.openapis.org/participate/how-to-contribute/governance#TDC). This group of committers bring their API expertise, incorporate feedback from the community, and expand the group of committers as appropriate. All development activity on the future specification will be performed as features and merged into this branch. Upon release of the future specification, this branch will be merged to master.
+Development of the next version of the OpenAPI Specification is guided by the [Technical Developer Community (TDC)](https://www.openapis.org/participate/how-to-contribute/governance#TDC). This group of committers bring their API expertise, incorporate feedback from the community, and expand the group of committers as appropriate. All development activity on the future specification will be performed as features and merged into this branch. Upon release of the future specification, this branch will be merged to master.
+
+The TDC holds weekly web conferences to review open pull requests and discuss open issues related to the evolving OpenAPI Specification. Participation in weekly calls and scheduled working sessions is open the community. You can view the [TDC calendar online](https://calendar.google.com/calendar/embed?src=swagger.io_r92oetfnt9vbpqa6e5bca75v38%40group.calendar.google.com), and import it to your calendar using the [iCal link](https://calendar.google.com/calendar/ical/swagger.io_r92oetfnt9vbpqa6e5bca75v38%40group.calendar.google.com/public/basic.ics).
 
 The Open API Initiative encourages participation from individuals and companies alike. 
 If you want to participate in the evolution of the OpenAPI Specification, consider taking the following actions:

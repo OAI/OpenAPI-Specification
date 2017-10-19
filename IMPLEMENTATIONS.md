@@ -24,6 +24,7 @@ These tools are not necessarily endorsed by the OAI.
 | KaiZen OpenAPI Editor | [GitHub/RepreZen/KaiZen-OpenAPI-Editor](https://github.com/RepreZen/KaiZen-OpenAPI-Editor) | Java | Eclipse Editor for OpenAPI 2.0 and 3.0 |
 | RepreZen API Studio | [RepreZen.com/OpenAPI](https://www.reprezen.com/OpenAPI) | Java | Commercial desktop IDE for API design, documentation & development |
 | OpenApi-gui | [GitHub/Mermade/openapi-gui](https://github.com/Mermade/openapi-gui) | Node.js | GUI / visual editor for creating and editing OpenApi / Swagger definitions |
+| SwaggerHub | [swaggerhub.com](https://swaggerhub.com) | | API Design and Documentation Platform, Built For Teams
 | swagger-editor | [GitHub/swagger-api](https://github.com/swagger-api/swagger-editor) | JavaScript | Web-Based editor for creating, editing, validating and testing OpenAPI\Swagger definitions |
 
 #### User Interfaces

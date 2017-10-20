@@ -26,6 +26,6 @@ In dire situations, it may be necessary to remove a TSC member, such as behavior
 
 ## 4. Criteria for decisions
 
-The group will strive to achieve all decisions via unopposed consensus. When not possible, unresolved conflicts will be raised to the TOB.
+The group will strive to achieve all decisions via unopposed consensus. When not possible, unresolved conflicts will be raised to the OAI's Technical Oversight Board (TOB).
 
 The TSC will maintain a publicly available document specifying the process in the contributor guidelines for how proposed changes are merged into the specification. The TSC will document and publicize the schedule of merge parties and release parties for the benefit of the technical developer community.

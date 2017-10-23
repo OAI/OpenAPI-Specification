@@ -1,12 +1,10 @@
 ### Implementations
 
-Below is a list of known tooling that implements the 3.0.0 specification. Because
-the 3.0.0 specification has not yet been released, refer to the details of projects listed below for any notes about stability and roadmap.  The process 
-to create the best possible 3.0.0 specification includes feedback from end-users
-and tooling creators. We strongly encourage draft tooling be
-made available for early users of the OAS.
+Below is a list of known tooling that implements the 3.0.0 specification. Because the 3.0.0 specification has just been released, refer to the details of projects listed below for any notes about stability and roadmap.  
 
-These tools are not necessarily endorsed by the OAI.
+The process to create the best possible 3.0.0 specification includes feedback from end-users and tooling creators. We strongly encourage draft tooling be made available for early users of the OAS.
+
+Note: These tools are not necessarily endorsed by the OAI.
 
 #### Low-Level tooling
 

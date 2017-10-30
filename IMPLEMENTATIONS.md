@@ -38,7 +38,9 @@ These tools are not necessarily endorsed by the OAI.
 
 
 #### Server Implementations
-
+| Title          | Project Link | Language |Description                          |
+|----------------|--------------|----------|---------------------|
+| Vert.x Web API Contract | [Github/vert-x3/vertx-web](http://vertx.io/docs/#web) | Java, Kotlin, JavaScript, Groovy, Ruby, Ceylon & Scala | Create an API endpoint with Vert.x 3 and OpenAPI 3 with automatic requests validation
 
 #### Code Generators
 
@@ -48,3 +50,4 @@ These tools are not necessarily endorsed by the OAI.
 | Google Gnostic | [GitHub/googleapis/gnostic](https://github.com/googleapis/gnostic) | Go | Compile OpenAPI descriptions into equivalent Protocol Buffer representations. |
 | serverless-openapi-documentation | [GitHub/temando/serverless-openapi-documentation](https://github.com/temando/serverless-openapi-documentation) | Typescript | Serverless 1.0 plugin to generate OpenAPI V3 documentation from serverless configuration |
 | zero-rails_openapi | [GitHub/zhandao/zero-rails_openapi](https://github.com/zhandao/zero-rails_openapi) | Ruby | Provide concise DSL for generating the OpenAPI Specification 3 documentation file for Rails application |
+| slush-vertx | [Github/pmlopes/slush-vertx](https://github.com/pmlopes/slush-vertx) | Java, Kotlin & Groovy | Generate server skeleton for [Vert.x Web API Contract](http://vertx.io/docs/#web) and API Client based on [Vert.x 3 Web Client](http://vertx.io/docs/#web)

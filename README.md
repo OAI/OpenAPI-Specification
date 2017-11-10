@@ -20,6 +20,10 @@ This GitHub project is the starting point for OpenAPI. Here you will find the in
 
 The current version of the OpenAPI specification is [OpenAPI Specification 3.0](versions/3.0.0.md).
 
+### Future Versions
+
+[3.0.1](https://github.com/OAI/OpenAPI-Specification/tree/v3.0.1) - The next PATCH version. Patch-level fixes (typos, clarifications, etc.) should be submitted against this branch.
+
 ### Previous Versions
 
 This repository also contains the [OpenAPI Specification 2.0](versions/2.0.md), which is identical to the Swagger 2.0 specification before it was renamed to "OpenAPI Specification", as well as the Swagger 1.2 and Swagger 2.0 specifications.
@@ -39,7 +43,9 @@ Looking to see how you can create your own OpenAPI definition, present it, or ot
 
 The current process for development of the OpenAPI Specification is described in 
 [Development Guidelines](DEVELOPMENT.md).
-Development of the next version of the OpenAPI Specification is guided by the [Technical Developer Community](https://www.openapis.org/participate/how-to-contribute/governance#TDC). This group of committers bring their API expertise, incorporate feedback from the community, and expand the group of committers as appropriate. All development activity on the future specification will be performed as features and merged into this branch. Upon release of the future specification, this branch will be merged to master.
+Development of the next version of the OpenAPI Specification is guided by the [Technical Steering Committee (TSC)](https://www.openapis.org/participate/how-to-contribute/governance#TDC). This group of committers bring their API expertise, incorporate feedback from the community, and expand the group of committers as appropriate. All development activity on the future specification will be performed as features and merged into this branch. Upon release of the future specification, this branch will be merged to master.
+
+The TSC holds weekly web conferences to review open pull requests and discuss open issues related to the evolving OpenAPI Specification. Participation in weekly calls and scheduled working sessions is open to the community. You can view the [TSC calendar online](https://oai-technicalsteeringcommittee.groups.io/g/main/calendar), and import it to your calendar using the [iCal link](https://OAI-TechnicalSteeringCommittee.groups.io/g/main/ics/860119/668774333/feed.ics).
 
 The Open API Initiative encourages participation from individuals and companies alike. If you want to participate in the evolution of the OpenAPI Specification, consider taking the following actions:
 

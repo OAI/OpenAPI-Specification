@@ -22,7 +22,7 @@ At an open TSC meeting, the impending call-for-nominations period is communicate
 
 ## 3. Removal of membership from the TSC
 
-In dire situations, it may be necessary to remove a TSC member, such as behavior that violates the code of conduct (whether non-participation merits removal is a decision left to the TSC voting members). 75% vote (confidential, electronic) of the other TSC. members is required to remove a member. Otherwise, TSC members are removed when they renounce their position by informing the Liaison of their effective resignation date.
+In dire situations, it may be necessary to remove a TSC member, such as behavior that violates the code of conduct (NB: whether non-participation merits removal is a decision left to the TSC voting members). 75% vote (confidential, electronic) of the other TSC members is required to remove a member. Otherwise, TSC members are removed when they renounce their position by informing the Liaison of their effective resignation date.
 
 ## 4. Criteria for decisions
 

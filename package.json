@@ -17,7 +17,10 @@
     "README.md",
     "schemas/*"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "highlightjs": "^9.10.0",
+    "markdown-it": "^8.4.0"
+  },
   "devDependencies": {
     "mdv": "^1.0.7",
     "yaml": "^1.8.3"

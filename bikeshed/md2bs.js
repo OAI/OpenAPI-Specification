@@ -56,7 +56,7 @@ for (let l in lines) {
     }
 
     if (line.indexOf('[RFC')>=0) {
-        line = line.replace(/\[RFC([0-9]{1,5})\]/g,function(match,group1){
+        line = line.replace(/\[RFC ?([0-9]{1,5})\]/g,function(match,group1){
             console.warn('Fixing RFC reference',match,group1);
             return '[[!rfc'+group1+']]';
         });

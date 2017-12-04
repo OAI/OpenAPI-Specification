@@ -18,7 +18,7 @@ Roles:
 
 ## 2. Adding members to the TSC
 
-At an open TSC meeting, the impending call-for-nominations period is communicated and subsequently tweeted, no more than once per quarter. Nominations for members happen at closed TSC meetings via a motion by a voting TSC member. A nominee must not receive negative votes from 25% or more of the TSC voting membership via a confidential vote held electronically within a week of the nomination. Approved nominees are expected to comport themselves during the provisional period of four weeks as full members of the TSC, though nominees do not have voting rights until their membership is confirmed. TSC subsequently votes on those nominees in the subsequent TSC meeting. At most there are four voting periods per year, with a minimum of 1 per year.
+When the TSC membership is not at its maximum, a impending call-for-nominations period is agreed upon and announced in a timely manner through @OpenApiSpec on Twitter. A candidate may be nominated by through a motion by a voting TSC member in a closed TSC meeting. A nominee must not receive opposition votes of more than 25% of the TSC voting membership via a confidential vote held electronically within a week following the call-for-nominations. Approved nominees become provisional members and are expected to comport themselves as full members of the TSC during the provisional period of 4-6 weeks (to be determined at start of each nominating period), though nominees have no voting rights. The provisional period is concluded by a second, confidential vote similar to the nomination period's vote. At most there are four voting periods per year (no more than one every three months), with a minimum of one per year.
 
 ## 3. Removal of membership from the TSC
 

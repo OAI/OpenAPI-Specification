@@ -31,6 +31,7 @@ let lines = s.split('\r').join().split('\n');
 
 let prevIndent = 0;
 let inTOC = false;
+let inDefs = false;
 let inCodeBlock = false;
 
 for (let l in lines) {
@@ -39,6 +40,11 @@ for (let l in lines) {
     if (line.startsWith('## Table of Contents')) inTOC = true;
     if (line.startsWith('<!-- /TOC')) inTOC = false;
     if (inTOC) line = '';
+
+    if (line.startsWith('## Definitions')) {
+        inDefs = true;
+    }
+    else if (line.startsWith('## ')) inDefs = false;
 
     if (line.startsWith('#') && line.indexOf('<a name=')>=0) {
         let indent = 0;
@@ -54,6 +60,7 @@ for (let l in lines) {
 
         let comp = line.split('</a>');
         let title = comp[1];
+        if (inDefs) title = '<dfn>'+title+'</dfn>';
         let link = comp[0].split('<a ')[1].replace('name=','id=');
         line = ('<h'+indent+'><a '+link+title+'</a></h'+indent+'>');
         //prevIndent = indent-1;

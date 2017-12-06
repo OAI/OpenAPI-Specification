@@ -1535,7 +1535,7 @@ pre .property::before, pre .property::after {
       <li><a href="#openapi-document"><span class="secno">3.1</span> <span class="content"><span><span>OpenAPI Document</span></span></span></a>
       <li><a href="#path-templating"><span class="secno">3.2</span> <span class="content"><span><span>Path Templating</span></span></span></a>
       <li><a href="#media-types"><span class="secno">3.3</span> <span class="content"><span><span>Media Types</span></span></span></a>
-      <li><a href="#http-status-codes"><span class="secno">3.4</span> <span class="content"><span>HTTP Status Codes</span></span></a>
+      <li><a href="#http-status-codes"><span class="secno">3.4</span> <span class="content"><span><span>HTTP Status Codes</span></span></span></a>
      </ol>
     <li>
      <a href="#specification"><span class="secno">4</span> <span class="content">Specification</span></a>
@@ -1815,7 +1815,7 @@ application/vnd.github.v3.full+json
 application/vnd.github.v3.diff
 application/vnd.github.v3.patch
 </code></pre>
-   <h3 class="heading settled" data-level="3.4" id="http-status-codes"><span class="secno">3.4. </span><span class="content"><a data-link-type="dfn" id="httpCodes">HTTP Status Codes</a></span><a class="self-link" href="#http-status-codes"></a></h3>
+   <h3 class="heading settled" data-level="3.4" id="http-status-codes"><span class="secno">3.4. </span><span class="content"><a data-link-type="dfn" href="#http-status-codes①" id="httpCodes"><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="http-status-codes①">HTTP Status Codes</dfn></a></span><a class="self-link" href="#http-status-codes"></a></h3>
     The HTTP Status Codes are used to indicate the status of the executed operation. 
 The available status codes are defined by <a data-link-type="biblio" href="#biblio-rfc7231">[rfc7231]</a>section-6) and registered status codes are listed in the <a href="http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">IANA Status Code Registry</a>. 
    <h2 class="heading settled" data-level="4" id="specification"><span class="secno">4. </span><span class="content">Specification</span><a class="self-link" href="#specification"></a></h2>
@@ -4399,8 +4399,8 @@ There are are two ways to define the value of a discriminator for an inheriting 
    <ul>
     <li>Use the schema name.
     <li>Override the schema name by overriding the property with a new value. If a new value exists, this takes precedence over the schema name.
+As such, inline schema definitions, which do not have a given id, <em>cannot</em> be used in polymorphism.
    </ul>
-   <p>As such, inline schema definitions, which do not have a given id, <em>cannot</em> be used in polymorphism.</p>
    <h6 class="heading settled" data-level="4.7.26.2.2" id="xml-modeling"><span class="secno">4.7.26.2.2. </span><span class="content">XML Modeling</span><a class="self-link" href="#xml-modeling"></a></h6>
    <p>The <a href="#schemaXml">xml</a> property allows extra definitions when translating the JSON definition to XML.
 The <a href="#xmlObject">XML Object</a> contains additional information about the available options.</p>
@@ -5564,6 +5564,7 @@ While not part of the specification itself, certain libraries MAY choose to allo
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
+   <li><a href="#http-status-codes①">HTTP Status Codes</a><span>, in §3.4</span>
    <li><a href="#media-types①">Media Types</a><span>, in §3.3</span>
    <li><a href="#openapi-document①">OpenAPI Document</a><span>, in §3.1</span>
    <li><a href="#path-templating①">Path Templating</a><span>, in §3.2</span>
@@ -5608,6 +5609,12 @@ While not part of the specification itself, certain libraries MAY choose to allo
    <b><a href="#media-types①">#media-types①</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#mediaTypes">3.3. Media Types</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="http-status-codes①">
+   <b><a href="#http-status-codes①">#http-status-codes①</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#httpCodes">3.4. HTTP Status Codes</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */

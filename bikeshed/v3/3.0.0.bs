@@ -27,7 +27,7 @@ The media type definitions SHOULD be in compliance with [[!rfc6838]].
   application/vnd.github.v3.diff
   application/vnd.github.v3.patch
 </code></pre>
-<h3><a id="httpCodes">HTTP Status Codes</a></h3>
+<h3><a id="httpCodes"><dfn>HTTP Status Codes</dfn></a></h3>
 The HTTP Status Codes are used to indicate the status of the executed operation. 
 The available status codes are defined by [[!rfc7231]]section-6) and registered status codes are listed in the [IANA Status Code Registry](http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
 <h2>Specification</h2>
@@ -2942,9 +2942,9 @@ As such, the <code>discriminator</code> field MUST be a required field.
 There are are two ways to define the value of a discriminator for an inheriting instance.</p>
 <ul>
 <li>Use the schema name.</li>
-<li>Override the schema name by overriding the property with a new value. If a new value exists, this takes precedence over the schema name.</li>
+<li>Override the schema name by overriding the property with a new value. If a new value exists, this takes precedence over the schema name.
+As such, inline schema definitions, which do not have a given id, <em>cannot</em> be used in polymorphism.</li>
 </ul>
-<p>As such, inline schema definitions, which do not have a given id, <em>cannot</em> be used in polymorphism.</p>
 <h6>XML Modeling</h6>
 <p>The <a href="#schemaXml">xml</a> property allows extra definitions when translating the JSON definition to XML.
 The <a href="#xmlObject">XML Object</a> contains additional information about the available options.</p>

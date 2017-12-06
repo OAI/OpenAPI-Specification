@@ -82,9 +82,9 @@ The process should be as transparent as possible. Sometimes there will be discus
 
 While governance of the specification is the role of the TSC, the evolution of the specification happens through the participation of members of the developer community at large. Any person willing to contribute to the effort is welcome, and contributions may include filing or participating in issues, creating pull requests, or helping others with such activities.
 
-## Technical Developer Community Roles
+## Technical Steering Committee Roles
 
-While all TDC roles are informal, there are many ways to get involved with the OpenAPI community, such as:
+While all TSC roles are informal, there are many ways to get involved with the OpenAPI community, such as:
 
 * Contributor: Includes but is not limited to any [contributor to the specification](https://github.com/OAI/OpenAPI-Specification/graphs/contributors) via an accepted pull request or who participates in issues or TSC calls.
 

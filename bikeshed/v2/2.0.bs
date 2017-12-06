@@ -265,7 +265,7 @@ represent a Swagger specification file.</p>
 </table>
 <h4><a id="infoObject">Info Object</a></h4>
 <p>The object provides metadata about the API. The metadata can be used by the clients if needed, and can be presented in the Swagger-UI for convenience.</p>
-<h4>Fixed Fields</h4>
+<h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -357,7 +357,7 @@ represent a Swagger specification file.</p>
 </code></pre>
 <h4><a id="contactObject">Contact Object</a></h4>
 <p>Contact information for the exposed API.</p>
-<h4>Fixed Fields</h4>
+<h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -416,7 +416,7 @@ represent a Swagger specification file.</p>
 </code></pre>
 <h4><a id="licenseObject">License Object</a></h4>
 <p>License information for the exposed API.</p>
-<h4>Fixed Fields</h4>
+<h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -469,7 +469,7 @@ represent a Swagger specification file.</p>
 <h4><a id="pathsObject">Paths Object</a></h4>
 <p>Holds the relative paths to the individual endpoints. The path is appended to the <a href="#swaggerBasePath"><code>basePath</code></a> in order to construct the full URL.
 The Paths may be empty, due to <a href="#securityFiltering">ACL constraints</a>.</p>
-<h4>Patterned Fields</h4>
+<h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -532,7 +532,7 @@ The Paths may be empty, due to <a href="#securityFiltering">ACL constraints</a>.
 <h4><a id="pathItemObject">Path Item Object</a></h4>
 <p>Describes the operations available on a single path.
 A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a>. The path itself is still exposed to the documentation viewer but they will not know which operations and parameters are available.</p>
-<h4>Fixed Fields</h4>
+<h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -681,7 +681,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </code></pre>
 <h4><a id="operationObject">Operation Object</a></h4>
 <p>Describes a single API operation on a path.</p>
-<h4>Fixed Fields</h4>
+<h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -866,7 +866,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </code></pre>
 <h4><a id="externalDocumentationObject">External Documentation Object</a></h4>
 <p>Allows referencing an external resource for extended documentation.</p>
-<h4>Fixed Fields</h4>
+<h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -932,7 +932,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </ul>
 </li>
 </ul>
-<h4>Fixed Fields</h4>
+<h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -1232,9 +1232,9 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">required:</span> <span class="hljs-literal">true</span>
 <span class="hljs-attr">type:</span> <span class="hljs-string">file</span>
 </code></pre>
-<h4><a id="itemsObject">Items Object</a></h4>
+<h5><a id="itemsObject">Items Object</a></h5>
 <p>A limited subset of JSON-Schema’s items object. It is used by parameter definitions that are not located <a href="#parameterIn"><code>in</code></a> <code>&quot;body&quot;</code>.</p>
-<h4>Fixed Fields</h4>
+<h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -1382,7 +1382,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <p>A container for the expected responses of an operation. The container maps a HTTP response code to the expected response. It is not expected from the documentation to necessarily cover all possible HTTP response codes, since they may not be known in advance. However, it is expected from the documentation to cover a successful operation response and any known errors.</p>
 <p>The <code>default</code> can be used as the default response object for all HTTP codes that are not covered individually by the specification.</p>
 <p>The <code>Responses Object</code> MUST contain at least one response code, and it SHOULD be the response for a successful operation call.</p>
-<h4>Fixed Fields</h4>
+<h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -1451,7 +1451,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </code></pre>
 <h4><a id="responseObject">Response Object</a></h4>
 Describes a single response from an API Operation.
-<h4>Fixed Fields</h4>
+<h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -1583,7 +1583,7 @@ Describes a single response from an API Operation.
 </code></pre>
 <h4><a id="headersObject">Headers Object</a></h4>
 Lists the headers that can be sent as part of a response.
-<h4>Patterned Fields</h4>
+<h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -1631,7 +1631,7 @@ Lists the headers that can be sent as part of a response.
 </code></pre>
 <h4><a id="exampleObject">Example Object</a></h4>
 <p>Allows sharing examples for operation responses.</p>
-<h4>Patterned Fields</h4>
+<h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -1771,7 +1771,7 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h4>Patterned Objects</h4>
+<h5>Patterned Objects</h5>
 <table>
 <thead>
 <tr>
@@ -1802,7 +1802,7 @@ Lists the headers that can be sent as part of a response.
 </code></pre>
 <h4><a id="tagObject">Tag Object</a></h4>
 <p>Allows adding meta data to a single tag that is used by the <a href="#operationObject">Operation Object</a>. It is not mandatory to have a Tag Object per tag used there.</p>
-<h4>Fixed Fields</h4>
+<h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -1860,7 +1860,7 @@ Lists the headers that can be sent as part of a response.
 <h4><a id="referenceObject">Reference Object</a></h4>
 <p>A simple object to allow referencing other definitions in the specification. It can be used to reference parameters and responses that are defined at the top level for reuse.</p>
 <p>The Reference Object is a <a href="http://tools.ietf.org/html/draft-pbryan-zyp-json-ref-02">JSON Reference</a> that uses a [JSON Pointer] as its value. For this specification, only <a href="https://tools.ietf.org/html/draft-zyp-json-schema-04#section-7.2.3">canonical dereferencing</a> is supported.</p>
-<h4>Fixed Fields</h4>
+<h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -1939,7 +1939,7 @@ Lists the headers that can be sent as part of a response.
 <li>additionalProperties</li>
 </ul>
 <p>Other than the JSON Schema subset fields, the following fields may be used for further schema documentation.</p>
-<h4>Fixed Fields</h4>
+<h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -2296,10 +2296,10 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">      required:</span>
 <span class="hljs-bullet">      -</span> <span class="hljs-string">packSize</span>
 </code></pre>
-<h4><a id="xmlObject">XML Object</a></h4>
+<h5><a id="xmlObject">XML Object</a></h5>
 <p>A metadata object that allows for more fine-tuned XML model definitions.</p>
 <p>When using arrays, XML element names are <em>not</em> inferred (for singular/plural forms) and the <code>name</code> property should be used to add that information. See examples for expected behavior.</p>
-<h4>Fixed Fields</h4>
+<h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -2642,9 +2642,9 @@ Lists the headers that can be sent as part of a response.
   <span class="hljs-tag">&lt;<span class="hljs-name">aliens</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>&gt;</span>
 </code></pre>
-<h4><a id="definitionsObject">Definitions Object</a></h4>
+<h5><a id="definitionsObject">Definitions Object</a></h5>
 <p>An object to hold data types that can be consumed and produced by operations. These data types can be primitives, arrays or models.</p>
-<h4>Patterned Fields</h4>
+<h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -2711,7 +2711,7 @@ Lists the headers that can be sent as part of a response.
 <h4><a id="parametersDefinitionsObject">Parameters Definitions Object</a></h4>
 <p>An object to hold parameters to be reused across operations. Parameter definitions can be referenced to the ones defined here.</p>
 <p>This does <em>not</em> define global operation parameters.</p>
-<h4>Patterned Fields</h4>
+<h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -2768,7 +2768,7 @@ Lists the headers that can be sent as part of a response.
 <h4><a id="responsesDefinitionsObject">Responses Definitions Object</a></h4>
 <p>An object to hold responses to be reused across operations. Response definitions can be referenced to the ones defined here.</p>
 <p>This does <em>not</em> define global operation responses.</p>
-<h4>Patterned Fields</h4>
+<h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -2814,7 +2814,7 @@ Lists the headers that can be sent as part of a response.
 </code></pre>
 <h4><a id="securityDefinitionsObject">Security Definitions Object</a></h4>
 <p>A declaration of the security schemes available to be used in the specification. This does not enforce the security schemes on the operations and only serves to provide the relevant details for each scheme.</p>
-<h4>Patterned Fields</h4>
+<h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -2865,7 +2865,7 @@ Lists the headers that can be sent as part of a response.
 </code></pre>
 <h4><a id="securitySchemeObject">Security Scheme Object</a></h4>
 <p>Allows the definition of a security scheme that can be used by the operations. Supported schemes are basic authentication, an API key (either as a header or as a query parameter) and OAuth2’s common flows (implicit, password, application and access code).</p>
-<h4>Fixed Fields</h4>
+<h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -2986,9 +2986,9 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">  write:</span><span class="hljs-attr">pets:</span> <span class="hljs-string">modify</span> <span class="hljs-string">pets</span> <span class="hljs-string">in</span> <span class="hljs-string">your</span> <span class="hljs-string">account</span>
 <span class="hljs-attr">  read:</span><span class="hljs-attr">pets:</span> <span class="hljs-string">read</span> <span class="hljs-string">your</span> <span class="hljs-string">pets</span>
 </code></pre>
-<h4><a id="scopesObject">Scopes Object</a></h4>
+<h5><a id="scopesObject">Scopes Object</a></h5>
 <p>Lists the available scopes for an OAuth2 security scheme.</p>
-<h4>Patterned Fields</h4>
+<h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -3036,7 +3036,7 @@ Lists the headers that can be sent as part of a response.
 <h4><a id="securityRequirementObject">Security Requirement Object</a></h4>
 <p>Lists the required security schemes to execute this operation. The object can have multiple security schemes declared in it which are all required (that is, there is a logical AND between the schemes).</p>
 <p>The name used for each property MUST correspond to a security scheme declared in the <a href="#securityDefinitionsObject">Security Definitions</a>.</p>
-<h4>Patterned Fields</h4>
+<h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -3077,11 +3077,11 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">- write:</span><span class="hljs-string">pets</span>
 <span class="hljs-attr">- read:</span><span class="hljs-string">pets</span>
 </code></pre>
-<h3><a id="vendorExtensions">Specification Extensions</a></h3>
+<h5><a id="vendorExtensions">Specification Extensions</a></h5>
 <p>While the Swagger Specification tries to accommodate most use cases, additional data can be added to extend the specification at certain points.</p>
 <p>The extensions properties are always prefixed by <code>&quot;x-&quot;</code> and can have any valid JSON format value.</p>
 <p>The extensions may or may not be supported by the available tooling, but those may be extended as well to add requested support (if tools are internal or open-sourced).</p>
-<h3><a id="securityFiltering">Security Filtering</a></h3>
+<h5><a id="securityFiltering">Security Filtering</a></h5>
 <p>Some objects in the Swagger specification may be declared and remain empty, or completely be removed, even though they are inherently the core of the API documentation.</p>
 <p>The reasoning behind it is to allow an additional layer of access control over the documentation itself. While not part of the specification itself, certain libraries may choose to allow access to parts of the documentation based on some form of authentication/authorization.</p>
 <p>Two examples for this:</p>

@@ -30,24 +30,33 @@ let s = fs.readFileSync(process.argv[2],'utf8');
 let lines = s.split('\r').join().split('\n');
 
 let prevIndent = 0;
+let inTOC = false;
+let inCodeBlock = false;
 
 for (let l in lines) {
     let line = lines[l];
+
+    if (line.startsWith('## Table of Contents')) inTOC = true;
+    if (line.startsWith('<!-- /TOC')) inTOC = false;
+    if (inTOC) line = '';
 
     if (line.startsWith('#') && line.indexOf('<a name=')>=0) {
         let indent = 0;
         while (line[indent] === '#') indent++;
 
         /* bikeshed is a bit of a pita when it comes to header nesting */
-        if (indent>prevIndent+1) {
-            indent = prevIndent+1;
+        let delta = indent-prevIndent;
+
+        if (Math.abs(delta)>1) {
+            if (delta<0) indent = prevIndent-1;
+            if (delta>0) indent = prevIndent+1;
         }
 
         let comp = line.split('</a>');
         let title = comp[1];
         let link = comp[0].split('<a ')[1].replace('name=','id=');
         line = ('<h'+indent+'><a '+link+title+'</a></h'+indent+'>');
-        prevIndent = indent-1;
+        //prevIndent = indent-1;
     }
 
     if (line.indexOf('"></a>')>=0) {
@@ -62,6 +71,10 @@ for (let l in lines) {
         });
     }
 
+    line = line.replace(/\[([RGB])\]/,function(match,group1){
+        return '\\['+group1+']';
+    });
+
     while (line.indexOf('https://tools.ietf.org/html/rfc')>=0) {
         line = line.replace(/.https:..tools.ietf.org.html.rfc[0-9]{1,5}./g,'');
     }
@@ -73,17 +86,23 @@ for (let l in lines) {
         line = line.replace('[ABNF]','[Advanced Backus-Naur Form]');
     }
 
-    if (line.startsWith('#')) {
+    if (line.startsWith('```')) {
+        inCodeBlock = !inCodeBlock;
+        line += '\n'; // fixes formatting of first line of syntax-highlighted blocks
+    }
+
+    if (!inCodeBlock && line.startsWith('#')) {
         let indent = 0;
         while (line[indent] === '#') indent++;
-        if (indent>prevIndent+1) {
-            line = line.replace('#'.repeat(indent),'#'.repeat(prevIndent+1));
-            indent = prevIndent+1;
+        let delta = indent-prevIndent;
+        let oIndent = indent;
+        if (Math.abs(delta)>1) {
+            if (delta<0) indent = prevIndent-1;
+            if (delta>0) indent = prevIndent+1;
+            line = line.replace('#'.repeat(oIndent),'#'.repeat(indent));
         }
         prevIndent = indent;
     }
- 
-    if (line.startsWith('```')) line += '\n'; // fixes formatting of first line of syntax-highlighted blocks
 
     lines[l] = line;
 

@@ -1179,7 +1179,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 598edd67958c4af02f5d5c1b80d0267afc6cccf8" name="generator">
+  <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
   <link href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md" rel="canonical">
 <style>
 tr:nth-child(even) {background: #CCC}
@@ -1564,213 +1564,201 @@ pre .property::before, pre .property::after {
          <ol class="toc">
           <li><a href="#patterned-objects"><span class="secno">5.4.2.1</span> <span class="content">Patterned Objects</span></a>
          </ol>
-        <li><a href="#info-object"><span class="secno">5.4.3</span> <span class="content"><span>Info Object</span></span></a>
         <li>
-         <a href="#fixed-fields①"><span class="secno">5.4.4</span> <span class="content">Fixed Fields</span></a>
+         <a href="#info-object"><span class="secno">5.4.3</span> <span class="content"><span>Info Object</span></span></a>
          <ol class="toc">
-          <li><a href="#patterned-objects①"><span class="secno">5.4.4.1</span> <span class="content">Patterned Objects</span></a>
-          <li><a href="#info-object-example"><span class="secno">5.4.4.2</span> <span class="content">Info Object Example:</span></a>
+          <li><a href="#fixed-fields①"><span class="secno">5.4.3.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#patterned-objects①"><span class="secno">5.4.3.2</span> <span class="content">Patterned Objects</span></a>
+          <li><a href="#info-object-example"><span class="secno">5.4.3.3</span> <span class="content">Info Object Example:</span></a>
          </ol>
-        <li><a href="#contact-object"><span class="secno">5.4.5</span> <span class="content"><span>Contact Object</span></span></a>
         <li>
-         <a href="#fixed-fields②"><span class="secno">5.4.6</span> <span class="content">Fixed Fields</span></a>
+         <a href="#contact-object"><span class="secno">5.4.4</span> <span class="content"><span>Contact Object</span></span></a>
          <ol class="toc">
-          <li><a href="#patterned-objects②"><span class="secno">5.4.6.1</span> <span class="content">Patterned Objects</span></a>
-          <li><a href="#contact-object-example"><span class="secno">5.4.6.2</span> <span class="content">Contact Object Example:</span></a>
+          <li><a href="#fixed-fields②"><span class="secno">5.4.4.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#patterned-objects②"><span class="secno">5.4.4.2</span> <span class="content">Patterned Objects</span></a>
+          <li><a href="#contact-object-example"><span class="secno">5.4.4.3</span> <span class="content">Contact Object Example:</span></a>
          </ol>
-        <li><a href="#license-object"><span class="secno">5.4.7</span> <span class="content"><span>License Object</span></span></a>
         <li>
-         <a href="#fixed-fields③"><span class="secno">5.4.8</span> <span class="content">Fixed Fields</span></a>
+         <a href="#license-object"><span class="secno">5.4.5</span> <span class="content"><span>License Object</span></span></a>
          <ol class="toc">
-          <li><a href="#patterned-objects③"><span class="secno">5.4.8.1</span> <span class="content">Patterned Objects</span></a>
-          <li><a href="#license-object-example"><span class="secno">5.4.8.2</span> <span class="content">License Object Example:</span></a>
+          <li><a href="#fixed-fields③"><span class="secno">5.4.5.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#patterned-objects③"><span class="secno">5.4.5.2</span> <span class="content">Patterned Objects</span></a>
+          <li><a href="#license-object-example"><span class="secno">5.4.5.3</span> <span class="content">License Object Example:</span></a>
          </ol>
-        <li><a href="#paths-object"><span class="secno">5.4.9</span> <span class="content"><span>Paths Object</span></span></a>
         <li>
-         <a href="#patterned-fields"><span class="secno">5.4.10</span> <span class="content">Patterned Fields</span></a>
+         <a href="#paths-object"><span class="secno">5.4.6</span> <span class="content"><span>Paths Object</span></span></a>
          <ol class="toc">
-          <li><a href="#paths-object-example"><span class="secno">5.4.10.1</span> <span class="content">Paths Object Example</span></a>
+          <li><a href="#patterned-fields"><span class="secno">5.4.6.1</span> <span class="content">Patterned Fields</span></a>
+          <li><a href="#paths-object-example"><span class="secno">5.4.6.2</span> <span class="content">Paths Object Example</span></a>
          </ol>
-        <li><a href="#path-item-object"><span class="secno">5.4.11</span> <span class="content"><span>Path Item Object</span></span></a>
         <li>
-         <a href="#fixed-fields④"><span class="secno">5.4.12</span> <span class="content">Fixed Fields</span></a>
+         <a href="#path-item-object"><span class="secno">5.4.7</span> <span class="content"><span>Path Item Object</span></span></a>
          <ol class="toc">
-          <li><a href="#patterned-fields①"><span class="secno">5.4.12.1</span> <span class="content">Patterned Fields</span></a>
-          <li><a href="#path-item-object-example"><span class="secno">5.4.12.2</span> <span class="content">Path Item Object Example</span></a>
+          <li><a href="#fixed-fields④"><span class="secno">5.4.7.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#patterned-fields①"><span class="secno">5.4.7.2</span> <span class="content">Patterned Fields</span></a>
+          <li><a href="#path-item-object-example"><span class="secno">5.4.7.3</span> <span class="content">Path Item Object Example</span></a>
          </ol>
-        <li><a href="#operation-object"><span class="secno">5.4.13</span> <span class="content"><span>Operation Object</span></span></a>
         <li>
-         <a href="#fixed-fields⑤"><span class="secno">5.4.14</span> <span class="content">Fixed Fields</span></a>
+         <a href="#operation-object"><span class="secno">5.4.8</span> <span class="content"><span>Operation Object</span></span></a>
          <ol class="toc">
-          <li><a href="#patterned-objects④"><span class="secno">5.4.14.1</span> <span class="content">Patterned Objects</span></a>
-          <li><a href="#operation-object-example"><span class="secno">5.4.14.2</span> <span class="content">Operation Object Example</span></a>
+          <li><a href="#fixed-fields⑤"><span class="secno">5.4.8.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#patterned-objects④"><span class="secno">5.4.8.2</span> <span class="content">Patterned Objects</span></a>
+          <li><a href="#operation-object-example"><span class="secno">5.4.8.3</span> <span class="content">Operation Object Example</span></a>
          </ol>
-        <li><a href="#external-documentation-object"><span class="secno">5.4.15</span> <span class="content"><span>External Documentation Object</span></span></a>
         <li>
-         <a href="#fixed-fields⑥"><span class="secno">5.4.16</span> <span class="content">Fixed Fields</span></a>
+         <a href="#external-documentation-object"><span class="secno">5.4.9</span> <span class="content"><span>External Documentation Object</span></span></a>
          <ol class="toc">
-          <li><a href="#patterned-objects⑤"><span class="secno">5.4.16.1</span> <span class="content">Patterned Objects</span></a>
-          <li><a href="#external-documentation-object-example"><span class="secno">5.4.16.2</span> <span class="content">External Documentation Object Example</span></a>
+          <li><a href="#fixed-fields⑥"><span class="secno">5.4.9.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#patterned-objects⑤"><span class="secno">5.4.9.2</span> <span class="content">Patterned Objects</span></a>
+          <li><a href="#external-documentation-object-example"><span class="secno">5.4.9.3</span> <span class="content">External Documentation Object Example</span></a>
          </ol>
-        <li><a href="#parameter-object"><span class="secno">5.4.17</span> <span class="content"><span>Parameter Object</span></span></a>
         <li>
-         <a href="#fixed-fields⑦"><span class="secno">5.4.18</span> <span class="content">Fixed Fields</span></a>
+         <a href="#parameter-object"><span class="secno">5.4.10</span> <span class="content"><span>Parameter Object</span></span></a>
          <ol class="toc">
-          <li><a href="#patterned-fields②"><span class="secno">5.4.18.1</span> <span class="content">Patterned Fields</span></a>
+          <li><a href="#fixed-fields⑦"><span class="secno">5.4.10.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#patterned-fields②"><span class="secno">5.4.10.2</span> <span class="content">Patterned Fields</span></a>
           <li>
-           <a href="#parameter-object-examples"><span class="secno">5.4.18.2</span> <span class="content">Parameter Object Examples</span></a>
+           <a href="#parameter-object-examples"><span class="secno">5.4.10.3</span> <span class="content">Parameter Object Examples</span></a>
            <ol class="toc">
-            <li><a href="#body-parameters"><span class="secno">5.4.18.2.1</span> <span class="content">Body Parameters</span></a>
-            <li><a href="#other-parameters"><span class="secno">5.4.18.2.2</span> <span class="content">Other Parameters</span></a>
+            <li><a href="#body-parameters"><span class="secno">5.4.10.3.1</span> <span class="content">Body Parameters</span></a>
+            <li><a href="#other-parameters"><span class="secno">5.4.10.3.2</span> <span class="content">Other Parameters</span></a>
            </ol>
+          <li><a href="#items-object"><span class="secno">5.4.10.4</span> <span class="content"><span>Items Object</span></span></a>
+          <li><a href="#fixed-fields⑧"><span class="secno">5.4.10.5</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#patterned-objects⑥"><span class="secno">5.4.10.6</span> <span class="content">Patterned Objects</span></a>
+          <li><a href="#items-object-examples"><span class="secno">5.4.10.7</span> <span class="content">Items Object Examples</span></a>
          </ol>
-        <li><a href="#items-object"><span class="secno">5.4.19</span> <span class="content"><span>Items Object</span></span></a>
         <li>
-         <a href="#fixed-fields⑧"><span class="secno">5.4.20</span> <span class="content">Fixed Fields</span></a>
+         <a href="#responses-object"><span class="secno">5.4.11</span> <span class="content"><span>Responses Object</span></span></a>
          <ol class="toc">
-          <li><a href="#patterned-objects⑥"><span class="secno">5.4.20.1</span> <span class="content">Patterned Objects</span></a>
-          <li><a href="#items-object-examples"><span class="secno">5.4.20.2</span> <span class="content">Items Object Examples</span></a>
+          <li><a href="#fixed-fields⑨"><span class="secno">5.4.11.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#patterned-fields③"><span class="secno">5.4.11.2</span> <span class="content">Patterned Fields</span></a>
+          <li><a href="#responses-object-example"><span class="secno">5.4.11.3</span> <span class="content">Responses Object Example</span></a>
          </ol>
-        <li><a href="#responses-object"><span class="secno">5.4.21</span> <span class="content"><span>Responses Object</span></span></a>
         <li>
-         <a href="#fixed-fields⑨"><span class="secno">5.4.22</span> <span class="content">Fixed Fields</span></a>
+         <a href="#response-object"><span class="secno">5.4.12</span> <span class="content"><span>Response Object</span></span></a>
          <ol class="toc">
-          <li><a href="#patterned-fields③"><span class="secno">5.4.22.1</span> <span class="content">Patterned Fields</span></a>
-          <li><a href="#responses-object-example"><span class="secno">5.4.22.2</span> <span class="content">Responses Object Example</span></a>
+          <li><a href="#fixed-fields①⓪"><span class="secno">5.4.12.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#patterned-objects⑦"><span class="secno">5.4.12.2</span> <span class="content">Patterned Objects</span></a>
+          <li><a href="#response-object-examples"><span class="secno">5.4.12.3</span> <span class="content">Response Object Examples</span></a>
          </ol>
-        <li><a href="#response-object"><span class="secno">5.4.23</span> <span class="content"><span>Response Object</span></span></a>
         <li>
-         <a href="#fixed-fields①⓪"><span class="secno">5.4.24</span> <span class="content">Fixed Fields</span></a>
+         <a href="#headers-object"><span class="secno">5.4.13</span> <span class="content"><span>Headers Object</span></span></a>
          <ol class="toc">
-          <li><a href="#patterned-objects⑦"><span class="secno">5.4.24.1</span> <span class="content">Patterned Objects</span></a>
-          <li><a href="#response-object-examples"><span class="secno">5.4.24.2</span> <span class="content">Response Object Examples</span></a>
+          <li><a href="#patterned-fields④"><span class="secno">5.4.13.1</span> <span class="content">Patterned Fields</span></a>
+          <li><a href="#headers-object-example"><span class="secno">5.4.13.2</span> <span class="content">Headers Object Example</span></a>
          </ol>
-        <li><a href="#headers-object"><span class="secno">5.4.25</span> <span class="content"><span>Headers Object</span></span></a>
         <li>
-         <a href="#patterned-fields④"><span class="secno">5.4.26</span> <span class="content">Patterned Fields</span></a>
+         <a href="#example-object"><span class="secno">5.4.14</span> <span class="content"><span>Example Object</span></span></a>
          <ol class="toc">
-          <li><a href="#headers-object-example"><span class="secno">5.4.26.1</span> <span class="content">Headers Object Example</span></a>
+          <li><a href="#patterned-fields⑤"><span class="secno">5.4.14.1</span> <span class="content">Patterned Fields</span></a>
+          <li><a href="#example-object-example"><span class="secno">5.4.14.2</span> <span class="content">Example Object Example</span></a>
          </ol>
-        <li><a href="#example-object"><span class="secno">5.4.27</span> <span class="content"><span>Example Object</span></span></a>
         <li>
-         <a href="#patterned-fields⑤"><span class="secno">5.4.28</span> <span class="content">Patterned Fields</span></a>
+         <a href="#header-object"><span class="secno">5.4.15</span> <span class="content"><span>Header Object</span></span></a>
          <ol class="toc">
-          <li><a href="#example-object-example"><span class="secno">5.4.28.1</span> <span class="content">Example Object Example</span></a>
+          <li><a href="#patterned-objects⑧"><span class="secno">5.4.15.1</span> <span class="content">Patterned Objects</span></a>
+          <li><a href="#header-object-example"><span class="secno">5.4.15.2</span> <span class="content">Header Object Example</span></a>
          </ol>
-        <li><a href="#header-object"><span class="secno">5.4.29</span> <span class="content"><span>Header Object</span></span></a>
         <li>
-         <a href="#patterned-objects⑧"><span class="secno">5.4.30</span> <span class="content">Patterned Objects</span></a>
+         <a href="#tag-object"><span class="secno">5.4.16</span> <span class="content"><span>Tag Object</span></span></a>
          <ol class="toc">
-          <li><a href="#header-object-example"><span class="secno">5.4.30.1</span> <span class="content">Header Object Example</span></a>
+          <li><a href="#fixed-fields①①"><span class="secno">5.4.16.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#patterned-fields⑥"><span class="secno">5.4.16.2</span> <span class="content">Patterned Fields</span></a>
+          <li><a href="#tag-object-example"><span class="secno">5.4.16.3</span> <span class="content">Tag Object Example</span></a>
          </ol>
-        <li><a href="#tag-object"><span class="secno">5.4.31</span> <span class="content"><span>Tag Object</span></span></a>
         <li>
-         <a href="#fixed-fields①①"><span class="secno">5.4.32</span> <span class="content">Fixed Fields</span></a>
+         <a href="#reference-object"><span class="secno">5.4.17</span> <span class="content"><span>Reference Object</span></span></a>
          <ol class="toc">
-          <li><a href="#patterned-fields⑥"><span class="secno">5.4.32.1</span> <span class="content">Patterned Fields</span></a>
-          <li><a href="#tag-object-example"><span class="secno">5.4.32.2</span> <span class="content">Tag Object Example</span></a>
+          <li><a href="#fixed-fields①②"><span class="secno">5.4.17.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#reference-object-example"><span class="secno">5.4.17.2</span> <span class="content">Reference Object Example</span></a>
+          <li><a href="#relative-schema-file-example"><span class="secno">5.4.17.3</span> <span class="content">Relative Schema File Example</span></a>
+          <li><a href="#relative-files-with-embedded-schema-example"><span class="secno">5.4.17.4</span> <span class="content">Relative Files With Embedded Schema Example</span></a>
          </ol>
-        <li><a href="#reference-object"><span class="secno">5.4.33</span> <span class="content"><span>Reference Object</span></span></a>
         <li>
-         <a href="#fixed-fields①②"><span class="secno">5.4.34</span> <span class="content">Fixed Fields</span></a>
+         <a href="#schema-object"><span class="secno">5.4.18</span> <span class="content"><span>Schema Object</span></span></a>
          <ol class="toc">
-          <li><a href="#reference-object-example"><span class="secno">5.4.34.1</span> <span class="content">Reference Object Example</span></a>
-          <li><a href="#relative-schema-file-example"><span class="secno">5.4.34.2</span> <span class="content">Relative Schema File Example</span></a>
-          <li><a href="#relative-files-with-embedded-schema-example"><span class="secno">5.4.34.3</span> <span class="content">Relative Files With Embedded Schema Example</span></a>
-         </ol>
-        <li><a href="#schema-object"><span class="secno">5.4.35</span> <span class="content"><span>Schema Object</span></span></a>
-        <li>
-         <a href="#fixed-fields①③"><span class="secno">5.4.36</span> <span class="content">Fixed Fields</span></a>
-         <ol class="toc">
+          <li><a href="#fixed-fields①③"><span class="secno">5.4.18.1</span> <span class="content">Fixed Fields</span></a>
           <li>
-           <a href="#patterned-objects⑨"><span class="secno">5.4.36.1</span> <span class="content">Patterned Objects</span></a>
+           <a href="#patterned-objects⑨"><span class="secno">5.4.18.2</span> <span class="content">Patterned Objects</span></a>
            <ol class="toc">
-            <li><a href="#composition-and-inheritance-polymorphism"><span class="secno">5.4.36.1.1</span> <span class="content">Composition and Inheritance (Polymorphism)</span></a>
-            <li><a href="#xml-modeling"><span class="secno">5.4.36.1.2</span> <span class="content">XML Modeling</span></a>
+            <li><a href="#composition-and-inheritance-polymorphism"><span class="secno">5.4.18.2.1</span> <span class="content">Composition and Inheritance (Polymorphism)</span></a>
+            <li><a href="#xml-modeling"><span class="secno">5.4.18.2.2</span> <span class="content">XML Modeling</span></a>
            </ol>
           <li>
-           <a href="#schema-object-examples"><span class="secno">5.4.36.2</span> <span class="content">Schema Object Examples</span></a>
+           <a href="#schema-object-examples"><span class="secno">5.4.18.3</span> <span class="content">Schema Object Examples</span></a>
            <ol class="toc">
-            <li><a href="#primitive-sample"><span class="secno">5.4.36.2.1</span> <span class="content">Primitive Sample</span></a>
-            <li><a href="#simple-model"><span class="secno">5.4.36.2.2</span> <span class="content">Simple Model</span></a>
-            <li><a href="#model-with-map-dictionary-properties"><span class="secno">5.4.36.2.3</span> <span class="content">Model with Map/Dictionary Properties</span></a>
-            <li><a href="#model-with-example"><span class="secno">5.4.36.2.4</span> <span class="content">Model with Example</span></a>
-            <li><a href="#models-with-composition"><span class="secno">5.4.36.2.5</span> <span class="content">Models with Composition</span></a>
-            <li><a href="#models-with-polymorphism-support"><span class="secno">5.4.36.2.6</span> <span class="content">Models with Polymorphism Support</span></a>
+            <li><a href="#primitive-sample"><span class="secno">5.4.18.3.1</span> <span class="content">Primitive Sample</span></a>
+            <li><a href="#simple-model"><span class="secno">5.4.18.3.2</span> <span class="content">Simple Model</span></a>
+            <li><a href="#model-with-map-dictionary-properties"><span class="secno">5.4.18.3.3</span> <span class="content">Model with Map/Dictionary Properties</span></a>
+            <li><a href="#model-with-example"><span class="secno">5.4.18.3.4</span> <span class="content">Model with Example</span></a>
+            <li><a href="#models-with-composition"><span class="secno">5.4.18.3.5</span> <span class="content">Models with Composition</span></a>
+            <li><a href="#models-with-polymorphism-support"><span class="secno">5.4.18.3.6</span> <span class="content">Models with Polymorphism Support</span></a>
            </ol>
-         </ol>
-        <li><a href="#xml-object"><span class="secno">5.4.37</span> <span class="content"><span>XML Object</span></span></a>
-        <li>
-         <a href="#fixed-fields①④"><span class="secno">5.4.38</span> <span class="content">Fixed Fields</span></a>
-         <ol class="toc">
-          <li><a href="#patterned-objects①⓪"><span class="secno">5.4.38.1</span> <span class="content">Patterned Objects</span></a>
+          <li><a href="#xml-object"><span class="secno">5.4.18.4</span> <span class="content"><span>XML Object</span></span></a>
+          <li><a href="#fixed-fields①④"><span class="secno">5.4.18.5</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#patterned-objects①⓪"><span class="secno">5.4.18.6</span> <span class="content">Patterned Objects</span></a>
           <li>
-           <a href="#xml-object-examples"><span class="secno">5.4.38.2</span> <span class="content">XML Object Examples</span></a>
+           <a href="#xml-object-examples"><span class="secno">5.4.18.7</span> <span class="content">XML Object Examples</span></a>
            <ol class="toc">
-            <li><a href="#no-xml-element"><span class="secno">5.4.38.2.1</span> <span class="content">No XML Element</span></a>
-            <li><a href="#xml-name-replacement"><span class="secno">5.4.38.2.2</span> <span class="content">XML Name Replacement</span></a>
-            <li><a href="#xml-attribute-prefix-and-namespace"><span class="secno">5.4.38.2.3</span> <span class="content">XML Attribute, Prefix and Namespace</span></a>
-            <li><a href="#xml-arrays"><span class="secno">5.4.38.2.4</span> <span class="content">XML Arrays</span></a>
+            <li><a href="#no-xml-element"><span class="secno">5.4.18.7.1</span> <span class="content">No XML Element</span></a>
+            <li><a href="#xml-name-replacement"><span class="secno">5.4.18.7.2</span> <span class="content">XML Name Replacement</span></a>
+            <li><a href="#xml-attribute-prefix-and-namespace"><span class="secno">5.4.18.7.3</span> <span class="content">XML Attribute, Prefix and Namespace</span></a>
+            <li><a href="#xml-arrays"><span class="secno">5.4.18.7.4</span> <span class="content">XML Arrays</span></a>
            </ol>
+          <li><a href="#definitions-object"><span class="secno">5.4.18.8</span> <span class="content"><span>Definitions Object</span></span></a>
+          <li><a href="#patterned-fields⑦"><span class="secno">5.4.18.9</span> <span class="content">Patterned Fields</span></a>
+          <li><a href="#definitions-object-example"><span class="secno">5.4.18.10</span> <span class="content">Definitions Object Example</span></a>
          </ol>
-        <li><a href="#definitions-object"><span class="secno">5.4.39</span> <span class="content"><span>Definitions Object</span></span></a>
         <li>
-         <a href="#patterned-fields⑦"><span class="secno">5.4.40</span> <span class="content">Patterned Fields</span></a>
+         <a href="#parameters-definitions-object"><span class="secno">5.4.19</span> <span class="content"><span>Parameters Definitions Object</span></span></a>
          <ol class="toc">
-          <li><a href="#definitions-object-example"><span class="secno">5.4.40.1</span> <span class="content">Definitions Object Example</span></a>
+          <li><a href="#patterned-fields⑧"><span class="secno">5.4.19.1</span> <span class="content">Patterned Fields</span></a>
+          <li><a href="#parameters-definition-object-example"><span class="secno">5.4.19.2</span> <span class="content">Parameters Definition Object Example</span></a>
          </ol>
-        <li><a href="#parameters-definitions-object"><span class="secno">5.4.41</span> <span class="content"><span>Parameters Definitions Object</span></span></a>
         <li>
-         <a href="#patterned-fields⑧"><span class="secno">5.4.42</span> <span class="content">Patterned Fields</span></a>
+         <a href="#responses-definitions-object"><span class="secno">5.4.20</span> <span class="content"><span>Responses Definitions Object</span></span></a>
          <ol class="toc">
-          <li><a href="#parameters-definition-object-example"><span class="secno">5.4.42.1</span> <span class="content">Parameters Definition Object Example</span></a>
+          <li><a href="#patterned-fields⑨"><span class="secno">5.4.20.1</span> <span class="content">Patterned Fields</span></a>
+          <li><a href="#responses-definitions-object-example"><span class="secno">5.4.20.2</span> <span class="content">Responses Definitions Object Example</span></a>
          </ol>
-        <li><a href="#responses-definitions-object"><span class="secno">5.4.43</span> <span class="content"><span>Responses Definitions Object</span></span></a>
         <li>
-         <a href="#patterned-fields⑨"><span class="secno">5.4.44</span> <span class="content">Patterned Fields</span></a>
+         <a href="#security-definitions-object"><span class="secno">5.4.21</span> <span class="content"><span>Security Definitions Object</span></span></a>
          <ol class="toc">
-          <li><a href="#responses-definitions-object-example"><span class="secno">5.4.44.1</span> <span class="content">Responses Definitions Object Example</span></a>
+          <li><a href="#patterned-fields①⓪"><span class="secno">5.4.21.1</span> <span class="content">Patterned Fields</span></a>
+          <li><a href="#security-definitions-object-example"><span class="secno">5.4.21.2</span> <span class="content">Security Definitions Object Example</span></a>
          </ol>
-        <li><a href="#security-definitions-object"><span class="secno">5.4.45</span> <span class="content"><span>Security Definitions Object</span></span></a>
         <li>
-         <a href="#patterned-fields①⓪"><span class="secno">5.4.46</span> <span class="content">Patterned Fields</span></a>
+         <a href="#security-scheme-object"><span class="secno">5.4.22</span> <span class="content"><span>Security Scheme Object</span></span></a>
          <ol class="toc">
-          <li><a href="#security-definitions-object-example"><span class="secno">5.4.46.1</span> <span class="content">Security Definitions Object Example</span></a>
-         </ol>
-        <li><a href="#security-scheme-object"><span class="secno">5.4.47</span> <span class="content"><span>Security Scheme Object</span></span></a>
-        <li>
-         <a href="#fixed-fields①⑤"><span class="secno">5.4.48</span> <span class="content">Fixed Fields</span></a>
-         <ol class="toc">
-          <li><a href="#patterned-fields①①"><span class="secno">5.4.48.1</span> <span class="content">Patterned Fields</span></a>
+          <li><a href="#fixed-fields①⑤"><span class="secno">5.4.22.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#patterned-fields①①"><span class="secno">5.4.22.2</span> <span class="content">Patterned Fields</span></a>
           <li>
-           <a href="#security-scheme-object-example"><span class="secno">5.4.48.2</span> <span class="content">Security Scheme Object Example</span></a>
+           <a href="#security-scheme-object-example"><span class="secno">5.4.22.3</span> <span class="content">Security Scheme Object Example</span></a>
            <ol class="toc">
-            <li><a href="#basic-authentication-sample"><span class="secno">5.4.48.2.1</span> <span class="content">Basic Authentication Sample</span></a>
-            <li><a href="#api-key-sample"><span class="secno">5.4.48.2.2</span> <span class="content">API Key Sample</span></a>
-            <li><a href="#implicit-oauth2-sample"><span class="secno">5.4.48.2.3</span> <span class="content">Implicit OAuth2 Sample</span></a>
+            <li><a href="#basic-authentication-sample"><span class="secno">5.4.22.3.1</span> <span class="content">Basic Authentication Sample</span></a>
+            <li><a href="#api-key-sample"><span class="secno">5.4.22.3.2</span> <span class="content">API Key Sample</span></a>
+            <li><a href="#implicit-oauth2-sample"><span class="secno">5.4.22.3.3</span> <span class="content">Implicit OAuth2 Sample</span></a>
            </ol>
+          <li><a href="#scopes-object"><span class="secno">5.4.22.4</span> <span class="content"><span>Scopes Object</span></span></a>
+          <li><a href="#patterned-fields①②"><span class="secno">5.4.22.5</span> <span class="content">Patterned Fields</span></a>
+          <li><a href="#patterned-objects①①"><span class="secno">5.4.22.6</span> <span class="content">Patterned Objects</span></a>
+          <li><a href="#scopes-object-example"><span class="secno">5.4.22.7</span> <span class="content">Scopes Object Example</span></a>
          </ol>
-        <li><a href="#scopes-object"><span class="secno">5.4.49</span> <span class="content"><span>Scopes Object</span></span></a>
         <li>
-         <a href="#patterned-fields①②"><span class="secno">5.4.50</span> <span class="content">Patterned Fields</span></a>
+         <a href="#security-requirement-object"><span class="secno">5.4.23</span> <span class="content"><span>Security Requirement Object</span></span></a>
          <ol class="toc">
-          <li><a href="#patterned-objects①①"><span class="secno">5.4.50.1</span> <span class="content">Patterned Objects</span></a>
-          <li><a href="#scopes-object-example"><span class="secno">5.4.50.2</span> <span class="content">Scopes Object Example</span></a>
-         </ol>
-        <li><a href="#security-requirement-object"><span class="secno">5.4.51</span> <span class="content"><span>Security Requirement Object</span></span></a>
-        <li>
-         <a href="#patterned-fields①③"><span class="secno">5.4.52</span> <span class="content">Patterned Fields</span></a>
-         <ol class="toc">
+          <li><a href="#patterned-fields①③"><span class="secno">5.4.23.1</span> <span class="content">Patterned Fields</span></a>
           <li>
-           <a href="#security-requirement-object-examples"><span class="secno">5.4.52.1</span> <span class="content">Security Requirement Object Examples</span></a>
+           <a href="#security-requirement-object-examples"><span class="secno">5.4.23.2</span> <span class="content">Security Requirement Object Examples</span></a>
            <ol class="toc">
-            <li><a href="#non-oauth2-security-requirement"><span class="secno">5.4.52.1.1</span> <span class="content">Non-OAuth2 Security Requirement</span></a>
-            <li><a href="#oauth2-security-requirement"><span class="secno">5.4.52.1.2</span> <span class="content">OAuth2 Security Requirement</span></a>
+            <li><a href="#non-oauth2-security-requirement"><span class="secno">5.4.23.2.1</span> <span class="content">Non-OAuth2 Security Requirement</span></a>
+            <li><a href="#oauth2-security-requirement"><span class="secno">5.4.23.2.2</span> <span class="content">OAuth2 Security Requirement</span></a>
            </ol>
+          <li><a href="#specification-extensions"><span class="secno">5.4.23.3</span> <span class="content"><span>Specification Extensions</span></span></a>
+          <li><a href="#security-filtering"><span class="secno">5.4.23.4</span> <span class="content"><span>Security Filtering</span></span></a>
          </ol>
        </ol>
-      <li><a href="#specification-extensions"><span class="secno">5.5</span> <span class="content"><span>Specification Extensions</span></span></a>
-      <li><a href="#security-filtering"><span class="secno">5.6</span> <span class="content"><span>Security Filtering</span></span></a>
      </ol>
     <li>
      <a href="#index"><span class="secno"></span> <span class="content">Index</span></a>
@@ -2010,7 +1998,7 @@ represent a Swagger specification file.</p>
    </table>
    <h4 class="heading settled" data-level="5.4.3" id="info-object"><span class="secno">5.4.3. </span><span class="content"><a data-link-type="dfn" id="infoObject">Info Object</a></span><a class="self-link" href="#info-object"></a></h4>
    <p>The object provides metadata about the API. The metadata can be used by the clients if needed, and can be presented in the Swagger-UI for convenience.</p>
-   <h4 class="heading settled" data-level="5.4.4" id="fixed-fields①"><span class="secno">5.4.4. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①"></a></h4>
+   <h5 class="heading settled" data-level="5.4.3.1" id="fixed-fields①"><span class="secno">5.4.3.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①"></a></h5>
    <table>
     <thead>
      <tr>
@@ -2043,7 +2031,7 @@ represent a Swagger specification file.</p>
       <td style="text-align:center"><code>string</code>
       <td><strong>Required</strong> Provides the version of the application API (not to be confused with the specification version).
    </table>
-   <h5 class="heading settled" data-level="5.4.4.1" id="patterned-objects①"><span class="secno">5.4.4.1. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects①"></a></h5>
+   <h5 class="heading settled" data-level="5.4.3.2" id="patterned-objects①"><span class="secno">5.4.3.2. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects①"></a></h5>
    <table>
     <thead>
      <tr>
@@ -2056,7 +2044,7 @@ represent a Swagger specification file.</p>
       <td style="text-align:center">Any
       <td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.
    </table>
-   <h5 class="heading settled" data-level="5.4.4.2" id="info-object-example"><span class="secno">5.4.4.2. </span><span class="content">Info Object Example:</span><a class="self-link" href="#info-object-example"></a></h5>
+   <h5 class="heading settled" data-level="5.4.3.3" id="info-object-example"><span class="secno">5.4.3.3. </span><span class="content">Info Object Example:</span><a class="self-link" href="#info-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"title"</span>: <span class="hljs-string">"Swagger Sample App"</span>,
   <span class="hljs-string">"description"</span>: <span class="hljs-string">"This is a sample server Petstore server."</span>,
@@ -2085,9 +2073,9 @@ represent a Swagger specification file.</p>
 <span class="hljs-attr">  url:</span> <span class="hljs-attr">http://www.apache.org/licenses/LICENSE-2.0.html</span>
 <span class="hljs-attr">version:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.1</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.5" id="contact-object"><span class="secno">5.4.5. </span><span class="content"><a data-link-type="dfn" id="contactObject">Contact Object</a></span><a class="self-link" href="#contact-object"></a></h4>
+   <h4 class="heading settled" data-level="5.4.4" id="contact-object"><span class="secno">5.4.4. </span><span class="content"><a data-link-type="dfn" id="contactObject">Contact Object</a></span><a class="self-link" href="#contact-object"></a></h4>
    <p>Contact information for the exposed API.</p>
-   <h4 class="heading settled" data-level="5.4.6" id="fixed-fields②"><span class="secno">5.4.6. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields②"></a></h4>
+   <h5 class="heading settled" data-level="5.4.4.1" id="fixed-fields②"><span class="secno">5.4.4.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields②"></a></h5>
    <table>
     <thead>
      <tr>
@@ -2108,7 +2096,7 @@ represent a Swagger specification file.</p>
       <td style="text-align:center"><code>string</code>
       <td>The email address of the contact person/organization. MUST be in the format of an email address.
    </table>
-   <h5 class="heading settled" data-level="5.4.6.1" id="patterned-objects②"><span class="secno">5.4.6.1. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects②"></a></h5>
+   <h5 class="heading settled" data-level="5.4.4.2" id="patterned-objects②"><span class="secno">5.4.4.2. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects②"></a></h5>
    <table>
     <thead>
      <tr>
@@ -2121,7 +2109,7 @@ represent a Swagger specification file.</p>
       <td style="text-align:center">Any
       <td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.
    </table>
-   <h5 class="heading settled" data-level="5.4.6.2" id="contact-object-example"><span class="secno">5.4.6.2. </span><span class="content">Contact Object Example:</span><a class="self-link" href="#contact-object-example"></a></h5>
+   <h5 class="heading settled" data-level="5.4.4.3" id="contact-object-example"><span class="secno">5.4.4.3. </span><span class="content">Contact Object Example:</span><a class="self-link" href="#contact-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"name"</span>: <span class="hljs-string">"API Support"</span>,
   <span class="hljs-string">"url"</span>: <span class="hljs-string">"http://www.swagger.io/support"</span>,
@@ -2132,9 +2120,9 @@ represent a Swagger specification file.</p>
 <span class="hljs-attr">url:</span> <span class="hljs-attr">http://www.swagger.io/support</span>
 <span class="hljs-attr">email:</span> <span class="hljs-string">support@swagger.io</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.7" id="license-object"><span class="secno">5.4.7. </span><span class="content"><a data-link-type="dfn" id="licenseObject">License Object</a></span><a class="self-link" href="#license-object"></a></h4>
+   <h4 class="heading settled" data-level="5.4.5" id="license-object"><span class="secno">5.4.5. </span><span class="content"><a data-link-type="dfn" id="licenseObject">License Object</a></span><a class="self-link" href="#license-object"></a></h4>
    <p>License information for the exposed API.</p>
-   <h4 class="heading settled" data-level="5.4.8" id="fixed-fields③"><span class="secno">5.4.8. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields③"></a></h4>
+   <h5 class="heading settled" data-level="5.4.5.1" id="fixed-fields③"><span class="secno">5.4.5.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields③"></a></h5>
    <table>
     <thead>
      <tr>
@@ -2151,7 +2139,7 @@ represent a Swagger specification file.</p>
       <td style="text-align:center"><code>string</code>
       <td>A URL to the license used for the API. MUST be in the format of a URL.
    </table>
-   <h5 class="heading settled" data-level="5.4.8.1" id="patterned-objects③"><span class="secno">5.4.8.1. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects③"></a></h5>
+   <h5 class="heading settled" data-level="5.4.5.2" id="patterned-objects③"><span class="secno">5.4.5.2. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects③"></a></h5>
    <table>
     <thead>
      <tr>
@@ -2164,7 +2152,7 @@ represent a Swagger specification file.</p>
       <td style="text-align:center">Any
       <td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.
    </table>
-   <h5 class="heading settled" data-level="5.4.8.2" id="license-object-example"><span class="secno">5.4.8.2. </span><span class="content">License Object Example:</span><a class="self-link" href="#license-object-example"></a></h5>
+   <h5 class="heading settled" data-level="5.4.5.3" id="license-object-example"><span class="secno">5.4.5.3. </span><span class="content">License Object Example:</span><a class="self-link" href="#license-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"name"</span>: <span class="hljs-string">"Apache 2.0"</span>,
   <span class="hljs-string">"url"</span>: <span class="hljs-string">"http://www.apache.org/licenses/LICENSE-2.0.html"</span>
@@ -2173,10 +2161,10 @@ represent a Swagger specification file.</p>
 <pre class="nohighlight"><code><span class="hljs-attr">name:</span> <span class="hljs-string">Apache</span> <span class="hljs-number">2.0</span>
 <span class="hljs-attr">url:</span> <span class="hljs-attr">http://www.apache.org/licenses/LICENSE-2.0.html</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.9" id="paths-object"><span class="secno">5.4.9. </span><span class="content"><a data-link-type="dfn" id="pathsObject">Paths Object</a></span><a class="self-link" href="#paths-object"></a></h4>
+   <h4 class="heading settled" data-level="5.4.6" id="paths-object"><span class="secno">5.4.6. </span><span class="content"><a data-link-type="dfn" id="pathsObject">Paths Object</a></span><a class="self-link" href="#paths-object"></a></h4>
    <p>Holds the relative paths to the individual endpoints. The path is appended to the <a href="#swaggerBasePath"><code>basePath</code></a> in order to construct the full URL.
 The Paths may be empty, due to <a href="#securityFiltering">ACL constraints</a>.</p>
-   <h4 class="heading settled" data-level="5.4.10" id="patterned-fields"><span class="secno">5.4.10. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields"></a></h4>
+   <h5 class="heading settled" data-level="5.4.6.1" id="patterned-fields"><span class="secno">5.4.6.1. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields"></a></h5>
    <table>
     <thead>
      <tr>
@@ -2193,7 +2181,7 @@ The Paths may be empty, due to <a href="#securityFiltering">ACL constraints</a>.
       <td style="text-align:center">Any
       <td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.
    </table>
-   <h5 class="heading settled" data-level="5.4.10.1" id="paths-object-example"><span class="secno">5.4.10.1. </span><span class="content">Paths Object Example</span><a class="self-link" href="#paths-object-example"></a></h5>
+   <h5 class="heading settled" data-level="5.4.6.2" id="paths-object-example"><span class="secno">5.4.6.2. </span><span class="content">Paths Object Example</span><a class="self-link" href="#paths-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"/pets"</span>: {
     <span class="hljs-string">"get"</span>: {
@@ -2229,10 +2217,10 @@ The Paths may be empty, due to <a href="#securityFiltering">ACL constraints</a>.
 <span class="hljs-attr">          items:</span>
             <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/definitions/pet'</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.11" id="path-item-object"><span class="secno">5.4.11. </span><span class="content"><a data-link-type="dfn" id="pathItemObject">Path Item Object</a></span><a class="self-link" href="#path-item-object"></a></h4>
+   <h4 class="heading settled" data-level="5.4.7" id="path-item-object"><span class="secno">5.4.7. </span><span class="content"><a data-link-type="dfn" id="pathItemObject">Path Item Object</a></span><a class="self-link" href="#path-item-object"></a></h4>
    <p>Describes the operations available on a single path.
 A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a>. The path itself is still exposed to the documentation viewer but they will not know which operations and parameters are available.</p>
-   <h4 class="heading settled" data-level="5.4.12" id="fixed-fields④"><span class="secno">5.4.12. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields④"></a></h4>
+   <h5 class="heading settled" data-level="5.4.7.1" id="fixed-fields④"><span class="secno">5.4.7.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields④"></a></h5>
    <table>
     <thead>
      <tr>
@@ -2277,7 +2265,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center">[<a href="#parameterObject">Parameter Object</a> | <a href="#referenceObject">Reference Object</a>]
       <td>A list of parameters that are applicable for all the operations described under this path. These parameters can be overridden at the operation level, but cannot be removed there. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a <a href="#parameterName">name</a> and <a href="#parameterIn">location</a>. The list can use the <a href="#referenceObject">Reference Object</a> to link to parameters that are defined at the <a href="#swaggerParameters">Swagger Object’s parameters</a>. There can be one “body” parameter at most.
    </table>
-   <h5 class="heading settled" data-level="5.4.12.1" id="patterned-fields①"><span class="secno">5.4.12.1. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields①"></a></h5>
+   <h5 class="heading settled" data-level="5.4.7.2" id="patterned-fields①"><span class="secno">5.4.7.2. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields①"></a></h5>
    <table>
     <thead>
      <tr>
@@ -2290,7 +2278,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center">Any
       <td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.
    </table>
-   <h5 class="heading settled" data-level="5.4.12.2" id="path-item-object-example"><span class="secno">5.4.12.2. </span><span class="content">Path Item Object Example</span><a class="self-link" href="#path-item-object-example"></a></h5>
+   <h5 class="heading settled" data-level="5.4.7.3" id="path-item-object-example"><span class="secno">5.4.7.3. </span><span class="content">Path Item Object Example</span><a class="self-link" href="#path-item-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"get"</span>: {
     <span class="hljs-string">"description"</span>: <span class="hljs-string">"Returns pets based on ID"</span>,
@@ -2361,9 +2349,9 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">    type:</span> <span class="hljs-string">string</span>
 <span class="hljs-attr">  collectionFormat:</span> <span class="hljs-string">csv</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.13" id="operation-object"><span class="secno">5.4.13. </span><span class="content"><a data-link-type="dfn" id="operationObject">Operation Object</a></span><a class="self-link" href="#operation-object"></a></h4>
+   <h4 class="heading settled" data-level="5.4.8" id="operation-object"><span class="secno">5.4.8. </span><span class="content"><a data-link-type="dfn" id="operationObject">Operation Object</a></span><a class="self-link" href="#operation-object"></a></h4>
    <p>Describes a single API operation on a path.</p>
-   <h4 class="heading settled" data-level="5.4.14" id="fixed-fields⑤"><span class="secno">5.4.14. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields⑤"></a></h4>
+   <h5 class="heading settled" data-level="5.4.8.1" id="fixed-fields⑤"><span class="secno">5.4.8.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields⑤"></a></h5>
    <table>
     <thead>
      <tr>
@@ -2420,7 +2408,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center">[<a href="#securityRequirementObject">Security Requirement Object</a>]
       <td>A declaration of which security schemes are applied for this operation. The list of values describes alternative security schemes that can be used (that is, there is a logical OR between the security requirements). This definition overrides any declared top-level <a href="#swaggerSecurity"><code>security</code></a>. To remove a top-level security declaration, an empty array can be used.
    </table>
-   <h5 class="heading settled" data-level="5.4.14.1" id="patterned-objects④"><span class="secno">5.4.14.1. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects④"></a></h5>
+   <h5 class="heading settled" data-level="5.4.8.2" id="patterned-objects④"><span class="secno">5.4.8.2. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects④"></a></h5>
    <table>
     <thead>
      <tr>
@@ -2433,7 +2421,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center">Any
       <td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.
    </table>
-   <h5 class="heading settled" data-level="5.4.14.2" id="operation-object-example"><span class="secno">5.4.14.2. </span><span class="content">Operation Object Example</span><a class="self-link" href="#operation-object-example"></a></h5>
+   <h5 class="heading settled" data-level="5.4.8.3" id="operation-object-example"><span class="secno">5.4.8.3. </span><span class="content">Operation Object Example</span><a class="self-link" href="#operation-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"tags"</span>: [
     <span class="hljs-string">"pet"</span>
@@ -2525,9 +2513,9 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">  - write:</span><span class="hljs-string">pets</span>
 <span class="hljs-attr">  - read:</span><span class="hljs-string">pets</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.15" id="external-documentation-object"><span class="secno">5.4.15. </span><span class="content"><a data-link-type="dfn" id="externalDocumentationObject">External Documentation Object</a></span><a class="self-link" href="#external-documentation-object"></a></h4>
+   <h4 class="heading settled" data-level="5.4.9" id="external-documentation-object"><span class="secno">5.4.9. </span><span class="content"><a data-link-type="dfn" id="externalDocumentationObject">External Documentation Object</a></span><a class="self-link" href="#external-documentation-object"></a></h4>
    <p>Allows referencing an external resource for extended documentation.</p>
-   <h4 class="heading settled" data-level="5.4.16" id="fixed-fields⑥"><span class="secno">5.4.16. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields⑥"></a></h4>
+   <h5 class="heading settled" data-level="5.4.9.1" id="fixed-fields⑥"><span class="secno">5.4.9.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields⑥"></a></h5>
    <table>
     <thead>
      <tr>
@@ -2544,7 +2532,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center"><code>string</code>
       <td><strong>Required.</strong> The URL for the target documentation. Value MUST be in the format of a URL.
    </table>
-   <h5 class="heading settled" data-level="5.4.16.1" id="patterned-objects⑤"><span class="secno">5.4.16.1. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects⑤"></a></h5>
+   <h5 class="heading settled" data-level="5.4.9.2" id="patterned-objects⑤"><span class="secno">5.4.9.2. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects⑤"></a></h5>
    <table>
     <thead>
      <tr>
@@ -2557,7 +2545,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center">Any
       <td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.
    </table>
-   <h5 class="heading settled" data-level="5.4.16.2" id="external-documentation-object-example"><span class="secno">5.4.16.2. </span><span class="content">External Documentation Object Example</span><a class="self-link" href="#external-documentation-object-example"></a></h5>
+   <h5 class="heading settled" data-level="5.4.9.3" id="external-documentation-object-example"><span class="secno">5.4.9.3. </span><span class="content">External Documentation Object Example</span><a class="self-link" href="#external-documentation-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"description"</span>: <span class="hljs-string">"Find more info here"</span>,
   <span class="hljs-string">"url"</span>: <span class="hljs-string">"https://swagger.io"</span>
@@ -2566,7 +2554,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <pre class="nohighlight"><code><span class="hljs-attr">description:</span> <span class="hljs-string">Find</span> <span class="hljs-string">more</span> <span class="hljs-string">info</span> <span class="hljs-string">here</span>
 <span class="hljs-attr">url:</span> <span class="hljs-attr">https://swagger.io</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.17" id="parameter-object"><span class="secno">5.4.17. </span><span class="content"><a data-link-type="dfn" id="parameterObject">Parameter Object</a></span><a class="self-link" href="#parameter-object"></a></h4>
+   <h4 class="heading settled" data-level="5.4.10" id="parameter-object"><span class="secno">5.4.10. </span><span class="content"><a data-link-type="dfn" id="parameterObject">Parameter Object</a></span><a class="self-link" href="#parameter-object"></a></h4>
    <p>Describes a single operation parameter.</p>
    <p>A unique parameter is defined by a combination of a <a href="#parameterName">name</a> and <a href="#parameterIn">location</a>.</p>
    <p>There are five possible parameter types.</p>
@@ -2582,7 +2570,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <li><code>multipart/form-data</code> - each parameter takes a section in the payload with an internal header. For example, for the header <code>Content-Disposition: form-data; name="submit-name"</code> the name of the parameter is <code>submit-name</code>. This type of form parameters is more commonly used for file transfers.
      </ul>
    </ul>
-   <h4 class="heading settled" data-level="5.4.18" id="fixed-fields⑦"><span class="secno">5.4.18. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields⑦"></a></h4>
+   <h5 class="heading settled" data-level="5.4.10.1" id="fixed-fields⑦"><span class="secno">5.4.10.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields⑦"></a></h5>
    <table>
     <thead>
      <tr>
@@ -2715,7 +2703,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center"><code>number</code>
       <td>See <a href="https://tools.ietf.org/html/draft-fge-json-schema-validation-00#section-5.1.1">https://tools.ietf.org/html/draft-fge-json-schema-validation-00#section-5.1.1</a>.
    </table>
-   <h5 class="heading settled" data-level="5.4.18.1" id="patterned-fields②"><span class="secno">5.4.18.1. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields②"></a></h5>
+   <h5 class="heading settled" data-level="5.4.10.2" id="patterned-fields②"><span class="secno">5.4.10.2. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields②"></a></h5>
    <table>
     <thead>
      <tr>
@@ -2728,8 +2716,8 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center">Any
       <td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.
    </table>
-   <h5 class="heading settled" data-level="5.4.18.2" id="parameter-object-examples"><span class="secno">5.4.18.2. </span><span class="content">Parameter Object Examples</span><a class="self-link" href="#parameter-object-examples"></a></h5>
-   <h6 class="heading settled" data-level="5.4.18.2.1" id="body-parameters"><span class="secno">5.4.18.2.1. </span><span class="content">Body Parameters</span><a class="self-link" href="#body-parameters"></a></h6>
+   <h5 class="heading settled" data-level="5.4.10.3" id="parameter-object-examples"><span class="secno">5.4.10.3. </span><span class="content">Parameter Object Examples</span><a class="self-link" href="#parameter-object-examples"></a></h5>
+   <h6 class="heading settled" data-level="5.4.10.3.1" id="body-parameters"><span class="secno">5.4.10.3.1. </span><span class="content">Body Parameters</span><a class="self-link" href="#body-parameters"></a></h6>
    <p>A body parameter with a referenced schema definition (normally for a model definition):</p>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"name"</span>: <span class="hljs-string">"user"</span>,
@@ -2771,7 +2759,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">  items:</span>
 <span class="hljs-attr">    type:</span> <span class="hljs-string">string</span>
 </code></pre>
-   <h6 class="heading settled" data-level="5.4.18.2.2" id="other-parameters"><span class="secno">5.4.18.2.2. </span><span class="content">Other Parameters</span><a class="self-link" href="#other-parameters"></a></h6>
+   <h6 class="heading settled" data-level="5.4.10.3.2" id="other-parameters"><span class="secno">5.4.10.3.2. </span><span class="content">Other Parameters</span><a class="self-link" href="#other-parameters"></a></h6>
    <p>A header parameter with an array of 64 bit integer numbers:</p>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"name"</span>: <span class="hljs-string">"token"</span>,
@@ -2848,9 +2836,9 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">required:</span> <span class="hljs-literal">true</span>
 <span class="hljs-attr">type:</span> <span class="hljs-string">file</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.19" id="items-object"><span class="secno">5.4.19. </span><span class="content"><a data-link-type="dfn" id="itemsObject">Items Object</a></span><a class="self-link" href="#items-object"></a></h4>
+   <h5 class="heading settled" data-level="5.4.10.4" id="items-object"><span class="secno">5.4.10.4. </span><span class="content"><a data-link-type="dfn" id="itemsObject">Items Object</a></span><a class="self-link" href="#items-object"></a></h5>
    <p>A limited subset of JSON-Schema’s items object. It is used by parameter definitions that are not located <a href="#parameterIn"><code>in</code></a> <code>"body"</code>.</p>
-   <h4 class="heading settled" data-level="5.4.20" id="fixed-fields⑧"><span class="secno">5.4.20. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields⑧"></a></h4>
+   <h5 class="heading settled" data-level="5.4.10.5" id="fixed-fields⑧"><span class="secno">5.4.10.5. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields⑧"></a></h5>
    <table>
     <thead>
      <tr>
@@ -2935,7 +2923,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center"><code>number</code>
       <td>See <a href="https://tools.ietf.org/html/draft-fge-json-schema-validation-00#section-5.1.1">https://tools.ietf.org/html/draft-fge-json-schema-validation-00#section-5.1.1</a>.
    </table>
-   <h5 class="heading settled" data-level="5.4.20.1" id="patterned-objects⑥"><span class="secno">5.4.20.1. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects⑥"></a></h5>
+   <h5 class="heading settled" data-level="5.4.10.6" id="patterned-objects⑥"><span class="secno">5.4.10.6. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects⑥"></a></h5>
    <table>
     <thead>
      <tr>
@@ -2948,7 +2936,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center">Any
       <td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.
    </table>
-   <h5 class="heading settled" data-level="5.4.20.2" id="items-object-examples"><span class="secno">5.4.20.2. </span><span class="content">Items Object Examples</span><a class="self-link" href="#items-object-examples"></a></h5>
+   <h5 class="heading settled" data-level="5.4.10.7" id="items-object-examples"><span class="secno">5.4.10.7. </span><span class="content">Items Object Examples</span><a class="self-link" href="#items-object-examples"></a></h5>
    <p>Items must be of type  string and have the minimum length of  2 characters:</p>
 <pre class="nohighlight"><code>{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>,
@@ -2974,11 +2962,11 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">  minimum:</span> <span class="hljs-number">0</span>
 <span class="hljs-attr">  maximum:</span> <span class="hljs-number">63</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.21" id="responses-object"><span class="secno">5.4.21. </span><span class="content"><a data-link-type="dfn" id="responsesObject">Responses Object</a></span><a class="self-link" href="#responses-object"></a></h4>
+   <h4 class="heading settled" data-level="5.4.11" id="responses-object"><span class="secno">5.4.11. </span><span class="content"><a data-link-type="dfn" id="responsesObject">Responses Object</a></span><a class="self-link" href="#responses-object"></a></h4>
    <p>A container for the expected responses of an operation. The container maps a HTTP response code to the expected response. It is not expected from the documentation to necessarily cover all possible HTTP response codes, since they may not be known in advance. However, it is expected from the documentation to cover a successful operation response and any known errors.</p>
    <p>The <code>default</code> can be used as the default response object for all HTTP codes that are not covered individually by the specification.</p>
    <p>The <code>Responses Object</code> MUST contain at least one response code, and it SHOULD be the response for a successful operation call.</p>
-   <h4 class="heading settled" data-level="5.4.22" id="fixed-fields⑨"><span class="secno">5.4.22. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields⑨"></a></h4>
+   <h5 class="heading settled" data-level="5.4.11.1" id="fixed-fields⑨"><span class="secno">5.4.11.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields⑨"></a></h5>
    <table>
     <thead>
      <tr>
@@ -2991,7 +2979,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center"><a href="#responseObject">Response Object</a> | <a href="#referenceObject">Reference Object</a>
       <td>The documentation of responses other than the ones declared for specific HTTP response codes. It can be used to cover undeclared responses. <a href="#referenceObject">Reference Object</a> can be used to link to a response that is defined at the <a href="#swaggerResponses">Swagger Object’s responses</a> section.
    </table>
-   <h5 class="heading settled" data-level="5.4.22.1" id="patterned-fields③"><span class="secno">5.4.22.1. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields③"></a></h5>
+   <h5 class="heading settled" data-level="5.4.11.2" id="patterned-fields③"><span class="secno">5.4.11.2. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields③"></a></h5>
    <table>
     <thead>
      <tr>
@@ -3008,7 +2996,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center">Any
       <td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.
    </table>
-   <h5 class="heading settled" data-level="5.4.22.2" id="responses-object-example"><span class="secno">5.4.22.2. </span><span class="content">Responses Object Example</span><a class="self-link" href="#responses-object-example"></a></h5>
+   <h5 class="heading settled" data-level="5.4.11.3" id="responses-object-example"><span class="secno">5.4.11.3. </span><span class="content">Responses Object Example</span><a class="self-link" href="#responses-object-example"></a></h5>
    <p>A 200 response for successful operation and a default response for others (implying an error):</p>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"200"</span>: {
@@ -3034,9 +3022,9 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">  schema:</span>
     <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/definitions/ErrorModel'</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.23" id="response-object"><span class="secno">5.4.23. </span><span class="content"><a data-link-type="dfn" id="responseObject">Response Object</a></span><a class="self-link" href="#response-object"></a></h4>
+   <h4 class="heading settled" data-level="5.4.12" id="response-object"><span class="secno">5.4.12. </span><span class="content"><a data-link-type="dfn" id="responseObject">Response Object</a></span><a class="self-link" href="#response-object"></a></h4>
     Describes a single response from an API Operation. 
-   <h4 class="heading settled" data-level="5.4.24" id="fixed-fields①⓪"><span class="secno">5.4.24. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①⓪"></a></h4>
+   <h5 class="heading settled" data-level="5.4.12.1" id="fixed-fields①⓪"><span class="secno">5.4.12.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①⓪"></a></h5>
    <table>
     <thead>
      <tr>
@@ -3061,7 +3049,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center"><a href="#exampleObject">Example Object</a>
       <td>An example of the response message.
    </table>
-   <h5 class="heading settled" data-level="5.4.24.1" id="patterned-objects⑦"><span class="secno">5.4.24.1. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects⑦"></a></h5>
+   <h5 class="heading settled" data-level="5.4.12.2" id="patterned-objects⑦"><span class="secno">5.4.12.2. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects⑦"></a></h5>
    <table>
     <thead>
      <tr>
@@ -3074,7 +3062,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center">Any
       <td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.
    </table>
-   <h5 class="heading settled" data-level="5.4.24.2" id="response-object-examples"><span class="secno">5.4.24.2. </span><span class="content">Response Object Examples</span><a class="self-link" href="#response-object-examples"></a></h5>
+   <h5 class="heading settled" data-level="5.4.12.3" id="response-object-examples"><span class="secno">5.4.12.3. </span><span class="content">Response Object Examples</span><a class="self-link" href="#response-object-examples"></a></h5>
    <p>Response of an array of a complex type:</p>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"description"</span>: <span class="hljs-string">"A complex object array response"</span>,
@@ -3147,9 +3135,9 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </code></pre>
 <pre class="nohighlight"><code><span class="hljs-attr">description:</span> <span class="hljs-string">object</span> <span class="hljs-string">created</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.25" id="headers-object"><span class="secno">5.4.25. </span><span class="content"><a data-link-type="dfn" id="headersObject">Headers Object</a></span><a class="self-link" href="#headers-object"></a></h4>
+   <h4 class="heading settled" data-level="5.4.13" id="headers-object"><span class="secno">5.4.13. </span><span class="content"><a data-link-type="dfn" id="headersObject">Headers Object</a></span><a class="self-link" href="#headers-object"></a></h4>
     Lists the headers that can be sent as part of a response. 
-   <h4 class="heading settled" data-level="5.4.26" id="patterned-fields④"><span class="secno">5.4.26. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields④"></a></h4>
+   <h5 class="heading settled" data-level="5.4.13.1" id="patterned-fields④"><span class="secno">5.4.13.1. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields④"></a></h5>
    <table>
     <thead>
      <tr>
@@ -3162,7 +3150,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center"><a href="#headerObject">Header Object</a>
       <td>The name of the property corresponds to the name of the header. The value describes the type of the header.
    </table>
-   <h5 class="heading settled" data-level="5.4.26.1" id="headers-object-example"><span class="secno">5.4.26.1. </span><span class="content">Headers Object Example</span><a class="self-link" href="#headers-object-example"></a></h5>
+   <h5 class="heading settled" data-level="5.4.13.2" id="headers-object-example"><span class="secno">5.4.13.2. </span><span class="content">Headers Object Example</span><a class="self-link" href="#headers-object-example"></a></h5>
    <p>Rate-limit headers:</p>
 <pre class="nohighlight"><code>{
     <span class="hljs-string">"X-Rate-Limit-Limit"</span>: {
@@ -3189,9 +3177,9 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">  description:</span> <span class="hljs-string">The</span> <span class="hljs-string">number</span> <span class="hljs-string">of</span> <span class="hljs-string">seconds</span> <span class="hljs-string">left</span> <span class="hljs-string">in</span> <span class="hljs-string">the</span> <span class="hljs-string">current</span> <span class="hljs-string">period</span>
 <span class="hljs-attr">  type:</span> <span class="hljs-string">integer</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.27" id="example-object"><span class="secno">5.4.27. </span><span class="content"><a data-link-type="dfn" id="exampleObject">Example Object</a></span><a class="self-link" href="#example-object"></a></h4>
+   <h4 class="heading settled" data-level="5.4.14" id="example-object"><span class="secno">5.4.14. </span><span class="content"><a data-link-type="dfn" id="exampleObject">Example Object</a></span><a class="self-link" href="#example-object"></a></h4>
    <p>Allows sharing examples for operation responses.</p>
-   <h4 class="heading settled" data-level="5.4.28" id="patterned-fields⑤"><span class="secno">5.4.28. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields⑤"></a></h4>
+   <h5 class="heading settled" data-level="5.4.14.1" id="patterned-fields⑤"><span class="secno">5.4.14.1. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields⑤"></a></h5>
    <table>
     <thead>
      <tr>
@@ -3204,7 +3192,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center">Any
       <td>The name of the property MUST be one of the Operation <code>produces</code> values (either implicit or inherited). The value SHOULD be an example of what such a response would look like.
    </table>
-   <h5 class="heading settled" data-level="5.4.28.1" id="example-object-example"><span class="secno">5.4.28.1. </span><span class="content">Example Object Example</span><a class="self-link" href="#example-object-example"></a></h5>
+   <h5 class="heading settled" data-level="5.4.14.2" id="example-object-example"><span class="secno">5.4.14.2. </span><span class="content">Example Object Example</span><a class="self-link" href="#example-object-example"></a></h5>
    <p>Example response for application/json mimetype of a Pet data type:</p>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"application/json"</span>: {
@@ -3223,7 +3211,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">  gender:</span> <span class="hljs-string">Female</span>
 <span class="hljs-attr">  breed:</span> <span class="hljs-string">Mixed</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.29" id="header-object"><span class="secno">5.4.29. </span><span class="content"><a data-link-type="dfn" id="headerObject">Header Object</a></span><a class="self-link" href="#header-object"></a></h4>
+   <h4 class="heading settled" data-level="5.4.15" id="header-object"><span class="secno">5.4.15. </span><span class="content"><a data-link-type="dfn" id="headerObject">Header Object</a></span><a class="self-link" href="#header-object"></a></h4>
    <table>
     <thead>
      <tr>
@@ -3312,7 +3300,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center"><code>number</code>
       <td>See <a href="https://tools.ietf.org/html/draft-fge-json-schema-validation-00#section-5.1.1">https://tools.ietf.org/html/draft-fge-json-schema-validation-00#section-5.1.1</a>.
    </table>
-   <h4 class="heading settled" data-level="5.4.30" id="patterned-objects⑧"><span class="secno">5.4.30. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects⑧"></a></h4>
+   <h5 class="heading settled" data-level="5.4.15.1" id="patterned-objects⑧"><span class="secno">5.4.15.1. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects⑧"></a></h5>
    <table>
     <thead>
      <tr>
@@ -3325,7 +3313,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center">Any
       <td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.
    </table>
-   <h5 class="heading settled" data-level="5.4.30.1" id="header-object-example"><span class="secno">5.4.30.1. </span><span class="content">Header Object Example</span><a class="self-link" href="#header-object-example"></a></h5>
+   <h5 class="heading settled" data-level="5.4.15.2" id="header-object-example"><span class="secno">5.4.15.2. </span><span class="content">Header Object Example</span><a class="self-link" href="#header-object-example"></a></h5>
    <p>A simple header with of an integer type:</p>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"description"</span>: <span class="hljs-string">"The number of allowed requests in the current period"</span>,
@@ -3335,9 +3323,9 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <pre class="nohighlight"><code><span class="hljs-attr">description:</span> <span class="hljs-string">The</span> <span class="hljs-string">number</span> <span class="hljs-string">of</span> <span class="hljs-string">allowed</span> <span class="hljs-string">requests</span> <span class="hljs-string">in</span> <span class="hljs-string">the</span> <span class="hljs-string">current</span> <span class="hljs-string">period</span>
 <span class="hljs-attr">type:</span> <span class="hljs-string">integer</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.31" id="tag-object"><span class="secno">5.4.31. </span><span class="content"><a data-link-type="dfn" id="tagObject">Tag Object</a></span><a class="self-link" href="#tag-object"></a></h4>
+   <h4 class="heading settled" data-level="5.4.16" id="tag-object"><span class="secno">5.4.16. </span><span class="content"><a data-link-type="dfn" id="tagObject">Tag Object</a></span><a class="self-link" href="#tag-object"></a></h4>
    <p>Allows adding meta data to a single tag that is used by the <a href="#operationObject">Operation Object</a>. It is not mandatory to have a Tag Object per tag used there.</p>
-   <h4 class="heading settled" data-level="5.4.32" id="fixed-fields①①"><span class="secno">5.4.32. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①①"></a></h4>
+   <h5 class="heading settled" data-level="5.4.16.1" id="fixed-fields①①"><span class="secno">5.4.16.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①①"></a></h5>
    <table>
     <thead>
      <tr>
@@ -3358,7 +3346,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center"><a href="#externalDocumentationObject">External Documentation Object</a>
       <td>Additional external documentation for this tag.
    </table>
-   <h5 class="heading settled" data-level="5.4.32.1" id="patterned-fields⑥"><span class="secno">5.4.32.1. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields⑥"></a></h5>
+   <h5 class="heading settled" data-level="5.4.16.2" id="patterned-fields⑥"><span class="secno">5.4.16.2. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields⑥"></a></h5>
    <table>
     <thead>
      <tr>
@@ -3371,7 +3359,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center">Any
       <td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.
    </table>
-   <h5 class="heading settled" data-level="5.4.32.2" id="tag-object-example"><span class="secno">5.4.32.2. </span><span class="content">Tag Object Example</span><a class="self-link" href="#tag-object-example"></a></h5>
+   <h5 class="heading settled" data-level="5.4.16.3" id="tag-object-example"><span class="secno">5.4.16.3. </span><span class="content">Tag Object Example</span><a class="self-link" href="#tag-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"name"</span>: <span class="hljs-string">"pet"</span>,
   <span class="hljs-string">"description"</span>: <span class="hljs-string">"Pets operations"</span>
@@ -3380,10 +3368,10 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <pre class="nohighlight"><code><span class="hljs-attr">name:</span> <span class="hljs-string">pet</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">Pets</span> <span class="hljs-string">operations</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.33" id="reference-object"><span class="secno">5.4.33. </span><span class="content"><a data-link-type="dfn" id="referenceObject">Reference Object</a></span><a class="self-link" href="#reference-object"></a></h4>
+   <h4 class="heading settled" data-level="5.4.17" id="reference-object"><span class="secno">5.4.17. </span><span class="content"><a data-link-type="dfn" id="referenceObject">Reference Object</a></span><a class="self-link" href="#reference-object"></a></h4>
    <p>A simple object to allow referencing other definitions in the specification. It can be used to reference parameters and responses that are defined at the top level for reuse.</p>
    <p>The Reference Object is a <a href="http://tools.ietf.org/html/draft-pbryan-zyp-json-ref-02">JSON Reference</a> that uses a [JSON Pointer] as its value. For this specification, only <a href="https://tools.ietf.org/html/draft-zyp-json-schema-04#section-7.2.3">canonical dereferencing</a> is supported.</p>
-   <h4 class="heading settled" data-level="5.4.34" id="fixed-fields①②"><span class="secno">5.4.34. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①②"></a></h4>
+   <h5 class="heading settled" data-level="5.4.17.1" id="fixed-fields①②"><span class="secno">5.4.17.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①②"></a></h5>
    <table>
     <thead>
      <tr>
@@ -3396,28 +3384,28 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center"><code>string</code>
       <td><strong>Required.</strong> The reference string.
    </table>
-   <h5 class="heading settled" data-level="5.4.34.1" id="reference-object-example"><span class="secno">5.4.34.1. </span><span class="content">Reference Object Example</span><a class="self-link" href="#reference-object-example"></a></h5>
+   <h5 class="heading settled" data-level="5.4.17.2" id="reference-object-example"><span class="secno">5.4.17.2. </span><span class="content">Reference Object Example</span><a class="self-link" href="#reference-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"$ref"</span>: <span class="hljs-string">"#/definitions/Pet"</span>
 }
 </code></pre>
 <pre class="nohighlight"><code><span class="hljs-string">$ref:</span> <span class="hljs-string">'#/definitions/Pet'</span>
 </code></pre>
-   <h5 class="heading settled" data-level="5.4.34.2" id="relative-schema-file-example"><span class="secno">5.4.34.2. </span><span class="content">Relative Schema File Example</span><a class="self-link" href="#relative-schema-file-example"></a></h5>
+   <h5 class="heading settled" data-level="5.4.17.3" id="relative-schema-file-example"><span class="secno">5.4.17.3. </span><span class="content">Relative Schema File Example</span><a class="self-link" href="#relative-schema-file-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"$ref"</span>: <span class="hljs-string">"Pet.json"</span>
 }
 </code></pre>
 <pre class="nohighlight"><code><span class="hljs-string">$ref:</span> <span class="hljs-string">'Pet.yaml'</span>
 </code></pre>
-   <h5 class="heading settled" data-level="5.4.34.3" id="relative-files-with-embedded-schema-example"><span class="secno">5.4.34.3. </span><span class="content">Relative Files With Embedded Schema Example</span><a class="self-link" href="#relative-files-with-embedded-schema-example"></a></h5>
+   <h5 class="heading settled" data-level="5.4.17.4" id="relative-files-with-embedded-schema-example"><span class="secno">5.4.17.4. </span><span class="content">Relative Files With Embedded Schema Example</span><a class="self-link" href="#relative-files-with-embedded-schema-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"$ref"</span>: <span class="hljs-string">"definitions.json#/Pet"</span>
 }
 </code></pre>
 <pre class="nohighlight"><code><span class="hljs-string">$ref:</span> <span class="hljs-string">'definitions.yaml#/Pet'</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.35" id="schema-object"><span class="secno">5.4.35. </span><span class="content"><a data-link-type="dfn" id="schemaObject">Schema Object</a></span><a class="self-link" href="#schema-object"></a></h4>
+   <h4 class="heading settled" data-level="5.4.18" id="schema-object"><span class="secno">5.4.18. </span><span class="content"><a data-link-type="dfn" id="schemaObject">Schema Object</a></span><a class="self-link" href="#schema-object"></a></h4>
    <p>The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays. This object is based on the <a href="http://json-schema.org/">JSON Schema Specification Draft 4</a> and uses a predefined subset of it. On top of this subset, there are extensions provided by this specification to allow for more complete documentation.</p>
    <p>Further information about the properties can be found in <a href="https://tools.ietf.org/html/draft-zyp-json-schema-04">JSON Schema Core</a> and <a href="https://tools.ietf.org/html/draft-fge-json-schema-validation-00">JSON Schema Validation</a>. Unless stated otherwise, the property definitions follow the JSON Schema specification as referenced here.</p>
    <p>The following properties are taken directly from the JSON Schema definition and follow the same specifications:</p>
@@ -3452,7 +3440,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
     <li>additionalProperties
    </ul>
    <p>Other than the JSON Schema subset fields, the following fields may be used for further schema documentation.</p>
-   <h4 class="heading settled" data-level="5.4.36" id="fixed-fields①③"><span class="secno">5.4.36. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①③"></a></h4>
+   <h5 class="heading settled" data-level="5.4.18.1" id="fixed-fields①③"><span class="secno">5.4.18.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①③"></a></h5>
    <table>
     <thead>
      <tr>
@@ -3481,7 +3469,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center">Any
       <td>A free-form property to include an example of an instance for this schema.
    </table>
-   <h5 class="heading settled" data-level="5.4.36.1" id="patterned-objects⑨"><span class="secno">5.4.36.1. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects⑨"></a></h5>
+   <h5 class="heading settled" data-level="5.4.18.2" id="patterned-objects⑨"><span class="secno">5.4.18.2. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects⑨"></a></h5>
    <table>
     <thead>
      <tr>
@@ -3494,13 +3482,13 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center">Any
       <td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.
    </table>
-   <h6 class="heading settled" data-level="5.4.36.1.1" id="composition-and-inheritance-polymorphism"><span class="secno">5.4.36.1.1. </span><span class="content">Composition and Inheritance (Polymorphism)</span><a class="self-link" href="#composition-and-inheritance-polymorphism"></a></h6>
+   <h6 class="heading settled" data-level="5.4.18.2.1" id="composition-and-inheritance-polymorphism"><span class="secno">5.4.18.2.1. </span><span class="content">Composition and Inheritance (Polymorphism)</span><a class="self-link" href="#composition-and-inheritance-polymorphism"></a></h6>
    <p>Swagger allows combining and extending model definitions using the <code>allOf</code> property of JSON Schema, in effect offering model composition. <code>allOf</code> takes in an array of object definitions that are validated <em>independently</em> but together compose a single object.</p>
    <p>While composition offers model extensibility, it does not imply a hierarchy between the models. To support polymorphism, Swagger adds the support of the <code>discriminator</code> field. When used, the <code>discriminator</code> will be the name of the property used to decide which schema definition is used to validate the structure of the model. As such, the <code>discriminator</code> field MUST be a required field. The value of the chosen property has to be the friendly name given to the model under the <code>definitions</code> property. As such, inline schema definitions, which do not have a given id, <em>cannot</em> be used in polymorphism.</p>
-   <h6 class="heading settled" data-level="5.4.36.1.2" id="xml-modeling"><span class="secno">5.4.36.1.2. </span><span class="content">XML Modeling</span><a class="self-link" href="#xml-modeling"></a></h6>
+   <h6 class="heading settled" data-level="5.4.18.2.2" id="xml-modeling"><span class="secno">5.4.18.2.2. </span><span class="content">XML Modeling</span><a class="self-link" href="#xml-modeling"></a></h6>
    <p>The <a href="#schemaXml">xml</a> property allows extra definitions when translating the JSON definition to XML. The <a href="#xmlObject">XML Object</a> contains additional information about the available options.</p>
-   <h5 class="heading settled" data-level="5.4.36.2" id="schema-object-examples"><span class="secno">5.4.36.2. </span><span class="content">Schema Object Examples</span><a class="self-link" href="#schema-object-examples"></a></h5>
-   <h6 class="heading settled" data-level="5.4.36.2.1" id="primitive-sample"><span class="secno">5.4.36.2.1. </span><span class="content">Primitive Sample</span><a class="self-link" href="#primitive-sample"></a></h6>
+   <h5 class="heading settled" data-level="5.4.18.3" id="schema-object-examples"><span class="secno">5.4.18.3. </span><span class="content">Schema Object Examples</span><a class="self-link" href="#schema-object-examples"></a></h5>
+   <h6 class="heading settled" data-level="5.4.18.3.1" id="primitive-sample"><span class="secno">5.4.18.3.1. </span><span class="content">Primitive Sample</span><a class="self-link" href="#primitive-sample"></a></h6>
    <p>Unlike previous versions of Swagger, Schema definitions can be used to describe primitive and arrays as well.</p>
 <pre class="nohighlight"><code>{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>,
@@ -3510,7 +3498,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <pre class="nohighlight"><code><span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 <span class="hljs-attr">format:</span> <span class="hljs-string">email</span>
 </code></pre>
-   <h6 class="heading settled" data-level="5.4.36.2.2" id="simple-model"><span class="secno">5.4.36.2.2. </span><span class="content">Simple Model</span><a class="self-link" href="#simple-model"></a></h6>
+   <h6 class="heading settled" data-level="5.4.18.3.2" id="simple-model"><span class="secno">5.4.18.3.2. </span><span class="content">Simple Model</span><a class="self-link" href="#simple-model"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"object"</span>,
   <span class="hljs-string">"required"</span>: [
@@ -3544,7 +3532,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">    format:</span> <span class="hljs-string">int32</span>
 <span class="hljs-attr">    minimum:</span> <span class="hljs-number">0</span>
 </code></pre>
-   <h6 class="heading settled" data-level="5.4.36.2.3" id="model-with-map-dictionary-properties"><span class="secno">5.4.36.2.3. </span><span class="content">Model with Map/Dictionary Properties</span><a class="self-link" href="#model-with-map-dictionary-properties"></a></h6>
+   <h6 class="heading settled" data-level="5.4.18.3.3" id="model-with-map-dictionary-properties"><span class="secno">5.4.18.3.3. </span><span class="content">Model with Map/Dictionary Properties</span><a class="self-link" href="#model-with-map-dictionary-properties"></a></h6>
    <p>For a simple string to string mapping:</p>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"object"</span>,
@@ -3569,7 +3557,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">additionalProperties:</span>
   <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/definitions/ComplexModel'</span>
 </code></pre>
-   <h6 class="heading settled" data-level="5.4.36.2.4" id="model-with-example"><span class="secno">5.4.36.2.4. </span><span class="content">Model with Example</span><a class="self-link" href="#model-with-example"></a></h6>
+   <h6 class="heading settled" data-level="5.4.18.3.4" id="model-with-example"><span class="secno">5.4.18.3.4. </span><span class="content">Model with Example</span><a class="self-link" href="#model-with-example"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"object"</span>,
   <span class="hljs-string">"properties"</span>: {
@@ -3603,7 +3591,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">  name:</span> <span class="hljs-string">Puma</span>
 <span class="hljs-attr">  id:</span> <span class="hljs-number">1</span>
 </code></pre>
-   <h6 class="heading settled" data-level="5.4.36.2.5" id="models-with-composition"><span class="secno">5.4.36.2.5. </span><span class="content">Models with Composition</span><a class="self-link" href="#models-with-composition"></a></h6>
+   <h6 class="heading settled" data-level="5.4.18.3.5" id="models-with-composition"><span class="secno">5.4.18.3.5. </span><span class="content">Models with Composition</span><a class="self-link" href="#models-with-composition"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"definitions"</span>: {
     <span class="hljs-string">"ErrorModel"</span>: {
@@ -3667,7 +3655,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">        rootCause:</span>
 <span class="hljs-attr">          type:</span> <span class="hljs-string">string</span>
 </code></pre>
-   <h6 class="heading settled" data-level="5.4.36.2.6" id="models-with-polymorphism-support"><span class="secno">5.4.36.2.6. </span><span class="content">Models with Polymorphism Support</span><a class="self-link" href="#models-with-polymorphism-support"></a></h6>
+   <h6 class="heading settled" data-level="5.4.18.3.6" id="models-with-polymorphism-support"><span class="secno">5.4.18.3.6. </span><span class="content">Models with Polymorphism Support</span><a class="self-link" href="#models-with-polymorphism-support"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"definitions"</span>: {
     <span class="hljs-string">"Pet"</span>: {
@@ -3783,10 +3771,10 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">      required:</span>
 <span class="hljs-bullet">      -</span> <span class="hljs-string">packSize</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.37" id="xml-object"><span class="secno">5.4.37. </span><span class="content"><a data-link-type="dfn" id="xmlObject">XML Object</a></span><a class="self-link" href="#xml-object"></a></h4>
+   <h5 class="heading settled" data-level="5.4.18.4" id="xml-object"><span class="secno">5.4.18.4. </span><span class="content"><a data-link-type="dfn" id="xmlObject">XML Object</a></span><a class="self-link" href="#xml-object"></a></h5>
    <p>A metadata object that allows for more fine-tuned XML model definitions.</p>
    <p>When using arrays, XML element names are <em>not</em> inferred (for singular/plural forms) and the <code>name</code> property should be used to add that information. See examples for expected behavior.</p>
-   <h4 class="heading settled" data-level="5.4.38" id="fixed-fields①④"><span class="secno">5.4.38. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①④"></a></h4>
+   <h5 class="heading settled" data-level="5.4.18.5" id="fixed-fields①④"><span class="secno">5.4.18.5. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①④"></a></h5>
    <table>
     <thead>
      <tr>
@@ -3815,7 +3803,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center"><code>boolean</code>
       <td>MAY be used only for an array definition. Signifies whether the array is wrapped (for example, <code>&lt;books>&lt;book/>&lt;book/>&lt;/books></code>) or unwrapped (<code>&lt;book/>&lt;book/></code>). Default value is <code>false</code>. The definition takes effect only when defined alongside <code>type</code> being <code>array</code> (outside the <code>items</code>).
    </table>
-   <h5 class="heading settled" data-level="5.4.38.1" id="patterned-objects①⓪"><span class="secno">5.4.38.1. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects①⓪"></a></h5>
+   <h5 class="heading settled" data-level="5.4.18.6" id="patterned-objects①⓪"><span class="secno">5.4.18.6. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects①⓪"></a></h5>
    <table>
     <thead>
      <tr>
@@ -3828,9 +3816,9 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center">Any
       <td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.
    </table>
-   <h5 class="heading settled" data-level="5.4.38.2" id="xml-object-examples"><span class="secno">5.4.38.2. </span><span class="content">XML Object Examples</span><a class="self-link" href="#xml-object-examples"></a></h5>
+   <h5 class="heading settled" data-level="5.4.18.7" id="xml-object-examples"><span class="secno">5.4.18.7. </span><span class="content">XML Object Examples</span><a class="self-link" href="#xml-object-examples"></a></h5>
    <p>The examples of the XML object definitions are included inside a property definition of a <a href="#schemaObject">Schema Object</a> with a sample of the XML representation of it.</p>
-   <h6 class="heading settled" data-level="5.4.38.2.1" id="no-xml-element"><span class="secno">5.4.38.2.1. </span><span class="content">No XML Element</span><a class="self-link" href="#no-xml-element"></a></h6>
+   <h6 class="heading settled" data-level="5.4.18.7.1" id="no-xml-element"><span class="secno">5.4.18.7.1. </span><span class="content">No XML Element</span><a class="self-link" href="#no-xml-element"></a></h6>
    <p>Basic string property:</p>
 <pre class="nohighlight"><code>{
     <span class="hljs-string">"animals"</span>: {
@@ -3862,7 +3850,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-tag">&lt;<span class="hljs-name">animals</span>></span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>></span>
 <span class="hljs-tag">&lt;<span class="hljs-name">animals</span>></span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>></span>
 </code></pre>
-   <h6 class="heading settled" data-level="5.4.38.2.2" id="xml-name-replacement"><span class="secno">5.4.38.2.2. </span><span class="content">XML Name Replacement</span><a class="self-link" href="#xml-name-replacement"></a></h6>
+   <h6 class="heading settled" data-level="5.4.18.7.2" id="xml-name-replacement"><span class="secno">5.4.18.7.2. </span><span class="content">XML Name Replacement</span><a class="self-link" href="#xml-name-replacement"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"animals"</span>: {
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>,
@@ -3879,7 +3867,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </code></pre>
 <pre class="nohighlight"><code><span class="hljs-tag">&lt;<span class="hljs-name">animal</span>></span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>></span>
 </code></pre>
-   <h6 class="heading settled" data-level="5.4.38.2.3" id="xml-attribute-prefix-and-namespace"><span class="secno">5.4.38.2.3. </span><span class="content">XML Attribute, Prefix and Namespace</span><a class="self-link" href="#xml-attribute-prefix-and-namespace"></a></h6>
+   <h6 class="heading settled" data-level="5.4.18.7.3" id="xml-attribute-prefix-and-namespace"><span class="secno">5.4.18.7.3. </span><span class="content">XML Attribute, Prefix and Namespace</span><a class="self-link" href="#xml-attribute-prefix-and-namespace"></a></h6>
    <p>In this example, a full model definition is shown.</p>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"Person"</span>: {
@@ -3921,7 +3909,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
     <span class="hljs-tag">&lt;<span class="hljs-name">sample:name</span> <span class="hljs-attr">xmlns:sample</span>=<span class="hljs-string">"http://swagger.io/schema/sample"</span>></span>example<span class="hljs-tag">&lt;/<span class="hljs-name">sample:name</span>></span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">Person</span>></span>
 </code></pre>
-   <h6 class="heading settled" data-level="5.4.38.2.4" id="xml-arrays"><span class="secno">5.4.38.2.4. </span><span class="content">XML Arrays</span><a class="self-link" href="#xml-arrays"></a></h6>
+   <h6 class="heading settled" data-level="5.4.18.7.4" id="xml-arrays"><span class="secno">5.4.18.7.4. </span><span class="content">XML Arrays</span><a class="self-link" href="#xml-arrays"></a></h6>
    <p>Changing the element names:</p>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"animals"</span>: {
@@ -4087,9 +4075,9 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
   <span class="hljs-tag">&lt;<span class="hljs-name">aliens</span>></span>value<span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>></span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>></span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.39" id="definitions-object"><span class="secno">5.4.39. </span><span class="content"><a data-link-type="dfn" id="definitionsObject">Definitions Object</a></span><a class="self-link" href="#definitions-object"></a></h4>
+   <h5 class="heading settled" data-level="5.4.18.8" id="definitions-object"><span class="secno">5.4.18.8. </span><span class="content"><a data-link-type="dfn" id="definitionsObject">Definitions Object</a></span><a class="self-link" href="#definitions-object"></a></h5>
    <p>An object to hold data types that can be consumed and produced by operations. These data types can be primitives, arrays or models.</p>
-   <h4 class="heading settled" data-level="5.4.40" id="patterned-fields⑦"><span class="secno">5.4.40. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields⑦"></a></h4>
+   <h5 class="heading settled" data-level="5.4.18.9" id="patterned-fields⑦"><span class="secno">5.4.18.9. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields⑦"></a></h5>
    <table>
     <thead>
      <tr>
@@ -4102,7 +4090,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center"><a href="#schemaObject">Schema Object</a>
       <td>A single definition, mapping a “name” to the schema it defines.
    </table>
-   <h5 class="heading settled" data-level="5.4.40.1" id="definitions-object-example"><span class="secno">5.4.40.1. </span><span class="content">Definitions Object Example</span><a class="self-link" href="#definitions-object-example"></a></h5>
+   <h5 class="heading settled" data-level="5.4.18.10" id="definitions-object-example"><span class="secno">5.4.18.10. </span><span class="content">Definitions Object Example</span><a class="self-link" href="#definitions-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"Category"</span>: {
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"object"</span>,
@@ -4147,10 +4135,10 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">    name:</span>
 <span class="hljs-attr">      type:</span> <span class="hljs-string">string</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.41" id="parameters-definitions-object"><span class="secno">5.4.41. </span><span class="content"><a data-link-type="dfn" id="parametersDefinitionsObject">Parameters Definitions Object</a></span><a class="self-link" href="#parameters-definitions-object"></a></h4>
+   <h4 class="heading settled" data-level="5.4.19" id="parameters-definitions-object"><span class="secno">5.4.19. </span><span class="content"><a data-link-type="dfn" id="parametersDefinitionsObject">Parameters Definitions Object</a></span><a class="self-link" href="#parameters-definitions-object"></a></h4>
    <p>An object to hold parameters to be reused across operations. Parameter definitions can be referenced to the ones defined here.</p>
    <p>This does <em>not</em> define global operation parameters.</p>
-   <h4 class="heading settled" data-level="5.4.42" id="patterned-fields⑧"><span class="secno">5.4.42. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields⑧"></a></h4>
+   <h5 class="heading settled" data-level="5.4.19.1" id="patterned-fields⑧"><span class="secno">5.4.19.1. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields⑧"></a></h5>
    <table>
     <thead>
      <tr>
@@ -4163,7 +4151,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center"><a href="#parameterObject">Parameter Object</a>
       <td>A single parameter definition, mapping a “name” to the parameter it defines.
    </table>
-   <h5 class="heading settled" data-level="5.4.42.1" id="parameters-definition-object-example"><span class="secno">5.4.42.1. </span><span class="content">Parameters Definition Object Example</span><a class="self-link" href="#parameters-definition-object-example"></a></h5>
+   <h5 class="heading settled" data-level="5.4.19.2" id="parameters-definition-object-example"><span class="secno">5.4.19.2. </span><span class="content">Parameters Definition Object Example</span><a class="self-link" href="#parameters-definition-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"skipParam"</span>: {
     <span class="hljs-string">"name"</span>: <span class="hljs-string">"skip"</span>,
@@ -4198,10 +4186,10 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">  type:</span> <span class="hljs-string">integer</span>
 <span class="hljs-attr">  format:</span> <span class="hljs-string">int32</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.43" id="responses-definitions-object"><span class="secno">5.4.43. </span><span class="content"><a data-link-type="dfn" id="responsesDefinitionsObject">Responses Definitions Object</a></span><a class="self-link" href="#responses-definitions-object"></a></h4>
+   <h4 class="heading settled" data-level="5.4.20" id="responses-definitions-object"><span class="secno">5.4.20. </span><span class="content"><a data-link-type="dfn" id="responsesDefinitionsObject">Responses Definitions Object</a></span><a class="self-link" href="#responses-definitions-object"></a></h4>
    <p>An object to hold responses to be reused across operations. Response definitions can be referenced to the ones defined here.</p>
    <p>This does <em>not</em> define global operation responses.</p>
-   <h4 class="heading settled" data-level="5.4.44" id="patterned-fields⑨"><span class="secno">5.4.44. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields⑨"></a></h4>
+   <h5 class="heading settled" data-level="5.4.20.1" id="patterned-fields⑨"><span class="secno">5.4.20.1. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields⑨"></a></h5>
    <table>
     <thead>
      <tr>
@@ -4214,7 +4202,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center"><a href="#responseObject">Response Object</a>
       <td>A single response definition, mapping a “name” to the response it defines.
    </table>
-   <h5 class="heading settled" data-level="5.4.44.1" id="responses-definitions-object-example"><span class="secno">5.4.44.1. </span><span class="content">Responses Definitions Object Example</span><a class="self-link" href="#responses-definitions-object-example"></a></h5>
+   <h5 class="heading settled" data-level="5.4.20.2" id="responses-definitions-object-example"><span class="secno">5.4.20.2. </span><span class="content">Responses Definitions Object Example</span><a class="self-link" href="#responses-definitions-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"NotFound"</span>: {
     <span class="hljs-string">"description"</span>: <span class="hljs-string">"Entity not found."</span>
@@ -4239,9 +4227,9 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">  schema:</span>
     <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/definitions/GeneralError'</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.45" id="security-definitions-object"><span class="secno">5.4.45. </span><span class="content"><a data-link-type="dfn" id="securityDefinitionsObject">Security Definitions Object</a></span><a class="self-link" href="#security-definitions-object"></a></h4>
+   <h4 class="heading settled" data-level="5.4.21" id="security-definitions-object"><span class="secno">5.4.21. </span><span class="content"><a data-link-type="dfn" id="securityDefinitionsObject">Security Definitions Object</a></span><a class="self-link" href="#security-definitions-object"></a></h4>
    <p>A declaration of the security schemes available to be used in the specification. This does not enforce the security schemes on the operations and only serves to provide the relevant details for each scheme.</p>
-   <h4 class="heading settled" data-level="5.4.46" id="patterned-fields①⓪"><span class="secno">5.4.46. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields①⓪"></a></h4>
+   <h5 class="heading settled" data-level="5.4.21.1" id="patterned-fields①⓪"><span class="secno">5.4.21.1. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields①⓪"></a></h5>
    <table>
     <thead>
      <tr>
@@ -4254,7 +4242,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center"><a href="#securitySchemeObject">Security Scheme Object</a>
       <td>A single security scheme definition, mapping a “name” to the scheme it defines.
    </table>
-   <h5 class="heading settled" data-level="5.4.46.1" id="security-definitions-object-example"><span class="secno">5.4.46.1. </span><span class="content">Security Definitions Object Example</span><a class="self-link" href="#security-definitions-object-example"></a></h5>
+   <h5 class="heading settled" data-level="5.4.21.2" id="security-definitions-object-example"><span class="secno">5.4.21.2. </span><span class="content">Security Definitions Object Example</span><a class="self-link" href="#security-definitions-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"api_key"</span>: {
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"apiKey"</span>,
@@ -4284,9 +4272,9 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">    write:</span><span class="hljs-attr">pets:</span> <span class="hljs-string">modify</span> <span class="hljs-string">pets</span> <span class="hljs-string">in</span> <span class="hljs-string">your</span> <span class="hljs-string">account</span>
 <span class="hljs-attr">    read:</span><span class="hljs-attr">pets:</span> <span class="hljs-string">read</span> <span class="hljs-string">your</span> <span class="hljs-string">pets</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.47" id="security-scheme-object"><span class="secno">5.4.47. </span><span class="content"><a data-link-type="dfn" id="securitySchemeObject">Security Scheme Object</a></span><a class="self-link" href="#security-scheme-object"></a></h4>
+   <h4 class="heading settled" data-level="5.4.22" id="security-scheme-object"><span class="secno">5.4.22. </span><span class="content"><a data-link-type="dfn" id="securitySchemeObject">Security Scheme Object</a></span><a class="self-link" href="#security-scheme-object"></a></h4>
    <p>Allows the definition of a security scheme that can be used by the operations. Supported schemes are basic authentication, an API key (either as a header or as a query parameter) and OAuth2’s common flows (implicit, password, application and access code).</p>
-   <h4 class="heading settled" data-level="5.4.48" id="fixed-fields①⑤"><span class="secno">5.4.48. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①⑤"></a></h4>
+   <h5 class="heading settled" data-level="5.4.22.1" id="fixed-fields①⑤"><span class="secno">5.4.22.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①⑤"></a></h5>
    <table>
     <thead>
      <tr>
@@ -4336,7 +4324,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td><code>oauth2</code>
       <td><strong>Required.</strong> The available scopes for the OAuth2 security scheme.
    </table>
-   <h5 class="heading settled" data-level="5.4.48.1" id="patterned-fields①①"><span class="secno">5.4.48.1. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields①①"></a></h5>
+   <h5 class="heading settled" data-level="5.4.22.2" id="patterned-fields①①"><span class="secno">5.4.22.2. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields①①"></a></h5>
    <table>
     <thead>
      <tr>
@@ -4349,15 +4337,15 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center">Any
       <td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.
    </table>
-   <h5 class="heading settled" data-level="5.4.48.2" id="security-scheme-object-example"><span class="secno">5.4.48.2. </span><span class="content">Security Scheme Object Example</span><a class="self-link" href="#security-scheme-object-example"></a></h5>
-   <h6 class="heading settled" data-level="5.4.48.2.1" id="basic-authentication-sample"><span class="secno">5.4.48.2.1. </span><span class="content">Basic Authentication Sample</span><a class="self-link" href="#basic-authentication-sample"></a></h6>
+   <h5 class="heading settled" data-level="5.4.22.3" id="security-scheme-object-example"><span class="secno">5.4.22.3. </span><span class="content">Security Scheme Object Example</span><a class="self-link" href="#security-scheme-object-example"></a></h5>
+   <h6 class="heading settled" data-level="5.4.22.3.1" id="basic-authentication-sample"><span class="secno">5.4.22.3.1. </span><span class="content">Basic Authentication Sample</span><a class="self-link" href="#basic-authentication-sample"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"basic"</span>
 }
 </code></pre>
 <pre class="nohighlight"><code><span class="hljs-attr">type:</span> <span class="hljs-string">basic</span>
 </code></pre>
-   <h6 class="heading settled" data-level="5.4.48.2.2" id="api-key-sample"><span class="secno">5.4.48.2.2. </span><span class="content">API Key Sample</span><a class="self-link" href="#api-key-sample"></a></h6>
+   <h6 class="heading settled" data-level="5.4.22.3.2" id="api-key-sample"><span class="secno">5.4.22.3.2. </span><span class="content">API Key Sample</span><a class="self-link" href="#api-key-sample"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"apiKey"</span>,
   <span class="hljs-string">"name"</span>: <span class="hljs-string">"api_key"</span>,
@@ -4368,7 +4356,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">name:</span> <span class="hljs-string">api_key</span>
 <span class="hljs-attr">in:</span> <span class="hljs-string">header</span>
 </code></pre>
-   <h6 class="heading settled" data-level="5.4.48.2.3" id="implicit-oauth2-sample"><span class="secno">5.4.48.2.3. </span><span class="content">Implicit OAuth2 Sample</span><a class="self-link" href="#implicit-oauth2-sample"></a></h6>
+   <h6 class="heading settled" data-level="5.4.22.3.3" id="implicit-oauth2-sample"><span class="secno">5.4.22.3.3. </span><span class="content">Implicit OAuth2 Sample</span><a class="self-link" href="#implicit-oauth2-sample"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"oauth2"</span>,
   <span class="hljs-string">"authorizationUrl"</span>: <span class="hljs-string">"http://swagger.io/api/oauth/dialog"</span>,
@@ -4386,9 +4374,9 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">  write:</span><span class="hljs-attr">pets:</span> <span class="hljs-string">modify</span> <span class="hljs-string">pets</span> <span class="hljs-string">in</span> <span class="hljs-string">your</span> <span class="hljs-string">account</span>
 <span class="hljs-attr">  read:</span><span class="hljs-attr">pets:</span> <span class="hljs-string">read</span> <span class="hljs-string">your</span> <span class="hljs-string">pets</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.49" id="scopes-object"><span class="secno">5.4.49. </span><span class="content"><a data-link-type="dfn" id="scopesObject">Scopes Object</a></span><a class="self-link" href="#scopes-object"></a></h4>
+   <h5 class="heading settled" data-level="5.4.22.4" id="scopes-object"><span class="secno">5.4.22.4. </span><span class="content"><a data-link-type="dfn" id="scopesObject">Scopes Object</a></span><a class="self-link" href="#scopes-object"></a></h5>
    <p>Lists the available scopes for an OAuth2 security scheme.</p>
-   <h4 class="heading settled" data-level="5.4.50" id="patterned-fields①②"><span class="secno">5.4.50. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields①②"></a></h4>
+   <h5 class="heading settled" data-level="5.4.22.5" id="patterned-fields①②"><span class="secno">5.4.22.5. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields①②"></a></h5>
    <table>
     <thead>
      <tr>
@@ -4401,7 +4389,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center"><code>string</code>
       <td>Maps between a name of a scope to a short description of it (as the value of the property).
    </table>
-   <h5 class="heading settled" data-level="5.4.50.1" id="patterned-objects①①"><span class="secno">5.4.50.1. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects①①"></a></h5>
+   <h5 class="heading settled" data-level="5.4.22.6" id="patterned-objects①①"><span class="secno">5.4.22.6. </span><span class="content">Patterned Objects</span><a class="self-link" href="#patterned-objects①①"></a></h5>
    <table>
     <thead>
      <tr>
@@ -4414,7 +4402,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center">Any
       <td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.
    </table>
-   <h5 class="heading settled" data-level="5.4.50.2" id="scopes-object-example"><span class="secno">5.4.50.2. </span><span class="content">Scopes Object Example</span><a class="self-link" href="#scopes-object-example"></a></h5>
+   <h5 class="heading settled" data-level="5.4.22.7" id="scopes-object-example"><span class="secno">5.4.22.7. </span><span class="content">Scopes Object Example</span><a class="self-link" href="#scopes-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"write:pets"</span>: <span class="hljs-string">"modify pets in your account"</span>,
   <span class="hljs-string">"read:pets"</span>: <span class="hljs-string">"read your pets"</span>
@@ -4423,10 +4411,10 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <pre class="nohighlight"><code><span class="hljs-attr">write:</span><span class="hljs-attr">pets:</span> <span class="hljs-string">modify</span> <span class="hljs-string">pets</span> <span class="hljs-string">in</span> <span class="hljs-string">your</span> <span class="hljs-string">account</span>
 <span class="hljs-attr">read:</span><span class="hljs-attr">pets:</span> <span class="hljs-string">read</span> <span class="hljs-string">your</span> <span class="hljs-string">pets</span>
 </code></pre>
-   <h4 class="heading settled" data-level="5.4.51" id="security-requirement-object"><span class="secno">5.4.51. </span><span class="content"><a data-link-type="dfn" id="securityRequirementObject">Security Requirement Object</a></span><a class="self-link" href="#security-requirement-object"></a></h4>
+   <h4 class="heading settled" data-level="5.4.23" id="security-requirement-object"><span class="secno">5.4.23. </span><span class="content"><a data-link-type="dfn" id="securityRequirementObject">Security Requirement Object</a></span><a class="self-link" href="#security-requirement-object"></a></h4>
    <p>Lists the required security schemes to execute this operation. The object can have multiple security schemes declared in it which are all required (that is, there is a logical AND between the schemes).</p>
    <p>The name used for each property MUST correspond to a security scheme declared in the <a href="#securityDefinitionsObject">Security Definitions</a>.</p>
-   <h4 class="heading settled" data-level="5.4.52" id="patterned-fields①③"><span class="secno">5.4.52. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields①③"></a></h4>
+   <h5 class="heading settled" data-level="5.4.23.1" id="patterned-fields①③"><span class="secno">5.4.23.1. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields①③"></a></h5>
    <table>
     <thead>
      <tr>
@@ -4439,15 +4427,15 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td style="text-align:center">[<code>string</code>]
       <td>Each name must correspond to a security scheme which is declared in the <a href="#securityDefinitions">Security Definitions</a>. If the security scheme is of type <code>"oauth2"</code>, then the value is a list of scope names required for the execution. For other security scheme types, the array MUST be empty.
    </table>
-   <h5 class="heading settled" data-level="5.4.52.1" id="security-requirement-object-examples"><span class="secno">5.4.52.1. </span><span class="content">Security Requirement Object Examples</span><a class="self-link" href="#security-requirement-object-examples"></a></h5>
-   <h6 class="heading settled" data-level="5.4.52.1.1" id="non-oauth2-security-requirement"><span class="secno">5.4.52.1.1. </span><span class="content">Non-OAuth2 Security Requirement</span><a class="self-link" href="#non-oauth2-security-requirement"></a></h6>
+   <h5 class="heading settled" data-level="5.4.23.2" id="security-requirement-object-examples"><span class="secno">5.4.23.2. </span><span class="content">Security Requirement Object Examples</span><a class="self-link" href="#security-requirement-object-examples"></a></h5>
+   <h6 class="heading settled" data-level="5.4.23.2.1" id="non-oauth2-security-requirement"><span class="secno">5.4.23.2.1. </span><span class="content">Non-OAuth2 Security Requirement</span><a class="self-link" href="#non-oauth2-security-requirement"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"api_key"</span>: []
 }
 </code></pre>
 <pre class="nohighlight"><code><span class="hljs-attr">api_key:</span> <span class="hljs-string">[]</span>
 </code></pre>
-   <h6 class="heading settled" data-level="5.4.52.1.2" id="oauth2-security-requirement"><span class="secno">5.4.52.1.2. </span><span class="content">OAuth2 Security Requirement</span><a class="self-link" href="#oauth2-security-requirement"></a></h6>
+   <h6 class="heading settled" data-level="5.4.23.2.2" id="oauth2-security-requirement"><span class="secno">5.4.23.2.2. </span><span class="content">OAuth2 Security Requirement</span><a class="self-link" href="#oauth2-security-requirement"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"petstore_auth"</span>: [
     <span class="hljs-string">"write:pets"</span>,
@@ -4459,11 +4447,11 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">- write:</span><span class="hljs-string">pets</span>
 <span class="hljs-attr">- read:</span><span class="hljs-string">pets</span>
 </code></pre>
-   <h3 class="heading settled" data-level="5.5" id="specification-extensions"><span class="secno">5.5. </span><span class="content"><a data-link-type="dfn" id="vendorExtensions">Specification Extensions</a></span><a class="self-link" href="#specification-extensions"></a></h3>
+   <h5 class="heading settled" data-level="5.4.23.3" id="specification-extensions"><span class="secno">5.4.23.3. </span><span class="content"><a data-link-type="dfn" id="vendorExtensions">Specification Extensions</a></span><a class="self-link" href="#specification-extensions"></a></h5>
    <p>While the Swagger Specification tries to accommodate most use cases, additional data can be added to extend the specification at certain points.</p>
    <p>The extensions properties are always prefixed by <code>"x-"</code> and can have any valid JSON format value.</p>
    <p>The extensions may or may not be supported by the available tooling, but those may be extended as well to add requested support (if tools are internal or open-sourced).</p>
-   <h3 class="heading settled" data-level="5.6" id="security-filtering"><span class="secno">5.6. </span><span class="content"><a data-link-type="dfn" id="securityFiltering">Security Filtering</a></span><a class="self-link" href="#security-filtering"></a></h3>
+   <h5 class="heading settled" data-level="5.4.23.4" id="security-filtering"><span class="secno">5.4.23.4. </span><span class="content"><a data-link-type="dfn" id="securityFiltering">Security Filtering</a></span><a class="self-link" href="#security-filtering"></a></h5>
    <p>Some objects in the Swagger specification may be declared and remain empty, or completely be removed, even though they are inherently the core of the API documentation.</p>
    <p>The reasoning behind it is to allow an additional layer of access control over the documentation itself. While not part of the specification itself, certain libraries may choose to allow access to parts of the documentation based on some form of authentication/authorization.</p>
    <p>Two examples for this:</p>

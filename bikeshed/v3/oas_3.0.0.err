@@ -1,3 +1,0 @@
-Error running preprocessor, returned code: 1.
-\033[1;31mFATAL ERROR:\033[0m Found unmatched text macro [R]. Correct the macro, or escape it with a leading backslash.
-\033[7;31m ✘ \033[0m Did not generate, due to fatal errors

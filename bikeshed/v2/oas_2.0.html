@@ -1179,7 +1179,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
+  <meta content="Bikeshed version 549748cf00f6303618e14a7868fb2ecd5725161f" name="generator">
   <link href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md" rel="canonical">
 <style>
 tr:nth-child(even) {background: #CCC}
@@ -2262,7 +2262,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td>A definition of a PATCH operation on this path.
      <tr>
       <td><a data-link-type="dfn" id="pathItemParameters"> </a>parameters
-      <td style="text-align:center">[<a href="#parameterObject">Parameter Object</a> | <a href="#referenceObject">Reference Object</a>]
+      <td style="text-align:center">[<a href="#parameterObject">Parameter Object</a> ¦ <a href="#referenceObject">Reference Object</a>]
       <td>A list of parameters that are applicable for all the operations described under this path. These parameters can be overridden at the operation level, but cannot be removed there. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a <a href="#parameterName">name</a> and <a href="#parameterIn">location</a>. The list can use the <a href="#referenceObject">Reference Object</a> to link to parameters that are defined at the <a href="#swaggerParameters">Swagger Object’s parameters</a>. There can be one “body” parameter at most.
    </table>
    <h5 class="heading settled" data-level="5.4.7.2" id="patterned-fields①"><span class="secno">5.4.7.2. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields①"></a></h5>
@@ -2389,7 +2389,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <td>A list of MIME types the operation can produce. This overrides the <a href="#swaggerProduces"><code>produces</code></a> definition at the Swagger Object. An empty value MAY be used to clear the global definition. Value MUST be as described under <a href="#mimeTypes">Mime Types</a>.
      <tr>
       <td><a data-link-type="dfn" id="operationParameters"> </a>parameters
-      <td style="text-align:center">[<a href="#parameterObject">Parameter Object</a> | <a href="#referenceObject">Reference Object</a>]
+      <td style="text-align:center">[<a href="#parameterObject">Parameter Object</a> ¦ <a href="#referenceObject">Reference Object</a>]
       <td>A list of parameters that are applicable for this operation. If a parameter is already defined at the <a href="#pathItemParameters">Path Item</a>, the new definition will override it, but can never remove it. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a <a href="#parameterName">name</a> and <a href="#parameterIn">location</a>. The list can use the <a href="#referenceObject">Reference Object</a> to link to parameters that are defined at the <a href="#swaggerParameters">Swagger Object’s parameters</a>. There can be one “body” parameter at most.
      <tr>
       <td><a data-link-type="dfn" id="operationResponses"> </a>responses
@@ -2976,7 +2976,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
     <tbody>
      <tr>
       <td><a data-link-type="dfn" id="responsesDefault"> </a>default
-      <td style="text-align:center"><a href="#responseObject">Response Object</a> | <a href="#referenceObject">Reference Object</a>
+      <td style="text-align:center"><a href="#responseObject">Response Object</a> ¦ <a href="#referenceObject">Reference Object</a>
       <td>The documentation of responses other than the ones declared for specific HTTP response codes. It can be used to cover undeclared responses. <a href="#referenceObject">Reference Object</a> can be used to link to a response that is defined at the <a href="#swaggerResponses">Swagger Object’s responses</a> section.
    </table>
    <h5 class="heading settled" data-level="5.4.11.2" id="patterned-fields③"><span class="secno">5.4.11.2. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields③"></a></h5>
@@ -2989,7 +2989,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
     <tbody>
      <tr>
       <td><a data-link-type="dfn" id="responsesCode"> </a>{<a href="#httpCodes">HTTP Status Code</a>}
-      <td style="text-align:center"><a href="#responseObject">Response Object</a> | <a href="#referenceObject">Reference Object</a>
+      <td style="text-align:center"><a href="#responseObject">Response Object</a> ¦ <a href="#referenceObject">Reference Object</a>
       <td>Any <a href="#httpCodes">HTTP status code</a> can be used as the property name (one property per HTTP status code). Describes the expected response for that HTTP status code. <a href="#referenceObject">Reference Object</a> can be used to link to a response that is defined at the <a href="#swaggerResponses">Swagger Object’s responses</a> section.
      <tr>
       <td><a data-link-type="dfn" id="responsesExtensions"> </a>^x-

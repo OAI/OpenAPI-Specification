@@ -584,7 +584,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 <tr>
 <td><a id="pathItemParameters"> </a>parameters</td>
-<td style="text-align:center">[<a href="#parameterObject">Parameter Object</a> | <a href="#referenceObject">Reference Object</a>]</td>
+<td style="text-align:center">[<a href="#parameterObject">Parameter Object</a> ¦ <a href="#referenceObject">Reference Object</a>]</td>
 <td>A list of parameters that are applicable for all the operations described under this path. These parameters can be overridden at the operation level, but cannot be removed there. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a <a href="#parameterName">name</a> and <a href="#parameterIn">location</a>. The list can use the <a href="#referenceObject">Reference Object</a> to link to parameters that are defined at the <a href="#swaggerParameters">Swagger Object’s parameters</a>. There can be one “body” parameter at most.</td>
 </tr>
 </tbody>
@@ -728,7 +728,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 <tr>
 <td><a id="operationParameters"> </a>parameters</td>
-<td style="text-align:center">[<a href="#parameterObject">Parameter Object</a> | <a href="#referenceObject">Reference Object</a>]</td>
+<td style="text-align:center">[<a href="#parameterObject">Parameter Object</a> ¦ <a href="#referenceObject">Reference Object</a>]</td>
 <td>A list of parameters that are applicable for this operation. If a parameter is already defined at the <a href="#pathItemParameters">Path Item</a>, the new definition will override it, but can never remove it. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a <a href="#parameterName">name</a> and <a href="#parameterIn">location</a>. The list can use the <a href="#referenceObject">Reference Object</a> to link to parameters that are defined at the <a href="#swaggerParameters">Swagger Object’s parameters</a>. There can be one “body” parameter at most.</td>
 </tr>
 <tr>
@@ -1394,7 +1394,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tbody>
 <tr>
 <td><a id="responsesDefault"> </a>default</td>
-<td style="text-align:center"><a href="#responseObject">Response Object</a> | <a href="#referenceObject">Reference Object</a></td>
+<td style="text-align:center"><a href="#responseObject">Response Object</a> ¦ <a href="#referenceObject">Reference Object</a></td>
 <td>The documentation of responses other than the ones declared for specific HTTP response codes. It can be used to cover undeclared responses. <a href="#referenceObject">Reference Object</a> can be used to link to a response that is defined at the <a href="#swaggerResponses">Swagger Object’s responses</a> section.</td>
 </tr>
 </tbody>
@@ -1411,7 +1411,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tbody>
 <tr>
 <td><a id="responsesCode"> </a>{<a href="#httpCodes">HTTP Status Code</a>}</td>
-<td style="text-align:center"><a href="#responseObject">Response Object</a> | <a href="#referenceObject">Reference Object</a></td>
+<td style="text-align:center"><a href="#responseObject">Response Object</a> ¦ <a href="#referenceObject">Reference Object</a></td>
 <td>Any <a href="#httpCodes">HTTP status code</a> can be used as the property name (one property per HTTP status code). Describes the expected response for that HTTP status code.  <a href="#referenceObject">Reference Object</a> can be used to link to a response that is defined at the <a href="#swaggerResponses">Swagger Object’s responses</a> section.</td>
 </tr>
 <tr>

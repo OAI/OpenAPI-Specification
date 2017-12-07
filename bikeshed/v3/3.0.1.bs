@@ -1,7 +1,7 @@
 <h1>OpenAPI Specification</h1>
-<h2>Version 3.0.0</h2>
+<h2>Version 3.0.1</h2>
 <p>The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in <a href="https://tools.ietf.org/html/bcp14">BCP 14</a> [[!rfc2119]] [[!rfc8174]] when, and only when, they appear in all capitals, as shown here.</p>
-<p>This document is licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0.html">The Apache License, Version 2.0</a>.</p>
+<p>This document is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0.html">The Apache License, Version 2.0</a>.</p>
 <h2>Introduction</h2>
 <p>The OpenAPI Specification (OAS) defines a standard, language-agnostic interface to RESTful APIs which allows both humans and computers to discover and understand the capabilities of the service without access to source code, documentation, or through network traffic inspection. When properly defined, a consumer can understand and interact with the remote service with a minimal amount of implementation logic.</p>
 <p>An OpenAPI definition can then be used by documentation generation tools to display the API, code generation tools to generate servers and clients in various programming languages, testing tools, and many other use cases.</p>
@@ -29,10 +29,10 @@ The media type definitions SHOULD be in compliance with [[!rfc6838]].
 </code></pre>
 <h3><a id="httpCodes"><dfn>HTTP Status Codes</dfn></a></h3>
 The HTTP Status Codes are used to indicate the status of the executed operation. 
-The available status codes are defined by [[!rfc7231]]section-6) and registered status codes are listed in the [IANA Status Code Registry](http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
+The available status codes are defined by [[!rfc7231]]section-6) and registered status codes are listed in the [IANA Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
 <h2>Specification</h2>
 <h3>Versions</h3>
-<p>The OpenAPI Specification is versioned using <a href="http://semver.org/spec/v2.0.0.html">Semantic Versioning 2.0.0</a> (semver) and follows the semver specification.</p>
+<p>The OpenAPI Specification is versioned using <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning 2.0.0</a> (semver) and follows the semver specification.</p>
 <p>The <code>major</code>.<code>minor</code> portion of the semver (for example <code>3.0</code>) SHALL designate the OAS feature set. Typically, <em><code>.patch</code></em> versions address errors in this document, not the feature set. Tooling which supports OAS 3.0 SHOULD be compatible with all OAS 3.0.* versions. The patch version SHOULD NOT be considered by tooling, making no distinction between <code>3.0.0</code> and <code>3.0.1</code> for example.</p>
 <p>Subsequent minor version releases of the OpenAPI Specification (incrementing the <code>minor</code> version number) SHOULD NOT interfere with tooling developed to a lower minor version and same major version.  Thus a hypothetical <code>3.1.0</code> specification SHOULD be usable with tooling designed for <code>3.0.0</code>.</p>
 <p>An OpenAPI document compatible with OAS 3.*.* contains a required <a href="#oasVersion"><code>openapi</code></a> field which designates the semantic version of the OAS that it uses. (OAS 2.0 documents contain a top-level version field named <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#swaggerObject"><code>swagger</code></a> and value <code>&quot;2.0&quot;</code>.)</p>
@@ -129,13 +129,13 @@ Types that are not accompanied by a <code>format</code> property follow the type
 <td>date</td>
 <td><code>string</code></td>
 <td><code>date</code></td>
-<td>As defined by <code>full-date</code> - <a href="http://xml2rfc.ietf.org/public/rfc/html/rfc3339.html#anchor14">[!rfc3339]</a></td>
+<td>As defined by <code>full-date</code> - <a href="https://xml2rfc.ietf.org/public/rfc/html/rfc3339.html#anchor14">[!rfc3339]</a></td>
 </tr>
 <tr>
 <td>dateTime</td>
 <td><code>string</code></td>
 <td><code>date-time</code></td>
-<td>As defined by <code>date-time</code> - <a href="http://xml2rfc.ietf.org/public/rfc/html/rfc3339.html#anchor14">[!rfc3339]</a></td>
+<td>As defined by <code>date-time</code> - <a href="https://xml2rfc.ietf.org/public/rfc/html/rfc3339.html#anchor14">[!rfc3339]</a></td>
 </tr>
 <tr>
 <td>password</td>
@@ -169,7 +169,7 @@ Relative references are resolved using the URLs defined in the <a href="#serverO
 <tr>
 <td><a id="oasVersion"> </a>openapi</td>
 <td style="text-align:center"><code>string</code></td>
-<td><strong>REQUIRED</strong>. This string MUST be the <a href="http://semver.org/spec/v2.0.0.html">semantic version number</a> of the <a href="#versions">OpenAPI Specification version</a> that the OpenAPI document uses. The <code>openapi</code> field SHOULD be used by tooling specifications and clients to interpret the OpenAPI document. This is <em>not</em> related to the API <a href="#infoVersion"><code>info.version</code></a> string.</td>
+<td><strong>REQUIRED</strong>. This string MUST be the <a href="https://semver.org/spec/v2.0.0.html">semantic version number</a> of the <a href="#versions">OpenAPI Specification version</a> that the OpenAPI document uses. The <code>openapi</code> field SHOULD be used by tooling specifications and clients to interpret the OpenAPI document. This is <em>not</em> related to the API <a href="#infoVersion"><code>info.version</code></a> string.</td>
 </tr>
 <tr>
 <td><a id="oasInfo"> </a>info</td>
@@ -268,7 +268,7 @@ The metadata MAY be used by the clients if needed, and MAY be presented in editi
   },
   <span class="hljs-attr">"license"</span>: {
     <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Apache 2.0"</span>,
-    <span class="hljs-attr">"url"</span>: <span class="hljs-string">"http://www.apache.org/licenses/LICENSE-2.0.html"</span>
+    <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://www.apache.org/licenses/LICENSE-2.0.html"</span>
   },
   <span class="hljs-attr">"version"</span>: <span class="hljs-string">"1.0.1"</span>
 }
@@ -283,7 +283,7 @@ The metadata MAY be used by the clients if needed, and MAY be presented in editi
 <span class="hljs-attr">  email:</span> <span class="hljs-string">support@example.com</span>
 <span class="hljs-attr">license:</span>
 <span class="hljs-attr">  name:</span> <span class="hljs-string">Apache</span> <span class="hljs-number">2.0</span>
-<span class="hljs-attr">  url:</span> <span class="hljs-attr">http://www.apache.org/licenses/LICENSE-2.0.html</span>
+<span class="hljs-attr">  url:</span> <span class="hljs-attr">https://www.apache.org/licenses/LICENSE-2.0.html</span>
 <span class="hljs-attr">version:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.1</span>
 </code></pre>
 <h4><a id="contactObject">Contact Object</a></h4>
@@ -358,12 +358,12 @@ The metadata MAY be used by the clients if needed, and MAY be presented in editi
 <pre class="nohighlight"><code>
 {
   <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Apache 2.0"</span>,
-  <span class="hljs-attr">"url"</span>: <span class="hljs-string">"http://www.apache.org/licenses/LICENSE-2.0.html"</span>
+  <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://www.apache.org/licenses/LICENSE-2.0.html"</span>
 }
 </code></pre>
 <pre class="nohighlight"><code>
 <span class="hljs-attr">name:</span> <span class="hljs-string">Apache</span> <span class="hljs-number">2.0</span>
-<span class="hljs-attr">url:</span> <span class="hljs-attr">http://www.apache.org/licenses/LICENSE-2.0.html</span>
+<span class="hljs-attr">url:</span> <span class="hljs-attr">https://www.apache.org/licenses/LICENSE-2.0.html</span>
 </code></pre>
 <h4><a id="serverObject">Server Object</a></h4>
 <p>An object representing a Server.</p>
@@ -1274,12 +1274,12 @@ For simpler scenarios, a <a href="#parameterSchema"><code>schema</code></a> and 
 <tr>
 <td><a id="parameterExample"> </a>example</td>
 <td style="text-align:center">Any</td>
-<td>Example of the media type.  The example SHOULD match the specified schema and encoding properties if present.  The <code>example</code> object is mutually exclusive of the <code>examples</code> object.  Furthermore, if referencing a <code>schema</code> which contains an example, the <code>example</code> value SHALL <em>override</em> the example provided by the schema. To represent examples of media types that cannot naturally be represented in JSON or YAML, a string value can contain the example with escaping where necessary.</td>
+<td>Example of the media type.  The example SHOULD match the specified schema and encoding properties if present.  The <code>example</code> field is mutually exclusive of the <code>examples</code> field.  Furthermore, if referencing a <code>schema</code> which contains an example, the <code>example</code> value SHALL <em>override</em> the example provided by the schema. To represent examples of media types that cannot naturally be represented in JSON or YAML, a string value can contain the example with escaping where necessary.</td>
 </tr>
 <tr>
 <td><a id="parameterExamples"> </a>examples</td>
 <td style="text-align:center">Map[ <code>string</code>, <a href="#exampleObject">Example Object</a> ¦ <a href="#referenceObject">Reference Object</a>]</td>
-<td>Examples of the media type.  Each example SHOULD contain a value in the correct format as specified in the parameter encoding.  The <code>examples</code> object is mutually exclusive of the <code>example</code> object.  Furthermore, if referencing a <code>schema</code> which contains an example, the <code>examples</code> value SHALL <em>override</em> the example provided by the schema.</td>
+<td>Examples of the media type.  Each example SHOULD contain a value in the correct format as specified in the parameter encoding.  The <code>examples</code> field is mutually exclusive of the <code>example</code> field.  Furthermore, if referencing a <code>schema</code> which contains an example, the <code>examples</code> value SHALL <em>override</em> the example provided by the schema.</td>
 </tr>
 </tbody>
 </table>
@@ -1764,12 +1764,12 @@ Each Media Type Object provides schema and examples for the media type identifie
 <tr>
 <td><a id="mediaTypeExample"> </a>example</td>
 <td style="text-align:center">Any</td>
-<td>Example of the media type.  The example object SHOULD be in the correct format as specified by the media type.  The <code>example</code> object is mutually exclusive of the <code>examples</code> object.  Furthermore, if referencing a <code>schema</code> which contains an example, the <code>example</code> value SHALL <em>override</em> the example provided by the schema.</td>
+<td>Example of the media type.  The example object SHOULD be in the correct format as specified by the media type.  The <code>example</code> field is mutually exclusive of the <code>examples</code> field.  Furthermore, if referencing a <code>schema</code> which contains an example, the <code>example</code> value SHALL <em>override</em> the example provided by the schema.</td>
 </tr>
 <tr>
 <td><a id="mediaTypeExamples"> </a>examples</td>
 <td style="text-align:center">Map[ <code>string</code>, <a href="#exampleObject">Example Object</a> ¦ <a href="#referenceObject">Reference Object</a>]</td>
-<td>Examples of the media type.  Each example object SHOULD  match the media type and specified schema if present.  The <code>examples</code> object is mutually exclusive of the <code>example</code> object.  Furthermore, if referencing a <code>schema</code> which contains an example, the <code>examples</code> value SHALL <em>override</em> the example provided by the schema.</td>
+<td>Examples of the media type.  Each example object SHOULD  match the media type and specified schema if present.  The <code>examples</code> field is mutually exclusive of the <code>example</code> field.  Furthermore, if referencing a <code>schema</code> which contains an example, the <code>examples</code> value SHALL <em>override</em> the example provided by the schema.</td>
 </tr>
 <tr>
 <td><a id="mediaTypeEncoding"> </a>encoding</td>
@@ -2194,7 +2194,7 @@ Describes a single response from an API Operation, including design-time, static
 </code></pre>
 <pre class="nohighlight"><code>
 <span class="hljs-attr">description:</span> <span class="hljs-string">A</span> <span class="hljs-string">simple</span> <span class="hljs-string">string</span> <span class="hljs-string">response</span>
-<span class="hljs-attr">representations:</span>
+<span class="hljs-attr">content:</span>
   <span class="hljs-string">text/plain:</span>
 <span class="hljs-attr">    schema:</span>
 <span class="hljs-attr">      type:</span> <span class="hljs-string">string</span>
@@ -2539,13 +2539,13 @@ for specifications with external references.</p>
 <span class="hljs-attr">                  uuid:</span> <span class="hljs-comment"># the unique user id</span>
 <span class="hljs-attr">                    type:</span> <span class="hljs-string">string</span>
 <span class="hljs-attr">                    format:</span> <span class="hljs-string">uuid</span>
-<span class="hljs-attr">        links:</span>
-<span class="hljs-attr">          address:</span>
-            <span class="hljs-comment"># the target link operationId</span>
-<span class="hljs-attr">            operationId:</span> <span class="hljs-string">getUserAddress</span>
-<span class="hljs-attr">            parameters:</span>
-              <span class="hljs-comment"># get the `id` field from the request path parameter named `id`</span>
-<span class="hljs-attr">              userId:</span> <span class="hljs-string">$request.path.id</span>
+<span class="hljs-attr">          links:</span>
+<span class="hljs-attr">            address:</span>
+              <span class="hljs-comment"># the target link operationId</span>
+<span class="hljs-attr">              operationId:</span> <span class="hljs-string">getUserAddress</span>
+<span class="hljs-attr">              parameters:</span>
+                <span class="hljs-comment"># get the `id` field from the request path parameter named `id`</span>
+<span class="hljs-attr">                userId:</span> <span class="hljs-string">$request.path.id</span>
   <span class="hljs-comment"># the path item of the linked operation</span>
   <span class="hljs-string">/users/{userid}/address:</span>
 <span class="hljs-attr">    parameters:</span>
@@ -2555,12 +2555,12 @@ for specifications with external references.</p>
 <span class="hljs-attr">      description:</span> <span class="hljs-string">the</span> <span class="hljs-string">user</span> <span class="hljs-string">identifier,</span> <span class="hljs-string">as</span> <span class="hljs-string">userId</span> 
 <span class="hljs-attr">      schema:</span>
 <span class="hljs-attr">        type:</span> <span class="hljs-string">string</span>
-      <span class="hljs-comment"># linked operation</span>
-<span class="hljs-attr">      get:</span>
-<span class="hljs-attr">        operationId:</span> <span class="hljs-string">getUserAddress</span>
-<span class="hljs-attr">        responses:</span>
-          <span class="hljs-string">'200'</span><span class="hljs-string">:</span>
-<span class="hljs-attr">            description:</span> <span class="hljs-string">the</span> <span class="hljs-string">user's</span> <span class="hljs-string">address</span>
+    <span class="hljs-comment"># linked operation</span>
+<span class="hljs-attr">    get:</span>
+<span class="hljs-attr">      operationId:</span> <span class="hljs-string">getUserAddress</span>
+<span class="hljs-attr">      responses:</span>
+        <span class="hljs-string">'200'</span><span class="hljs-string">:</span>
+<span class="hljs-attr">          description:</span> <span class="hljs-string">the</span> <span class="hljs-string">user's</span> <span class="hljs-string">address</span>
 </code></pre>
 <p>When a runtime expression fails to evaluate, no parameter value is passed to the target operation.</p>
 <p>Values from the response body can be used to drive a linked operation.</p>
@@ -2569,7 +2569,7 @@ for specifications with external references.</p>
 <span class="hljs-attr">  address:</span>
 <span class="hljs-attr">    operationId:</span> <span class="hljs-string">getUserAddressByUUID</span>
 <span class="hljs-attr">    parameters:</span>
-      <span class="hljs-comment"># get the `id` field from the request path parameter named `id`</span>
+      <span class="hljs-comment"># get the `uuid` field from the `uuid` field in the response body</span>
 <span class="hljs-attr">      userUuid:</span> <span class="hljs-string">$response.body#/uuid</span>
 </code></pre>
 <p>Clients follow all links at their discretion.
@@ -2728,65 +2728,6 @@ It is not mandatory to have a Tag Object per tag defined in the Operation Object
 <span class="hljs-attr">name:</span> <span class="hljs-string">pet</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">Pets</span> <span class="hljs-string">operations</span>
 </code></pre>
-<h4><a id="examplesObject">Examples Object</a></h4>
-<p>In an <code>example</code>, a JSON Reference MAY be used, with the
-explicit restriction that examples having a JSON format with object named
-<code>$ref</code> are not allowed. Therefore, that <code>example</code>, structurally, can be
-either a string primitive or an object, similar to <code>additionalProperties</code>.</p>
-<p>In all cases, the payload is expected to be compatible with the type schema
-for the associated value.  Tooling implementations MAY choose to
-validate compatibility automatically, and reject the example value(s) if they
-are incompatible.</p>
-<pre class="nohighlight"><code>
-<span class="hljs-comment"># in a model</span>
-<span class="hljs-attr">schemas:</span>
-<span class="hljs-attr">  properties:</span>
-<span class="hljs-attr">    name:</span>
-<span class="hljs-attr">      type:</span> <span class="hljs-string">string</span>
-<span class="hljs-attr">      example:</span>
-        <span class="hljs-string">$ref:</span> <span class="hljs-attr">http://foo.bar#/examples/name-example</span>
-
-<span class="hljs-comment"># in a request body, note the plural `examples`</span>
-<span class="hljs-attr">  requestBody:</span>
-<span class="hljs-attr">    content:</span>
-      <span class="hljs-string">'application/json'</span><span class="hljs-string">:</span>
-<span class="hljs-attr">        schema:</span>
-          <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/components/schemas/Address'</span>
-<span class="hljs-attr">        examples:</span>
-<span class="hljs-attr">          foo:</span>
-<span class="hljs-attr">            value:</span> <span class="hljs-string">{"foo":</span> <span class="hljs-string">"bar"</span><span class="hljs-string">}</span>
-<span class="hljs-attr">          bar:</span>
-<span class="hljs-attr">            value:</span> <span class="hljs-string">{"bar":</span> <span class="hljs-string">"baz"</span><span class="hljs-string">}</span>
-      <span class="hljs-string">'application/xml'</span><span class="hljs-string">:</span>
-<span class="hljs-attr">        examples:</span>
-<span class="hljs-attr">          xml:</span>
-<span class="hljs-attr">            externalValue:</span> <span class="hljs-string">'http://foo.bar/examples/address-example.xml'</span>
-      <span class="hljs-string">'text/plain'</span><span class="hljs-string">:</span>
-<span class="hljs-attr">        examples:</span>
-<span class="hljs-attr">          text:</span>
-<span class="hljs-attr">            externalValue:</span> <span class="hljs-string">'http://foo.bar/examples/address-example.txt'</span>
-        
-<span class="hljs-comment"># in a parameter</span>
-<span class="hljs-attr">  parameters:</span>
-<span class="hljs-attr">    - name:</span> <span class="hljs-string">'zipCode'</span>
-<span class="hljs-attr">      in:</span> <span class="hljs-string">'query'</span>
-<span class="hljs-attr">      schema:</span>
-<span class="hljs-attr">        type:</span> <span class="hljs-string">'string'</span>
-<span class="hljs-attr">        format:</span> <span class="hljs-string">'zip-code'</span>
-<span class="hljs-attr">        example:</span> 
-          <span class="hljs-string">$ref:</span> <span class="hljs-string">'http://foo.bar#/examples/zip-example'</span>
-
-<span class="hljs-comment"># in a response, note the singular `example`:</span>
-<span class="hljs-attr">  responses:</span>
-    <span class="hljs-string">'200'</span><span class="hljs-string">:</span>
-<span class="hljs-attr">      description:</span> <span class="hljs-string">your</span> <span class="hljs-string">car</span> <span class="hljs-string">appointment</span> <span class="hljs-string">has</span> <span class="hljs-string">been</span> <span class="hljs-string">booked</span>
-<span class="hljs-attr">      content:</span> 
-        <span class="hljs-string">application/json:</span>
-<span class="hljs-attr">          schema:</span>
-            <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/components/schemas/SuccessResponse'</span>
-<span class="hljs-attr">          example:</span>
-            <span class="hljs-string">$ref:</span> <span class="hljs-attr">http://foo.bar#/examples/address-example.json</span>
-</code></pre>
 <h4><a id="referenceObject">Reference Object</a></h4>
 <p>A simple object to allow referencing other components in the specification, internally and externally.</p>
 <p>The Reference Object is defined by <a href="https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03">JSON Reference</a> and follows the same structure, behavior and rules.</p>
@@ -2939,7 +2880,7 @@ Unless stated otherwise, the property definitions follow the JSON Schema.</p>
 To support polymorphism, the OpenAPI Specification adds the <code>discriminator</code> field.
 When used, the <code>discriminator</code> will be the name of the property that decides which schema definition validates the structure of the model.
 As such, the <code>discriminator</code> field MUST be a required field.
-There are are two ways to define the value of a discriminator for an inheriting instance.</p>
+There are two ways to define the value of a discriminator for an inheriting instance.</p>
 <ul>
 <li>Use the schema name.</li>
 <li>Override the schema name by overriding the property with a new value. If a new value exists, this takes precedence over the schema name.
@@ -4034,6 +3975,11 @@ While not part of the specification itself, certain libraries MAY choose to allo
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>3.0.1</td>
+<td>TBA</td>
+<td>TBA</td>
+</tr>
 <tr>
 <td>3.0.0</td>
 <td>2017-07-26</td>

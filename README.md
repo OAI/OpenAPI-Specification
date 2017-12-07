@@ -4,8 +4,6 @@
 
 ![](https://avatars3.githubusercontent.com/u/16343502?v=3&s=200)
 
-**This is the WIP branch for the next patch version of the spec - 3.0.1. Patch level corrections should be submitted against this branch, specifically against [3.0.1.md](https://github.com/OAI/OpenAPI-Specification/blob/v3.0.1/versions/3.0.1.md).**
-
 The OpenAPI Specification is a community-driven open specification within the [Open API Initiative](https://www.openapis.org/), a Linux Foundation Collaborative Project.
 
 The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for [REST APIs](https://en.wikipedia.org/wiki/Representational_state_transfer), which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.
@@ -16,9 +14,9 @@ The OpenAPI Specification does not require rewriting existing APIs. It does not 
 
 This GitHub project is the starting point for OpenAPI. Here you will find the information you need about the OpenAPI Specification, simple examples of what it looks like, and some general information regarding the project.
 
-## Current Version - 3.0
+## Current Version - 3.0.1
 
-The current version of the OpenAPI specification is [OpenAPI Specification 3.0](versions/3.0.0.md).
+The current version of the OpenAPI specification is [OpenAPI Specification 3.0.1](versions/3.0.1.md).
 
 ### Future Versions
 
@@ -49,7 +47,7 @@ The TSC holds weekly web conferences to review open pull requests and discuss op
 
 The Open API Initiative encourages participation from individuals and companies alike. If you want to participate in the evolution of the OpenAPI Specification, consider taking the following actions:
 
-* Review the [current specification](versions/3.0.0.md). The human-readable markdown file _is the source of truth_ for the specification.
+* Review the [current specification](versions/3.0.1.md). The human-readable markdown file _is the source of truth_ for the specification.
 * Review the [development](DEVELOPMENT.md) process so you understand how the spec is evolving.
 * Check the [issues](https://github.com/OAI/OpenAPI-Specification/issues) and [pull requests](https://github.com/OAI/OpenAPI-Specification/pulls) to see if someone has already documented your idea or feedback on the specification. You can follow an existing conversation by adding a comment to the existing issue or PR.
 * Create an issue to describe a new concern. If possible, propose a solution.

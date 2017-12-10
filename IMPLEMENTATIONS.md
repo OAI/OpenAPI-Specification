@@ -42,6 +42,7 @@ These tools are not necessarily endorsed by the OAI.
 | Title          | Project Link | Language |Description                          |
 |----------------|--------------|----------|---------------------|
 | Vert.x Web API Contract | [Github/vert-x3/vertx-web](http://vertx.io/docs/#web) | Java, Kotlin, JavaScript, Groovy, Ruby, Ceylon & Scala | Create an API endpoint with Vert.x 3 and OpenAPI 3 with automatic requests validation
+| Fusio | [Github/apioo/fusio](https://github.com/apioo/fusio) | PHP, JavaScript | Build API endpoints based on OpenAPI 3
 
 #### Code Generators
 

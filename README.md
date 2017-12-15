@@ -4,6 +4,9 @@
 
 ![](https://avatars3.githubusercontent.com/u/16343502?v=3&s=200)
 
+**This is the WIP branch for the next patch version of the spec - 3.0.2. Patch level corrections should be submitted against this branch, specifically against [3.0.2.md](https://github.com/OAI/OpenAPI-Specification/blob/v3.0.2-dev/versions/3.0.2.md).**
+
+
 The OpenAPI Specification is a community-driven open specification within the [Open API Initiative](https://www.openapis.org/), a Linux Foundation Collaborative Project.
 
 The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for [REST APIs](https://en.wikipedia.org/wiki/Representational_state_transfer), which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.
@@ -20,7 +23,7 @@ The current version of the OpenAPI specification is [OpenAPI Specification 3.0.1
 
 ### Future Versions
 
-[3.0.1](https://github.com/OAI/OpenAPI-Specification/tree/v3.0.1) - The next PATCH version. Patch-level fixes (typos, clarifications, etc.) should be submitted against this branch.
+[3.0.2](https://github.com/OAI/OpenAPI-Specification/tree/v3.0.2-dev) - The next PATCH version. Patch-level fixes (typos, clarifications, etc.) should be submitted against this branch.
 
 ### Previous Versions
 

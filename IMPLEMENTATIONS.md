@@ -37,6 +37,7 @@ These tools are not necessarily endorsed by the OAI.
 | swagger-ui | [GitHub/swagger-api](https://github.com/swagger-api/swagger-UI) | JavaScript | Web-Based interface for visualizing and testing OpenAPI\Swagger definitions |
 | lincoln | [GitHub/temando/open-api-renderer](https://github.com/temando/open-api-renderer)| React.js| A React renderer for Open API v3 |
 | WebSphere Liberty | [Download jar] (https://developer.ibm.com/wasdev/downloads/) | JavaScript | Includes a native OpenAPI v3 UI which allows for customization of its banners and URL |
+| Widdershins | [GitHub/Mermade/widdershins](https://github.com/Mermade/widdershins) | Node.js | Generate Slate/Shins markdown from OpenAPI 3.0.x |
 
 
 #### Server Implementations

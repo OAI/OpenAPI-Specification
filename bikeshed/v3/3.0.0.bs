@@ -2600,7 +2600,7 @@ using JSON references.</p>
 <h5><a id="runtimeExpression">Runtime Expressions</a></h5>
 <p>Runtime expressions allow defining values based on information that will only be available within the HTTP message in an actual API call.
 This mechanism is used by <a href="#linkObject">Link Objects</a> and <a href="#callbackObject">Callback Objects</a>.</p>
-<p>The runtime expression is defined by the following [Advanced Backus-Naur Form] syntax</p>
+<p>The runtime expression is defined by the following [Augmented Backus-Naur Form] syntax</p>
 <pre class="highlight"><code>
       expression = ( &quot;$url&quot; | &quot;$method&quot; | &quot;$statusCode&quot; | &quot;$request.&quot; source | &quot;$response.&quot; source )
       source = ( header-reference | query-reference | path-reference | body-reference )  

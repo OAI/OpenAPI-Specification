@@ -18,6 +18,7 @@
     "schemas/*"
   ],
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
     "highlightjs": "^9.10.0",
     "markdown-it": "^8.4.0"
   },

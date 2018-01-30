@@ -1176,7 +1176,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 549748cf00f6303618e14a7868fb2ecd5725161f" name="generator">
+  <meta content="Bikeshed version d1c8ac9ac0bb0f0e970e3942633cfb7d2f7e12e6" name="generator">
   <link href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md" rel="canonical">
 <style>
 tr:nth-child(even) {background: #CCC}
@@ -4100,7 +4100,7 @@ using JSON references.</p>
    <h5 class="heading settled" data-level="4.7.21.4" id="runtime-expressions"><span class="secno">4.7.21.4. </span><span class="content"><a data-link-type="dfn" id="runtimeExpression">Runtime Expressions</a></span><a class="self-link" href="#runtime-expressions"></a></h5>
    <p>Runtime expressions allow defining values based on information that will only be available within the HTTP message in an actual API call.
 This mechanism is used by <a href="#linkObject">Link Objects</a> and <a href="#callbackObject">Callback Objects</a>.</p>
-   <p>The runtime expression is defined by the following [Advanced Backus-Naur Form] syntax</p>
+   <p>The runtime expression is defined by the following [Augmented Backus-Naur Form] syntax</p>
 <pre class="highlight"><code>expression = ( "$url" | "$method" | "$statusCode" | "$request." source | "$response." source )
 source = ( header-reference | query-reference | path-reference | body-reference )  
 header-reference = "header." token

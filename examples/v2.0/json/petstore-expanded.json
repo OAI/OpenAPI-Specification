@@ -7,12 +7,12 @@
     "termsOfService": "http://swagger.io/terms/",
     "contact": {
       "name": "Swagger API Team",
-      "email": "foo@example.com",
-      "url": "http://madskristensen.net"
+      "email": "apiteam@swagger.io",
+      "url": "http://swagger.io"
     },
     "license": {
-      "name": "MIT",
-      "url": "http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT"
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
   "host": "petstore.swagger.io",

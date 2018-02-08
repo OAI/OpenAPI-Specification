@@ -10,8 +10,8 @@
       email: "apiteam@swagger.io"
       url: "http://swagger.io"
     license: 
-      name: "MIT"
-      url: "http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT"
+      name: "Apache 2.0"
+      url: "https://www.apache.org/licenses/LICENSE-2.0.html"
   externalDocs: 
     description: "find more info here"
     url: "https://swagger.io/about"

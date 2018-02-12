@@ -56,4 +56,5 @@ These tools are not necessarily endorsed by the OAI.
 | zero-rails_openapi | [GitHub/zhandao/zero-rails_openapi](https://github.com/zhandao/zero-rails_openapi) | Ruby | Provide concise DSL for generating the OpenAPI Specification 3 documentation file for Rails application |
 | slush-vertx | [Github/pmlopes/slush-vertx](https://github.com/pmlopes/slush-vertx) | Java, Kotlin & Groovy | Generate server skeleton for [Vert.x Web API Contract](http://vertx.io/docs/#web) and API Client based on [Vert.x 3 Web Client](http://vertx.io/docs/#web)
 | WebSphere Liberty | [Download jar](https://developer.ibm.com/wasdev/downloads/) | Java EE | Generates OpenAPI v3 documentation from Java EE applications |
+| swagger-node-codegen | [Github/fmvilas/swagger-node-codegen](https://github.com/fmvilas/swagger-node-codegen) | Node.js | Generates a Node.js/express server, but also has a template engine for creating any templates needed. |
 

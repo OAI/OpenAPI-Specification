@@ -146,7 +146,7 @@ for (let l in lines) {
         /* bikeshed is a bit of a pita when it comes to header nesting */
         let delta = indent-prevIndent;
 
-        if (Math.abs(delta)>1) {
+        if (!argv.respec && Math.abs(delta)>1) {
             if (delta<0) indent = prevIndent-1;
             if (delta>0) indent = prevIndent+1;
         }
@@ -198,7 +198,6 @@ for (let l in lines) {
         while (line[indent] === '#') indent++;
         let delta = indent-prevIndent;
         let oIndent = indent;
-        /* respec insists on <section>...</section> breaks around headings */
         let prefix = '';
         if (!argv.respec && Math.abs(delta)>1) {
             // if we're skipping more than one indent level up or down correct it
@@ -214,6 +213,7 @@ for (let l in lines) {
         }
         else {
             // heading level delta is either 0 or is +1/-1, or we're in respec mode
+            /* respec insists on <section>...</section> breaks around headings */
             if (delta == 0) {
                 prefix = '</section><section>';
             }

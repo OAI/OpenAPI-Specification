@@ -45,6 +45,7 @@ These tools are not necessarily endorsed by the OAI.
 |----------------|--------------|----------|---------------------|
 | Vert.x Web API Contract | [Github/vert-x3/vertx-web](http://vertx.io/docs/#web) | Java, Kotlin, JavaScript, Groovy, Ruby, Ceylon & Scala | Create an API endpoint with Vert.x 3 and OpenAPI 3 with automatic requests validation
 | Fusio | [Github/apioo/fusio](https://github.com/apioo/fusio) | PHP, JavaScript | Build API endpoints based on OpenAPI 3
+| Modern | [Github/modern-project/modern-ruby](https://github.com/modern-project/modern-ruby | Ruby | OpenAPI 3-based Rack framework with automatic OAS generation and requests/response validation
 
 #### Code Generators
 

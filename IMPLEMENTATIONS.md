@@ -11,6 +11,7 @@ These tools are not necessarily endorsed by the OAI.
 | swagger-parser | [GitHub/swagger-api](https://github.com/swagger-api/swagger-parser/tree/feature/3.0.0-rc0) | Java | Swagger 1.0, 1.1, 1.2, 2.0 to Open API Specification converter |
 | swagger-models | [GitHub/swagger-api](https://github.com/swagger-api/swagger-core/tree/feature/3.0.0-rc0/modules/swagger-models) | Java | Open API 3.0 Java Pojos |
 | KaiZen OpenAPI Parser | [GitHub/RepreZen/KaiZen-OpenAPI-Parser](https://github.com/RepreZen/KaiZen-OpenAPI-Parser) | Java | High-performance Parser, Validator, and Java Object Model for OpenAPI 3.x |
+| OpenAPI Parser | [GitHub/networknt/openapi-parser](https://github.com/networknt/openapi-parser) | Java | A green library based on generated code of KaiZen without extra dependencies |
 | openapi3-ts | [GitHub/metadevpro/openapi3-ts](https://github.com/metadevpro/openapi3-ts) | TypeScript | TS Model & utils for OpenAPI 3.0.x contracts |
 | swagger2openapi | [GitHub/mermade/swagger2openapi](https://github.com/mermade/swagger2openapi) | Node.js | An OpenAPI / Swagger 2.0 to OpenAPI 3.0.x converter and validator |
 | Microsoft.OpenApi.net | [GitHub/microsoft/OpenApi.net](https://github.com/microsoft/openapi.net/) | dotnet | C# based parser with definition validation and migration support from V2 |
@@ -58,4 +59,4 @@ These tools are not necessarily endorsed by the OAI.
 | slush-vertx | [Github/pmlopes/slush-vertx](https://github.com/pmlopes/slush-vertx) | Java, Kotlin & Groovy | Generate server skeleton for [Vert.x Web API Contract](http://vertx.io/docs/#web) and API Client based on [Vert.x 3 Web Client](http://vertx.io/docs/#web)
 | WebSphere Liberty | [Download jar](https://developer.ibm.com/wasdev/downloads/) | Java EE | Generates OpenAPI v3 documentation from Java EE applications |
 | swagger-node-codegen | [Github/fmvilas/swagger-node-codegen](https://github.com/fmvilas/swagger-node-codegen) | Node.js | Generates a Node.js/express server, but also has a template engine for creating any templates needed. |
-
+| light-codegen | [Github/networknt/light-codegen](https://github.com/networknt/light-codegen) | Java | Generates light-rest-4j server with both Swagger 2.0 and OpenAPI 3.0 as well as GraphQL and RPC |

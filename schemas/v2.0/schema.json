@@ -338,7 +338,14 @@
         },
         "parameters": {
           "$ref": "#/definitions/parametersList"
-        }
+        },		
+		"tags": {
+		  "type": "array",
+		  "items": {
+			"$ref": "#/definitions/tag"
+		  },
+		  "uniqueItems": true
+		}
       }
     },
     "responses": {

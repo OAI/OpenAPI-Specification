@@ -16,6 +16,7 @@ These tools are not necessarily endorsed by the OAI.
 | Microsoft.OpenApi.net | [GitHub/microsoft/OpenApi.net](https://github.com/microsoft/openapi.net/) | dotnet | C# based parser with definition validation and migration support from V2 |
 | odata-openapi | [GitHub/oasis-tcs/odata-openapi](https://github.com/oasis-tcs/odata-openapi) | XSLT | OData 4.0 to OpenAPI 3.0.0 converter |
 | openapi3_parser | [GitHub/kevindew/openapi3_parser](https://github.com/kevindew/openapi3_parser) | Ruby | A Ruby implementation of parser and validator for the OpenAPI 3 Specification |
+| oas_parser | [GitHub/Nexmo/oas_parser](https://github.com/Nexmo/oas_parser) | Ruby | An open source OpenAPI Spec 3 Definition Parser writen in Ruby |
 
 
 #### Editors

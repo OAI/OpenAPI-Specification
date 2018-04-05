@@ -2,7 +2,7 @@
 
 Below is a list of known tooling that implements the 3.0.0 specification. While support for the 3.0.0 specification matures,  refer to the details of projects listed below for any notes about stability and roadmap.  The process to improve the 3.x specification includes feedback from end-users and tooling creators. We strongly encourage draft tooling be made available for early users of OAS drafts.
 
-These tools are not necessarily endorsed by the OAI.
+These tools are not endorsed by the OAI.
 
 #### Low-Level tooling
 
@@ -55,7 +55,6 @@ These tools are not necessarily endorsed by the OAI.
 | baucis-openapi3 | [github/metadevpro/baucis-openapi3](https://github.com/metadevpro/baucis-openapi3) | Node.js | [Baucis.js](https://github.com/wprl/baucis) plugin for generating OpenAPI 3.0 compliant API contracts. |
 | Google Gnostic | [github/googleapis/gnostic](https://github.com/googleapis/gnostic) | Go | Compile OpenAPI descriptions into equivalent Protocol Buffer representations. |
 | serverless-openapi-documentation | [github/temando/serverless-openapi-documentation](https://github.com/temando/serverless-openapi-documentation) | Typescript | Serverless 1.0 plugin to generate OpenAPI V3 documentation from serverless configuration |
-| apispec | [github/marshmallow-code/apispec/](https://github.com/marshmallow-code/apispec) | Python | A framework-agnostic pluggable API specification generator for Python. |
 | zero-rails_openapi | [github/zhandao/zero-rails_openapi](https://github.com/zhandao/zero-rails_openapi) | Ruby | Provide concise DSL for generating the OpenAPI Specification 3 documentation file for Rails application |
 | slush-vertx | [github/pmlopes/slush-vertx](https://github.com/pmlopes/slush-vertx) | Java, Kotlin & Groovy | Generate server skeleton for [Vert.x Web API Contract](http://vertx.io/docs/#web) and API Client based on [Vert.x 3 Web Client](http://vertx.io/docs/#web)
 | WebSphere Liberty | [Download jar](https://developer.ibm.com/wasdev/downloads/) | Java EE | Generates OpenAPI v3 documentation from Java EE applications |

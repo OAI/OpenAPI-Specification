@@ -47,6 +47,24 @@ Spec changes should be approved by a majority of the committers.  Approval can b
 
 No change should be approved until there is documentation for it, supplied in an accompanying PR.
 
+## Draft Features
+
+Where suitable, features will be introduced as draft but OAI approved extensions.
+By introducing new features this way we enable new features to be designed, documented and then implemented by tools that are interested in the feature, without putting the burden of implementation on all tooling.
+If the feature is successfully implemented and there is demonstrable value added by the feature, it will become a candidate for inclusion in a future release of the specification, at which point all tools will be expected to support the feature.
+
+Draft feature extensions are identified by the `x-oas-draft-` prefix and can only be used where existing extensions are permitted.
+This ensures no exising tooling will affected by the introduction of the draft feature.
+If the feature is deemed appropriate for inclusion in the OAS, the `x-oas-draft-` prefix will be removed.
+Tooling that supports draft features should plan for the future removal of the prefix and accomodate the transition period where descriptions exist with and without the prefix. 
+
+Draft features will be documented as Github issues and labeled with the `draft-feature` label.
+If during the development of a draft feature, it is determined that the feature needs to change in a way that may break existing draft implementations, the extension name itself may be versioned with a version suffix. e.g. `-v2`
+
+Not all future new features will be introduced in this way.
+Some new features impact the specification in ways that cannot be encapsulated in an extension.
+However, where a new feature can be introduced in this way, it should be.
+
 ## Transparency
 
 We should always be as transparent as possible.  Sometimes there will be discussions that use customer names, sensitive use cases, and so on.  These must be anonymized, discussed in a private repository, or conducted offline.

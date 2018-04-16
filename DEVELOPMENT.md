@@ -54,12 +54,16 @@ By introducing new features this way we enable new features to be designed, docu
 If the feature is successfully implemented and there is demonstrable value added by the feature, it will become a candidate for inclusion in a future release of the specification, at which point all tools will be expected to support the feature.
 
 Draft feature extensions are identified by the `x-oas-draft-` prefix and can only be used where existing extensions are permitted.
-This ensures no exising tooling will affected by the introduction of the draft feature.
+This ensures no existing tooling will affected by the introduction of the draft feature.
 If the feature is deemed appropriate for inclusion in the OAS, the `x-oas-draft-` prefix will be removed.
-Tooling that supports draft features should plan for the future removal of the prefix and accomodate the transition period where descriptions exist with and without the prefix. 
+Tooling that supports draft features should plan for the future removal of the prefix.
+When tooling adds support for a later version of OAS that includes the final implementation of the feature, it MUST not support the use of the draft prefix for that feature.
+Draft features will only be promoted into minor or major releases of the specification and therefore will be transparent to OpenAPI description writers and tooling providers who choose not to use the feature while in its draft state.
 
-Draft features will be documented as Github issues and labeled with the `draft-feature` label.
+Draft features will be documented as GitHub issues and labeled with the `draft-feature` label.
 If during the development of a draft feature, it is determined that the feature needs to change in a way that may break existing draft implementations, the extension name itself may be versioned with a version suffix. e.g. `-v2`
+When a draft feature becomes part of a future update to the specification any version suffix will be removed.
+Draft features that are deemed not appropriate for inclusion MUST be marked with the `abandoned` label.
 
 Not all future new features will be introduced in this way.
 Some new features impact the specification in ways that cannot be encapsulated in an extension.

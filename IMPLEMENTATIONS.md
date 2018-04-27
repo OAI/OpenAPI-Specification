@@ -17,6 +17,7 @@ These tools are not endorsed by the OAI.
 | odata-openapi | [github/oasis-tcs/odata-openapi](https://github.com/oasis-tcs/odata-openapi) | XSLT | OData 4.0 to OpenAPI 3.0.0 converter |
 | openapi3_parser | [github/kevindew/openapi3_parser](https://github.com/kevindew/openapi3_parser) | Ruby | A Ruby implementation of parser and validator for the OpenAPI 3 Specification |
 | oas_parser | [github/Nexmo/oas_parser](https://github.com/Nexmo/oas_parser) | Ruby | An open source OpenAPI Spec 3 Definition Parser writen in Ruby |
+| oas3-remote-refs | [github//OverSpeedIO/oas3-remote-refs](https://github.com/OverSpeedIO/oas3-remote-refs) | Node.js | Tool to pull remote refernences and merge them into the definitions of the provided OpenAPI3 speicfication.
 
 
 #### Editors

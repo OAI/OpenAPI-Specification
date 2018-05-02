@@ -59,7 +59,8 @@ function preface(title,options) {
         shortName: "dahut",
         noTOC: false,
         lint: false,
-        additionalCopyrightHolders: "Copyright the Linux Foundation"
+        additionalCopyrightHolders: "Copyright the Linux Foundation",
+        includePermalinks: true
     };
 
     let preface = `<html><head><meta charset="UTF-8"><title>${md.utils.escapeHtml(title)}</title>`;
@@ -72,6 +73,13 @@ function preface(title,options) {
         preface += 'h1,h2,h3 { color: #629b34; }';
         preface += 'a[href] { color: #45512c; }'; // #8ad000
         preface += 'body:not(.toc-inline) #toc h2 { color: #45512c; }';
+        preface += 'table { display: block; width: 100%; overflow: auto; }';
+        preface += 'table th { font-weight: 600; }';
+        preface += 'table th, table td { padding: 6px 13px; border: 1px solid #dfe2e5; }';
+        preface += 'table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }';
+        preface += 'table tr:nth-child(2n) { background-color: #f6f8fa; }';
+        //preface += 'table { border-style: dotted;} ';
+        //preface += 'td { border-style: ridge;} ';
         preface += '</style>';
         preface += '<section id="abstract">';
         preface += 'The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for REST APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.';
@@ -196,6 +204,9 @@ for (let l in lines) {
     if (!inCodeBlock && line.startsWith('#')) {
         let indent = 0;
         while (line[indent] === '#') indent++;
+
+        if (argv.respec && (indent > 1)) indent--;
+
         let delta = indent-prevIndent;
         let oIndent = indent;
         let prefix = '';

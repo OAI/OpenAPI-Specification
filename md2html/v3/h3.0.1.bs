@@ -40,12 +40,14 @@ Shortname: OASv3.0.1
 Level: 1
 Status: LS
 Group: ietf
-URL: https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md
+URL: https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.1.md
 Logo: https://www.openapis.org/wp-content/uploads/sites/3/2016/10/OpenAPI_Pantone.png
 Editor: Darrel Miller
 Editor: Jeremy Whitlock
 Editor: Marsh Gardiner
+Editor: Mike Ralphson
 Editor: Ron Ratovsky
+Editor: Uri Sarid
 Former Editor: Jason Harmon
 Former Editor: Tony Tam
 Repository: OAI/OpenAPI-Specification

@@ -1,12 +1,13 @@
-<h1>OpenAPI Specification</h1>
-<h2>(fka Swagger RESTful API Documentation Specification)</h2>
-<h3>Version 2.0</h3>
+<html><head><meta charset="UTF-8"><title>OpenAPI Specification</title></head><body>
+<section><h1>OpenAPI Specification</h1>
+<section><h2>(fka Swagger RESTful API Documentation Specification)</h2>
+<section><h3>Version 2.0</h3>
 <p>The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in <a href="http://www.ietf.org/rfc/rfc2119.txt">[!rfc2119]</a>.</p>
 <p>The Swagger specification is licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0.html">The Apache License, Version 2.0</a>.</p>
-<h2>Introductions</h2>
+</section></section><section><h2>Introductions</h2>
 <p>Swagger™  is a project used to describe and document RESTful APIs.</p>
 <p>The Swagger specification defines a set of files required to describe such an API. These files can then be used by the Swagger-UI project to display the API and Swagger-Codegen to generate clients in various languages. Additional utilities can also take advantage of the resulting files, such as testing tools.</p>
-<h2>Revision History</h2>
+</section><section><h2>Revision History</h2>
 <table>
 <thead>
 <tr>
@@ -38,11 +39,11 @@
 </tr>
 </tbody>
 </table>
-<h2>Definitions</h2>
-<h3><a id="pathTemplating"><dfn>Path Templating</dfn></a></h3>
-Path templating refers to the usage of curly braces ({}) to mark a section of a URL path as replaceable using path parameters.
-<h3><a id="mimeTypes"><dfn>Mime Types</dfn></a></h3>
-Mime type definitions are spread across several resources. The mime type definitions should be in compliance with [[!rfc6838]].
+</section><section><h2>Definitions</h2>
+<section><h3><a id="pathTemplating"><dfn>Path Templating</dfn></a></h3>
+<p>Path templating refers to the usage of curly braces ({}) to mark a section of a URL path as replaceable using path parameters.</p>
+<section><h4><a id="mimeTypes"><dfn>Mime Types</dfn></a></h4>
+<p>Mime type definitions are spread across several resources. The mime type definitions should be in compliance with [[!rfc6838]].</p>
 <p>Some examples of possible mime type definitions:</p>
 <pre class="highlight"><code>
   text/plain; charset=utf-8
@@ -56,10 +57,10 @@ Mime type definitions are spread across several resources. The mime type definit
   application/vnd.github.v3.diff
   application/vnd.github.v3.patch
 </code></pre>
-<h3><a id="httpCodes"><dfn>HTTP Status Codes</dfn></a></h3>
-The HTTP Status Codes are used to indicate the status of the executed operation. The available status codes are described by [[!rfc7231]]section-6) and in the [IANA Status Code Registry](http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
-<h2>Specification</h2>
-<h3>Format</h3>
+<section><h5><a id="httpCodes"><dfn>HTTP Status Codes</dfn></a></h5>
+<p>The HTTP Status Codes are used to indicate the status of the executed operation. The available status codes are described by [[!rfc7231]]section-6) and in the <a href="http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">IANA Status Code Registry</a>.</p>
+</section></section><section><h4>Specification</h4>
+</section></section><section><h3>Format</h3>
 <p>The files describing the RESTful API in accordance with the Swagger specification are represented as JSON objects and conform to the JSON standards. YAML, being a superset of JSON, can be used as well to
 represent a Swagger specification file.</p>
 <p>For example, if a field is said to have an array value, the JSON array representation will be used:</p>
@@ -71,10 +72,10 @@ represent a Swagger specification file.</p>
 <p>While the API is described using JSON it does not impose a JSON input/output to the API itself.</p>
 <p>All field names in the specification are <strong>case sensitive</strong>.</p>
 <p>The schema exposes two types of fields. Fixed fields, which have a declared name, and Patterned fields, which declare a regex pattern for the field name. Patterned fields can have multiple occurrences as long as each has a unique name.</p>
-<h3>File Structure</h3>
+</section><section><h3>File Structure</h3>
 <p>The Swagger representation of the API is made of a single file. However, parts of the definitions can be split into separate files, at the discretion of the user. This is applicable for <code>$ref</code> fields in the specification as follows from the <a href="http://json-schema.org">JSON Schema</a> definitions.</p>
 <p>By convention, the Swagger specification file is named <code>swagger.json</code>.</p>
-<h3>Data Types</h3>
+</section><section><h3>Data Types</h3>
 <p>Primitive data types in the Swagger Specification are based on the types supported by the <a href="https://tools.ietf.org/html/draft-zyp-json-schema-04#section-3.5">JSON-Schema Draft 4</a>. Models are described using the <a href="#schemaObject">Schema Object</a> which is a subset of JSON Schema Draft 4.</p>
 <p>An additional primitive data type <code>&quot;file&quot;</code> is used by the <a href="#parameterObject">Parameter Object</a> and the <a href="#responseObject">Response Object</a> to set the parameter type or the response as being a file.</p>
 <p><a id="dataTypeFormat"> </a>Primitives have an optional modifier property <code>format</code>. Swagger uses several known formats to more finely define the data type being used. However, the <code>format</code> property is an open <code>string</code>-valued property, and can have any value to support documentation needs. Formats such as <code>&quot;email&quot;</code>, <code>&quot;uuid&quot;</code>, etc., can be used even though they are not defined by this specification. Types that are not accompanied by a <code>format</code> property follow their definition from the JSON Schema (except for <code>file</code> type which is defined above). The formats defined by the Swagger Specification are:</p>
@@ -156,10 +157,10 @@ represent a Swagger specification file.</p>
 </tr>
 </tbody>
 </table>
-<h3>Schema</h3>
-<h4><a id="swaggerObject">Swagger Object</a></h4>
+</section><section><h3>Schema</h3>
+<section><h4><a id="swaggerObject">Swagger Object</a></h4>
 <p>This is the root document object for the API specification. It combines what previously was the Resource Listing and API Declaration (version 1.2 and earlier) together into one document.</p>
-<h4>Fixed Fields</h4>
+<section><h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -246,7 +247,7 @@ represent a Swagger specification file.</p>
 </tr>
 </tbody>
 </table>
-<h5>Patterned Objects</h5>
+</section><section><h5>Patterned Objects</h5>
 <table>
 <thead>
 <tr>
@@ -263,9 +264,9 @@ represent a Swagger specification file.</p>
 </tr>
 </tbody>
 </table>
-<h4><a id="infoObject">Info Object</a></h4>
+</section></section><section><h4><a id="infoObject">Info Object</a></h4>
 <p>The object provides metadata about the API. The metadata can be used by the clients if needed, and can be presented in the Swagger-UI for convenience.</p>
-<h5>Fixed Fields</h5>
+<section><h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -307,7 +308,7 @@ represent a Swagger specification file.</p>
 </tr>
 </tbody>
 </table>
-<h5>Patterned Objects</h5>
+</section><section><h5>Patterned Objects</h5>
 <table>
 <thead>
 <tr>
@@ -324,7 +325,7 @@ represent a Swagger specification file.</p>
 </tr>
 </tbody>
 </table>
-<h5>Info Object Example:</h5>
+</section><section><h5>Info Object Example:</h5>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"title"</span>: <span class="hljs-string">"Swagger Sample App"</span>,
@@ -355,9 +356,9 @@ represent a Swagger specification file.</p>
 <span class="hljs-attr">  url:</span> <span class="hljs-attr">http://www.apache.org/licenses/LICENSE-2.0.html</span>
 <span class="hljs-attr">version:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.1</span>
 </code></pre>
-<h4><a id="contactObject">Contact Object</a></h4>
+</section></section><section><h4><a id="contactObject">Contact Object</a></h4>
 <p>Contact information for the exposed API.</p>
-<h5>Fixed Fields</h5>
+<section><h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -384,7 +385,7 @@ represent a Swagger specification file.</p>
 </tr>
 </tbody>
 </table>
-<h5>Patterned Objects</h5>
+</section><section><h5>Patterned Objects</h5>
 <table>
 <thead>
 <tr>
@@ -401,7 +402,7 @@ represent a Swagger specification file.</p>
 </tr>
 </tbody>
 </table>
-<h5>Contact Object Example:</h5>
+</section><section><h5>Contact Object Example:</h5>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"name"</span>: <span class="hljs-string">"API Support"</span>,
@@ -414,9 +415,9 @@ represent a Swagger specification file.</p>
 <span class="hljs-attr">url:</span> <span class="hljs-attr">http://www.swagger.io/support</span>
 <span class="hljs-attr">email:</span> <span class="hljs-string">support@swagger.io</span>
 </code></pre>
-<h4><a id="licenseObject">License Object</a></h4>
+</section></section><section><h4><a id="licenseObject">License Object</a></h4>
 <p>License information for the exposed API.</p>
-<h5>Fixed Fields</h5>
+<section><h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -438,7 +439,7 @@ represent a Swagger specification file.</p>
 </tr>
 </tbody>
 </table>
-<h5>Patterned Objects</h5>
+</section><section><h5>Patterned Objects</h5>
 <table>
 <thead>
 <tr>
@@ -455,7 +456,7 @@ represent a Swagger specification file.</p>
 </tr>
 </tbody>
 </table>
-<h5>License Object Example:</h5>
+</section><section><h5>License Object Example:</h5>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"name"</span>: <span class="hljs-string">"Apache 2.0"</span>,
@@ -466,10 +467,10 @@ represent a Swagger specification file.</p>
 <span class="hljs-attr">name:</span> <span class="hljs-string">Apache</span> <span class="hljs-number">2.0</span>
 <span class="hljs-attr">url:</span> <span class="hljs-attr">http://www.apache.org/licenses/LICENSE-2.0.html</span>
 </code></pre>
-<h4><a id="pathsObject">Paths Object</a></h4>
+</section></section><section><h4><a id="pathsObject">Paths Object</a></h4>
 <p>Holds the relative paths to the individual endpoints. The path is appended to the <a href="#swaggerBasePath"><code>basePath</code></a> in order to construct the full URL.
 The Paths may be empty, due to <a href="#securityFiltering">ACL constraints</a>.</p>
-<h5>Patterned Fields</h5>
+<section><h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -491,7 +492,7 @@ The Paths may be empty, due to <a href="#securityFiltering">ACL constraints</a>.
 </tr>
 </tbody>
 </table>
-<h5>Paths Object Example</h5>
+</section><section><h5>Paths Object Example</h5>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"/pets"</span>: {
@@ -529,10 +530,10 @@ The Paths may be empty, due to <a href="#securityFiltering">ACL constraints</a>.
 <span class="hljs-attr">          items:</span>
             <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/definitions/pet'</span>
 </code></pre>
-<h4><a id="pathItemObject">Path Item Object</a></h4>
+</section></section><section><h4><a id="pathItemObject">Path Item Object</a></h4>
 <p>Describes the operations available on a single path.
 A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a>. The path itself is still exposed to the documentation viewer but they will not know which operations and parameters are available.</p>
-<h5>Fixed Fields</h5>
+<section><h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -589,7 +590,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 </tbody>
 </table>
-<h5>Patterned Fields</h5>
+</section><section><h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -606,7 +607,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 </tbody>
 </table>
-<h5>Path Item Object Example</h5>
+</section><section><h5>Path Item Object Example</h5>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"get"</span>: {
@@ -679,9 +680,9 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">    type:</span> <span class="hljs-string">string</span>
 <span class="hljs-attr">  collectionFormat:</span> <span class="hljs-string">csv</span>
 </code></pre>
-<h4><a id="operationObject">Operation Object</a></h4>
+</section></section><section><h4><a id="operationObject">Operation Object</a></h4>
 <p>Describes a single API operation on a path.</p>
-<h5>Fixed Fields</h5>
+<section><h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -753,7 +754,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 </tbody>
 </table>
-<h5>Patterned Objects</h5>
+</section><section><h5>Patterned Objects</h5>
 <table>
 <thead>
 <tr>
@@ -770,7 +771,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 </tbody>
 </table>
-<h5>Operation Object Example</h5>
+</section><section><h5>Operation Object Example</h5>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"tags"</span>: [
@@ -864,9 +865,9 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">  - write:</span><span class="hljs-string">pets</span>
 <span class="hljs-attr">  - read:</span><span class="hljs-string">pets</span>
 </code></pre>
-<h4><a id="externalDocumentationObject">External Documentation Object</a></h4>
+</section></section><section><h4><a id="externalDocumentationObject">External Documentation Object</a></h4>
 <p>Allows referencing an external resource for extended documentation.</p>
-<h5>Fixed Fields</h5>
+<section><h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -888,7 +889,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 </tbody>
 </table>
-<h5>Patterned Objects</h5>
+</section><section><h5>Patterned Objects</h5>
 <table>
 <thead>
 <tr>
@@ -905,7 +906,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 </tbody>
 </table>
-<h5>External Documentation Object Example</h5>
+</section><section><h5>External Documentation Object Example</h5>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"description"</span>: <span class="hljs-string">"Find more info here"</span>,
@@ -916,7 +917,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">description:</span> <span class="hljs-string">Find</span> <span class="hljs-string">more</span> <span class="hljs-string">info</span> <span class="hljs-string">here</span>
 <span class="hljs-attr">url:</span> <span class="hljs-attr">https://swagger.io</span>
 </code></pre>
-<h4><a id="parameterObject">Parameter Object</a></h4>
+</section></section><section><h4><a id="parameterObject">Parameter Object</a></h4>
 <p>Describes a single operation parameter.</p>
 <p>A unique parameter is defined by a combination of a <a href="#parameterName">name</a> and <a href="#parameterIn">location</a>.</p>
 <p>There are five possible parameter types.</p>
@@ -932,7 +933,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </ul>
 </li>
 </ul>
-<h5>Fixed Fields</h5>
+<section><h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -1083,7 +1084,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 </tbody>
 </table>
-<h5>Patterned Fields</h5>
+</section><section><h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -1100,8 +1101,8 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 </tbody>
 </table>
-<h5>Parameter Object Examples</h5>
-<h6>Body Parameters</h6>
+</section><section><h5>Parameter Object Examples</h5>
+<section><h6>Body Parameters</h6>
 <p>A body parameter with a referenced schema definition (normally for a model definition):</p>
 <pre class="nohighlight"><code>
 {
@@ -1147,7 +1148,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">  items:</span>
 <span class="hljs-attr">    type:</span> <span class="hljs-string">string</span>
 </code></pre>
-<h6>Other Parameters</h6>
+</section><section><h6>Other Parameters</h6>
 <p>A header parameter with an array of 64 bit integer numbers:</p>
 <pre class="nohighlight"><code>
 {
@@ -1232,9 +1233,9 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">required:</span> <span class="hljs-literal">true</span>
 <span class="hljs-attr">type:</span> <span class="hljs-string">file</span>
 </code></pre>
-<h5><a id="itemsObject">Items Object</a></h5>
+</section></section><section><h5><a id="itemsObject">Items Object</a></h5>
 <p>A limited subset of JSON-Schema’s items object. It is used by parameter definitions that are not located <a href="#parameterIn"><code>in</code></a> <code>&quot;body&quot;</code>.</p>
-<h5>Fixed Fields</h5>
+</section><section><h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -1331,7 +1332,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 </tbody>
 </table>
-<h5>Patterned Objects</h5>
+</section><section><h5>Patterned Objects</h5>
 <table>
 <thead>
 <tr>
@@ -1348,7 +1349,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 </tbody>
 </table>
-<h5>Items Object Examples</h5>
+</section><section><h5>Items Object Examples</h5>
 <p>Items must be of type  string and have the minimum length of  2 characters:</p>
 <pre class="nohighlight"><code>
 {
@@ -1378,11 +1379,11 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">  minimum:</span> <span class="hljs-number">0</span>
 <span class="hljs-attr">  maximum:</span> <span class="hljs-number">63</span>
 </code></pre>
-<h4><a id="responsesObject">Responses Object</a></h4>
+</section></section><section><h4><a id="responsesObject">Responses Object</a></h4>
 <p>A container for the expected responses of an operation. The container maps a HTTP response code to the expected response. It is not expected from the documentation to necessarily cover all possible HTTP response codes, since they may not be known in advance. However, it is expected from the documentation to cover a successful operation response and any known errors.</p>
 <p>The <code>default</code> can be used as the default response object for all HTTP codes that are not covered individually by the specification.</p>
 <p>The <code>Responses Object</code> MUST contain at least one response code, and it SHOULD be the response for a successful operation call.</p>
-<h5>Fixed Fields</h5>
+<section><h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -1399,7 +1400,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 </tbody>
 </table>
-<h5>Patterned Fields</h5>
+</section><section><h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -1421,7 +1422,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 </tbody>
 </table>
-<h5>Responses Object Example</h5>
+</section><section><h5>Responses Object Example</h5>
 <p>A 200 response for successful operation and a default response for others (implying an error):</p>
 <pre class="nohighlight"><code>
 {
@@ -1449,9 +1450,9 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">  schema:</span>
     <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/definitions/ErrorModel'</span>
 </code></pre>
-<h4><a id="responseObject">Response Object</a></h4>
-Describes a single response from an API Operation.
-<h5>Fixed Fields</h5>
+</section></section><section><h4><a id="responseObject">Response Object</a></h4>
+<p>Describes a single response from an API Operation.</p>
+<section><h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -1483,7 +1484,7 @@ Describes a single response from an API Operation.
 </tr>
 </tbody>
 </table>
-<h5>Patterned Objects</h5>
+</section><section><h5>Patterned Objects</h5>
 <table>
 <thead>
 <tr>
@@ -1500,7 +1501,7 @@ Describes a single response from an API Operation.
 </tr>
 </tbody>
 </table>
-<h5>Response Object Examples</h5>
+</section><section><h5>Response Object Examples</h5>
 <p>Response of an array of a complex type:</p>
 <pre class="nohighlight"><code>
 {
@@ -1581,9 +1582,9 @@ Describes a single response from an API Operation.
 <pre class="nohighlight"><code>
 <span class="hljs-attr">description:</span> <span class="hljs-string">object</span> <span class="hljs-string">created</span>
 </code></pre>
-<h4><a id="headersObject">Headers Object</a></h4>
-Lists the headers that can be sent as part of a response.
-<h5>Patterned Fields</h5>
+</section></section><section><h4><a id="headersObject">Headers Object</a></h4>
+<p>Lists the headers that can be sent as part of a response.</p>
+<section><h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -1600,7 +1601,7 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h5>Headers Object Example</h5>
+</section><section><h5>Headers Object Example</h5>
 <p>Rate-limit headers:</p>
 <pre class="nohighlight"><code>
 {
@@ -1629,9 +1630,9 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">  description:</span> <span class="hljs-string">The</span> <span class="hljs-string">number</span> <span class="hljs-string">of</span> <span class="hljs-string">seconds</span> <span class="hljs-string">left</span> <span class="hljs-string">in</span> <span class="hljs-string">the</span> <span class="hljs-string">current</span> <span class="hljs-string">period</span>
 <span class="hljs-attr">  type:</span> <span class="hljs-string">integer</span>
 </code></pre>
-<h4><a id="exampleObject">Example Object</a></h4>
+</section></section><section><h4><a id="exampleObject">Example Object</a></h4>
 <p>Allows sharing examples for operation responses.</p>
-<h5>Patterned Fields</h5>
+<section><h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -1648,7 +1649,7 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h5>Example Object Example</h5>
+</section><section><h5>Example Object Example</h5>
 <p>Example response for application/json mimetype of a Pet data type:</p>
 <pre class="nohighlight"><code>
 {
@@ -1669,7 +1670,7 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">  gender:</span> <span class="hljs-string">Female</span>
 <span class="hljs-attr">  breed:</span> <span class="hljs-string">Mixed</span>
 </code></pre>
-<h4><a id="headerObject">Header Object</a></h4>
+</section></section><section><h4><a id="headerObject">Header Object</a></h4>
 <table>
 <thead>
 <tr>
@@ -1771,7 +1772,7 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h5>Patterned Objects</h5>
+<section><h5>Patterned Objects</h5>
 <table>
 <thead>
 <tr>
@@ -1788,7 +1789,7 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h5>Header Object Example</h5>
+</section><section><h5>Header Object Example</h5>
 <p>A simple header with of an integer type:</p>
 <pre class="nohighlight"><code>
 {
@@ -1800,9 +1801,9 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">description:</span> <span class="hljs-string">The</span> <span class="hljs-string">number</span> <span class="hljs-string">of</span> <span class="hljs-string">allowed</span> <span class="hljs-string">requests</span> <span class="hljs-string">in</span> <span class="hljs-string">the</span> <span class="hljs-string">current</span> <span class="hljs-string">period</span>
 <span class="hljs-attr">type:</span> <span class="hljs-string">integer</span>
 </code></pre>
-<h4><a id="tagObject">Tag Object</a></h4>
+</section></section><section><h4><a id="tagObject">Tag Object</a></h4>
 <p>Allows adding meta data to a single tag that is used by the <a href="#operationObject">Operation Object</a>. It is not mandatory to have a Tag Object per tag used there.</p>
-<h5>Fixed Fields</h5>
+<section><h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -1829,7 +1830,7 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h5>Patterned Fields</h5>
+</section><section><h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -1846,7 +1847,7 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h5>Tag Object Example</h5>
+</section><section><h5>Tag Object Example</h5>
 <pre class="nohighlight"><code>
 {
 	<span class="hljs-string">"name"</span>: <span class="hljs-string">"pet"</span>,
@@ -1857,10 +1858,10 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">name:</span> <span class="hljs-string">pet</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">Pets</span> <span class="hljs-string">operations</span>
 </code></pre>
-<h4><a id="referenceObject">Reference Object</a></h4>
+</section></section><section><h4><a id="referenceObject">Reference Object</a></h4>
 <p>A simple object to allow referencing other definitions in the specification. It can be used to reference parameters and responses that are defined at the top level for reuse.</p>
 <p>The Reference Object is a <a href="http://tools.ietf.org/html/draft-pbryan-zyp-json-ref-02">JSON Reference</a> that uses a [JSON Pointer] as its value. For this specification, only <a href="https://tools.ietf.org/html/draft-zyp-json-schema-04#section-7.2.3">canonical dereferencing</a> is supported.</p>
-<h5>Fixed Fields</h5>
+<section><h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -1877,7 +1878,7 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h5>Reference Object Example</h5>
+</section><section><h5>Reference Object Example</h5>
 <pre class="nohighlight"><code>
 {
 	<span class="hljs-string">"$ref"</span>: <span class="hljs-string">"#/definitions/Pet"</span>
@@ -1886,7 +1887,7 @@ Lists the headers that can be sent as part of a response.
 <pre class="nohighlight"><code>
 <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/definitions/Pet'</span>
 </code></pre>
-<h5>Relative Schema File Example</h5>
+</section><section><h5>Relative Schema File Example</h5>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"$ref"</span>: <span class="hljs-string">"Pet.json"</span>
@@ -1895,7 +1896,7 @@ Lists the headers that can be sent as part of a response.
 <pre class="nohighlight"><code>
 <span class="hljs-string">$ref:</span> <span class="hljs-string">'Pet.yaml'</span>
 </code></pre>
-<h5>Relative Files With Embedded Schema Example</h5>
+</section><section><h5>Relative Files With Embedded Schema Example</h5>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"$ref"</span>: <span class="hljs-string">"definitions.json#/Pet"</span>
@@ -1904,7 +1905,7 @@ Lists the headers that can be sent as part of a response.
 <pre class="nohighlight"><code>
 <span class="hljs-string">$ref:</span> <span class="hljs-string">'definitions.yaml#/Pet'</span>
 </code></pre>
-<h4><a id="schemaObject">Schema Object</a></h4>
+</section></section><section><h4><a id="schemaObject">Schema Object</a></h4>
 <p>The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays. This object is based on the <a href="http://json-schema.org/">JSON Schema Specification Draft 4</a> and uses a predefined subset of it. On top of this subset, there are extensions provided by this specification to allow for more complete documentation.</p>
 <p>Further information about the properties can be found in <a href="https://tools.ietf.org/html/draft-zyp-json-schema-04">JSON Schema Core</a> and <a href="https://tools.ietf.org/html/draft-fge-json-schema-validation-00">JSON Schema Validation</a>. Unless stated otherwise, the property definitions follow the JSON Schema specification as referenced here.</p>
 <p>The following properties are taken directly from the JSON Schema definition and follow the same specifications:</p>
@@ -1939,7 +1940,7 @@ Lists the headers that can be sent as part of a response.
 <li>additionalProperties</li>
 </ul>
 <p>Other than the JSON Schema subset fields, the following fields may be used for further schema documentation.</p>
-<h5>Fixed Fields</h5>
+<section><h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -1976,7 +1977,7 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h5>Patterned Objects</h5>
+</section><section><h5>Patterned Objects</h5>
 <table>
 <thead>
 <tr>
@@ -1993,13 +1994,13 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h6>Composition and Inheritance (Polymorphism)</h6>
+<section><h6>Composition and Inheritance (Polymorphism)</h6>
 <p>Swagger allows combining and extending model definitions using the <code>allOf</code> property of JSON Schema, in effect offering model composition. <code>allOf</code> takes in an array of object definitions that are validated <em>independently</em> but together compose a single object.</p>
 <p>While composition offers model extensibility, it does not imply a hierarchy between the models. To support polymorphism, Swagger adds the support of the <code>discriminator</code> field. When used, the <code>discriminator</code> will be the name of the property used to decide which schema definition is used to validate the structure of the model. As such, the <code>discriminator</code> field MUST be a required field. The value of the chosen property has to be the friendly name given to the model under the <code>definitions</code> property. As such, inline schema definitions, which do not have a given id, <em>cannot</em> be used in polymorphism.</p>
-<h6>XML Modeling</h6>
+</section><section><h6>XML Modeling</h6>
 <p>The <a href="#schemaXml">xml</a> property allows extra definitions when translating the JSON definition to XML. The <a href="#xmlObject">XML Object</a> contains additional information about the available options.</p>
-<h5>Schema Object Examples</h5>
-<h6>Primitive Sample</h6>
+</section></section><section><h5>Schema Object Examples</h5>
+<section><h6>Primitive Sample</h6>
 <p>Unlike previous versions of Swagger, Schema definitions can be used to describe primitive and arrays as well.</p>
 <pre class="nohighlight"><code>
 {
@@ -2011,7 +2012,7 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 <span class="hljs-attr">format:</span> <span class="hljs-string">email</span>
 </code></pre>
-<h6>Simple Model</h6>
+</section><section><h6>Simple Model</h6>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"object"</span>,
@@ -2047,7 +2048,7 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">    format:</span> <span class="hljs-string">int32</span>
 <span class="hljs-attr">    minimum:</span> <span class="hljs-number">0</span>
 </code></pre>
-<h6>Model with Map/Dictionary Properties</h6>
+</section><section><h6>Model with Map/Dictionary Properties</h6>
 <p>For a simple string to string mapping:</p>
 <pre class="nohighlight"><code>
 {
@@ -2076,7 +2077,7 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">additionalProperties:</span>
   <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/definitions/ComplexModel'</span>
 </code></pre>
-<h6>Model with Example</h6>
+</section><section><h6>Model with Example</h6>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"object"</span>,
@@ -2112,7 +2113,7 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">  name:</span> <span class="hljs-string">Puma</span>
 <span class="hljs-attr">  id:</span> <span class="hljs-number">1</span>
 </code></pre>
-<h6>Models with Composition</h6>
+</section><section><h6>Models with Composition</h6>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"definitions"</span>: {
@@ -2178,7 +2179,7 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">        rootCause:</span>
 <span class="hljs-attr">          type:</span> <span class="hljs-string">string</span>
 </code></pre>
-<h6>Models with Polymorphism Support</h6>
+</section><section><h6>Models with Polymorphism Support</h6>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"definitions"</span>: {
@@ -2296,10 +2297,10 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">      required:</span>
 <span class="hljs-bullet">      -</span> <span class="hljs-string">packSize</span>
 </code></pre>
-<h5><a id="xmlObject">XML Object</a></h5>
+</section></section><section><h5><a id="xmlObject">XML Object</a></h5>
 <p>A metadata object that allows for more fine-tuned XML model definitions.</p>
 <p>When using arrays, XML element names are <em>not</em> inferred (for singular/plural forms) and the <code>name</code> property should be used to add that information. See examples for expected behavior.</p>
-<h5>Fixed Fields</h5>
+</section><section><h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -2336,7 +2337,7 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h5>Patterned Objects</h5>
+</section><section><h5>Patterned Objects</h5>
 <table>
 <thead>
 <tr>
@@ -2353,9 +2354,9 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h5>XML Object Examples</h5>
+</section><section><h5>XML Object Examples</h5>
 <p>The examples of the XML object definitions are included inside a property definition of a <a href="#schemaObject">Schema Object</a> with a sample of the XML representation of it.</p>
-<h6>No XML Element</h6>
+<section><h6>No XML Element</h6>
 <p>Basic string property:</p>
 <pre class="nohighlight"><code>
 {
@@ -2393,7 +2394,7 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
 </code></pre>
-<h6>XML Name Replacement</h6>
+</section><section><h6>XML Name Replacement</h6>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"animals"</span>: {
@@ -2413,7 +2414,7 @@ Lists the headers that can be sent as part of a response.
 <pre class="nohighlight"><code>
 <span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
 </code></pre>
-<h6>XML Attribute, Prefix and Namespace</h6>
+</section><section><h6>XML Attribute, Prefix and Namespace</h6>
 <p>In this example, a full model definition is shown.</p>
 <pre class="nohighlight"><code>
 {
@@ -2458,7 +2459,7 @@ Lists the headers that can be sent as part of a response.
     <span class="hljs-tag">&lt;<span class="hljs-name">sample:name</span> <span class="hljs-attr">xmlns:sample</span>=<span class="hljs-string">"http://swagger.io/schema/sample"</span>&gt;</span>example<span class="hljs-tag">&lt;/<span class="hljs-name">sample:name</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">Person</span>&gt;</span>
 </code></pre>
-<h6>XML Arrays</h6>
+</section><section><h6>XML Arrays</h6>
 <p>Changing the element names:</p>
 <pre class="nohighlight"><code>
 {
@@ -2642,9 +2643,9 @@ Lists the headers that can be sent as part of a response.
   <span class="hljs-tag">&lt;<span class="hljs-name">aliens</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>&gt;</span>
 </code></pre>
-<h5><a id="definitionsObject">Definitions Object</a></h5>
+</section></section><section><h5><a id="definitionsObject">Definitions Object</a></h5>
 <p>An object to hold data types that can be consumed and produced by operations. These data types can be primitives, arrays or models.</p>
-<h5>Patterned Fields</h5>
+</section><section><h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -2661,7 +2662,7 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h5>Definitions Object Example</h5>
+</section><section><h5>Definitions Object Example</h5>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"Category"</span>: {
@@ -2708,10 +2709,10 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">    name:</span>
 <span class="hljs-attr">      type:</span> <span class="hljs-string">string</span>
 </code></pre>
-<h4><a id="parametersDefinitionsObject">Parameters Definitions Object</a></h4>
+</section></section><section><h4><a id="parametersDefinitionsObject">Parameters Definitions Object</a></h4>
 <p>An object to hold parameters to be reused across operations. Parameter definitions can be referenced to the ones defined here.</p>
 <p>This does <em>not</em> define global operation parameters.</p>
-<h5>Patterned Fields</h5>
+<section><h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -2728,7 +2729,7 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h5>Parameters Definition Object Example</h5>
+</section><section><h5>Parameters Definition Object Example</h5>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"skipParam"</span>: {
@@ -2765,10 +2766,10 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">  type:</span> <span class="hljs-string">integer</span>
 <span class="hljs-attr">  format:</span> <span class="hljs-string">int32</span>
 </code></pre>
-<h4><a id="responsesDefinitionsObject">Responses Definitions Object</a></h4>
+</section></section><section><h4><a id="responsesDefinitionsObject">Responses Definitions Object</a></h4>
 <p>An object to hold responses to be reused across operations. Response definitions can be referenced to the ones defined here.</p>
 <p>This does <em>not</em> define global operation responses.</p>
-<h5>Patterned Fields</h5>
+<section><h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -2785,7 +2786,7 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h5>Responses Definitions Object Example</h5>
+</section><section><h5>Responses Definitions Object Example</h5>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"NotFound"</span>: {
@@ -2812,9 +2813,9 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">  schema:</span>
     <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/definitions/GeneralError'</span>
 </code></pre>
-<h4><a id="securityDefinitionsObject">Security Definitions Object</a></h4>
+</section></section><section><h4><a id="securityDefinitionsObject">Security Definitions Object</a></h4>
 <p>A declaration of the security schemes available to be used in the specification. This does not enforce the security schemes on the operations and only serves to provide the relevant details for each scheme.</p>
-<h5>Patterned Fields</h5>
+<section><h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -2831,7 +2832,7 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h5>Security Definitions Object Example</h5>
+</section><section><h5>Security Definitions Object Example</h5>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"api_key"</span>: {
@@ -2863,9 +2864,9 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">    write:</span><span class="hljs-attr">pets:</span> <span class="hljs-string">modify</span> <span class="hljs-string">pets</span> <span class="hljs-string">in</span> <span class="hljs-string">your</span> <span class="hljs-string">account</span>
 <span class="hljs-attr">    read:</span><span class="hljs-attr">pets:</span> <span class="hljs-string">read</span> <span class="hljs-string">your</span> <span class="hljs-string">pets</span>
 </code></pre>
-<h4><a id="securitySchemeObject">Security Scheme Object</a></h4>
+</section></section><section><h4><a id="securitySchemeObject">Security Scheme Object</a></h4>
 <p>Allows the definition of a security scheme that can be used by the operations. Supported schemes are basic authentication, an API key (either as a header or as a query parameter) and OAuth2’s common flows (implicit, password, application and access code).</p>
-<h5>Fixed Fields</h5>
+<section><h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -2926,7 +2927,7 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h5>Patterned Fields</h5>
+</section><section><h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -2943,8 +2944,8 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h5>Security Scheme Object Example</h5>
-<h6>Basic Authentication Sample</h6>
+</section><section><h5>Security Scheme Object Example</h5>
+<section><h6>Basic Authentication Sample</h6>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"basic"</span>
@@ -2953,7 +2954,7 @@ Lists the headers that can be sent as part of a response.
 <pre class="nohighlight"><code>
 <span class="hljs-attr">type:</span> <span class="hljs-string">basic</span>
 </code></pre>
-<h6>API Key Sample</h6>
+</section><section><h6>API Key Sample</h6>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"apiKey"</span>,
@@ -2966,7 +2967,7 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">name:</span> <span class="hljs-string">api_key</span>
 <span class="hljs-attr">in:</span> <span class="hljs-string">header</span>
 </code></pre>
-<h6>Implicit OAuth2 Sample</h6>
+</section><section><h6>Implicit OAuth2 Sample</h6>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"oauth2"</span>,
@@ -2986,9 +2987,9 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">  write:</span><span class="hljs-attr">pets:</span> <span class="hljs-string">modify</span> <span class="hljs-string">pets</span> <span class="hljs-string">in</span> <span class="hljs-string">your</span> <span class="hljs-string">account</span>
 <span class="hljs-attr">  read:</span><span class="hljs-attr">pets:</span> <span class="hljs-string">read</span> <span class="hljs-string">your</span> <span class="hljs-string">pets</span>
 </code></pre>
-<h5><a id="scopesObject">Scopes Object</a></h5>
+</section></section><section><h5><a id="scopesObject">Scopes Object</a></h5>
 <p>Lists the available scopes for an OAuth2 security scheme.</p>
-<h5>Patterned Fields</h5>
+</section><section><h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -3005,7 +3006,7 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h5>Patterned Objects</h5>
+</section><section><h5>Patterned Objects</h5>
 <table>
 <thead>
 <tr>
@@ -3022,7 +3023,7 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h5>Scopes Object Example</h5>
+</section><section><h5>Scopes Object Example</h5>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"write:pets"</span>: <span class="hljs-string">"modify pets in your account"</span>,
@@ -3033,10 +3034,10 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">write:</span><span class="hljs-attr">pets:</span> <span class="hljs-string">modify</span> <span class="hljs-string">pets</span> <span class="hljs-string">in</span> <span class="hljs-string">your</span> <span class="hljs-string">account</span>
 <span class="hljs-attr">read:</span><span class="hljs-attr">pets:</span> <span class="hljs-string">read</span> <span class="hljs-string">your</span> <span class="hljs-string">pets</span>
 </code></pre>
-<h4><a id="securityRequirementObject">Security Requirement Object</a></h4>
+</section></section><section><h4><a id="securityRequirementObject">Security Requirement Object</a></h4>
 <p>Lists the required security schemes to execute this operation. The object can have multiple security schemes declared in it which are all required (that is, there is a logical AND between the schemes).</p>
 <p>The name used for each property MUST correspond to a security scheme declared in the <a href="#securityDefinitionsObject">Security Definitions</a>.</p>
-<h5>Patterned Fields</h5>
+<section><h5>Patterned Fields</h5>
 <table>
 <thead>
 <tr>
@@ -3053,8 +3054,8 @@ Lists the headers that can be sent as part of a response.
 </tr>
 </tbody>
 </table>
-<h5>Security Requirement Object Examples</h5>
-<h6>Non-OAuth2 Security Requirement</h6>
+</section><section><h5>Security Requirement Object Examples</h5>
+<section><h6>Non-OAuth2 Security Requirement</h6>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"api_key"</span>: []
@@ -3063,7 +3064,7 @@ Lists the headers that can be sent as part of a response.
 <pre class="nohighlight"><code>
 <span class="hljs-attr">api_key:</span> <span class="hljs-string">[]</span>
 </code></pre>
-<h6>OAuth2 Security Requirement</h6>
+</section><section><h6>OAuth2 Security Requirement</h6>
 <pre class="nohighlight"><code>
 {
   <span class="hljs-string">"petstore_auth"</span>: [
@@ -3077,11 +3078,11 @@ Lists the headers that can be sent as part of a response.
 <span class="hljs-attr">- write:</span><span class="hljs-string">pets</span>
 <span class="hljs-attr">- read:</span><span class="hljs-string">pets</span>
 </code></pre>
-<h5><a id="vendorExtensions">Specification Extensions</a></h5>
+</section></section><section><h5><a id="vendorExtensions">Specification Extensions</a></h5>
 <p>While the Swagger Specification tries to accommodate most use cases, additional data can be added to extend the specification at certain points.</p>
 <p>The extensions properties are always prefixed by <code>&quot;x-&quot;</code> and can have any valid JSON format value.</p>
 <p>The extensions may or may not be supported by the available tooling, but those may be extended as well to add requested support (if tools are internal or open-sourced).</p>
-<h5><a id="securityFiltering">Security Filtering</a></h5>
+</section></section><section><h4><a id="securityFiltering">Security Filtering</a></h4>
 <p>Some objects in the Swagger specification may be declared and remain empty, or completely be removed, even though they are inherently the core of the API documentation.</p>
 <p>The reasoning behind it is to allow an additional layer of access control over the documentation itself. While not part of the specification itself, certain libraries may choose to allow access to parts of the documentation based on some form of authentication/authorization.</p>
 <p>Two examples for this:</p>

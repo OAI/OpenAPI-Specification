@@ -136,6 +136,7 @@ let inCodeBlock = false;
 let bsFix = true;
 
 let indents = [0];
+let delta = 0;
 
 for (let l in lines) {
     let line = lines[l];
@@ -163,7 +164,7 @@ for (let l in lines) {
         let prevIndent = indents[indents.length-1]; // peek
 
         /* bikeshed is a bit of a pita when it comes to header nesting */
-        let delta = indent-prevIndent;
+        delta = indent-prevIndent;
 
         if (!argv.respec) {
             if (delta===0) indent = lastIndent
@@ -228,7 +229,10 @@ for (let l in lines) {
     if (!inCodeBlock && line.startsWith('#')) {
         let heading = 0;
         while (line[heading] === '#') heading++;
-        let delta = heading-prevHeading;
+        //let delta = heading-prevHeading;
+        delta = heading-prevHeading;
+        if (delta>0) delta = 1;
+        if (delta<0) delta = -1;
         if (Math.abs(delta)>1) console.warn(delta,line);
         let prefix = '';
 
@@ -250,14 +254,14 @@ for (let l in lines) {
             /* respec insists on <section>...</section> breaks around headings */
 
             if (argv.respec) {
-                if (delta == 0) {
+                if (delta === 0) {
                     prefix = '</section><section>';
                 }
                 else if (delta > 0) {
                     prefix = '<section>'.repeat(delta);
                 }
                 else {
-                    prefix = ('</section>').repeat(Math.abs(delta)+1)+'<section>';
+                    prefix = '</section>'+('</section>').repeat(Math.abs(delta))+'<section>';
                 }
             }
             prevHeading = heading;

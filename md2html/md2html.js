@@ -78,8 +78,6 @@ function preface(title,options) {
         preface += 'table th, table td { padding: 6px 13px; border: 1px solid #dfe2e5; }';
         preface += 'table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }';
         preface += 'table tr:nth-child(2n) { background-color: #f6f8fa; }';
-        //preface += 'table { border-style: dotted;} ';
-        //preface += 'td { border-style: ridge;} ';
         preface += '</style>';
         preface += '<section id="abstract">';
         preface += 'The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for REST APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.';
@@ -131,6 +129,8 @@ if (argv.respec) {
 let lines = s.split('\r').join().split('\n');
 
 let prevIndent = 0;
+let lastIndent = 0;
+let prevHeading = 0;
 let inTOC = false;
 let inDefs = false;
 let inCodeBlock = false;
@@ -147,24 +147,45 @@ for (let l in lines) {
     }
     else if (line.startsWith('## ')) inDefs = false;
 
-    if (line.startsWith('#') && line.indexOf('<a name=')>=0) {
+    //if (line.startsWith('#') && line.indexOf('<a name=')>=0) {
+    if (line.startsWith('#')) {
         let indent = 0;
         while (line[indent] === '#') indent++;
+        let originalIndent = indent;
 
         /* bikeshed is a bit of a pita when it comes to header nesting */
         let delta = indent-prevIndent;
 
-        if (!argv.respec && Math.abs(delta)>1) {
-            if (delta<0) indent = prevIndent-1;
-            if (delta>0) indent = prevIndent+1;
+        if (!argv.respec) {
+            if (delta===0) indent = lastIndent
+            else if (delta<0) indent = lastIndent-1
+            else if (delta>0) indent = lastIndent+1;
         }
 
-        let comp = line.split('</a>');
-        let title = comp[1];
-        if (inDefs) title = '<dfn>'+title+'</dfn>';
-        let link = comp[0].split('<a ')[1].replace('name=','id=');
-        //line = ('<h'+indent+'><a '+link+title+'</a></h'+indent+'>');
-        line = ('#'.repeat(indent)+' <a '+link+title+'</a>');
+        lastIndent = indent;
+        if (indent < 0) {
+            console.warn(indent,line);
+            indent = 1;
+        }
+        if (argv.respec && (indent > 1)) {
+            indent--;
+        }
+
+        if (line.indexOf('<a name=')>=0) {
+            let comp = line.split('</a>');
+            let title = comp[1];
+            if (inDefs) title = '<dfn>'+title+'</dfn>';
+            let link = comp[0].split('<a ')[1].replace('name=','id=');
+            line = ('#'.repeat(indent)+' <a '+link+title+'</a>');
+        }
+        else {
+            let title = line.split('# ')[1];
+            if (inDefs) title = '<dfn>'+title+'</dfn>';
+            line = ('#'.repeat(indent)+' '+title);
+        }
+
+        //prevIndent = originalIndent;
+        prevIndent = indent;
     }
 
     if (line.indexOf('"></a>')>=0) {
@@ -178,10 +199,6 @@ for (let l in lines) {
             return '[[!rfc'+group1+']]';
         });
     }
-
-    line = line.replace(/\[([RGB])\]/,function(match,group1){
-        return '\\['+group1+']';
-    });
 
     line = line.split('\\|').join('&brvbar;');
 
@@ -202,14 +219,13 @@ for (let l in lines) {
     }
 
     if (!inCodeBlock && line.startsWith('#')) {
-        let indent = 0;
-        while (line[indent] === '#') indent++;
-
-        if (argv.respec && (indent > 1)) indent--;
-
-        let delta = indent-prevIndent;
-        let oIndent = indent;
+        let heading = 0;
+        while (line[heading] === '#') heading++;
+        let delta = heading-prevHeading;
+        if (Math.abs(delta)>1) console.warn(delta,line);
         let prefix = '';
+
+        /*let oIndent = indent;
         if (!argv.respec && Math.abs(delta)>1) {
             // if we're skipping more than one indent level up or down correct it
             if (delta<0) {
@@ -222,26 +238,36 @@ for (let l in lines) {
             }
             line = line.replace('#'.repeat(oIndent),'#'.repeat(indent));
         }
-        else {
+        else { */
             // heading level delta is either 0 or is +1/-1, or we're in respec mode
             /* respec insists on <section>...</section> breaks around headings */
-            if (delta == 0) {
-                prefix = '</section><section>';
-            }
-            else if (delta > 0) {
-                prefix = '<section>'.repeat(delta);
-            }
-            else {
-                prefix = '</section>'+('</section>').repeat(Math.abs(delta))+'<section>';
-            }
-        }
+
+            //if (argv.respec) {
+                if (delta == 0) {
+                    prefix = '</section><section>';
+                }
+                else if (delta > 0) {
+                    prefix = '<section>'.repeat(delta);
+                }
+                else {
+                    prefix = ('</section>').repeat(Math.abs(delta)+1)+'<section>';
+                }
+            //}
+            prevHeading = heading;
+        /*}*/
         line = prefix+md.render(line);
-        prevIndent = indent;
     }
 
     lines[l] = line;
 
 }
 
+fs.writeFileSync('./md2html.tmp',lines.join('\n'),'utf8');
+
 s = preface('OpenAPI Specification',argv)+'\n\n'+lines.join('\n');
-console.log(md.render(s));
+let out = md.render(s);
+out = out.replace(/\[([RGB])\]/g,function(match,group1){
+    console.warn('Fixing',match,group1);
+    return '\\'+group1;
+});
+console.log(out);

@@ -1499,7 +1499,7 @@ pre .property::before, pre .property::after {
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"></p>
-   <h1>OpenAPI Specification</h1>
+   <h1 class="p-name no-ref" id="title">OpenAPI Specification</h1>
    <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Standard, <time class="dt-updated" datetime="2017-12-06">6 December 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
@@ -1532,255 +1532,242 @@ pre .property::before, pre .property::after {
    <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
    <ol class="toc" role="directory">
     <li><a href="#version-301"><span class="secno">1</span> <span class="content">Version 3.0.1</span></a>
-    <li><a href="#introduction"><span class="secno">2</span> <span class="content">Introduction</span></a>
     <li>
-     <a href="#definitions"><span class="secno">3</span> <span class="content"><span>Definitions</span></span></a>
+     <a href="#definitions"><span class="secno">2</span> <span class="content"><span>Definitions</span></span></a>
      <ol class="toc">
-      <li>
-       <a href="#openapi-document"><span class="secno">3.1</span> <span class="content"><span><span>OpenAPI Document</span></span></span></a>
-       <ol class="toc">
-        <li>
-         <a href="#path-templating"><span class="secno">3.1.1</span> <span class="content"><span><span>Path Templating</span></span></span></a>
-         <ol class="toc">
-          <li><a href="#media-types"><span class="secno">3.1.1.1</span> <span class="content"><span><span>Media Types</span></span></span></a>
-          <li><a href="#http-status-codes"><span class="secno">3.1.1.2</span> <span class="content"><span><span>HTTP Status Codes</span></span></span></a>
-         </ol>
-        <li><a href="#specification"><span class="secno">3.1.2</span> <span class="content">Specification</span></a>
-       </ol>
-      <li><a href="#versions"><span class="secno">3.2</span> <span class="content">Versions</span></a>
-      <li><a href="#format"><span class="secno">3.3</span> <span class="content">Format</span></a>
-      <li><a href="#document-structure"><span class="secno">3.4</span> <span class="content"><span>Document Structure</span></span></a>
-      <li><a href="#data-types"><span class="secno">3.5</span> <span class="content"><span>Data Types</span></span></a>
-      <li><a href="#rich-text-formatting"><span class="secno">3.6</span> <span class="content"><span>Rich Text Formatting</span></span></a>
-      <li><a href="#relative-references-in-urls"><span class="secno">3.7</span> <span class="content"><span>Relative References in URLs</span></span></a>
-      <li>
-       <a href="#schema"><span class="secno">3.8</span> <span class="content">Schema</span></a>
-       <ol class="toc">
-        <li>
-         <a href="#openapi-object"><span class="secno">3.8.1</span> <span class="content"><span>OpenAPI Object</span></span></a>
-         <ol class="toc">
-          <li><a href="#fixed-fields"><span class="secno">3.8.1.1</span> <span class="content">Fixed Fields</span></a>
-         </ol>
-        <li>
-         <a href="#info-object"><span class="secno">3.8.2</span> <span class="content"><span>Info Object</span></span></a>
-         <ol class="toc">
-          <li><a href="#fixed-fields①"><span class="secno">3.8.2.1</span> <span class="content">Fixed Fields</span></a>
-          <li><a href="#info-object-example"><span class="secno">3.8.2.2</span> <span class="content">Info Object Example:</span></a>
-         </ol>
-        <li>
-         <a href="#contact-object"><span class="secno">3.8.3</span> <span class="content"><span>Contact Object</span></span></a>
-         <ol class="toc">
-          <li><a href="#fixed-fields②"><span class="secno">3.8.3.1</span> <span class="content">Fixed Fields</span></a>
-          <li><a href="#contact-object-example"><span class="secno">3.8.3.2</span> <span class="content">Contact Object Example:</span></a>
-         </ol>
-        <li>
-         <a href="#license-object"><span class="secno">3.8.4</span> <span class="content"><span>License Object</span></span></a>
-         <ol class="toc">
-          <li><a href="#fixed-fields③"><span class="secno">3.8.4.1</span> <span class="content">Fixed Fields</span></a>
-          <li><a href="#license-object-example"><span class="secno">3.8.4.2</span> <span class="content">License Object Example:</span></a>
-         </ol>
-        <li>
-         <a href="#server-object"><span class="secno">3.8.5</span> <span class="content"><span>Server Object</span></span></a>
-         <ol class="toc">
-          <li><a href="#fixed-fields④"><span class="secno">3.8.5.1</span> <span class="content">Fixed Fields</span></a>
-          <li><a href="#server-object-example"><span class="secno">3.8.5.2</span> <span class="content">Server Object Example</span></a>
-         </ol>
-        <li>
-         <a href="#server-variable-object"><span class="secno">3.8.6</span> <span class="content"><span>Server Variable Object</span></span></a>
-         <ol class="toc">
-          <li><a href="#fixed-fields⑤"><span class="secno">3.8.6.1</span> <span class="content">Fixed Fields</span></a>
-         </ol>
-        <li>
-         <a href="#components-object"><span class="secno">3.8.7</span> <span class="content"><span>Components Object</span></span></a>
-         <ol class="toc">
-          <li><a href="#fixed-fields⑥"><span class="secno">3.8.7.1</span> <span class="content">Fixed Fields</span></a>
-          <li><a href="#components-object-example"><span class="secno">3.8.7.2</span> <span class="content">Components Object Example</span></a>
-         </ol>
-        <li>
-         <a href="#paths-object"><span class="secno">3.8.8</span> <span class="content"><span>Paths Object</span></span></a>
-         <ol class="toc">
-          <li><a href="#patterned-fields"><span class="secno">3.8.8.1</span> <span class="content">Patterned Fields</span></a>
-          <li><a href="#path-templating-matching"><span class="secno">3.8.8.2</span> <span class="content">Path Templating Matching</span></a>
-          <li><a href="#paths-object-example"><span class="secno">3.8.8.3</span> <span class="content">Paths Object Example</span></a>
-         </ol>
-        <li>
-         <a href="#path-item-object"><span class="secno">3.8.9</span> <span class="content"><span>Path Item Object</span></span></a>
-         <ol class="toc">
-          <li><a href="#fixed-fields⑦"><span class="secno">3.8.9.1</span> <span class="content">Fixed Fields</span></a>
-          <li><a href="#path-item-object-example"><span class="secno">3.8.9.2</span> <span class="content">Path Item Object Example</span></a>
-         </ol>
-        <li>
-         <a href="#operation-object"><span class="secno">3.8.10</span> <span class="content"><span>Operation Object</span></span></a>
-         <ol class="toc">
-          <li><a href="#fixed-fields⑧"><span class="secno">3.8.10.1</span> <span class="content">Fixed Fields</span></a>
-          <li><a href="#operation-object-example"><span class="secno">3.8.10.2</span> <span class="content">Operation Object Example</span></a>
-         </ol>
-        <li>
-         <a href="#external-documentation-object"><span class="secno">3.8.11</span> <span class="content"><span>External Documentation Object</span></span></a>
-         <ol class="toc">
-          <li><a href="#fixed-fields⑨"><span class="secno">3.8.11.1</span> <span class="content">Fixed Fields</span></a>
-          <li><a href="#external-documentation-object-example"><span class="secno">3.8.11.2</span> <span class="content">External Documentation Object Example</span></a>
-         </ol>
-        <li>
-         <a href="#parameter-object"><span class="secno">3.8.12</span> <span class="content"><span>Parameter Object</span></span></a>
-         <ol class="toc">
-          <li><a href="#parameter-locations"><span class="secno">3.8.12.1</span> <span class="content">Parameter Locations</span></a>
-          <li><a href="#fixed-fields①⓪"><span class="secno">3.8.12.2</span> <span class="content">Fixed Fields</span></a>
-          <li><a href="#style-values"><span class="secno">3.8.12.3</span> <span class="content">Style Values</span></a>
-          <li><a href="#style-examples"><span class="secno">3.8.12.4</span> <span class="content">Style Examples</span></a>
-          <li><a href="#parameter-object-examples"><span class="secno">3.8.12.5</span> <span class="content">Parameter Object Examples</span></a>
-         </ol>
-        <li>
-         <a href="#request-body-object"><span class="secno">3.8.13</span> <span class="content"><span>Request Body Object</span></span></a>
-         <ol class="toc">
-          <li><a href="#fixed-fields①①"><span class="secno">3.8.13.1</span> <span class="content">Fixed Fields</span></a>
-          <li><a href="#request-body-examples"><span class="secno">3.8.13.2</span> <span class="content">Request Body Examples</span></a>
-         </ol>
-        <li>
-         <a href="#media-type-object"><span class="secno">3.8.14</span> <span class="content"><span>Media Type Object</span></span></a>
-         <ol class="toc">
-          <li><a href="#fixed-fields①②"><span class="secno">3.8.14.1</span> <span class="content">Fixed Fields</span></a>
-          <li><a href="#media-type-examples"><span class="secno">3.8.14.2</span> <span class="content">Media Type Examples</span></a>
-          <li><a href="#considerations-for-file-uploads"><span class="secno">3.8.14.3</span> <span class="content">Considerations for File Uploads</span></a>
-         </ol>
-       </ol>
-      <li>
-       <a href="#support-for-x-www-form-urlencoded-request-bodies"><span class="secno">3.9</span> <span class="content">Support for x-www-form-urlencoded Request Bodies</span></a>
-       <ol class="toc">
-        <li><a href="#special-considerations-for-multipart-content"><span class="secno">3.9.1</span> <span class="content">Special Considerations for <code>multipart</code> Content</span></a>
-        <li>
-         <a href="#encoding-object"><span class="secno">3.9.2</span> <span class="content"><span>Encoding Object</span></span></a>
-         <ol class="toc">
-          <li><a href="#fixed-fields①③"><span class="secno">3.9.2.1</span> <span class="content">Fixed Fields</span></a>
-          <li><a href="#encoding-object-example"><span class="secno">3.9.2.2</span> <span class="content">Encoding Object Example</span></a>
-         </ol>
-        <li>
-         <a href="#responses-object"><span class="secno">3.9.3</span> <span class="content"><span>Responses Object</span></span></a>
-         <ol class="toc">
-          <li><a href="#fixed-fields①④"><span class="secno">3.9.3.1</span> <span class="content">Fixed Fields</span></a>
-          <li><a href="#patterned-fields①"><span class="secno">3.9.3.2</span> <span class="content">Patterned Fields</span></a>
-          <li><a href="#responses-object-example"><span class="secno">3.9.3.3</span> <span class="content">Responses Object Example</span></a>
-         </ol>
-        <li>
-         <a href="#response-object"><span class="secno">3.9.4</span> <span class="content"><span>Response Object</span></span></a>
-         <ol class="toc">
-          <li><a href="#fixed-fields①⑤"><span class="secno">3.9.4.1</span> <span class="content">Fixed Fields</span></a>
-          <li><a href="#response-object-examples"><span class="secno">3.9.4.2</span> <span class="content">Response Object Examples</span></a>
-         </ol>
-        <li>
-         <a href="#callback-object"><span class="secno">3.9.5</span> <span class="content"><span>Callback Object</span></span></a>
-         <ol class="toc">
-          <li><a href="#patterned-fields②"><span class="secno">3.9.5.1</span> <span class="content">Patterned Fields</span></a>
-          <li><a href="#key-expression"><span class="secno">3.9.5.2</span> <span class="content">Key Expression</span></a>
-          <li><a href="#callback-object-example"><span class="secno">3.9.5.3</span> <span class="content">Callback Object Example</span></a>
-         </ol>
-        <li>
-         <a href="#example-object"><span class="secno">3.9.6</span> <span class="content"><span>Example Object</span></span></a>
-         <ol class="toc">
-          <li><a href="#fixed-fields①⑥"><span class="secno">3.9.6.1</span> <span class="content">Fixed Fields</span></a>
-          <li><a href="#example-object-example"><span class="secno">3.9.6.2</span> <span class="content">Example Object Example</span></a>
-         </ol>
-       </ol>
+      <li><a href="#openapi-document"><span class="secno">2.1</span> <span class="content"><span><span>OpenAPI Document</span></span></span></a>
+      <li><a href="#path-templating"><span class="secno">2.2</span> <span class="content"><span><span>Path Templating</span></span></span></a>
+      <li><a href="#media-types"><span class="secno">2.3</span> <span class="content"><span><span>Media Types</span></span></span></a>
+      <li><a href="#http-status-codes"><span class="secno">2.4</span> <span class="content"><span><span>HTTP Status Codes</span></span></span></a>
      </ol>
     <li>
-     <a href="#link-object"><span class="secno">4</span> <span class="content"><span>Link Object</span></span></a>
+     <a href="#specification"><span class="secno">3</span> <span class="content">Specification</span></a>
      <ol class="toc">
+      <li><a href="#versions"><span class="secno">3.1</span> <span class="content">Versions</span></a>
+      <li><a href="#format"><span class="secno">3.2</span> <span class="content">Format</span></a>
+      <li><a href="#document-structure"><span class="secno">3.3</span> <span class="content"><span>Document Structure</span></span></a>
+      <li><a href="#data-types"><span class="secno">3.4</span> <span class="content"><span>Data Types</span></span></a>
+      <li><a href="#rich-text-formatting"><span class="secno">3.5</span> <span class="content"><span>Rich Text Formatting</span></span></a>
+      <li><a href="#relative-references-in-urls"><span class="secno">3.6</span> <span class="content"><span>Relative References in URLs</span></span></a>
       <li>
-       <a href="#fixed-fields①⑦"><span class="secno">4.1</span> <span class="content">Fixed Fields</span></a>
+       <a href="#schema"><span class="secno">3.7</span> <span class="content">Schema</span></a>
        <ol class="toc">
         <li>
-         <a href="#examples"><span class="secno">4.1.1</span> <span class="content">Examples</span></a>
+         <a href="#openapi-object"><span class="secno">3.7.1</span> <span class="content"><span>OpenAPI Object</span></span></a>
          <ol class="toc">
-          <li><a href="#operationref-examples"><span class="secno">4.1.1.1</span> <span class="content">OperationRef Examples</span></a>
-          <li><a href="#runtime-expressions"><span class="secno">4.1.1.2</span> <span class="content"><span>Runtime Expressions</span></span></a>
-          <li><a href="#examples①"><span class="secno">4.1.1.3</span> <span class="content"><span>Examples</span></span></a>
+          <li><a href="#fixed-fields"><span class="secno">3.7.1.1</span> <span class="content">Fixed Fields</span></a>
          </ol>
         <li>
-         <a href="#header-object"><span class="secno">4.1.2</span> <span class="content"><span>Header Object</span></span></a>
+         <a href="#info-object"><span class="secno">3.7.2</span> <span class="content"><span>Info Object</span></span></a>
          <ol class="toc">
-          <li><a href="#header-object-example"><span class="secno">4.1.2.1</span> <span class="content">Header Object Example</span></a>
+          <li><a href="#fixed-fields①"><span class="secno">3.7.2.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#info-object-example"><span class="secno">3.7.2.2</span> <span class="content">Info Object Example:</span></a>
          </ol>
         <li>
-         <a href="#tag-object"><span class="secno">4.1.3</span> <span class="content"><span>Tag Object</span></span></a>
+         <a href="#contact-object"><span class="secno">3.7.3</span> <span class="content"><span>Contact Object</span></span></a>
          <ol class="toc">
-          <li><a href="#fixed-fields①⑧"><span class="secno">4.1.3.1</span> <span class="content">Fixed Fields</span></a>
-          <li><a href="#tag-object-example"><span class="secno">4.1.3.2</span> <span class="content">Tag Object Example</span></a>
+          <li><a href="#fixed-fields②"><span class="secno">3.7.3.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#contact-object-example"><span class="secno">3.7.3.2</span> <span class="content">Contact Object Example:</span></a>
          </ol>
         <li>
-         <a href="#reference-object"><span class="secno">4.1.4</span> <span class="content"><span>Reference Object</span></span></a>
+         <a href="#license-object"><span class="secno">3.7.4</span> <span class="content"><span>License Object</span></span></a>
          <ol class="toc">
-          <li><a href="#fixed-fields①⑨"><span class="secno">4.1.4.1</span> <span class="content">Fixed Fields</span></a>
-          <li><a href="#reference-object-example"><span class="secno">4.1.4.2</span> <span class="content">Reference Object Example</span></a>
-          <li><a href="#relative-schema-document-example"><span class="secno">4.1.4.3</span> <span class="content">Relative Schema Document Example</span></a>
-          <li><a href="#relative-documents-with-embedded-schema-example"><span class="secno">4.1.4.4</span> <span class="content">Relative Documents With Embedded Schema Example</span></a>
+          <li><a href="#fixed-fields③"><span class="secno">3.7.4.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#license-object-example"><span class="secno">3.7.4.2</span> <span class="content">License Object Example:</span></a>
          </ol>
         <li>
-         <a href="#schema-object"><span class="secno">4.1.5</span> <span class="content"><span>Schema Object</span></span></a>
+         <a href="#server-object"><span class="secno">3.7.5</span> <span class="content"><span>Server Object</span></span></a>
          <ol class="toc">
-          <li><a href="#properties"><span class="secno">4.1.5.1</span> <span class="content">Properties</span></a>
+          <li><a href="#fixed-fields④"><span class="secno">3.7.5.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#server-object-example"><span class="secno">3.7.5.2</span> <span class="content">Server Object Example</span></a>
+         </ol>
+        <li>
+         <a href="#server-variable-object"><span class="secno">3.7.6</span> <span class="content"><span>Server Variable Object</span></span></a>
+         <ol class="toc">
+          <li><a href="#fixed-fields⑤"><span class="secno">3.7.6.1</span> <span class="content">Fixed Fields</span></a>
+         </ol>
+        <li>
+         <a href="#components-object"><span class="secno">3.7.7</span> <span class="content"><span>Components Object</span></span></a>
+         <ol class="toc">
+          <li><a href="#fixed-fields⑥"><span class="secno">3.7.7.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#components-object-example"><span class="secno">3.7.7.2</span> <span class="content">Components Object Example</span></a>
+         </ol>
+        <li>
+         <a href="#paths-object"><span class="secno">3.7.8</span> <span class="content"><span>Paths Object</span></span></a>
+         <ol class="toc">
+          <li><a href="#patterned-fields"><span class="secno">3.7.8.1</span> <span class="content">Patterned Fields</span></a>
+          <li><a href="#path-templating-matching"><span class="secno">3.7.8.2</span> <span class="content">Path Templating Matching</span></a>
+          <li><a href="#paths-object-example"><span class="secno">3.7.8.3</span> <span class="content">Paths Object Example</span></a>
+         </ol>
+        <li>
+         <a href="#path-item-object"><span class="secno">3.7.9</span> <span class="content"><span>Path Item Object</span></span></a>
+         <ol class="toc">
+          <li><a href="#fixed-fields⑦"><span class="secno">3.7.9.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#path-item-object-example"><span class="secno">3.7.9.2</span> <span class="content">Path Item Object Example</span></a>
+         </ol>
+        <li>
+         <a href="#operation-object"><span class="secno">3.7.10</span> <span class="content"><span>Operation Object</span></span></a>
+         <ol class="toc">
+          <li><a href="#fixed-fields⑧"><span class="secno">3.7.10.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#operation-object-example"><span class="secno">3.7.10.2</span> <span class="content">Operation Object Example</span></a>
+         </ol>
+        <li>
+         <a href="#external-documentation-object"><span class="secno">3.7.11</span> <span class="content"><span>External Documentation Object</span></span></a>
+         <ol class="toc">
+          <li><a href="#fixed-fields⑨"><span class="secno">3.7.11.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#external-documentation-object-example"><span class="secno">3.7.11.2</span> <span class="content">External Documentation Object Example</span></a>
+         </ol>
+        <li>
+         <a href="#parameter-object"><span class="secno">3.7.12</span> <span class="content"><span>Parameter Object</span></span></a>
+         <ol class="toc">
+          <li><a href="#parameter-locations"><span class="secno">3.7.12.1</span> <span class="content">Parameter Locations</span></a>
+          <li><a href="#fixed-fields①⓪"><span class="secno">3.7.12.2</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#style-values"><span class="secno">3.7.12.3</span> <span class="content">Style Values</span></a>
+          <li><a href="#style-examples"><span class="secno">3.7.12.4</span> <span class="content">Style Examples</span></a>
+          <li><a href="#parameter-object-examples"><span class="secno">3.7.12.5</span> <span class="content">Parameter Object Examples</span></a>
+         </ol>
+        <li>
+         <a href="#request-body-object"><span class="secno">3.7.13</span> <span class="content"><span>Request Body Object</span></span></a>
+         <ol class="toc">
+          <li><a href="#fixed-fields①①"><span class="secno">3.7.13.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#request-body-examples"><span class="secno">3.7.13.2</span> <span class="content">Request Body Examples</span></a>
+         </ol>
+        <li>
+         <a href="#media-type-object"><span class="secno">3.7.14</span> <span class="content"><span>Media Type Object</span></span></a>
+         <ol class="toc">
+          <li><a href="#fixed-fields①②"><span class="secno">3.7.14.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#media-type-examples"><span class="secno">3.7.14.2</span> <span class="content">Media Type Examples</span></a>
+          <li><a href="#considerations-for-file-uploads"><span class="secno">3.7.14.3</span> <span class="content">Considerations for File Uploads</span></a>
+          <li><a href="#support-for-x-www-form-urlencoded-request-bodies"><span class="secno">3.7.14.4</span> <span class="content">Support for x-www-form-urlencoded Request Bodies</span></a>
+          <li><a href="#special-considerations-for-multipart-content"><span class="secno">3.7.14.5</span> <span class="content">Special Considerations for <code>multipart</code> Content</span></a>
+         </ol>
+        <li>
+         <a href="#encoding-object"><span class="secno">3.7.15</span> <span class="content"><span>Encoding Object</span></span></a>
+         <ol class="toc">
+          <li><a href="#fixed-fields①③"><span class="secno">3.7.15.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#encoding-object-example"><span class="secno">3.7.15.2</span> <span class="content">Encoding Object Example</span></a>
+         </ol>
+        <li>
+         <a href="#responses-object"><span class="secno">3.7.16</span> <span class="content"><span>Responses Object</span></span></a>
+         <ol class="toc">
+          <li><a href="#fixed-fields①④"><span class="secno">3.7.16.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#patterned-fields①"><span class="secno">3.7.16.2</span> <span class="content">Patterned Fields</span></a>
+          <li><a href="#responses-object-example"><span class="secno">3.7.16.3</span> <span class="content">Responses Object Example</span></a>
+         </ol>
+        <li>
+         <a href="#response-object"><span class="secno">3.7.17</span> <span class="content"><span>Response Object</span></span></a>
+         <ol class="toc">
+          <li><a href="#fixed-fields①⑤"><span class="secno">3.7.17.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#response-object-examples"><span class="secno">3.7.17.2</span> <span class="content">Response Object Examples</span></a>
+         </ol>
+        <li>
+         <a href="#callback-object"><span class="secno">3.7.18</span> <span class="content"><span>Callback Object</span></span></a>
+         <ol class="toc">
+          <li><a href="#patterned-fields②"><span class="secno">3.7.18.1</span> <span class="content">Patterned Fields</span></a>
+          <li><a href="#key-expression"><span class="secno">3.7.18.2</span> <span class="content">Key Expression</span></a>
+          <li><a href="#callback-object-example"><span class="secno">3.7.18.3</span> <span class="content">Callback Object Example</span></a>
+         </ol>
+        <li>
+         <a href="#example-object"><span class="secno">3.7.19</span> <span class="content"><span>Example Object</span></span></a>
+         <ol class="toc">
+          <li><a href="#fixed-fields①⑥"><span class="secno">3.7.19.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#example-object-example"><span class="secno">3.7.19.2</span> <span class="content">Example Object Example</span></a>
+         </ol>
+        <li>
+         <a href="#link-object"><span class="secno">3.7.20</span> <span class="content"><span>Link Object</span></span></a>
+         <ol class="toc">
+          <li><a href="#fixed-fields①⑦"><span class="secno">3.7.20.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#examples"><span class="secno">3.7.20.2</span> <span class="content">Examples</span></a>
+          <li><a href="#operationref-examples"><span class="secno">3.7.20.3</span> <span class="content">OperationRef Examples</span></a>
+          <li><a href="#runtime-expressions"><span class="secno">3.7.20.4</span> <span class="content"><span>Runtime Expressions</span></span></a>
+          <li><a href="#examples①"><span class="secno">3.7.20.5</span> <span class="content"><span>Examples</span></span></a>
+         </ol>
+        <li>
+         <a href="#header-object"><span class="secno">3.7.21</span> <span class="content"><span>Header Object</span></span></a>
+         <ol class="toc">
+          <li><a href="#header-object-example"><span class="secno">3.7.21.1</span> <span class="content">Header Object Example</span></a>
+         </ol>
+        <li>
+         <a href="#tag-object"><span class="secno">3.7.22</span> <span class="content"><span>Tag Object</span></span></a>
+         <ol class="toc">
+          <li><a href="#fixed-fields①⑧"><span class="secno">3.7.22.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#tag-object-example"><span class="secno">3.7.22.2</span> <span class="content">Tag Object Example</span></a>
+         </ol>
+        <li>
+         <a href="#reference-object"><span class="secno">3.7.23</span> <span class="content"><span>Reference Object</span></span></a>
+         <ol class="toc">
+          <li><a href="#fixed-fields①⑨"><span class="secno">3.7.23.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#reference-object-example"><span class="secno">3.7.23.2</span> <span class="content">Reference Object Example</span></a>
+          <li><a href="#relative-schema-document-example"><span class="secno">3.7.23.3</span> <span class="content">Relative Schema Document Example</span></a>
+          <li><a href="#relative-documents-with-embedded-schema-example"><span class="secno">3.7.23.4</span> <span class="content">Relative Documents With Embedded Schema Example</span></a>
+         </ol>
+        <li>
+         <a href="#schema-object"><span class="secno">3.7.24</span> <span class="content"><span>Schema Object</span></span></a>
+         <ol class="toc">
+          <li><a href="#properties"><span class="secno">3.7.24.1</span> <span class="content">Properties</span></a>
           <li>
-           <a href="#fixed-fields②⓪"><span class="secno">4.1.5.2</span> <span class="content">Fixed Fields</span></a>
+           <a href="#fixed-fields②⓪"><span class="secno">3.7.24.2</span> <span class="content">Fixed Fields</span></a>
            <ol class="toc">
-            <li><a href="#composition-and-inheritance-polymorphism"><span class="secno">4.1.5.2.1</span> <span class="content"><span>Composition and Inheritance (Polymorphism)</span></span></a>
-            <li><a href="#xml-modeling"><span class="secno">4.1.5.2.2</span> <span class="content">XML Modeling</span></a>
+            <li><a href="#composition-and-inheritance-polymorphism"><span class="secno">3.7.24.2.1</span> <span class="content"><span>Composition and Inheritance (Polymorphism)</span></span></a>
+            <li><a href="#xml-modeling"><span class="secno">3.7.24.2.2</span> <span class="content">XML Modeling</span></a>
            </ol>
           <li>
-           <a href="#schema-object-examples"><span class="secno">4.1.5.3</span> <span class="content">Schema Object Examples</span></a>
+           <a href="#schema-object-examples"><span class="secno">3.7.24.3</span> <span class="content">Schema Object Examples</span></a>
            <ol class="toc">
-            <li><a href="#primitive-sample"><span class="secno">4.1.5.3.1</span> <span class="content">Primitive Sample</span></a>
-            <li><a href="#simple-model"><span class="secno">4.1.5.3.2</span> <span class="content">Simple Model</span></a>
-            <li><a href="#model-with-map-dictionary-properties"><span class="secno">4.1.5.3.3</span> <span class="content">Model with Map/Dictionary Properties</span></a>
-            <li><a href="#model-with-example"><span class="secno">4.1.5.3.4</span> <span class="content">Model with Example</span></a>
-            <li><a href="#models-with-composition"><span class="secno">4.1.5.3.5</span> <span class="content">Models with Composition</span></a>
-            <li><a href="#models-with-polymorphism-support"><span class="secno">4.1.5.3.6</span> <span class="content">Models with Polymorphism Support</span></a>
+            <li><a href="#primitive-sample"><span class="secno">3.7.24.3.1</span> <span class="content">Primitive Sample</span></a>
+            <li><a href="#simple-model"><span class="secno">3.7.24.3.2</span> <span class="content">Simple Model</span></a>
+            <li><a href="#model-with-map-dictionary-properties"><span class="secno">3.7.24.3.3</span> <span class="content">Model with Map/Dictionary Properties</span></a>
+            <li><a href="#model-with-example"><span class="secno">3.7.24.3.4</span> <span class="content">Model with Example</span></a>
+            <li><a href="#models-with-composition"><span class="secno">3.7.24.3.5</span> <span class="content">Models with Composition</span></a>
+            <li><a href="#models-with-polymorphism-support"><span class="secno">3.7.24.3.6</span> <span class="content">Models with Polymorphism Support</span></a>
            </ol>
-          <li><a href="#discriminator-object"><span class="secno">4.1.5.4</span> <span class="content"><span>Discriminator Object</span></span></a>
-          <li><a href="#fixed-fields②①"><span class="secno">4.1.5.5</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#discriminator-object"><span class="secno">3.7.24.4</span> <span class="content"><span>Discriminator Object</span></span></a>
+          <li><a href="#fixed-fields②①"><span class="secno">3.7.24.5</span> <span class="content">Fixed Fields</span></a>
          </ol>
         <li>
-         <a href="#xml-object"><span class="secno">4.1.6</span> <span class="content"><span>XML Object</span></span></a>
+         <a href="#xml-object"><span class="secno">3.7.25</span> <span class="content"><span>XML Object</span></span></a>
          <ol class="toc">
-          <li><a href="#fixed-fields②②"><span class="secno">4.1.6.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#fixed-fields②②"><span class="secno">3.7.25.1</span> <span class="content">Fixed Fields</span></a>
           <li>
-           <a href="#xml-object-examples"><span class="secno">4.1.6.2</span> <span class="content">XML Object Examples</span></a>
+           <a href="#xml-object-examples"><span class="secno">3.7.25.2</span> <span class="content">XML Object Examples</span></a>
            <ol class="toc">
-            <li><a href="#no-xml-element"><span class="secno">4.1.6.2.1</span> <span class="content">No XML Element</span></a>
-            <li><a href="#xml-name-replacement"><span class="secno">4.1.6.2.2</span> <span class="content">XML Name Replacement</span></a>
-            <li><a href="#xml-attribute-prefix-and-namespace"><span class="secno">4.1.6.2.3</span> <span class="content">XML Attribute, Prefix and Namespace</span></a>
-            <li><a href="#xml-arrays"><span class="secno">4.1.6.2.4</span> <span class="content">XML Arrays</span></a>
+            <li><a href="#no-xml-element"><span class="secno">3.7.25.2.1</span> <span class="content">No XML Element</span></a>
+            <li><a href="#xml-name-replacement"><span class="secno">3.7.25.2.2</span> <span class="content">XML Name Replacement</span></a>
+            <li><a href="#xml-attribute-prefix-and-namespace"><span class="secno">3.7.25.2.3</span> <span class="content">XML Attribute, Prefix and Namespace</span></a>
+            <li><a href="#xml-arrays"><span class="secno">3.7.25.2.4</span> <span class="content">XML Arrays</span></a>
            </ol>
-          <li><a href="#security-scheme-object"><span class="secno">4.1.6.3</span> <span class="content"><span>Security Scheme Object</span></span></a>
-          <li><a href="#fixed-fields②③"><span class="secno">4.1.6.4</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#security-scheme-object"><span class="secno">3.7.25.3</span> <span class="content"><span>Security Scheme Object</span></span></a>
+          <li><a href="#fixed-fields②③"><span class="secno">3.7.25.4</span> <span class="content">Fixed Fields</span></a>
           <li>
-           <a href="#security-scheme-object-example"><span class="secno">4.1.6.5</span> <span class="content">Security Scheme Object Example</span></a>
+           <a href="#security-scheme-object-example"><span class="secno">3.7.25.5</span> <span class="content">Security Scheme Object Example</span></a>
            <ol class="toc">
-            <li><a href="#basic-authentication-sample"><span class="secno">4.1.6.5.1</span> <span class="content">Basic Authentication Sample</span></a>
-            <li><a href="#api-key-sample"><span class="secno">4.1.6.5.2</span> <span class="content">API Key Sample</span></a>
-            <li><a href="#jwt-bearer-sample"><span class="secno">4.1.6.5.3</span> <span class="content">JWT Bearer Sample</span></a>
-            <li><a href="#implicit-oauth2-sample"><span class="secno">4.1.6.5.4</span> <span class="content">Implicit OAuth2 Sample</span></a>
+            <li><a href="#basic-authentication-sample"><span class="secno">3.7.25.5.1</span> <span class="content">Basic Authentication Sample</span></a>
+            <li><a href="#api-key-sample"><span class="secno">3.7.25.5.2</span> <span class="content">API Key Sample</span></a>
+            <li><a href="#jwt-bearer-sample"><span class="secno">3.7.25.5.3</span> <span class="content">JWT Bearer Sample</span></a>
+            <li><a href="#implicit-oauth2-sample"><span class="secno">3.7.25.5.4</span> <span class="content">Implicit OAuth2 Sample</span></a>
            </ol>
-          <li><a href="#oauth-flows-object"><span class="secno">4.1.6.6</span> <span class="content"><span>OAuth Flows Object</span></span></a>
-          <li><a href="#fixed-fields②④"><span class="secno">4.1.6.7</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#oauth-flows-object"><span class="secno">3.7.25.6</span> <span class="content"><span>OAuth Flows Object</span></span></a>
+          <li><a href="#fixed-fields②④"><span class="secno">3.7.25.7</span> <span class="content">Fixed Fields</span></a>
          </ol>
         <li>
-         <a href="#oauth-flow-object"><span class="secno">4.1.7</span> <span class="content"><span>OAuth Flow Object</span></span></a>
+         <a href="#oauth-flow-object"><span class="secno">3.7.26</span> <span class="content"><span>OAuth Flow Object</span></span></a>
          <ol class="toc">
-          <li><a href="#fixed-fields②⑤"><span class="secno">4.1.7.1</span> <span class="content">Fixed Fields</span></a>
-          <li><a href="#oauth-flow-object-examples"><span class="secno">4.1.7.2</span> <span class="content">OAuth Flow Object Examples</span></a>
+          <li><a href="#fixed-fields②⑤"><span class="secno">3.7.26.1</span> <span class="content">Fixed Fields</span></a>
+          <li><a href="#oauth-flow-object-examples"><span class="secno">3.7.26.2</span> <span class="content">OAuth Flow Object Examples</span></a>
          </ol>
         <li>
-         <a href="#security-requirement-object"><span class="secno">4.1.8</span> <span class="content"><span>Security Requirement Object</span></span></a>
+         <a href="#security-requirement-object"><span class="secno">3.7.27</span> <span class="content"><span>Security Requirement Object</span></span></a>
          <ol class="toc">
-          <li><a href="#patterned-fields③"><span class="secno">4.1.8.1</span> <span class="content">Patterned Fields</span></a>
+          <li><a href="#patterned-fields③"><span class="secno">3.7.27.1</span> <span class="content">Patterned Fields</span></a>
           <li>
-           <a href="#security-requirement-object-examples"><span class="secno">4.1.8.2</span> <span class="content">Security Requirement Object Examples</span></a>
+           <a href="#security-requirement-object-examples"><span class="secno">3.7.27.2</span> <span class="content">Security Requirement Object Examples</span></a>
            <ol class="toc">
-            <li><a href="#non-oauth2-security-requirement"><span class="secno">4.1.8.2.1</span> <span class="content">Non-OAuth2 Security Requirement</span></a>
-            <li><a href="#oauth2-security-requirement"><span class="secno">4.1.8.2.2</span> <span class="content">OAuth2 Security Requirement</span></a>
+            <li><a href="#non-oauth2-security-requirement"><span class="secno">3.7.27.2.1</span> <span class="content">Non-OAuth2 Security Requirement</span></a>
+            <li><a href="#oauth2-security-requirement"><span class="secno">3.7.27.2.2</span> <span class="content">OAuth2 Security Requirement</span></a>
            </ol>
-          <li><a href="#specification-extensions"><span class="secno">4.1.8.3</span> <span class="content"><span>Specification Extensions</span></span></a>
+          <li><a href="#specification-extensions"><span class="secno">3.7.27.3</span> <span class="content"><span>Specification Extensions</span></span></a>
          </ol>
-        <li><a href="#security-filtering"><span class="secno">4.1.9</span> <span class="content"><span>Security Filtering</span></span></a>
+        <li><a href="#security-filtering"><span class="secno">3.7.28</span> <span class="content"><span>Security Filtering</span></span></a>
        </ol>
       <li><a href="#appendix-a-revision-history"><span class="secno"></span> <span class="content"><span>Appendix A: Revision History</span></span></a>
      </ol>
@@ -1809,29 +1796,32 @@ Parts of this work may be from another specification document.  If so, those par
    <p><img alt="Open API Initiative logo" src="https://www.openapis.org/wp-content/uploads/sites/3/2016/10/OpenAPI_Pantone.png" width="300"></p>
    <title>OpenAPI Specification</title>
    <section>
+    <h1>OpenAPI Specification</h1>
     <section>
      <h2 class="heading settled" data-level="1" id="version-301"><span class="secno">1. </span><span class="content">Version 3.0.1</span><a class="self-link" href="#version-301"></a></h2>
      <p>The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in <a href="https://tools.ietf.org/html/bcp14">BCP 14</a> <a data-link-type="biblio" href="#biblio-rfc2119">[rfc2119]</a> <a data-link-type="biblio" href="#biblio-rfc8174">[rfc8174]</a> when, and only when, they appear in all capitals, as shown here.</p>
      <p>This document is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0.html">The Apache License, Version 2.0</a>.</p>
     </section>
+   </section>
+   <section>
+    <h1>Introduction</h1>
+    <p>The OpenAPI Specification (OAS) defines a standard, language-agnostic interface to RESTful APIs which allows both humans and computers to discover and understand the capabilities of the service without access to source code, documentation, or through network traffic inspection. When properly defined, a consumer can understand and interact with the remote service with a minimal amount of implementation logic.</p>
+    <p>An OpenAPI definition can then be used by documentation generation tools to display the API, code generation tools to generate servers and clients in various programming languages, testing tools, and many other use cases.</p>
     <section>
-     <h2 class="heading settled" data-level="2" id="introduction"><span class="secno">2. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
-     <p>The OpenAPI Specification (OAS) defines a standard, language-agnostic interface to RESTful APIs which allows both humans and computers to discover and understand the capabilities of the service without access to source code, documentation, or through network traffic inspection. When properly defined, a consumer can understand and interact with the remote service with a minimal amount of implementation logic.</p>
-     <p>An OpenAPI definition can then be used by documentation generation tools to display the API, code generation tools to generate servers and clients in various programming languages, testing tools, and many other use cases.</p>
-    </section>
-    <section>
-     <h2 class="heading settled" data-level="3" id="definitions"><span class="secno">3. </span><span class="content"><dfn data-dfn-type="dfn" data-noexport="" id="definitions①">Definitions<a class="self-link" href="#definitions①"></a></dfn></span><a class="self-link" href="#definitions"></a></h2>
+     <h2 class="heading settled" data-level="2" id="definitions"><span class="secno">2. </span><span class="content"><dfn data-dfn-type="dfn" data-noexport="" id="definitions①">Definitions<a class="self-link" href="#definitions①"></a></dfn></span><a class="self-link" href="#definitions"></a></h2>
      <section>
-      <h3 class="heading settled" data-level="3.1" id="openapi-document"><span class="secno">3.1. </span><span class="content"><a data-link-type="dfn" href="#openapi-document①" id="oasDocument"><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="openapi-document①">OpenAPI Document</dfn></a></span><a class="self-link" href="#openapi-document"></a></h3>
+      <h3 class="heading settled" data-level="2.1" id="openapi-document"><span class="secno">2.1. </span><span class="content"><a data-link-type="dfn" href="#openapi-document①" id="oasDocument"><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="openapi-document①">OpenAPI Document</dfn></a></span><a class="self-link" href="#openapi-document"></a></h3>
       <p>A document (or set of documents) that defines or describes an API. An OpenAPI definition uses and conforms to the OpenAPI Specification.</p>
-      <section>
-       <h4 class="heading settled" data-level="3.1.1" id="path-templating"><span class="secno">3.1.1. </span><span class="content"><a data-link-type="dfn" href="#path-templating①" id="pathTemplating"><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="path-templating①">Path Templating</dfn></a></span><a class="self-link" href="#path-templating"></a></h4>
-       <p>Path templating refers to the usage of curly braces ({}) to mark a section of a URL path as replaceable using path parameters.</p>
-       <section>
-        <h5 class="heading settled" data-level="3.1.1.1" id="media-types"><span class="secno">3.1.1.1. </span><span class="content"><a data-link-type="dfn" href="#media-types①" id="mediaTypes"><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="media-types①">Media Types</dfn></a></span><a class="self-link" href="#media-types"></a></h5>
-        <p>Media type definitions are spread across several resources.
+     </section>
+     <section>
+      <h3 class="heading settled" data-level="2.2" id="path-templating"><span class="secno">2.2. </span><span class="content"><a data-link-type="dfn" href="#path-templating①" id="pathTemplating"><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="path-templating①">Path Templating</dfn></a></span><a class="self-link" href="#path-templating"></a></h3>
+      <p>Path templating refers to the usage of curly braces ({}) to mark a section of a URL path as replaceable using path parameters.</p>
+     </section>
+     <section>
+      <h3 class="heading settled" data-level="2.3" id="media-types"><span class="secno">2.3. </span><span class="content"><a data-link-type="dfn" href="#media-types①" id="mediaTypes"><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="media-types①">Media Types</dfn></a></span><a class="self-link" href="#media-types"></a></h3>
+      <p>Media type definitions are spread across several resources.
 The media type definitions SHOULD be in compliance with <a data-link-type="biblio" href="#biblio-rfc6838">[rfc6838]</a>.</p>
-        <p>Some examples of possible media type definitions:</p>
+      <p>Some examples of possible media type definitions:</p>
 <pre class="highlight"><code>text/plain; charset=utf-8
 application/json
 application/vnd.github+json
@@ -1843,26 +1833,24 @@ application/vnd.github.v3.full+json
 application/vnd.github.v3.diff
 application/vnd.github.v3.patch
 </code></pre>
-       </section>
-       <section>
-        <h5 class="heading settled" data-level="3.1.1.2" id="http-status-codes"><span class="secno">3.1.1.2. </span><span class="content"><a data-link-type="dfn" href="#http-status-codes①" id="httpCodes"><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="http-status-codes①">HTTP Status Codes</dfn></a></span><a class="self-link" href="#http-status-codes"></a></h5>
-        <p>The HTTP Status Codes are used to indicate the status of the executed operation.
-The available status codes are defined by <a data-link-type="biblio" href="#biblio-rfc7231">[rfc7231]</a>section-6) and registered status codes are listed in the <a href="https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">IANA Status Code Registry</a>.</p>
-       </section>
-      </section>
-      <section>
-       <h4 class="heading settled" data-level="3.1.2" id="specification"><span class="secno">3.1.2. </span><span class="content">Specification</span><a class="self-link" href="#specification"></a></h4>
-      </section>
      </section>
      <section>
-      <h3 class="heading settled" data-level="3.2" id="versions"><span class="secno">3.2. </span><span class="content">Versions</span><a class="self-link" href="#versions"></a></h3>
+      <h3 class="heading settled" data-level="2.4" id="http-status-codes"><span class="secno">2.4. </span><span class="content"><a data-link-type="dfn" href="#http-status-codes①" id="httpCodes"><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="http-status-codes①">HTTP Status Codes</dfn></a></span><a class="self-link" href="#http-status-codes"></a></h3>
+      <p>The HTTP Status Codes are used to indicate the status of the executed operation.
+The available status codes are defined by <a data-link-type="biblio" href="#biblio-rfc7231">[rfc7231]</a>section-6) and registered status codes are listed in the <a href="https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">IANA Status Code Registry</a>.</p>
+     </section>
+    </section>
+    <section>
+     <h2 class="heading settled" data-level="3" id="specification"><span class="secno">3. </span><span class="content">Specification</span><a class="self-link" href="#specification"></a></h2>
+     <section>
+      <h3 class="heading settled" data-level="3.1" id="versions"><span class="secno">3.1. </span><span class="content">Versions</span><a class="self-link" href="#versions"></a></h3>
       <p>The OpenAPI Specification is versioned using <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning 2.0.0</a> (semver) and follows the semver specification.</p>
       <p>The <code>major</code>.<code>minor</code> portion of the semver (for example <code>3.0</code>) SHALL designate the OAS feature set. Typically, <em><code>.patch</code></em> versions address errors in this document, not the feature set. Tooling which supports OAS 3.0 SHOULD be compatible with all OAS 3.0.* versions. The patch version SHOULD NOT be considered by tooling, making no distinction between <code>3.0.0</code> and <code>3.0.1</code> for example.</p>
       <p>Subsequent minor version releases of the OpenAPI Specification (incrementing the <code>minor</code> version number) SHOULD NOT interfere with tooling developed to a lower minor version and same major version.  Thus a hypothetical <code>3.1.0</code> specification SHOULD be usable with tooling designed for <code>3.0.0</code>.</p>
       <p>An OpenAPI document compatible with OAS 3.<em>.</em> contains a required <a href="#oasVersion"><code>openapi</code></a> field which designates the semantic version of the OAS that it uses. (OAS 2.0 documents contain a top-level version field named <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#swaggerObject"><code>swagger</code></a> and value <code>"2.0"</code>.)</p>
      </section>
      <section>
-      <h3 class="heading settled" data-level="3.3" id="format"><span class="secno">3.3. </span><span class="content">Format</span><a class="self-link" href="#format"></a></h3>
+      <h3 class="heading settled" data-level="3.2" id="format"><span class="secno">3.2. </span><span class="content">Format</span><a class="self-link" href="#format"></a></h3>
       <p>An OpenAPI document that conforms to the OpenAPI Specification is itself a JSON object, which may be represented either in JSON or YAML format.</p>
       <p>For example, if a field has an array value, the JSON array representation will be used:</p>
 <pre class="nohighlight"><code>{
@@ -1880,12 +1868,12 @@ The available status codes are defined by <a data-link-type="biblio" href="#bibl
       <p><strong>Note:</strong> While APIs may be defined by OpenAPI documents in either YAML or JSON format, the API request and response bodies and other content are not required to be JSON or YAML.</p>
      </section>
      <section>
-      <h3 class="heading settled" data-level="3.4" id="document-structure"><span class="secno">3.4. </span><span class="content"><a data-link-type="dfn" id="documentStructure">Document Structure</a></span><a class="self-link" href="#document-structure"></a></h3>
+      <h3 class="heading settled" data-level="3.3" id="document-structure"><span class="secno">3.3. </span><span class="content"><a data-link-type="dfn" id="documentStructure">Document Structure</a></span><a class="self-link" href="#document-structure"></a></h3>
       <p>An OpenAPI document MAY be made up of a single document or be divided into multiple, connected parts at the discretion of the user. In the latter case, <code>$ref</code> fields MUST be used in the specification to reference those parts as follows from the <a href="http://json-schema.org">JSON Schema</a> definitions.</p>
       <p>It is RECOMMENDED that the root OpenAPI document be named: <code>openapi.json</code> or <code>openapi.yaml</code>.</p>
      </section>
      <section>
-      <h3 class="heading settled" data-level="3.5" id="data-types"><span class="secno">3.5. </span><span class="content"><a data-link-type="dfn" id="dataTypes">Data Types</a></span><a class="self-link" href="#data-types"></a></h3>
+      <h3 class="heading settled" data-level="3.4" id="data-types"><span class="secno">3.4. </span><span class="content"><a data-link-type="dfn" id="dataTypes">Data Types</a></span><a class="self-link" href="#data-types"></a></h3>
       <p>Primitive data types in the OAS are based on the types supported by the <a href="https://tools.ietf.org/html/draft-wright-json-schema-00#section-4.2">JSON Schema Specification Wright Draft 00</a>.
 Note that <code>integer</code> as a type is also supported and is defined as a JSON number without a fraction or exponent part. <code>null</code> is not supported as a type (see <a href="#schemaNullable"><code>nullable</code></a> for an alternative solution).
 Models are defined using the <a href="#schemaObject">Schema Object</a>, which is an extended subset of JSON Schema Specification Wright Draft 00.</p>
@@ -1961,24 +1949,24 @@ Types that are not accompanied by a <code>format</code> property follow the type
       </table>
      </section>
      <section>
-      <h3 class="heading settled" data-level="3.6" id="rich-text-formatting"><span class="secno">3.6. </span><span class="content"><a data-link-type="dfn" id="richText">Rich Text Formatting</a></span><a class="self-link" href="#rich-text-formatting"></a></h3>
+      <h3 class="heading settled" data-level="3.5" id="rich-text-formatting"><span class="secno">3.5. </span><span class="content"><a data-link-type="dfn" id="richText">Rich Text Formatting</a></span><a class="self-link" href="#rich-text-formatting"></a></h3>
       <p>Throughout the specification <code>description</code> fields are noted as supporting CommonMark markdown formatting.
 Where OpenAPI tooling renders rich text it MUST support, at a minimum, markdown syntax as described by <a href="http://spec.commonmark.org/0.27/">CommonMark 0.27</a>. Tooling MAY choose to ignore some CommonMark features to address security concerns.</p>
      </section>
      <section>
-      <h3 class="heading settled" data-level="3.7" id="relative-references-in-urls"><span class="secno">3.7. </span><span class="content"><a data-link-type="dfn" id="relativeReferences">Relative References in URLs</a></span><a class="self-link" href="#relative-references-in-urls"></a></h3>
+      <h3 class="heading settled" data-level="3.6" id="relative-references-in-urls"><span class="secno">3.6. </span><span class="content"><a data-link-type="dfn" id="relativeReferences">Relative References in URLs</a></span><a class="self-link" href="#relative-references-in-urls"></a></h3>
       <p>Unless specified otherwise, all properties that are URLs MAY be relative references as defined by <a data-link-type="biblio" href="#biblio-rfc3986">[rfc3986]</a>section-4.2).
 Relative references are resolved using the URLs defined in the <a href="#serverObject"><code>Server Object</code></a> as a Base URI.</p>
       <p>Relative references used in <code>$ref</code> are processed as per <a href="https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03">JSON Reference</a>, using the URL of the current document as the base URI. See also the <a href="#referenceObject">Reference Object</a>.</p>
      </section>
      <section>
-      <h3 class="heading settled" data-level="3.8" id="schema"><span class="secno">3.8. </span><span class="content">Schema</span><a class="self-link" href="#schema"></a></h3>
+      <h3 class="heading settled" data-level="3.7" id="schema"><span class="secno">3.7. </span><span class="content">Schema</span><a class="self-link" href="#schema"></a></h3>
       <p>In the following description, if a field is not explicitly <strong>REQUIRED</strong> or described with a MUST or SHALL, it can be considered OPTIONAL.</p>
       <section>
-       <h4 class="heading settled" data-level="3.8.1" id="openapi-object"><span class="secno">3.8.1. </span><span class="content"><a data-link-type="dfn" id="oasObject">OpenAPI Object</a></span><a class="self-link" href="#openapi-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.1" id="openapi-object"><span class="secno">3.7.1. </span><span class="content"><a data-link-type="dfn" id="oasObject">OpenAPI Object</a></span><a class="self-link" href="#openapi-object"></a></h4>
        <p>This is the root document object of the <a href="#oasDocument">OpenAPI document</a>.</p>
        <section>
-        <h5 class="heading settled" data-level="3.8.1.1" id="fixed-fields"><span class="secno">3.8.1.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields"></a></h5>
+        <h5 class="heading settled" data-level="3.7.1.1" id="fixed-fields"><span class="secno">3.7.1.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields"></a></h5>
         <table>
          <thead>
           <tr>
@@ -2023,11 +2011,11 @@ Relative references are resolved using the URLs defined in the <a href="#serverO
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="3.8.2" id="info-object"><span class="secno">3.8.2. </span><span class="content"><a data-link-type="dfn" id="infoObject">Info Object</a></span><a class="self-link" href="#info-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.2" id="info-object"><span class="secno">3.7.2. </span><span class="content"><a data-link-type="dfn" id="infoObject">Info Object</a></span><a class="self-link" href="#info-object"></a></h4>
        <p>The object provides metadata about the API.
 The metadata MAY be used by the clients if needed, and MAY be presented in editing or documentation generation tools for convenience.</p>
        <section>
-        <h5 class="heading settled" data-level="3.8.2.1" id="fixed-fields①"><span class="secno">3.8.2.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①"></a></h5>
+        <h5 class="heading settled" data-level="3.7.2.1" id="fixed-fields①"><span class="secno">3.7.2.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①"></a></h5>
         <table>
          <thead>
           <tr>
@@ -2063,7 +2051,7 @@ The metadata MAY be used by the clients if needed, and MAY be presented in editi
         <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.8.2.2" id="info-object-example"><span class="secno">3.8.2.2. </span><span class="content">Info Object Example:</span><a class="self-link" href="#info-object-example"></a></h5>
+        <h5 class="heading settled" data-level="3.7.2.2" id="info-object-example"><span class="secno">3.7.2.2. </span><span class="content">Info Object Example:</span><a class="self-link" href="#info-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Sample Pet Store App"</span>,
   <span class="hljs-attr">"description"</span>: <span class="hljs-string">"This is a sample server for a pet store."</span>,
@@ -2095,10 +2083,10 @@ The metadata MAY be used by the clients if needed, and MAY be presented in editi
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="3.8.3" id="contact-object"><span class="secno">3.8.3. </span><span class="content"><a data-link-type="dfn" id="contactObject">Contact Object</a></span><a class="self-link" href="#contact-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.3" id="contact-object"><span class="secno">3.7.3. </span><span class="content"><a data-link-type="dfn" id="contactObject">Contact Object</a></span><a class="self-link" href="#contact-object"></a></h4>
        <p>Contact information for the exposed API.</p>
        <section>
-        <h5 class="heading settled" data-level="3.8.3.1" id="fixed-fields②"><span class="secno">3.8.3.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields②"></a></h5>
+        <h5 class="heading settled" data-level="3.7.3.1" id="fixed-fields②"><span class="secno">3.7.3.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields②"></a></h5>
         <table>
          <thead>
           <tr>
@@ -2122,7 +2110,7 @@ The metadata MAY be used by the clients if needed, and MAY be presented in editi
         <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.8.3.2" id="contact-object-example"><span class="secno">3.8.3.2. </span><span class="content">Contact Object Example:</span><a class="self-link" href="#contact-object-example"></a></h5>
+        <h5 class="heading settled" data-level="3.7.3.2" id="contact-object-example"><span class="secno">3.7.3.2. </span><span class="content">Contact Object Example:</span><a class="self-link" href="#contact-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"name"</span>: <span class="hljs-string">"API Support"</span>,
   <span class="hljs-attr">"url"</span>: <span class="hljs-string">"http://www.example.com/support"</span>,
@@ -2136,10 +2124,10 @@ The metadata MAY be used by the clients if needed, and MAY be presented in editi
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="3.8.4" id="license-object"><span class="secno">3.8.4. </span><span class="content"><a data-link-type="dfn" id="licenseObject">License Object</a></span><a class="self-link" href="#license-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.4" id="license-object"><span class="secno">3.7.4. </span><span class="content"><a data-link-type="dfn" id="licenseObject">License Object</a></span><a class="self-link" href="#license-object"></a></h4>
        <p>License information for the exposed API.</p>
        <section>
-        <h5 class="heading settled" data-level="3.8.4.1" id="fixed-fields③"><span class="secno">3.8.4.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields③"></a></h5>
+        <h5 class="heading settled" data-level="3.7.4.1" id="fixed-fields③"><span class="secno">3.7.4.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields③"></a></h5>
         <table>
          <thead>
           <tr>
@@ -2159,7 +2147,7 @@ The metadata MAY be used by the clients if needed, and MAY be presented in editi
         <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.8.4.2" id="license-object-example"><span class="secno">3.8.4.2. </span><span class="content">License Object Example:</span><a class="self-link" href="#license-object-example"></a></h5>
+        <h5 class="heading settled" data-level="3.7.4.2" id="license-object-example"><span class="secno">3.7.4.2. </span><span class="content">License Object Example:</span><a class="self-link" href="#license-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Apache 2.0"</span>,
   <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://www.apache.org/licenses/LICENSE-2.0.html"</span>
@@ -2171,10 +2159,10 @@ The metadata MAY be used by the clients if needed, and MAY be presented in editi
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="3.8.5" id="server-object"><span class="secno">3.8.5. </span><span class="content"><a data-link-type="dfn" id="serverObject">Server Object</a></span><a class="self-link" href="#server-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.5" id="server-object"><span class="secno">3.7.5. </span><span class="content"><a data-link-type="dfn" id="serverObject">Server Object</a></span><a class="self-link" href="#server-object"></a></h4>
        <p>An object representing a Server.</p>
        <section>
-        <h5 class="heading settled" data-level="3.8.5.1" id="fixed-fields④"><span class="secno">3.8.5.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields④"></a></h5>
+        <h5 class="heading settled" data-level="3.7.5.1" id="fixed-fields④"><span class="secno">3.7.5.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields④"></a></h5>
         <table>
          <thead>
           <tr>
@@ -2198,7 +2186,7 @@ The metadata MAY be used by the clients if needed, and MAY be presented in editi
         <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.8.5.2" id="server-object-example"><span class="secno">3.8.5.2. </span><span class="content">Server Object Example</span><a class="self-link" href="#server-object-example"></a></h5>
+        <h5 class="heading settled" data-level="3.7.5.2" id="server-object-example"><span class="secno">3.7.5.2. </span><span class="content">Server Object Example</span><a class="self-link" href="#server-object-example"></a></h5>
         <p>A single server would be described as:</p>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://development.gigantic-server.com/v1"</span>,
@@ -2280,10 +2268,10 @@ The metadata MAY be used by the clients if needed, and MAY be presented in editi
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="3.8.6" id="server-variable-object"><span class="secno">3.8.6. </span><span class="content"><a data-link-type="dfn" id="serverVariableObject">Server Variable Object</a></span><a class="self-link" href="#server-variable-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.6" id="server-variable-object"><span class="secno">3.7.6. </span><span class="content"><a data-link-type="dfn" id="serverVariableObject">Server Variable Object</a></span><a class="self-link" href="#server-variable-object"></a></h4>
        <p>An object representing a Server Variable for server URL template substitution.</p>
        <section>
-        <h5 class="heading settled" data-level="3.8.6.1" id="fixed-fields⑤"><span class="secno">3.8.6.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields⑤"></a></h5>
+        <h5 class="heading settled" data-level="3.7.6.1" id="fixed-fields⑤"><span class="secno">3.7.6.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields⑤"></a></h5>
         <table>
          <thead>
           <tr>
@@ -2308,11 +2296,11 @@ The metadata MAY be used by the clients if needed, and MAY be presented in editi
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="3.8.7" id="components-object"><span class="secno">3.8.7. </span><span class="content"><a data-link-type="dfn" id="componentsObject">Components Object</a></span><a class="self-link" href="#components-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.7" id="components-object"><span class="secno">3.7.7. </span><span class="content"><a data-link-type="dfn" id="componentsObject">Components Object</a></span><a class="self-link" href="#components-object"></a></h4>
        <p>Holds a set of reusable objects for different aspects of the OAS.
 All objects defined within the components object will have no effect on the API unless they are explicitly referenced from properties outside the components object.</p>
        <section>
-        <h5 class="heading settled" data-level="3.8.7.1" id="fixed-fields⑥"><span class="secno">3.8.7.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields⑥"></a></h5>
+        <h5 class="heading settled" data-level="3.7.7.1" id="fixed-fields⑥"><span class="secno">3.7.7.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields⑥"></a></h5>
         <table>
          <thead>
           <tr>
@@ -2368,7 +2356,7 @@ my.org.User
 </code></pre>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.8.7.2" id="components-object-example"><span class="secno">3.8.7.2. </span><span class="content">Components Object Example</span><a class="self-link" href="#components-object-example"></a></h5>
+        <h5 class="heading settled" data-level="3.7.7.2" id="components-object-example"><span class="secno">3.7.7.2. </span><span class="content">Components Object Example</span><a class="self-link" href="#components-object-example"></a></h5>
 <pre class="nohighlight"><code><span class="hljs-string">"components"</span>: {
   <span class="hljs-attr">"schemas"</span>: {
     <span class="hljs-attr">"Category"</span>: {
@@ -2520,11 +2508,11 @@ my.org.User
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="3.8.8" id="paths-object"><span class="secno">3.8.8. </span><span class="content"><a data-link-type="dfn" id="pathsObject">Paths Object</a></span><a class="self-link" href="#paths-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.8" id="paths-object"><span class="secno">3.7.8. </span><span class="content"><a data-link-type="dfn" id="pathsObject">Paths Object</a></span><a class="self-link" href="#paths-object"></a></h4>
        <p>Holds the relative paths to the individual endpoints and their operations.
 The path is appended to the URL from the <a href="#serverObject"><code>Server Object</code></a> in order to construct the full URL.  The Paths MAY be empty, due to <a href="#securityFiltering">ACL constraints</a>.</p>
        <section>
-        <h5 class="heading settled" data-level="3.8.8.1" id="patterned-fields"><span class="secno">3.8.8.1. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields"></a></h5>
+        <h5 class="heading settled" data-level="3.7.8.1" id="patterned-fields"><span class="secno">3.7.8.1. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields"></a></h5>
         <table>
          <thead>
           <tr>
@@ -2540,7 +2528,7 @@ The path is appended to the URL from the <a href="#serverObject"><code>Server Ob
         <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.8.8.2" id="path-templating-matching"><span class="secno">3.8.8.2. </span><span class="content">Path Templating Matching</span><a class="self-link" href="#path-templating-matching"></a></h5>
+        <h5 class="heading settled" data-level="3.7.8.2" id="path-templating-matching"><span class="secno">3.7.8.2. </span><span class="content">Path Templating Matching</span><a class="self-link" href="#path-templating-matching"></a></h5>
         <p>Assuming the following paths, the concrete definition, <code>/pets/mine</code>, will be matched first if used:</p>
 <pre class="highlight"><code>/pets/{petId}
 /pets/mine
@@ -2555,7 +2543,7 @@ The path is appended to the URL from the <a href="#serverObject"><code>Server Ob
 </code></pre>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.8.8.3" id="paths-object-example"><span class="secno">3.8.8.3. </span><span class="content">Paths Object Example</span><a class="self-link" href="#paths-object-example"></a></h5>
+        <h5 class="heading settled" data-level="3.7.8.3" id="paths-object-example"><span class="secno">3.7.8.3. </span><span class="content">Paths Object Example</span><a class="self-link" href="#paths-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"/pets"</span>: {
     <span class="hljs-attr">"get"</span>: {
@@ -2595,12 +2583,12 @@ The path is appended to the URL from the <a href="#serverObject"><code>Server Ob
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="3.8.9" id="path-item-object"><span class="secno">3.8.9. </span><span class="content"><a data-link-type="dfn" id="pathItemObject">Path Item Object</a></span><a class="self-link" href="#path-item-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.9" id="path-item-object"><span class="secno">3.7.9. </span><span class="content"><a data-link-type="dfn" id="pathItemObject">Path Item Object</a></span><a class="self-link" href="#path-item-object"></a></h4>
        <p>Describes the operations available on a single path.
 A Path Item MAY be empty, due to <a href="#securityFiltering">ACL constraints</a>.
 The path itself is still exposed to the documentation viewer but they will not know which operations and parameters are available.</p>
        <section>
-        <h5 class="heading settled" data-level="3.8.9.1" id="fixed-fields⑦"><span class="secno">3.8.9.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields⑦"></a></h5>
+        <h5 class="heading settled" data-level="3.7.9.1" id="fixed-fields⑦"><span class="secno">3.7.9.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields⑦"></a></h5>
         <table>
          <thead>
           <tr>
@@ -2664,7 +2652,7 @@ The path itself is still exposed to the documentation viewer but they will not k
         <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.8.9.2" id="path-item-object-example"><span class="secno">3.8.9.2. </span><span class="content">Path Item Object Example</span><a class="self-link" href="#path-item-object-example"></a></h5>
+        <h5 class="heading settled" data-level="3.7.9.2" id="path-item-object-example"><span class="secno">3.7.9.2. </span><span class="content">Path Item Object Example</span><a class="self-link" href="#path-item-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"get"</span>: {
     <span class="hljs-attr">"description"</span>: <span class="hljs-string">"Returns pets based on ID"</span>,
@@ -2746,10 +2734,10 @@ The path itself is still exposed to the documentation viewer but they will not k
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="3.8.10" id="operation-object"><span class="secno">3.8.10. </span><span class="content"><a data-link-type="dfn" id="operationObject">Operation Object</a></span><a class="self-link" href="#operation-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.10" id="operation-object"><span class="secno">3.7.10. </span><span class="content"><a data-link-type="dfn" id="operationObject">Operation Object</a></span><a class="self-link" href="#operation-object"></a></h4>
        <p>Describes a single API operation on a path.</p>
        <section>
-        <h5 class="heading settled" data-level="3.8.10.1" id="fixed-fields⑧"><span class="secno">3.8.10.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields⑧"></a></h5>
+        <h5 class="heading settled" data-level="3.7.10.1" id="fixed-fields⑧"><span class="secno">3.7.10.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields⑧"></a></h5>
         <table>
          <thead>
           <tr>
@@ -2809,7 +2797,7 @@ The path itself is still exposed to the documentation viewer but they will not k
         <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.8.10.2" id="operation-object-example"><span class="secno">3.8.10.2. </span><span class="content">Operation Object Example</span><a class="self-link" href="#operation-object-example"></a></h5>
+        <h5 class="heading settled" data-level="3.7.10.2" id="operation-object-example"><span class="secno">3.7.10.2. </span><span class="content">Operation Object Example</span><a class="self-link" href="#operation-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"tags"</span>: [
     <span class="hljs-string">"pet"</span>
@@ -2916,10 +2904,10 @@ The path itself is still exposed to the documentation viewer but they will not k
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="3.8.11" id="external-documentation-object"><span class="secno">3.8.11. </span><span class="content"><a data-link-type="dfn" id="externalDocumentationObject">External Documentation Object</a></span><a class="self-link" href="#external-documentation-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.11" id="external-documentation-object"><span class="secno">3.7.11. </span><span class="content"><a data-link-type="dfn" id="externalDocumentationObject">External Documentation Object</a></span><a class="self-link" href="#external-documentation-object"></a></h4>
        <p>Allows referencing an external resource for extended documentation.</p>
        <section>
-        <h5 class="heading settled" data-level="3.8.11.1" id="fixed-fields⑨"><span class="secno">3.8.11.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields⑨"></a></h5>
+        <h5 class="heading settled" data-level="3.7.11.1" id="fixed-fields⑨"><span class="secno">3.7.11.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields⑨"></a></h5>
         <table>
          <thead>
           <tr>
@@ -2939,7 +2927,7 @@ The path itself is still exposed to the documentation viewer but they will not k
         <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.8.11.2" id="external-documentation-object-example"><span class="secno">3.8.11.2. </span><span class="content">External Documentation Object Example</span><a class="self-link" href="#external-documentation-object-example"></a></h5>
+        <h5 class="heading settled" data-level="3.7.11.2" id="external-documentation-object-example"><span class="secno">3.7.11.2. </span><span class="content">External Documentation Object Example</span><a class="self-link" href="#external-documentation-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"description"</span>: <span class="hljs-string">"Find more info here"</span>,
   <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://example.com"</span>
@@ -2951,11 +2939,11 @@ The path itself is still exposed to the documentation viewer but they will not k
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="3.8.12" id="parameter-object"><span class="secno">3.8.12. </span><span class="content"><a data-link-type="dfn" id="parameterObject">Parameter Object</a></span><a class="self-link" href="#parameter-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.12" id="parameter-object"><span class="secno">3.7.12. </span><span class="content"><a data-link-type="dfn" id="parameterObject">Parameter Object</a></span><a class="self-link" href="#parameter-object"></a></h4>
        <p>Describes a single operation parameter.</p>
        <p>A unique parameter is defined by a combination of a <a href="#parameterName">name</a> and <a href="#parameterIn">location</a>.</p>
        <section>
-        <h5 class="heading settled" data-level="3.8.12.1" id="parameter-locations"><span class="secno">3.8.12.1. </span><span class="content">Parameter Locations</span><a class="self-link" href="#parameter-locations"></a></h5>
+        <h5 class="heading settled" data-level="3.7.12.1" id="parameter-locations"><span class="secno">3.7.12.1. </span><span class="content">Parameter Locations</span><a class="self-link" href="#parameter-locations"></a></h5>
         <p>There are four possible parameter locations specified by the <code>in</code> field:</p>
         <ul>
          <li>path - Used together with <a href="#pathTemplating">Path Templating</a>, where the parameter value is actually part of the operation’s URL. This does not include the host or base path of the API. For example, in <code>/items/{itemId}</code>, the path parameter is <code>itemId</code>.
@@ -2965,7 +2953,7 @@ The path itself is still exposed to the documentation viewer but they will not k
         </ul>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.8.12.2" id="fixed-fields①⓪"><span class="secno">3.8.12.2. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①⓪"></a></h5>
+        <h5 class="heading settled" data-level="3.7.12.2" id="fixed-fields①⓪"><span class="secno">3.7.12.2. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①⓪"></a></h5>
         <table>
          <thead>
           <tr>
@@ -3055,7 +3043,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
         </table>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.8.12.3" id="style-values"><span class="secno">3.8.12.3. </span><span class="content">Style Values</span><a class="self-link" href="#style-values"></a></h5>
+        <h5 class="heading settled" data-level="3.7.12.3" id="style-values"><span class="secno">3.7.12.3. </span><span class="content">Style Values</span><a class="self-link" href="#style-values"></a></h5>
         <p>In order to support common ways of serializing simple parameters, a set of <code>style</code> values are defined.</p>
         <table>
          <thead>
@@ -3103,7 +3091,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
         </table>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.8.12.4" id="style-examples"><span class="secno">3.8.12.4. </span><span class="content">Style Examples</span><a class="self-link" href="#style-examples"></a></h5>
+        <h5 class="heading settled" data-level="3.7.12.4" id="style-examples"><span class="secno">3.7.12.4. </span><span class="content">Style Examples</span><a class="self-link" href="#style-examples"></a></h5>
         <p>Assume a parameter named <code>color</code> has one of the following values:</p>
 <pre class="highlight"><code>string -> "blue"
 array -> ["blue","black","brown"]
@@ -3201,7 +3189,7 @@ object -> { "R": 100, "G": 200, "B": 150 }
         <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.8.12.5" id="parameter-object-examples"><span class="secno">3.8.12.5. </span><span class="content">Parameter Object Examples</span><a class="self-link" href="#parameter-object-examples"></a></h5>
+        <h5 class="heading settled" data-level="3.7.12.5" id="parameter-object-examples"><span class="secno">3.7.12.5. </span><span class="content">Parameter Object Examples</span><a class="self-link" href="#parameter-object-examples"></a></h5>
         <p>A header parameter with an array of 64 bit integer numbers:</p>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"name"</span>: <span class="hljs-string">"token"</span>,
@@ -3338,10 +3326,10 @@ object -> { "R": 100, "G": 200, "B": 150 }
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="3.8.13" id="request-body-object"><span class="secno">3.8.13. </span><span class="content"><a data-link-type="dfn" id="requestBodyObject">Request Body Object</a></span><a class="self-link" href="#request-body-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.13" id="request-body-object"><span class="secno">3.7.13. </span><span class="content"><a data-link-type="dfn" id="requestBodyObject">Request Body Object</a></span><a class="self-link" href="#request-body-object"></a></h4>
        <p>Describes a single request body.</p>
        <section>
-        <h5 class="heading settled" data-level="3.8.13.1" id="fixed-fields①①"><span class="secno">3.8.13.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①①"></a></h5>
+        <h5 class="heading settled" data-level="3.7.13.1" id="fixed-fields①①"><span class="secno">3.7.13.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①①"></a></h5>
         <table>
          <thead>
           <tr>
@@ -3365,7 +3353,7 @@ object -> { "R": 100, "G": 200, "B": 150 }
         <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.8.13.2" id="request-body-examples"><span class="secno">3.8.13.2. </span><span class="content">Request Body Examples</span><a class="self-link" href="#request-body-examples"></a></h5>
+        <h5 class="heading settled" data-level="3.7.13.2" id="request-body-examples"><span class="secno">3.7.13.2. </span><span class="content">Request Body Examples</span><a class="self-link" href="#request-body-examples"></a></h5>
         <p>A request body with a referenced model definition.</p>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"description"</span>: <span class="hljs-string">"user to add to the system"</span>,
@@ -3465,10 +3453,10 @@ object -> { "R": 100, "G": 200, "B": 150 }
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="3.8.14" id="media-type-object"><span class="secno">3.8.14. </span><span class="content"><a data-link-type="dfn" id="mediaTypeObject">Media Type Object</a></span><a class="self-link" href="#media-type-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.14" id="media-type-object"><span class="secno">3.7.14. </span><span class="content"><a data-link-type="dfn" id="mediaTypeObject">Media Type Object</a></span><a class="self-link" href="#media-type-object"></a></h4>
        <p>Each Media Type Object provides schema and examples for the media type identified by its key.</p>
        <section>
-        <h5 class="heading settled" data-level="3.8.14.1" id="fixed-fields①②"><span class="secno">3.8.14.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①②"></a></h5>
+        <h5 class="heading settled" data-level="3.7.14.1" id="fixed-fields①②"><span class="secno">3.7.14.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①②"></a></h5>
         <table>
          <thead>
           <tr>
@@ -3496,7 +3484,7 @@ object -> { "R": 100, "G": 200, "B": 150 }
         <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.8.14.2" id="media-type-examples"><span class="secno">3.8.14.2. </span><span class="content">Media Type Examples</span><a class="self-link" href="#media-type-examples"></a></h5>
+        <h5 class="heading settled" data-level="3.7.14.2" id="media-type-examples"><span class="secno">3.7.14.2. </span><span class="content">Media Type Examples</span><a class="self-link" href="#media-type-examples"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-string">"application/json"</span>: {
     <span class="hljs-string">"schema"</span>: {
@@ -3556,14 +3544,14 @@ object -> { "R": 100, "G": 200, "B": 150 }
 </code></pre>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.8.14.3" id="considerations-for-file-uploads"><span class="secno">3.8.14.3. </span><span class="content">Considerations for File Uploads</span><a class="self-link" href="#considerations-for-file-uploads"></a></h5>
+        <h5 class="heading settled" data-level="3.7.14.3" id="considerations-for-file-uploads"><span class="secno">3.7.14.3. </span><span class="content">Considerations for File Uploads</span><a class="self-link" href="#considerations-for-file-uploads"></a></h5>
         <p>In contrast with the 2.0 specification, <code>file</code> input/output content in OpenAPI is described with the same semantics as any other schema type. Specifically:</p>
-<pre class="nohighlight"><code><span class="hljs-comment">#### content transferred with base64 encoding</span>
+<pre class="nohighlight"><code><span class="hljs-comment"># content transferred with base64 encoding</span>
 <span class="hljs-attr">schema:</span>
 <span class="hljs-attr">  type:</span> <span class="hljs-string">string</span>
 <span class="hljs-attr">  format:</span> <span class="hljs-string">base64</span>
 </code></pre>
-<pre class="nohighlight"><code><span class="hljs-comment">### content transferred in binary (octet-stream):</span>
+<pre class="nohighlight"><code><span class="hljs-comment"># content transferred in binary (octet-stream):</span>
 <span class="hljs-attr">schema:</span>
 <span class="hljs-attr">  type:</span> <span class="hljs-string">string</span>
 <span class="hljs-attr">  format:</span> <span class="hljs-string">binary</span>
@@ -3580,7 +3568,7 @@ object -> { "R": 100, "G": 200, "B": 150 }
 <span class="hljs-attr">        format:</span> <span class="hljs-string">binary</span>
 </code></pre>
         <p>In addition, specific media types MAY be specified:</p>
-<pre class="nohighlight"><code><span class="hljs-comment">## multiple, specific media types may be specified:</span>
+<pre class="nohighlight"><code><span class="hljs-comment"># multiple, specific media types may be specified:</span>
 <span class="hljs-attr">requestBody:</span>
 <span class="hljs-attr">  content:</span>
       <span class="hljs-comment"># a binary file of type png or jpeg</span>
@@ -3608,11 +3596,9 @@ object -> { "R": 100, "G": 200, "B": 150 }
 
 </code></pre>
        </section>
-      </section>
-     </section>
-     <section>
-      <h3 class="heading settled" data-level="3.9" id="support-for-x-www-form-urlencoded-request-bodies"><span class="secno">3.9. </span><span class="content">Support for x-www-form-urlencoded Request Bodies</span><a class="self-link" href="#support-for-x-www-form-urlencoded-request-bodies"></a></h3>
-      <p>To submit content using form url encoding via <a data-link-type="biblio" href="#biblio-rfc1866">[rfc1866]</a>, the following
+       <section>
+        <h5 class="heading settled" data-level="3.7.14.4" id="support-for-x-www-form-urlencoded-request-bodies"><span class="secno">3.7.14.4. </span><span class="content">Support for x-www-form-urlencoded Request Bodies</span><a class="self-link" href="#support-for-x-www-form-urlencoded-request-bodies"></a></h5>
+        <p>To submit content using form url encoding via <a data-link-type="biblio" href="#biblio-rfc1866">[rfc1866]</a>, the following
 definition may be used:</p>
 <pre class="nohighlight"><code><span class="hljs-attr">requestBody:</span>
 <span class="hljs-attr">  content:</span>
@@ -3628,18 +3614,19 @@ definition may be used:</p>
 <span class="hljs-attr">            type:</span> <span class="hljs-string">object</span>
 <span class="hljs-attr">            properties:</span> <span class="hljs-string">{}</span>
 </code></pre>
-      <p>In this example, the contents in the <code>requestBody</code> MUST be stringified per <a data-link-type="biblio" href="#biblio-rfc1866">[rfc1866]</a>) when passed to the server.  In addition, the <code>address</code> field complex object will be stringified.</p>
-      <p>When passing complex objects in the <code>application/x-www-form-urlencoded</code> content type, the default serialization strategy of such properties is described in the <a href="#encodingObject"><code>Encoding Object</code></a>’s <a href="#encodingStyle"><code>style</code></a> property as <code>form</code>.</p>
-      <section>
-       <h4 class="heading settled" data-level="3.9.1" id="special-considerations-for-multipart-content"><span class="secno">3.9.1. </span><span class="content">Special Considerations for <code>multipart</code> Content</span><a class="self-link" href="#special-considerations-for-multipart-content"></a></h4>
-       <p>It is common to use <code>multipart/form-data</code> as a <code>Content-Type</code> when transferring request bodies to operations.  In contrast to 2.0, a <code>schema</code> is REQUIRED to define the input parameters to the operation when using <code>multipart</code> content.  This supports complex structures as well as supporting mechanisms for multiple file uploads.</p>
-       <p>When passing in <code>multipart</code> types, boundaries MAY be used to separate sections of the content being transferred — thus, the following default <code>Content-Type</code>s are defined for <code>multipart</code>:</p>
-       <ul>
-        <li>If the property is a primitive, or an array of primitive values, the default Content-Type is <code>text/plain</code>
-        <li>If the property is complex, or an array of complex values, the default Content-Type is <code>application/json</code>
-        <li>If the property is a <code>type: string</code> with <code>format: binary</code> or <code>format: base64</code> (aka a file object), the default Content-Type is <code>application/octet-stream</code>
-       </ul>
-       <p>Examples:</p>
+        <p>In this example, the contents in the <code>requestBody</code> MUST be stringified per <a data-link-type="biblio" href="#biblio-rfc1866">[rfc1866]</a>) when passed to the server.  In addition, the <code>address</code> field complex object will be stringified.</p>
+        <p>When passing complex objects in the <code>application/x-www-form-urlencoded</code> content type, the default serialization strategy of such properties is described in the <a href="#encodingObject"><code>Encoding Object</code></a>’s <a href="#encodingStyle"><code>style</code></a> property as <code>form</code>.</p>
+       </section>
+       <section>
+        <h5 class="heading settled" data-level="3.7.14.5" id="special-considerations-for-multipart-content"><span class="secno">3.7.14.5. </span><span class="content">Special Considerations for <code>multipart</code> Content</span><a class="self-link" href="#special-considerations-for-multipart-content"></a></h5>
+        <p>It is common to use <code>multipart/form-data</code> as a <code>Content-Type</code> when transferring request bodies to operations.  In contrast to 2.0, a <code>schema</code> is REQUIRED to define the input parameters to the operation when using <code>multipart</code> content.  This supports complex structures as well as supporting mechanisms for multiple file uploads.</p>
+        <p>When passing in <code>multipart</code> types, boundaries MAY be used to separate sections of the content being transferred — thus, the following default <code>Content-Type</code>s are defined for <code>multipart</code>:</p>
+        <ul>
+         <li>If the property is a primitive, or an array of primitive values, the default Content-Type is <code>text/plain</code>
+         <li>If the property is complex, or an array of complex values, the default Content-Type is <code>application/json</code>
+         <li>If the property is a <code>type: string</code> with <code>format: binary</code> or <code>format: base64</code> (aka a file object), the default Content-Type is <code>application/octet-stream</code>
+        </ul>
+        <p>Examples:</p>
 <pre class="nohighlight"><code><span class="hljs-attr">requestBody:</span>
 <span class="hljs-attr">  content:</span>
     <span class="hljs-string">multipart/form-data:</span>
@@ -3668,13 +3655,14 @@ definition may be used:</p>
 <span class="hljs-attr">            items:</span>
 <span class="hljs-attr">              type:</span> <span class="hljs-string">'#/components/schemas/Address'</span>
 </code></pre>
-       <p>An <code>encoding</code> attribute is introduced to give you control over the serialization of parts of <code>multipart</code> request bodies.  This attribute is <em>only</em> applicable to <code>multipart</code> and <code>application/x-www-form-urlencoded</code> request bodies.</p>
+        <p>An <code>encoding</code> attribute is introduced to give you control over the serialization of parts of <code>multipart</code> request bodies.  This attribute is <em>only</em> applicable to <code>multipart</code> and <code>application/x-www-form-urlencoded</code> request bodies.</p>
+       </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="3.9.2" id="encoding-object"><span class="secno">3.9.2. </span><span class="content"><a data-link-type="dfn" id="encodingObject">Encoding Object</a></span><a class="self-link" href="#encoding-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.15" id="encoding-object"><span class="secno">3.7.15. </span><span class="content"><a data-link-type="dfn" id="encodingObject">Encoding Object</a></span><a class="self-link" href="#encoding-object"></a></h4>
        <p>A single encoding definition applied to a single schema property.</p>
        <section>
-        <h5 class="heading settled" data-level="3.9.2.1" id="fixed-fields①③"><span class="secno">3.9.2.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①③"></a></h5>
+        <h5 class="heading settled" data-level="3.7.15.1" id="fixed-fields①③"><span class="secno">3.7.15.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①③"></a></h5>
         <table>
          <thead>
           <tr>
@@ -3706,7 +3694,7 @@ definition may be used:</p>
         <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.9.2.2" id="encoding-object-example"><span class="secno">3.9.2.2. </span><span class="content">Encoding Object Example</span><a class="self-link" href="#encoding-object-example"></a></h5>
+        <h5 class="heading settled" data-level="3.7.15.2" id="encoding-object-example"><span class="secno">3.7.15.2. </span><span class="content">Encoding Object Example</span><a class="self-link" href="#encoding-object-example"></a></h5>
 <pre class="nohighlight"><code><span class="hljs-attr">requestBody:</span>
 <span class="hljs-attr">  content:</span>
     <span class="hljs-string">multipart/mixed:</span>
@@ -3746,7 +3734,7 @@ definition may be used:</p>
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="3.9.3" id="responses-object"><span class="secno">3.9.3. </span><span class="content"><a data-link-type="dfn" id="responsesObject">Responses Object</a></span><a class="self-link" href="#responses-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.16" id="responses-object"><span class="secno">3.7.16. </span><span class="content"><a data-link-type="dfn" id="responsesObject">Responses Object</a></span><a class="self-link" href="#responses-object"></a></h4>
        <p>A container for the expected responses of an operation.
 The container maps a HTTP response code to the expected response.</p>
        <p>The documentation is not necessarily expected to cover all possible HTTP response codes because they may not be known in advance.
@@ -3756,7 +3744,7 @@ that are not covered individually by the specification.</p>
        <p>The <code>Responses Object</code> MUST contain at least one response code, and it
 SHOULD be the response for a successful operation call.</p>
        <section>
-        <h5 class="heading settled" data-level="3.9.3.1" id="fixed-fields①④"><span class="secno">3.9.3.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①④"></a></h5>
+        <h5 class="heading settled" data-level="3.7.16.1" id="fixed-fields①④"><span class="secno">3.7.16.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①④"></a></h5>
         <table>
          <thead>
           <tr>
@@ -3771,7 +3759,7 @@ SHOULD be the response for a successful operation call.</p>
         </table>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.9.3.2" id="patterned-fields①"><span class="secno">3.9.3.2. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields①"></a></h5>
+        <h5 class="heading settled" data-level="3.7.16.2" id="patterned-fields①"><span class="secno">3.7.16.2. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields①"></a></h5>
         <table>
          <thead>
           <tr>
@@ -3787,7 +3775,7 @@ SHOULD be the response for a successful operation call.</p>
         <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.9.3.3" id="responses-object-example"><span class="secno">3.9.3.3. </span><span class="content">Responses Object Example</span><a class="self-link" href="#responses-object-example"></a></h5>
+        <h5 class="heading settled" data-level="3.7.16.3" id="responses-object-example"><span class="secno">3.7.16.3. </span><span class="content">Responses Object Example</span><a class="self-link" href="#responses-object-example"></a></h5>
         <p>A 200 response for a successful operation and a default response for others (implying an error):</p>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"200"</span>: {
@@ -3828,10 +3816,10 @@ SHOULD be the response for a successful operation call.</p>
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="3.9.4" id="response-object"><span class="secno">3.9.4. </span><span class="content"><a data-link-type="dfn" id="responseObject">Response Object</a></span><a class="self-link" href="#response-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.17" id="response-object"><span class="secno">3.7.17. </span><span class="content"><a data-link-type="dfn" id="responseObject">Response Object</a></span><a class="self-link" href="#response-object"></a></h4>
        <p>Describes a single response from an API Operation, including design-time, static <code>links</code> to operations based on the response.</p>
        <section>
-        <h5 class="heading settled" data-level="3.9.4.1" id="fixed-fields①⑤"><span class="secno">3.9.4.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①⑤"></a></h5>
+        <h5 class="heading settled" data-level="3.7.17.1" id="fixed-fields①⑤"><span class="secno">3.7.17.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①⑤"></a></h5>
         <table>
          <thead>
           <tr>
@@ -3859,7 +3847,7 @@ SHOULD be the response for a successful operation call.</p>
         <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.9.4.2" id="response-object-examples"><span class="secno">3.9.4.2. </span><span class="content">Response Object Examples</span><a class="self-link" href="#response-object-examples"></a></h5>
+        <h5 class="heading settled" data-level="3.7.17.2" id="response-object-examples"><span class="secno">3.7.17.2. </span><span class="content">Response Object Examples</span><a class="self-link" href="#response-object-examples"></a></h5>
         <p>Response of an array of a complex type:</p>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"description"</span>: <span class="hljs-string">"A complex object array response"</span>,
@@ -3964,12 +3952,12 @@ SHOULD be the response for a successful operation call.</p>
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="3.9.5" id="callback-object"><span class="secno">3.9.5. </span><span class="content"><a data-link-type="dfn" id="callbackObject">Callback Object</a></span><a class="self-link" href="#callback-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.18" id="callback-object"><span class="secno">3.7.18. </span><span class="content"><a data-link-type="dfn" id="callbackObject">Callback Object</a></span><a class="self-link" href="#callback-object"></a></h4>
        <p>A map of possible out-of band callbacks related to the parent operation.
 Each value in the map is a <a href="#pathItemObject">Path Item Object</a> that describes a set of requests that may be initiated by the API provider and the expected responses.
 The key value used to identify the callback object is an expression, evaluated at runtime, that identifies a URL to use for the callback operation.</p>
        <section>
-        <h5 class="heading settled" data-level="3.9.5.1" id="patterned-fields②"><span class="secno">3.9.5.1. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields②"></a></h5>
+        <h5 class="heading settled" data-level="3.7.18.1" id="patterned-fields②"><span class="secno">3.7.18.1. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields②"></a></h5>
         <table>
          <thead>
           <tr>
@@ -3985,7 +3973,7 @@ The key value used to identify the callback object is an expression, evaluated a
         <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.9.5.2" id="key-expression"><span class="secno">3.9.5.2. </span><span class="content">Key Expression</span><a class="self-link" href="#key-expression"></a></h5>
+        <h5 class="heading settled" data-level="3.7.18.2" id="key-expression"><span class="secno">3.7.18.2. </span><span class="content">Key Expression</span><a class="self-link" href="#key-expression"></a></h5>
         <p>The key that identifies the <a href="#pathItemObject">Path Item Object</a> is a <a href="#runtimeExpression">runtime expression</a> that can be evaluated in the context of a runtime HTTP request/response to identify the URL to be used for the callback request.
 A simple example might be <code>$request.body#/url</code>.
 However, using a <a href="#runtimeExpression">runtime expression</a> the complete HTTP message can be accessed.
@@ -4042,7 +4030,7 @@ This includes accessing any part of a body that a JSON Pointer <a data-link-type
         </table>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.9.5.3" id="callback-object-example"><span class="secno">3.9.5.3. </span><span class="content">Callback Object Example</span><a class="self-link" href="#callback-object-example"></a></h5>
+        <h5 class="heading settled" data-level="3.7.18.3" id="callback-object-example"><span class="secno">3.7.18.3. </span><span class="content">Callback Object Example</span><a class="self-link" href="#callback-object-example"></a></h5>
         <p>The following example shows a callback to the URL specified by the <code>id</code> and <code>email</code> property in the request body.</p>
 <pre class="nohighlight"><code><span class="hljs-attr">myWebhook:</span>
   <span class="hljs-string">'http://notificationServer.com?transactionId={$request.body#/id}&amp;email={$request.body#/email}'</span><span class="hljs-string">:</span>
@@ -4060,9 +4048,9 @@ This includes accessing any part of a body that a JSON Pointer <a data-link-type
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="3.9.6" id="example-object"><span class="secno">3.9.6. </span><span class="content"><a data-link-type="dfn" id="exampleObject">Example Object</a></span><a class="self-link" href="#example-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.19" id="example-object"><span class="secno">3.7.19. </span><span class="content"><a data-link-type="dfn" id="exampleObject">Example Object</a></span><a class="self-link" href="#example-object"></a></h4>
        <section>
-        <h5 class="heading settled" data-level="3.9.6.1" id="fixed-fields①⑥"><span class="secno">3.9.6.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①⑥"></a></h5>
+        <h5 class="heading settled" data-level="3.7.19.1" id="fixed-fields①⑥"><span class="secno">3.7.19.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①⑥"></a></h5>
         <table>
          <thead>
           <tr>
@@ -4093,8 +4081,8 @@ of its associated value.  Tooling implementations MAY choose to
 validate compatibility automatically, and reject the example value(s) if incompatible.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="3.9.6.2" id="example-object-example"><span class="secno">3.9.6.2. </span><span class="content">Example Object Example</span><a class="self-link" href="#example-object-example"></a></h5>
-<pre class="nohighlight"><code><span class="hljs-comment">#### in a model</span>
+        <h5 class="heading settled" data-level="3.7.19.2" id="example-object-example"><span class="secno">3.7.19.2. </span><span class="content">Example Object Example</span><a class="self-link" href="#example-object-example"></a></h5>
+<pre class="nohighlight"><code><span class="hljs-comment"># in a model</span>
 <span class="hljs-attr">schemas:</span>
 <span class="hljs-attr">  properties:</span>
 <span class="hljs-attr">    name:</span>
@@ -4103,7 +4091,7 @@ validate compatibility automatically, and reject the example value(s) if incompa
 <span class="hljs-attr">        name:</span>
           <span class="hljs-string">$ref:</span> <span class="hljs-attr">http://example.org/petapi-examples/openapi.json#/components/examples/name-example</span>
 
-<span class="hljs-comment">### in a request body:</span>
+<span class="hljs-comment"># in a request body:</span>
 <span class="hljs-attr">  requestBody:</span>
 <span class="hljs-attr">    content:</span>
       <span class="hljs-string">'application/json'</span><span class="hljs-string">:</span>
@@ -4128,7 +4116,7 @@ validate compatibility automatically, and reject the example value(s) if incompa
 <span class="hljs-attr">            externalValue:</span> <span class="hljs-string">'http://foo.bar/examples/address-example.txt'</span> 
 
 
-<span class="hljs-comment">## in a parameter</span>
+<span class="hljs-comment"># in a parameter</span>
 <span class="hljs-attr">  parameters:</span>
 <span class="hljs-attr">    - name:</span> <span class="hljs-string">'zipCode'</span>
 <span class="hljs-attr">      in:</span> <span class="hljs-string">'query'</span>
@@ -4153,56 +4141,55 @@ validate compatibility automatically, and reject the example value(s) if incompa
 </code></pre>
        </section>
       </section>
-     </section>
-    </section>
-    <section>
-     <h2 class="heading settled" data-level="4" id="link-object"><span class="secno">4. </span><span class="content"><a data-link-type="dfn" id="linkObject">Link Object</a></span><a class="self-link" href="#link-object"></a></h2>
-     <p>The <code>Link object</code> represents a possible design-time link for a response.
+      <section>
+       <h4 class="heading settled" data-level="3.7.20" id="link-object"><span class="secno">3.7.20. </span><span class="content"><a data-link-type="dfn" id="linkObject">Link Object</a></span><a class="self-link" href="#link-object"></a></h4>
+       <p>The <code>Link object</code> represents a possible design-time link for a response.
 The presence of a link does not guarantee the caller’s ability to successfully invoke it, rather it provides a known relationship and traversal mechanism between responses and other operations.</p>
-     <p>Unlike <em>dynamic</em> links (i.e. links provided <strong>in</strong> the response payload), the OAS linking mechanism does not require link information in the runtime response.</p>
-     <p>For computing links, and providing instructions to execute them, a <a href="#runtimeExpression">runtime expression</a> is used for accessing values in an operation and using them as parameters while invoking the linked operation.</p>
-     <section>
-      <h3 class="heading settled" data-level="4.1" id="fixed-fields①⑦"><span class="secno">4.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①⑦"></a></h3>
-      <table>
-       <thead>
-        <tr>
-         <th>Field Name
-         <th style="text-align:center">Type
-         <th>Description
-       <tbody>
-        <tr>
-         <td><a data-link-type="dfn" id="linkOperationRef"> </a>operationRef
-         <td style="text-align:center"><code>string</code>
-         <td>A relative or absolute reference to an OAS operation. This field is mutually exclusive of the <code>operationId</code> field, and MUST point to an <a href="#operationObject">Operation Object</a>. Relative <code>operationRef</code> values MAY be used to locate an existing <a href="#operationObject">Operation Object</a> in the OpenAPI definition.
-        <tr>
-         <td><a data-link-type="dfn" id="linkOperationId"> </a>operationId
-         <td style="text-align:center"><code>string</code>
-         <td>The name of an <em>existing</em>, resolvable OAS operation, as defined with a unique <code>operationId</code>.  This field is mutually exclusive of the <code>operationRef</code> field.
-        <tr>
-         <td><a data-link-type="dfn" id="linkParameters"> </a>parameters
-         <td style="text-align:center">Map[<code>string</code>, Any ¦ <a href="#runtimeExpression">{expression}</a>]
-         <td>A map representing parameters to pass to an operation as specified with <code>operationId</code> or identified via <code>operationRef</code>. The key is the parameter name to be used, whereas the value can be a constant or an expression to be evaluated and passed to the linked operation.  The parameter name can be qualified using the <a href="#parameterIn">parameter location</a> <code>[{in}.]{name}</code> for operations that use the same parameter name in different locations (e.g. <a href="http://path.id">path.id</a>).
-        <tr>
-         <td><a data-link-type="dfn" id="linkRequestBody"> </a>requestBody
-         <td style="text-align:center">Any ¦ <a href="#runtimeExpression">{expression}</a>
-         <td>A literal value or <a href="#runtimeExpression">{expression}</a> to use as a request body when calling the target operation.
-        <tr>
-         <td><a data-link-type="dfn" id="linkDescription"> </a>description
-         <td style="text-align:center"><code>string</code>
-         <td>A description of the link. <a href="http://spec.commonmark.org/">CommonMark syntax</a> MAY be used for rich text representation.
-        <tr>
-         <td><a data-link-type="dfn" id="linkServer"> </a>server
-         <td style="text-align:center"><a href="#serverObject">Server Object</a>
-         <td>A server object to be used by the target operation.
-      </table>
-      <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
-      <p>A linked operation MUST be identified using either an <code>operationRef</code> or <code>operationId</code>.
+       <p>Unlike <em>dynamic</em> links (i.e. links provided <strong>in</strong> the response payload), the OAS linking mechanism does not require link information in the runtime response.</p>
+       <p>For computing links, and providing instructions to execute them, a <a href="#runtimeExpression">runtime expression</a> is used for accessing values in an operation and using them as parameters while invoking the linked operation.</p>
+       <section>
+        <h5 class="heading settled" data-level="3.7.20.1" id="fixed-fields①⑦"><span class="secno">3.7.20.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①⑦"></a></h5>
+        <table>
+         <thead>
+          <tr>
+           <th>Field Name
+           <th style="text-align:center">Type
+           <th>Description
+         <tbody>
+          <tr>
+           <td><a data-link-type="dfn" id="linkOperationRef"> </a>operationRef
+           <td style="text-align:center"><code>string</code>
+           <td>A relative or absolute reference to an OAS operation. This field is mutually exclusive of the <code>operationId</code> field, and MUST point to an <a href="#operationObject">Operation Object</a>. Relative <code>operationRef</code> values MAY be used to locate an existing <a href="#operationObject">Operation Object</a> in the OpenAPI definition.
+          <tr>
+           <td><a data-link-type="dfn" id="linkOperationId"> </a>operationId
+           <td style="text-align:center"><code>string</code>
+           <td>The name of an <em>existing</em>, resolvable OAS operation, as defined with a unique <code>operationId</code>.  This field is mutually exclusive of the <code>operationRef</code> field.
+          <tr>
+           <td><a data-link-type="dfn" id="linkParameters"> </a>parameters
+           <td style="text-align:center">Map[<code>string</code>, Any ¦ <a href="#runtimeExpression">{expression}</a>]
+           <td>A map representing parameters to pass to an operation as specified with <code>operationId</code> or identified via <code>operationRef</code>. The key is the parameter name to be used, whereas the value can be a constant or an expression to be evaluated and passed to the linked operation.  The parameter name can be qualified using the <a href="#parameterIn">parameter location</a> <code>[{in}.]{name}</code> for operations that use the same parameter name in different locations (e.g. <a href="http://path.id">path.id</a>).
+          <tr>
+           <td><a data-link-type="dfn" id="linkRequestBody"> </a>requestBody
+           <td style="text-align:center">Any ¦ <a href="#runtimeExpression">{expression}</a>
+           <td>A literal value or <a href="#runtimeExpression">{expression}</a> to use as a request body when calling the target operation.
+          <tr>
+           <td><a data-link-type="dfn" id="linkDescription"> </a>description
+           <td style="text-align:center"><code>string</code>
+           <td>A description of the link. <a href="http://spec.commonmark.org/">CommonMark syntax</a> MAY be used for rich text representation.
+          <tr>
+           <td><a data-link-type="dfn" id="linkServer"> </a>server
+           <td style="text-align:center"><a href="#serverObject">Server Object</a>
+           <td>A server object to be used by the target operation.
+        </table>
+        <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
+        <p>A linked operation MUST be identified using either an <code>operationRef</code> or <code>operationId</code>.
 In the case of an <code>operationId</code>, it MUST be unique and resolved in the scope of the OAS document.
 Because of the potential for name clashes, the <code>operationRef</code> syntax is preferred
 for specifications with external references.</p>
-      <section>
-       <h4 class="heading settled" data-level="4.1.1" id="examples"><span class="secno">4.1.1. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h4>
-       <p>Computing a link from a request operation where the <code>$request.path.id</code> is used to pass a request parameter to the linked operation.</p>
+       </section>
+       <section>
+        <h5 class="heading settled" data-level="3.7.20.2" id="examples"><span class="secno">3.7.20.2. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h5>
+        <p>Computing a link from a request operation where the <code>$request.path.id</code> is used to pass a request parameter to the linked operation.</p>
 <pre class="nohighlight"><code><span class="hljs-attr">paths:</span>
   <span class="hljs-string">/users/{id}:</span>
 <span class="hljs-attr">    parameters:</span>
@@ -4247,8 +4234,8 @@ for specifications with external references.</p>
         <span class="hljs-string">'200'</span><span class="hljs-string">:</span>
 <span class="hljs-attr">          description:</span> <span class="hljs-string">the</span> <span class="hljs-string">user’s</span> <span class="hljs-string">address</span>
 </code></pre>
-       <p>When a runtime expression fails to evaluate, no parameter value is passed to the target operation.</p>
-       <p>Values from the response body can be used to drive a linked operation.</p>
+        <p>When a runtime expression fails to evaluate, no parameter value is passed to the target operation.</p>
+        <p>Values from the response body can be used to drive a linked operation.</p>
 <pre class="nohighlight"><code><span class="hljs-attr">links:</span>
 <span class="hljs-attr">  address:</span>
 <span class="hljs-attr">    operationId:</span> <span class="hljs-string">getUserAddressByUUID</span>
@@ -4256,11 +4243,12 @@ for specifications with external references.</p>
       <span class="hljs-comment"># get the <code>uuid</code> field from the <code>uuid</code> field in the response body</span>
 <span class="hljs-attr">      userUuid:</span> <span class="hljs-string">$response.body#/uuid</span>
 </code></pre>
-       <p>Clients follow all links at their discretion.
+        <p>Clients follow all links at their discretion.
 Neither permissions, nor the capability to make a successful call to that link, is guaranteed
 solely by the existence of a relationship.</p>
+       </section>
        <section>
-        <h5 class="heading settled" data-level="4.1.1.1" id="operationref-examples"><span class="secno">4.1.1.1. </span><span class="content">OperationRef Examples</span><a class="self-link" href="#operationref-examples"></a></h5>
+        <h5 class="heading settled" data-level="3.7.20.3" id="operationref-examples"><span class="secno">3.7.20.3. </span><span class="content">OperationRef Examples</span><a class="self-link" href="#operationref-examples"></a></h5>
         <p>As references to <code>operationId</code> MAY NOT be possible (the <code>operationId</code> is an optional
 value), references MAY also be made through a relative <code>operationRef</code>:</p>
 <pre class="nohighlight"><code><span class="hljs-attr">links:</span>
@@ -4282,7 +4270,7 @@ value), references MAY also be made through a relative <code>operationRef</code>
 using JSON references.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="4.1.1.2" id="runtime-expressions"><span class="secno">4.1.1.2. </span><span class="content"><a data-link-type="dfn" id="runtimeExpression">Runtime Expressions</a></span><a class="self-link" href="#runtime-expressions"></a></h5>
+        <h5 class="heading settled" data-level="3.7.20.4" id="runtime-expressions"><span class="secno">3.7.20.4. </span><span class="content"><a data-link-type="dfn" id="runtimeExpression">Runtime Expressions</a></span><a class="self-link" href="#runtime-expressions"></a></h5>
         <p>Runtime expressions allow defining values based on information that will only be available within the HTTP message in an actual API call.
 This mechanism is used by <a href="#linkObject">Link Objects</a> and <a href="#callbackObject">Callback Objects</a>.</p>
         <p>The runtime expression is defined by the following [Augmented Backus-Naur Form] syntax</p>
@@ -4301,7 +4289,7 @@ token = as per RFC [7230]section-3.2.6)
         <p>The table below provides examples of runtime expressions and examples of their use in a value:</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="4.1.1.3" id="examples①"><span class="secno">4.1.1.3. </span><span class="content"><a data-link-type="dfn" id="runtimeExpressionExamples">Examples</a></span><a class="self-link" href="#examples①"></a></h5>
+        <h5 class="heading settled" data-level="3.7.20.5" id="examples①"><span class="secno">3.7.20.5. </span><span class="content"><a data-link-type="dfn" id="runtimeExpressionExamples">Examples</a></span><a class="self-link" href="#examples①"></a></h5>
         <table>
          <thead>
           <tr>
@@ -4343,7 +4331,7 @@ Expressions can be embedded into string values by surrounding the expression wit
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="4.1.2" id="header-object"><span class="secno">4.1.2. </span><span class="content"><a data-link-type="dfn" id="headerObject">Header Object</a></span><a class="self-link" href="#header-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.21" id="header-object"><span class="secno">3.7.21. </span><span class="content"><a data-link-type="dfn" id="headerObject">Header Object</a></span><a class="self-link" href="#header-object"></a></h4>
        <p>The Header Object follows the structure of the <a href="#parameterObject">Parameter Object</a> with the following changes:</p>
        <ol>
         <li><code>name</code> MUST NOT be specified, it is given in the corresponding <code>headers</code> map.
@@ -4351,7 +4339,7 @@ Expressions can be embedded into string values by surrounding the expression wit
         <li>All traits that are affected by the location MUST be applicable to a location of <code>header</code> (for example, <a href="#parameterStyle"><code>style</code></a>).
        </ol>
        <section>
-        <h5 class="heading settled" data-level="4.1.2.1" id="header-object-example"><span class="secno">4.1.2.1. </span><span class="content">Header Object Example</span><a class="self-link" href="#header-object-example"></a></h5>
+        <h5 class="heading settled" data-level="3.7.21.1" id="header-object-example"><span class="secno">3.7.21.1. </span><span class="content">Header Object Example</span><a class="self-link" href="#header-object-example"></a></h5>
         <p>A simple header of type <code>integer</code>:</p>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The number of allowed requests in the current period"</span>,
@@ -4367,11 +4355,11 @@ Expressions can be embedded into string values by surrounding the expression wit
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="4.1.3" id="tag-object"><span class="secno">4.1.3. </span><span class="content"><a data-link-type="dfn" id="tagObject">Tag Object</a></span><a class="self-link" href="#tag-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.22" id="tag-object"><span class="secno">3.7.22. </span><span class="content"><a data-link-type="dfn" id="tagObject">Tag Object</a></span><a class="self-link" href="#tag-object"></a></h4>
        <p>Adds metadata to a single tag that is used by the <a href="#operationObject">Operation Object</a>.
 It is not mandatory to have a Tag Object per tag defined in the Operation Object instances.</p>
        <section>
-        <h5 class="heading settled" data-level="4.1.3.1" id="fixed-fields①⑧"><span class="secno">4.1.3.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①⑧"></a></h5>
+        <h5 class="heading settled" data-level="3.7.22.1" id="fixed-fields①⑧"><span class="secno">3.7.22.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①⑧"></a></h5>
         <table>
          <thead>
           <tr>
@@ -4395,7 +4383,7 @@ It is not mandatory to have a Tag Object per tag defined in the Operation Object
         <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="4.1.3.2" id="tag-object-example"><span class="secno">4.1.3.2. </span><span class="content">Tag Object Example</span><a class="self-link" href="#tag-object-example"></a></h5>
+        <h5 class="heading settled" data-level="3.7.22.2" id="tag-object-example"><span class="secno">3.7.22.2. </span><span class="content">Tag Object Example</span><a class="self-link" href="#tag-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"name"</span>: <span class="hljs-string">"pet"</span>,
   <span class="hljs-attr">"description"</span>: <span class="hljs-string">"Pets operations"</span>
@@ -4407,12 +4395,12 @@ It is not mandatory to have a Tag Object per tag defined in the Operation Object
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="4.1.4" id="reference-object"><span class="secno">4.1.4. </span><span class="content"><a data-link-type="dfn" id="referenceObject">Reference Object</a></span><a class="self-link" href="#reference-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.23" id="reference-object"><span class="secno">3.7.23. </span><span class="content"><a data-link-type="dfn" id="referenceObject">Reference Object</a></span><a class="self-link" href="#reference-object"></a></h4>
        <p>A simple object to allow referencing other components in the specification, internally and externally.</p>
        <p>The Reference Object is defined by <a href="https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03">JSON Reference</a> and follows the same structure, behavior and rules.</p>
        <p>For this specification, reference resolution is accomplished as defined by the JSON Reference specification and not by the JSON Schema specification.</p>
        <section>
-        <h5 class="heading settled" data-level="4.1.4.1" id="fixed-fields①⑨"><span class="secno">4.1.4.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①⑨"></a></h5>
+        <h5 class="heading settled" data-level="3.7.23.1" id="fixed-fields①⑨"><span class="secno">3.7.23.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields①⑨"></a></h5>
         <table>
          <thead>
           <tr>
@@ -4428,7 +4416,7 @@ It is not mandatory to have a Tag Object per tag defined in the Operation Object
         <p>This object cannot be extended with additional properties and any properties added SHALL be ignored.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="4.1.4.2" id="reference-object-example"><span class="secno">4.1.4.2. </span><span class="content">Reference Object Example</span><a class="self-link" href="#reference-object-example"></a></h5>
+        <h5 class="heading settled" data-level="3.7.23.2" id="reference-object-example"><span class="secno">3.7.23.2. </span><span class="content">Reference Object Example</span><a class="self-link" href="#reference-object-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"$ref"</span>: <span class="hljs-string">"#/components/schemas/Pet"</span>
 }
@@ -4437,7 +4425,7 @@ It is not mandatory to have a Tag Object per tag defined in the Operation Object
 </code></pre>
        </section>
        <section>
-        <h5 class="heading settled" data-level="4.1.4.3" id="relative-schema-document-example"><span class="secno">4.1.4.3. </span><span class="content">Relative Schema Document Example</span><a class="self-link" href="#relative-schema-document-example"></a></h5>
+        <h5 class="heading settled" data-level="3.7.23.3" id="relative-schema-document-example"><span class="secno">3.7.23.3. </span><span class="content">Relative Schema Document Example</span><a class="self-link" href="#relative-schema-document-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"$ref"</span>: <span class="hljs-string">"Pet.json"</span>
 }
@@ -4446,7 +4434,7 @@ It is not mandatory to have a Tag Object per tag defined in the Operation Object
 </code></pre>
        </section>
        <section>
-        <h5 class="heading settled" data-level="4.1.4.4" id="relative-documents-with-embedded-schema-example"><span class="secno">4.1.4.4. </span><span class="content">Relative Documents With Embedded Schema Example</span><a class="self-link" href="#relative-documents-with-embedded-schema-example"></a></h5>
+        <h5 class="heading settled" data-level="3.7.23.4" id="relative-documents-with-embedded-schema-example"><span class="secno">3.7.23.4. </span><span class="content">Relative Documents With Embedded Schema Example</span><a class="self-link" href="#relative-documents-with-embedded-schema-example"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"$ref"</span>: <span class="hljs-string">"definitions.json#/Pet"</span>
 }
@@ -4456,14 +4444,14 @@ It is not mandatory to have a Tag Object per tag defined in the Operation Object
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="4.1.5" id="schema-object"><span class="secno">4.1.5. </span><span class="content"><a data-link-type="dfn" id="schemaObject">Schema Object</a></span><a class="self-link" href="#schema-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.24" id="schema-object"><span class="secno">3.7.24. </span><span class="content"><a data-link-type="dfn" id="schemaObject">Schema Object</a></span><a class="self-link" href="#schema-object"></a></h4>
        <p>The Schema Object allows the definition of input and output data types.
 These types can be objects, but also primitives and arrays.
 This object is an extended subset of the <a href="http://json-schema.org/">JSON Schema Specification Wright Draft 00</a>.</p>
        <p>For more information about the properties, see <a href="https://tools.ietf.org/html/draft-wright-json-schema-00">JSON Schema Core</a> and <a href="https://tools.ietf.org/html/draft-wright-json-schema-validation-00">JSON Schema Validation</a>.
 Unless stated otherwise, the property definitions follow the JSON Schema.</p>
        <section>
-        <h5 class="heading settled" data-level="4.1.5.1" id="properties"><span class="secno">4.1.5.1. </span><span class="content">Properties</span><a class="self-link" href="#properties"></a></h5>
+        <h5 class="heading settled" data-level="3.7.24.1" id="properties"><span class="secno">3.7.24.1. </span><span class="content">Properties</span><a class="self-link" href="#properties"></a></h5>
         <p>The following properties are taken directly from the JSON Schema definition and follow the same specifications:</p>
         <ul>
          <li>title
@@ -4502,7 +4490,7 @@ Unless stated otherwise, the property definitions follow the JSON Schema.</p>
         <p>Other than the JSON Schema subset fields, the following fields MAY be used for further schema documentation:</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="4.1.5.2" id="fixed-fields②⓪"><span class="secno">4.1.5.2. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields②⓪"></a></h5>
+        <h5 class="heading settled" data-level="3.7.24.2" id="fixed-fields②⓪"><span class="secno">3.7.24.2. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields②⓪"></a></h5>
         <table>
          <thead>
           <tr>
@@ -4545,7 +4533,7 @@ Unless stated otherwise, the property definitions follow the JSON Schema.</p>
         </table>
         <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
         <section>
-         <h6 class="heading settled" data-level="4.1.5.2.1" id="composition-and-inheritance-polymorphism"><span class="secno">4.1.5.2.1. </span><span class="content"><a data-link-type="dfn" id="schemaComposition">Composition and Inheritance (Polymorphism)</a></span><a class="self-link" href="#composition-and-inheritance-polymorphism"></a></h6>
+         <h6 class="heading settled" data-level="3.7.24.2.1" id="composition-and-inheritance-polymorphism"><span class="secno">3.7.24.2.1. </span><span class="content"><a data-link-type="dfn" id="schemaComposition">Composition and Inheritance (Polymorphism)</a></span><a class="self-link" href="#composition-and-inheritance-polymorphism"></a></h6>
          <p>The OpenAPI Specification allows combining and extending model definitions using the <code>allOf</code> property of JSON Schema, in effect offering model composition. <code>allOf</code> takes an array of object definitions that are validated <em>independently</em> but together compose a single object.</p>
          <p>While composition offers model extensibility, it does not imply a hierarchy between the models.
 To support polymorphism, the OpenAPI Specification adds the <code>discriminator</code> field.
@@ -4559,15 +4547,15 @@ As such, inline schema definitions, which do not have a given id, <em>cannot</em
          </ul>
         </section>
         <section>
-         <h6 class="heading settled" data-level="4.1.5.2.2" id="xml-modeling"><span class="secno">4.1.5.2.2. </span><span class="content">XML Modeling</span><a class="self-link" href="#xml-modeling"></a></h6>
+         <h6 class="heading settled" data-level="3.7.24.2.2" id="xml-modeling"><span class="secno">3.7.24.2.2. </span><span class="content">XML Modeling</span><a class="self-link" href="#xml-modeling"></a></h6>
          <p>The <a href="#schemaXml">xml</a> property allows extra definitions when translating the JSON definition to XML.
 The <a href="#xmlObject">XML Object</a> contains additional information about the available options.</p>
         </section>
        </section>
        <section>
-        <h5 class="heading settled" data-level="4.1.5.3" id="schema-object-examples"><span class="secno">4.1.5.3. </span><span class="content">Schema Object Examples</span><a class="self-link" href="#schema-object-examples"></a></h5>
+        <h5 class="heading settled" data-level="3.7.24.3" id="schema-object-examples"><span class="secno">3.7.24.3. </span><span class="content">Schema Object Examples</span><a class="self-link" href="#schema-object-examples"></a></h5>
         <section>
-         <h6 class="heading settled" data-level="4.1.5.3.1" id="primitive-sample"><span class="secno">4.1.5.3.1. </span><span class="content">Primitive Sample</span><a class="self-link" href="#primitive-sample"></a></h6>
+         <h6 class="heading settled" data-level="3.7.24.3.1" id="primitive-sample"><span class="secno">3.7.24.3.1. </span><span class="content">Primitive Sample</span><a class="self-link" href="#primitive-sample"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
   <span class="hljs-attr">"format"</span>: <span class="hljs-string">"email"</span>
@@ -4578,7 +4566,7 @@ The <a href="#xmlObject">XML Object</a> contains additional information about th
 </code></pre>
         </section>
         <section>
-         <h6 class="heading settled" data-level="4.1.5.3.2" id="simple-model"><span class="secno">4.1.5.3.2. </span><span class="content">Simple Model</span><a class="self-link" href="#simple-model"></a></h6>
+         <h6 class="heading settled" data-level="3.7.24.3.2" id="simple-model"><span class="secno">3.7.24.3.2. </span><span class="content">Simple Model</span><a class="self-link" href="#simple-model"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
   <span class="hljs-attr">"required"</span>: [
@@ -4614,7 +4602,7 @@ The <a href="#xmlObject">XML Object</a> contains additional information about th
 </code></pre>
         </section>
         <section>
-         <h6 class="heading settled" data-level="4.1.5.3.3" id="model-with-map-dictionary-properties"><span class="secno">4.1.5.3.3. </span><span class="content">Model with Map/Dictionary Properties</span><a class="self-link" href="#model-with-map-dictionary-properties"></a></h6>
+         <h6 class="heading settled" data-level="3.7.24.3.3" id="model-with-map-dictionary-properties"><span class="secno">3.7.24.3.3. </span><span class="content">Model with Map/Dictionary Properties</span><a class="self-link" href="#model-with-map-dictionary-properties"></a></h6>
          <p>For a simple string to string mapping:</p>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
@@ -4641,7 +4629,7 @@ The <a href="#xmlObject">XML Object</a> contains additional information about th
 </code></pre>
         </section>
         <section>
-         <h6 class="heading settled" data-level="4.1.5.3.4" id="model-with-example"><span class="secno">4.1.5.3.4. </span><span class="content">Model with Example</span><a class="self-link" href="#model-with-example"></a></h6>
+         <h6 class="heading settled" data-level="3.7.24.3.4" id="model-with-example"><span class="secno">3.7.24.3.4. </span><span class="content">Model with Example</span><a class="self-link" href="#model-with-example"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
   <span class="hljs-attr">"properties"</span>: {
@@ -4677,7 +4665,7 @@ The <a href="#xmlObject">XML Object</a> contains additional information about th
 </code></pre>
         </section>
         <section>
-         <h6 class="heading settled" data-level="4.1.5.3.5" id="models-with-composition"><span class="secno">4.1.5.3.5. </span><span class="content">Models with Composition</span><a class="self-link" href="#models-with-composition"></a></h6>
+         <h6 class="heading settled" data-level="3.7.24.3.5" id="models-with-composition"><span class="secno">3.7.24.3.5. </span><span class="content">Models with Composition</span><a class="self-link" href="#models-with-composition"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"components"</span>: {
     <span class="hljs-attr">"schemas"</span>: {
@@ -4746,7 +4734,7 @@ The <a href="#xmlObject">XML Object</a> contains additional information about th
 </code></pre>
         </section>
         <section>
-         <h6 class="heading settled" data-level="4.1.5.3.6" id="models-with-polymorphism-support"><span class="secno">4.1.5.3.6. </span><span class="content">Models with Polymorphism Support</span><a class="self-link" href="#models-with-polymorphism-support"></a></h6>
+         <h6 class="heading settled" data-level="3.7.24.3.6" id="models-with-polymorphism-support"><span class="secno">3.7.24.3.6. </span><span class="content">Models with Polymorphism Support</span><a class="self-link" href="#models-with-polymorphism-support"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"components"</span>: {
     <span class="hljs-attr">"schemas"</span>: {
@@ -4870,12 +4858,12 @@ The <a href="#xmlObject">XML Object</a> contains additional information about th
         </section>
        </section>
        <section>
-        <h5 class="heading settled" data-level="4.1.5.4" id="discriminator-object"><span class="secno">4.1.5.4. </span><span class="content"><a data-link-type="dfn" id="discriminatorObject">Discriminator Object</a></span><a class="self-link" href="#discriminator-object"></a></h5>
+        <h5 class="heading settled" data-level="3.7.24.4" id="discriminator-object"><span class="secno">3.7.24.4. </span><span class="content"><a data-link-type="dfn" id="discriminatorObject">Discriminator Object</a></span><a class="self-link" href="#discriminator-object"></a></h5>
         <p>When request bodies or response payloads may be one of a number of different schemas, a <code>discriminator</code> object can be used to aid in serialization, deserialization, and validation.  The discriminator is a specific object in a schema which is used to inform the consumer of the specification of an alternative schema based on the value associated with it.</p>
         <p>When using the discriminator, <em>inline</em> schemas will not be considered.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="4.1.5.5" id="fixed-fields②①"><span class="secno">4.1.5.5. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields②①"></a></h5>
+        <h5 class="heading settled" data-level="3.7.24.5" id="fixed-fields②①"><span class="secno">3.7.24.5. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields②①"></a></h5>
         <table>
          <thead>
           <tr>
@@ -4987,12 +4975,12 @@ The <a href="#xmlObject">XML Object</a> contains additional information about th
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="4.1.6" id="xml-object"><span class="secno">4.1.6. </span><span class="content"><a data-link-type="dfn" id="xmlObject">XML Object</a></span><a class="self-link" href="#xml-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.25" id="xml-object"><span class="secno">3.7.25. </span><span class="content"><a data-link-type="dfn" id="xmlObject">XML Object</a></span><a class="self-link" href="#xml-object"></a></h4>
        <p>A metadata object that allows for more fine-tuned XML model definitions.</p>
        <p>When using arrays, XML element names are <em>not</em> inferred (for singular/plural forms) and the <code>name</code> property SHOULD be used to add that information.
 See examples for expected behavior.</p>
        <section>
-        <h5 class="heading settled" data-level="4.1.6.1" id="fixed-fields②②"><span class="secno">4.1.6.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields②②"></a></h5>
+        <h5 class="heading settled" data-level="3.7.25.1" id="fixed-fields②②"><span class="secno">3.7.25.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields②②"></a></h5>
         <table>
          <thead>
           <tr>
@@ -5024,10 +5012,10 @@ See examples for expected behavior.</p>
         <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="4.1.6.2" id="xml-object-examples"><span class="secno">4.1.6.2. </span><span class="content">XML Object Examples</span><a class="self-link" href="#xml-object-examples"></a></h5>
+        <h5 class="heading settled" data-level="3.7.25.2" id="xml-object-examples"><span class="secno">3.7.25.2. </span><span class="content">XML Object Examples</span><a class="self-link" href="#xml-object-examples"></a></h5>
         <p>The examples of the XML object definitions are included inside a property definition of a <a href="#schemaObject">Schema Object</a> with a sample of the XML representation of it.</p>
         <section>
-         <h6 class="heading settled" data-level="4.1.6.2.1" id="no-xml-element"><span class="secno">4.1.6.2.1. </span><span class="content">No XML Element</span><a class="self-link" href="#no-xml-element"></a></h6>
+         <h6 class="heading settled" data-level="3.7.25.2.1" id="no-xml-element"><span class="secno">3.7.25.2.1. </span><span class="content">No XML Element</span><a class="self-link" href="#no-xml-element"></a></h6>
          <p>Basic string property:</p>
 <pre class="nohighlight"><code>{
     <span class="hljs-attr">"animals"</span>: {
@@ -5061,7 +5049,7 @@ See examples for expected behavior.</p>
 </code></pre>
         </section>
         <section>
-         <h6 class="heading settled" data-level="4.1.6.2.2" id="xml-name-replacement"><span class="secno">4.1.6.2.2. </span><span class="content">XML Name Replacement</span><a class="self-link" href="#xml-name-replacement"></a></h6>
+         <h6 class="heading settled" data-level="3.7.25.2.2" id="xml-name-replacement"><span class="secno">3.7.25.2.2. </span><span class="content">XML Name Replacement</span><a class="self-link" href="#xml-name-replacement"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"animals"</span>: {
     <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
@@ -5080,7 +5068,7 @@ See examples for expected behavior.</p>
 </code></pre>
         </section>
         <section>
-         <h6 class="heading settled" data-level="4.1.6.2.3" id="xml-attribute-prefix-and-namespace"><span class="secno">4.1.6.2.3. </span><span class="content">XML Attribute, Prefix and Namespace</span><a class="self-link" href="#xml-attribute-prefix-and-namespace"></a></h6>
+         <h6 class="heading settled" data-level="3.7.25.2.3" id="xml-attribute-prefix-and-namespace"><span class="secno">3.7.25.2.3. </span><span class="content">XML Attribute, Prefix and Namespace</span><a class="self-link" href="#xml-attribute-prefix-and-namespace"></a></h6>
          <p>In this example, a full model definition is shown.</p>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"Person"</span>: {
@@ -5124,7 +5112,7 @@ See examples for expected behavior.</p>
 </code></pre>
         </section>
         <section>
-         <h6 class="heading settled" data-level="4.1.6.2.4" id="xml-arrays"><span class="secno">4.1.6.2.4. </span><span class="content">XML Arrays</span><a class="self-link" href="#xml-arrays"></a></h6>
+         <h6 class="heading settled" data-level="3.7.25.2.4" id="xml-arrays"><span class="secno">3.7.25.2.4. </span><span class="content">XML Arrays</span><a class="self-link" href="#xml-arrays"></a></h6>
          <p>Changing the element names:</p>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"animals"</span>: {
@@ -5293,12 +5281,12 @@ See examples for expected behavior.</p>
         </section>
        </section>
        <section>
-        <h5 class="heading settled" data-level="4.1.6.3" id="security-scheme-object"><span class="secno">4.1.6.3. </span><span class="content"><a data-link-type="dfn" id="securitySchemeObject">Security Scheme Object</a></span><a class="self-link" href="#security-scheme-object"></a></h5>
+        <h5 class="heading settled" data-level="3.7.25.3" id="security-scheme-object"><span class="secno">3.7.25.3. </span><span class="content"><a data-link-type="dfn" id="securitySchemeObject">Security Scheme Object</a></span><a class="self-link" href="#security-scheme-object"></a></h5>
         <p>Defines a security scheme that can be used by the operations.
 Supported schemes are HTTP authentication, an API key (either as a header or as a query parameter), OAuth2’s common flows (implicit, password, application and access code) as defined in <a data-link-type="biblio" href="#biblio-rfc6749">[rfc6749]</a>, and <a href="https://tools.ietf.org/html/draft-ietf-oauth-discovery-06">OpenID Connect Discovery</a>.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="4.1.6.4" id="fixed-fields②③"><span class="secno">4.1.6.4. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields②③"></a></h5>
+        <h5 class="heading settled" data-level="3.7.25.4" id="fixed-fields②③"><span class="secno">3.7.25.4. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields②③"></a></h5>
         <table>
          <thead>
           <tr>
@@ -5351,9 +5339,9 @@ Supported schemes are HTTP authentication, an API key (either as a header or as 
         <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="4.1.6.5" id="security-scheme-object-example"><span class="secno">4.1.6.5. </span><span class="content">Security Scheme Object Example</span><a class="self-link" href="#security-scheme-object-example"></a></h5>
+        <h5 class="heading settled" data-level="3.7.25.5" id="security-scheme-object-example"><span class="secno">3.7.25.5. </span><span class="content">Security Scheme Object Example</span><a class="self-link" href="#security-scheme-object-example"></a></h5>
         <section>
-         <h6 class="heading settled" data-level="4.1.6.5.1" id="basic-authentication-sample"><span class="secno">4.1.6.5.1. </span><span class="content">Basic Authentication Sample</span><a class="self-link" href="#basic-authentication-sample"></a></h6>
+         <h6 class="heading settled" data-level="3.7.25.5.1" id="basic-authentication-sample"><span class="secno">3.7.25.5.1. </span><span class="content">Basic Authentication Sample</span><a class="self-link" href="#basic-authentication-sample"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"type"</span>: <span class="hljs-string">"http"</span>,
   <span class="hljs-attr">"scheme"</span>: <span class="hljs-string">"basic"</span>
@@ -5364,7 +5352,7 @@ Supported schemes are HTTP authentication, an API key (either as a header or as 
 </code></pre>
         </section>
         <section>
-         <h6 class="heading settled" data-level="4.1.6.5.2" id="api-key-sample"><span class="secno">4.1.6.5.2. </span><span class="content">API Key Sample</span><a class="self-link" href="#api-key-sample"></a></h6>
+         <h6 class="heading settled" data-level="3.7.25.5.2" id="api-key-sample"><span class="secno">3.7.25.5.2. </span><span class="content">API Key Sample</span><a class="self-link" href="#api-key-sample"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"type"</span>: <span class="hljs-string">"apiKey"</span>,
   <span class="hljs-attr">"name"</span>: <span class="hljs-string">"api_key"</span>,
@@ -5377,7 +5365,7 @@ Supported schemes are HTTP authentication, an API key (either as a header or as 
 </code></pre>
         </section>
         <section>
-         <h6 class="heading settled" data-level="4.1.6.5.3" id="jwt-bearer-sample"><span class="secno">4.1.6.5.3. </span><span class="content">JWT Bearer Sample</span><a class="self-link" href="#jwt-bearer-sample"></a></h6>
+         <h6 class="heading settled" data-level="3.7.25.5.3" id="jwt-bearer-sample"><span class="secno">3.7.25.5.3. </span><span class="content">JWT Bearer Sample</span><a class="self-link" href="#jwt-bearer-sample"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"type"</span>: <span class="hljs-string">"http"</span>,
   <span class="hljs-attr">"scheme"</span>: <span class="hljs-string">"bearer"</span>,
@@ -5390,7 +5378,7 @@ Supported schemes are HTTP authentication, an API key (either as a header or as 
 </code></pre>
         </section>
         <section>
-         <h6 class="heading settled" data-level="4.1.6.5.4" id="implicit-oauth2-sample"><span class="secno">4.1.6.5.4. </span><span class="content">Implicit OAuth2 Sample</span><a class="self-link" href="#implicit-oauth2-sample"></a></h6>
+         <h6 class="heading settled" data-level="3.7.25.5.4" id="implicit-oauth2-sample"><span class="secno">3.7.25.5.4. </span><span class="content">Implicit OAuth2 Sample</span><a class="self-link" href="#implicit-oauth2-sample"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"type"</span>: <span class="hljs-string">"oauth2"</span>,
   <span class="hljs-attr">"flows"</span>: {
@@ -5415,11 +5403,11 @@ Supported schemes are HTTP authentication, an API key (either as a header or as 
         </section>
        </section>
        <section>
-        <h5 class="heading settled" data-level="4.1.6.6" id="oauth-flows-object"><span class="secno">4.1.6.6. </span><span class="content"><a data-link-type="dfn" id="oauthFlowsObject">OAuth Flows Object</a></span><a class="self-link" href="#oauth-flows-object"></a></h5>
+        <h5 class="heading settled" data-level="3.7.25.6" id="oauth-flows-object"><span class="secno">3.7.25.6. </span><span class="content"><a data-link-type="dfn" id="oauthFlowsObject">OAuth Flows Object</a></span><a class="self-link" href="#oauth-flows-object"></a></h5>
         <p>Allows configuration of the supported OAuth Flows.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="4.1.6.7" id="fixed-fields②④"><span class="secno">4.1.6.7. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields②④"></a></h5>
+        <h5 class="heading settled" data-level="3.7.25.7" id="fixed-fields②④"><span class="secno">3.7.25.7. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields②④"></a></h5>
         <table>
          <thead>
           <tr>
@@ -5448,10 +5436,10 @@ Supported schemes are HTTP authentication, an API key (either as a header or as 
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="4.1.7" id="oauth-flow-object"><span class="secno">4.1.7. </span><span class="content"><a data-link-type="dfn" id="oauthFlowObject">OAuth Flow Object</a></span><a class="self-link" href="#oauth-flow-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.26" id="oauth-flow-object"><span class="secno">3.7.26. </span><span class="content"><a data-link-type="dfn" id="oauthFlowObject">OAuth Flow Object</a></span><a class="self-link" href="#oauth-flow-object"></a></h4>
        <p>Configuration details for a supported OAuth Flow</p>
        <section>
-        <h5 class="heading settled" data-level="4.1.7.1" id="fixed-fields②⑤"><span class="secno">4.1.7.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields②⑤"></a></h5>
+        <h5 class="heading settled" data-level="3.7.26.1" id="fixed-fields②⑤"><span class="secno">3.7.26.1. </span><span class="content">Fixed Fields</span><a class="self-link" href="#fixed-fields②⑤"></a></h5>
         <table>
          <thead>
           <tr>
@@ -5484,7 +5472,7 @@ Supported schemes are HTTP authentication, an API key (either as a header or as 
         <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
        </section>
        <section>
-        <h5 class="heading settled" data-level="4.1.7.2" id="oauth-flow-object-examples"><span class="secno">4.1.7.2. </span><span class="content">OAuth Flow Object Examples</span><a class="self-link" href="#oauth-flow-object-examples"></a></h5>
+        <h5 class="heading settled" data-level="3.7.26.2" id="oauth-flow-object-examples"><span class="secno">3.7.26.2. </span><span class="content">OAuth Flow Object Examples</span><a class="self-link" href="#oauth-flow-object-examples"></a></h5>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"type"</span>: <span class="hljs-string">"oauth2"</span>,
   <span class="hljs-attr">"flows"</span>: {
@@ -5523,14 +5511,14 @@ Supported schemes are HTTP authentication, an API key (either as a header or as 
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="4.1.8" id="security-requirement-object"><span class="secno">4.1.8. </span><span class="content"><a data-link-type="dfn" id="securityRequirementObject">Security Requirement Object</a></span><a class="self-link" href="#security-requirement-object"></a></h4>
+       <h4 class="heading settled" data-level="3.7.27" id="security-requirement-object"><span class="secno">3.7.27. </span><span class="content"><a data-link-type="dfn" id="securityRequirementObject">Security Requirement Object</a></span><a class="self-link" href="#security-requirement-object"></a></h4>
        <p>Lists the required security schemes to execute this operation.
 The name used for each property MUST correspond to a security scheme declared in the <a href="#componentsSecuritySchemes">Security Schemes</a> under the <a href="#componentsObject">Components Object</a>.</p>
        <p>Security Requirement Objects that contain multiple schemes require that all schemes MUST be satisfied for a request to be authorized.
 This enables support for scenarios where multiple query parameters or HTTP headers are required to convey security information.</p>
        <p>When a list of Security Requirement Objects is defined on the <a href="#oasObject">Open API object</a> or <a href="#operationObject">Operation Object</a>, only one of Security Requirement Objects in the list needs to be satisfied to authorize the request.</p>
        <section>
-        <h5 class="heading settled" data-level="4.1.8.1" id="patterned-fields③"><span class="secno">4.1.8.1. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields③"></a></h5>
+        <h5 class="heading settled" data-level="3.7.27.1" id="patterned-fields③"><span class="secno">3.7.27.1. </span><span class="content">Patterned Fields</span><a class="self-link" href="#patterned-fields③"></a></h5>
         <table>
          <thead>
           <tr>
@@ -5545,9 +5533,9 @@ This enables support for scenarios where multiple query parameters or HTTP heade
         </table>
        </section>
        <section>
-        <h5 class="heading settled" data-level="4.1.8.2" id="security-requirement-object-examples"><span class="secno">4.1.8.2. </span><span class="content">Security Requirement Object Examples</span><a class="self-link" href="#security-requirement-object-examples"></a></h5>
+        <h5 class="heading settled" data-level="3.7.27.2" id="security-requirement-object-examples"><span class="secno">3.7.27.2. </span><span class="content">Security Requirement Object Examples</span><a class="self-link" href="#security-requirement-object-examples"></a></h5>
         <section>
-         <h6 class="heading settled" data-level="4.1.8.2.1" id="non-oauth2-security-requirement"><span class="secno">4.1.8.2.1. </span><span class="content">Non-OAuth2 Security Requirement</span><a class="self-link" href="#non-oauth2-security-requirement"></a></h6>
+         <h6 class="heading settled" data-level="3.7.27.2.1" id="non-oauth2-security-requirement"><span class="secno">3.7.27.2.1. </span><span class="content">Non-OAuth2 Security Requirement</span><a class="self-link" href="#non-oauth2-security-requirement"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"api_key"</span>: []
 }
@@ -5556,7 +5544,7 @@ This enables support for scenarios where multiple query parameters or HTTP heade
 </code></pre>
         </section>
         <section>
-         <h6 class="heading settled" data-level="4.1.8.2.2" id="oauth2-security-requirement"><span class="secno">4.1.8.2.2. </span><span class="content">OAuth2 Security Requirement</span><a class="self-link" href="#oauth2-security-requirement"></a></h6>
+         <h6 class="heading settled" data-level="3.7.27.2.2" id="oauth2-security-requirement"><span class="secno">3.7.27.2.2. </span><span class="content">OAuth2 Security Requirement</span><a class="self-link" href="#oauth2-security-requirement"></a></h6>
 <pre class="nohighlight"><code>{
   <span class="hljs-attr">"petstore_auth"</span>: [
     <span class="hljs-string">"write:pets"</span>,
@@ -5571,7 +5559,7 @@ This enables support for scenarios where multiple query parameters or HTTP heade
         </section>
        </section>
        <section>
-        <h5 class="heading settled" data-level="4.1.8.3" id="specification-extensions"><span class="secno">4.1.8.3. </span><span class="content"><a data-link-type="dfn" id="specificationExtensions">Specification Extensions</a></span><a class="self-link" href="#specification-extensions"></a></h5>
+        <h5 class="heading settled" data-level="3.7.27.3" id="specification-extensions"><span class="secno">3.7.27.3. </span><span class="content"><a data-link-type="dfn" id="specificationExtensions">Specification Extensions</a></span><a class="self-link" href="#specification-extensions"></a></h5>
         <p>While the OpenAPI Specification tries to accommodate most use cases, additional data can be added to extend the specification at certain points.</p>
         <p>The extensions properties are implemented as patterned fields that are always prefixed by <code>"x-"</code>.</p>
         <table>
@@ -5590,7 +5578,7 @@ This enables support for scenarios where multiple query parameters or HTTP heade
        </section>
       </section>
       <section>
-       <h4 class="heading settled" data-level="4.1.9" id="security-filtering"><span class="secno">4.1.9. </span><span class="content"><a data-link-type="dfn" id="securityFiltering">Security Filtering</a></span><a class="self-link" href="#security-filtering"></a></h4>
+       <h4 class="heading settled" data-level="3.7.28" id="security-filtering"><span class="secno">3.7.28. </span><span class="content"><a data-link-type="dfn" id="securityFiltering">Security Filtering</a></span><a class="self-link" href="#security-filtering"></a></h4>
        <p>Some objects in the OpenAPI Specification MAY be declared and remain empty, or be completely removed, even though they are inherently the core of the API documentation.</p>
        <p>The reasoning is to allow an additional layer of access control over the documentation.
 While not part of the specification itself, certain libraries MAY choose to allow access to parts of the documentation based on some form of authentication/authorization.</p>
@@ -5804,11 +5792,11 @@ While not part of the specification itself, certain libraries MAY choose to allo
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
-   <li><a href="#definitions①">Definitions</a><span>, in §3</span>
-   <li><a href="#http-status-codes①">HTTP Status Codes</a><span>, in §3.1.1.2</span>
-   <li><a href="#media-types①">Media Types</a><span>, in §3.1.1.1</span>
-   <li><a href="#openapi-document①">OpenAPI Document</a><span>, in §3.1</span>
-   <li><a href="#path-templating①">Path Templating</a><span>, in §3.1.1</span>
+   <li><a href="#definitions①">Definitions</a><span>, in §2</span>
+   <li><a href="#http-status-codes①">HTTP Status Codes</a><span>, in §2.4</span>
+   <li><a href="#media-types①">Media Types</a><span>, in §2.3</span>
+   <li><a href="#openapi-document①">OpenAPI Document</a><span>, in §2.1</span>
+   <li><a href="#path-templating①">Path Templating</a><span>, in §2.2</span>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
@@ -5837,25 +5825,25 @@ While not part of the specification itself, certain libraries MAY choose to allo
   <aside class="dfn-panel" data-for="openapi-document①">
    <b><a href="#openapi-document①">#openapi-document①</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#oasDocument">3.1. OpenAPI Document</a>
+    <li><a href="#oasDocument">2.1. OpenAPI Document</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="path-templating①">
    <b><a href="#path-templating①">#path-templating①</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#pathTemplating">3.1.1. Path Templating</a>
+    <li><a href="#pathTemplating">2.2. Path Templating</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="media-types①">
    <b><a href="#media-types①">#media-types①</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#mediaTypes">3.1.1.1. Media Types</a>
+    <li><a href="#mediaTypes">2.3. Media Types</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="http-status-codes①">
    <b><a href="#http-status-codes①">#http-status-codes①</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#httpCodes">3.1.1.2. HTTP Status Codes</a>
+    <li><a href="#httpCodes">2.4. HTTP Status Codes</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */

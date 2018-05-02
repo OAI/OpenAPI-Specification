@@ -3,16 +3,16 @@
 <section><h2>Version 3.0.1</h2>
 <p>The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in <a href="https://tools.ietf.org/html/bcp14">BCP 14</a> [[!rfc2119]] [[!rfc8174]] when, and only when, they appear in all capitals, as shown here.</p>
 <p>This document is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0.html">The Apache License, Version 2.0</a>.</p>
-</section><section><h2>Introduction</h2>
+</section></section><section><h1>Introduction</h1>
 <p>The OpenAPI Specification (OAS) defines a standard, language-agnostic interface to RESTful APIs which allows both humans and computers to discover and understand the capabilities of the service without access to source code, documentation, or through network traffic inspection. When properly defined, a consumer can understand and interact with the remote service with a minimal amount of implementation logic.</p>
 <p>An OpenAPI definition can then be used by documentation generation tools to display the API, code generation tools to generate servers and clients in various programming languages, testing tools, and many other use cases.</p>
 <!-- /TOC -->
-</section><section><h2><dfn>Definitions</dfn></h2>
+<section><h2><dfn>Definitions</dfn></h2>
 <section><h3><a id="oasDocument"><dfn>OpenAPI Document</dfn></a></h3>
 <p>A document (or set of documents) that defines or describes an API. An OpenAPI definition uses and conforms to the OpenAPI Specification.</p>
-<section><h4><a id="pathTemplating"><dfn>Path Templating</dfn></a></h4>
+</section><section><h3><a id="pathTemplating"><dfn>Path Templating</dfn></a></h3>
 <p>Path templating refers to the usage of curly braces ({}) to mark a section of a URL path as replaceable using path parameters.</p>
-<section><h5><a id="mediaTypes"><dfn>Media Types</dfn></a></h5>
+</section><section><h3><a id="mediaTypes"><dfn>Media Types</dfn></a></h3>
 <p>Media type definitions are spread across several resources.
 The media type definitions SHOULD be in compliance with [[!rfc6838]].</p>
 <p>Some examples of possible media type definitions:</p>
@@ -28,11 +28,11 @@ The media type definitions SHOULD be in compliance with [[!rfc6838]].</p>
   application/vnd.github.v3.diff
   application/vnd.github.v3.patch
 </code></pre>
-</section><section><h5><a id="httpCodes"><dfn>HTTP Status Codes</dfn></a></h5>
+</section><section><h3><a id="httpCodes"><dfn>HTTP Status Codes</dfn></a></h3>
 <p>The HTTP Status Codes are used to indicate the status of the executed operation.
 The available status codes are defined by [[!rfc7231]]section-6) and registered status codes are listed in the <a href="https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">IANA Status Code Registry</a>.</p>
-</section></section><section><h4>Specification</h4>
-</section></section><section><h3>Versions</h3>
+</section></section><section><h2>Specification</h2>
+<section><h3>Versions</h3>
 <p>The OpenAPI Specification is versioned using <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning 2.0.0</a> (semver) and follows the semver specification.</p>
 <p>The <code>major</code>.<code>minor</code> portion of the semver (for example <code>3.0</code>) SHALL designate the OAS feature set. Typically, <em><code>.patch</code></em> versions address errors in this document, not the feature set. Tooling which supports OAS 3.0 SHOULD be compatible with all OAS 3.0.* versions. The patch version SHOULD NOT be considered by tooling, making no distinction between <code>3.0.0</code> and <code>3.0.1</code> for example.</p>
 <p>Subsequent minor version releases of the OpenAPI Specification (incrementing the <code>minor</code> version number) SHOULD NOT interfere with tooling developed to a lower minor version and same major version.  Thus a hypothetical <code>3.1.0</code> specification SHOULD be usable with tooling designed for <code>3.0.0</code>.</p>
@@ -1843,13 +1843,13 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 </section><section><h5>Considerations for File Uploads</h5>
 <p>In contrast with the 2.0 specification, <code>file</code> input/output content in OpenAPI is described with the same semantics as any other schema type. Specifically:</p>
 <pre class="nohighlight"><code>
-<span class="hljs-comment">#### content transferred with base64 encoding</span>
+<span class="hljs-comment"># content transferred with base64 encoding</span>
 <span class="hljs-attr">schema:</span>
 <span class="hljs-attr">  type:</span> <span class="hljs-string">string</span>
 <span class="hljs-attr">  format:</span> <span class="hljs-string">base64</span>
 </code></pre>
 <pre class="nohighlight"><code>
-<span class="hljs-comment">### content transferred in binary (octet-stream):</span>
+<span class="hljs-comment"># content transferred in binary (octet-stream):</span>
 <span class="hljs-attr">schema:</span>
 <span class="hljs-attr">  type:</span> <span class="hljs-string">string</span>
 <span class="hljs-attr">  format:</span> <span class="hljs-string">binary</span>
@@ -1868,7 +1868,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 </code></pre>
 <p>In addition, specific media types MAY be specified:</p>
 <pre class="nohighlight"><code>
-<span class="hljs-comment">## multiple, specific media types may be specified:</span>
+<span class="hljs-comment"># multiple, specific media types may be specified:</span>
 <span class="hljs-attr">requestBody:</span>
 <span class="hljs-attr">  content:</span>
       <span class="hljs-comment"># a binary file of type png or jpeg</span>
@@ -1896,7 +1896,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 <span class="hljs-attr">              format:</span> <span class="hljs-string">binary</span>
 
 </code></pre>
-</section></section></section><section><h3>Support for x-www-form-urlencoded Request Bodies</h3>
+</section><section><h5>Support for x-www-form-urlencoded Request Bodies</h5>
 <p>To submit content using form url encoding via [[!rfc1866]], the following
 definition may be used:</p>
 <pre class="nohighlight"><code>
@@ -1916,7 +1916,7 @@ definition may be used:</p>
 </code></pre>
 <p>In this example, the contents in the <code>requestBody</code> MUST be stringified per [[!rfc1866]]) when passed to the server.  In addition, the <code>address</code> field complex object will be stringified.</p>
 <p>When passing complex objects in the <code>application/x-www-form-urlencoded</code> content type, the default serialization strategy of such properties is described in the <a href="#encodingObject"><code>Encoding Object</code></a>'s <a href="#encodingStyle"><code>style</code></a> property as <code>form</code>.</p>
-<section><h4>Special Considerations for <code>multipart</code> Content</h4>
+</section><section><h5>Special Considerations for <code>multipart</code> Content</h5>
 <p>It is common to use <code>multipart/form-data</code> as a <code>Content-Type</code> when transferring request bodies to operations.  In contrast to 2.0, a <code>schema</code> is REQUIRED to define the input parameters to the operation when using <code>multipart</code> content.  This supports complex structures as well as supporting mechanisms for multiple file uploads.</p>
 <p>When passing in <code>multipart</code> types, boundaries MAY be used to separate sections of the content being transferred — thus, the following default <code>Content-Type</code>s are defined for <code>multipart</code>:</p>
 <ul>
@@ -1955,7 +1955,7 @@ definition may be used:</p>
 <span class="hljs-attr">              type:</span> <span class="hljs-string">'#/components/schemas/Address'</span>
 </code></pre>
 <p>An <code>encoding</code> attribute is introduced to give you control over the serialization of parts of <code>multipart</code> request bodies.  This attribute is <em>only</em> applicable to <code>multipart</code> and <code>application/x-www-form-urlencoded</code> request bodies.</p>
-</section><section><h4><a id="encodingObject">Encoding Object</a></h4>
+</section></section><section><h4><a id="encodingObject">Encoding Object</a></h4>
 <p>A single encoding definition applied to a single schema property.</p>
 <section><h5>Fixed Fields</h5>
 <table>
@@ -2407,7 +2407,7 @@ of its associated value.  Tooling implementations MAY choose to
 validate compatibility automatically, and reject the example value(s) if incompatible.</p>
 </section><section><h5>Example Object Example</h5>
 <pre class="nohighlight"><code>
-<span class="hljs-comment">#### in a model</span>
+<span class="hljs-comment"># in a model</span>
 <span class="hljs-attr">schemas:</span>
 <span class="hljs-attr">  properties:</span>
 <span class="hljs-attr">    name:</span>
@@ -2416,7 +2416,7 @@ validate compatibility automatically, and reject the example value(s) if incompa
 <span class="hljs-attr">        name:</span>
           <span class="hljs-string">$ref:</span> <span class="hljs-attr">http://example.org/petapi-examples/openapi.json#/components/examples/name-example</span>
 
-<span class="hljs-comment">### in a request body:</span>
+<span class="hljs-comment"># in a request body:</span>
 <span class="hljs-attr">  requestBody:</span>
 <span class="hljs-attr">    content:</span>
       <span class="hljs-string">'application/json'</span><span class="hljs-string">:</span>
@@ -2441,7 +2441,7 @@ validate compatibility automatically, and reject the example value(s) if incompa
 <span class="hljs-attr">            externalValue:</span> <span class="hljs-string">'http://foo.bar/examples/address-example.txt'</span> 
 
 
-<span class="hljs-comment">## in a parameter</span>
+<span class="hljs-comment"># in a parameter</span>
 <span class="hljs-attr">  parameters:</span>
 <span class="hljs-attr">    - name:</span> <span class="hljs-string">'zipCode'</span>
 <span class="hljs-attr">      in:</span> <span class="hljs-string">'query'</span>
@@ -2464,12 +2464,12 @@ validate compatibility automatically, and reject the example value(s) if incompa
 <span class="hljs-attr">            confirmation-success:</span>
               <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/components/examples/confirmation-success'</span>
 </code></pre>
-</section></section></section></section><section><h2><a id="linkObject">Link Object</a></h2>
+</section></section><section><h4><a id="linkObject">Link Object</a></h4>
 <p>The <code>Link object</code> represents a possible design-time link for a response.
 The presence of a link does not guarantee the caller’s ability to successfully invoke it, rather it provides a known relationship and traversal mechanism between responses and other operations.</p>
 <p>Unlike <em>dynamic</em> links (i.e. links provided <strong>in</strong> the response payload), the OAS linking mechanism does not require link information in the runtime response.</p>
 <p>For computing links, and providing instructions to execute them, a <a href="#runtimeExpression">runtime expression</a> is used for accessing values in an operation and using them as parameters while invoking the linked operation.</p>
-<section><h3>Fixed Fields</h3>
+<section><h5>Fixed Fields</h5>
 <table>
 <thead>
 <tr>
@@ -2516,7 +2516,7 @@ The presence of a link does not guarantee the caller’s ability to successfully
 In the case of an <code>operationId</code>, it MUST be unique and resolved in the scope of the OAS document.
 Because of the potential for name clashes, the <code>operationRef</code> syntax is preferred
 for specifications with external references.</p>
-<section><h4>Examples</h4>
+</section><section><h5>Examples</h5>
 <p>Computing a link from a request operation where the <code>$request.path.id</code> is used to pass a request parameter to the linked operation.</p>
 <pre class="nohighlight"><code>
 <span class="hljs-attr">paths:</span>
@@ -2576,7 +2576,7 @@ for specifications with external references.</p>
 <p>Clients follow all links at their discretion.
 Neither permissions, nor the capability to make a successful call to that link, is guaranteed
 solely by the existence of a relationship.</p>
-<section><h5>OperationRef Examples</h5>
+</section><section><h5>OperationRef Examples</h5>
 <p>As references to <code>operationId</code> MAY NOT be possible (the <code>operationId</code> is an optional
 value), references MAY also be made through a relative <code>operationRef</code>:</p>
 <pre class="nohighlight"><code>

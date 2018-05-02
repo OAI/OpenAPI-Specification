@@ -128,12 +128,13 @@ if (argv.respec) {
 
 let lines = s.split('\r').join().split('\n');
 
-let prevIndent = 0;
-let lastIndent = 0;
 let prevHeading = 0;
+let lastIndent = 1;
 let inTOC = false;
 let inDefs = false;
 let inCodeBlock = false;
+
+let indents = [1];
 
 for (let l in lines) {
     let line = lines[l];
@@ -147,11 +148,17 @@ for (let l in lines) {
     }
     else if (line.startsWith('## ')) inDefs = false;
 
-    //if (line.startsWith('#') && line.indexOf('<a name=')>=0) {
-    if (line.startsWith('#')) {
+    if (line.startsWith('```')) {
+        inCodeBlock = !inCodeBlock;
+        line += '\n'; // fixes formatting of first line of syntax-highlighted blocks
+    }
+
+    if (!inCodeBlock && line.startsWith('#')) {
         let indent = 0;
         while (line[indent] === '#') indent++;
         let originalIndent = indent;
+
+        let prevIndent = indents[indents.length-1]; // peek
 
         /* bikeshed is a bit of a pita when it comes to header nesting */
         let delta = indent-prevIndent;
@@ -162,9 +169,7 @@ for (let l in lines) {
             else if (delta>0) indent = lastIndent+1;
         }
 
-        lastIndent = indent;
         if (indent < 0) {
-            console.warn(indent,line);
             indent = 1;
         }
         if (argv.respec && (indent > 1)) {
@@ -184,8 +189,9 @@ for (let l in lines) {
             line = ('#'.repeat(indent)+' '+title);
         }
 
-        //prevIndent = originalIndent;
-        prevIndent = indent;
+        if (delta>0) indents.push(originalIndent);
+        if (delta<0) indents.pop();
+        lastIndent = indent;
     }
 
     if (line.indexOf('"></a>')>=0) {
@@ -211,11 +217,6 @@ for (let l in lines) {
 
     if (line.indexOf('[ABNF]')>=0) {
         line = line.replace('[ABNF]','[Augmented Backus-Naur Form]');
-    }
-
-    if (line.startsWith('```')) {
-        inCodeBlock = !inCodeBlock;
-        line += '\n'; // fixes formatting of first line of syntax-highlighted blocks
     }
 
     if (!inCodeBlock && line.startsWith('#')) {

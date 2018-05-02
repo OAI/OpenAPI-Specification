@@ -136,7 +136,6 @@ let inCodeBlock = false;
 let bsFix = true;
 
 let indents = [0];
-let delta = 0;
 
 for (let l in lines) {
     let line = lines[l];
@@ -164,7 +163,7 @@ for (let l in lines) {
         let prevIndent = indents[indents.length-1]; // peek
 
         /* bikeshed is a bit of a pita when it comes to header nesting */
-        delta = indent-prevIndent;
+        let delta = indent-prevIndent;
 
         if (!argv.respec) {
             if (delta===0) indent = lastIndent
@@ -197,7 +196,14 @@ for (let l in lines) {
         }
 
         if (delta>0) indents.push(originalIndent);
-        if (delta<0) indents.pop();
+        //if (delta<0) indents.pop();
+        if (delta<0) {
+            let d = Math.abs(delta);
+            while (d>0) {
+                indents.pop();
+                d--;
+            }
+        }
         lastIndent = indent;
     }
 
@@ -226,46 +232,28 @@ for (let l in lines) {
         line = line.replace('[ABNF]','[Augmented Backus-Naur Form]');
     }
 
-    if (!inCodeBlock && line.startsWith('#')) {
+    if (!inCodeBlock && argv.respec && line.startsWith('#')) {
         let heading = 0;
         while (line[heading] === '#') heading++;
-        //let delta = heading-prevHeading;
-        delta = heading-prevHeading;
+        let delta = heading-prevHeading;
         if (delta>0) delta = 1;
-        if (delta<0) delta = -1;
+        //if (delta<0) delta = -1;
         if (Math.abs(delta)>1) console.warn(delta,line);
         let prefix = '';
 
-        /*let oIndent = indent;
-        if (!argv.respec && Math.abs(delta)>1) {
-            // if we're skipping more than one indent level up or down correct it
-            if (delta<0) {
-                indent = prevIndent-1;
-                prefix = '</section></section><section>';
-            }
-            if (delta>0) {
-                indent = prevIndent+1;
-                prefix = '<section>';
-            }
-            line = line.replace('#'.repeat(oIndent),'#'.repeat(indent));
-        }
-        else { */
-            // heading level delta is either 0 or is +1/-1, or we're in respec mode
-            /* respec insists on <section>...</section> breaks around headings */
+        // heading level delta is either 0 or is +1/-1, or we're in respec mode
+        /* respec insists on <section>...</section> breaks around headings */
 
-            if (argv.respec) {
-                if (delta === 0) {
-                    prefix = '</section><section>';
-                }
-                else if (delta > 0) {
-                    prefix = '<section>'.repeat(delta);
-                }
-                else {
-                    prefix = '</section>'+('</section>').repeat(Math.abs(delta))+'<section>';
-                }
-            }
-            prevHeading = heading;
-        /*}*/
+        if (delta === 0) {
+            prefix = '</section><section>';
+        }
+        else if (delta > 0) {
+            prefix = '<section>'.repeat(delta);
+        }
+        else {
+            prefix = '</section>'+('</section>').repeat(Math.abs(delta))+'<section>';
+        }
+        prevHeading = heading;
         line = prefix+md.render(line);
     }
 

@@ -3,7 +3,7 @@
 <section><h3>Version 3.0.1</h3>
 <p>The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in <a href="https://tools.ietf.org/html/bcp14">BCP 14</a> [[!rfc2119]] [[!rfc8174]] when, and only when, they appear in all capitals, as shown here.</p>
 <p>This document is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0.html">The Apache License, Version 2.0</a>.</p>
-</section></section><section><h1>Introduction</h1>
+</section></section></section><section><h1>Introduction</h1>
 <p>The OpenAPI Specification (OAS) defines a standard, language-agnostic interface to RESTful APIs which allows both humans and computers to discover and understand the capabilities of the service without access to source code, documentation, or through network traffic inspection. When properly defined, a consumer can understand and interact with the remote service with a minimal amount of implementation logic.</p>
 <p>An OpenAPI definition can then be used by documentation generation tools to display the API, code generation tools to generate servers and clients in various programming languages, testing tools, and many other use cases.</p>
 <!-- /TOC -->
@@ -31,7 +31,7 @@ The media type definitions SHOULD be in compliance with [[!rfc6838]].</p>
 </section><section><h4><a id="httpCodes"><dfn>HTTP Status Codes</dfn></a></h4>
 <p>The HTTP Status Codes are used to indicate the status of the executed operation.
 The available status codes are defined by [[!rfc7231]]section-6) and registered status codes are listed in the <a href="https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">IANA Status Code Registry</a>.</p>
-</section></section><section><h1>Specification</h1>
+</section></section></section></section><section><h1>Specification</h1>
 <section><h2>Versions</h2>
 <p>The OpenAPI Specification is versioned using <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning 2.0.0</a> (semver) and follows the semver specification.</p>
 <p>The <code>major</code>.<code>minor</code> portion of the semver (for example <code>3.0</code>) SHALL designate the OAS feature set. Typically, <em><code>.patch</code></em> versions address errors in this document, not the feature set. Tooling which supports OAS 3.0 SHOULD be compatible with all OAS 3.0.* versions. The patch version SHOULD NOT be considered by tooling, making no distinction between <code>3.0.0</code> and <code>3.0.1</code> for example.</p>
@@ -3195,7 +3195,7 @@ components:
         required:
         - packSize
 </code></pre>
-</section></section><section><h3><a id="discriminatorObject">Discriminator Object</a></h3>
+</section></section></section><section><h3><a id="discriminatorObject">Discriminator Object</a></h3>
 <p>When request bodies or response payloads may be one of a number of different schemas, a <code>discriminator</code> object can be used to aid in serialization, deserialization, and validation.  The discriminator is a specific object in a schema which is used to inform the consumer of the specification of an alternative schema based on the value associated with it.</p>
 <p>When using the discriminator, <em>inline</em> schemas will not be considered.</p>
 <section><h4>Fixed Fields</h4>
@@ -3650,7 +3650,7 @@ animals:
   &lt;aliens&gt;value&lt;/aliens&gt;
 &lt;/aliens&gt;
 </code></pre>
-</section></section><section><h3><a id="securitySchemeObject">Security Scheme Object</a></h3>
+</section></section></section><section><h3><a id="securitySchemeObject">Security Scheme Object</a></h3>
 <p>Defines a security scheme that can be used by the operations.
 Supported schemes are HTTP authentication, an API key (either as a header or as a query parameter), OAuth2’s common flows (implicit, password, application and access code) as defined in [[!rfc6749]], and <a href="https://tools.ietf.org/html/draft-ietf-oauth-discovery-06">OpenID Connect Discovery</a>.</p>
 <section><h4>Fixed Fields</h4>
@@ -3777,7 +3777,7 @@ flows:
       write:pets: modify pets in your account
       read:pets: read your pets
 </code></pre>
-</section></section><section><h3><a id="oauthFlowsObject">OAuth Flows Object</a></h3>
+</section></section></section><section><h3><a id="oauthFlowsObject">OAuth Flows Object</a></h3>
 <p>Allows configuration of the supported OAuth Flows.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -3937,7 +3937,7 @@ petstore_auth:
 - write:pets
 - read:pets
 </code></pre>
-</section></section><section><h2><a id="specificationExtensions">Specification Extensions</a></h2>
+</section></section></section></section><section><h2><a id="specificationExtensions">Specification Extensions</a></h2>
 <p>While the OpenAPI Specification tries to accommodate most use cases, additional data can be added to extend the specification at certain points.</p>
 <p>The extensions properties are implemented as patterned fields that are always prefixed by <code>&quot;x-&quot;</code>.</p>
 <table>

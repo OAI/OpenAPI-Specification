@@ -3195,7 +3195,7 @@ The <a href="#xmlObject">XML Object</a> contains additional information about th
 <span class="hljs-attr">        required:</span>
 <span class="hljs-bullet">        -</span> <span class="hljs-string">packSize</span>
 </code></pre>
-<h5><a id="discriminatorObject">Discriminator Object</a></h5>
+<h4><a id="discriminatorObject">Discriminator Object</a></h4>
 <p>When request bodies or response payloads may be one of a number of different schemas, a <code>discriminator</code> object can be used to aid in serialization, deserialization, and validation.  The discriminator is a specific object in a schema which is used to inform the consumer of the specification of an alternative schema based on the value associated with it.</p>
 <p>When using the discriminator, <em>inline</em> schemas will not be considered.</p>
 <h5>Fixed Fields</h5>
@@ -3650,7 +3650,7 @@ See examples for expected behavior.</p>
   <span class="hljs-tag">&lt;<span class="hljs-name">aliens</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>&gt;</span>
 </code></pre>
-<h5><a id="securitySchemeObject">Security Scheme Object</a></h5>
+<h4><a id="securitySchemeObject">Security Scheme Object</a></h4>
 <p>Defines a security scheme that can be used by the operations.
 Supported schemes are HTTP authentication, an API key (either as a header or as a query parameter), OAuth2’s common flows (implicit, password, application and access code) as defined in [[!rfc6749]], and <a href="https://tools.ietf.org/html/draft-ietf-oauth-discovery-06">OpenID Connect Discovery</a>.</p>
 <h5>Fixed Fields</h5>
@@ -3777,7 +3777,7 @@ Supported schemes are HTTP authentication, an API key (either as a header or as 
 <span class="hljs-attr">      write:</span><span class="hljs-attr">pets:</span> <span class="hljs-string">modify</span> <span class="hljs-string">pets</span> <span class="hljs-string">in</span> <span class="hljs-string">your</span> <span class="hljs-string">account</span>
 <span class="hljs-attr">      read:</span><span class="hljs-attr">pets:</span> <span class="hljs-string">read</span> <span class="hljs-string">your</span> <span class="hljs-string">pets</span>
 </code></pre>
-<h5><a id="oauthFlowsObject">OAuth Flows Object</a></h5>
+<h4><a id="oauthFlowsObject">OAuth Flows Object</a></h4>
 <p>Allows configuration of the supported OAuth Flows.</p>
 <h5>Fixed Fields</h5>
 <table>
@@ -3937,7 +3937,7 @@ This enables support for scenarios where multiple query parameters or HTTP heade
 <span class="hljs-attr">- write:</span><span class="hljs-string">pets</span>
 <span class="hljs-attr">- read:</span><span class="hljs-string">pets</span>
 </code></pre>
-<h5><a id="specificationExtensions">Specification Extensions</a></h5>
+<h3><a id="specificationExtensions">Specification Extensions</a></h3>
 <p>While the OpenAPI Specification tries to accommodate most use cases, additional data can be added to extend the specification at certain points.</p>
 <p>The extensions properties are implemented as patterned fields that are always prefixed by <code>&quot;x-&quot;</code>.</p>
 <table>
@@ -3957,7 +3957,7 @@ This enables support for scenarios where multiple query parameters or HTTP heade
 </tbody>
 </table>
 <p>The extensions may or may not be supported by the available tooling, but those may be extended as well to add requested support (if tools are internal or open-sourced).</p>
-<h4><a id="securityFiltering">Security Filtering</a></h4>
+<h3><a id="securityFiltering">Security Filtering</a></h3>
 <p>Some objects in the OpenAPI Specification MAY be declared and remain empty, or be completely removed, even though they are inherently the core of the API documentation.</p>
 <p>The reasoning is to allow an additional layer of access control over the documentation.
 While not part of the specification itself, certain libraries MAY choose to allow access to parts of the documentation based on some form of authentication/authorization.</p>
@@ -3966,7 +3966,7 @@ While not part of the specification itself, certain libraries MAY choose to allo
 <li>The <a href="#pathsObject">Paths Object</a> MAY be empty. It may be counterintuitive, but this may tell the viewer that they got to the right place, but can’t access any documentation. They’d still have access to the <a href="#infoObject">Info Object</a> which may contain additional information regarding authentication.</li>
 <li>The <a href="#pathItemObject">Path Item Object</a> MAY be empty. In this case, the viewer will be aware that the path exists, but will not be able to see any of its operations or parameters. This is different than hiding the path itself from the <a href="#pathsObject">Paths Object</a>, so the user will not be aware of its existence. This allows the documentation provider to finely control what the viewer can see.</li>
 </ol>
-<h3><a id="revisionHistory">Appendix A: Revision History</a></h3>
+<h2><a id="revisionHistory">Appendix A: Revision History</a></h2>
 <table>
 <thead>
 <tr>

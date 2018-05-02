@@ -129,12 +129,13 @@ if (argv.respec) {
 let lines = s.split('\r').join().split('\n');
 
 let prevHeading = 0;
-let lastIndent = 1;
+let lastIndent = 0;
 let inTOC = false;
 let inDefs = false;
 let inCodeBlock = false;
+let bsFix = true;
 
-let indents = [1];
+let indents = [0];
 
 for (let l in lines) {
     let line = lines[l];
@@ -145,6 +146,7 @@ for (let l in lines) {
 
     if (line.startsWith('## Definitions')) {
         inDefs = true;
+        bsFix = false;
     }
     else if (line.startsWith('## ')) inDefs = false;
 
@@ -175,18 +177,22 @@ for (let l in lines) {
         if (argv.respec && (indent > 1)) {
             indent--;
         }
+        let newIndent = indent;
+        if (!argv.respec && (indent <= 2) && bsFix) {
+            newIndent++;
+        }
 
         if (line.indexOf('<a name=')>=0) {
             let comp = line.split('</a>');
             let title = comp[1];
             if (inDefs) title = '<dfn>'+title+'</dfn>';
             let link = comp[0].split('<a ')[1].replace('name=','id=');
-            line = ('#'.repeat(indent)+' <a '+link+title+'</a>');
+            line = ('#'.repeat(newIndent)+' <a '+link+title+'</a>');
         }
         else {
             let title = line.split('# ')[1];
             if (inDefs) title = '<dfn>'+title+'</dfn>';
-            line = ('#'.repeat(indent)+' '+title);
+            line = ('#'.repeat(newIndent)+' '+title);
         }
 
         if (delta>0) indents.push(originalIndent);
@@ -243,7 +249,7 @@ for (let l in lines) {
             // heading level delta is either 0 or is +1/-1, or we're in respec mode
             /* respec insists on <section>...</section> breaks around headings */
 
-            //if (argv.respec) {
+            if (argv.respec) {
                 if (delta == 0) {
                     prefix = '</section><section>';
                 }
@@ -253,7 +259,7 @@ for (let l in lines) {
                 else {
                     prefix = ('</section>').repeat(Math.abs(delta)+1)+'<section>';
                 }
-            //}
+            }
             prevHeading = heading;
         /*}*/
         line = prefix+md.render(line);

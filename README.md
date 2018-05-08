@@ -54,7 +54,7 @@ The Open API Initiative encourages participation from individuals and companies 
 
 Not all feedback can be accommodated and there may be solid arguments for or against a change being appropriate for the specification.
 
-## License
+## Licensing
 
 See: [License (Apache-2.0)](https://github.com/OAI/OpenAPI-Specification/blob/master/LICENSE)
 

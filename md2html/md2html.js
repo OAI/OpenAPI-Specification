@@ -26,6 +26,7 @@ let argv = require('yargs')
     .require(1)
     .argv;
 let maintainers = [];
+let emeritus = [];
 
 const md = require('markdown-it')({
   html: true,
@@ -48,6 +49,7 @@ function preface(title,options) {
     const respec = {
         specStatus: "base",
         editors: maintainers,
+        formerEditors: emeritus,
         publishDate: options.publishDate,
         subtitle: 'Version '+options.subtitle,
         processVersion: 2017,
@@ -101,6 +103,11 @@ function doMaintainers() {
     $(u).children('li').each(function(e){
         let t = $(this).text().split('@')[0];
         maintainers.push({name:t});
+    });
+    u = $('ul').eq(1);
+    $(u).children('li').each(function(e){
+        let t = $(this).text().split('@')[0];
+        emeritus.push({name:t});
     });
 }
 
@@ -196,7 +203,6 @@ for (let l in lines) {
         }
 
         if (delta>0) indents.push(originalIndent);
-        //if (delta<0) indents.pop();
         if (delta<0) {
             let d = Math.abs(delta);
             while (d>0) {

@@ -60,11 +60,11 @@ Tooling that supports draft features should plan for the future removal of the p
 When tooling adds support for a later version of OAS that includes the final implementation of the feature, it MUST not support the use of the draft prefix for that feature.
 Draft features will only be promoted into minor or major releases of the specification and therefore will be transparent to OpenAPI description writers and tooling providers who choose not to use the feature while in its draft state.
 
-Draft features will be documented as GitHub issues and labeled with the `draft-feature` label.
+Draft features will be documented as GitHub issues and labeled with the `draft-feature` label and will be initially labelled as `draft:proposal`. When the proposal is considered sufficiently stable for pilot implementation, it will be labeled `draft:pilot`.
 If during the development of a draft feature, it is determined that the feature needs to change in a way that may break existing draft implementations, the extension name itself may be versioned with a version suffix. e.g. `-v2`
 When a draft feature becomes part of a future update to the specification any version suffix will be removed.
-Draft features that are deemed not appropriate for inclusion MUST be marked with the `abandoned` label.
-Draft-features that are considered suitably specified for implementation will be marked with the `draft-ready` label.
+Draft features that are deemed not appropriate for inclusion MUST be marked with the `draft:abandoned` label.
+Draft-features that are considered suitably specified and have had successful pilot implementations will be marked with the `draft:graduated` label.
 
 Not all future new features will be introduced in this way.
 Some new features impact the specification in ways that cannot be encapsulated in an extension.

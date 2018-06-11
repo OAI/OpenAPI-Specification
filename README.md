@@ -46,7 +46,7 @@ The current process for development of the OpenAPI Specification is described in
 [Development Guidelines](DEVELOPMENT.md).
 Development of the next version of the OpenAPI Specification is guided by the [Technical Steering Committee (TSC)](https://www.openapis.org/participate/how-to-contribute/governance#TDC). This group of committers bring their API expertise, incorporate feedback from the community, and expand the group of committers as appropriate. All development activity on the future specification will be performed as features and merged into this branch. Upon release of the future specification, this branch will be merged to master.
 
-The TSC holds weekly web conferences to review open pull requests and discuss open issues related to the evolving OpenAPI Specification. Participation in weekly calls and scheduled working sessions is open to the community. You can view the [TSC calendar online](https://oai-technicalsteeringcommittee.groups.io/g/main/calendar), and import it to your calendar using the [iCal link](https://OAI-TechnicalSteeringCommittee.groups.io/g/main/ics/860119/668774333/feed.ics).
+The TSC holds weekly web conferences to review open pull requests and discuss open issues related to the evolving OpenAPI Specification. Participation in weekly calls and scheduled working sessions is open to the community. You can view the [TSC calendar online](https://openapi.groups.io/g/tsc/calendar), and import it to your calendar using the [iCal link](https://openapi.groups.io/g/tsc/ics/1105671/1995679554/feed.ics).
 
 The Open API Initiative encourages participation from individuals and companies alike. If you want to participate in the evolution of the OpenAPI Specification, consider taking the following actions:
 
@@ -57,7 +57,7 @@ The Open API Initiative encourages participation from individuals and companies 
 
 Not all feedback can be accommodated and there may be solid arguments for or against a change being appropriate for the specification.
 
-## License
+## Licensing
 
 See: [License (Apache-2.0)](https://github.com/OAI/OpenAPI-Specification/blob/master/LICENSE)
 

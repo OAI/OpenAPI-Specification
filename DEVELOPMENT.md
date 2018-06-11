@@ -74,6 +74,29 @@ A release requires a vote on the release notes by TSC members within the voting 
 
 * Major: requires approval by 66% of TSC members. (Max voting period 14 days)
 
+## Draft Features
+
+Where suitable, features will be introduced as draft but OAI approved extensions.
+By introducing new features this way we enable new features to be designed, documented and then implemented by tools that are interested in the feature, without putting the burden of implementation on all tooling.
+If the feature is successfully implemented and there is demonstrable value added by the feature, it will become a candidate for inclusion in a future release of the specification, at which point all tools will be expected to support the feature.
+
+Draft feature extensions are identified by the `x-oas-draft-` prefix and can only be used where existing extensions are permitted.
+This ensures no existing tooling will affected by the introduction of the draft feature.
+If the feature is deemed appropriate for inclusion in the OAS, the `x-oas-draft-` prefix will be removed.
+Tooling that supports draft features should plan for the future removal of the prefix.
+When tooling adds support for a later version of OAS that includes the final implementation of the feature, it MUST not support the use of the draft prefix for that feature.
+Draft features will only be promoted into minor or major releases of the specification and therefore will be transparent to OpenAPI description writers and tooling providers who choose not to use the feature while in its draft state.
+
+Draft features will be documented as GitHub issues and labeled with the `draft-feature` label and will be initially labelled as `draft:proposal`. When the proposal is considered sufficiently stable for pilot implementation, it will be labeled `draft:pilot`.
+If during the development of a draft feature, it is determined that the feature needs to change in a way that may break existing draft implementations, the extension name itself may be versioned with a version suffix. e.g. `-v2`
+When a draft feature becomes part of a future update to the specification any version suffix will be removed.
+Draft features that are deemed not appropriate for inclusion MUST be marked with the `draft:abandoned` label.
+Draft-features that are considered suitably specified and have had successful pilot implementations will be marked with the `draft:graduated` label.
+
+Not all future new features will be introduced in this way.
+Some new features impact the specification in ways that cannot be encapsulated in an extension.
+However, where a new feature can be introduced in this way, it should be.
+
 ## Transparency
 
 The process should be as transparent as possible. Sometimes there will be discussions that use customer names, sensitive use cases, and so on. These must be anonymized, discussed in a private repository, or conducted offline. General discussions should happen on the GitHub issues for this project.

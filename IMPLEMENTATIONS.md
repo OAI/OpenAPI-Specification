@@ -18,6 +18,7 @@ These tools are not endorsed by the OAI.
 | openapi3_parser | [github/kevindew/openapi3_parser](https://github.com/kevindew/openapi3_parser) | Ruby | A Ruby implementation of parser and validator for the OpenAPI 3 Specification |
 | oas_parser | [github/Nexmo/oas_parser](https://github.com/Nexmo/oas_parser) | Ruby | An open source OpenAPI Spec 3 Definition Parser writen in Ruby |
 | oas3-remote-refs | [github//OverSpeedIO/oas3-remote-refs](https://github.com/OverSpeedIO/oas3-remote-refs) | Node.js | Tool to pull remote refernences and merge them into the definitions of the provided OpenAPI3 speicfication.
+| go-openapi | [github/nasa9084/go-openapi](https://github.com/nasa9084/go-openapi) | Go | Golang struct model for OpenAPI 3.x. |
 
 
 #### Editors

@@ -33,7 +33,7 @@ const md = require('markdown-it')({
   linkify: true,
   typographer: true,
   highlight: function (str, lang) {
-      if (lang && hljs.getLanguage(lang) && !argv.respec) {
+      if (lang && hljs.getLanguage(lang)) { // && !argv.respec) {
           try {
               return '<pre class="nohighlight"><code>' +
                   hljs.highlight(lang, str, true).value +
@@ -41,7 +41,7 @@ const md = require('markdown-it')({
           } catch (__) { }
       }
 
-      return '<pre class="highlight"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+      return '<pre class="highlight '+lang+'"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
     }
 });
 
@@ -80,6 +80,7 @@ function preface(title,options) {
         preface += 'table th, table td { padding: 6px 13px; border: 1px solid #dfe2e5; }';
         preface += 'table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }';
         preface += 'table tr:nth-child(2n) { background-color: #f6f8fa; }';
+        preface += 'pre { background-color: #f6f8fa !important; }';
         preface += '</style>';
         preface += '<section id="abstract">';
         preface += 'The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for REST APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.';
@@ -218,20 +219,35 @@ for (let l in lines) {
         line = line.replace('"></a>','"> </a>');
     }
 
-    if (line.indexOf('[RFC')>=0) {
-        line = line.replace(/\[RFC ?([0-9]{1,5})\]/g,function(match,group1){
-            console.warn('Fixing RFC reference',match,group1);
-            return '[[!rfc'+group1+']]';
-        });
-    }
-
     line = line.split('\\|').join('&brvbar;');
 
-    while (line.indexOf('https://tools.ietf.org/html/rfc')>=0) {
-        line = line.replace(/.https:..tools.ietf.org.html.rfc[0-9]{1,5}./g,'');
-    }
-    while (line.indexOf('http://tools.ietf.org/html/rfc')>=0) {
-        line = line.replace(/.http:..tools.ietf.org.html.rfc[0-9]{1,5}./g,'');
+    if (!inCodeBlock) {
+        if (line.indexOf('RFC [')>=0) {
+            line = line.replace('RFC [','[RFC');
+        }
+
+        line = line.replace('[Authorization header as defined in ','Authorization header as defined in [');
+
+        if (line.indexOf('[RFC')>=0) {
+            line = line.replace(/\[RFC ?([0-9]{1,5})\]/g,function(match,group1){
+                console.warn('Fixing RFC reference',match,group1);
+                return '[[!RFC'+group1+']]';
+            });
+        }
+
+        line = line.replace('http://tools.ietf.org','https://tools.ietf.org');
+        if (line.indexOf('xml2rfc.ietf.org')>0) {
+            line = line.replace('https://xml2rfc.ietf.org/public/rfc/html/rfc','https://tools.ietf.org/html/rfc');
+            line = line.replace('.html','');
+        }
+        line = line.replace(/\]\]\(https:\/\/tools.ietf.org\/html\/rfc[0-9]{1,5}\/?(\#.*?)?\)/g,function(match,group1){
+            //return (group1 ? group1 : '')+']]';
+            return ']]';
+        });
+
+        while (line.indexOf('https://tools.ietf.org/html/rfc')>=0) {
+            line = line.replace(/.https:..tools.ietf.org.html.rfc[0-9]{1,5}./g,'');
+        }
     }
 
     if (line.indexOf('[ABNF]')>=0) {

@@ -53,15 +53,15 @@ function preface(title,options) {
         publishDate: options.publishDate,
         subtitle: 'Version '+options.subtitle,
         processVersion: 2017,
-        edDraftURI: "http://github.com/OAI/openapi-specification",
+        edDraftURI: "http://github.com/OAI/openapi-specification/",
         github: {
-            repoURL: "https://github.com/OAI/openapi-specification",
+            repoURL: "https://github.com/OAI/openapi-specification/",
             branch: "master"
         },
-        shortName: "dahut",
+        shortName: "OAS",
         noTOC: false,
         lint: false,
-        additionalCopyrightHolders: "Copyright the Linux Foundation",
+        additionalCopyrightHolders: "the Linux Foundation",
         includePermalinks: true
     };
 
@@ -85,7 +85,7 @@ function preface(title,options) {
         preface += 'The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for REST APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.';
         preface += '</section>';
         preface += '<section class="notoc" id="sotd">';
-        preface += '<h2>State of the document</h2>';
+        preface += '<h2>Status of This Document</h2>';
         preface += 'The source-of-truth for the specification is the GitHub markdown file referenced above.';
         preface += '</section>';
     }
@@ -194,7 +194,7 @@ for (let l in lines) {
             let title = comp[1];
             if (inDefs) title = '<dfn>'+title+'</dfn>';
             let link = comp[0].split('<a ')[1].replace('name=','id=');
-            line = ('#'.repeat(newIndent)+' <a '+link+title+'</a>');
+            line = ('#'.repeat(newIndent)+' <span '+link+title+'</span>');
         }
         else {
             let title = line.split('# ')[1];

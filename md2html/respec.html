@@ -1,4 +1,4 @@
-<html><head><meta charset="UTF-8"><title>OpenAPI Specification</title><script src="https://mermade.github.io/static/respec-oai.js" class="remove"></script><script class="remove">var respecConfig = {"specStatus":"base","editors":[{"name":"Darrel Miller "},{"name":"Jeremy Whitlock "},{"name":"Marsh Gardiner "},{"name":"Mike Ralphson "},{"name":"Ron Ratovsky "},{"name":"Uri Sarid "}],"formerEditors":[{"name":"Jason Harmon "},{"name":"Tony Tam "}],"publishDate":"2017-12-06T00:00:00.000Z","subtitle":"Version 3.0.1","processVersion":2017,"edDraftURI":"http://github.com/OAI/openapi-specification","github":{"repoURL":"https://github.com/OAI/openapi-specification","branch":"master"},"shortName":"dahut","noTOC":false,"lint":false,"additionalCopyrightHolders":"Copyright the Linux Foundation","includePermalinks":true};</script></head><body><style>#respec-ui { visibility: hidden; }h1,h2,h3 { color: #629b34; }a[href] { color: #45512c; }body:not(.toc-inline) #toc h2 { color: #45512c; }table { display: block; width: 100%; overflow: auto; }table th { font-weight: 600; }table th, table td { padding: 6px 13px; border: 1px solid #dfe2e5; }table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }table tr:nth-child(2n) { background-color: #f6f8fa; }</style><section id="abstract">The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for REST APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.</section><section class="notoc" id="sotd"><h2>State of the document</h2>The source-of-truth for the specification is the GitHub markdown file referenced above.</section>
+<html><head><meta charset="UTF-8"><title>OpenAPI Specification</title><script src="https://mermade.github.io/static/respec-oai.js" class="remove"></script><script class="remove">var respecConfig = {"specStatus":"base","editors":[{"name":"Darrel Miller "},{"name":"Jeremy Whitlock "},{"name":"Marsh Gardiner "},{"name":"Mike Ralphson "},{"name":"Ron Ratovsky "},{"name":"Uri Sarid "}],"formerEditors":[{"name":"Jason Harmon "},{"name":"Tony Tam "}],"publishDate":"2017-12-06T00:00:00.000Z","subtitle":"Version 3.0.1","processVersion":2017,"edDraftURI":"http://github.com/OAI/openapi-specification/","github":{"repoURL":"https://github.com/OAI/openapi-specification/","branch":"master"},"shortName":"OAS","noTOC":false,"lint":false,"additionalCopyrightHolders":"the Linux Foundation","includePermalinks":true};</script></head><body><style>#respec-ui { visibility: hidden; }h1,h2,h3 { color: #629b34; }a[href] { color: #45512c; }body:not(.toc-inline) #toc h2 { color: #45512c; }table { display: block; width: 100%; overflow: auto; }table th { font-weight: 600; }table th, table td { padding: 6px 13px; border: 1px solid #dfe2e5; }table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }table tr:nth-child(2n) { background-color: #f6f8fa; }</style><section id="abstract">The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for REST APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.</section><section class="notoc" id="sotd"><h2>State of This Document</h2>The source-of-truth for the specification is the GitHub markdown file referenced above.</section>
 <section><h1>OpenAPI Specification</h1>
 <section><h3>Version 3.0.1</h3>
 <p>The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in <a href="https://tools.ietf.org/html/bcp14">BCP 14</a> [[!rfc2119]] [[!rfc8174]] when, and only when, they appear in all capitals, as shown here.</p>
@@ -8,11 +8,11 @@
 <p>An OpenAPI definition can then be used by documentation generation tools to display the API, code generation tools to generate servers and clients in various programming languages, testing tools, and many other use cases.</p>
 <!-- /TOC -->
 </section><section><h1><dfn>Definitions</dfn></h1>
-<section><h4><a id="oasDocument"><dfn>OpenAPI Document</dfn></a></h4>
+<section><h4><span id="oasDocument"><dfn>OpenAPI Document</dfn></span></h4>
 <p>A document (or set of documents) that defines or describes an API. An OpenAPI definition uses and conforms to the OpenAPI Specification.</p>
-</section><section><h4><a id="pathTemplating"><dfn>Path Templating</dfn></a></h4>
+</section><section><h4><span id="pathTemplating"><dfn>Path Templating</dfn></span></h4>
 <p>Path templating refers to the usage of curly braces ({}) to mark a section of a URL path as replaceable using path parameters.</p>
-</section><section><h4><a id="mediaTypes"><dfn>Media Types</dfn></a></h4>
+</section><section><h4><span id="mediaTypes"><dfn>Media Types</dfn></span></h4>
 <p>Media type definitions are spread across several resources.
 The media type definitions SHOULD be in compliance with [[!rfc6838]].</p>
 <p>Some examples of possible media type definitions:</p>
@@ -28,7 +28,7 @@ The media type definitions SHOULD be in compliance with [[!rfc6838]].</p>
   application/vnd.github.v3.diff
   application/vnd.github.v3.patch
 </code></pre>
-</section><section><h4><a id="httpCodes"><dfn>HTTP Status Codes</dfn></a></h4>
+</section><section><h4><span id="httpCodes"><dfn>HTTP Status Codes</dfn></span></h4>
 <p>The HTTP Status Codes are used to indicate the status of the executed operation.
 The available status codes are defined by [[!rfc7231]]section-6) and registered status codes are listed in the <a href="https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">IANA Status Code Registry</a>.</p>
 </section></section></section></section><section><h1>Specification</h1>
@@ -54,10 +54,10 @@ The available status codes are defined by [[!rfc7231]]section-6) and registered 
 <li>Keys used in YAML maps MUST be limited to a scalar string, as defined by the <a href="http://yaml.org/spec/1.2/spec.html#id2802346">YAML Failsafe schema ruleset</a>.</li>
 </ul>
 <p><strong>Note:</strong> While APIs may be defined by OpenAPI documents in either YAML or JSON format, the API request and response bodies and other content are not required to be JSON or YAML.</p>
-</section><section><h2><a id="documentStructure">Document Structure</a></h2>
+</section><section><h2><span id="documentStructure">Document Structure</span></h2>
 <p>An OpenAPI document MAY be made up of a single document or be divided into multiple, connected parts at the discretion of the user. In the latter case, <code>$ref</code> fields MUST be used in the specification to reference those parts as follows from the <a href="http://json-schema.org">JSON Schema</a> definitions.</p>
 <p>It is RECOMMENDED that the root OpenAPI document be named: <code>openapi.json</code> or <code>openapi.yaml</code>.</p>
-</section><section><h2><a id="dataTypes">Data Types</a></h2>
+</section><section><h2><span id="dataTypes">Data Types</span></h2>
 <p>Primitive data types in the OAS are based on the types supported by the <a href="https://tools.ietf.org/html/draft-wright-json-schema-00#section-4.2">JSON Schema Specification Wright Draft 00</a>.
 Note that <code>integer</code> as a type is also supported and is defined as a JSON number without a fraction or exponent part.
 <code>null</code> is not supported as a type (see <a href="#schemaNullable"><code>nullable</code></a> for an alternative solution).
@@ -146,16 +146,16 @@ Types that are not accompanied by a <code>format</code> property follow the type
 </tr>
 </tbody>
 </table>
-</section><section><h2><a id="richText">Rich Text Formatting</a></h2>
+</section><section><h2><span id="richText">Rich Text Formatting</span></h2>
 <p>Throughout the specification <code>description</code> fields are noted as supporting CommonMark markdown formatting.
 Where OpenAPI tooling renders rich text it MUST support, at a minimum, markdown syntax as described by <a href="http://spec.commonmark.org/0.27/">CommonMark 0.27</a>. Tooling MAY choose to ignore some CommonMark features to address security concerns.</p>
-</section><section><h2><a id="relativeReferences">Relative References in URLs</a></h2>
+</section><section><h2><span id="relativeReferences">Relative References in URLs</span></h2>
 <p>Unless specified otherwise, all properties that are URLs MAY be relative references as defined by [[!rfc3986]]section-4.2).
 Relative references are resolved using the URLs defined in the <a href="#serverObject"><code>Server Object</code></a> as a Base URI.</p>
 <p>Relative references used in <code>$ref</code> are processed as per <a href="https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03">JSON Reference</a>, using the URL of the current document as the base URI. See also the <a href="#referenceObject">Reference Object</a>.</p>
 </section><section><h2>Schema</h2>
 <p>In the following description, if a field is not explicitly <strong>REQUIRED</strong> or described with a MUST or SHALL, it can be considered OPTIONAL.</p>
-<section><h3><a id="oasObject">OpenAPI Object</a></h3>
+<section><h3><span id="oasObject">OpenAPI Object</span></h3>
 <p>This is the root document object of the <a href="#oasDocument">OpenAPI document</a>.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -210,7 +210,7 @@ Relative references are resolved using the URLs defined in the <a href="#serverO
 </tbody>
 </table>
 <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
-</section></section><section><h3><a id="infoObject">Info Object</a></h3>
+</section></section><section><h3><span id="infoObject">Info Object</span></h3>
 <p>The object provides metadata about the API.
 The metadata MAY be used by the clients if needed, and MAY be presented in editing or documentation generation tools for convenience.</p>
 <section><h4>Fixed Fields</h4>
@@ -287,7 +287,7 @@ license:
   url: https://www.apache.org/licenses/LICENSE-2.0.html
 version: 1.0.1
 </code></pre>
-</section></section><section><h3><a id="contactObject">Contact Object</a></h3>
+</section></section><section><h3><span id="contactObject">Contact Object</span></h3>
 <p>Contact information for the exposed API.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -330,7 +330,7 @@ name: API Support
 url: http://www.example.com/support
 email: support@example.com
 </code></pre>
-</section></section><section><h3><a id="licenseObject">License Object</a></h3>
+</section></section><section><h3><span id="licenseObject">License Object</span></h3>
 <p>License information for the exposed API.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -366,7 +366,7 @@ email: support@example.com
 name: Apache 2.0
 url: https://www.apache.org/licenses/LICENSE-2.0.html
 </code></pre>
-</section></section><section><h3><a id="serverObject">Server Object</a></h3>
+</section></section><section><h3><span id="serverObject">Server Object</span></h3>
 <p>An object representing a Server.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -481,7 +481,7 @@ servers:
       # open meaning there is the opportunity to use special base paths as assigned by the provider, default is `v2`
       default: v2
 </code></pre>
-</section></section><section><h3><a id="serverVariableObject">Server Variable Object</a></h3>
+</section></section><section><h3><span id="serverVariableObject">Server Variable Object</span></h3>
 <p>An object representing a Server Variable for server URL template substitution.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -511,7 +511,7 @@ servers:
 </tbody>
 </table>
 <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
-</section></section><section><h3><a id="componentsObject">Components Object</a></h3>
+</section></section><section><h3><span id="componentsObject">Components Object</span></h3>
 <p>Holds a set of reusable objects for different aspects of the OAS.
 All objects defined within the components object will have no effect on the API unless they are explicitly referenced from properties outside the components object.</p>
 <section><h4>Fixed Fields</h4>
@@ -732,7 +732,7 @@ components:
             write:pets: modify pets in your account
             read:pets: read your pets
 </code></pre>
-</section></section><section><h3><a id="pathsObject">Paths Object</a></h3>
+</section></section><section><h3><span id="pathsObject">Paths Object</span></h3>
 <p>Holds the relative paths to the individual endpoints and their operations.
 The path is appended to the URL from the <a href="#serverObject"><code>Server Object</code></a> in order to construct the full URL.  The Paths MAY be empty, due to <a href="#securityFiltering">ACL constraints</a>.</p>
 <section><h4>Patterned Fields</h4>
@@ -808,7 +808,7 @@ The path is appended to the URL from the <a href="#serverObject"><code>Server Ob
               items:
                 $ref: '#/components/schemas/pet'
 </code></pre>
-</section></section><section><h3><a id="pathItemObject">Path Item Object</a></h3>
+</section></section><section><h3><span id="pathItemObject">Path Item Object</span></h3>
 <p>Describes the operations available on a single path.
 A Path Item MAY be empty, due to <a href="#securityFiltering">ACL constraints</a>.
 The path itself is still exposed to the documentation viewer but they will not know which operations and parameters are available.</p>
@@ -971,7 +971,7 @@ parameters:
     items:
       type: string  
 </code></pre>
-</section></section><section><h3><a id="operationObject">Operation Object</a></h3>
+</section></section><section><h3><span id="operationObject">Operation Object</span></h3>
 <p>Describes a single API operation on a path.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -1152,7 +1152,7 @@ security:
   - write:pets
   - read:pets
 </code></pre>
-</section></section><section><h3><a id="externalDocumentationObject">External Documentation Object</a></h3>
+</section></section><section><h3><span id="externalDocumentationObject">External Documentation Object</span></h3>
 <p>Allows referencing an external resource for extended documentation.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -1188,7 +1188,7 @@ security:
 description: Find more info here
 url: https://example.com
 </code></pre>
-</section></section><section><h3><a id="parameterObject">Parameter Object</a></h3>
+</section></section><section><h3><span id="parameterObject">Parameter Object</span></h3>
 <p>Describes a single operation parameter.</p>
 <p>A unique parameter is defined by a combination of a <a href="#parameterName">name</a> and <a href="#parameterIn">location</a>.</p>
 <section><h4>Parameter Locations</h4>
@@ -1614,7 +1614,7 @@ content:
         long:
           type: number
 </code></pre>
-</section></section><section><h3><a id="requestBodyObject">Request Body Object</a></h3>
+</section></section><section><h3><span id="requestBodyObject">Request Body Object</span></h3>
 <p>Describes a single request body.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -1745,7 +1745,7 @@ content:
       items:
         type: string
 </code></pre>
-</section></section><section><h3><a id="mediaTypeObject">Media Type Object</a></h3>
+</section></section><section><h3><span id="mediaTypeObject">Media Type Object</span></h3>
 <p>Each Media Type Object provides schema and examples for the media type identified by its key.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -1955,7 +1955,7 @@ requestBody:
               type: '#/components/schemas/Address'
 </code></pre>
 <p>An <code>encoding</code> attribute is introduced to give you control over the serialization of parts of <code>multipart</code> request bodies.  This attribute is <em>only</em> applicable to <code>multipart</code> and <code>application/x-www-form-urlencoded</code> request bodies.</p>
-</section></section><section><h3><a id="encodingObject">Encoding Object</a></h3>
+</section></section><section><h3><span id="encodingObject">Encoding Object</span></h3>
 <p>A single encoding definition applied to a single schema property.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -2033,7 +2033,7 @@ requestBody:
               schema:
                 type: integer
 </code></pre>
-</section></section><section><h3><a id="responsesObject">Responses Object</a></h3>
+</section></section><section><h3><span id="responsesObject">Responses Object</span></h3>
 <p>A container for the expected responses of an operation.
 The container maps a HTTP response code to the expected response.</p>
 <p>The documentation is not necessarily expected to cover all possible HTTP response codes because they may not be known in advance.
@@ -2117,7 +2117,7 @@ default:
       schema:
         $ref: '#/components/schemas/ErrorModel'
 </code></pre>
-</section></section><section><h3><a id="responseObject">Response Object</a></h3>
+</section></section><section><h3><span id="responseObject">Response Object</span></h3>
 <p>Describes a single response from an API Operation, including design-time, static
 <code>links</code> to operations based on the response.</p>
 <section><h4>Fixed Fields</h4>
@@ -2263,7 +2263,7 @@ headers:
 <pre class="highlight"><code>
 description: object created
 </code></pre>
-</section></section><section><h3><a id="callbackObject">Callback Object</a></h3>
+</section></section><section><h3><span id="callbackObject">Callback Object</span></h3>
 <p>A map of possible out-of band callbacks related to the parent operation.
 Each value in the map is a <a href="#pathItemObject">Path Item Object</a> that describes a set of requests that may be initiated by the API provider and the expected responses.
 The key value used to identify the callback object is an expression, evaluated at runtime, that identifies a URL to use for the callback operation.</p>
@@ -2368,7 +2368,7 @@ myWebhook:
         '200':
           description: webhook successfully processed and no retries will be performed
 </code></pre>
-</section></section><section><h3><a id="exampleObject">Example Object</a></h3>
+</section></section><section><h3><span id="exampleObject">Example Object</span></h3>
 <section><h4>Fixed Fields</h4>
 <table>
 <thead>
@@ -2464,7 +2464,7 @@ schemas:
             confirmation-success:
               $ref: '#/components/examples/confirmation-success'
 </code></pre>
-</section></section><section><h3><a id="linkObject">Link Object</a></h3>
+</section></section><section><h3><span id="linkObject">Link Object</span></h3>
 <p>The <code>Link object</code> represents a possible design-time link for a response.
 The presence of a link does not guarantee the caller’s ability to successfully invoke it, rather it provides a known relationship and traversal mechanism between responses and other operations.</p>
 <p>Unlike <em>dynamic</em> links (i.e. links provided <strong>in</strong> the response payload), the OAS linking mechanism does not require link information in the runtime response.</p>
@@ -2598,7 +2598,7 @@ links:
 </code></pre>
 <p>Note that in the use of <code>operationRef</code>, the <em>escaped forward-slash</em> is necessary when
 using JSON references.</p>
-</section><section><h4><a id="runtimeExpression">Runtime Expressions</a></h4>
+</section><section><h4><span id="runtimeExpression">Runtime Expressions</span></h4>
 <p>Runtime expressions allow defining values based on information that will only be available within the HTTP message in an actual API call.
 This mechanism is used by <a href="#linkObject">Link Objects</a> and <a href="#callbackObject">Callback Objects</a>.</p>
 <p>The runtime expression is defined by the following [Augmented Backus-Naur Form] syntax</p>
@@ -2616,7 +2616,7 @@ This mechanism is used by <a href="#linkObject">Link Objects</a> and <a href="#c
 </code></pre>
 <p>The <code>name</code> identifier is case-sensitive, whereas <code>token</code> is not.</p>
 <p>The table below provides examples of runtime expressions and examples of their use in a value:</p>
-</section><section><h4><a id="runtimeExpressionExamples">Examples</a></h4>
+</section><section><h4><span id="runtimeExpressionExamples">Examples</span></h4>
 <table>
 <thead>
 <tr>
@@ -2665,7 +2665,7 @@ This mechanism is used by <a href="#linkObject">Link Objects</a> and <a href="#c
 </table>
 <p>Runtime expressions preserve the type of the referenced value.
 Expressions can be embedded into string values by surrounding the expression with <code>{}</code> curly braces.</p>
-</section></section><section><h3><a id="headerObject">Header Object</a></h3>
+</section></section><section><h3><span id="headerObject">Header Object</span></h3>
 <p>The Header Object follows the structure of the <a href="#parameterObject">Parameter Object</a> with the following changes:</p>
 <ol>
 <li><code>name</code> MUST NOT be specified, it is given in the corresponding <code>headers</code> map.</li>
@@ -2687,7 +2687,7 @@ description: The number of allowed requests in the current period
 schema:
   type: integer
 </code></pre>
-</section></section><section><h3><a id="tagObject">Tag Object</a></h3>
+</section></section><section><h3><span id="tagObject">Tag Object</span></h3>
 <p>Adds metadata to a single tag that is used by the <a href="#operationObject">Operation Object</a>.
 It is not mandatory to have a Tag Object per tag defined in the Operation Object instances.</p>
 <section><h4>Fixed Fields</h4>
@@ -2729,7 +2729,7 @@ It is not mandatory to have a Tag Object per tag defined in the Operation Object
 name: pet
 description: Pets operations
 </code></pre>
-</section></section><section><h3><a id="referenceObject">Reference Object</a></h3>
+</section></section><section><h3><span id="referenceObject">Reference Object</span></h3>
 <p>A simple object to allow referencing other components in the specification, internally and externally.</p>
 <p>The Reference Object is defined by <a href="https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03">JSON Reference</a> and follows the same structure, behavior and rules.</p>
 <p>For this specification, reference resolution is accomplished as defined by the JSON Reference specification and not by the JSON Schema specification.</p>
@@ -2778,7 +2778,7 @@ $ref: Pet.yaml
 <pre class="highlight"><code>
 $ref: definitions.yaml#/Pet
 </code></pre>
-</section></section><section><h3><a id="schemaObject">Schema Object</a></h3>
+</section></section><section><h3><span id="schemaObject">Schema Object</span></h3>
 <p>The Schema Object allows the definition of input and output data types.
 These types can be objects, but also primitives and arrays.
 This object is an extended subset of the <a href="http://json-schema.org/">JSON Schema Specification Wright Draft 00</a>.</p>
@@ -2874,7 +2874,7 @@ Unless stated otherwise, the property definitions follow the JSON Schema.</p>
 </tbody>
 </table>
 <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
-<section><h5><a id="schemaComposition">Composition and Inheritance (Polymorphism)</a></h5>
+<section><h5><span id="schemaComposition">Composition and Inheritance (Polymorphism)</span></h5>
 <p>The OpenAPI Specification allows combining and extending model definitions using the <code>allOf</code> property of JSON Schema, in effect offering model composition.
 <code>allOf</code> takes an array of object definitions that are validated <em>independently</em> but together compose a single object.</p>
 <p>While composition offers model extensibility, it does not imply a hierarchy between the models.
@@ -3195,7 +3195,7 @@ components:
         required:
         - packSize
 </code></pre>
-</section></section></section><section><h3><a id="discriminatorObject">Discriminator Object</a></h3>
+</section></section></section><section><h3><span id="discriminatorObject">Discriminator Object</span></h3>
 <p>When request bodies or response payloads may be one of a number of different schemas, a <code>discriminator</code> object can be used to aid in serialization, deserialization, and validation.  The discriminator is a specific object in a schema which is used to inform the consumer of the specification of an alternative schema based on the value associated with it.</p>
 <p>When using the discriminator, <em>inline</em> schemas will not be considered.</p>
 <section><h4>Fixed Fields</h4>
@@ -3319,7 +3319,7 @@ components:
 }
 </code></pre>
 <p>will map to <code>Dog</code> because of the definition in the <code>mappings</code> element.</p>
-</section></section><section><h3><a id="xmlObject">XML Object</a></h3>
+</section></section><section><h3><span id="xmlObject">XML Object</span></h3>
 <p>A metadata object that allows for more fine-tuned XML model definitions.</p>
 <p>When using arrays, XML element names are <em>not</em> inferred (for singular/plural forms) and the <code>name</code> property SHOULD be used to add that information.
 See examples for expected behavior.</p>
@@ -3650,7 +3650,7 @@ animals:
   &lt;aliens&gt;value&lt;/aliens&gt;
 &lt;/aliens&gt;
 </code></pre>
-</section></section></section><section><h3><a id="securitySchemeObject">Security Scheme Object</a></h3>
+</section></section></section><section><h3><span id="securitySchemeObject">Security Scheme Object</span></h3>
 <p>Defines a security scheme that can be used by the operations.
 Supported schemes are HTTP authentication, an API key (either as a header or as a query parameter), OAuth2’s common flows (implicit, password, application and access code) as defined in [[!rfc6749]], and <a href="https://tools.ietf.org/html/draft-ietf-oauth-discovery-06">OpenID Connect Discovery</a>.</p>
 <section><h4>Fixed Fields</h4>
@@ -3777,7 +3777,7 @@ flows:
       write:pets: modify pets in your account
       read:pets: read your pets
 </code></pre>
-</section></section></section><section><h3><a id="oauthFlowsObject">OAuth Flows Object</a></h3>
+</section></section></section><section><h3><span id="oauthFlowsObject">OAuth Flows Object</span></h3>
 <p>Allows configuration of the supported OAuth Flows.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -3812,7 +3812,7 @@ flows:
 </tbody>
 </table>
 <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
-</section></section><section><h3><a id="oauthFlowObject">OAuth Flow Object</a></h3>
+</section></section><section><h3><span id="oauthFlowObject">OAuth Flow Object</span></h3>
 <p>Configuration details for a supported OAuth Flow</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -3890,7 +3890,7 @@ flows:
       write:pets: modify pets in your account
       read:pets: read your pets 
 </code></pre>
-</section></section><section><h3><a id="securityRequirementObject">Security Requirement Object</a></h3>
+</section></section><section><h3><span id="securityRequirementObject">Security Requirement Object</span></h3>
 <p>Lists the required security schemes to execute this operation.
 The name used for each property MUST correspond to a security scheme declared in the <a href="#componentsSecuritySchemes">Security Schemes</a> under the <a href="#componentsObject">Components Object</a>.</p>
 <p>Security Requirement Objects that contain multiple schemes require that all schemes MUST be satisfied for a request to be authorized.
@@ -3937,7 +3937,7 @@ petstore_auth:
 - write:pets
 - read:pets
 </code></pre>
-</section></section></section></section><section><h2><a id="specificationExtensions">Specification Extensions</a></h2>
+</section></section></section></section><section><h2><span id="specificationExtensions">Specification Extensions</span></h2>
 <p>While the OpenAPI Specification tries to accommodate most use cases, additional data can be added to extend the specification at certain points.</p>
 <p>The extensions properties are implemented as patterned fields that are always prefixed by <code>&quot;x-&quot;</code>.</p>
 <table>
@@ -3957,7 +3957,7 @@ petstore_auth:
 </tbody>
 </table>
 <p>The extensions may or may not be supported by the available tooling, but those may be extended as well to add requested support (if tools are internal or open-sourced).</p>
-</section><section><h2><a id="securityFiltering">Security Filtering</a></h2>
+</section><section><h2><span id="securityFiltering">Security Filtering</span></h2>
 <p>Some objects in the OpenAPI Specification MAY be declared and remain empty, or be completely removed, even though they are inherently the core of the API documentation.</p>
 <p>The reasoning is to allow an additional layer of access control over the documentation.
 While not part of the specification itself, certain libraries MAY choose to allow access to parts of the documentation based on some form of authentication/authorization.</p>
@@ -3966,7 +3966,7 @@ While not part of the specification itself, certain libraries MAY choose to allo
 <li>The <a href="#pathsObject">Paths Object</a> MAY be empty. It may be counterintuitive, but this may tell the viewer that they got to the right place, but can’t access any documentation. They’d still have access to the <a href="#infoObject">Info Object</a> which may contain additional information regarding authentication.</li>
 <li>The <a href="#pathItemObject">Path Item Object</a> MAY be empty. In this case, the viewer will be aware that the path exists, but will not be able to see any of its operations or parameters. This is different than hiding the path itself from the <a href="#pathsObject">Paths Object</a>, so the user will not be aware of its existence. This allows the documentation provider to finely control what the viewer can see.</li>
 </ol>
-</section></section><section><h1><a id="revisionHistory">Appendix A: Revision History</a></h1>
+</section></section><section><h1><span id="revisionHistory">Appendix A: Revision History</span></h1>
 <table>
 <thead>
 <tr>

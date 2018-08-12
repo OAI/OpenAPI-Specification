@@ -42,6 +42,7 @@ These tools are not endorsed by the OAI.
 | WebSphere Liberty | [Download jar](https://developer.ibm.com/wasdev/downloads/) | JavaScript | Includes a native OpenAPI v3 UI which allows for customization of its banners and URL |
 | Widdershins | [github/Mermade/widdershins](https://github.com/Mermade/widdershins) | Node.js | Generate Slate/Shins markdown from OpenAPI 3.0.x |
 | angular-swagger-ui | [github/angular-swagger-ui](https://github.com/Orange-OpenSource/angular-swagger-ui) | AngularJS | An angularJS implementation of Swagger UI |
+| ReDoc | [github/Rebilly/ReDoc](https://github.com/Rebilly/ReDoc) | Javascript | React based API Documentation for Open API 2.x or 3.x |
 
 #### Server Implementations
 | Title          | Project Link | Language |Description                          |
@@ -64,3 +65,4 @@ These tools are not endorsed by the OAI.
 | slush-vertx | [github/pmlopes/slush-vertx](https://github.com/pmlopes/slush-vertx) | Java, Kotlin & Groovy | Generate server skeleton for [Vert.x Web API Contract](http://vertx.io/docs/#web) and API Client based on [Vert.x 3 Web Client](http://vertx.io/docs/#web)
 | WebSphere Liberty | [Download jar](https://developer.ibm.com/wasdev/downloads/) | Java EE | Generates OpenAPI v3 documentation from Java EE applications |
 | swagger-node-codegen | [github/fmvilas/swagger-node-codegen](https://github.com/fmvilas/swagger-node-codegen) | Node.js | Generates a Node.js/express server, but also has a template engine for creating any templates needed. |
+| spring-cloud-contract-oa3 | [github/springframeworkguru/spring-cloud-contract-oa3](https://github.com/springframeworkguru/spring-cloud-contract-oa3) | Java / Groovy | Define Consumer Driven Contracts for Spring Cloud Contract in Open API 3.0 |

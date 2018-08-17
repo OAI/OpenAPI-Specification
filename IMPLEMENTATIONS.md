@@ -20,7 +20,7 @@ These tools are not endorsed by the OAI.
 | oas3-remote-refs | [github//OverSpeedIO/oas3-remote-refs](https://github.com/OverSpeedIO/oas3-remote-refs) | Node.js | Tool to pull remote refernences and merge them into the definitions of the provided OpenAPI3 speicfication.
 | go-openapi | [github/nasa9084/go-openapi](https://github.com/nasa9084/go-openapi) | Go | Golang struct model for OpenAPI 3.x. |
 | openapi | [github/wzshiming/openapi](https://github.com/wzshiming/openapi) | Go | OpenAPI 3 Specification for golang |
-| oas-tools | [github/isa-group/oas-tools](https://github.com/isa-group/oas-tools) | Node.js | NodeJS module to manage RESTfull APIs defined with OpenAPI 3.0 Specs over express servers |
+| oas-tools | [github/isa-group/oas-tools](https://github.com/isa-group/oas-tools) | Node.js | NodeJS module to manage contract-first RESTfull APIs defined with OpenAPI 3.0 Specs over express servers. |
 
 #### Editors
 
@@ -65,4 +65,4 @@ These tools are not endorsed by the OAI.
 | slush-vertx | [github/pmlopes/slush-vertx](https://github.com/pmlopes/slush-vertx) | Java, Kotlin & Groovy | Generate server skeleton for [Vert.x Web API Contract](http://vertx.io/docs/#web) and API Client based on [Vert.x 3 Web Client](http://vertx.io/docs/#web)
 | WebSphere Liberty | [Download jar](https://developer.ibm.com/wasdev/downloads/) | Java EE | Generates OpenAPI v3 documentation from Java EE applications |
 | swagger-node-codegen | [github/fmvilas/swagger-node-codegen](https://github.com/fmvilas/swagger-node-codegen) | Node.js | Generates a Node.js/express server, but also has a template engine for creating any templates needed. |
-| oas-generator | [github/isa-group/oas-generator](https://github.com/isa-group/oas-generator) | Node.js | NodeJS RESTfull APIs scaffolding based OpenAPI 3.x specs using oas-tools and express |
+| oas-generator | [github/isa-group/oas-generator](https://github.com/isa-group/oas-generator) | Node.js | NodeJS RESTfull APIs scaffolding for OpenAPI 3.x specs using oas-tools and express. |

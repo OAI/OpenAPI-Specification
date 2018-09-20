@@ -75,6 +75,7 @@ function preface(title,options) {
     if (options.respec) {
         preface += '<script src="https://spec.openapis.org/js/respec-oai.js" class="remove"></script>';
         preface += `<script class="remove">var respecConfig = ${JSON.stringify(respec)};</script>`;
+        preface += fs.readFileSync('./analytics/google.html','utf8');
         preface += '</head><body>';
         preface += '<style>';
         preface += '#respec-ui { visibility: hidden; }';

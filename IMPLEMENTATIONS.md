@@ -46,7 +46,7 @@ These tools are not endorsed by the OAI.
 #### Mock Servers
 | Title          | Project Link | Language | Description |
 | -------------- | ------------ | -------- | ----------- |
-| API Sprout     | [github/danielgtaylor/apisprout](https://github.com/danielgtaylor/apisprout) | CLI / Docker | Lightweight, blazing fast, cross-platform OpenAPI 3 mock server with validation |
+| API Sprout     | [github/danielgtaylor/apisprout](https://github.com/danielgtaylor/apisprout) | Go | Lightweight, blazing fast, cross-platform OpenAPI 3 mock server with validation |
 
 #### Server Implementations
 | Title          | Project Link | Language |Description                          |

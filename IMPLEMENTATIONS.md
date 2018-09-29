@@ -20,6 +20,7 @@ These tools are not endorsed by the OAI.
 | oas3-remote-refs | [github//OverSpeedIO/oas3-remote-refs](https://github.com/OverSpeedIO/oas3-remote-refs) | Node.js | Tool to pull remote refernences and merge them into the definitions of the provided OpenAPI3 speicfication.
 | go-openapi | [github/nasa9084/go-openapi](https://github.com/nasa9084/go-openapi) | Go | Golang struct model for OpenAPI 3.x. |
 | openapi | [github/wzshiming/openapi](https://github.com/wzshiming/openapi) | Go | OpenAPI 3 Specification for golang |
+| kin-openapi | [github/getkin/kin-openapi](https://github.com/getkin/kin-openapi) | Go | OpenAPI 3.x implementation for Go (parsing, converting, validation) |
 
 #### Editors
 

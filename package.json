@@ -7,7 +7,7 @@
     "email": "fehguy@gmail.com",
     "url": "http://swagger.io"
   },
-  "license": "Apache",
+  "license": "Apache-2.0",
   "readmeFilename": "README.md",
   "dependencies": {
     "tv4": "~1.1.x",

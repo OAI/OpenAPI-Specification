@@ -4,7 +4,7 @@
 
 ![](https://avatars3.githubusercontent.com/u/16343502?v=3&s=200)
 
-The OpenAPI Specification is a community-driven open specification within the [Open API Initiative](https://www.openapis.org/), a Linux Foundation Collaborative Project.
+The OpenAPI Specification is a community-driven open specification within the [OpenAPI Initiative](https://www.openapis.org/), a Linux Foundation Collaborative Project.
 
 The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for [REST APIs](https://en.wikipedia.org/wiki/Representational_state_transfer), which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.
 
@@ -39,7 +39,7 @@ The current process for development of the OpenAPI Specification is described in
 [Development Guidelines](DEVELOPMENT.md).
 Development of the next version of the OpenAPI Specification is guided by the [Technical Steering Committee (TSC)](https://www.openapis.org/participate/how-to-contribute/governance#TDC). This group of committers bring their API expertise, incorporate feedback from the community, and expand the group of committers as appropriate. All development activity on the future specification will be performed as features and merged into this branch. Upon release of the future specification, this branch will be merged to master.
 
-The TSC holds weekly web conferences to review open pull requests and discuss open issues related to the evolving OpenAPI Specification. Participation in weekly calls and scheduled working sessions is open to the community. You can view the [TSC calendar online](https://oai-technicalsteeringcommittee.groups.io/g/main/calendar), and import it to your calendar using the [iCal link](https://OAI-TechnicalSteeringCommittee.groups.io/g/main/ics/860119/668774333/feed.ics).
+The TSC holds weekly web conferences to review open pull requests and discuss open issues related to the evolving OpenAPI Specification. Participation in weekly calls and scheduled working sessions is open to the community. You can view the [TSC calendar online](https://openapi.groups.io/g/tsc/calendar), and import it to your calendar using the [iCal link](https://openapi.groups.io/g/tsc/ics/1105671/1995679554/feed.ics).
 
 The Open API Initiative encourages participation from individuals and companies alike. If you want to participate in the evolution of the OpenAPI Specification, consider taking the following actions:
 
@@ -50,7 +50,7 @@ The Open API Initiative encourages participation from individuals and companies 
 
 Not all feedback can be accommodated and there may be solid arguments for or against a change being appropriate for the specification.
 
-## License
+## Licensing
 
 See: [License (Apache-2.0)](https://github.com/OAI/OpenAPI-Specification/blob/master/LICENSE)
 

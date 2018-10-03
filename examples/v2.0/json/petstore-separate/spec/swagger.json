@@ -4,18 +4,18 @@
     "version": "1.0.0",
     "title": "Swagger Petstore",
     "description": "A sample API that uses a petstore as an example to demonstrate features in the swagger-2.0 specification",
-    "termsOfService": "http://helloreverb.com/terms/",
+    "termsOfService": "http://swagger.io/terms/",
     "contact": {
-      "name": "Wordnik API Team",
-      "email": "foo@example.com",
-      "url": "http://madskristensen.net"
+      "name": "Swagger API Team",
+      "email": "apiteam@swagger.io",
+      "url": "http://swagger.io"
     },
     "license": {
-      "name": "MIT",
-      "url": "http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT"
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "petstore.swagger.wordnik.com",
+  "host": "petstore.swagger.io",
   "basePath": "/api",
   "schemes": [
     "http"

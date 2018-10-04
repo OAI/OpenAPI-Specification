@@ -51,6 +51,7 @@ These tools are not endorsed by the OAI.
 | Modern | [github/modern-project/modern-ruby](https://github.com/modern-project/modern-ruby) | Ruby | OpenAPI 3-based Rack framework with automatic OAS generation and requests/response validation
 | Koa2-OAS3 | [github/OverSpeedIO/koa2-oas3](https://github.com/OverSpeedIO/koa2-oas3) | Node.js | OpenAPI 3 request validation middleware for Koa2 based apps.
 | Exegesis | [github/exegesis-js/exegesis](https://github.com/exegesis-js/exegesis) | Node.js | OpenAPI 3 server-side framework for express and other frameworks.
+| PHP-CRUD-API | [github/mevdschee/php-crud-api](https://github.com/mevdschee/php-crud-api) | PHP | Automatic CRUD API with OpenAPI 3 docs
 
 #### Code Generators
 

@@ -14,13 +14,9 @@ The OpenAPI Specification does not require rewriting existing APIs. It does not 
 
 This GitHub project is the starting point for OpenAPI. Here you will find the information you need about the OpenAPI Specification, simple examples of what it looks like, and some general information regarding the project.
 
-## Current Version - 3.0.1
+## Current Version - 3.0.2
 
-The current version of the OpenAPI specification is [OpenAPI Specification 3.0.1](versions/3.0.1.md).
-
-### Future Versions
-
-[3.0.2](https://github.com/OAI/OpenAPI-Specification/tree/v3.0.2-dev) - The next PATCH version. Patch-level fixes (typos, clarifications, etc.) should be submitted against this branch.
+The current version of the OpenAPI specification is [OpenAPI Specification 3.0.2](versions/3.0.2.md).
 
 ### Previous Versions
 

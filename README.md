@@ -4,7 +4,7 @@
 
 ![](https://avatars3.githubusercontent.com/u/16343502?v=3&s=200)
 
-**This is the WIP branch for the next patch version of the spec - 3.0.3. Patch level corrections should be submitted against this branch, specifically against [3.0.3.md](https://github.com/OAI/OpenAPI-Specification/blob/v3.0.2-dev/versions/3.0.3.md). The changes should also be submitted against `3.0.1.md` in the `v3.1.0-dev` branch. Breaking changes should be submitted against the 3.1.0 brach, specifically, [3.1.0.md](https://github.com/OAI/OpenAPI-Specification/blob/v3.1.0-dev/versions/3.1.0.md)**
+**This is the WIP branch for the next patch version of the spec - 3.0.3. Patch level corrections should be submitted against this branch, specifically against [3.0.3.md](https://github.com/OAI/OpenAPI-Specification/blob/v3.0.3-dev/versions/3.0.3.md). The changes should also be submitted against `3.0.1.md` in the `v3.1.0-dev` branch. Breaking changes should be submitted against the 3.1.0 brach, specifically, [3.1.0.md](https://github.com/OAI/OpenAPI-Specification/blob/v3.1.0-dev/versions/3.1.0.md)**
 
 
 The OpenAPI Specification is a community-driven open specification within the [OpenAPI Initiative](https://www.openapis.org/), a Linux Foundation Collaborative Project.

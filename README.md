@@ -48,7 +48,7 @@ The TSC holds weekly web conferences to review open pull requests and discuss op
 
 The Open API Initiative encourages participation from individuals and companies alike. If you want to participate in the evolution of the OpenAPI Specification, consider taking the following actions:
 
-* Review the [current specification](versions/3.0.1.md). The human-readable markdown file _is the source of truth_ for the specification.
+* Review the [current specification](versions/3.0.2.md). The human-readable markdown file _is the source of truth_ for the specification.
 * Review the [development](DEVELOPMENT.md) process so you understand how the spec is evolving.
 * Check the [issues](https://github.com/OAI/OpenAPI-Specification/issues) and [pull requests](https://github.com/OAI/OpenAPI-Specification/pulls) to see if someone has already documented your idea or feedback on the specification. You can follow an existing conversation by adding a comment to the existing issue or PR.
 * Create an issue to describe a new concern. If possible, propose a solution.

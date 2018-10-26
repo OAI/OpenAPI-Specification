@@ -1,19 +1,6 @@
 sudo: false
+language: node_js
+node_js:
+  - "node"
 script:
-  - npm install
-env:
-  - VALIDATORS=tv4
-  - VALIDATORS=zschema
-matrix:
-  allow_failures:
-    - env: VALIDATORS=tv4
-install:
-  - rm -rf ~/.nvm
-  - mkdir -p ~/.nvm
-  - curl -L https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sh
-  - source ~/.nvm/nvm.sh
-  - nvm install 8
-  - nvm use 8
-script:
-  - npm install
   - node node_modules/mdv/mdv versions/3.*.md

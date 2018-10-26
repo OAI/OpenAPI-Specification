@@ -20,5 +20,12 @@
   "dependencies": {},
   "devDependencies": {
     "mdv": "^1.0.7"
-  }
+  },
+  "keywords": [
+    "OpenAPI",
+    "OAS",
+    "Swagger",
+    "schema",
+    "API"
+  ]
 }

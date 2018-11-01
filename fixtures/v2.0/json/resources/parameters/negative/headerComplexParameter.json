@@ -1,7 +1,0 @@
-{
-  "name": "firstName",
-  "in": "header",
-  "description": "users first name",
-  "required": true,
-  "$ref": "#/definitions/Nothing"
-}

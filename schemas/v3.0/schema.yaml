@@ -666,14 +666,8 @@ definitions:
         oneOf:
           - $ref: '#/definitions/Response'
           - $ref: '#/definitions/Reference'
-      '^x-': {}
     minProperties: 1
     additionalProperties: false
-    not:
-      type: object
-      patternProperties:
-        '^x-': {}
-      additionalProperties: false
  
 
   SecurityRequirement:
@@ -1250,13 +1244,6 @@ definitions:
       - $ref: '#/definitions/BearerHTTPSecurityScheme'
 
   NonBearerHTTPSecurityScheme:
-    not:
-      type: object
-      properties:
-        scheme:
-          type: string
-          enum:
-            - bearer
     type: object
     required:
       - scheme
@@ -1264,6 +1251,9 @@ definitions:
     properties:
       scheme:
         type: string
+        not:
+          enum:
+            - bearer
       description:
         type: string
       type:

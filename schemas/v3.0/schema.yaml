@@ -35,8 +35,8 @@ definitions:
     type: object
     required:
       - $ref
-    properties:
-      $ref:
+    patternProperties:
+      '^\$ref$':
         type: string
         format: uri-reference
   Info:

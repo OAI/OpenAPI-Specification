@@ -38,7 +38,7 @@ definitions:
     properties:
       $ref:
         type: string
-        format: uriref
+        format: uri-reference
   Info:
     type: object
     required:
@@ -51,7 +51,7 @@ definitions:
         type: string
       termsOfService:
         type: string
-        format: uriref
+        format: uri-reference
       contact:
         $ref: '#/definitions/Contact'
       license:
@@ -70,7 +70,7 @@ definitions:
         type: string
       url:
         type: string
-        format: uriref
+        format: uri-reference
       email:
         type: string
         format: email
@@ -87,7 +87,7 @@ definitions:
         type: string
       url:
         type: string
-        format: uriref
+        format: uri-reference
     patternProperties:
       '^x-': {}
     additionalProperties: false
@@ -347,7 +347,7 @@ definitions:
         type: string
       namespace:
         type: string
-        format: url
+        format: uri-reference
       prefix:
         type: string
       attribute:
@@ -440,7 +440,7 @@ definitions:
       value: {}
       externalValue:
         type: string
-        format: uriref
+        format: uri-reference
     patternProperties:
       '^x-': {}
     additionalProperties: false
@@ -707,7 +707,7 @@ definitions:
         type: string
       url:
         type: string
-        format: uriref
+        format: uri-reference
     patternProperties:
       '^x-': {}
     additionalProperties: false
@@ -1326,7 +1326,7 @@ definitions:
           - openIdConnect      
       openIdConnectUrl:
         type: string
-        format: url
+        format: uri-reference
       description:
         type: string
     patternProperties:
@@ -1356,10 +1356,10 @@ definitions:
     properties:
       authorizationUrl:
         type: string
-        format: uriref
+        format: uri-reference
       refreshUrl:
         type: string
-        format: uriref
+        format: uri-reference
       scopes:
         type: object
         additionalProperties:
@@ -1375,10 +1375,10 @@ definitions:
     properties:
       tokenUrl:
         type: string
-        format: uriref
+        format: uri-reference
       refreshUrl:
         type: string
-        format: uriref
+        format: uri-reference
       scopes:
         type: object
         additionalProperties:
@@ -1394,10 +1394,10 @@ definitions:
     properties:
       tokenUrl:
         type: string
-        format: uriref
+        format: uri-reference
       refreshUrl:
         type: string
-        format: uriref
+        format: uri-reference
       scopes:
         type: object
         additionalProperties:
@@ -1414,13 +1414,13 @@ definitions:
     properties:
       authorizationUrl:
         type: string
-        format: uriref
+        format: uri-reference
       tokenUrl:
         type: string
-        format: uriref
+        format: uri-reference
       refreshUrl:
         type: string
-        format: uriref
+        format: uri-reference
       scopes:
         type: object
         additionalProperties:
@@ -1439,7 +1439,7 @@ definitions:
     properties:
       operationRef:
         type: string
-        format: uriref
+        format: uri-reference
       parameters:
         type: object
         additionalProperties: {}

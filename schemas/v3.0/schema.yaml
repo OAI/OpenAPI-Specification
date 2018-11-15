@@ -347,7 +347,7 @@ definitions:
         type: string
       namespace:
         type: string
-        format: uri-reference
+        format: uri
       prefix:
         type: string
       attribute:

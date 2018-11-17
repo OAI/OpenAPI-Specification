@@ -1,0 +1,27 @@
+name: validate-examples
+
+# Author: @MikeRalphson
+# Issue: https://github.com/OAI/OpenAPI-Specification/issues/1739
+
+#
+# This workflow validates files in the examples/v2 and /v3 directories
+#
+
+# run this on push to any branch and creation of pull-requests
+on: [push, pull_request]
+
+jobs:
+  validate-examples:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1 # checkout repo content
+    - uses: actions/setup-node@v1 # setup Node.js
+      with:
+        node-version: '12.x'
+    - name: Install dependencies
+      run: npm i
+    - name: Validate examples
+      run: node scripts/validateExamples/index.js
+

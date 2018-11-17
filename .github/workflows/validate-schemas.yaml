@@ -1,0 +1,31 @@
+name: validate-schemas
+
+# Author: @MikeRalphson
+# Issue: https://github.com/OAI/OpenAPI-Specification/issues/1739
+
+#
+# This workflow validates files in the schemas directory against their
+# appropriate meta-schemas
+#
+
+# run this on push to any branch and creation of pull-requests
+on: [push, pull_request]
+
+jobs:
+  mdv:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1 # checkout repo content
+    - uses: actions/setup-node@v1 # setup Node.js
+      with:
+        node-version: '12.x'
+    - name: Install dependencies
+      run: npm i
+    - name: Validate schemas
+      run: |
+        node scripts/validateSchema/index.js schemas/v1.2/apiDeclaration.json schemas/jsonSchema/draft-04/metaschema.json
+        node scripts/validateSchema/index.js schemas/v2.0/schema.json schemas/jsonSchema/draft-04/metaschema.json
+        node scripts/validateSchema/index.js schemas/v3.0/schema.yaml schemas/jsonSchema/draft-04/metaschema.json
+

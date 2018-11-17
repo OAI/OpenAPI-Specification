@@ -18,7 +18,12 @@
     "schemas/*"
   ],
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "jsonschema": "^1.2.4",
+    "mdv": "^1.0.7",
+    "node-readfiles": "^0.2.0",
+    "yaml": "^1.7.2"
+  },
   "keywords": [
     "OpenAPI",
     "OAS",

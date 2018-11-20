@@ -665,7 +665,7 @@ definitions:
           - $ref: '#/definitions/Response'
           - $ref: '#/definitions/Reference'
     patternProperties:
-      '[1-5](?:\d{2}|XX)':
+      '^[1-5](?:\d{2}|XX)$':
         oneOf:
           - $ref: '#/definitions/Response'
           - $ref: '#/definitions/Reference'

@@ -252,7 +252,7 @@ definitions:
         type: array
         items: {}
         minItems: 1
-        uniqueItems: true
+        uniqueItems: false
       type:
         type: string
         enum:

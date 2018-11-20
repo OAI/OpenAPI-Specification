@@ -669,6 +669,7 @@ definitions:
         oneOf:
           - $ref: '#/definitions/Response'
           - $ref: '#/definitions/Reference'
+      '^x-': {}
     minProperties: 1
     additionalProperties: false
  

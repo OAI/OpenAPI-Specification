@@ -23,6 +23,7 @@ properties:
     type: array
     items:
       $ref: '#/definitions/Tag'
+    uniqueItems: true
   paths:
     $ref: '#/definitions/Paths'
   components:

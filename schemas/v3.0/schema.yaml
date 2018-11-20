@@ -600,6 +600,7 @@ definitions:
           oneOf:
             - $ref: '#/definitions/Parameter'
             - $ref: '#/definitions/Reference'
+        uniqueItems: true
     patternProperties:
       '^x-': {}
     additionalProperties: false
@@ -627,6 +628,7 @@ definitions:
           oneOf:
             - $ref: '#/definitions/Parameter'
             - $ref: '#/definitions/Reference'
+        uniqueItems: true
       requestBody:
         oneOf:
           - $ref: '#/definitions/RequestBody'

@@ -369,6 +369,7 @@ definitions:
       description:
         type: string
       headers:
+        type: object
         additionalProperties:
           oneOf:
             - $ref: '#/definitions/Header'

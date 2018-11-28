@@ -1,0 +1,26 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+h1,h2,h3 { color: #629b34; }
+
+a[href] { color: #45512c; }
+
+footer { display: none; }
+
+header > ul > li { 
+  background: #629b34;
+  box-shadow: inset 0px 1px 1px 0 rgba(33,2,38, 1);
+}
+
+header > ul > li:hover {
+  background: #45512c;
+} 
+
+section:first-of-type {
+  background-image: url("../img/draft.png");
+  background-size: 30%;
+  background-repeat: repeat;
+}
+

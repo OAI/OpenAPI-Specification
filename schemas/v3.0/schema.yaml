@@ -23,6 +23,7 @@ properties:
     type: array
     items:
       $ref: '#/definitions/Tag'
+    uniqueItems: true
   paths:
     $ref: '#/definitions/Paths'
   components:
@@ -35,10 +36,10 @@ definitions:
     type: object
     required:
       - $ref
-    properties:
-      $ref:
+    patternProperties:
+      '^\$ref$':
         type: string
-        format: uriref
+        format: uri-reference
   Info:
     type: object
     required:
@@ -51,7 +52,7 @@ definitions:
         type: string
       termsOfService:
         type: string
-        format: uriref
+        format: uri-reference
       contact:
         $ref: '#/definitions/Contact'
       license:
@@ -70,7 +71,7 @@ definitions:
         type: string
       url:
         type: string
-        format: uriref
+        format: uri-reference
       email:
         type: string
         format: email
@@ -87,7 +88,7 @@ definitions:
         type: string
       url:
         type: string
-        format: uriref
+        format: uri-reference
     patternProperties:
       '^x-': {}
     additionalProperties: false
@@ -252,7 +253,7 @@ definitions:
         type: array
         items: {}
         minItems: 1
-        uniqueItems: true
+        uniqueItems: false
       type:
         type: string
         enum:
@@ -347,7 +348,7 @@ definitions:
         type: string
       namespace:
         type: string
-        format: url
+        format: uri
       prefix:
         type: string
       attribute:
@@ -368,6 +369,7 @@ definitions:
       description:
         type: string
       headers:
+        type: object
         additionalProperties:
           oneOf:
             - $ref: '#/definitions/Header'
@@ -440,7 +442,7 @@ definitions:
       value: {}
       externalValue:
         type: string
-        format: uriref
+        format: uri-reference
     patternProperties:
       '^x-': {}
     additionalProperties: false
@@ -600,6 +602,7 @@ definitions:
           oneOf:
             - $ref: '#/definitions/Parameter'
             - $ref: '#/definitions/Reference'
+        uniqueItems: true
     patternProperties:
       '^x-': {}
     additionalProperties: false
@@ -627,6 +630,7 @@ definitions:
           oneOf:
             - $ref: '#/definitions/Parameter'
             - $ref: '#/definitions/Reference'
+        uniqueItems: true
       requestBody:
         oneOf:
           - $ref: '#/definitions/RequestBody'
@@ -662,18 +666,13 @@ definitions:
           - $ref: '#/definitions/Response'
           - $ref: '#/definitions/Reference'
     patternProperties:
-      '[1-5](?:\d{2}|XX)':
+      '^[1-5](?:\d{2}|XX)$':
         oneOf:
           - $ref: '#/definitions/Response'
           - $ref: '#/definitions/Reference'
       '^x-': {}
     minProperties: 1
     additionalProperties: false
-    not:
-      type: object
-      patternProperties:
-        '^x-': {}
-      additionalProperties: false
  
 
   SecurityRequirement:
@@ -707,7 +706,7 @@ definitions:
         type: string
       url:
         type: string
-        format: uriref
+        format: uri-reference
     patternProperties:
       '^x-': {}
     additionalProperties: false
@@ -1250,13 +1249,6 @@ definitions:
       - $ref: '#/definitions/BearerHTTPSecurityScheme'
 
   NonBearerHTTPSecurityScheme:
-    not:
-      type: object
-      properties:
-        scheme:
-          type: string
-          enum:
-            - bearer
     type: object
     required:
       - scheme
@@ -1264,6 +1256,9 @@ definitions:
     properties:
       scheme:
         type: string
+        not:
+          enum:
+            - bearer
       description:
         type: string
       type:
@@ -1326,7 +1321,7 @@ definitions:
           - openIdConnect      
       openIdConnectUrl:
         type: string
-        format: url
+        format: uri-reference
       description:
         type: string
     patternProperties:
@@ -1356,10 +1351,10 @@ definitions:
     properties:
       authorizationUrl:
         type: string
-        format: uriref
+        format: uri-reference
       refreshUrl:
         type: string
-        format: uriref
+        format: uri-reference
       scopes:
         type: object
         additionalProperties:
@@ -1375,10 +1370,10 @@ definitions:
     properties:
       tokenUrl:
         type: string
-        format: uriref
+        format: uri-reference
       refreshUrl:
         type: string
-        format: uriref
+        format: uri-reference
       scopes:
         type: object
         additionalProperties:
@@ -1394,10 +1389,10 @@ definitions:
     properties:
       tokenUrl:
         type: string
-        format: uriref
+        format: uri-reference
       refreshUrl:
         type: string
-        format: uriref
+        format: uri-reference
       scopes:
         type: object
         additionalProperties:
@@ -1414,13 +1409,13 @@ definitions:
     properties:
       authorizationUrl:
         type: string
-        format: uriref
+        format: uri-reference
       tokenUrl:
         type: string
-        format: uriref
+        format: uri-reference
       refreshUrl:
         type: string
-        format: uriref
+        format: uri-reference
       scopes:
         type: object
         additionalProperties:
@@ -1439,7 +1434,7 @@ definitions:
     properties:
       operationRef:
         type: string
-        format: uriref
+        format: uri-reference
       parameters:
         type: object
         additionalProperties: {}

@@ -1,7 +1,16 @@
-## Current major version
+---
+title: OpenAPI Initiative gh-pages repository
+description: HTML Spec. and extensible registry
+---
+# OpenAPI Initiative Registry
 
-* [v3.0.0](oas/v3.0.0.html)
+This site contains the OpenAPI Initiative Registry and content for the HTML versions of the OpenAPI Specification.
 
-## Previous major version
+## Registry
 
-* [v2.0](oas/v2.0.html)
+* Proceed to [Registry](/registry/index.html)
+
+## The Specification
+
+* [Markdown source-of-truth](https://github.com/OAI/OpenAPI-Specification)
+* [HTML Specification versions](https://openapis.org/specification)

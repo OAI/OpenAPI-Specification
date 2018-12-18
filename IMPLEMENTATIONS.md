@@ -1,6 +1,6 @@
 ### Implementations
 
-Below is a list of known tooling that implements the 3.0.0 specification. While support for the 3.0.0 specification matures,  refer to the details of projects listed below for any notes about stability and roadmap.  The process to improve the 3.x specification includes feedback from end-users and tooling creators. We strongly encourage draft tooling be made available for early users of OAS drafts.
+Below is a list of known tooling that implements the 3.0.0 specification. While support for the 3.0.0 specification matures, refer to the details of projects listed below for any notes about stability and roadmap. The process to improve the 3.x specification includes feedback from end-users and tooling creators. We strongly encourage draft tooling be made available for early users of OAS drafts.
 
 These tools are not endorsed by the OAI.
 
@@ -16,8 +16,8 @@ These tools are not endorsed by the OAI.
 | Microsoft.OpenApi.net | [github/microsoft/OpenApi.net](https://github.com/microsoft/openapi.net/) | dotnet | C# based parser with definition validation and migration support from V2 |
 | odata-openapi | [github/oasis-tcs/odata-openapi](https://github.com/oasis-tcs/odata-openapi) | XSLT | OData 4.0 to OpenAPI 3.0.0 converter |
 | openapi3_parser | [github/kevindew/openapi3_parser](https://github.com/kevindew/openapi3_parser) | Ruby | A Ruby implementation of parser and validator for the OpenAPI 3 Specification |
-| oas_parser | [github/Nexmo/oas_parser](https://github.com/Nexmo/oas_parser) | Ruby | An open source OpenAPI Spec 3 Definition Parser writen in Ruby |
-| oas3-remote-refs | [github//OverSpeedIO/oas3-remote-refs](https://github.com/OverSpeedIO/oas3-remote-refs) | Node.js | Tool to pull remote refernences and merge them into the definitions of the provided OpenAPI3 speicfication.
+| oas_parser | [github/Nexmo/oas_parser](https://github.com/Nexmo/oas_parser) | Ruby | An open source OpenAPI Spec 3 Definition Parser written in Ruby |
+| oas3-remote-refs | [github//OverSpeedIO/oas3-remote-refs](https://github.com/OverSpeedIO/oas3-remote-refs) | Node.js | Tool to pull remote references and merge them into the definitions of the provided OpenAPI3 specification.
 | go-openapi | [github/nasa9084/go-openapi](https://github.com/nasa9084/go-openapi) | Go | Golang struct model for OpenAPI 3.x. |
 | openapi | [github/wzshiming/openapi](https://github.com/wzshiming/openapi) | Go | OpenAPI 3 Specification for golang |
 | kin-openapi | [github/getkin/kin-openapi](https://github.com/getkin/kin-openapi) | Go | OpenAPI 3.x implementation for Go (parsing, converting, validation) |

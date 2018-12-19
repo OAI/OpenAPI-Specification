@@ -8,10 +8,46 @@ Sponsored by ![Ethereum Classic Labs](https://github.com/open-rpc/design/blob/ma
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14) [RFC2119](https://tools.ietf.org/html/rfc2119) [RFC8174](https://tools.ietf.org/html/rfc8174) when, and only when, they appear in all capitals, as shown here.
 
+In the following description, if a field is not explicitly **REQUIRED** or described with a MUST or SHALL, it can be considered OPTIONAL.
+
 This document is licensed under [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.html).
 
-## Introduction
+### Table of Contents
+<!-- TOC depthFrom:1 depthTo:3 withLinks:1 updateOnSave:1 orderedList:0 -->
 
+- [Introduction](#introduction)
+- [Definitions](#definitions)
+	- [OpenRPC Document](#openrpcDocument)
+- [Specification](#specification)
+	- [Versions](#versions)
+	- [Format](#format)
+	- [Document Structure](#documentStructure)
+	- [Data Types](#dataTypes)
+	- [Rich Text Formatting](#richText)
+	- [Relative References In URLs](#relativeReferences)
+	- [OpenRPC Schema Object](#openrpcSchemaObject)
+		- [Info Object](#infoObject)
+		    - [Contact Object](#contactObject)
+		    - [License Object](#licenseObject)
+		- [Server Object](#serverObject)
+		    - [Server Variable Object](#serverVariableObject)
+		- [Method Object](#methodObject)
+		    - [Content Descriptor Object](#contentDescriptorObject)
+		        - [Schema Object](#schemaObject)
+            	- [Example Object](#exampleObject)
+		    - [Link Object](#linkObject)
+            	- [Runtime Expression](#runtimeExpression)
+		    - [Error Object](#errorObject)
+		- [Components Object](#componentsObject)
+		- [Tag Object](#tagObject)
+		- [External Documentation Object](#externalDocumentationObject)
+		- [Reference Object](#referenceObject)
+	- [Specification Extensions](#specificationExtensions)
+
+
+<!-- /TOC -->
+
+## Introduction
 
 The OpenRPC Specification defines a standard, programming language-agnostic interface description for [JSON-RPC 2.0 api's](https://www.jsonrpc.org/specification), which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenRPC, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenRPC Specification removes guesswork in calling a service.
 
@@ -25,55 +61,11 @@ Use cases for machine-readable RPC API definition documents include, but are not
 
 The OpenRPC Specification does not require rewriting existing APIs. It does not require binding any software to a service — the service being described may not even be owned by the creator of its description. It does, however, require the capabilities of the service be described in the structure of the OpenRPC Specification. Not all services can be described by OpenRPC — this specification is not intended to cover REST APIs - It is exclusively for api's which adhere to the JSON-RPC 2.0 spec. The OpenRPC Specification does not mandate a specific development process such as design-first or code-first. It does facilitate either technique by establishing clear interactions with a JSON-RPC api.
 
-## Table of Contents
-<!-- TOC depthFrom:1 depthTo:3 withLinks:1 updateOnSave:1 orderedList:0 -->
-
-- [Definitions](#definitions)
-	- [OpenRPC Document](#openrpcDocument)
-- [Specification](#specification)
-	- [Versions](#versions)
-	- [Format](#format)
-	- [Document Structure](#documentStructure)
-	- [Data Types](#dataTypes)
-	- [Rich Text Formatting](#richText)
-	- [Relative References In URLs](#relativeReferences)
-	- [Schema](#schema)
-		- [OpenRPC Object](#openrpcObject)
-		- [Info Object](#infoObject)
-		- [Contact Object](#contactObject)
-		- [License Object](#licenseObject)
-		- [Server Object](#serverObject)
-		- [Server Variable Object](#serverVariableObject)
-		- [Components Object](#componentsObject)
-		- [Methods Object](#methodsObject)
-		- [Method Item Object](#methodItemObject)
-		- [External Documentation Object](#externalDocumentationObject)
-		- [Parameter Object](#parameterObject)
-		- [Request Object](#requestObject)
-		- [Responses Object](#responsesObject)
-		- [Response Object](#responseObject)
-		- [Example Object](#exampleObject)
-		- [Tag Object](#tagObject)
-		- [Reference Object](#referenceObject)
-		- [Schema Object](#schemaObject)
-		- [Security Scheme Object](#securitySchemeObject)
-		- [OAuth Flows Object](#oauthFlowsObject)
-		- [OAuth Flow Object](#oauthFlowObject)
-		- [Security Requirement Object](#securityRequirementObject)
-	- [Specification Extensions](#specificationExtensions)
-	- [Security Filtering](#securityFiltering)
-- [Appendix A: Revision History](#revisionHistory)
-
-
-<!-- /TOC -->
-
 ## Definitions
-
 ##### <a name="openrpcDocument"></a>OpenRPC Document
 A document (or set of documents) that defines or describes an API. An OpenRPC definition uses and conforms to the OpenRPC Specification.
 
 ## Specification
-
 ### Versions
 
 The OpenRPC Specification is versioned using [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html) (semver) and follows the semver specification.
@@ -106,6 +98,8 @@ An OpenRPC document MAY be made up of a single document or be divided into multi
 It is RECOMMENDED that the root OpenRPC document be named: `openrpc.json`.
 
 ### <a name="dataTypes"></a>Data Types
+
+***FIXXXX MEEEEEEEEEEE***
 
 Primitive data types in the OPENRPC are based on the types supported by the [JSON Schema Specification Wright Draft 00](https://tools.ietf.org/html/draft-wright-json-schema-00#section-4.2).
 Note that `integer` as a type is also supported and is defined as a JSON number without a fraction or exponent part.
@@ -146,35 +140,24 @@ Relative references are resolved using the URLs defined in the [`Server Object`]
 
 Relative references used in `$ref` are processed as per [JSON Reference](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03), using the URL of the current document as the base URI. See also the [Reference Object](#referenceObject).
 
-### Schema
-
-In the following description, if a field is not explicitly **REQUIRED** or described with a MUST or SHALL, it can be considered OPTIONAL.
-
-#### <a name="openrpcObject"></a>OpenRPC Object
-
+### <a name="openrpcSchemaObject">OpenRPC Schema Object
 This is the root document object of the [OpenRPC document](#openrpcDocument).
-
-##### Fixed Fields
 
 Field Name | Type | Description
 ---|:---:|---
 <a name="openrpcVersion"></a>openrpc | `string` | **REQUIRED**. This string MUST be the [semantic version number](https://semver.org/spec/v2.0.0.html) of the [OpenRPC Specification version](#versions) that the OpenRPC document uses. The `openrpc` field SHOULD be used by tooling specifications and clients to interpret the OpenRPC document. This is *not* related to the API [`info.version`](#infoVersion) string.
 <a name="openrpcInfo"></a>info | [Info Object](#infoObject) | **REQUIRED**. Provides metadata about the API. The metadata MAY be used by tooling as required.
 <a name="openrpcServers"></a>servers | [[Server Object](#serverObject)] | An array of Server Objects, which provide connectivity information to a target server. If the `servers` property is not provided, or is an empty array, the default value would be a [Server Object](#serverObject) with a [url](#serverUrl) value of `/`.
-<a name="openrpcMethods"></a>methods | [Methods Object](#methodsObject) | **REQUIRED**. The available methods and operations for the API.
+<a name="openrpcMethods"></a>methods | [[Method Object](#methodsObject) | [Reference Object](#referenceObject)] | **REQUIRED**. The available methods and operations for the API. While it is required, the array may be empty (to handle security filtering, for example).
 <a name="openrpcComponents"></a>components | [Components Object](#componentsObject) | An element to hold various schemas for the specification.
-<a name="openrpcSecurity"></a>security | [[Security Requirement Object](#securityRequirementObject)] | A declaration of which security mechanisms can be used across the API. The list of values includes alternative security requirement objects that can be used. Only one of the security requirement objects need to be satisfied to authorize a request. Individual operations can override this definition.
 <a name="openrpcTags"></a>tags | [[Tag Object](#tagObject)] | A list of tags used by the specification with additional metadata. The order of the tags can be used to reflect on their order by the parsing tools. Not all tags that are used by the [Operation Object](#operationObject) must be declared. The tags that are not declared MAY be organized randomly or based on the tools' logic. Each tag name in the list MUST be unique.
 <a name="openrpcExternalDocs"></a>externalDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation.
 
 This object MAY be extended with [Specification Extensions](#specificationExtensions).
 
 #### <a name="infoObject"></a>Info Object
-
 The object provides metadata about the API.
 The metadata MAY be used by the clients if needed, and MAY be presented in editing or documentation generation tools for convenience.
-
-##### Fixed Fields
 
 Field Name | Type | Description
 ---|:---:|---
@@ -188,7 +171,7 @@ Field Name | Type | Description
 
 This object MAY be extended with [Specification Extensions](#specificationExtensions).
 
-##### Info Object Example
+Info Object Example:
 
 ```json
 {
@@ -208,11 +191,9 @@ This object MAY be extended with [Specification Extensions](#specificationExtens
 }
 ```
 
-#### <a name="contactObject"></a>Contact Object
+##### <a name="contactObject"></a>Contact Object
 
 Contact information for the exposed API.
-
-##### Fixed Fields
 
 Field Name | Type | Description
 ---|:---:|---
@@ -222,8 +203,7 @@ Field Name | Type | Description
 
 This object MAY be extended with [Specification Extensions](#specificationExtensions).
 
-##### Contact Object Example
-
+Contact Object Example:
 ```json
 {
   "name": "API Support",
@@ -232,11 +212,9 @@ This object MAY be extended with [Specification Extensions](#specificationExtens
 }
 ```
 
-#### <a name="licenseObject"></a>License Object
+##### <a name="licenseObject"></a>License Object
 
 License information for the exposed API.
-
-##### Fixed Fields
 
 Field Name | Type | Description
 ---|:---:|---
@@ -245,8 +223,7 @@ Field Name | Type | Description
 
 This object MAY be extended with [Specification Extensions](#specificationExtensions).
 
-##### License Object Example
-
+License Object Example:
 ```json
 {
   "name": "Apache 2.0",
@@ -254,11 +231,10 @@ This object MAY be extended with [Specification Extensions](#specificationExtens
 }
 ```
 
+
 #### <a name="serverObject"></a>Server Object
 
 An object representing a Server.
-
-##### Fixed Fields
 
 Field Name | Type | Description
 ---|:---:|---
@@ -268,7 +244,7 @@ Field Name | Type | Description
 
 This object MAY be extended with [Specification Extensions](#specificationExtensions).
 
-##### Server Object Example
+Server Object Example:
 
 A single server would be described as:
 
@@ -329,11 +305,9 @@ The following shows how variables can be used for a server configuration:
 }
 ```
 
-#### <a name="serverVariableObject"></a>Server Variable Object
+##### <a name="serverVariableObject"></a>Server Variable Object
 
 An object representing a Server Variable for server URL template substitution.
-
-##### Fixed Fields
 
 Field Name | Type | Description
 ---|:---:|---
@@ -343,178 +317,9 @@ Field Name | Type | Description
 
 This object MAY be extended with [Specification Extensions](#specificationExtensions).
 
-#### <a name="componentsObject"></a>Components Object
+#### <a name="methodObject"></a>Method Object
 
-Holds a set of reusable objects for different aspects of the OPENRPC.
-All objects defined within the components object will have no effect on the API unless they are explicitly referenced from properties outside the components object.
-
-
-##### Fixed Fields
-
-Field Name | Type | Description
----|:---|---
-<a name="componentsSchemas"></a> schemas | Map[`string`, [Schema Object](#schemaObject) \| [Reference Object](#referenceObject)] | An object to hold reusable [Schema Objects](#schemaObject).
-<a name="componentsResponses"></a> responses | Map[`string`, [Response Object](#responseObject) \| [Reference Object](#referenceObject)] | An object to hold reusable [Response Objects](#responseObject).
-<a name="componentsParameters"></a> parameters | Map[`string`, [Parameter Object](#parameterObject) \| [Reference Object](#referenceObject)] | An object to hold reusable [Parameter Objects](#parameterObject).
-<a name="componentsExamples"></a> examples | Map[`string`, [Example Object](#exampleObject) \| [Reference Object](#referenceObject)] | An object to hold reusable [Example Objects](#exampleObject).
-<a name="componentsRequestBodies"></a> requestBodies | Map[`string`, [Request Object](#requestObject) \| [Reference Object](#referenceObject)] | An object to hold reusable [Request Objects](#requestObject).
-<a name="componentsHeaders"></a> headers | Map[`string`, [Header Object](#headerObject) \| [Reference Object](#referenceObject)] | An object to hold reusable [Header Objects](#headerObject).
-<a name="componentsSecuritySchemes"></a> securitySchemes| Map[`string`, [Security Scheme Object](#securitySchemeObject) \| [Reference Object](#referenceObject)] | An object to hold reusable [Security Scheme Objects](#securitySchemeObject).
-<a name="componentsLinks"></a> links | Map[`string`, [Link Object](#linkObject) \| [Reference Object](#referenceObject)] | An object to hold reusable [Link Objects](#linkObject).
-<a name="componentsCallbacks"></a> callbacks | Map[`string`, [Callback Object](#callbackObject) \| [Reference Object](#referenceObject)] | An object to hold reusable [Callback Objects](#callbackObject).
-
-This object MAY be extended with [Specification Extensions](#specificationExtensions).
-
-All the fixed fields declared above are objects that MUST use keys that match the regular expression: `^[a-zA-Z0-9\.\-_]+$`.
-
-Field Name Examples:
-
-```
-User
-User_1
-User_Name
-user-name
-my.org.User
-```
-
-##### Components Object Example
-
-```json
-"components": {
-  "schemas": {
-    "GeneralError": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        }
-      }
-    },
-    "Category": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "Tag": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
-    }
-  },
-  "parameters": {
-    "skipParam": {
-      "name": "skip",
-      "in": "query",
-      "description": "number of items to skip",
-      "required": true,
-      "schema": {
-        "type": "integer",
-        "format": "int32"
-      }
-    },
-    "limitParam": {
-      "name": "limit",
-      "in": "query",
-      "description": "max records to return",
-      "required": true,
-      "schema" : {
-        "type": "integer",
-        "format": "int32"
-      }
-    }
-  },
-  "responses": {
-    "NotFound": {
-      "description": "Entity not found."
-    },
-    "IllegalInput": {
-      "description": "Illegal input for operation."
-    },
-    "GeneralError": {
-      "description": "General Error",
-      "content": {
-        "application/json": {
-          "schema": {
-            "$ref": "#/components/schemas/GeneralError"
-          }
-        }
-      }
-    }
-  },
-  "securitySchemes": {
-    "api_key": {
-      "type": "apiKey",
-      "name": "api_key",
-      "in": "header"
-    },
-    "petstore_auth": {
-      "type": "oauth2",
-      "flows": {
-        "implicit": {
-          "authorizationUrl": "http://example.org/api/oauth/dialog",
-          "scopes": {
-            "write:pets": "modify pets in your account",
-            "read:pets": "read your pets"
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-#### <a name="methodsObject"></a>Methods Object
-
-Holds the mapping of method name to method defininition. The method name is used as the `method` field of the JSON RPC body. It therefor MUST be unique. Contrary to OpenAPI specification,
-
-
-The Methods MAY be empty, due to [ACL constraints](#securityFiltering).
-
-##### Patterned Fields
-
-Field Pattern | Type | Description
----|:---:|---
-<a name="methodsMethod"></a>{method} | [Method Item Object](#methodItemObject) | The literal name of the JSON RPC method. This field is to be used as the cannonical id for the method/operation. Pattern matching MUST NOT be used.
-
-This object MAY be extended with [Specification Extensions](#specificationExtensions).
-
-##### Methods Object Example
-
-```json
-{
-  "list_pets": {
-    "tags": [
-      "pet"
-    ],
-    "summary": "Lists the pets in the store"
-  }
-}
-```
-
-#### <a name="methodItemObject"></a>Method Item Object
-
-Describes the operation for the given method name.
-A Method Item MAY NOT be empty.
-
-##### Fixed Fields
+Describes the operation for the given method name. The method name is used as the `method` field of the JSON RPC body. It therefor MUST be unique.
 
 Field Name | Type | Description
 ---|:---:|---
@@ -522,22 +327,21 @@ Field Name | Type | Description
 <a name="methodSummary"></a>summary | `string` | A short summary of what the method does.
 <a name="methodDescription"></a>description | `string` | A verbose explanation of the method behavior. [CommonMark syntax](http://spec.commonmark.org/) MAY be used for rich text representation.
 <a name="methodExternalDocs"></a>externalDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation for this method.
-<a name="methodParameters"></a>parameters | [[Parameter Object](#parameterObject) \| [Reference Object](#referenceObject)] | A list of parameters that are applicable for this operation. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a [name](#parameterName) and [location](#parameterIn). The list can use the [Reference Object](#referenceObject) to link to parameters that are defined at the [OpenRPC Object's components/parameters](#componentsParameters).
-<a name="methodResponses"></a>responses | [Responses Object](#responsesObject) | **REQUIRED**. The list of possible responses as they are returned from executing this operation.
+<a name="methodParameters"></a>parameters | [[Parameter Object](#parameterObject) \| [Reference Object](#referenceObject)] | A list of parameters that are applicable for this operation. The list MUST NOT include duplicated parameters and therefore require [name](#parameterName) to be unique. The list can use the [Reference Object](#referenceObject) to link to parameters that are defined at the [OpenRPC Object's components/parameters](#componentsParameters).
+<a name="methodResults"></a>results | [Results Object](#resultsObject) | **REQUIRED**. The description of the results returned by the method.
 <a name="methodDeprecated"></a>deprecated | `boolean` | Declares this operation to be deprecated. Consumers SHOULD refrain from usage of the declared operation. Default value is `false`.
-<a name="methodSecurity"></a>security | [[Security Requirement Object](#securityRequirementObject)] | A declaration of which security mechanisms can be used for this operation. The list of values includes alternative security requirement objects that can be used. Only one of the security requirement objects need to be satisfied to authorize a request. This definition overrides any declared top-level [`security`](#openrpcSecurity). To remove a top-level security declaration, an empty array can be used.
 <a name="methodServers"></a>servers | [[Server Object](#serverObject)] | An alternative `server` array to service this operation. If an alternative `server` object is specified at the Root level, it will be overridden by this value.
 
 This object MAY be extended with [Specification Extensions](#specificationExtensions).
 
-##### Operation Object Example
-
+Method Object Example:
 ```json
 {
   "tags": [
     "pet"
   ],
   "summary": "Updates a pet in the store with form data",
+  "description": "#Big Ol long Doc Filled WIth Markdown!",
   "parameters": [
     {
       "name": "petId",
@@ -546,99 +350,52 @@ This object MAY be extended with [Specification Extensions](#specificationExtens
       "schema": {
         "type": "string"
       }
+    },
+    {
+      "name": "name",
+      "description": "Updated name of the pet",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "status",
+      "description": "Updated status of the pet",
+      "required": "true",
+      "schema": {
+        "type": "string",
+      }
     }
   ],
-  "request": {
+  "results": {
+    "description": "Pet updated.",
     "content": {
       "schema": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "Updated name of the pet",
-            "type": "string"
-          },
-          "status": {
-            "description": "Updated status of the pet",
-            "type": "string"
-           }
-         },
-         "required": [
-           "status"
-         ]
+        "$ref": "#/components/schemas/Pet"
       }
     }
-  },
-  "responses": {
-    "success": {
-      "description": "Pet updated.",
-      "content": {
-        "schema": {
-          "$ref": "#/components/schemas/Pet"
-        }
-      }
-    }
-  },
-  "security": [
-    {
-      "petstore_auth": [
-        "write:pets",
-        "read:pets"
-      ]
-    }
-  ]
+  }
 }
 ```
 
-#### <a name="externalDocumentationObject"></a>External Documentation Object
-
-Allows referencing an external resource for extended documentation.
-
-##### Fixed Fields
+##### <a name="contentDescriptorObject"></a>Content Descriptor Object
+TODO DESCRIPTION
 
 Field Name | Type | Description
 ---|:---:|---
-<a name="externalDocDescription"></a>description | `string` | A short description of the target documentation. [CommonMark syntax](http://spec.commonmark.org/) MAY be used for rich text representation.
-<a name="externalDocUrl"></a>url | `string` | **REQUIRED**. The URL for the target documentation. Value MUST be in the format of a URL.
+<a name="name"></a>name | `string` | name of the content that is being described.
+<a name="required"></a>required | `boolean` | Determines if the content is a required field.
+<a name="schema"></a>schema | [Schema Object](#schemaObject) | Schema that describes the content.
+<a name="examples"></a>examples | [Example Object](#exampleObject) | Example of the parameter. The example MUST match the specified schema. If referencing a `schema` which contains an example, the `example` value SHALL _override_ the example provided by the schema. To represent examples of media types that cannot naturally be represented in JSON, a string value can contain the example with escaping where necessary.
+<a name="deprecated"></a>deprecated | `boolean` | Specifies that the content is deprecated and SHOULD be transitioned out of usage. Default value is `false`.
 
 This object MAY be extended with [Specification Extensions](#specificationExtensions).
 
-##### External Documentation Object Example
-
-```json
-{
-  "description": "Find more info here",
-  "url": "https://example.com"
-}
-```
-
-#### <a name="parameterObject"></a>Parameter Object
-
-Describes a single operation parameter.
-
-A unique parameter is defined it [name](#parameterName). All parameter names must therefor be unique for an individual method.
-
-##### Fixed Fields
-Field Name | Type | Description
----|:---:|---
-<a name="parameterName"></a>name | `string` | **REQUIRED**. The name of the parameter. Parameter names are *case sensitive*.
-<a name="parameterDescription"></a>description | `string` | A brief description of the parameter. This could contain examples of use.  [CommonMark syntax](http://spec.commonmark.org/) MAY be used for rich text representation.
-<a name="parameterRequired"></a>required | `boolean` | Determines whether this parameter is mandatory. The property MAY be included and its default value is `false`.
-<a name="parameterDeprecated"></a> deprecated | `boolean` | Specifies that a parameter is deprecated and SHOULD be transitioned out of usage. Default value is `false`.
-
-The rules for serialization of the parameter are specified using the schema peroperty.
-
-Field Name | Type | Description
----|:---:|---
-<a name="parameterExplode"></a>explode | `boolean` | When this is true, parameter values of type `array` or `object` generate separate parameters for each value of the array or key-value pair of the map. For other types of parameters this property has no effect.
-<a name="parameterSchema"></a>schema | [Schema Object](#schemaObject) \| [Reference Object](#referenceObject) | The schema defining the type used for the parameter.
-<a name="parameterExample"></a>example | Any | Example of the parameter. The example MUST match the specified schema. If referencing a `schema` which contains an example, the `example` value SHALL _override_ the example provided by the schema. To represent examples of media types that cannot naturally be represented in JSON, a string value can contain the example with escaping where necessary.
-
 When `example` is provided in conjunction with the `schema` object, the example MUST follow the prescribed serialization strategy for the parameter.
 
-##### Parameter Object Examples
+Content Descriptor Object Examples:
 
-A parameter with an array of 64 bit integer numbers:
-
+1. A parameter with an array of 64 bit integer numbers:
 ```json
 {
   "name": "token",
@@ -654,7 +411,7 @@ A parameter with an array of 64 bit integer numbers:
 }
 ```
 
-A parameter of a string value:
+2. A parameter of a string value:
 ```json
 {
   "name": "username",
@@ -666,7 +423,7 @@ A parameter of a string value:
 }
 ```
 
-An optional parameter of an array of string values
+3. An optional parameter of an array of string values
 ```json
 {
   "name": "id",
@@ -681,7 +438,7 @@ An optional parameter of an array of string values
 }
 ```
 
-A parameter, allowing undefined parameters of a specific type:
+4. A parameter, allowing undefined parameters of a specific type:
 ```json
 {
   "name": "freeForm",
@@ -694,7 +451,7 @@ A parameter, allowing undefined parameters of a specific type:
 }
 ```
 
-A complex parameter
+5. A complex parameter
 
 ```json
 {
@@ -717,491 +474,8 @@ A complex parameter
 }
 ```
 
-#### <a name="requestObject"></a>Request Object
 
-Describes a single request body.
-
-##### Fixed Fields
-Field Name | Type | Description
----|:---:|---
-<a name="requestBodyDescription"></a>description | `string` | A brief description of the request body. This could contain examples of use.  [CommonMark syntax](http://spec.commonmark.org/) MAY be used for rich text representation.
-<a name="requestBodyContent"></a>content | Map[`string`, [Content Type Object](#contentTypeObject)] | **REQUIRED**. The content of the request body. The key is a media type or [media type range](https://tools.ietf.org/html/rfc7231#appendix-D) and the value describes it.  For requests that match multiple keys, only the most specific key is applicable. e.g. text/plain overrides text/*
-<a name="requestBodyRequired"></a>required | `boolean` | Determines if the request body is required in the request. Defaults to `false`.
-
-
-This object MAY be extended with [Specification Extensions](#specificationExtensions).
-
-##### Request Body Examples
-
-A request body with a referenced model definition.
-```json
-{
-  "description": "user to add to the system",
-  "content": {
-    "application/json": {
-      "schema": {
-        "$ref": "#/components/schemas/User"
-      },
-      "examples": {
-          "user" : {
-            "summary": "User Example",
-            "externalValue": "http://foo.bar/examples/user-example.json"
-          }
-        }
-    },
-    "application/xml": {
-      "schema": {
-        "$ref": "#/components/schemas/User"
-      },
-      "examples": {
-          "user" : {
-            "summary": "User example in XML",
-            "externalValue": "http://foo.bar/examples/user-example.xml"
-          }
-        }
-    },
-    "text/plain": {
-      "examples": {
-        "user" : {
-            "summary": "User example in Plain text",
-            "externalValue": "http://foo.bar/examples/user-example.txt"
-        }
-      }
-    },
-    "*/*": {
-      "examples": {
-        "user" : {
-            "summary": "User example in other format",
-            "externalValue": "http://foo.bar/examples/user-example.whatever"
-        }
-      }
-    }
-  }
-}
-```
-
-
-A body parameter that is an array of string values:
-```json
-{
-  "description": "user to add to the system",
-  "content": {
-    "text/plain": {
-      "schema": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
-      }
-    }
-  }
-}
-```
-
-#### <a name="contentTypeObject"></a>Content Type Object
-Each Content Type Object provides schema and examples for the parent entity
-
-##### Fixed Fields
-Field Name | Type | Description
----|:---:|---
-<a name="contentTypeSchema"></a>schema | [Schema Object](#schemaObject) \| [Reference Object](#referenceObject) | The schema defining the content of the request, response, or parameter.
-<a name="contentTypeExample"></a>example | Any | Example of the media type.  The example object SHOULD be in the correct format as specified by the media type.  The `example` field is mutually exclusive of the `examples` field.  Furthermore, if referencing a `schema` which contains an example, the `example` value SHALL _override_ the example provided by the schema.
-<a name="contentTypeExamples"></a>examples | Map[ `string`, [Example Object](#exampleObject) \| [Reference Object](#referenceObject)] | Examples of the media type.  Each example object SHOULD  match the media type and specified schema if present.  The `examples` field is mutually exclusive of the `example` field.  Furthermore, if referencing a `schema` which contains an example, the `examples` value SHALL _override_ the example provided by the schema.
-
-This object MAY be extended with [Specification Extensions](#specificationExtensions).
-
-##### Media Type Examples
-
-```json
-{
-  "schema": {
-    "$ref": "#/components/schemas/Pet"
-  },
-  "examples": {
-    "cat" : {
-      "summary": "An example of a cat",
-      "value": {
-        "name": "Fluffy",
-        "petType": "Cat",
-        "color": "White",
-        "gender": "male",
-        "breed": "Persian"
-      }
-    },
-    "dog": {
-      "summary": "An example of a dog with a cat's name",
-      "value" :  {
-        "name": "Puma",
-        "petType": "Dog",
-        "color": "Black",
-        "gender": "Female",
-        "breed": "Mixed"
-      },
-      "frog": {
-        "$ref": "#/components/examples/frog-example"
-      }
-    }
-  }
-}
-```
-
-#### <a name="responsesObject"></a>Responses Object
-
-A container for the expected responses of an operation.
-The Container is split into `success` and `errors`. All of the default errors defined in [JSON RPC 2.0](https://www.jsonrpc.org/specification#response_object) will be assumed.
-JSON RPC 2.0 allows the use of application level error codes. These are to be defined in the errors object.
-
-The `Success Object` MAY be describe the possible responses that are not covered individually by the specification.
-
-The `Errors Object` MAY contain zero or more error codes.
-
-##### Fixed Fields
-Field Name | Type | Description
----|:---:|---
-<a name="successObject"></a>success | [Response Object](#responseObject) \| [Reference Object](#referenceObject) | The documentation of responses other than the ones declared for specific RPC responses. Use this field to cover undeclared responses. A [Reference Object](#referenceObject) can link to a response that the [OpenRPC Object's components/responses](#componentsResponses) section defines.
-<a name="errorsObject"></a>errors | [Errors Object](#errorsObject) | The documentation of errors other than the ones declared for specific RPC responses. Use this field to cover undeclared errorrs that are within the application error code range specified by [JSON RPC 2.0](https://www.jsonrpc.org/specification#response_object).
-
-This object MAY be extended with [Specification Extensions](#specificationExtensions).
-
-##### Responses Object Example
-
-A 200 response for a successful operation and a default response for others (implying an error):
-
-```json
-{
-  "success": {
-    "description": "a pet to be returned",
-    "content": {
-      "schema": {
-        "$ref": "#/components/schemas/Pet"
-      }
-    }
-  },
-  "errors":
-    "-33000": {
-      "message": "Custom Error",
-      "meaning": "Example of using a custom application-level error code as defined by JSON RPC 2.0"
-    }
-  }
-}
-```
-
-#### <a name="errorsObject"></a>Errors Object
-A mapping of Application-level JSON RPC error codes to the expected error definition.
-The error code should be used as the property name
-
-##### Patterned Fields
-Field Pattern | Type | Description
----|:---:|---
-<a name="errorCode"></a>[Application Defined Error Code](https://www.jsonrpc.org/specification#response_object) | [Error Object](#errorObject) | A Number that indicates the error type that occurred. This MUST be an integer. The error codes from and including -32768 to -32000 are reserved for pre-defined errors. These pre-defined errors SHOULD be assumed to be returned from any JSON RPC api.
-
-#### <a name"errorObject"></a>ErrorObject
-Defines an application level error.
-
-##### Fixed Fields
-Field Name | Type | Description
----|:---:|---
-<a name="errorMessage"></a>Message | `string` | A String providing a short description of the error. The message SHOULD be limited to a concise single sentence.
-<a name="errorMeaning"></a>Meaning | `string` | A Primitive or Structured value that contains additional information about the error. This may be omitted. The value of this member is defined by the Server (e.g. detailed error information, nested errors etc.).
-
-#### <a name="exampleObject"></a>Example Object
-
-##### Fixed Fields
-Field Name | Type | Description
----|:---:|---
-<a name="exampleSummary"></a>summary | `string` | Short description for the example.
-<a name="exampleDescription"></a>description | `string` | Long description for the example. [CommonMark syntax](http://spec.commonmark.org/) MAY be used for rich text representation.
-<a name="exampleValue"></a>value | Any | Embedded literal example. The `value` field and `externalValue` field are mutually exclusive. To represent examples of media types that cannot naturally represented in JSON or YAML, use a string value to contain the example, escaping where necessary.
-<a name="exampleExternalValue"></a>externalValue | `string` | A URL that points to the literal example. This provides the capability to reference examples that cannot easily be included in JSON documents.  The `value` field and `externalValue` field are mutually exclusive.
-
-This object MAY be extended with [Specification Extensions](#specificationExtensions).
-
-In all cases, the example value is expected to be compatible with the type schema
-of its associated value.  Tooling implementations MAY choose to
-validate compatibility automatically, and reject the example value(s) if incompatible.
-
-##### Example Object Examples
-
-In a model:
-
-```json
-{
-  "schemas": {
-    "properties": {
-      "name": {
-        "type": "string",
-        "examples": {
-          "name": {
-            "$ref": "http://example.org/petapi-examples/openapi.json#/components/examples/name-example"
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-In a request:
-
-```json
-{
-  "request": {
-    "content": {
-      "schema": {
-        "$ref": "#/components/schemas/Address"
-      },
-      "examples": {
-        "foo": {
-          "summary": "A foo example",
-          "value": {
-            "foo": "bar"
-          }
-        },
-        "bar": {
-          "summary": "A bar example",
-          "externalValue": "http://foo.bar/examples/address-example.txt"
-        }
-      }
-    }
-  }
-}
-```
-
-In a parameter:
-
-```json
-parameters:
-  - name: 'zipCode'
-    schema:
-      type: 'string'
-      format: 'zip-code'
-      examples:
-        zip-example:
-          $ref: '#/components/examples/zip-example'
-```
-
-In a response:
-
-```json
-{
-  "responses": {
-    "success": {
-      "description": "your car appointment has been booked",
-      "content": {
-        "schema": {
-          "$ref": "#/components/schemas/SuccessResponse"
-        },
-        "examples": {
-          "confirmation-success": {
-            "$ref": "#/components/examples/confirmation-success"
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-#### <a name="linkObject"></a>Link Object
-
-The `Link object` represents a possible design-time link for a response.
-The presence of a link does not guarantee the caller's ability to successfully invoke it, rather it provides a known relationship and traversal mechanism between responses and other methods.
-
-Unlike _dynamic_ links (i.e. links provided **in** the response payload), the OPENRPC linking mechanism does not require link information in the runtime response.
-
-For computing links, and providing instructions to execute them, a [runtime expression](#runtimeExpression) is used for accessing values in an method and using them as parameters while invoking the linked method.
-
-##### Fixed Fields
-
-Field Name  |  Type  | Description
----|:---:|---
-<a name="linkMethod"></a>method | `string` | The name of an _existing_, resolvable OPENRPC method, as defined with a unique `method`. This field MUST resolve to a unique [Method Object](#methodObject). As opposed to Open Api, Relative `method` values  ARE NOT permitted.
-<a name="linkParameters"></a>parameters   | Map[`string`, Any \| [{expression}](#runtimeExpression)] | A map representing parameters to pass to a method as specified with `method`. The key is the parameter name to be used, whereas the value can be a constant or an expression to be evaluated and passed to the linked method.
-<a name="linkRequest"></a>request | Any \| [{expression}](#runtimeExpression) | A literal value or [{expression}](#runtimeExpression) to use as a request body when calling the target method.
-<a name="linkDescription"></a>description  | `string` | A description of the link. [CommonMark syntax](http://spec.commonmark.org/) MAY be used for rich text representation.
-<a name="linkServer"></a>server       | [Server Object](#serverObject) | A server object to be used by the target operation.
-
-This object MAY be extended with [Specification Extensions](#specificationExtensions).
-
-A linked method must be identified directly, and must exist in the list of methods defined by the [Methods Object](#methodsObject).
-
-##### Examples
-
-Computing a link from a request operation where the `$request.id` is used to pass a request parameter to the linked operation.
-
-```json
-{
-  "methods": {
-    "get_user": {
-      "parameters": [
-        {
-          "name": "id",
-          "required": true,
-          "description": "the user identifier, as userId",
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "responses": {
-        "success": {
-          "description": "the user being returned",
-          "content": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "uuid": {
-                  "type": "string",
-                  "format": "uuid"
-                }
-              }
-            },
-            "links": {
-              "address": {
-                "method": "get_user_address",
-                "parameters": {
-                  "userId": "$request.id"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "get_user_address": {
-      "parameters": [
-        {
-          "name": "userid",
-          "required": true,
-          "description": "the user identifier, as userId",
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "responses": {
-        "success": {
-          "description": "the user's address"
-        }
-      }
-    }
-  }
-}
-```
-
-When a runtime expression fails to evaluate, no parameter value is passed to the target operation.
-
-Values from the response can be used to drive a linked operation.
-
-```json
-{
-  "links": {
-    "address": {
-      "method": "get_user_address",
-      "parameters": {
-        "userid": "$response.uuid"
-      }
-    }
-  }
-}
-```
-
-Clients follow all links at their discretion.
-Neither permissions, nor the capability to make a successful call to that link, is guaranteed
-solely by the existence of a relationship.
-
-##### <a name="runtimeExpression"></a>Runtime Expressions
-
-Runtime expressions allow defining values based on information that will only be available within the HTTP message in an actual API call.
-This mechanism is used by [Link Objects](#linkObject) and [Callback Objects](#callbackObject).
-
-The runtime expression is based on the runtime expression defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax.
-Since JSON RPC does not make extensive use of status codes, query params or paths, many of the fields do not apply and have been omited.
-
-```
-      expression = ( "$request." source | "$response." source )
-      fragment = a JSON Pointer [RFC 6901](https://tools.ietf.org/html/rfc6901)
-      name = *( char )
-      char = as per RFC [7159](https://tools.ietf.org/html/rfc7159#section-7)
-      token = as per RFC [7230](https://tools.ietf.org/html/rfc7230#section-3.2.6)
-```
-
-The `name` identifier is case-sensitive, whereas `token` is not.
-
-The table below provides examples of runtime expressions and examples of their use in a value:
-
-##### <a name="runtimeExpressionExamples"></a>Examples
-
-Source Location | example expression  | notes
----|:---|:---|
-Request parameter      | `$request.id`        | Request parameters MUST be declared in the `parameters` section of the parent operation or they cannot be evaluated.
-Deep Request parameter | `$request.user.uuid`   | In methods which accept nested object payloads, `.` may be used to denote traversal of an object.
-Response value         | `$response.uuid`       |  In methods which return payloads, references may be made to portions of the response body or the entire body.
-
-Runtime expressions preserve the type of the referenced value.
-Expressions can be embedded into string values by surrounding the expression with `{}` curly braces.
-
-#### <a name="tagObject"></a>Tag Object
-
-Adds metadata to a single tag that is used by the [Method Object](#methodObject).
-It is not mandatory to have a Tag Object per tag defined in the Method Object instances.
-
-##### Fixed Fields
-Field Name | Type | Description
----|:---:|---
-<a name="tagName"></a>name | `string` | **REQUIRED**. The name of the tag.
-<a name="tagDescription"></a>description | `string` | A short description for the tag. [CommonMark syntax](http://spec.commonmark.org/) MAY be used for rich text representation.
-<a name="tagExternalDocs"></a>externalDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation for this tag.
-
-This object MAY be extended with [Specification Extensions](#specificationExtensions).
-
-##### Tag Object Example
-
-```json
-{
-	"name": "pet",
-	"description": "Pets operations"
-}
-```
-
-#### <a name="referenceObject"></a>Reference Object
-
-A simple object to allow referencing other components in the specification, internally and externally.
-
-The Reference Object is defined by [JSON Reference](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03) and follows the same structure, behavior and rules.
-
-For this specification, reference resolution is accomplished as defined by the JSON Reference specification and not by the JSON Schema specification.
-
-##### Fixed Fields
-Field Name | Type | Description
----|:---:|---
-<a name="referenceRef"></a>$ref | `string` | **REQUIRED**. The reference string.
-
-This object cannot be extended with additional properties and any properties added SHALL be ignored.
-
-##### Reference Object Example
-
-```json
-{
-	"$ref": "#/components/schemas/Pet"
-}
-```
-
-##### Relative Schema Document Example
-```json
-{
-  "$ref": "Pet.json"
-}
-```
-
-##### Relative Documents With Embedded Schema Example
-```json
-{
-  "$ref": "definitions.json#/Pet"
-}
-```
-
-#### <a name="schemaObject"></a>Schema Object
+###### <a name="schemaObject"></a>Schema Object
 
 The Schema Object allows the definition of input and output data types.
 These types can be objects, but also primitives and arrays.
@@ -1210,7 +484,7 @@ This object is an extended subset of the [JSON Schema Specification Wright Draft
 For more information about the properties, see [JSON Schema Core](https://tools.ietf.org/html/draft-wright-json-schema-00) and [JSON Schema Validation](https://tools.ietf.org/html/draft-wright-json-schema-validation-00).
 Unless stated otherwise, the property definitions follow the JSON Schema.
 
-##### Properties
+Properties:
 
 The following properties are taken directly from the JSON Schema definition and follow the same specifications:
 
@@ -1250,7 +524,6 @@ Additional properties defined by the JSON Schema specification that are not ment
 
 Other than the JSON Schema subset fields, the following fields MAY be used for further schema documentation:
 
-##### Fixed Fields
 Field Name | Type | Description
 ---|:---:|---
 <a name="schemaNullable"></a>nullable | `boolean` | Allows sending a `null` value for the defined schema. Default value is `false`.
@@ -1262,9 +535,9 @@ Field Name | Type | Description
 
 This object MAY be extended with [Specification Extensions](#specificationExtensions).
 
-##### Schema Object Examples
+Schema Object Examples:
 
-###### Primitive Sample
+1. Primitive Sample
 
 ```json
 {
@@ -1273,7 +546,7 @@ This object MAY be extended with [Specification Extensions](#specificationExtens
 }
 ```
 
-###### Simple Model
+2. Simple Model
 
 ```json
 {
@@ -1297,7 +570,7 @@ This object MAY be extended with [Specification Extensions](#specificationExtens
 }
 ```
 
-###### Model with Map/Dictionary Properties
+3. Model with Map/Dictionary Properties
 
 For a simple string to string mapping:
 
@@ -1321,7 +594,7 @@ For a string to model mapping:
 }
 ```
 
-###### Model with Example
+4. Model with Example
 
 ```json
 {
@@ -1345,7 +618,7 @@ For a string to model mapping:
 }
 ```
 
-###### Models with Composition
+5. Models with Composition
 
 ```json
 {
@@ -1391,160 +664,368 @@ For a string to model mapping:
 }
 ```
 
-#### <a name="securitySchemeObject"></a>Security Scheme Object
 
-Defines a security scheme that can be used by the operations.
-Supported schemes are HTTP authentication, an API key (either as a header, a cookie parameter or as a query parameter), OAuth2's common flows (implicit, password, application and access code) as defined in [RFC6749](https://tools.ietf.org/html/rfc6749), and [OpenID Connect Discovery](https://tools.ietf.org/html/draft-ietf-oauth-discovery-06).
+###### <a name="exampleObject"></a>Example Object
 
-##### Fixed Fields
-Field Name | Type | Applies To | Description
----|:---:|---|---
-<a name="securitySchemeType"></a>type | `string` | Any | **REQUIRED**. The type of the security scheme. Valid values are `"apiKey"`, `"http"`, `"oauth2"`, `"openIdConnect"`.
-<a name="securitySchemeDescription"></a>description | `string` | Any | A short description for security scheme. [CommonMark syntax](http://spec.commonmark.org/) MAY be used for rich text representation.
-<a name="securitySchemeName"></a>name | `string` | `apiKey` | **REQUIRED**. The name of the header, query or cookie parameter to be used.
-<a name="securitySchemeIn"></a>in | `string` | `apiKey` | **REQUIRED**. The location of the API key. Valid values are `"query"`, `"header"` or `"cookie"`.
-<a name="securitySchemeScheme"></a>scheme | `string` | `http` | **REQUIRED**. The name of the HTTP Authorization scheme to be used in the [Authorization header as defined in RFC7235](https://tools.ietf.org/html/rfc7235#section-5.1).
-<a name="securitySchemeBearerFormat"></a>bearerFormat | `string` | `http` (`"bearer"`) | A hint to the client to identify how the bearer token is formatted.  Bearer tokens are usually generated by an authorization server, so this information is primarily for documentation purposes.
-<a name="securitySchemeFlows"></a>flows | [OAuth Flows Object](#oauthFlowsObject) | `oauth2` | **REQUIRED**. An object containing configuration information for the flow types supported.
-<a name="securitySchemeOpenIdConnectUrl"></a>openIdConnectUrl | `string` | `openIdConnect` | **REQUIRED**. OpenId Connect URL to discover OAuth2 configuration values. This MUST be in the form of a URL.
-
-This object MAY be extended with [Specification Extensions](#specificationExtensions).
-
-##### Security Scheme Object Example
-
-###### Basic Authentication Sample
-
-```json
-{
-  "type": "http",
-  "scheme": "basic"
-}
-```
-
-###### API Key Sample
-
-```json
-{
-  "type": "apiKey",
-  "name": "api_key",
-  "in": "header"
-}
-```
-
-###### JWT Bearer Sample
-
-```json
-{
-  "type": "http",
-  "scheme": "bearer",
-  "bearerFormat": "JWT",
-}
-```
-
-###### Implicit OAuth2 Sample
-
-```json
-{
-  "type": "oauth2",
-  "flows": {
-    "implicit": {
-      "authorizationUrl": "https://example.com/api/oauth/dialog",
-      "scopes": {
-        "write:pets": "modify pets in your account",
-        "read:pets": "read your pets"
-      }
-    }
-  }
-}
-```
-
-#### <a name="oauthFlowsObject"></a>OAuth Flows Object
-
-Allows configuration of the supported OAuth Flows.
-
-##### Fixed Fields
 Field Name | Type | Description
 ---|:---:|---
-<a name="oauthFlowsImplicit"></a>implicit| [OAuth Flow Object](#oauthFlowObject) | Configuration for the OAuth Implicit flow
-<a name="oauthFlowsPassword"></a>password| [OAuth Flow Object](#oauthFlowObject) | Configuration for the OAuth Resource Owner Password flow
-<a name="oauthFlowsClientCredentials"></a>clientCredentials| [OAuth Flow Object](#oauthFlowObject) | Configuration for the OAuth Client Credentials flow.  Previously called `application` in OpenRPC 2.0.
-<a name="oauthFlowsAuthorizationCode"></a>authorizationCode| [OAuth Flow Object](#oauthFlowObject) | Configuration for the OAuth Authorization Code flow.  Previously called `accessCode` in OpenRPC 2.0.
+<a name="exampleName"></a>name | `string` | cannonical name of the example.
+<a name="exampleSummary"></a>summary | `string` | Short description for the example.
+<a name="exampleDescription"></a>description | `string` | Long description for the example. [CommonMark syntax](http://spec.commonmark.org/) MAY be used for rich text representation.
+<a name="exampleValue"></a>value | Any | Embedded literal example. The `value` field and `externalValue` field are mutually exclusive. To represent examples of media types that cannot naturally represented in JSON, use a string value to contain the example, escaping where necessary.
+<a name="exampleExternalValue"></a>externalValue | `string` | A URL that points to the literal example. This provides the capability to reference examples that cannot easily be included in JSON documents.  The `value` field and `externalValue` field are mutually exclusive.
 
 This object MAY be extended with [Specification Extensions](#specificationExtensions).
 
-#### <a name="oauthFlowObject"></a>OAuth Flow Object
+In all cases, the example value is expected to be compatible with the type schema
+of its associated value.  Tooling implementations MAY choose to
+validate compatibility automatically, and reject the example value(s) if incompatible.
 
-Configuration details for a supported OAuth Flow
+Example Object Examples:
 
-##### Fixed Fields
-Field Name | Type | Applies To | Description
----|:---:|---|---
-<a name="oauthFlowAuthorizationUrl"></a>authorizationUrl | `string` | `oauth2` (`"implicit"`, `"authorizationCode"`) | **REQUIRED**. The authorization URL to be used for this flow. This MUST be in the form of a URL.
-<a name="oauthFlowTokenUrl"></a>tokenUrl | `string` | `oauth2` (`"password"`, `"clientCredentials"`, `"authorizationCode"`) | **REQUIRED**. The token URL to be used for this flow. This MUST be in the form of a URL.
-<a name="oauthFlowRefreshUrl"></a>refreshUrl | `string` | `oauth2` | The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL.
-<a name="oauthFlowScopes"></a>scopes | Map[`string`, `string`] | `oauth2` | **REQUIRED**. The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it.
-
-This object MAY be extended with [Specification Extensions](#specificationExtensions).
-
-##### OAuth Flow Object Examples
-
-```JSON
+```json
 {
-  "type": "oauth2",
-  "flows": {
-    "implicit": {
-      "authorizationUrl": "https://example.com/api/oauth/dialog",
-      "scopes": {
-        "write:pets": "modify pets in your account",
-        "read:pets": "read your pets"
-      }
-    },
-    "authorizationCode": {
-      "authorizationUrl": "https://example.com/api/oauth/dialog",
-      "tokenUrl": "https://example.com/api/oauth/token",
-      "scopes": {
-        "write:pets": "modify pets in your account",
-        "read:pets": "read your pets"
+  "contentDescriptors": {
+    "properties": {
+      "name": {
+        "type": "string",
+        "examples": [
+          { "$ref": "http://example.org/petapi-examples/openapi.json#/components/examples/name-example" },
+          {
+            "name": "Chinese",
+            "summary": "using non-english characters",
+            "description": "an example of how the rpc api can handle non english characters",
+            "value": "你好世界"
+          }
+        ]
       }
     }
   }
 }
 ```
 
-#### <a name="securityRequirementObject"></a>Security Requirement Object
+##### <a name="linkObject"></a>Link Object
 
-Lists the required security schemes to execute this method.
-The name used for each property MUST correspond to a security scheme declared in the [Security Schemes](#componentsSecuritySchemes) under the [Components Object](#componentsObject).
+The `Link object` represents a possible design-time link for a response.
+The presence of a link does not guarantee the caller's ability to successfully invoke it, rather it provides a known relationship and traversal mechanism between responses and other methods.
 
-Security Requirement Objects that contain multiple schemes require that all schemes MUST be satisfied for a request to be authorized.
-This enables support for scenarios where multiple query parameters or HTTP headers are required to convey security information.
+Unlike _dynamic_ links (i.e. links provided **in** the response payload), the OPENRPC linking mechanism does not require link information in the runtime response.
 
-When a list of Security Requirement Objects is defined on the [OpenRPC Object](#openrpcObject) or [Operation Object](#operationObject), only one of the Security Requirement Objects in the list needs to be satisfied to authorize the request.
+For computing links, and providing instructions to execute them, a [runtime expression](#runtimeExpression) is used for accessing values in an method and using them as parameters while invoking the linked method.
 
-##### Patterned Fields
-
-Field Pattern | Type | Description
+Field Name  |  Type  | Description
 ---|:---:|---
-<a name="securityRequirementsName"></a>{name} | [`string`] | Each name MUST correspond to a security scheme which is declared in the [Security Schemes](#componentsSecuritySchemes) under the [Components Object](#componentsObject). If the security scheme is of type `"oauth2"` or `"openIdConnect"`, then the value is a list of scope names required for the execution. For other security scheme types, the array MUST be empty.
+<a name="linkMethod"></a>method | `string` | The name of an _existing_, resolvable OPENRPC method, as defined with a unique `method`. This field MUST resolve to a unique [Method Object](#methodObject). As opposed to Open Api, Relative `method` values  ARE NOT permitted.
+<a name="linkParameters"></a>parameters   | Map[`string`, Any \| [{expression}](#runtimeExpression)] | A map representing parameters to pass to a method as specified with `method`. The key is the parameter name to be used, whereas the value can be a constant or an expression to be evaluated and passed to the linked method.
+<a name="linkRequest"></a>request | Any \| [{expression}](#runtimeExpression) | A literal value or [{expression}](#runtimeExpression) to use as a request body when calling the target method.
+<a name="linkDescription"></a>description  | `string` | A description of the link. [CommonMark syntax](http://spec.commonmark.org/) MAY be used for rich text representation.
+<a name="linkServer"></a>server       | [Server Object](#serverObject) | A server object to be used by the target operation.
 
-##### Security Requirement Object Examples
+This object MAY be extended with [Specification Extensions](#specificationExtensions).
 
-###### Non-OAuth2 Security Requirement
+A linked method must be identified directly, and must exist in the list of methods defined by the [Methods Object](#methodsObject).
+
+Examples:
+
+Computing a link from a request operation where the `$parameters.id` is used to pass a request parameter to the linked operation.
 
 ```json
 {
-  "api_key": []
+  "methods": {
+    "get_user": {
+      "parameters": [
+        {
+          "name": "id",
+          "required": true,
+          "description": "the user identifier, as userId",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "results": {
+        "description": "the user being returned",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "uuid": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        }
+      },
+      "links": {
+        "address": {
+          "method": "get_user_address",
+          "parameters": {
+            "userId": "$parameters.id"
+          }
+        }
+      }
+    },
+    "get_user_address": {
+      "parameters": [
+        {
+          "name": "userid",
+          "required": true,
+          "description": "the user identifier, as userId",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "results": {
+        "description": "the user's address"
+      }
+    }
+  }
 }
 ```
 
-###### OAuth2 Security Requirement
+When a runtime expression fails to evaluate, no parameter value is passed to the target operation.
+
+Values from the response can be used to drive a linked operation.
 
 ```json
 {
-  "petstore_auth": [
-    "write:pets",
-    "read:pets"
-  ]
+  "links": {
+    "address": {
+      "method": "get_user_address",
+      "parameters": {
+        "userid": "$response.uuid"
+      }
+    }
+  }
+}
+```
+
+Clients follow all links at their discretion.
+Neither permissions, nor the capability to make a successful call to that link, is guaranteed
+solely by the existence of a relationship.
+
+###### <a name="runtimeExpression"></a>Runtime Expressions
+
+Runtime expressions allow defining values based on information that will only be available within the HTTP message in an actual API call.
+This mechanism is used by [Link Objects](#linkObject) and [Callback Objects](#callbackObject).
+
+The runtime expression is based on the runtime expression defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax.
+Since JSON RPC does not make extensive use of status codes, query params or paths, many of the fields do not apply and have been omited.
+
+```
+      expression = ( "$request." source | "$response." source )
+      fragment = a JSON Pointer [RFC 6901](https://tools.ietf.org/html/rfc6901)
+      name = *( char )
+      char = as per RFC [7159](https://tools.ietf.org/html/rfc7159#section-7)
+      token = as per RFC [7230](https://tools.ietf.org/html/rfc7230#section-3.2.6)
+```
+
+The `name` identifier is case-sensitive, whereas `token` is not.
+
+The table below provides examples of runtime expressions and examples of their use in a value:
+
+Examples:
+
+Source Location | example expression  | notes
+---|:---|:---|
+Request parameter      | `$request.id`        | Request parameters MUST be declared in the `parameters` section of the parent operation or they cannot be evaluated.
+Deep Request parameter | `$request.user.uuid`   | In methods which accept nested object payloads, `.` may be used to denote traversal of an object.
+Response value         | `$response.uuid`       |  In methods which return payloads, references may be made to portions of the response body or the entire body.
+
+Runtime expressions preserve the type of the referenced value.
+Expressions can be embedded into string values by surrounding the expression with `{}` curly braces.
+
+##### <a name="errorObject"></a>Error Object
+Defines an application level error.
+
+Field Name | Type | Description
+---|:---:|---
+<a name="errorCode"></a>[Application Defined Error Code](https://www.jsonrpc.org/specification#response_object) | `number` | A Number that indicates the error type that occurred. This MUST be an integer. The error codes from and including -32768 to -32000 are reserved for pre-defined errors. These pre-defined errors SHOULD be assumed to be returned from any JSON RPC api.
+<a name="errorMessage"></a>Message | `string` | A String providing a short description of the error. The message SHOULD be limited to a concise single sentence.
+<a name="errorMeaning"></a>Meaning | `string` | A Primitive or Structured value that contains additional information about the error. This may be omitted. The value of this member is defined by the Server (e.g. detailed error information, nested errors etc.).
+
+#### <a name="componentsObject"></a>Components Object
+
+Holds a set of reusable objects for different aspects of the OPENRPC.
+All objects defined within the components object will have no effect on the API unless they are explicitly referenced from properties outside the components object.
+
+<a name="componentsContentDescriptors"></a> contentDescriptors | Map[`string`, [Content Descriptor Object](#contentDescriptorObject)] | An object to hold reusable [Content Descriptor Objects](#contentDescriptorObject).
+<a name="componentsExamples"></a> examples | Map[`string`, [Example Object](#exampleObject)] | An object to hold reusable [Example Objects](#exampleObject).
+<a name="componentsLinks"></a> links | Map[`string`, [Link Object](#linkObject)] | An object to hold reusable [Link Objects](#linkObject).
+
+Field Name | Type | Description
+---|:---|---
+<a name="componentsContentDescriptors"></a>contentDescriptors | Map[`string`, [Content Descriptor Object](#contentDescriptorObject)] | An object to hold reusable [Content Descriptor Objects](#contentDescriptorObject).
+<a name="componentsSchemas"></a>schemas | Map[`string`, [Schema Object](#schemaObject)] | An object to hold reusable [Schema Objects](#schemaObject).
+<a name="componentsExamples"></a>examples | Map[`string`, [Example Object](#exampleObject) \| [Reference Object](#referenceObject)] | An object to hold reusable [Example Objects](#exampleObject).
+<a name="componentsLinks"></a> links | Map[`string`, [Link Object](#linkObject) \| [Reference Object](#referenceObject)] | An object to hold reusable [Link Objects](#linkObject).
+<a name="componentsErrors"></a>errors | Map[`string`, [Error Object](#errorObject)] | An object to hold reusable [Error Objects](#errorObject).
+
+This object MAY be extended with [Specification Extensions](#specificationExtensions).
+
+All the fixed fields declared above are objects that MUST use keys that match the regular expression: `^[a-zA-Z0-9\.\-_]+$`.
+
+Field Name Examples:
+
+```
+User
+User_1
+User_Name
+user-name
+my.org.User
+```
+
+Components Object Example:
+
+```json
+"components": {
+  "schemas": {
+    "GeneralError": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Tag": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "contentDescriptors": {
+    "skipParam": {
+      "name": "skip",
+      "in": "query",
+      "description": "number of items to skip",
+      "required": true,
+      "schema": {
+        "type": "integer",
+        "format": "int32"
+      }
+    },
+    "limitParam": {
+      "name": "limit",
+      "in": "query",
+      "description": "max records to return",
+      "required": true,
+      "schema" : {
+        "type": "integer",
+        "format": "int32"
+      }
+    }
+  },
+  "errors": {
+    "CustomNotFound": {
+      "code": "1",
+      "message": "super duper not found doe",
+      "meaning": "absolute pandemonium"
+    }
+  }
+}
+```
+
+#### <a name="tagObject"></a>Tag Object
+
+Adds metadata to a single tag that is used by the [Method Object](#methodObject).
+It is not mandatory to have a Tag Object per tag defined in the Method Object instances.
+
+Field Name | Type | Description
+---|:---:|---
+<a name="tagName"></a>name | `string` | **REQUIRED**. The name of the tag.
+<a name="tagDescription"></a>description | `string` | A short description for the tag. [CommonMark syntax](http://spec.commonmark.org/) MAY be used for rich text representation.
+<a name="tagExternalDocs"></a>externalDocs | [External Documentation Object](#externalDocumentationObject) | Additional external documentation for this tag.
+
+This object MAY be extended with [Specification Extensions](#specificationExtensions).
+
+Tag Object Example:
+
+```json
+{
+	"name": "pet",
+	"description": "Pets operations"
+}
+```
+
+#### <a name="externalDocumentationObject"></a>External Documentation Object
+
+***Prolly doesnt belong at this depth level of the spec***
+
+Allows referencing an external resource for extended documentation.
+
+Field Name | Type | Description
+---|:---:|---
+<a name="externalDocDescription"></a>description | `string` | A short description of the target documentation. [CommonMark syntax](http://spec.commonmark.org/) MAY be used for rich text representation.
+<a name="externalDocUrl"></a>url | `string` | **REQUIRED**. The URL for the target documentation. Value MUST be in the format of a URL.
+
+This object MAY be extended with [Specification Extensions](#specificationExtensions).
+
+External Documentation Object Example:
+
+```json
+{
+  "description": "Find more info here",
+  "url": "https://example.com"
+}
+```
+
+#### <a name="referenceObject"></a>Reference Object
+
+A simple object to allow referencing other components in the specification, internally and externally.
+
+The Reference Object is defined by [JSON Reference](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03) and follows the same structure, behavior and rules.
+
+For this specification, reference resolution is accomplished as defined by the JSON Reference specification and not by the JSON Schema specification.
+
+Field Name | Type | Description
+---|:---:|---
+<a name="referenceRef"></a>$ref | `string` | **REQUIRED**. The reference string.
+
+This object cannot be extended with additional properties and any properties added SHALL be ignored.
+
+Reference Object Example:
+
+```json
+{
+	"$ref": "#/components/schemas/Pet"
+}
+```
+
+Relative Schema Document Example:
+```json
+{
+  "$ref": "Pet.json"
+}
+```
+
+Relative Documents With Embedded Schema Example:
+```json
+{
+  "$ref": "definitions.json#/Pet"
 }
 ```
 
@@ -1559,21 +1040,3 @@ Field Pattern | Type | Description
 <a name="infoExtensions"></a>^x- | Any | Allows extensions to the OpenRPC Schema. The field name MUST begin with `x-`, for example, `x-internal-id`. The value can be `null`, a primitive, an array or an object. Can have any valid JSON format value.
 
 The extensions may or may not be supported by the available tooling, but those may be extended as well to add requested support (if tools are internal or open-sourced).
-
-### <a name="securityFiltering"></a>Security Filtering
-
-Some objects in the OpenRPC Specification MAY be declared and remain empty, or be completely removed, even though they are inherently the core of the API documentation.
-
-The reasoning is to allow an additional layer of access control over the documentation.
-While not part of the specification itself, certain libraries MAY choose to allow access to parts of the documentation based on some form of authentication/authorization.
-
-Two examples of this:
-
-1. The [Methods Object](#methodsObject) MAY be empty. It may be counterintuitive, but this may tell the viewer that they got to the right place, but can't access any documentation. They'd still have access to the [Info Object](#infoObject) which may contain additional information regarding authentication.
-
-## <a name="revisionHistory"></a>Appendix A: Revision History
-
-Version          | Date       | Notes
----              | ---        | ---
-1.0.0            | 2019-01-01 | Fork and First release of the OpenRPC Specification
-3.0.2 (upstream) | 2018-10-08 | Patch release of the OpenRPC Specification 3.0.2

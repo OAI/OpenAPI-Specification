@@ -395,9 +395,8 @@ definitions:
     patternProperties:
       '^x-': {}
     additionalProperties: false
-    not:
-      description: Example and examples are mutually exclusive
-      required: [example, examples]
+    allOf:
+      - $ref: '#/definitions/ExampleXORExamples'
 
   Example:
     type: object
@@ -457,28 +456,8 @@ definitions:
       '^x-': {}
     additionalProperties: false
     allOf:
-      - description: Example and examples are mutually exclusive
-        not:
-          required: [example, examples]
-
-      - description: Schema and content are mutually exclusive, at least one is required
-        not:
-          required: [schema, content]
-        oneOf:
-          - required: [schema]
-          - description: Content does not allow some properties
-            required: [content]
-            allOf:
-              - not:
-                  required: [style]
-              - not:
-                  required: [explode]
-              - not:
-                  required: [allowReserved]
-              - not:
-                  required: [example]
-              - not:
-                  required: [examples]
+      - $ref: '#/definitions/ExampleXORExamples'
+      - $ref: '#/definitions/SchemaXORContent'
 
   Paths:
     type: object
@@ -618,6 +597,31 @@ definitions:
       '^x-': {}
     additionalProperties: false
 
+  ExampleXORExamples:
+    description: Example and examples are mutually exclusive
+    not:
+      required: [example, examples]
+
+  SchemaXORContent:
+    description: Schema and content are mutually exclusive, at least one is required
+    not:
+      required: [schema, content]
+    oneOf:
+      - required: [schema]
+      - required: [content]
+        description: Some properties are not allowed if content is present
+        allOf:
+          - not:
+              required: [style]
+          - not:
+              required: [explode]
+          - not:
+              required: [allowReserved]
+          - not:
+              required: [example]
+          - not:
+              required: [examples]
+
   Parameter:
     type: object
     properties:
@@ -665,87 +669,48 @@ definitions:
       - name
       - in
     allOf:
-      - description: Example and examples are mutually exclusive
-        not:
+      - $ref: '#/definitions/ExampleXORExamples'
+      - $ref: '#/definitions/SchemaXORContent'
+      - $ref: '#/definitions/ParameterLocation'
+
+  ParameterLocation:
+    description: Parameter location
+    oneOf:
+      - description: Parameter in path
+        required:
+          - required
+        properties:
+          in:
+            enum: [path]
+          style:
+            enum: [matrix, label, simple]
+            default: simple
           required:
-            - example
-            - examples
+            enum: [true]
 
-      - description: Schema and content are mutually exclusive, at least one is required
-        not:
-          required: [schema, content]
-        oneOf:
-          - required: [schema]
-          - required: [content]
-            description: Some properties are not allowed if content is present
-            allOf:
-              - not:
-                  required: [style]
-              - not:
-                  required: [explode]
-              - not:
-                  required: [allowReserved]
-              - not:
-                  required: [example]
-              - not:
-                  required: [examples]
+      - description: Parameter in query
+        properties:
+          in:
+            enum: [query]
+          style:
+            enum: [form, spaceDelimited, pipeDelimited, deepObject]
+            default: form
 
+      - description: Parameter in header
+        properties:
+          in:
+            enum: [header]
+          style:
+            enum: [simple]
+            default: simple
 
-      - description: Parameter location
-        oneOf:
-          - description: Parameter in path
-            required:
-              - required
-            properties:
-              in:
-                enum:
-                  - path
-              style:
-                enum:
-                  - matrix
-                  - label
-                  - simple
-                default: simple
-              required:
-                enum:
-                  - true
-
-
-          - description: Parameter in query
-            properties:
-              in:
-                enum:
-                  - query
-              style:
-                enum:
-                  - form
-                  - spaceDelimited
-                  - pipeDelimited
-                  - deepObject
-                default: form
-
-
-          - description: Parameter in header
-            properties:
-              in:
-                enum:
-                  - header
-              style:
-                enum:
-                  - simple
-                default: simple
-
-
-
-          - description: Parameter in cookie
-            properties:
-              in:
-                enum:
-                  - header
-              style:
-                enum:
-                  - form
-                default: form
+      - description: Parameter in cookie
+        properties:
+          in:
+            enum: [cookie]
+          style:
+            enum: [form]
+            default: form
 
   RequestBody:
     type: object
@@ -829,49 +794,6 @@ definitions:
           scheme:
             not:
               enum: [bearer]
-
-  NonBearerHTTPSecurityScheme:
-    type: object
-    required:
-      - scheme
-      - type
-    properties:
-      scheme:
-        type: string
-        not:
-          enum:
-            - bearer
-      description:
-        type: string
-      type:
-        type: string
-        enum:
-          - http
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false
-
-  BearerHTTPSecurityScheme:
-    type: object
-    required:
-      - type
-      - scheme
-    properties:
-      scheme:
-        type: string
-        enum:
-          - bearer
-      bearerFormat:
-        type: string
-      type:
-        type: string
-        enum:
-          - http
-      description:
-        type: string
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false
 
   OAuth2SecurityScheme:
     type: object

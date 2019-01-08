@@ -77,7 +77,7 @@ definitions:
         format: email
     patternProperties:
       '^x-': {}
-    additionalProperties: false    
+    additionalProperties: false
 
   License:
     type: object
@@ -327,8 +327,8 @@ definitions:
         $ref: '#/definitions/XML'
     patternProperties:
       '^x-': {}
-    additionalProperties: false        
-  
+    additionalProperties: false
+
   Discriminator:
     type: object
     required:
@@ -407,7 +407,7 @@ definitions:
           $ref: '#/definitions/Encoding'
     patternProperties:
       '^x-': {}
-    additionalProperties: false 
+    additionalProperties: false
 
   MediaTypeWithExamples:
     type: object
@@ -430,7 +430,7 @@ definitions:
           $ref: '#/definitions/Encoding'
     patternProperties:
       '^x-': {}
-    additionalProperties: false 
+    additionalProperties: false
 
   Example:
     type: object
@@ -490,7 +490,7 @@ definitions:
       example: {}
     patternProperties:
       '^x-': {}
-    additionalProperties: false  
+    additionalProperties: false
 
   HeaderWithSchemaWithExamples:
     type: object
@@ -562,7 +562,7 @@ definitions:
   Paths:
     type: object
     patternProperties:
-      '^\/': 
+      '^\/':
         $ref: '#/definitions/PathItem'
       '^x-': {}
     additionalProperties: false
@@ -673,7 +673,7 @@ definitions:
       '^x-': {}
     minProperties: 1
     additionalProperties: false
- 
+
 
   SecurityRequirement:
     type: object
@@ -715,7 +715,7 @@ definitions:
     oneOf:
       - $ref: '#/definitions/ParameterWithSchema'
       - $ref: '#/definitions/ParameterWithContent'
-  
+
   ParameterWithSchema:
     oneOf:
       - $ref: '#/definitions/ParameterWithSchemaWithExample'
@@ -819,7 +819,7 @@ definitions:
       example: {}
     patternProperties:
       '^x-': {}
-    additionalProperties: false    
+    additionalProperties: false
 
   ParameterWithSchemaWithExampleInHeader:
     type: object
@@ -862,7 +862,7 @@ definitions:
       example: {}
     patternProperties:
       '^x-': {}
-    additionalProperties: false    
+    additionalProperties: false
 
   ParameterWithSchemaWithExampleInCookie:
     type: object
@@ -905,7 +905,7 @@ definitions:
       example: {}
     patternProperties:
       '^x-': {}
-    additionalProperties: false  
+    additionalProperties: false
 
   ParameterWithSchemaWithExamples:
     oneOf:
@@ -1017,7 +1017,7 @@ definitions:
             - $ref: '#/definitions/Reference'
     patternProperties:
       '^x-': {}
-    additionalProperties: false    
+    additionalProperties: false
 
   ParameterWithSchemaWithExamplesInHeader:
     type: object
@@ -1066,7 +1066,7 @@ definitions:
             - $ref: '#/definitions/Reference'
     patternProperties:
       '^x-': {}
-    additionalProperties: false    
+    additionalProperties: false
 
   ParameterWithSchemaWithExamplesInCookie:
     type: object
@@ -1217,7 +1217,7 @@ definitions:
       - $ref: '#/definitions/HTTPSecurityScheme'
       - $ref: '#/definitions/OAuth2SecurityScheme'
       - $ref: '#/definitions/OpenIdConnectSecurityScheme'
-  
+
   APIKeySecurityScheme:
     type: object
     required:
@@ -1228,7 +1228,7 @@ definitions:
       type:
         type: string
         enum:
-          - apiKey      
+          - apiKey
       name:
         type: string
       in:
@@ -1242,7 +1242,7 @@ definitions:
     patternProperties:
       '^x-': {}
     additionalProperties: false
-  
+
   HTTPSecurityScheme:
     oneOf:
       - $ref: '#/definitions/NonBearerHTTPSecurityScheme'
@@ -1318,7 +1318,7 @@ definitions:
       type:
         type: string
         enum:
-          - openIdConnect      
+          - openIdConnect
       openIdConnectUrl:
         type: string
         format: uri-reference

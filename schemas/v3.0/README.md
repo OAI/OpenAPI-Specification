@@ -22,3 +22,10 @@ Such data would become invalid:
 ```json
 {"$ref": "#", "unknown":  1}
 ```
+
+## Combine HTTP Methods in `patternProperties`
+
+```yaml
+patternProperties:
+  '^(get|put|post|delete|options|head|patch|trace)$': $ref: '#/definitions/Operation'
+```

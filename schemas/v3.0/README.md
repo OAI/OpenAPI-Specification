@@ -43,3 +43,6 @@ not:
     - examples
 ```
 
+## Combine some definitions as filtered supersets
+
+With same pattern as for Parameter.

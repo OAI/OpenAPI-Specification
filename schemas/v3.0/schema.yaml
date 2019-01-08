@@ -678,80 +678,12 @@ definitions:
     additionalProperties: false
 
   Parameter:
-    oneOf:
-      - $ref: '#/definitions/ParameterWithSchema'
-      - $ref: '#/definitions/ParameterWithContent'
-
-  ParameterWithSchema:
-    oneOf:
-      - $ref: '#/definitions/ParameterWithSchemaWithExample'
-      - $ref: '#/definitions/ParameterWithSchemaWithExamples'
-
-  ParameterWithSchemaWithExample:
-    oneOf:
-      - $ref: '#/definitions/ParameterWithSchemaWithExampleInPath'
-      - $ref: '#/definitions/ParameterWithSchemaWithExampleInQuery'
-      - $ref: '#/definitions/ParameterWithSchemaWithExampleInHeader'
-      - $ref: '#/definitions/ParameterWithSchemaWithExampleInCookie'
-
-  ParameterWithSchemaWithExampleInPath:
     type: object
-    required:
-      - name
-      - in
-      - schema
-      - required
     properties:
       name:
         type: string
       in:
         type: string
-        enum:
-          - path
-      description:
-        type: string
-      required:
-        type: boolean
-        enum:
-          - true
-      deprecated:
-        type: boolean
-        default: false
-      allowEmptyValue:
-        type: boolean
-        default: false
-      style:
-        type: string
-        enum:
-          - matrix
-          - label
-          - simple
-        default: simple
-      explode:
-        type: boolean
-      allowReserved:
-        type: boolean
-        default: false
-      schema:
-        $ref: '#/definitions/Schema'
-      example: {}
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false
-
-  ParameterWithSchemaWithExampleInQuery:
-    type: object
-    required:
-      - name
-      - in
-      - schema
-    properties:
-      name:
-        type: string
-      in:
-        type: string
-        enum:
-          - query
       description:
         type: string
       required:
@@ -765,12 +697,6 @@ definitions:
         default: false
       style:
         type: string
-        enum:
-          - form
-          - spaceDelimited
-          - pipeDelimited
-          - deepObject
-        default: form
       explode:
         type: boolean
       allowReserved:
@@ -778,370 +704,107 @@ definitions:
         default: false
       schema:
         $ref: '#/definitions/Schema'
-      example: {}
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false
-
-  ParameterWithSchemaWithExampleInHeader:
-    type: object
-    required:
-      - name
-      - in
-      - schema
-    properties:
-      name:
-        type: string
-      in:
-        type: string
-        enum:
-          - header
-      description:
-        type: string
-      required:
-        type: boolean
-        default: false
-      deprecated:
-        type: boolean
-        default: false
-      allowEmptyValue:
-        type: boolean
-        default: false
-      style:
-        type: string
-        enum:
-          - simple
-        default: simple
-      explode:
-        type: boolean
-      allowReserved:
-        type: boolean
-        default: false
-      schema:
-        $ref: '#/definitions/Schema'
-      example: {}
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false
-
-  ParameterWithSchemaWithExampleInCookie:
-    type: object
-    required:
-      - name
-      - in
-      - schema
-    properties:
-      name:
-        type: string
-      in:
-        type: string
-        enum:
-          - cookie
-      description:
-        type: string
-      required:
-        type: boolean
-        default: false
-      deprecated:
-        type: boolean
-        default: false
-      allowEmptyValue:
-        type: boolean
-        default: false
-      style:
-        type: string
-        enum:
-          - form
-        default: form
-      explode:
-        type: boolean
-      allowReserved:
-        type: boolean
-        default: false
-      schema:
-        $ref: '#/definitions/Schema'
-      example: {}
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false
-
-  ParameterWithSchemaWithExamples:
-    oneOf:
-      - $ref: '#/definitions/ParameterWithSchemaWithExamplesInPath'
-      - $ref: '#/definitions/ParameterWithSchemaWithExamplesInQuery'
-      - $ref: '#/definitions/ParameterWithSchemaWithExamplesInHeader'
-      - $ref: '#/definitions/ParameterWithSchemaWithExamplesInCookie'
-
-  ParameterWithSchemaWithExamplesInPath:
-    type: object
-    required:
-      - name
-      - in
-      - schema
-      - required
-      - examples
-    properties:
-      name:
-        type: string
-      in:
-        type: string
-        enum:
-          - path
-      description:
-        type: string
-      required:
-        type: boolean
-        enum:
-          - true
-      deprecated:
-        type: boolean
-        default: false
-      allowEmptyValue:
-        type: boolean
-        default: false
-      style:
-        type: string
-        enum:
-          - matrix
-          - label
-          - simple
-        default: simple
-      explode:
-        type: boolean
-      allowReserved:
-        type: boolean
-        default: false
-      schema:
-        $ref: '#/definitions/Schema'
-      examples:
-        type: object
-        additionalProperties:
-          oneOf:
-            - $ref: '#/definitions/Example'
-            - $ref: '#/definitions/Reference'
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false
-
-  ParameterWithSchemaWithExamplesInQuery:
-    type: object
-    required:
-      - name
-      - in
-      - schema
-      - examples
-    properties:
-      name:
-        type: string
-      in:
-        type: string
-        enum:
-          - query
-      description:
-        type: string
-      required:
-        type: boolean
-        default: false
-      deprecated:
-        type: boolean
-        default: false
-      allowEmptyValue:
-        type: boolean
-        default: false
-      style:
-        type: string
-        enum:
-          - form
-          - spaceDelimited
-          - pipeDelimited
-          - deepObject
-        default: form
-      explode:
-        type: boolean
-      allowReserved:
-        type: boolean
-        default: false
-      schema:
-        $ref: '#/definitions/Schema'
-      examples:
-        type: object
-        additionalProperties:
-          oneOf:
-            - $ref: '#/definitions/Example'
-            - $ref: '#/definitions/Reference'
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false
-
-  ParameterWithSchemaWithExamplesInHeader:
-    type: object
-    required:
-      - name
-      - in
-      - schema
-      - examples
-    properties:
-      name:
-        type: string
-      in:
-        type: string
-        enum:
-          - header
-      description:
-        type: string
-      required:
-        type: boolean
-        default: false
-      deprecated:
-        type: boolean
-        default: false
-      allowEmptyValue:
-        type: boolean
-        default: false
-      style:
-        type: string
-        enum:
-          - simple
-        default: simple
-      explode:
-        type: boolean
-      allowReserved:
-        type: boolean
-        default: false
-      schema:
-        $ref: '#/definitions/Schema'
-      examples:
-        type: object
-        additionalProperties:
-          oneOf:
-            - $ref: '#/definitions/Example'
-            - $ref: '#/definitions/Reference'
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false
-
-  ParameterWithSchemaWithExamplesInCookie:
-    type: object
-    required:
-      - name
-      - in
-      - schema
-      - examples
-    properties:
-      name:
-        type: string
-      in:
-        type: string
-        enum:
-          - cookie
-      description:
-        type: string
-      required:
-        type: boolean
-        default: false
-      deprecated:
-        type: boolean
-        default: false
-      allowEmptyValue:
-        type: boolean
-        default: false
-      style:
-        type: string
-        enum:
-          - form
-        default: form
-      explode:
-        type: boolean
-      allowReserved:
-        type: boolean
-        default: false
-      schema:
-        $ref: '#/definitions/Schema'
-      examples:
-        type: object
-        additionalProperties:
-          oneOf:
-            - $ref: '#/definitions/Example'
-            - $ref: '#/definitions/Reference'
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false
-
-  ParameterWithContent:
-    oneOf:
-      - $ref: '#/definitions/ParameterWithContentInPath'
-      - $ref: '#/definitions/ParameterWithContentNotInPath'
-
-  ParameterWithContentInPath:
-    type: object
-    required:
-      - name
-      - in
-      - content
-    properties:
-      name:
-        type: string
-      in:
-        type: string
-        enum:
-          - path
-      description:
-        type: string
-      required:
-        type: boolean
-        enum:
-          - true
-      deprecated:
-        type: boolean
-        default: false
-      allowEmptyValue:
-        type: boolean
-        default: false
       content:
         type: object
         additionalProperties:
           $ref: '#/definitions/MediaType'
         minProperties: 1
         maxProperties: 1
+      example: {}
+      examples:
+        type: object
+        additionalProperties:
+          oneOf:
+            - $ref: '#/definitions/Example'
+            - $ref: '#/definitions/Reference'
     patternProperties:
       '^x-': {}
     additionalProperties: false
-
-  ParameterWithContentNotInPath:
-    type: object
     required:
       - name
       - in
-      - content
-    properties:
-      name:
-        type: string
-      in:
-        type: string
-        enum:
-          - query
-          - header
-          - cookie
-      description:
-        type: string
-      required:
-        type: boolean
-        default: false
-      deprecated:
-        type: boolean
-        default: false
-      allowEmptyValue:
-        type: boolean
-        default: false
-      content:
-        type: object
-        additionalProperties:
-          $ref: '#/definitions/MediaType'
-        minProperties: 1
-        maxProperties: 1
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false
+    allOf:
+      - description: Example and examples are mutually exclusive
+        not:
+          required:
+            - example
+            - examples
+
+      - description: Schema and content are mutually exclusive, at least one is required
+        not:
+          required: [schema, content]
+        oneOf:
+          - required: [schema]
+          - required: [content]
+            description: Some properties are not allowed if content is present
+            allOf:
+              - not:
+                  required: [style]
+              - not:
+                  required: [explode]
+              - not:
+                  required: [allowReserved]
+              - not:
+                  required: [example]
+              - not:
+                  required: [examples]
+
+
+      - description: Parameter location
+        oneOf:
+          - description: Parameter in path
+            required:
+              - required
+            properties:
+              in:
+                enum:
+                  - path
+              style:
+                enum:
+                  - matrix
+                  - label
+                  - simple
+                default: simple
+              required:
+                enum:
+                  - true
+
+
+          - description: Parameter in query
+            properties:
+              in:
+                enum:
+                  - query
+              style:
+                enum:
+                  - form
+                  - spaceDelimited
+                  - pipeDelimited
+                  - deepObject
+                default: form
+
+
+          - description: Parameter in header
+            properties:
+              in:
+                enum:
+                  - header
+              style:
+                enum:
+                  - simple
+                default: simple
+
+
+
+          - description: Parameter in cookie
+            properties:
+              in:
+                enum:
+                  - header
+              style:
+                enum:
+                  - form
+                default: form
 
   RequestBody:
     type: object

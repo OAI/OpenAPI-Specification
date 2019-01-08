@@ -29,3 +29,17 @@ Such data would become invalid:
 patternProperties:
   '^(get|put|post|delete|options|head|patch|trace)$': $ref: '#/definitions/Operation'
 ```
+
+## Define Parameter as a filtered superset
+
+In order to avoid massive duplication all possible properties can be defined in a superset.
+Custom rules of exclusiveness can be further defined as a list of traits in `allOf`.
+
+For example such structure does not allow having `example` and `examples` in same object:
+```yaml
+not:
+  required:
+    - example
+    - examples
+```
+

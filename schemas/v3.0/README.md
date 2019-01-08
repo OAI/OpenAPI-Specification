@@ -46,3 +46,8 @@ not:
 ## Combine some definitions as filtered supersets
 
 With same pattern as for Parameter.
+
+## Embed references
+
+In order to simplify `oneOf` logic, many references can be embedded in respective definitions 
+(with same pattern as for Schema or Reference).

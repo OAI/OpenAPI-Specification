@@ -1,6 +1,8 @@
 ---
 owner: MikeRalphson
 description: HTML-formatted text
+base_type: string
+issue:
 layout: default
 ---
 
@@ -8,7 +10,7 @@ layout: default
 
 ## {{ page.slug }} - {{ page.description }}
 
-Base type: `string`.
+Base type: `{{ page.base_type}}`.
 
 The `{{page.slug}}` format represents HTML-formatted text.
 

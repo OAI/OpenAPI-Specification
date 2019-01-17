@@ -16,7 +16,7 @@ These tools are not endorsed by the OAI.
 | Microsoft.OpenApi.net | [github/microsoft/OpenApi.net](https://github.com/microsoft/openapi.net/) | dotnet | C# based parser with definition validation and migration support from V2 |
 | odata-openapi | [github/oasis-tcs/odata-openapi](https://github.com/oasis-tcs/odata-openapi) | XSLT | OData 4.0 to OpenAPI 3.0.0 converter |
 | openapi3_parser | [github/kevindew/openapi3_parser](https://github.com/kevindew/openapi3_parser) | Ruby | A Ruby implementation of parser and validator for the OpenAPI 3 Specification |
-| oas_parser | [github/Nexmo/oas_parser](https://github.com/Nexmo/oas_parser) | Ruby | An open source OpenAPI Spec 3 Definition Parser writen in Ruby |
+| oas_parser | [github/Nexmo/oas_parser](https://github.com/Nexmo/oas_parser) | Ruby | An open source OpenAPI Spec 3 Definition Parser written in Ruby |
 | oas3-remote-refs | [github//OverSpeedIO/oas3-remote-refs](https://github.com/OverSpeedIO/oas3-remote-refs) | Node.js | Tool to pull remote refernences and merge them into the definitions of the provided OpenAPI3 speicfication.
 | go-openapi | [github/nasa9084/go-openapi](https://github.com/nasa9084/go-openapi) | Go | Golang struct model for OpenAPI 3.x. |
 | openapi | [github/wzshiming/openapi](https://github.com/wzshiming/openapi) | Go | OpenAPI 3 Specification for golang |
@@ -26,7 +26,7 @@ These tools are not endorsed by the OAI.
 
 | Title          | Project Link | Language |Description                          |
 |----------------|--------------|----------|---------------------|
-| Apicurio Studio | [github/Apicurio/apicurio-studio](https://github.com/Apicurio/apicurio-studio) | Java/Typescript | Web-Based **visual designer** for OpenAPI 2.0 and 3.0.0. |
+| Apicurio Studio | [github/Apicurio/apicurio-studio](https://github.com/Apicurio/apicurio-studio) | Java/TypeScript | Web-Based **visual designer** for OpenAPI 2.0 and 3.0.0. |
 | KaiZen OpenAPI Editor | [github/RepreZen/KaiZen-OpenAPI-Editor](https://github.com/RepreZen/KaiZen-OpenAPI-Editor) | Java | Eclipse Editor for OpenAPI 2.0 and 3.0 |
 | RepreZen API Studio | [RepreZen.com/OpenAPI](https://www.reprezen.com/OpenAPI) | Java | Commercial desktop IDE for API design, documentation & development |
 | OpenAPI-gui | [github/Mermade/openapi-gui](https://github.com/Mermade/openapi-gui) | Node.js | GUI / visual editor for creating and editing OpenAPI definitions |
@@ -66,7 +66,7 @@ These tools are not endorsed by the OAI.
 | baucis-openapi3 | [github/metadevpro/baucis-openapi3](https://github.com/metadevpro/baucis-openapi3) | Node.js | [Baucis.js](https://github.com/wprl/baucis) plugin for generating OpenAPI 3.0 compliant API contracts. |
 | Google Gnostic | [github/googleapis/gnostic](https://github.com/googleapis/gnostic) | Go | Compile OpenAPI descriptions into equivalent Protocol Buffer representations. |
 | Gen | [github/wzshiming/gen](https://github.com/wzshiming/gen) | Go | Generate OpenAPI 3, client, and route based on golang source code. |
-| serverless-openapi-documentation | [github/temando/serverless-openapi-documentation](https://github.com/temando/serverless-openapi-documentation) | Typescript | Serverless 1.0 plugin to generate OpenAPI V3 documentation from serverless configuration |
+| serverless-openapi-documentation | [github/temando/serverless-openapi-documentation](https://github.com/temando/serverless-openapi-documentation) | TypeScript | Serverless 1.0 plugin to generate OpenAPI V3 documentation from serverless configuration |
 | zero-rails_openapi | [github/zhandao/zero-rails_openapi](https://github.com/zhandao/zero-rails_openapi) | Ruby | Provide concise DSL for generating the OpenAPI Specification 3 documentation file for Rails application |
 | slush-vertx | [github/pmlopes/slush-vertx](https://github.com/pmlopes/slush-vertx) | Java, Kotlin & Groovy | Generate server skeleton for [Vert.x Web API Contract](http://vertx.io/docs/#web) and API Client based on [Vert.x 3 Web Client](http://vertx.io/docs/#web)
 | WebSphere Liberty | [Download jar](https://developer.ibm.com/wasdev/downloads/) | Java EE | Generates OpenAPI v3 documentation from Java EE applications |

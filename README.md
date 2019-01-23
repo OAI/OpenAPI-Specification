@@ -1,5 +1,6 @@
-![](https://www.etclabs.org/dist/resources/images/v2/logo-top.png)
-Supported by [ETC Labs](https://www.etclabs.org/)
+![Open RPC Logo](https://github.com/open-rpc/design/blob/master/png/open-rpc-logo-320x320.png?raw=true "Open RPC Logo")
+
+Sponsored by ![Ethereum Classic Labs](https://github.com/open-rpc/design/blob/master/png/etc-labs-logo-32x32.png?raw=true "ETCLabs Logo") [Ethereum Classic Labs](https://etclabs.org).
 
 # OpenRPC Specification
 

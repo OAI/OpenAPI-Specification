@@ -2,6 +2,7 @@
 owner: MikeRalphson
 issue: 845
 description: unsigned 8-bit integer
+base_type: number
 layout: default
 ---
 
@@ -9,7 +10,7 @@ layout: default
 
 ## {{ page.slug }} - {{ page.description }}
 
-Base type: `number`.
+Base type: `{{ page.base_type }}`.
 
 The `{{page.slug}}` format represents an unsigned 8-bit integer, with the range 0 to 255.
 

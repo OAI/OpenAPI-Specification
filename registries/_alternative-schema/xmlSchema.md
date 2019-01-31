@@ -1,5 +1,5 @@
 ---
-owner: darrel_miller
+owner: darrelmiller
 issue: 1532
 description: xml Schema
 layout: default

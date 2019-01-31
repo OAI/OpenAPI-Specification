@@ -1,13 +1,10 @@
 ---
-slug: x-twitter
-name: x-twitter
-owner: mike_ralphson
+owner: MikeRalphson
 issue:
 description: Used to hold a reference to the API provider's Twitter account.
 schema:
   type: string
 objects: [ "contactObject" ]
-
 layout: default
 ---
 

@@ -58,6 +58,7 @@ These tools are not endorsed by the OAI.
 | Koa2-OAS3 | [github/OverSpeedIO/koa2-oas3](https://github.com/OverSpeedIO/koa2-oas3) | Node.js | OpenAPI 3 request validation middleware for Koa2 based apps.
 | Exegesis | [github/exegesis-js/exegesis](https://github.com/exegesis-js/exegesis) | Node.js | OpenAPI 3 server-side framework for express and other frameworks.
 | PHP-CRUD-API | [github/mevdschee/php-crud-api](https://github.com/mevdschee/php-crud-api) | PHP | Automatic CRUD API with OpenAPI 3 docs
+| FastAPI | [github/tiangolo/fastapi](https://github.com/tiangolo/fastapi) | Python | OpenAPI 3 based, high performance, Python 3.6+ API framework with automatic data validation, serialization and great editor support.
 
 #### Code Generators
 

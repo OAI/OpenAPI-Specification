@@ -72,3 +72,6 @@ These tools are not endorsed by the OAI.
 | slush-vertx | [github/pmlopes/slush-vertx](https://github.com/pmlopes/slush-vertx) | Java, Kotlin & Groovy | Generate server skeleton for [Vert.x Web API Contract](http://vertx.io/docs/#web) and API Client based on [Vert.x 3 Web Client](http://vertx.io/docs/#web)
 | WebSphere Liberty | [Download jar](https://developer.ibm.com/wasdev/downloads/) | Java EE | Generates OpenAPI v3 documentation from Java EE applications |
 | swagger-node-codegen | [github/fmvilas/swagger-node-codegen](https://github.com/fmvilas/swagger-node-codegen) | Node.js | Generates a Node.js/express server, but also has a template engine for creating any templates needed. |
+| OpenAPI Generator | [github/OpenAPITools/openapi-generator](https://github.com/OpenAPITools/openapi-generator) | Polyglot | Creates API client libraries, server stubs, documentation and configuration |
+
+

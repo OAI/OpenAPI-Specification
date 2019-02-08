@@ -14,13 +14,14 @@ The OpenAPI Specification does not require rewriting existing APIs. It does not 
 
 This GitHub project is the starting point for OpenAPI. Here you will find the information you need about the OpenAPI Specification, simple examples of what it looks like, and some general information regarding the project.
 
-## Current Version - 3.0.1
+## Current Version - 3.0.2
 
-The current version of the OpenAPI specification is [OpenAPI Specification 3.0.1](versions/3.0.1.md).
+The current version of the OpenAPI specification is [OpenAPI Specification 3.0.2](versions/3.0.2.md).
 
 ### Future Versions
 
-[3.0.2](https://github.com/OAI/OpenAPI-Specification/tree/v3.0.2-dev) - The next PATCH version. Patch-level fixes (typos, clarifications, etc.) should be submitted against this branch.
+[3.0.3](https://github.com/OAI/OpenAPI-Specification/tree/v3.0.3-dev) - The next PATCH version. Patch-level fixes (typos, clarifications, etc.) should be submitted against this branch.
+[3.1.0](https://github.com/OAI/OpenAPI-Specification/tree/v3.1.0-dev) - The next MINOR version. Non-breaking changes should be submitted against this branch.
 
 ### Previous Versions
 
@@ -47,7 +48,7 @@ The TSC holds weekly web conferences to review open pull requests and discuss op
 
 The Open API Initiative encourages participation from individuals and companies alike. If you want to participate in the evolution of the OpenAPI Specification, consider taking the following actions:
 
-* Review the [current specification](versions/3.0.1.md). The human-readable markdown file _is the source of truth_ for the specification.
+* Review the [current specification](versions/3.0.2.md). The human-readable markdown file _is the source of truth_ for the specification.
 * Review the [development](DEVELOPMENT.md) process so you understand how the spec is evolving.
 * Check the [issues](https://github.com/OAI/OpenAPI-Specification/issues) and [pull requests](https://github.com/OAI/OpenAPI-Specification/pulls) to see if someone has already documented your idea or feedback on the specification. You can follow an existing conversation by adding a comment to the existing issue or PR.
 * Create an issue to describe a new concern. If possible, propose a solution.

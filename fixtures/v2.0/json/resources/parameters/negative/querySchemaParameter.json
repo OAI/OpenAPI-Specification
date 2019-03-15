@@ -1,9 +1,0 @@
-{
-  "name": "firstName",
-  "in": "query",
-  "description": "users first name",
-  "required": true,
-  "schema": {
-  	"$ref": "#/definitions/Nothing"
-  }
-}

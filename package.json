@@ -1,33 +1,31 @@
 {
-  "name": "swagger-validator",
-  "version": "0.0.1",
-  "description": "validates a file",
+  "name": "oas-schemas",
+  "version": "2.0.0",
+  "description": "OpenAPI Specification JSON schemas",
   "author": {
-    "name": "Tony Tam",
-    "email": "fehguy@gmail.com",
-    "url": "http://swagger.io"
+    "name": "OpenAPI Initiative TSC",
+    "email": "tsc@openapis.org",
+    "url": "https://openapis.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OAI/OpenAPI-Specification.git"
   },
   "license": "Apache-2.0",
   "readmeFilename": "README.md",
-  "dependencies": {
-    "tv4": "~1.1.x",
-    "chai": "1.9.x"
-  },
+  "files": [
+    "README.md",
+    "schemas/*"
+  ],
+  "dependencies": {},
   "devDependencies": {
-    "glob": "^4.0.5",
-    "gulp": "~3.8.x",
-    "gulp-ext-replace": "^0.1.0",
-    "gulp-jsonlint": "0.0.3",
-    "gulp-util": "^3.0.0",
-    "gulp-yaml": "0.0.3",
-    "js-yaml": "^3.1.0",
-    "json2yaml": "^1.0.3",
-    "jsonschema": "^1.0.0",
-    "map-stream": "^0.1.0",
-    "mdv": "^1.0.3",
-    "mocha": "^1.21.3",
-    "q": "^1.0.1",
-    "request": "^2.39.0",
-    "z-schema": "^2.4.9"
-  }
+    "mdv": "^1.0.7"
+  },
+  "keywords": [
+    "OpenAPI",
+    "OAS",
+    "Swagger",
+    "schema",
+    "API"
+  ]
 }

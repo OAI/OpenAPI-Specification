@@ -134,7 +134,9 @@ definitions:
         type: object
         patternProperties:
           '^[a-zA-Z0-9\.\-_]+$':
-            $ref: '#/definitions/Schema'
+            oneOf:
+              - $ref: '#/definitions/Schema'
+              - $ref: '#/definitions/Reference'
       responses:
         type: object
         patternProperties:
@@ -262,28 +264,41 @@ definitions:
           - object
           - string
       not:
-        $ref: '#/definitions/Schema'
+        oneOf:
+          - $ref: '#/definitions/Schema'
+          - $ref: '#/definitions/Reference'
       allOf:
         type: array
         items:
-          $ref: '#/definitions/Schema'
+          oneOf:
+            - $ref: '#/definitions/Schema'
+            - $ref: '#/definitions/Reference'
       oneOf:
         type: array
         items:
-          $ref: '#/definitions/Schema'
+          oneOf:
+            - $ref: '#/definitions/Schema'
+            - $ref: '#/definitions/Reference'
       anyOf:
         type: array
         items:
-          $ref: '#/definitions/Schema'
+          oneOf:
+            - $ref: '#/definitions/Schema'
+            - $ref: '#/definitions/Reference'
       items:
-        $ref: '#/definitions/Schema'
+        oneOf:
+          - $ref: '#/definitions/Schema'
+          - $ref: '#/definitions/Reference'
       properties:
         type: object
         additionalProperties:
-          $ref: '#/definitions/Schema'
+          oneOf:
+            - $ref: '#/definitions/Schema'
+            - $ref: '#/definitions/Reference'
       additionalProperties:
         oneOf:
           - $ref: '#/definitions/Schema'
+          - $ref: '#/definitions/Reference'
           - type: boolean
         default: true
       description:
@@ -311,9 +326,6 @@ definitions:
       xml:
         $ref: '#/definitions/XML'
     patternProperties:
-      '^\$ref$':
-        type: string
-        format: uri-reference
       '^x-': {}
     additionalProperties: false
 
@@ -380,7 +392,9 @@ definitions:
     type: object
     properties:
       schema:
-        $ref: '#/definitions/Schema'
+        oneOf:
+          - $ref: '#/definitions/Schema'
+          - $ref: '#/definitions/Reference'
       example: {}
       examples:
         type: object
@@ -438,7 +452,9 @@ definitions:
         type: boolean
         default: false
       schema:
-        $ref: '#/definitions/Schema'
+        oneOf:
+          - $ref: '#/definitions/Schema'
+          - $ref: '#/definitions/Reference'
       content:
         type: object
         additionalProperties:
@@ -648,7 +664,9 @@ definitions:
         type: boolean
         default: false
       schema:
-        $ref: '#/definitions/Schema'
+        oneOf:
+          - $ref: '#/definitions/Schema'
+          - $ref: '#/definitions/Reference'
       content:
         type: object
         additionalProperties:

@@ -77,7 +77,7 @@ definitions:
         format: email
     patternProperties:
       '^x-': {}
-    additionalProperties: false    
+    additionalProperties: false
 
   License:
     type: object
@@ -135,8 +135,8 @@ definitions:
         patternProperties:
           '^[a-zA-Z0-9\.\-_]+$':
             oneOf:
-              - $ref: '#/definitions/Reference'
               - $ref: '#/definitions/Schema'
+              - $ref: '#/definitions/Reference'
       responses:
         type: object
         patternProperties:
@@ -327,8 +327,8 @@ definitions:
         $ref: '#/definitions/XML'
     patternProperties:
       '^x-': {}
-    additionalProperties: false        
-  
+    additionalProperties: false
+
   Discriminator:
     type: object
     required:
@@ -389,11 +389,6 @@ definitions:
     additionalProperties: false
 
   MediaType:
-    oneOf:
-      - $ref: '#/definitions/MediaTypeWithExample'
-      - $ref: '#/definitions/MediaTypeWithExamples'
-
-  MediaTypeWithExample:
     type: object
     properties:
       schema:
@@ -401,23 +396,6 @@ definitions:
           - $ref: '#/definitions/Schema'
           - $ref: '#/definitions/Reference'
       example: {}
-      encoding:
-        type: object
-        additionalProperties:
-          $ref: '#/definitions/Encoding'
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false 
-
-  MediaTypeWithExamples:
-    type: object
-    required:
-      - examples
-    properties:
-      schema:
-        oneOf:
-          - $ref: '#/definitions/Schema'
-          - $ref: '#/definitions/Reference'
       examples:
         type: object
         additionalProperties:
@@ -430,7 +408,9 @@ definitions:
           $ref: '#/definitions/Encoding'
     patternProperties:
       '^x-': {}
-    additionalProperties: false 
+    additionalProperties: false
+    allOf:
+      - $ref: '#/definitions/ExampleXORExamples'
 
   Example:
     type: object
@@ -448,19 +428,7 @@ definitions:
     additionalProperties: false
 
   Header:
-    oneOf:
-      - $ref: '#/definitions/HeaderWithSchema'
-      - $ref: '#/definitions/HeaderWithContent'
-
-  HeaderWithSchema:
-    oneOf:
-      - $ref: '#/definitions/HeaderWithSchemaWithExample'
-      - $ref: '#/definitions/HeaderWithSchemaWithExamples'
-
-  HeaderWithSchemaWithExample:
     type: object
-    required:
-      - schema
     properties:
       description:
         type: string
@@ -487,42 +455,13 @@ definitions:
         oneOf:
           - $ref: '#/definitions/Schema'
           - $ref: '#/definitions/Reference'
+      content:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/MediaType'
+        minProperties: 1
+        maxProperties: 1
       example: {}
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false  
-
-  HeaderWithSchemaWithExamples:
-    type: object
-    required:
-      - schema
-      - examples
-    properties:
-      description:
-        type: string
-      required:
-        type: boolean
-        default: false
-      deprecated:
-        type: boolean
-        default: false
-      allowEmptyValue:
-        type: boolean
-        default: false
-      style:
-        type: string
-        enum:
-          - simple
-        default: simple
-      explode:
-        type: boolean
-      allowReserved:
-        type: boolean
-        default: false
-      schema:
-        oneOf:
-          - $ref: '#/definitions/Schema'
-          - $ref: '#/definitions/Reference'
       examples:
         type: object
         additionalProperties:
@@ -532,37 +471,14 @@ definitions:
     patternProperties:
       '^x-': {}
     additionalProperties: false
-
-  HeaderWithContent:
-    type: object
-    required:
-      - content
-    properties:
-      description:
-        type: string
-      required:
-        type: boolean
-        default: false
-      deprecated:
-        type: boolean
-        default: false
-      allowEmptyValue:
-        type: boolean
-        default: false
-      content:
-        type: object
-        additionalProperties:
-          $ref: '#/definitions/MediaType'
-        minProperties: 1
-        maxProperties: 1
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false
+    allOf:
+      - $ref: '#/definitions/ExampleXORExamples'
+      - $ref: '#/definitions/SchemaXORContent'
 
   Paths:
     type: object
     patternProperties:
-      '^\/': 
+      '^\/':
         $ref: '#/definitions/PathItem'
       '^x-': {}
     additionalProperties: false
@@ -576,22 +492,6 @@ definitions:
         type: string
       description:
         type: string
-      get:
-        $ref: '#/definitions/Operation'
-      put:
-        $ref: '#/definitions/Operation'
-      post:
-        $ref: '#/definitions/Operation'
-      delete:
-        $ref: '#/definitions/Operation'
-      options:
-        $ref: '#/definitions/Operation'
-      head:
-        $ref: '#/definitions/Operation'
-      patch:
-        $ref: '#/definitions/Operation'
-      trace:
-        $ref: '#/definitions/Operation'
       servers:
         type: array
         items:
@@ -604,6 +504,8 @@ definitions:
             - $ref: '#/definitions/Reference'
         uniqueItems: true
     patternProperties:
+      '^(get|put|post|delete|options|head|patch|trace)$':
+        $ref: '#/definitions/Operation'
       '^x-': {}
     additionalProperties: false
 
@@ -673,7 +575,7 @@ definitions:
       '^x-': {}
     minProperties: 1
     additionalProperties: false
- 
+
 
   SecurityRequirement:
     type: object
@@ -711,83 +613,38 @@ definitions:
       '^x-': {}
     additionalProperties: false
 
+  ExampleXORExamples:
+    description: Example and examples are mutually exclusive
+    not:
+      required: [example, examples]
+
+  SchemaXORContent:
+    description: Schema and content are mutually exclusive, at least one is required
+    not:
+      required: [schema, content]
+    oneOf:
+      - required: [schema]
+      - required: [content]
+        description: Some properties are not allowed if content is present
+        allOf:
+          - not:
+              required: [style]
+          - not:
+              required: [explode]
+          - not:
+              required: [allowReserved]
+          - not:
+              required: [example]
+          - not:
+              required: [examples]
+
   Parameter:
-    oneOf:
-      - $ref: '#/definitions/ParameterWithSchema'
-      - $ref: '#/definitions/ParameterWithContent'
-  
-  ParameterWithSchema:
-    oneOf:
-      - $ref: '#/definitions/ParameterWithSchemaWithExample'
-      - $ref: '#/definitions/ParameterWithSchemaWithExamples'
-
-  ParameterWithSchemaWithExample:
-    oneOf:
-      - $ref: '#/definitions/ParameterWithSchemaWithExampleInPath'
-      - $ref: '#/definitions/ParameterWithSchemaWithExampleInQuery'
-      - $ref: '#/definitions/ParameterWithSchemaWithExampleInHeader'
-      - $ref: '#/definitions/ParameterWithSchemaWithExampleInCookie'
-
-  ParameterWithSchemaWithExampleInPath:
     type: object
-    required:
-      - name
-      - in
-      - schema
-      - required
     properties:
       name:
         type: string
       in:
         type: string
-        enum:
-          - path
-      description:
-        type: string
-      required:
-        type: boolean
-        enum:
-          - true
-      deprecated:
-        type: boolean
-        default: false
-      allowEmptyValue:
-        type: boolean
-        default: false
-      style:
-        type: string
-        enum:
-          - matrix
-          - label
-          - simple
-        default: simple
-      explode:
-        type: boolean
-      allowReserved:
-        type: boolean
-        default: false
-      schema:
-        oneOf:
-          - $ref: '#/definitions/Schema'
-          - $ref: '#/definitions/Reference'
-      example: {}
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false
-
-  ParameterWithSchemaWithExampleInQuery:
-    type: object
-    required:
-      - name
-      - in
-      - schema
-    properties:
-      name:
-        type: string
-      in:
-        type: string
-        enum:
-          - query
       description:
         type: string
       required:
@@ -801,12 +658,6 @@ definitions:
         default: false
       style:
         type: string
-        enum:
-          - form
-          - spaceDelimited
-          - pipeDelimited
-          - deepObject
-        default: form
       explode:
         type: boolean
       allowReserved:
@@ -816,382 +667,68 @@ definitions:
         oneOf:
           - $ref: '#/definitions/Schema'
           - $ref: '#/definitions/Reference'
-      example: {}
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false    
-
-  ParameterWithSchemaWithExampleInHeader:
-    type: object
-    required:
-      - name
-      - in
-      - schema
-    properties:
-      name:
-        type: string
-      in:
-        type: string
-        enum:
-          - header
-      description:
-        type: string
-      required:
-        type: boolean
-        default: false
-      deprecated:
-        type: boolean
-        default: false
-      allowEmptyValue:
-        type: boolean
-        default: false
-      style:
-        type: string
-        enum:
-          - simple
-        default: simple
-      explode:
-        type: boolean
-      allowReserved:
-        type: boolean
-        default: false
-      schema:
-        oneOf:
-          - $ref: '#/definitions/Schema'
-          - $ref: '#/definitions/Reference'
-      example: {}
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false    
-
-  ParameterWithSchemaWithExampleInCookie:
-    type: object
-    required:
-      - name
-      - in
-      - schema
-    properties:
-      name:
-        type: string
-      in:
-        type: string
-        enum:
-          - cookie
-      description:
-        type: string
-      required:
-        type: boolean
-        default: false
-      deprecated:
-        type: boolean
-        default: false
-      allowEmptyValue:
-        type: boolean
-        default: false
-      style:
-        type: string
-        enum:
-          - form
-        default: form
-      explode:
-        type: boolean
-      allowReserved:
-        type: boolean
-        default: false
-      schema:
-        oneOf:
-          - $ref: '#/definitions/Schema'
-          - $ref: '#/definitions/Reference'
-      example: {}
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false  
-
-  ParameterWithSchemaWithExamples:
-    oneOf:
-      - $ref: '#/definitions/ParameterWithSchemaWithExamplesInPath'
-      - $ref: '#/definitions/ParameterWithSchemaWithExamplesInQuery'
-      - $ref: '#/definitions/ParameterWithSchemaWithExamplesInHeader'
-      - $ref: '#/definitions/ParameterWithSchemaWithExamplesInCookie'
-
-  ParameterWithSchemaWithExamplesInPath:
-    type: object
-    required:
-      - name
-      - in
-      - schema
-      - required
-      - examples
-    properties:
-      name:
-        type: string
-      in:
-        type: string
-        enum:
-          - path
-      description:
-        type: string
-      required:
-        type: boolean
-        enum:
-          - true
-      deprecated:
-        type: boolean
-        default: false
-      allowEmptyValue:
-        type: boolean
-        default: false
-      style:
-        type: string
-        enum:
-          - matrix
-          - label
-          - simple
-        default: simple
-      explode:
-        type: boolean
-      allowReserved:
-        type: boolean
-        default: false
-      schema:
-        oneOf:
-          - $ref: '#/definitions/Schema'
-          - $ref: '#/definitions/Reference'
-      examples:
-        type: object
-        additionalProperties:
-          oneOf:
-            - $ref: '#/definitions/Example'
-            - $ref: '#/definitions/Reference'
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false
-
-  ParameterWithSchemaWithExamplesInQuery:
-    type: object
-    required:
-      - name
-      - in
-      - schema
-      - examples
-    properties:
-      name:
-        type: string
-      in:
-        type: string
-        enum:
-          - query
-      description:
-        type: string
-      required:
-        type: boolean
-        default: false
-      deprecated:
-        type: boolean
-        default: false
-      allowEmptyValue:
-        type: boolean
-        default: false
-      style:
-        type: string
-        enum:
-          - form
-          - spaceDelimited
-          - pipeDelimited
-          - deepObject
-        default: form
-      explode:
-        type: boolean
-      allowReserved:
-        type: boolean
-        default: false
-      schema:
-        oneOf:
-          - $ref: '#/definitions/Schema'
-          - $ref: '#/definitions/Reference'
-      examples:
-        type: object
-        additionalProperties:
-          oneOf:
-            - $ref: '#/definitions/Example'
-            - $ref: '#/definitions/Reference'
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false    
-
-  ParameterWithSchemaWithExamplesInHeader:
-    type: object
-    required:
-      - name
-      - in
-      - schema
-      - examples
-    properties:
-      name:
-        type: string
-      in:
-        type: string
-        enum:
-          - header
-      description:
-        type: string
-      required:
-        type: boolean
-        default: false
-      deprecated:
-        type: boolean
-        default: false
-      allowEmptyValue:
-        type: boolean
-        default: false
-      style:
-        type: string
-        enum:
-          - simple
-        default: simple
-      explode:
-        type: boolean
-      allowReserved:
-        type: boolean
-        default: false
-      schema:
-        oneOf:
-          - $ref: '#/definitions/Schema'
-          - $ref: '#/definitions/Reference'
-      examples:
-        type: object
-        additionalProperties:
-          oneOf:
-            - $ref: '#/definitions/Example'
-            - $ref: '#/definitions/Reference'
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false    
-
-  ParameterWithSchemaWithExamplesInCookie:
-    type: object
-    required:
-      - name
-      - in
-      - schema
-      - examples
-    properties:
-      name:
-        type: string
-      in:
-        type: string
-        enum:
-          - cookie
-      description:
-        type: string
-      required:
-        type: boolean
-        default: false
-      deprecated:
-        type: boolean
-        default: false
-      allowEmptyValue:
-        type: boolean
-        default: false
-      style:
-        type: string
-        enum:
-          - form
-        default: form
-      explode:
-        type: boolean
-      allowReserved:
-        type: boolean
-        default: false
-      schema:
-        oneOf:
-          - $ref: '#/definitions/Schema'
-          - $ref: '#/definitions/Reference'
-      examples:
-        type: object
-        additionalProperties:
-          oneOf:
-            - $ref: '#/definitions/Example'
-            - $ref: '#/definitions/Reference'
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false
-
-  ParameterWithContent:
-    oneOf:
-      - $ref: '#/definitions/ParameterWithContentInPath'
-      - $ref: '#/definitions/ParameterWithContentNotInPath'
-
-  ParameterWithContentInPath:
-    type: object
-    required:
-      - name
-      - in
-      - content
-    properties:
-      name:
-        type: string
-      in:
-        type: string
-        enum:
-          - path
-      description:
-        type: string
-      required:
-        type: boolean
-        enum:
-          - true
-      deprecated:
-        type: boolean
-        default: false
-      allowEmptyValue:
-        type: boolean
-        default: false
       content:
         type: object
         additionalProperties:
           $ref: '#/definitions/MediaType'
         minProperties: 1
         maxProperties: 1
+      example: {}
+      examples:
+        type: object
+        additionalProperties:
+          oneOf:
+            - $ref: '#/definitions/Example'
+            - $ref: '#/definitions/Reference'
     patternProperties:
       '^x-': {}
     additionalProperties: false
-
-  ParameterWithContentNotInPath:
-    type: object
     required:
       - name
       - in
-      - content
-    properties:
-      name:
-        type: string
-      in:
-        type: string
-        enum:
-          - query
-          - header
-          - cookie
-      description:
-        type: string
-      required:
-        type: boolean
-        default: false
-      deprecated:
-        type: boolean
-        default: false
-      allowEmptyValue:
-        type: boolean
-        default: false
-      content:
-        type: object
-        additionalProperties:
-          $ref: '#/definitions/MediaType'
-        minProperties: 1
-        maxProperties: 1
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false
+    allOf:
+      - $ref: '#/definitions/ExampleXORExamples'
+      - $ref: '#/definitions/SchemaXORContent'
+      - $ref: '#/definitions/ParameterLocation'
+
+  ParameterLocation:
+    description: Parameter location
+    oneOf:
+      - description: Parameter in path
+        required:
+          - required
+        properties:
+          in:
+            enum: [path]
+          style:
+            enum: [matrix, label, simple]
+            default: simple
+          required:
+            enum: [true]
+
+      - description: Parameter in query
+        properties:
+          in:
+            enum: [query]
+          style:
+            enum: [form, spaceDelimited, pipeDelimited, deepObject]
+            default: form
+
+      - description: Parameter in header
+        properties:
+          in:
+            enum: [header]
+          style:
+            enum: [simple]
+            default: simple
+
+      - description: Parameter in cookie
+        properties:
+          in:
+            enum: [cookie]
+          style:
+            enum: [form]
+            default: form
 
   RequestBody:
     type: object
@@ -1217,7 +754,7 @@ definitions:
       - $ref: '#/definitions/HTTPSecurityScheme'
       - $ref: '#/definitions/OAuth2SecurityScheme'
       - $ref: '#/definitions/OpenIdConnectSecurityScheme'
-  
+
   APIKeySecurityScheme:
     type: object
     required:
@@ -1228,7 +765,7 @@ definitions:
       type:
         type: string
         enum:
-          - apiKey      
+          - apiKey
       name:
         type: string
       in:
@@ -1242,13 +779,8 @@ definitions:
     patternProperties:
       '^x-': {}
     additionalProperties: false
-  
+
   HTTPSecurityScheme:
-    oneOf:
-      - $ref: '#/definitions/NonBearerHTTPSecurityScheme'
-      - $ref: '#/definitions/BearerHTTPSecurityScheme'
-
-  NonBearerHTTPSecurityScheme:
     type: object
     required:
       - scheme
@@ -1256,40 +788,30 @@ definitions:
     properties:
       scheme:
         type: string
-        not:
-          enum:
-            - bearer
-      description:
-        type: string
-      type:
-        type: string
-        enum:
-          - http
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false
-
-  BearerHTTPSecurityScheme:
-    type: object
-    required:
-      - type
-      - scheme
-    properties:
-      scheme:
-        type: string
-        enum:
-          - bearer
       bearerFormat:
         type: string
+      description:
+        type: string
       type:
         type: string
         enum:
           - http
-      description:
-        type: string
     patternProperties:
       '^x-': {}
     additionalProperties: false
+    oneOf:
+      - description: Bearer
+        properties:
+          scheme:
+            enum: [bearer]
+
+      - description: Non Bearer
+        not:
+          required: [bearerFormat]
+        properties:
+          scheme:
+            not:
+              enum: [bearer]
 
   OAuth2SecurityScheme:
     type: object
@@ -1318,7 +840,7 @@ definitions:
       type:
         type: string
         enum:
-          - openIdConnect      
+          - openIdConnect
       openIdConnectUrl:
         type: string
         format: uri-reference
@@ -1425,13 +947,10 @@ definitions:
     additionalProperties: false
 
   Link:
-    oneOf:
-      - $ref: '#/definitions/LinkWithOperationRef'
-      - $ref: '#/definitions/LinkWithOperationId'
-
-  LinkWithOperationRef:
     type: object
     properties:
+      operationId:
+        type: string
       operationRef:
         type: string
         format: uri-reference
@@ -1446,23 +965,9 @@ definitions:
     patternProperties:
       '^x-': {}
     additionalProperties: false
-
-  LinkWithOperationId:
-    type: object
-    properties:
-      operationId:
-        type: string
-      parameters:
-        type: object
-        additionalProperties: {}
-      requestBody: {}
-      description:
-        type: string
-      server:
-        $ref: '#/definitions/Server'
-    patternProperties:
-      '^x-': {}
-    additionalProperties: false
+    not:
+      description: Operation Id and Operation Ref are mutually exclusive
+      required: [operationId, operationRef]
 
   Callback:
     type: object

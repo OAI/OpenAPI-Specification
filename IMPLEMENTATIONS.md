@@ -21,6 +21,8 @@ These tools are not endorsed by the OAI.
 | go-openapi | [github/nasa9084/go-openapi](https://github.com/nasa9084/go-openapi) | Go | Golang struct model for OpenAPI 3.x. |
 | openapi | [github/wzshiming/openapi](https://github.com/wzshiming/openapi) | Go | OpenAPI 3 Specification for golang |
 | kin-openapi | [github/getkin/kin-openapi](https://github.com/getkin/kin-openapi) | Go | OpenAPI 3.x implementation for Go (parsing, converting, validation) |
+| Spectral | [github/stoplightio/spectral](https://github.com/stoplightio/spectral) | TypeScript, JavaScript | A flexible JSON object linter with out of the box support for OpenAPI Specification 2 and 3 |
+
 
 #### Editors
 
@@ -72,3 +74,4 @@ These tools are not endorsed by the OAI.
 | slush-vertx | [github/pmlopes/slush-vertx](https://github.com/pmlopes/slush-vertx) | Java, Kotlin & Groovy | Generate server skeleton for [Vert.x Web API Contract](http://vertx.io/docs/#web) and API Client based on [Vert.x 3 Web Client](http://vertx.io/docs/#web)
 | WebSphere Liberty | [Download jar](https://developer.ibm.com/wasdev/downloads/) | Java EE | Generates OpenAPI v3 documentation from Java EE applications |
 | swagger-node-codegen | [github/fmvilas/swagger-node-codegen](https://github.com/fmvilas/swagger-node-codegen) | Node.js | Generates a Node.js/express server, but also has a template engine for creating any templates needed. |
+.NET-C#-Annotations | [github/Microsoft/OpenAPI-NET-CSharpAnnotations](https://github.com/Microsoft/OpenAPI.NET.CSharpAnnotations) | dotnet | Convert your native C# comments/annotation XML from your API code into a OpenAPI document object. |

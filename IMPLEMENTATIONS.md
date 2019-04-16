@@ -61,6 +61,7 @@ These tools are not endorsed by the OAI.
 | Exegesis | [github/exegesis-js/exegesis](https://github.com/exegesis-js/exegesis) | Node.js | OpenAPI 3 server-side framework for express and other frameworks.
 | PHP-CRUD-API | [github/mevdschee/php-crud-api](https://github.com/mevdschee/php-crud-api) | PHP | Automatic CRUD API with OpenAPI 3 docs
 | FastAPI | [github/tiangolo/fastapi](https://github.com/tiangolo/fastapi) | Python | OpenAPI 3 based, high performance, Python 3.6+ API framework with automatic data validation, serialization and great editor support.
+| Fastify OpenAPI v3 | [gitlab.com/m03geek/fastify-oas](https://gitlab.com/m03geek/fastify-oas) | Node.JS | Fastify OpenAPI v3+ plugin. Generates OpenAPI specification from fastify schemas and routes. Also serves swagger ui and spec in json/yaml formats.
 
 #### Code Generators
 

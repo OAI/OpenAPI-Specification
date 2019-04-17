@@ -1,6 +1,8 @@
 ## Change: Add Alternative Schema Examples
 
-### Examples
+The following text is to be inserted after the Alternative Schema Object section.
+
+### Alternative Schema Examples
 
 Minimalist usage of alternative schema:
 

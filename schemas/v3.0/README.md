@@ -10,7 +10,7 @@ The iteration version of the JSON Schema can be found in the `id` field. For exa
 To submit improvements to the schema, modify the schema.yaml file only.
 
 The TSC will then:
-- Run tests on the updates schema
+- Run tests on the updated schema
 - Update the iteration version
 - Convert the schema.yaml to schema.json
 - Publish the new version

@@ -40,7 +40,7 @@ paths:
                             ]
                         }
                     ]
-                 }
+                  }
         '300':
           description: |-
             300 response

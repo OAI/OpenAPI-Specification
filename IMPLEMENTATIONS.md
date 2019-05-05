@@ -61,12 +61,14 @@ These tools are not endorsed by the OAI.
 | Exegesis | [github/exegesis-js/exegesis](https://github.com/exegesis-js/exegesis) | Node.js | OpenAPI 3 server-side framework for express and other frameworks.
 | PHP-CRUD-API | [github/mevdschee/php-crud-api](https://github.com/mevdschee/php-crud-api) | PHP | Automatic CRUD API with OpenAPI 3 docs
 | FastAPI | [github/tiangolo/fastapi](https://github.com/tiangolo/fastapi) | Python | OpenAPI 3 based, high performance, Python 3.6+ API framework with automatic data validation, serialization and great editor support.
+| openapi-backend | [github/anttiviljami/openapi-backend](https://github.com/anttiviljami/openapi-backend) | Node.js, TypeScript | Build, Validate, Route, and Mock in the backend using OpenAPI v3 spec in your favourite framework
 
 #### Client Implementations
 
 | Title          | Project Link | Language | Description |
 |----------------|--------------|----------|-------------|
 | Scorpio        | [github/notEthan/scorpio](https://github.com/notEthan/Scorpio) | Ruby | OpenAPI 2 and 3 implementation offering a HTTP client library |
+| openapi-client-axios | [github/anttiviljami/openapi-client-axios](https://github.com/anttiviljami/openapi-client-axios) | JavaScript, TypeScript | JavaScript client library for consuming OpenAPI-enabled APIs with axios. Types included.
 
 #### Code Generators
 

@@ -7,7 +7,7 @@
 |Proposal |[Alternative Schema](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/Alternative%20Schema)|
 |Authors|[Chuck Heazel](https://github.com/cmheazel)|
 |Review Manager |TBD |
-|Status |**Pilot** |
+|Status |**Draft** |
 |Implementations |[Click Here](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/Alternative%20Schema/implementations.md)
 |Issues |[1532](https://github.com/OAI/OpenAPI-Specification/issues/1532)|
 |Previous Revisions |[March 15](https://github.com/OAI/OpenAPI-Specification/pull/1868#issue-261689900) |

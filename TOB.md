@@ -6,7 +6,7 @@
 ## TSC Elected - terms through May 2021
 Isabelle Mauny - 42Crunch
 
-Uri Sarid - Salesforce
+Uri Sarid - MuleSoft
 
 Marsh Gardiner - Google
 

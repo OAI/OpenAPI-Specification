@@ -109,6 +109,7 @@ paths:
             $ref: '#/definitions/Error'
 definitions:
   Pet:
+    type: "object"
     allOf:
       - $ref: '#/definitions/NewPet'
       - required:
@@ -119,6 +120,7 @@ definitions:
             format: int64
 
   NewPet:
+    type: "object"
     required:
       - name  
     properties:
@@ -128,6 +130,7 @@ definitions:
         type: string    
 
   Error:
+    type: "object"
     required:
       - code
       - message

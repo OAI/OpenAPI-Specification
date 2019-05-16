@@ -109,11 +109,11 @@ paths:
             $ref: '#/definitions/Error'
 definitions:
   Pet:
-    type: "object"
     allOf:
       - $ref: '#/definitions/NewPet'
       - required:
         - id
+        type: "object"
         properties:
           id:
             type: integer

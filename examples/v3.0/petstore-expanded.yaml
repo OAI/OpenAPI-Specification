@@ -129,12 +129,14 @@ components:
         - $ref: '#/components/schemas/NewPet'
         - required:
           - id
+          type: object
           properties:
             id:
               type: integer
               format: int64
 
     NewPet:
+      type: object
       required:
         - name  
       properties:
@@ -144,6 +146,7 @@ components:
           type: string    
 
     Error:
+      type: object
       required:
         - code
         - message

@@ -81,3 +81,4 @@ These tools are not endorsed by the OAI.
 | WebSphere Liberty | [Download jar](https://developer.ibm.com/wasdev/downloads/) | Java EE | Generates OpenAPI v3 documentation from Java EE applications |
 | swagger-node-codegen | [github/fmvilas/swagger-node-codegen](https://github.com/fmvilas/swagger-node-codegen) | Node.js | Generates a Node.js/express server, but also has a template engine for creating any templates needed. |
 .NET-C#-Annotations | [github/Microsoft/OpenAPI-NET-CSharpAnnotations](https://github.com/Microsoft/OpenAPI.NET.CSharpAnnotations) | dotnet | Convert your native C# comments/annotation XML from your API code into a OpenAPI document object. |
+| Object Oriented OpenAPI Specification | [github/goldspecdigital/oooas](https://github.com/goldspecdigital/oooas) | PHP | Generates OpenAPI specifications using PHP. |

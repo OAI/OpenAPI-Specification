@@ -82,6 +82,7 @@ paths:
 components:
   schemas:
     Pet:
+      type: object
       required:
         - id
         - name
@@ -98,6 +99,7 @@ components:
       items:
         $ref: "#/components/schemas/Pet"
     Error:
+      type: object
       required:
         - code
         - message

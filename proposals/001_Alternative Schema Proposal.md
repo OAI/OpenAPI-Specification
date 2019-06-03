@@ -5,7 +5,7 @@
 |Tag |Value |
 |---- | ---------------- |
 |Proposal |[Alternative Schema](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/Alternative%20Schema)|
-|Authors|[Chuck Heazel](https://github.com/cmheazel)|
+|Authors|[Chuck Heazel](https://github.com/{cmheazel})|
 |Review Manager |TBD |
 |Status |**Draft** |
 |Implementations |[Click Here](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/Alternative%20Schema/implementations.md)

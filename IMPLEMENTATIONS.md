@@ -62,6 +62,12 @@ These tools are not endorsed by the OAI.
 | PHP-CRUD-API | [github/mevdschee/php-crud-api](https://github.com/mevdschee/php-crud-api) | PHP | Automatic CRUD API with OpenAPI 3 docs
 | FastAPI | [github/tiangolo/fastapi](https://github.com/tiangolo/fastapi) | Python | OpenAPI 3 based, high performance, Python 3.6+ API framework with automatic data validation, serialization and great editor support.
 
+#### Client Implementations
+
+| Title          | Project Link | Language | Description |
+|----------------|--------------|----------|-------------|
+| Scorpio        | [github/notEthan/scorpio](https://github.com/notEthan/Scorpio) | Ruby | OpenAPI 2 and 3 implementation offering a HTTP client library |
+
 #### Code Generators
 
 | Title          | Project Link | Language |Description                          |

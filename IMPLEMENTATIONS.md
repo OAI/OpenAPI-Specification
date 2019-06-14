@@ -28,6 +28,7 @@ These tools are not endorsed by the OAI.
 
 | Title          | Project Link | Language |Description                          |
 |----------------|--------------|----------|---------------------|
+| Visual Studio Code extension | [VS Code marketplace / OpenAPI (Swagger) editor](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi) | Any | Extends VS Code to provide OpenAPI 2.0 and 3.0 navigation, code snippets, new API creation |
 | Apicurio Studio | [github/Apicurio/apicurio-studio](https://github.com/Apicurio/apicurio-studio) | Java/TypeScript | Web-Based **visual designer** for OpenAPI 2.0 and 3.0.0. |
 | KaiZen OpenAPI Editor | [github/RepreZen/KaiZen-OpenAPI-Editor](https://github.com/RepreZen/KaiZen-OpenAPI-Editor) | Java | Eclipse Editor for OpenAPI 2.0 and 3.0 |
 | RepreZen API Studio | [RepreZen.com/OpenAPI](https://www.reprezen.com/OpenAPI) | Java | Commercial desktop IDE for API design, documentation & development |

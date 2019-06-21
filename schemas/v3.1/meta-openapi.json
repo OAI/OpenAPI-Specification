@@ -1,47 +1,198 @@
 {
-    "$schema": "https://spec.openapis.org/oas/3.1/schema#",
-    "$id": "https://spec.openapis.org/oas/3.1/meta",
-    "$vocabulary": {
-        "https://specs.openapis.org/oas/3.1/vocab/openapi": true
+  "$schema": "http://json-schema.org/draft/2019-WIP/schema#",
+  "$id": "https://spec.openapis.org/oas/3.1/meta",
+  "$vocabulary": {
+    "https://specs.openapis.org/oas/3.1/vocab/openapi": true
+  },
+  "$recursiveAnchor": true,
+  "title": "OpenAPI Vocabulary Schema",
+  "type": ["object", "boolean"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "array",
+        "boolean",
+        "integer",
+        "number",
+        "object",
+        "string"
+      ]
     },
-    "$recursiveAnchor": true,
-    "title": "OpenAPI Vocabulary Schema",
-    "type": ["object", "boolean"],
-    "properties": {
-        "nullable": {
-            "type": "boolean",
-            "deprecated": true
+    "not": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/Schema" # can i use recursiveAnchor for this or how do i ref myself
         },
-        "externalDocs": {
-            "type": "object",
-            "properties": {
-              "description": {
-                  "type": "string"
-              },
-              "url": {
-                  "type": "string",
-                  "format": "uri"
-              }
-          },
-          "required": ["propertyName"]
-        },
-        "discriminator": {
-            "type": "object",
-            "properties": {
-                "propertyName": {
-                    "type": "string"
-                },
-                "mapping": {
-                    "additionalProperties": {
-                        "type": "string"
-                    }
-                }
-            },
-            "required": ["propertyName"]
-        },
-        "example": {},
-        "xml": {
-            "type": "object"
+        {
+          "$ref": "#/$defs/Reference" // this is in the openapi-vocabulary.json any way to ref back up to it
         }
+      ]
+    },
+    "allOf": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/$defs/Schema"
+          },
+          {
+            "$ref": "#/$defs/Reference"
+          }
+        ]
+      }
+    },
+    "oneOf": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/$defs/Schema"
+          },
+          {
+            "$ref": "#/$defs/Reference"
+          }
+        ]
+      }
+    },
+    "anyOf": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/$defs/Schema"
+          },
+          {
+            "$ref": "#/$defs/Reference"
+          }
+        ]
+      }
+    },
+    "items": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/Schema"
+        },
+        {
+          "$ref": "#/$defs/Reference"
+        }
+      ]
+    },
+    "properties": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "$ref": "#/$defs/Schema"
+          },
+          {
+            "$ref": "#/$defs/Reference"
+          }
+        ]
+      }
+    },
+    "additionalProperties": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/Schema" // TODO
+        },
+        {
+          "$ref": "#/$defs/Reference" // TODO
+        },
+        {
+          "type": "boolean"
+        }
+      ],
+      "default": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "format": {
+      "type": "string"
+    },
+    "default": {
+    },
+    "nullable": {
+      "type": "boolean",
+      "default": false,
+      "deprecated": true
+    },
+    "discriminator": {
+      "$ref": "#/$defs/Discriminator"
+    },
+    "readOnly": {
+      "type": "boolean",
+      "default": false
+    },
+    "writeOnly": {
+      "type": "boolean",
+      "default": false
+    },
+    "example": {
+    },
+    "externalDocs": {
+      "$ref": "#/$defs/ExternalDocumentation" // TODO
+    },
+    "deprecated": {
+      "type": "boolean",
+      "default": false
+    },
+    "xml": {
+      "$ref": "#/$defs/XML"
     }
+  },
+  "patternProperties": {
+    "^x-": {
+    }
+  },
+  "additionalProperties": false,
+
+  "$defs": {
+    "Discriminator": {
+      "type": "object",
+      "required": [
+        "propertyName"
+      ],
+      "properties": {
+        "propertyName": {
+          "type": "string"
+        },
+        "mapping": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "XML": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string",
+          "format": "uri"
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "attribute": {
+          "type": "boolean",
+          "default": false
+        },
+        "wrapped": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "patternProperties": {
+        "^x-": {
+        }
+      },
+      "additionalProperties": false
+    }
+  }
 }

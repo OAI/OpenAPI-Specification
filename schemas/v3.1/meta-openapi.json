@@ -13,19 +13,6 @@
     },
     {
       "properties": {
-        "type": {
-          "oneOf" : [
-            {
-              "$ref": "#/$defs/AllowedTypes"
-            },
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/$defs/AllowedTypes"
-              }
-            }
-          ]
-        },
         "nullable": {
           "type": "boolean",
           "default": false,
@@ -107,7 +94,7 @@
         "^x-": {
         }
       },
-      "additionalProperties": false
+      "unevaluatedProperties": false
     }
   }
 }

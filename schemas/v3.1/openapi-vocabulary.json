@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft/2019-WIP/schema#",
+    "$id": "https://spec.openapis.org/oas/3.1/schema",
+    "$vocabulary": {
+        "https://json-schema.org/draft/2019-WIP/vocab/core": true,
+        "https://json-schema.org/draft/2019-WIP/vocab/applicator": true,
+        "https://json-schema.org/draft/2019-WIP/vocab/validation": true,
+        "https://json-schema.org/draft/2019-WIP/vocab/meta-data": true,
+        "https://json-schema.org/draft/2019-WIP/vocab/format": true,
+        "https://json-schema.org/draft/2019-WIP/vocab/content": true,
+        "https://specs.openapis.org/oas/3.1/vocab/openapi": true
+    },
+    "$recursiveAnchor": true,
+
+    "title": "OpenAPI",
+    "allOf": [
+        {"$ref": "http://json-schema.org/draft/2019-WIP/schema"},
+        {"$ref": "https://spec.openapis.org/oas/3.1/meta"}
+    ]
+}

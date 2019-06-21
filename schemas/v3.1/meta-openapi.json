@@ -7,8 +7,52 @@
   "$recursiveAnchor": true,
   "title": "OpenAPI Vocabulary Schema",
   "type": ["object", "boolean"],
-  "properties": {
-    "type": {
+  "allOf": [
+    {
+      "$ref": "http://json-schema.org/draft/2019-WIP/schema"
+    },
+    {
+      "properties": {
+        "type": {
+          "oneOf" : [
+            {
+              "$ref": "#/$defs/AllowedTypes"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/AllowedTypes"
+              }
+            }
+          ]
+        },
+        "nullable": {
+          "type": "boolean",
+          "default": false,
+          "deprecated": true
+        },
+        "discriminator": {
+          "$ref": "#/$defs/Discriminator"
+        },
+        "example": {
+          "deprecated": true
+        },
+        "externalDocs": {
+          "$ref": "#/$defs/ExternalDocumentation" // how to reference this from openapi-vocabulary.json
+        },
+        "xml": {
+          "$ref": "#/$defs/XML"
+        }
+      }
+    }
+  ],
+  "patternProperties": {
+    "^x-": {
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "AllowedTypes": {
       "type": "string",
       "enum": [
         "array",
@@ -16,139 +60,10 @@
         "integer",
         "number",
         "object",
-        "string"
+        "string",
+        "null"
       ]
     },
-    "not": {
-      "oneOf": [
-        {
-          "$ref": "#/$defs/Schema" # can i use recursiveAnchor for this or how do i ref myself
-        },
-        {
-          "$ref": "#/$defs/Reference" // this is in the openapi-vocabulary.json any way to ref back up to it
-        }
-      ]
-    },
-    "allOf": {
-      "type": "array",
-      "items": {
-        "oneOf": [
-          {
-            "$ref": "#/$defs/Schema"
-          },
-          {
-            "$ref": "#/$defs/Reference"
-          }
-        ]
-      }
-    },
-    "oneOf": {
-      "type": "array",
-      "items": {
-        "oneOf": [
-          {
-            "$ref": "#/$defs/Schema"
-          },
-          {
-            "$ref": "#/$defs/Reference"
-          }
-        ]
-      }
-    },
-    "anyOf": {
-      "type": "array",
-      "items": {
-        "oneOf": [
-          {
-            "$ref": "#/$defs/Schema"
-          },
-          {
-            "$ref": "#/$defs/Reference"
-          }
-        ]
-      }
-    },
-    "items": {
-      "oneOf": [
-        {
-          "$ref": "#/$defs/Schema"
-        },
-        {
-          "$ref": "#/$defs/Reference"
-        }
-      ]
-    },
-    "properties": {
-      "type": "object",
-      "additionalProperties": {
-        "oneOf": [
-          {
-            "$ref": "#/$defs/Schema"
-          },
-          {
-            "$ref": "#/$defs/Reference"
-          }
-        ]
-      }
-    },
-    "additionalProperties": {
-      "oneOf": [
-        {
-          "$ref": "#/$defs/Schema" // TODO
-        },
-        {
-          "$ref": "#/$defs/Reference" // TODO
-        },
-        {
-          "type": "boolean"
-        }
-      ],
-      "default": true
-    },
-    "description": {
-      "type": "string"
-    },
-    "format": {
-      "type": "string"
-    },
-    "default": {
-    },
-    "nullable": {
-      "type": "boolean",
-      "default": false,
-      "deprecated": true
-    },
-    "discriminator": {
-      "$ref": "#/$defs/Discriminator"
-    },
-    "readOnly": {
-      "type": "boolean",
-      "default": false
-    },
-    "writeOnly": {
-      "type": "boolean",
-      "default": false
-    },
-    "example": {
-    },
-    "externalDocs": {
-      "$ref": "#/$defs/ExternalDocumentation" // TODO
-    },
-    "deprecated": {
-      "type": "boolean",
-      "default": false
-    },
-    "xml": {
-      "$ref": "#/$defs/XML"
-    }
-  },
-  "patternProperties": {
-    "^x-": {
-    }
-  },
-  "additionalProperties": false,
-
-  "$defs": {
     "Discriminator": {
       "type": "object",
       "required": [

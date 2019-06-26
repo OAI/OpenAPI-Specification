@@ -27,10 +27,8 @@
     }
   },
   "patternProperties": {
-    "^x-": {
-    }
+    "^x-": true
   },
-  "unevaluatedProperties": false,
   "$defs": {
     "Discriminator": {
       "type": "object",
@@ -72,8 +70,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": true
       },
       "unevaluatedProperties": false
     }
@@ -118,8 +115,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -139,8 +135,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -159,8 +154,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -184,8 +178,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -209,8 +202,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -354,8 +346,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -405,8 +396,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -446,8 +436,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false,
     "allOf": [
@@ -473,8 +462,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -545,8 +533,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false,
     "allOf": [
@@ -564,8 +551,7 @@
       "^\\/": {
         "$ref": "#/$defs/PathItem"
       },
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -606,8 +592,7 @@
       "^(get|put|post|delete|options|head|patch|trace)$": {
         "$ref": "#/$defs/Operation"
       },
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -693,8 +678,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -723,8 +707,7 @@
           }
         ]
       },
-      "^x-": {
-      }
+      "^x-": true
     },
     "minProperties": 1,
     "additionalProperties": false
@@ -755,8 +738,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -775,8 +757,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -917,8 +898,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false,
     "required": [
@@ -1040,8 +1020,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -1091,8 +1070,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -1120,8 +1098,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false,
     "oneOf": [
@@ -1175,8 +1152,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -1202,8 +1178,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -1224,8 +1199,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -1252,8 +1226,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -1279,8 +1252,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -1306,8 +1278,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -1338,8 +1309,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false
   },
@@ -1368,8 +1338,7 @@
       }
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     },
     "additionalProperties": false,
     "not": {
@@ -1386,8 +1355,7 @@
       "$ref": "#/$defs/PathItem"
     },
     "patternProperties": {
-      "^x-": {
-      }
+      "^x-": true
     }
   },
   "Encoding": {

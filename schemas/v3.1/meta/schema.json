@@ -20,7 +20,7 @@
         {"$ref": "http://json-schema.org/draft/2019-WIP/meta/meta-data"},
         {"$ref": "http://json-schema.org/draft/2019-WIP/meta/format"},
         {"$ref": "http://json-schema.org/draft/2019-WIP/meta/content"},
-        {"$ref": "meta/oas"}
+        {"$ref": "oas"}
     ],
     "type": ["object", "boolean"]
 }

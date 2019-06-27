@@ -7,8 +7,7 @@
     "https://json-schema.org/draft/2019-WIP/vocab/validation": true,
     "https://json-schema.org/draft/2019-WIP/vocab/meta-data": true,
     "https://json-schema.org/draft/2019-WIP/vocab/format": true,
-    "https://json-schema.org/draft/2019-WIP/vocab/content": true,
-    "https://specs.openapis.org/oas/3.1/vocab/openapi": true
+    "https://json-schema.org/draft/2019-WIP/vocab/content": true
   },
   "$recursiveAnchor": true,
 
@@ -18,7 +17,7 @@
   "properties": {
     "openapi": {
       "type": "string",
-      "pattern": "^3\\.0\\.\\d(-.+)?$"
+      "pattern": "^3\\.1\\.\\d(-.+)?$"
     },
     "info": {
       "$ref": "meta/oas#/$defs/Info"

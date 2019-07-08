@@ -18,4 +18,4 @@ Darrel Miller @darrelmiller
 
 Jerome Louvel @jlouvel
 
-Jeremy Whitlock - @whitlockjc
+Jeremy Whitlock @whitlockjc

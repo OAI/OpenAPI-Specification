@@ -6,16 +6,16 @@
 ## TSC Elected - terms through May 2021
 Isabelle Mauny - 42Crunch
 
-Uri Sarid - MuleSoft
+Uri Sarid @usarid
 
-Marsh Gardiner - Google
+Marsh Gardiner @earth2marsh 
 
-Ron Ratovsky - SmartBear
+Ron Ratovsky @webron
 
 ## BGB Elected - terms through May 2020
 
-Darrel Miller - Microsoft
+Darrel Miller @darrelmiller
 
-Jerome Louvel - Talend
+Jerome Louvel
 
-Jeremy Whitlock - Google
+Jeremy Whitlock - @whitlockjc

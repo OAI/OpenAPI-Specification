@@ -16,6 +16,6 @@ Ron Ratovsky @webron
 
 Darrel Miller @darrelmiller
 
-Jerome Louvel
+Jerome Louvel @jlouvel
 
 Jeremy Whitlock - @whitlockjc

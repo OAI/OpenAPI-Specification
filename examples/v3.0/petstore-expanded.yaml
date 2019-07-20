@@ -79,7 +79,8 @@ paths:
                 $ref: '#/components/schemas/Error'
   /pets/{id}:
     get:
-      description: Returns a user based on a single ID, if the user does not have access to the pet
+      description: Returns a pet based on a single ID
+      #Description seems quite right before
       operationId: find pet by id
       parameters:
         - name: id

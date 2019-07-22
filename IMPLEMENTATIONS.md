@@ -34,6 +34,7 @@ These tools are not endorsed by the OAI.
 | OpenAPI-gui | [github/Mermade/openapi-gui](https://github.com/Mermade/openapi-gui) | Node.js | GUI / visual editor for creating and editing OpenAPI definitions |
 | SwaggerHub | [swaggerhub.com](https://swaggerhub.com) | | API Design and Documentation Platform, Built For Teams
 | swagger-editor | [github/swagger-api](https://github.com/swagger-api/swagger-editor) | JavaScript | Web-Based editor for creating, editing, validating and testing OpenAPI\Swagger definitions |
+| Remain OpenAPI Studio | Direct download: https://remainsoftware.com/extranet/download-type/openapi-studio-download <br> Or via Eclipse MarketPlace https://marketplace.eclipse.org/content/openapi-studio-rich-oas3-editor | Java | A user-friendly, visually rich studio supporting all features defined by the OpenAPI 3. Easy but powerful UI-based components creation, API testing, import, export, code generation and much more. |
 
 #### User Interfaces
 

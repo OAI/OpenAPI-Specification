@@ -23,18 +23,20 @@ These tools are not endorsed by the OAI.
 | kin-openapi | [github/getkin/kin-openapi](https://github.com/getkin/kin-openapi) | Go | OpenAPI 3.x implementation for Go (parsing, converting, validation) |
 | Spectral | [github/stoplightio/spectral](https://github.com/stoplightio/spectral) | TypeScript, JavaScript | A flexible JSON object linter with out of the box support for OpenAPI Specification 2 and 3 |
 | openapi-validator | [gitlab/mmal/openapi-validator](https://gitlab.com/mmalawski/openapi-validator) | PHP | Validates response against OpenAPI schema |
-
+| OpenAPI-Delphi | [github/paolo-rossi/OpenAPI-Delphi](https://github.com/paolo-rossi/OpenAPI-Delphi) | Delphi | Delphi implementation of a generator, parser and validator for the OpenAPI 3 Specification |
 
 #### Editors
 
 | Title          | Project Link | Language |Description                          |
 |----------------|--------------|----------|---------------------|
+| Visual Studio Code extension | [VS Code marketplace / OpenAPI (Swagger) editor](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi) | TypeScript | Extends VS Code to provide OpenAPI 2.0 and 3.0 navigation, code snippets, new API creation |
 | Apicurio Studio | [github/Apicurio/apicurio-studio](https://github.com/Apicurio/apicurio-studio) | Java/TypeScript | Web-Based **visual designer** for OpenAPI 2.0 and 3.0.0. |
 | KaiZen OpenAPI Editor | [github/RepreZen/KaiZen-OpenAPI-Editor](https://github.com/RepreZen/KaiZen-OpenAPI-Editor) | Java | Eclipse Editor for OpenAPI 2.0 and 3.0 |
 | RepreZen API Studio | [RepreZen.com/OpenAPI](https://www.reprezen.com/OpenAPI) | Java | Commercial desktop IDE for API design, documentation & development |
 | OpenAPI-gui | [github/Mermade/openapi-gui](https://github.com/Mermade/openapi-gui) | Node.js | GUI / visual editor for creating and editing OpenAPI definitions |
 | SwaggerHub | [swaggerhub.com](https://swaggerhub.com) | | API Design and Documentation Platform, Built For Teams
 | swagger-editor | [github/swagger-api](https://github.com/swagger-api/swagger-editor) | JavaScript | Web-Based editor for creating, editing, validating and testing OpenAPI\Swagger definitions |
+| Remain OpenAPI Studio | Direct download: https://remainsoftware.com/extranet/download-type/openapi-studio-download <br> Or via Eclipse MarketPlace https://marketplace.eclipse.org/content/openapi-studio-rich-oas3-editor | Java | A user-friendly, visually rich studio supporting all features defined by the OpenAPI 3. Easy but powerful UI-based components creation, API testing, import, export, code generation and much more. |
 
 #### User Interfaces
 
@@ -63,6 +65,12 @@ These tools are not endorsed by the OAI.
 | PHP-CRUD-API | [github/mevdschee/php-crud-api](https://github.com/mevdschee/php-crud-api) | PHP | Automatic CRUD API with OpenAPI 3 docs
 | FastAPI | [github/tiangolo/fastapi](https://github.com/tiangolo/fastapi) | Python | OpenAPI 3 based, high performance, Python 3.6+ API framework with automatic data validation, serialization and great editor support.
 
+#### Client Implementations
+
+| Title          | Project Link | Language | Description |
+|----------------|--------------|----------|-------------|
+| Scorpio        | [github/notEthan/scorpio](https://github.com/notEthan/Scorpio) | Ruby | OpenAPI 2 and 3 implementation offering a HTTP client library |
+
 #### Code Generators
 
 | Title          | Project Link | Language |Description                          |
@@ -76,3 +84,4 @@ These tools are not endorsed by the OAI.
 | WebSphere Liberty | [Download jar](https://developer.ibm.com/wasdev/downloads/) | Java EE | Generates OpenAPI v3 documentation from Java EE applications |
 | swagger-node-codegen | [github/fmvilas/swagger-node-codegen](https://github.com/fmvilas/swagger-node-codegen) | Node.js | Generates a Node.js/express server, but also has a template engine for creating any templates needed. |
 .NET-C#-Annotations | [github/Microsoft/OpenAPI-NET-CSharpAnnotations](https://github.com/Microsoft/OpenAPI.NET.CSharpAnnotations) | dotnet | Convert your native C# comments/annotation XML from your API code into a OpenAPI document object. |
+| Object Oriented OpenAPI Specification | [github/goldspecdigital/oooas](https://github.com/goldspecdigital/oooas) | PHP | Generates OpenAPI documents using PHP. |

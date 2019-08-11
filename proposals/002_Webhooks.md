@@ -19,7 +19,7 @@
 
 ## Introduction
 
-Modern APIs often consist of two-way API traffic, but only outgoing API calls or incoming callbacks directly related to an outgoing API call are currently supported by OpenAPI. Incoming HTTP reqests ("webhooks") cannot be described in the current version of OpenAPI.
+Modern APIs often consist of two-way API traffic, but OpenAPI currently only supports some types of requests. Standard client-to-server API calls are well supported. Server-to-client callbacks are only supported if they are the result of an earlier API call and are documented by nesting under the path of that earlier call. Incoming HTTP reqests ("webhooks") cannot be described in the current version of OpenAPI if they are the result of subscription arranged outside of the scope of the API (e.g. by setting a callback URL in a web interface).
 
 ## Motivation
 

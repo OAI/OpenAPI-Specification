@@ -30,15 +30,11 @@ paths:
               schema:
                 type: string
           content:
-            application/json:    
+            application/json:
               schema:
                 $ref: "#/components/schemas/Pets"
         default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
+          $ref: "#/components/responses/UnexpectedError"
     post:
       summary: Create a pet
       operationId: createPets
@@ -48,11 +44,7 @@ paths:
         '201':
           description: Null response
         default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
+          $ref: "#/components/responses/UnexpectedError"
   /pets/{petId}:
     get:
       summary: Info for a specific pet
@@ -74,12 +66,16 @@ paths:
               schema:
                 $ref: "#/components/schemas/Pet"
         default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
+          $ref: "#/components/responses/UnexpectedError"
 components:
+  responses:
+    UnexpectedError:
+      description: unexpected error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+
   schemas:
     Pet:
       type: object

@@ -46,8 +46,7 @@
     }
   },
   "patternProperties": {
-    "^x-": {
-    }
+    "^x-": {}
   },
   "additionalProperties": false,
   "definitions": {
@@ -199,7 +198,7 @@
                   "$ref": "#/definitions/Schema"
                 },
                 {
-                  "$ref": "#/definitions/Reference"
+                  "$ref": "#/definitions/SchemaReference"
                 }
               ]
             }
@@ -211,7 +210,7 @@
             "^[a-zA-Z0-9\\.\\-_]+$": {
               "oneOf": [
                 {
-                  "$ref": "#/definitions/Reference"
+                  "$ref": "#/definitions/ResponseReference"
                 },
                 {
                   "$ref": "#/definitions/Response"
@@ -226,7 +225,7 @@
             "^[a-zA-Z0-9\\.\\-_]+$": {
               "oneOf": [
                 {
-                  "$ref": "#/definitions/Reference"
+                  "$ref": "#/definitions/ParameterReference"
                 },
                 {
                   "$ref": "#/definitions/Parameter"
@@ -241,7 +240,7 @@
             "^[a-zA-Z0-9\\.\\-_]+$": {
               "oneOf": [
                 {
-                  "$ref": "#/definitions/Reference"
+                  "$ref": "#/definitions/ExampleReference"
                 },
                 {
                   "$ref": "#/definitions/Example"
@@ -256,7 +255,7 @@
             "^[a-zA-Z0-9\\.\\-_]+$": {
               "oneOf": [
                 {
-                  "$ref": "#/definitions/Reference"
+                  "$ref": "#/definitions/RequestBodyReference"
                 },
                 {
                   "$ref": "#/definitions/RequestBody"
@@ -271,7 +270,7 @@
             "^[a-zA-Z0-9\\.\\-_]+$": {
               "oneOf": [
                 {
-                  "$ref": "#/definitions/Reference"
+                  "$ref": "#/definitions/HeaderReference"
                 },
                 {
                   "$ref": "#/definitions/Header"
@@ -286,7 +285,7 @@
             "^[a-zA-Z0-9\\.\\-_]+$": {
               "oneOf": [
                 {
-                  "$ref": "#/definitions/Reference"
+                  "$ref": "#/definitions/SecuritySchemeReference"
                 },
                 {
                   "$ref": "#/definitions/SecurityScheme"
@@ -301,7 +300,7 @@
             "^[a-zA-Z0-9\\.\\-_]+$": {
               "oneOf": [
                 {
-                  "$ref": "#/definitions/Reference"
+                  "$ref": "#/definitions/LinkReference"
                 },
                 {
                   "$ref": "#/definitions/Link"
@@ -316,7 +315,7 @@
             "^[a-zA-Z0-9\\.\\-_]+$": {
               "oneOf": [
                 {
-                  "$ref": "#/definitions/Reference"
+                  "$ref": "#/definitions/CallbackReference"
                 },
                 {
                   "$ref": "#/definitions/Callback"
@@ -331,6 +330,28 @@
         }
       },
       "additionalProperties": false
+    },
+    "SchemaReference": {
+      "type": "object",
+      "required": [
+        "$ref"
+      ],
+      "patternProperties": {
+        "^\\$ref$": {
+          "type": "string",
+          "format": "uri-reference",
+          "oneOf": [
+            {
+              "pattern": "^#/components/schemas/"
+            },
+            {
+              "not": {
+                "pattern": "^#/"
+              }
+            }
+          ]
+        }
+      }
     },
     "Schema": {
       "type": "object",
@@ -424,7 +445,7 @@
               "$ref": "#/definitions/Schema"
             },
             {
-              "$ref": "#/definitions/Reference"
+              "$ref": "#/definitions/SchemaReference"
             }
           ]
         },
@@ -436,7 +457,7 @@
                 "$ref": "#/definitions/Schema"
               },
               {
-                "$ref": "#/definitions/Reference"
+                "$ref": "#/definitions/SchemaReference"
               }
             ]
           }
@@ -449,7 +470,7 @@
                 "$ref": "#/definitions/Schema"
               },
               {
-                "$ref": "#/definitions/Reference"
+                "$ref": "#/definitions/SchemaReference"
               }
             ]
           }
@@ -462,7 +483,7 @@
                 "$ref": "#/definitions/Schema"
               },
               {
-                "$ref": "#/definitions/Reference"
+                "$ref": "#/definitions/SchemaReference"
               }
             ]
           }
@@ -473,7 +494,7 @@
               "$ref": "#/definitions/Schema"
             },
             {
-              "$ref": "#/definitions/Reference"
+              "$ref": "#/definitions/SchemaReference"
             }
           ]
         },
@@ -485,7 +506,7 @@
                 "$ref": "#/definitions/Schema"
               },
               {
-                "$ref": "#/definitions/Reference"
+                "$ref": "#/definitions/SchemaReference"
               }
             ]
           }
@@ -496,7 +517,7 @@
               "$ref": "#/definitions/Schema"
             },
             {
-              "$ref": "#/definitions/Reference"
+              "$ref": "#/definitions/SchemaReference"
             },
             {
               "type": "boolean"
@@ -591,6 +612,28 @@
       },
       "additionalProperties": false
     },
+    "ResponseReference": {
+      "type": "object",
+      "required": [
+        "$ref"
+      ],
+      "patternProperties": {
+        "^\\$ref$": {
+          "type": "string",
+          "format": "uri-reference",
+          "oneOf": [
+            {
+              "pattern": "^#/components/responses/"
+            },
+            {
+              "not": {
+                "pattern": "^#/"
+              }
+            }
+          ]
+        }
+      }
+    },
     "Response": {
       "type": "object",
       "required": [
@@ -608,7 +651,7 @@
                 "$ref": "#/definitions/Header"
               },
               {
-                "$ref": "#/definitions/Reference"
+                "$ref": "#/definitions/HeaderReference"
               }
             ]
           }
@@ -627,7 +670,7 @@
                 "$ref": "#/definitions/Link"
               },
               {
-                "$ref": "#/definitions/Reference"
+                "$ref": "#/definitions/LinkReference"
               }
             ]
           }
@@ -648,7 +691,7 @@
               "$ref": "#/definitions/Schema"
             },
             {
-              "$ref": "#/definitions/Reference"
+              "$ref": "#/definitions/SchemaReference"
             }
           ]
         },
@@ -662,7 +705,7 @@
                 "$ref": "#/definitions/Example"
               },
               {
-                "$ref": "#/definitions/Reference"
+                "$ref": "#/definitions/ExampleReference"
               }
             ]
           }
@@ -685,6 +728,28 @@
         }
       ]
     },
+    "ExampleReference": {
+      "type": "object",
+      "required": [
+        "$ref"
+      ],
+      "patternProperties": {
+        "^\\$ref$": {
+          "type": "string",
+          "format": "uri-reference",
+          "oneOf": [
+            {
+              "pattern": "^#/components/examples/"
+            },
+            {
+              "not": {
+                "pattern": "^#/"
+              }
+            }
+          ]
+        }
+      }
+    },
     "Example": {
       "type": "object",
       "properties": {
@@ -706,6 +771,28 @@
         }
       },
       "additionalProperties": false
+    },
+    "HeaderReference": {
+      "type": "object",
+      "required": [
+        "$ref"
+      ],
+      "patternProperties": {
+        "^\\$ref$": {
+          "type": "string",
+          "format": "uri-reference",
+          "oneOf": [
+            {
+              "pattern": "^#/components/headers/"
+            },
+            {
+              "not": {
+                "pattern": "^#/"
+              }
+            }
+          ]
+        }
+      }
     },
     "Header": {
       "type": "object",
@@ -745,7 +832,7 @@
               "$ref": "#/definitions/Schema"
             },
             {
-              "$ref": "#/definitions/Reference"
+              "$ref": "#/definitions/SchemaReference"
             }
           ]
         },
@@ -767,7 +854,7 @@
                 "$ref": "#/definitions/Example"
               },
               {
-                "$ref": "#/definitions/Reference"
+                "$ref": "#/definitions/ExampleReference"
               }
             ]
           }
@@ -824,7 +911,7 @@
                 "$ref": "#/definitions/Parameter"
               },
               {
-                "$ref": "#/definitions/Reference"
+                "$ref": "#/definitions/ParameterReference"
               }
             ]
           },
@@ -872,7 +959,7 @@
                 "$ref": "#/definitions/Parameter"
               },
               {
-                "$ref": "#/definitions/Reference"
+                "$ref": "#/definitions/ParameterReference"
               }
             ]
           },
@@ -884,7 +971,7 @@
               "$ref": "#/definitions/RequestBody"
             },
             {
-              "$ref": "#/definitions/Reference"
+              "$ref": "#/definitions/RequestBodyReference"
             }
           ]
         },
@@ -899,7 +986,7 @@
                 "$ref": "#/definitions/Callback"
               },
               {
-                "$ref": "#/definitions/Reference"
+                "$ref": "#/definitions/CallbackReference"
               }
             ]
           }
@@ -936,7 +1023,7 @@
               "$ref": "#/definitions/Response"
             },
             {
-              "$ref": "#/definitions/Reference"
+              "$ref": "#/definitions/ResponseReference"
             }
           ]
         }
@@ -948,7 +1035,7 @@
               "$ref": "#/definitions/Response"
             },
             {
-              "$ref": "#/definitions/Reference"
+              "$ref": "#/definitions/ResponseReference"
             }
           ]
         },
@@ -1077,6 +1164,28 @@
         }
       ]
     },
+    "ParameterReference": {
+      "type": "object",
+      "required": [
+        "$ref"
+      ],
+      "patternProperties": {
+        "^\\$ref$": {
+          "type": "string",
+          "format": "uri-reference",
+          "oneOf": [
+            {
+              "pattern": "^#/components/parameters/"
+            },
+            {
+              "not": {
+                "pattern": "^#/"
+              }
+            }
+          ]
+        }
+      }
+    },
     "Parameter": {
       "type": "object",
       "properties": {
@@ -1117,7 +1226,7 @@
               "$ref": "#/definitions/Schema"
             },
             {
-              "$ref": "#/definitions/Reference"
+              "$ref": "#/definitions/SchemaReference"
             }
           ]
         },
@@ -1139,7 +1248,7 @@
                 "$ref": "#/definitions/Example"
               },
               {
-                "$ref": "#/definitions/Reference"
+                "$ref": "#/definitions/ExampleReference"
               }
             ]
           }
@@ -1248,6 +1357,28 @@
         }
       ]
     },
+    "RequestBodyReference": {
+      "type": "object",
+      "required": [
+        "$ref"
+      ],
+      "patternProperties": {
+        "^\\$ref$": {
+          "type": "string",
+          "format": "uri-reference",
+          "oneOf": [
+            {
+              "pattern": "^#/components/requestBodies/"
+            },
+            {
+              "not": {
+                "pattern": "^#/"
+              }
+            }
+          ]
+        }
+      }
+    },
     "RequestBody": {
       "type": "object",
       "required": [
@@ -1273,6 +1404,28 @@
         }
       },
       "additionalProperties": false
+    },
+    "SecuritySchemeReference": {
+      "type": "object",
+      "required": [
+        "$ref"
+      ],
+      "patternProperties": {
+        "^\\$ref$": {
+          "type": "string",
+          "format": "uri-reference",
+          "oneOf": [
+            {
+              "pattern": "^#/components/securitySchemes/"
+            },
+            {
+              "not": {
+                "pattern": "^#/"
+              }
+            }
+          ]
+        }
+      }
     },
     "SecurityScheme": {
       "oneOf": [
@@ -1572,6 +1725,28 @@
       },
       "additionalProperties": false
     },
+    "LinkReference": {
+      "type": "object",
+      "required": [
+        "$ref"
+      ],
+      "patternProperties": {
+        "^\\$ref$": {
+          "type": "string",
+          "format": "uri-reference",
+          "oneOf": [
+            {
+              "pattern": "^#/components/links/"
+            },
+            {
+              "not": {
+                "pattern": "^#/"
+              }
+            }
+          ]
+        }
+      }
+    },
     "Link": {
       "type": "object",
       "properties": {
@@ -1607,6 +1782,28 @@
           "operationId",
           "operationRef"
         ]
+      }
+    },
+    "CallbackReference": {
+      "type": "object",
+      "required": [
+        "$ref"
+      ],
+      "patternProperties": {
+        "^\\$ref$": {
+          "type": "string",
+          "format": "uri-reference",
+          "oneOf": [
+            {
+              "pattern": "^#/components/callbacks/"
+            },
+            {
+              "not": {
+                "pattern": "^#/"
+              }
+            }
+          ]
+        }
       }
     },
     "Callback": {

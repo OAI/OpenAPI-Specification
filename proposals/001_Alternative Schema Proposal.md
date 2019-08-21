@@ -5,9 +5,9 @@
 |Tag |Value |
 |---- | ---------------- |
 |Proposal |[Alternative Schema](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/Alternative%20Schema)|
-|Authors|[Chuck Heazel](https://github.com/{cmheazel})|
+|Authors|[Chuck Heazel](https://github.com/cmheazel)|
 |Review Manager |TBD |
-|Status |**Draft** |
+|Status |**Pilot** |
 |Implementations |[Click Here](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/Alternative%20Schema/implementations.md)
 |Issues |[1532](https://github.com/OAI/OpenAPI-Specification/issues/1532)|
 |Previous Revisions |[March 15](https://github.com/OAI/OpenAPI-Specification/pull/1868#issue-261689900) |
@@ -18,6 +18,7 @@
 |---- | ---------------- | ---------- |
 |3/15/19 |C. Heazel|Initial Markup Draft |
 |4/17/19 |C. Heazel|Re-structured based on Apple Swift|
+|5/1/19 |C. Heazel|Cleaned up typos and broken links. Updated the proposal stage names.|
 
 ## Introduction
 
@@ -53,7 +54,7 @@ Examples of the use of the Alternative Schema capability is added to the OpenAPI
 
 ### Alternative Schema Registry
 
-Values used to populate the Alternative Schema Object are required to come from the Alternative Schema Registry. The preliminary Alternative Schema Registry is located at <https://spec.openapis.org/registries/alternative-schema>.
+Values used to populate the Alternative Schema Object are required to come from the Alternative Schema Registry. The preliminary Alternative Schema Registry is located [here](https://spec.openapis.org/registry/alternative-schema).
 
 *** Note this is a placeholder registry. Don't take the values seriously. ***  
 

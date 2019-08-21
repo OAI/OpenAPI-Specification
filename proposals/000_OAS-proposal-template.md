@@ -8,7 +8,7 @@
 |Proposal |[NNNN](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/{directory_or_file_name})|
 |Authors|[Author 1](https://github.com/{author1}), [Author 2](https://github.com/{author2})|
 |Review Manager |TBD |
-|Status |Proposal, Draft, Promoted, or Abandoned|
+|Status |Draft, Pilot, Graduated, or Abandoned|
 |Implementations |[Click Here](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/{NNNN}/implementations.md)|
 |Issues |[{issueid}](https://github.com/OAI/OpenAPI-Specification/issues/{Issueid})|
 |Previous Revisions |[{revid}](https://github.com/OAI/OpenAPI-Specification/pull/{revid}) |

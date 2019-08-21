@@ -54,7 +54,7 @@ Examples of the use of the Alternative Schema capability is added to the OpenAPI
 
 ### Alternative Schema Registry
 
-Values used to populate the Alternative Schema Object are required to come from the Alternative Schema Registry. The preliminary Alternative Schema Registry is located [here](https://spec.openapis.org/registry/alternative-schema).
+Values used to populate the Alternative Schema Object are required to come from the Alternative Schema Registry. The preliminary Alternative Schema Registry is located at https://spec.openapis.org/registries/alternative-schema[https://spec.openapis.org/registries/alternative-schema].
 
 *** Note this is a placeholder registry. Don't take the values seriously. ***  
 

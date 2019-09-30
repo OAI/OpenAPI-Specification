@@ -65,6 +65,9 @@ These tools are not endorsed by the OAI.
 | Exegesis | [github/exegesis-js/exegesis](https://github.com/exegesis-js/exegesis) | Node.js | OpenAPI 3 server-side framework for express and other frameworks.
 | PHP-CRUD-API | [github/mevdschee/php-crud-api](https://github.com/mevdschee/php-crud-api) | PHP | Automatic CRUD API with OpenAPI 3 docs
 | FastAPI | [github/tiangolo/fastapi](https://github.com/tiangolo/fastapi) | Python | OpenAPI 3 based, high performance, Python 3.6+ API framework with automatic data validation, serialization and great editor support.
+| CData API Server | [cdata.com/apiserver](https://www.cdata.com/apiserver/) | Java & .NET | The API Server is a lightweight Web application that allows users to create and expose data APIs from SQL or NoSQL database. Also, Create fully-documented, discoverable APIs based-on OpenAPI 3.0.
+
+
 
 #### Client Implementations
 

@@ -13,9 +13,10 @@ paths:
             200 response
           content:
             application/json:
-              examples: 
+              examples:
                 foo:
-                  value: {
+                  value:
+                    {
                     "versions": [
                         {
                             "status": "CURRENT",
@@ -40,15 +41,15 @@ paths:
                             ]
                         }
                     ]
-                 }
+                    }
         '300':
           description: |-
             300 response
           content:
-            application/json: 
-              examples: 
+            application/json:
+              examples:
                 foo:
-                  value: |
+                  value:
                    {
                     "versions": [
                           {
@@ -74,7 +75,7 @@ paths:
                             ]
                         }
                     ]
-                   }
+                    }
   /v2:
     get:
       operationId: getVersionDetailsv2
@@ -84,10 +85,11 @@ paths:
           description: |-
             200 response
           content:
-            application/json: 
+            application/json:
               examples:
                 foo:
-                  value: {
+                  value:
+                    {
                     "version": {
                       "status": "CURRENT",
                       "updated": "2011-01-21T11:33:21Z",
@@ -124,15 +126,16 @@ paths:
                           }
                       ]
                     }
-                  }
+                    }
         '203':
           description: |-
             203 response
           content:
-            application/json: 
+            application/json:
               examples:
                 foo:
-                  value: {
+                  value:
+                    {
                     "version": {
                       "status": "CURRENT",
                       "updated": "2011-01-21T11:33:21Z",
@@ -164,4 +167,4 @@ paths:
                           }
                       ]
                     }
-                  }
+                    }

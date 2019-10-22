@@ -507,10 +507,6 @@ definitions:
             - $ref: '#/definitions/Parameter'
             - $ref: '#/definitions/Reference'
         uniqueItems: true
-      personae:
-          type: array
-          items:
-              $ref: '#/definitions/Persona'
     patternProperties:
       '^(get|put|post|delete|options|head|patch|trace)$':
         $ref: '#/definitions/Operation'
@@ -564,6 +560,11 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Server'
+      personae:
+        type: array
+        items:
+            $ref: '#/definitions/Persona'
+
     patternProperties:
       '^x-': {}
     additionalProperties: false
@@ -1006,13 +1007,13 @@ definitions:
         default: false
     additionalProperties: false
 
-  Persona:
+  Personae:
     type: object
     properties:
       name:
         type: string
         default: 'any'
       location:
-        type: string
+        type: array
         default: 'any'
     additionalProperties: false

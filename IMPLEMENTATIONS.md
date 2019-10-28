@@ -25,7 +25,7 @@ These tools are not endorsed by the OAI.
 | Spectral | [github/stoplightio/spectral](https://github.com/stoplightio/spectral) | TypeScript, JavaScript | A flexible JSON object linter with out of the box support for OpenAPI Specification 2 and 3 |
 | openapi-validator | [gitlab/mmal/openapi-validator](https://gitlab.com/mmalawski/openapi-validator) | PHP | Validates response against OpenAPI schema |
 | OpenAPI-Delphi | [github/paolo-rossi/OpenAPI-Delphi](https://github.com/paolo-rossi/OpenAPI-Delphi) | Delphi | Delphi implementation of a generator, parser and validator for the OpenAPI 3 Specification |
-| spring-openapi | [github/jrcodeza/spring-openapi](https://github.com/jrcodeza/spring-openapi) | Java | OpenAPI 3 specification generator for Java Spring. Includes also client generation. Supports inheritance with discriminators and Jackson annotations and custom interceptors. |
+| spring-openapi | [github/jrcodeza/spring-openapi](https://github.com/jrcodeza/spring-openapi) | Java | OpenAPI v3 generator for Java Spring. Includes also client generation. Supports inheritance with discriminators and Jackson annotations and custom interceptors. |
 
 #### Editors
 

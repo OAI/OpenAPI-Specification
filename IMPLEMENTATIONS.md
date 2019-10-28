@@ -49,6 +49,7 @@ These tools are not endorsed by the OAI.
 | WebSphere Liberty | [Download jar](https://developer.ibm.com/wasdev/downloads/) | JavaScript | Includes a native OpenAPI v3 UI which allows for customization of its banners and URL |
 | Widdershins | [github/Mermade/widdershins](https://github.com/Mermade/widdershins) | Node.js | Generate Slate/Shins markdown from OpenAPI 3.0.x |
 | angular-swagger-ui | [github/angular-swagger-ui](https://github.com/Orange-OpenSource/angular-swagger-ui) | AngularJS | An angularJS implementation of Swagger UI |
+| Redoc | [github/Redocly/redoc](https://github.com/Redocly/redoc) | JavaScript | A React-based renderer with deep support for OAS v2 and v3 and zero dev-dependency|
 
 #### Mock Servers
 | Title          | Project Link | Language | Description |

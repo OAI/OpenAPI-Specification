@@ -93,9 +93,10 @@ So the 3.0 spec is ambiguous about null values. It's not clear whether the spec 
 ### Specific Questions
 
 Questions that are not answered by the current specification include the following: 
+
 * If a schema specifies `nullable: true` and `enum: [1, 2, 3]`, does that schema allow null values? (See [#1900](https://github.com/OAI/OpenAPI-Specification/issues/1900).)
 
-* Does an untyped schema (without a `type` keyword) allow null values by default? What effect, if any,does `nullable: true` have on an untyped schema?
+* Does an untyped schema (without a `type` keyword) allow null values by default? What effect, if any, does `nullable: true` have on an untyped schema?
 
 * Can `allOf` be used to define a nullable subtype of non-nullable base schema? (See [#1368](https://github.com/OAI/OpenAPI-Specification/issues/1368).)
 
@@ -132,6 +133,32 @@ This also solves the issues of alignment with JSON Schema:
 * Since `type` is a constraint, JSON Schema's constraint-based processing model is fully applicable. Interactions between `type` and other constraining assertions and applicators are unambiguous, with each constraint having independent veto power.
 
 * It is now clear that `nullable: false`, whether explicit or by default, _does not_ prohibit null values. Consistent with JSON Schema, an empty object allows all values, including `null`.
+
+### Questions Answered
+
+Following are answers to the questions posed above, assuming the proposed clarification is adopted:
+
+#### If a schema specifies `nullable: true` and `enum: [1, 2, 3]`, does that schema allow null values? (See [#1900](https://github.com/OAI/OpenAPI-Specification/issues/1900).)
+
+No. The `nullable: true` assertion folds into the `type` assertion, which presumably specifies `integer` or `number`. 
+
+While the modified `type` now allows `null`, the `enum` does not. Consistent with JSON schema, a value conforms to the schema only if it is valid against _all_ constraints. Any constraint, in this case `enum`, can cause a value to fail validation, even if that value meets all of the other constraints.
+
+#### Does an untyped schema (without a `type` keyword) allow null values by default? What effect, if any, does `nullable: true` have on an untyped schema?
+
+Yes, an untyped schema allows null values, in addition to all other types. `nullable: true` has no effect, because null values are already allowed. And `nullable: false` has no effect because it just leaves the `type` constraint unmodified.
+
+#### Can `allOf` be used to define a nullable subtype of non-nullable base schema? (See [#1368](https://github.com/OAI/OpenAPI-Specification/issues/1368).)
+
+No. Subtypes can add constraints, but not relax them.
+
+#### Can `allOf` be used to define a non-nullable subtype of nullable base schema?
+
+Yes. The subtype can specify a `type` without `nullable: true`, or can specify `not: {enum: [null]}`. 
+
+#### What is the correct translation of a nullable schema from OpenAPI into an equivalent JSON Schema?
+
+A nullable type should translate into a type array with two string elements: the name of the type specified in the Schema Object, and `'null'`.
 
 ## Backwards compatibility
 

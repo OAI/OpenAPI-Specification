@@ -16,6 +16,7 @@
 .Change Log
 
 |Date |Responsible Party |Description |
+|---- | ---------------- |------------|
 |Oct 31, 2019 | Ted Epstein | Initial proposal |
 
 ## Introduction

@@ -13,7 +13,7 @@
 |Issues | [1900](https://github.com/OAI/OpenAPI-Specification/issues/1900), [1368](https://github.com/OAI/OpenAPI-Specification/issues/1368), [1389](https://github.com/OAI/OpenAPI-Specification/issues/1389), [1957](https://github.com/OAI/OpenAPI-Specification/pull/1957), [2046](https://github.com/OAI/OpenAPI-Specification/pull/2046), [1977](https://github.com/OAI/OpenAPI-Specification/pull/1977#issuecomment-533333957) |
 |Previous Revisions |N/A |
 
-.Change Log
+## Change Log
 
 |Date |Responsible Party |Description |
 |---- | ---------------- |------------|

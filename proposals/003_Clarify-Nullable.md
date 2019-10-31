@@ -158,7 +158,7 @@ Yes. The subtype can specify a `type` without `nullable: true`, or can specify `
 
 #### What is the correct translation of a nullable schema from OpenAPI into an equivalent JSON Schema?
 
-A nullable type should translate into a type array with two string elements: the name of the type specified in the Schema Object, and `'null'`.
+A nullable type should translate into a type array with two string elements: the name of the type specified in the Schema Object, and `"null"`.
 
 ## Backwards compatibility
 

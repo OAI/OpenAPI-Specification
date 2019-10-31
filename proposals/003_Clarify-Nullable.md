@@ -21,7 +21,7 @@
 
 ## Introduction
 
-This proposal aims to clarify the semantics of the `nullable` keyword in OpenAPI 3.0. This clarification would resolve ambiguities, reinforce the intended alignment with JSON Schema, and guidance for schema validators, translators, and other tools.
+This proposal aims to clarify the semantics of the `nullable` keyword in OpenAPI 3.0. This clarification would resolve ambiguities, reinforce the intended alignment with JSON Schema, and provide guidance for schema validators, translators, and other tools.
 
 ## Motivation
 
@@ -30,25 +30,34 @@ The documentation of the `nullable` keyword is incomplete and ambiguous, leaving
 To summarize the problems:
 
 * `nullable: true` is an _expanding assertion_ that doesn't fit JSON Schema's constraint-based processing model. It is not clear how it interacts with other keywords, and within what scope.
+
 * `nullable: false`, which is the default value, is not clearly defined, and could be interpreted in a way that breaks fundamental assumptions of JSON Schema.
-* Different OpenAPI schema validators and other tool implementations are likely to have different behaviors, because the semantics of `nullable` are not specified well enough.
-* OpenAPI Schema Objects cannot be interpreted correctly by standard JSON Schema processors, because of the above issues.
-* Depending on the interpretation, `nullable` might interact with `oneOf` and `anyOf` in problemantic and counter-intuitive ways.
+
+* Different OpenAPI schema validators and other tool implementations are likely to have different behaviors because the semantics of `nullable` are not fully specified.
+
+* OpenAPI Schema Objects cannot be interpreted correctly by standard JSON Schema processors because of the above issues.
+
+* Depending on the interpretation, `nullable` might interact with `oneOf` and `anyOf` in problematic and counter-intuitive ways.
 
 The solution proposed herein should:
-* Clarify the boundaries around `nullable`, so we know how it interacts with other assertions, applicators, subtypes and supertypes within its context.
+
+* Clarify the boundaries around `nullable` so we know how it interacts with other assertions, applicators, subtypes and supertypes within its context.
+
 * Clarify the meaning of `nullable: false`.
+
 * Reaffirm the intended alignment of OpenAPI's Schema Object with JSON Schema, and reconcile `nullable` with JSON Schema semantics.
+
+* Allow a straightforward translation from `nullable` in OpenAPI to type arrays in JSON Schema.
 
 Further details follow.
 
 ### Expanding vs. Constraining Assertions
 
-`nullable: true` is an _expanding assertion_, meaning it has the effect of expanding the range of acceptable values. By contrast, JSON Schema's central operating principle is constraint-based, where constraints are cumulative, immutable, and each constraint has veto power to disallow some range of values.
+`nullable: true` is an _expanding assertion_, meaning it has the effect of expanding the range of acceptable values. By contrast, JSON Schema's central operating principle is constraint-based, where _constraining assertions_ are cumulative, immutable, and each constraint has veto power to disallow some range of values.
 
-The semantics of constraining assertions are well defined by JSON Schema and implemented in many JSON Schema validators and other tools. But JSON Schema doesn't have expanding assertions, so those well-defined semantics don't apply to `nullable`. 
+The semantics of constraining assertions are well-defined by JSON Schema and implemented in many JSON Schema validators and other tools. But JSON Schema doesn't have expanding assertions, so those well-defined semantics don't apply to `nullable`.
 
-We would have to specify how `nullable` interacts with constraining assertions and boolean applicators like `allOf` and `anyOf`.
+To address this, we need to translate `nullable: true` into a constraining assertion. Otherwise, we would have to specify in detail how `nullable` interacts with constraining assertions like `enum` and with boolean applicators like `allOf` and `anyOf`.
 
 ### Interpretation of `nullable: false`
 
@@ -113,13 +122,16 @@ Field Name | Type | Description
 According to the above specification, `nullable` only operates within a narrow scope, wherein its translation to JSON Schema is straightforward:
 
 * `nullable` is only meaningful if its value is `true`.
+
 * `nullable: true` operates within a single Schema Object; it does not "override" or otherwise compete with supertype or subtype schemas defined with `allOf` or other applicators; and it cannot be directly "inherited" through those applicators.
+
 * `nullable: true` is only meaningful in combination with a `type` assertion specified in the same Schema Object. `nullable` acts as a `type` modifier, allowing `null` in addition to the specified type.
 
 This also solves the issues of alignment with JSON Schema:
 
 * Since `type` is a constraint, JSON Schema's constraint-based processing model is fully applicable. Interactions between `type` and other constraining assertions and applicators are unambiguous, with each constraint having independent veto power.
-* It is now clear that `nullable: false`, whether explicit or by default, _does not_ prohibit default values. Consistent with JSON Schema, an empty object allows all values, including `null`.
+
+* It is now clear that `nullable: false`, whether explicit or by default, _does not_ prohibit null values. Consistent with JSON Schema, an empty object allows all values, including `null`.
 
 ## Backwards compatibility
 
@@ -127,7 +139,7 @@ Spec revisions through 3.0.2 are ambiguous as described above, so any possible c
 
 With the clarification of `nullable: false`, we think the risk of actual breakage is miniscule, because the current ambiguity only affects untyped Schema Objects, which by their nature leave a lot of room for unexpected values. Any implementation that relies on schema validation to prevent null values should use explicitly typed schemas, and typed schemas unambiguously disallow `null` unless `nullable` is `true`.
 
-There might be a somewhat greater risk of breakage by specifying the effect of `nullable: true` as a `type` modifier. A more heavy-handed interpretation of `nullable: true`, [described here](https://github.com/OAI/OpenAPI-Specification/issues/1900#issuecomment-486772917), would make it equivalent to `allOf [s, type: null]` where `s` is the schema as specified (excluding `nullable`). This would allow nulls even where they would be prohibited by other schema keywords, like `enum`. But this interpretation introduces far greater complexity than the narrowly scoped `type` modifier. We are not aware of any OpenAPI schema validator that actually attempts this, and there is nothing in the OpenAPI spec that says `nullable` should override constraints.
+There might be a somewhat greater risk of breakage by specifying the effect of `nullable: true` as a `type` modifier. A more heavy-handed interpretation of `nullable: true`, [described here](https://github.com/OAI/OpenAPI-Specification/issues/1900#issuecomment-486772917), would make it equivalent to `allOf [s, type: null]` where `s` is the schema as specified (excluding `nullable`). This would allow nulls even where they would be prohibited by other schema keywords, like `enum`. But this interpretation introduces far greater complexity than the narrowly scoped `type` modifier. We are not aware of any OpenAPI schema validator that actually attempts this, and there is nothing in the OpenAPI spec that says `nullable` can override constraining assertions.
 
 ## Alternatives considered
 

@@ -35,7 +35,7 @@ To summarize the problems:
 
 * Different OpenAPI schema validators and other tool implementations are likely to have different behaviors because the semantics of `nullable` are not fully specified.
 
-* OpenAPI Schema Objects cannot be interpreted correctly by standard JSON Schema processors because of the above issues.
+* Because of the above ambiguities, it is not clear how to translate an OpenAPI Schema Object into a standard JSON Schema for message validation and for other purposes. Some possible interpretations of the OpenAPI spec could make translating to JSON Schema much more difficult.
 
 * Depending on the interpretation, `nullable` might interact with `oneOf` and `anyOf` in problematic and counter-intuitive ways.
 
@@ -123,9 +123,9 @@ According to the above specification, `nullable` only operates within a narrow s
 
 * `nullable` is only meaningful if its value is `true`.
 
-* `nullable: true` operates within a single Schema Object; it does not "override" or otherwise compete with supertype or subtype schemas defined with `allOf` or other applicators; and it cannot be directly "inherited" through those applicators.
-
 * `nullable: true` is only meaningful in combination with a `type` assertion specified in the same Schema Object. `nullable` acts as a `type` modifier, allowing `null` in addition to the specified type.
+
+* `nullable: true` operates within a single Schema Object. It does not "override" or otherwise compete with supertype or subtype schemas defined with `allOf` or other applicators. It cannot be directly "inherited" through those applicators, and it cannot be applied to an inherited `type` constraint.
 
 This also solves the issues of alignment with JSON Schema:
 

@@ -51,6 +51,14 @@ The solution proposed herein should:
 
 Further details follow.
 
+### Primary Use Case for `nullable`
+
+A Schema Object allows values of any data type, unless the type is restricted by the `type` keyword. The `type` keyword restricts the schema to a single data type, which can be `"string"`, `"number"`, `"integer"`, `"boolean"`, `"array"`, or `"object"`, but cannot be `"null"`.
+
+Some APIs restrict values to a single data type, but also allow explicit null values. OpenAPI Schema Objects can allow explicit null values by combining the `type` and `nullable` keywords. A `nullable` value of `true` modifies a typed schema to allow non-null values of a given type, and also allow `null`. This was the envisioned use case, and the primary motivation for introducing `nullable` into the OpenAPI 3.0 spec.
+
+There may be other possible usage scenarios or consequences of the `nullable` keyword, the way it is specified, or the way in which the spec may be interpreted or implemented. In our view, these other scenarios should be considered side effects or oversights. To the best of our knowledge, the `nullable` keyword was not intended for any purpose other than to allow `null` in a typed schema.
+
 ### Expanding vs. Constraining Assertions
 
 `nullable: true` is an _expanding assertion_, meaning it has the effect of expanding the range of acceptable values. By contrast, JSON Schema's central operating principle is constraint-based, where _constraining assertions_ are cumulative, immutable, and each constraint has veto power to disallow some range of values.
@@ -108,7 +116,7 @@ Questions that are not answered by the current specification include the followi
 
 We propose to clarify the 3.0 specification in the next patch release, to resolve these questions and align OpenAPI's Schema Object with JSON Schema's well-defined, constraint-based semantics.
 
-In our view, and consistent with the original intent, `nullable` should have a very limited, well-defined scope, optimized to satisfy a specific use case with minimal side effects.
+In our view, and consistent with the original intent, `nullable` should have a very limited, well-defined scope. It should satisfy the primary use case, i.e. allowing `null` in a typed schema, with minimal side effects.
 
 This is the proposed replacement for the `nullable` definition:
 <hr>

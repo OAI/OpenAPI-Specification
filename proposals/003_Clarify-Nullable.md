@@ -115,7 +115,7 @@ This is the proposed replacement for the `nullable` definition:
 
 Field Name | Type | Description
 ---|:---:|---
-<a name="schemaNullable"></a>nullable | `boolean` | A `true` value expands the allowed type defined by the `type` keyword, only if `type` is explicitly defined within the same Schema Object. Other Schema Object constraints retain their defined behavior, and therefore may disallow the use of `null` as a value. A `false` value leaves the specified or default `type` unmodified. The default value is `false`.
+<a name="schemaNullable"></a>nullable | `boolean` | A `true` value adds `"null"` to the allowed type specified by the `type` keyword, only if `type` is explicitly defined within the same Schema Object. Other Schema Object constraints retain their defined behavior, and therefore may disallow the use of `null` as a value. A `false` value leaves the specified or default `type` unmodified. The default value is `false`.
 <hr>
 
 ## Detailed design

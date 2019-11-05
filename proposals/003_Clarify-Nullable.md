@@ -73,7 +73,35 @@ The documentation specifies that `nullable: false` is the default, but doesn't c
 
 One reasonable interpretation suggests that null values are disallowed unless `nullable` is explicitly set to `true`. This breaks a fundamental rule of JSON Schema, which states that an empty object `{}` is a valid schema that permits all values, with no constraints. Breaking that rule takes OpenAPI's Schema Object even further out of alignment with JSON Schema's processing model.
 
-However, the OpenAPI 3.0 specification doesn't explicitly say that untyped schemas disallow null values.
+For example, if null values are disallowed by default, does the following `UTCDate` schema accept `null`?
+
+```yaml
+components:
+
+  schemas:
+
+    OptionalDate:
+      type: string
+      format: date
+      nullable: true
+
+    UTCDate:
+      allOf:
+        $ref: "#/components/schemas/OptionalDate"
+      not:
+        type: string
+        pattern: "^.*Z.*$"
+```
+
+`UTCDate` does not specify a type of its own, and does not directly specify `nullable: true`. So if `null` is disallowed by default, even for untyped schemas, then `UTCDate` won't accept nulls. If we want it to accept nulls, we have to repeat `nullable: true` in `UTCDate`. This is not at all intuitive for API designers, and it breaks with JSON Schema's rule that any value is allowed unless it's explicitly disallowed.
+
+On the other hand, we could say that `UTCDate` inherits `nullable: true` from `OptionalDate`, therefore null values are allowed. But this kind of inheritance logic is completely foreign to JSON Schema. So this behavior is also counterintuitive, though for a different reason. It's also difficult to implement. Any JSON Schema validator would need to be hacked in highly disruptive ways to retrofit this behavior. Or a preprocessor would have to be introduced to propagate the effect of `nullable: true` through the `*Of` inheritance hierarchy.
+
+Whichever semantics we choose, it gets very messy.
+
+### A closer look at `nullable: false`
+
+In fact, the OpenAPI 3.0 specification doesn't explicitly say that untyped schemas disallow null values.
 
 Here are the relevant parts:
 

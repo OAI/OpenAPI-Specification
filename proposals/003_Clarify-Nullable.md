@@ -10,7 +10,7 @@
 |Review Manager |TBD|
 |Status |Proposal|
 |Implementations |N/A|
-|Issues | [1900](https://github.com/OAI/OpenAPI-Specification/issues/1900), [1368](https://github.com/OAI/OpenAPI-Specification/issues/1368), [1389](https://github.com/OAI/OpenAPI-Specification/issues/1389), [1957](https://github.com/OAI/OpenAPI-Specification/pull/1957), [2046](https://github.com/OAI/OpenAPI-Specification/pull/2046), [1977](https://github.com/OAI/OpenAPI-Specification/pull/1977#issuecomment-533333957) |
+|Issues | [1900](https://github.com/OAI/OpenAPI-Specification/issues/1900), [1368](https://github.com/OAI/OpenAPI-Specification/issues/1368), [1389](https://github.com/OAI/OpenAPI-Specification/issues/1389), [1957](https://github.com/OAI/OpenAPI-Specification/pull/1957), [2046](https://github.com/OAI/OpenAPI-Specification/pull/2046), [1977](https://github.com/OAI/OpenAPI-Specification/pull/1977#issuecomment-533333957), [2057](https://github.com/OAI/OpenAPI-Specification/issues/2057)|
 |Previous Revisions |N/A |
 
 ## Change Log
@@ -87,7 +87,7 @@ components:
 
     UTCDate:
       allOf:
-        $ref: "#/components/schemas/OptionalDate"
+      - $ref: "#/components/schemas/OptionalDate"
       not:
         type: string
         pattern: "^.*Z.*$"
@@ -139,6 +139,8 @@ Questions that are not answered by the current specification include the followi
 * Can `allOf` be used to define a non-nullable subtype of nullable base schema?
 
 * What is the correct translation of a nullable schema from OpenAPI into an equivalent JSON Schema?
+
+* Is `null` allowed as the `default` value of a nullable schema? (See [#2057](https://github.com/OAI/OpenAPI-Specification/issues/2057).)
 
 ## Proposed solution
 
@@ -195,6 +197,12 @@ Yes. The subtype can specify a `type` without `nullable: true`, or can specify `
 #### What is the correct translation of a nullable schema from OpenAPI into an equivalent JSON Schema?
 
 A nullable type should translate into a type array with two string elements: the name of the type specified in the Schema Object, and `"null"`.
+
+####  Is `null` allowed as the `default` value of a nullable schema? (See [#2057](https://github.com/OAI/OpenAPI-Specification/issues/2057).)
+
+Yes. For example, a Schema Object with `"type" : "string", "nullable" : true` would translate to a JSON Schema with `"type" : ["string", "null"]`. That schema permits `"default" : null`, even with the [strict typing rule](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.0.md#properties) specified by OpenAPI 3.0:
+
+> default - The default value represents what would be assumed by the consumer of the input as the value of the schema if one is not provided. Unlike JSON Schema, the value MUST conform to the defined type for the Schema Object defined at the same level. For example, if `type` is `string`, then `default` can be `"foo"` but cannot be `1`.
 
 ## Backwards compatibility
 

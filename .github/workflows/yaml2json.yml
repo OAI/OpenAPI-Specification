@@ -1,0 +1,70 @@
+name: YAML2JSON
+
+#
+# This workflow updates the *.json files in the examples/v3.0 directory,
+# when the corresponding *.yaml files change.
+# JSON example files are automatically generated from the YAML example files.
+# Only the YAML files should be adjusted manually.
+#
+
+# run this on push to master
+on:
+  push:
+    branches:    
+      - master
+      - try-github-actions
+
+jobs:
+  yaml2json:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1 # checkout repo content
+      
+    - name: Install dependencies
+      run: |
+        cd examples/v3.0 
+        echo '{}' > composer.json
+        # fix versions to ensure reproduceable runs
+        composer require cebe/php-openapi:1.3.1 symfony/yaml:4.2.12 cebe/indent:1.1.0
+
+    - name: convert YAML examples to JSON
+      run: |
+        cd examples/v3.0
+        for file in *.yaml ; do
+            target=`basename -s .yaml $file`.json
+            echo "converting  $file  to  $target  ..."
+            if [ "$file" != "api-with-examples.yaml" ] ; then
+                vendor/bin/php-openapi convert --read-yaml $file --write-json $target
+                vendor/bin/indent --tabs --tabstop=4 $target
+                vendor/bin/indent --spaces --tabstop=2 $target
+            fi
+        done
+        
+    - name: cleanup
+      run: |
+        cd examples/v3.0
+        rm -rf vendor/ composer.*
+
+    - name: git diff
+      run: |
+        cd examples/v3.0
+        git add *.json
+        git diff --staged
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch-suffix: none
+        branch: update-json-examples
+        title: Update JSON example files
+        commit-message: Update JSON example files
+        body: |
+          This pull request is automatically triggered by github actions [create-pull-request][1].
+          
+          It seems the OpenAPI example YAML files have changed, so the JSON files are automatically being adjusted.
+          
+            [1]: https://github.com/peter-evans/create-pull-request
+

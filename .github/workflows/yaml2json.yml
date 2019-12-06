@@ -35,11 +35,9 @@ jobs:
         for file in *.yaml ; do
             target=`basename -s .yaml $file`.json
             echo "converting  $file  to  $target  ..."
-            if [ "$file" != "api-with-examples.yaml" ] ; then
-                vendor/bin/php-openapi convert --read-yaml $file --write-json $target
-                vendor/bin/indent --tabs --tabstop=4 $target
-                vendor/bin/indent --spaces --tabstop=2 $target
-            fi
+            vendor/bin/php-openapi convert --read-yaml $file --write-json $target
+            vendor/bin/indent --tabs --tabstop=4 $target
+            vendor/bin/indent --spaces --tabstop=2 $target
         done
         
     - name: cleanup
@@ -51,7 +49,7 @@ jobs:
       run: |
         cd examples/v3.0
         git add *.json
-        git diff --staged
+        git --no-pager -c color.diff=always diff --staged
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v1

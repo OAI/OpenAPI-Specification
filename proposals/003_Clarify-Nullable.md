@@ -134,9 +134,9 @@ Questions that are not answered by the current specification include the followi
 
 * Does an untyped schema (without a `type` keyword) allow null values by default? What effect, if any, does `nullable: true` have on an untyped schema?
 
-* Can `allOf` be used to define a nullable subtype of non-nullable base schema? (See [#1368](https://github.com/OAI/OpenAPI-Specification/issues/1368).)
+* Can `allOf` be used to define a nullable subtype of a non-nullable base schema? (See [#1368](https://github.com/OAI/OpenAPI-Specification/issues/1368).)
 
-* Can `allOf` be used to define a non-nullable subtype of nullable base schema?
+* Can `allOf` be used to define a non-nullable subtype of a nullable base schema?
 
 * What is the correct translation of a nullable schema from OpenAPI into an equivalent JSON Schema?
 
@@ -186,11 +186,11 @@ While the modified `type` now allows `null`, the `enum` does not. Consistent wit
 
 Yes, an untyped schema allows null values, in addition to all other types. `nullable: true` has no effect, because null values are already allowed. And `nullable: false` has no effect because it just leaves the `type` constraint unmodified.
 
-#### Can `allOf` be used to define a nullable subtype of non-nullable base schema? (See [#1368](https://github.com/OAI/OpenAPI-Specification/issues/1368).)
+#### Can `allOf` be used to define a nullable subtype of a non-nullable base schema? (See [#1368](https://github.com/OAI/OpenAPI-Specification/issues/1368).)
 
 No. Subtypes can add constraints, but not relax them.
 
-#### Can `allOf` be used to define a non-nullable subtype of nullable base schema?
+#### Can `allOf` be used to define a non-nullable subtype of a nullable base schema?
 
 Yes. The subtype can specify a `type` without `nullable: true`, or can specify `not: {enum: [null]}`. 
 

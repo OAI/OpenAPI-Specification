@@ -12,7 +12,6 @@ on:
   push:
     branches:    
       - master
-      - try-github-actions
 
 jobs:
   yaml2json:

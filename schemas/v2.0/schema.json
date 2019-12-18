@@ -80,8 +80,19 @@
       "uniqueItems": true
     },
     "externalDocs": {
-      "$ref": "#/definitions/externalDocs"
-    }
+      "oneOf": [
+        {
+          "$ref": "#/definitions/externalDocs"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/externalDocs"
+          },
+          "uniqueItems": true
+        }
+      ]
+}
   },
   "definitions": {
     "info": {
@@ -263,7 +274,18 @@
           "description": "A longer description of the operation, GitHub Flavored Markdown is allowed."
         },
         "externalDocs": {
-          "$ref": "#/definitions/externalDocs"
+          "oneOf": [
+            {
+              "$ref": "#/definitions/externalDocs"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/externalDocs"
+              },
+              "uniqueItems": true
+            }
+          ]
         },
         "operationId": {
           "type": "string",
@@ -1055,7 +1077,18 @@
           "$ref": "#/definitions/xml"
         },
         "externalDocs": {
-          "$ref": "#/definitions/externalDocs"
+          "oneOf": [
+            {
+              "$ref": "#/definitions/externalDocs"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/externalDocs"
+              },
+              "uniqueItems": true
+            }
+          ]
         },
         "example": {}
       },
@@ -1099,7 +1132,18 @@
           "default": false
         },
         "externalDocs": {
-          "$ref": "#/definitions/externalDocs"
+          "oneOf": [
+            {
+              "$ref": "#/definitions/externalDocs"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/externalDocs"
+              },
+              "uniqueItems": true
+            }
+          ]
         },
         "example": {}
       },
@@ -1233,7 +1277,18 @@
           "type": "string"
         },
         "externalDocs": {
-          "$ref": "#/definitions/externalDocs"
+          "oneOf": [
+            {
+              "$ref": "#/definitions/externalDocs"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/externalDocs"
+              },
+              "uniqueItems": true
+            }
+          ]
         }
       },
       "patternProperties": {

@@ -55,7 +55,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
     post:
-      description: Creates a new pet in the store.  Duplicates are allowed
+      description: Creates a new pet in the store. Duplicates are allowed
       operationId: addPet
       requestBody:
         description: Pet to add to the store
@@ -127,7 +127,8 @@ components:
     Pet:
       allOf:
         - $ref: '#/components/schemas/NewPet'
-        - required:
+        - type: object
+          required:
           - id
           properties:
             id:
@@ -135,6 +136,7 @@ components:
               format: int64
 
     NewPet:
+      type: object
       required:
         - name  
       properties:
@@ -144,6 +146,7 @@ components:
           type: string    
 
     Error:
+      type: object
       required:
         - code
         - message

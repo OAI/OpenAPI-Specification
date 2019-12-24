@@ -1,7 +1,21 @@
-[Source](https://github.com/OAI/OpenAPI-Specification/issues/1722)
-----
+# Overlays
 
-# OpenAPI Overlays
+## Metadata
+
+|Tag |Value |
+|---- | ---------------- |
+|Proposal |[004_Overlays](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/004_overlays.md)|
+|Authors|[Darrel Miller](https://github.com/darrelmiller)|
+|Status |Proposal|
+|Issues |[1442](https://github.com/OAI/OpenAPI-Specification/issues/1442) [1722](https://github.com/OAI/OpenAPI-Specification/issues/1722)|
+
+## Change Log
+
+|Date |Responsible Party |Description |
+|---- | ---------------- | ---------- |
+| 24th December 2019 | Darrel Miller | Initial draft |
+
+## Introduction
 
 In recent months we have been discussing various use cases for overlays and various solutions.  The following proposal takes a somewhat more radical approach to the problem.  It is a more ambitious proposal than the others we have seen before but the additional complexity does allow for supporting many of the scenarios that have been discussed to date.
 
@@ -46,7 +60,8 @@ This object represents one or more changes to be applied to the target document 
 Field Name | Type | Description
 ---|:---:|---
 <a name="updateTarget"></a>target | `string` | A JMESPath expression referencing the target objects in the target document.
-<a name="updateValue"></a>value | [Any](#valueObject) | An object with the properties and values to be updated in the target document.
+<a name="updateValue"></a>value | [Any](#valueObject) | An object with the properties and values to be updated in the target document.  Property has no impact if `remove` property is `true`.
+<a name="updateRemove"></a>remove | `boolean` | A boolean value that indicates that the target object is to be removed from the the map or array it is contained in. The default value is false.  
 
 The properties of the `Value Object` MUST be compatible with the target object referenced by the JMESPath key.  When the Overlay document is applied, the properties in the `Value Object` replace properties in the target object with the same name and new properties are appended to the target object.
 
@@ -144,7 +159,7 @@ info:
   version: 1.0.0
 updates:
 - target: $.paths[*].get.parameters[? name == 'dummy']
-    value: null
+    remove: true
 ```
 
 

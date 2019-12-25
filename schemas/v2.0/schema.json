@@ -80,19 +80,8 @@
       "uniqueItems": true
     },
     "externalDocs": {
-      "oneOf": [
-        {
-          "$ref": "#/definitions/externalDocs"
-        },
-        {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/externalDocs"
-          },
-          "uniqueItems": true
-        }
-      ]
-}
+      "$ref": "#/definitions/externalDocs"
+    }
   },
   "definitions": {
     "info": {
@@ -274,18 +263,7 @@
           "description": "A longer description of the operation, GitHub Flavored Markdown is allowed."
         },
         "externalDocs": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/externalDocs"
-            },
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/externalDocs"
-              },
-              "uniqueItems": true
-            }
-          ]
+          "$ref": "#/definitions/externalDocs"
         },
         "operationId": {
           "type": "string",
@@ -1077,18 +1055,7 @@
           "$ref": "#/definitions/xml"
         },
         "externalDocs": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/externalDocs"
-            },
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/externalDocs"
-              },
-              "uniqueItems": true
-            }
-          ]
+          "$ref": "#/definitions/externalDocs"
         },
         "example": {}
       },
@@ -1132,18 +1099,7 @@
           "default": false
         },
         "externalDocs": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/externalDocs"
-            },
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/externalDocs"
-              },
-              "uniqueItems": true
-            }
-          ]
+          "$ref": "#/definitions/externalDocs"
         },
         "example": {}
       },
@@ -1277,18 +1233,7 @@
           "type": "string"
         },
         "externalDocs": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/externalDocs"
-            },
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/externalDocs"
-              },
-              "uniqueItems": true
-            }
-          ]
+          "$ref": "#/definitions/externalDocs"
         }
       },
       "patternProperties": {

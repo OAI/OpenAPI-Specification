@@ -14,6 +14,7 @@
 |Date |Responsible Party |Description |
 |---- | ---------------- | ---------- |
 | 24th December 2019 | Darrel Miller | Initial draft |
+| 2nd January 2019 | Darrel Miller | Update to wording around removing items from arrays.  Added section on backward compatibility. Clarified process around applying a set of updates. Started to add supported scenarios.|
 
 ## Introduction
 
@@ -22,7 +23,7 @@ In recent months we have been discussing various use cases for overlays and vari
 
 #### <a name="overlayDocument"></a>Overlay Document
 
-An overlay document contains a list of [Update Objects](#overlayUpdates) that are to be applied to the target document.  Each [Update Object](#updateObject) has a `target` property and a `value` property.  The `target` property is a [JMESPath](http://jmespath.org/specification.html) query that identifies what part of the target document is to be updated and the `value` property contains an object with the properties to be overlayed.
+An overlay document contains a list of [Update Objects](#overlayUpdates) that are to be applied to the target document.  Each [Update Object](#updateObject) has a `target` property and a `value` property.  The `target` property is a [JMESPath](http://jmespath.org/specification.html) query that identifies what part of the target document is to be updated and the `value` property contains an object with the properties to be overlaid.
 
 
 #### <a name="overlayObject"></a>Overlay Object
@@ -38,7 +39,9 @@ Field Name | Type | Description
 <a name="overlayExtends"></a>extends | `url` | URL to an OpenAPI document this overlay applies to. 
 <a name="overlayUpdates"></a>updates | [[Update Object](#updateObject)] | A list of update objects to be applied to the target document.
 
-The list of update objects MUST be applied in sequential order to ensure a consistent outcome.  This enables objects to be deleted in one update and then re-created in a subsequent update.
+The list of update objects MUST be applied in sequential order to ensure a consistent outcome.  Updates are applied to the result of the previous updates. This enables objects to be deleted in one update and then re-created in a subsequent update.
+
+The `extends` property can be used to indicate that the Overlay was designed to update a specific OpenAPI description.  This is an optional property.  Where no `extends` is provided it is the responsibility of tooling to apply the Overlay documents to the appropriate OpenAPI description.
 
 #### <a name="overlayInfoObject"></a>Info Object
 
@@ -64,7 +67,6 @@ Field Name | Type | Description
 <a name="updateRemove"></a>remove | `boolean` | A boolean value that indicates that the target object is to be removed from the the map or array it is contained in. The default value is false.  
 
 The properties of the `Value Object` MUST be compatible with the target object referenced by the JMESPath key.  When the Overlay document is applied, the properties in the `Value Object` replace properties in the target object with the same name and new properties are appended to the target object.
-
 
 ##### Structured Overlays Example
 
@@ -138,7 +140,7 @@ updates:
 
 ##### Array Modification Examples
 
-Due to the fact that we can now reference specific elements of the parameter array, it does open the possibilty to being able to add parameters and potentially remove them using a `null` value.
+Due to the fact that we can now reference specific elements of the parameter array, it allows adding parameters. Parameters can be deleted using the `remove` property.  Use of indexes to remove array items should be avoided where possible as indexes will change when items are removed.
 
 ```yaml
 overlay: 1.0.0
@@ -162,7 +164,6 @@ updates:
     remove: true
 ```
 
-
 ## Proposal Summary
 
 ### Benefits
@@ -173,6 +174,21 @@ updates:
 - Enables updating a set of objects based on a pattern. This might be an effective way of apply common behaviour across many operations in an API.
 
 ### Challenges
+
 - Tooling will need a JMESPath implementation.
 - Large overlays may be slow to process.
 - Multiple complex pattern based overlays may cause overlapping updates causing confusing outcomes.
+
+## Alternatives considered
+
+JMESPath was chosen over JSONPath due to the fact that JMESPath has a [specification](http://jmespath.org/specification.html) and a set of test cases.  This will help to ensure compatibility between implementations.
+
+## Backwards compatibility
+
+Overlays will be described in a new specification that can be used alongside an OpenAPI Description, therefore there will be no compatibility issues for the initial release. Overlay documents can be used against OpenAPI v2 and v3 descriptions.
+
+## Scenarios Considered
+
+- Multi-language support.  An Overlay document for each language is used to target a specific OpenAPI description.  The Overlay document will likely use a duplicate structure to the original OpenAPI description and replace all `description` properties.
+- Applying API wide standards.  An Overlay document contains update objects that describe standard headers, parameters, responses.  These documents would use JMESPath queries to target the appropriate objects in the OpenAPI description.  Tooling could be used to target the OpenAPI description rather than using extends.
+- Add tool specific OpenAPI metadata. Overlay adds additional metadata such as SLA information, client codegen hints or middleware policies. Using Overlays to manage this data separately is valuable when there is a different audience for the data and/or there the information has different sensitivity levels.

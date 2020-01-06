@@ -79,21 +79,21 @@ info:
   version: 1.0.0
 updates:
 - target: "@"
-    value:
-      info:
-        x-overlay-applied: structured-overlay
-      paths:
-        "/":
-          summary: "The root resource"
-          get:
-            summary: "Retrieve the root resource"
-            x-rate-limit: 100
-        "/pets":
-          get:
-            summary: "Retrieve a list of pets"
-            x-rate-limit: 100
-      components:
-      tags:
+  value:
+    info:
+      x-overlay-applied: structured-overlay
+    paths:
+      "/":
+        summary: "The root resource"
+        get:
+          summary: "Retrieve the root resource"
+          x-rate-limit: 100
+      "/pets":
+        get:
+          summary: "Retrieve a list of pets"
+          x-rate-limit: 100
+    components:
+    tags:
 ```
 
 ##### Targeted Overlays
@@ -107,16 +107,16 @@ info:
   version: 1.0.0
 updates:
 - target: paths."/foo".get
-    value:
-        description: This is the new description
+  value:
+    description: This is the new description
 - target: paths."/bar".get
-    value:
-        description: This is the updated description
+  value:
+    description: This is the updated description
 - target: paths."/bar"
-    value:
-        post:
-            description: This is an updated description of a child object
-            x-safe: false
+  value:
+      post:
+          description: This is an updated description of a child object
+          x-safe: false
 ```
 
 ##### Wildcard Overlays Examples
@@ -130,12 +130,12 @@ info:
   version: 1.0.0
 updates:
 - target: paths.*.get
-    value:
-      x-safe: true
+  value:
+    x-safe: true
 - target: paths.*.get.parameters[?name=='filter' && in=='query']
-    value:
-      schema:
-        $ref: "/components/schemas/filterSchema"
+  value:
+    schema:
+      $ref: "/components/schemas/filterSchema"
 ```
 
 ##### Array Modification Examples
@@ -149,9 +149,9 @@ info:
   version: 1.0.0
 updates:
 - target: paths.*.get.parameters[length(@)]
-    value: 
-      name: newParam
-      in: query
+  value: 
+    name: newParam
+    in: query
 ```
 
 ```yaml
@@ -161,7 +161,7 @@ info:
   version: 1.0.0
 updates:
 - target: $.paths[*].get.parameters[? name == 'dummy']
-    remove: true
+  remove: true
 ```
 
 ## Proposal Summary

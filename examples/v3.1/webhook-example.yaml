@@ -3,7 +3,7 @@ info:
   title: Webhook Example
   version: 1.0.0
 paths:
-  # OpenAPI specs all need a paths element
+  # OpenAPI documents all need a paths element
   /pets:
     get:
       summary: List all pets

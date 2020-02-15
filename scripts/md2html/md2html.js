@@ -72,7 +72,7 @@ function preface(title,options) {
 
     let preface = `<html><head><meta charset="UTF-8"><title>${md.utils.escapeHtml(title)}</title>`;
     if (options.respec) {
-        preface += '<script src="https://mermade.github.io/static/respec21/respec-oai.js" class="remove"></script>';
+        preface += '<script src="http://spec.openapis.org/js/respec-oai.js" class="remove"></script>';
         preface += `<script class="remove">var respecConfig = ${JSON.stringify(respec)};</script>`;
         preface += '</head><body>';
         preface += '<style>';

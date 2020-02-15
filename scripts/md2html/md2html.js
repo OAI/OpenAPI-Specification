@@ -11,15 +11,20 @@ highlight.js does a better job than bikeshed's Pygments) */
 **/
 
 const fs = require('fs');
+const url = require('url');
 const util = require('util');
 
-const hljs = require('highlightjs/highlight.pack.js');
+const hljs = require('highlight.js');
 const cheerio = require('cheerio');
 
 let argv = require('yargs')
+    .boolean('bikeshed')
+    .alias('b','bikeshed')
+    .describe('bikeshed','Output in bikeshed format')
     .boolean('respec')
     .alias('r','respec')
-    .describe('respec','Output in respec format, default bikeshed')
+    .describe('respec','Output in respec format')
+    .default('respec',true)
     .string('maintainers')
     .alias('m','maintainers')
     .describe('maintainers','path to MAINTAINERS.md')
@@ -67,7 +72,7 @@ function preface(title,options) {
 
     let preface = `<html><head><meta charset="UTF-8"><title>${md.utils.escapeHtml(title)}</title>`;
     if (options.respec) {
-        preface += '<script src="https://mermade.github.io/static/respec-oai.js" class="remove"></script>';
+        preface += '<script src="https://mermade.github.io/static/respec21/respec-oai.js" class="remove"></script>';
         preface += `<script class="remove">var respecConfig = ${JSON.stringify(respec)};</script>`;
         preface += '</head><body>';
         preface += '<style>';
@@ -146,6 +151,7 @@ let bsFix = true;
 
 let indents = [0];
 
+// process the markdown
 for (let l in lines) {
     let line = lines[l];
 
@@ -223,10 +229,11 @@ for (let l in lines) {
     line = line.split('\\|').join('&brvbar;');
 
     if (!inCodeBlock) {
+
+        // minor fixups to get RFC links to work properly
         if (line.indexOf('RFC [')>=0) {
             line = line.replace('RFC [','[RFC');
         }
-
         line = line.replace('[Authorization header as defined in ','Authorization header as defined in [');
 
         if (line.indexOf('[RFC')>=0) {
@@ -251,8 +258,17 @@ for (let l in lines) {
         }
     }
 
-    if (line.indexOf('[ABNF]')>=0) {
-        line = line.replace('[ABNF]','[Augmented Backus-Naur Form]');
+    // minor fixup to get bibliography link to work
+    //if (line.indexOf('[ABNF]')>=0) {
+    //    line = line.replace('[ABNF]','[Augmented Backus-Naur Form]');
+    //}
+
+    if (!inCodeBlock && line.indexOf('](../') >= 0) {
+        const regExp = /\((\.\.[^)]+)\)/g;
+        line = line.replace(regExp,function(match,group1){
+          console.warn('Fixing relative link',group1,line);
+          return '('+url.resolve('https://github.com/OAI/OpenAPI-Specification/tree/master/versions/foo',group1)+')';
+        });
     }
 
     if (!inCodeBlock && argv.respec && line.startsWith('#')) {
@@ -281,10 +297,7 @@ for (let l in lines) {
     }
 
     lines[l] = line;
-
 }
-
-//fs.writeFileSync('./md2html.tmp',lines.join('\n'),'utf8');
 
 s = preface('OpenAPI Specification',argv)+'\n\n'+lines.join('\n');
 let out = md.render(s);

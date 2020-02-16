@@ -11,6 +11,7 @@ highlight.js does a better job than bikeshed's Pygments) */
 **/
 
 const fs = require('fs');
+const path = require('path');
 const url = require('url');
 const util = require('util');
 
@@ -58,9 +59,9 @@ function preface(title,options) {
         publishDate: options.publishDate,
         subtitle: 'Version '+options.subtitle,
         processVersion: 2017,
-        edDraftURI: "http://github.com/OAI/openapi-specification/",
+        edDraftURI: "http://github.com/OAI/OpenAPI-Specification/",
         github: {
-            repoURL: "https://github.com/OAI/openapi-specification/",
+            repoURL: "https://github.com/OAI/OpenAPI-Specification/",
             branch: "master"
         },
         shortName: "OAS",
@@ -78,7 +79,7 @@ function preface(title,options) {
         preface += '<style>';
         preface += '#respec-ui { visibility: hidden; }';
         preface += 'h1,h2,h3 { color: #629b34; }';
-        preface += 'a[href] { color: #45512c; }'; // #8ad000
+        preface += 'a[href] { color: #45512c; }'; // third OAI colour is #8ad000
         preface += 'body:not(.toc-inline) #toc h2 { color: #45512c; }';
         preface += 'table { display: block; width: 100%; overflow: auto; }';
         preface += 'table th { font-weight: 600; }';
@@ -86,7 +87,7 @@ function preface(title,options) {
         preface += 'table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }';
         preface += 'table tr:nth-child(2n) { background-color: #f6f8fa; }';
         preface += 'pre { background-color: #f6f8fa !important; }';
-        preface += fs.readFileSync('./gist.css','utf8').split('\n').join(' ');
+        preface += fs.readFileSync(path.resolve(__dirname,'gist.css'),'utf8').split('\n').join(' ');
         preface += '</style>';
         preface += '<section id="abstract">';
         preface += 'The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for REST APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.';

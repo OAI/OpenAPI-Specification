@@ -72,6 +72,26 @@ Field Name | Type | Description
 ... | ... | ...
 <a name="schemaBeta"></a>beta | `boolean` | Specifies that a schema is in beta status, meaning it may change outside of the normal breaking change process. Consumers SHOULD use with caution. Default value is `false`.
 
+### Example Spec
+
+```yaml
+  /asset/constraints:
+    get:
+      tags:
+        - Asset
+        - Constraints
+      summary: Get a set of asset constraints
+      operationId: constraints
+      parameters:
+        - name: siteToken
+          in: query
+          description: Site token obtained from Site API
+          required: true
+          schema:
+            type: string
+      beta: true
+```
+
 ### Unanswered Questions
 
 - If an operation is not marked as beta, but it is using a schema which is (i.e. as its request object), then it is implicitly also beta. Would this usage be considered invalid?

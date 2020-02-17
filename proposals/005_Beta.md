@@ -33,14 +33,14 @@ These sit together fine in principle, but cause friction when trying to apply so
 
 ## Proposed solution
 
-Add a "beta" or "experimental" boolean field which specifies that an items in the API is not yet fully stable and supported, may change without a major version bump, and as such should be used with caution.
+Add a "beta" or "experimental" field which specifies that an items in the API is not yet fully stable and supported, may change without a major version bump, and as such should be used with caution.
 
 _(I don't have a strong opinion about the naming - "beta" and "experimental" are two ideas - perhaps there is another word that conveys it better? For the rest of the proposal I'll refer to it as "beta" for brevity.)_
 
 Downstream tools could then make use of this metadata:
 
 - Tools like swagger-ui could surface this in the documentation they generate so integrators are made aware. Beta items could also be filtered out of the documentation if desired.
-- Tools 
+- Tools for detecting and preventing breaking changes could take this into consideration when deciding whether a change is breaking.
 
 ## Detailed design
 
@@ -77,7 +77,7 @@ Field Name | Type | Description
 
 ### Unanswered Questions
 
-If an operation is not marked as beta, but it is used a schema which is, then it is implicitly also beta. Would this usage be considered invalid?
+If an operation is not marked as beta, but it is using a schema which is (i.e. as its request object), then it is implicitly also beta. Would this usage be considered invalid?
 
 ## Backwards compatibility
 

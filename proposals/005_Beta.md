@@ -59,10 +59,9 @@ This specifies that the operation or schema is not yet stable and SHOULD be used
 
 ##### Fixed Fields
 
-...
 Field Name | Type | Description
 ---|:---:|---
-...|...|...
+... | ... | ...
 <a name="operationBeta"></a>beta | `boolean` | Specifies that an operation is in beta status, meaning it may change outside of the normal breaking change process. Consumers SHOULD use with caution. Default value is `false`.
 
 ### Schema Object
@@ -71,10 +70,9 @@ Field Name | Type | Description
 
 ##### Fixed Fields
 
-...
 Field Name | Type | Description
 ---|:---:|---
-...|...|...
+... | ... | ...
 <a name="schemaBeta"></a>beta | `boolean` | Specifies that a schema is in beta status, meaning it may change outside of the normal breaking change process. Consumers SHOULD use with caution. Default value is `false`.
 
 ### Unanswered Questions

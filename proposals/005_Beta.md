@@ -91,6 +91,9 @@ Field Name | Type | Description
             type: string
       beta: true
 ```
+### Prior Art
+
+This kind of requirement is handled for TypeScript libraries by [api-extractor](https://api-extractor.com/pages/tsdoc/doc_comment_syntax/#release-tags) - they have both "alpha" and "beta" markers with a somewhat opinionated flow attached - I'm not sure that level of granularity is necessary.
 
 ### Unanswered Questions
 

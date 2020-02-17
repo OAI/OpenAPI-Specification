@@ -93,7 +93,10 @@ Field Name | Type | Description
 ```
 ### Prior Art
 
-This kind of requirement is handled for TypeScript libraries by [api-extractor](https://api-extractor.com/pages/tsdoc/doc_comment_syntax/#release-tags) - they have both "alpha" and "beta" markers with a somewhat opinionated flow attached - I'm not sure that level of granularity is necessary.
+This kind of requirement is handled for TypeScript libraries by [api-extractor](https://api-extractor.com/pages/tsdoc/doc_comment_syntax/#release-tags) - they have both "alpha" and "beta" markers with a somewhat opinionated flow attached - I'm not sure that level of granularity is necessary. But the "beta" and "public" ones map well to the motivations described here:
+
+> - **beta**: Indicates that an API item has been released as a preview or for experimental purposes. Third parties are encouraged to try it and provide feedback. However, a “beta” API should NOT be used in production, because it may be changed or removed in a future version.
+> - **public**: Indicates that an API item has been officially released, and is now part of the supported contract for a package. If the SemVer versioning scheme is used, then the API signature cannot be changed without a MAJOR version increment.
 
 ### Unanswered Questions
 

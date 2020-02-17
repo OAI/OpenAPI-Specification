@@ -5,13 +5,13 @@
 
 |Tag |Value |
 |---- | ---------------- |
-|Proposal |[NNNN](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/{directory_or_file_name})|
-|Authors|[Author 1](https://github.com/{author1}), [Author 2](https://github.com/{author2})|
+|Proposal |[005_Beta](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/005_Beta.md)|
+|Authors|[David Goss](https://github.com/davidjgoss)|
 |Review Manager |TBD |
-|Status |Proposal, Draft, Promoted, or Abandoned|
-|Implementations |[Click Here](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/{NNNN}/implementations.md)|
-|Issues |[{issueid}](https://github.com/OAI/OpenAPI-Specification/issues/{Issueid})|
-|Previous Revisions |[{revid}](https://github.com/OAI/OpenAPI-Specification/pull/{revid}) |
+|Status |Proposal|
+|Implementations ||
+|Issues ||
+|Previous Revisions ||
 
 ## Change Log
 
@@ -20,25 +20,74 @@
 
 ## Introduction
 
-A short description of what the feature is. Try to keep it to a single-paragraph "elevator pitch" so the reader understands what problem this proposal is addressing.
+A way to mark an aspect of the API as "beta" or "experimental", indicating that it is not yet a fully stable and supported part of the API.
 
 ## Motivation
 
-Describe the problems that this proposal seeks to address. If the problem is that some common pattern is currently hard to express, show how one can currently get a similar effect and describe its drawbacks. If it's completely new functionality that cannot be emulated, motivate why this new functionality would help OpenAPI developers create better code.
+Consider an API with two categories of thing in it:
+
+- Core, stable things, where we are committed to the ongoing stability and have no intention of making breaking changes
+- New, experimental things, where we are getting them out there for feedback and early adopters, but they may change before we consider them to be in the first category
+
+These sit together fine in principle, but cause friction when trying to apply something like semver to the API as a whole. How do we make changes to the beta stuff - without bumping the major version several times a year and scaring our integrators - while also ensuring we can't make breaking changes to the core stuff we never want to break.
 
 ## Proposed solution
 
-Describe your solution to the problem. Provide examples and describe how they work. Show how your solution is better than current workarounds: is it cleaner, safer, or more efficient?
+Add a "beta" or "experimental" boolean field which specifies that an items in the API is not yet fully stable and supported, may change without a major version bump, and as such should be used with caution.
+
+_(I don't have a strong opinion about the naming - "beta" and "experimental" are two ideas - perhaps there is another word that conveys it better? For the rest of the proposal I'll refer to it as "beta" for brevity.)_
+
+Downstream tools could then make use of this metadata:
+
+- Tools like swagger-ui could surface this in the documentation they generate so integrators are made aware. Beta items could also be filtered out of the documentation if desired.
+- Tools 
 
 ## Detailed design
 
-Describe the design of the solution in detail. This should include an exact description of the changes to the contents of the OpenAPI specification. That description should include a extract of each section of the OpenAPI specification which is impacted by the proposal with all proposed modifications applied. These extracts may be provided through additional files which are identified and described in this section.
+A new boolean field named `beta`, defaulting to `false`, is added to:
+
+- Operation
+- Schema
+
+This specifies that the operation or schema is not yet stable and SHOULD be used with caution.
+
+### Specification changes
+
+### Operation Object
+
+...
+
+##### Fixed Fields
+
+...
+Field Name | Type | Description
+---|:---:|---
+...|...|...
+<a name="operationBeta"></a>beta | `boolean` | Specifies that an operation is in beta status, meaning it may change outside of the normal breaking change process. Consumers SHOULD use with caution. Default value is `false`.
+
+### Schema Object
+
+...
+
+##### Fixed Fields
+
+...
+Field Name | Type | Description
+---|:---:|---
+...|...|...
+<a name="schemaBeta"></a>beta | `boolean` | Specifies that a schema is in beta status, meaning it may change outside of the normal breaking change process. Consumers SHOULD use with caution. Default value is `false`.
+
+### Unanswered Questions
+
+If an operation is not marked as beta, but it is used a schema which is, then it is implicitly also beta. Would this usage be considered invalid?
 
 ## Backwards compatibility
 
-Proposals should be structure so that they can be handled by existing OAS compliant software. Any potential issues should be identified and discussed.
+The `beta` field would default to false, meaning existing behaviour is preserved, and the new field is only used on an opt-in basis.
 
 ## Alternatives considered
 
-Describe alternative approaches to addressing the same problem, and why you chose this approach instead.
+- Specification extensions
+- Tags
+- Different API
 

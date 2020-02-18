@@ -18,9 +18,7 @@
     "schemas/*"
   ],
   "dependencies": {},
-  "devDependencies": {
-    "mdv": "^1.0.7"
-  },
+  "devDependencies": {},
   "keywords": [
     "OpenAPI",
     "OAS",

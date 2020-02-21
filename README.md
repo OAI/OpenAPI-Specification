@@ -24,7 +24,6 @@ The current version of the OpenAPI specification is [OpenAPI Specification 3.0.3
 
 ### Future Versions
 
-[3.0.3](https://github.com/OAI/OpenAPI-Specification/tree/v3.0.3-dev) - The next PATCH version. Patch-level fixes (typos, clarifications, etc.) should be submitted against this branch.
 [3.1.0](https://github.com/OAI/OpenAPI-Specification/tree/v3.1.0-dev) - The next MINOR version. Non-breaking changes should be submitted against this branch.
 
 ### Previous Versions

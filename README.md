@@ -22,10 +22,6 @@ The current version of the OpenAPI specification is [OpenAPI Specification 3.0.3
 
 [3.1.0](https://github.com/OAI/OpenAPI-Specification/tree/v3.1.0-dev) - The next MINOR version. Non-breaking changes should be submitted against this branch.
 
-### Future Versions
-
-[3.1.0](https://github.com/OAI/OpenAPI-Specification/tree/v3.1.0-dev) - The next MINOR version. Non-breaking changes should be submitted against this branch.
-
 ### Previous Versions
 
 This repository also contains the [OpenAPI Specification 2.0](versions/2.0.md), which is identical to the Swagger 2.0 specification before it was renamed to "OpenAPI Specification", as well as the Swagger 1.2 and Swagger 2.0 specifications.

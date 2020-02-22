@@ -59,7 +59,7 @@ function preface(title,options) {
         publishDate: options.publishDate,
         subtitle: 'Version '+options.subtitle,
         processVersion: 2017,
-        edDraftURI: "http://github.com/OAI/OpenAPI-Specification/",
+        edDraftURI: "https://github.com/OAI/OpenAPI-Specification/",
         github: {
             repoURL: "https://github.com/OAI/OpenAPI-Specification/",
             branch: "master"
@@ -73,7 +73,7 @@ function preface(title,options) {
 
     let preface = `<html><head><meta charset="UTF-8"><title>${md.utils.escapeHtml(title)}</title>`;
     if (options.respec) {
-        preface += '<script src="http://spec.openapis.org/js/respec-oai.js" class="remove"></script>';
+        preface += '<script src="https://spec.openapis.org/js/respec-oai.js" class="remove"></script>';
         preface += `<script class="remove">var respecConfig = ${JSON.stringify(respec)};</script>`;
         preface += '</head><body>';
         preface += '<style>';

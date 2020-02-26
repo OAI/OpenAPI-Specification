@@ -49,7 +49,7 @@ The OpenAPI Initiative encourages participation from individuals and companies a
 
 * Review the [current specification](versions/3.0.3.md). The human-readable markdown file _is the source of truth_ for the specification.
 * Review the [development](DEVELOPMENT.md) process so you understand how the spec is evolving.
-* Check the [issues](https://github.com/OAI/OpenAPI-Specification/issues) and [pull requests](https://github.com/OAI/OpenAPI-Specification/pulls) to see if someone has already documented your idea or feedback on the specification. You can follow an existing conversation by adding a comment to the existing issue or PR.
+* Check the [issues](https://github.com/OAI/OpenAPI-Specification/issues) and [pull requests](https://github.com/OAI/OpenAPI-Specification/pulls) to see if someone has already documented your idea or feedback on the specification. You can follow an existing conversation by subscribing to the existing issue or PR.
 * Create an issue to describe a new concern. If possible, propose a solution.
 
 Not all feedback can be accommodated and there may be solid arguments for or against a change being appropriate for the specification.

@@ -6,38 +6,37 @@ const util = require('util');
 
 const yaml = require('yaml');
 const rf = require('node-readfiles');
-const jsonschema = require('jsonschema').Validator;
-const options = { };
-const validator = new jsonschema(options);
+const jsonschema = require('@hyperjump/json-schema');
 
 const schema = {};
 schema["v2.0"] = yaml.parse(fs.readFileSync('./schemas/v2.0/schema.json','utf8'));
-schema.draft4 = yaml.parse(fs.readFileSync('./schemas/jsonSchema/draft-04/metaschema.json','utf8'));
 schema["v3.0"] = yaml.parse(fs.readFileSync('./schemas/v3.0/schema.yaml','utf8'));
 
-validator.addSchema(schema.draft4);
+jsonschema.add(schema["v2.0"]);
+jsonschema.add(schema["v3.0"]);
 
 async function main(path,schema,propName) {
     return new Promise(async function(resolve,reject){
         let files = await rf(path, { readContents: false, filenameFormat: rf.FULL_PATH });
         files = files.sort();
         for (let file of files) {
-            const contentStr = fs.readFileSync(file,'utf8');
-            let contentObj;
+            const instanceStr = fs.readFileSync(file,'utf8');
+            let instanceObj;
             try {
-                contentObj = yaml.parse(contentStr,{prettyErrors:true});
+                instanceObj = yaml.parse(instanceStr,{prettyErrors:true});
             }
             catch (ex) {
                 process.exitCode = 1;
                 console.warn(file,ex.message);
             }
-            if (contentObj && contentObj[propName]) {
+            if (instanceObj && instanceObj[propName]) {
                 console.log('Validating',file);
                 try {
-                    const result = await validator.validate(contentObj,schema);
-                    if (result.errors && result.errors.length) {
+                    const schemaObj = await jsonschema.get(schema.id);
+                    const result = await jsonschema.validate(schemaObj, instanceObj, jsonschema.DETAILED);
+                    if (!result.valid) {
                         process.exitCode = 1;
-                        console.warn(file,util.inspect(result.errors));
+                        console.warn(file,util.inspect(result.errors, {depth:null}));
                     }
                 }
                 catch (ex) {

@@ -36,7 +36,9 @@
         {
             "if": {
                 "required": ["exclusiveMinimum"],
-                 "exclusiveMinimum": {"type": "boolean"}
+                "properties": {
+                    "exclusiveMinimum": {"type": "boolean"}
+                }
             },
             "then": {
                 "required": ["minimum"]
@@ -45,7 +47,9 @@
         {
             "if": {
                 "required": ["exclusiveMaximum"],
-                 "exclusiveMaximum": {"type": "boolean"}
+                "properties": {
+                    "exclusiveMaximum": {"type": "boolean"}
+                }
             },
             "then": {
                 "required": ["maximum"]

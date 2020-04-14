@@ -52,7 +52,7 @@ These tools are not endorsed by the OAI.
 | angular-swagger-ui | [github/angular-swagger-ui](https://github.com/Orange-OpenSource/angular-swagger-ui) | AngularJS | An angularJS implementation of Swagger UI |
 | Redoc | [github/Redocly/redoc](https://github.com/Redocly/redoc) | JavaScript | A React-based renderer with deep support for OAS v2 and v3 and zero dev-dependency|
 
-#### Mock Servers
+#### Testing tools
 | Title          | Project Link | Language | Description |
 | -------------- | ------------ | -------- | ----------- |
 | API Sprout     | [github/danielgtaylor/apisprout](https://github.com/danielgtaylor/apisprout) | Go | Lightweight, blazing fast, cross-platform OpenAPI 3 mock server with validation |

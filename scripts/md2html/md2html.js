@@ -71,7 +71,7 @@ function preface(title,options) {
         includePermalinks: true
     };
 
-    let preface = `<html><head><meta charset="UTF-8"><title>${md.utils.escapeHtml(title)}</title>`;
+    let preface = `<html lang="en"><head><meta charset="UTF-8"><title>${md.utils.escapeHtml(title)}</title>`;
     if (options.respec) {
         preface += '<script src="https://spec.openapis.org/js/respec-oai.js" class="remove"></script>';
         preface += `<script class="remove">var respecConfig = ${JSON.stringify(respec)};</script>`;

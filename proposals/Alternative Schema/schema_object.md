@@ -1,6 +1,6 @@
 ## Change: Extend the Schema Object to support Alternative Schemas
 
-The following content shall be used to replace the Fixed Fields table in the Schema Object section
+The following content shall be used to replace the Fixed Fields table in the Schema Object section. Note that this suggested change applies to v3.0.2 and **NOT** later versions.
 
 #### Fixed Fields
 
@@ -14,4 +14,4 @@ The following content shall be used to replace the Fixed Fields table in the Sch
 | externalDocs | [External Documentation Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#externalDocumentationObject) | Additional external documentation for this schema.
 | example | Any | A free-form property to include an example of an instance for this schema. To represent examples that cannot be naturally represented in JSON or YAML, a string value can be used to contain the example with escaping where necessary.|
 | deprecated | `boolean` | Specifies that a schema is deprecated and SHOULD be transitioned out of usage. Default value is `false`.|
-|x-oas-draft-alternativeSchema  |alternative Schema Object  |An external schema that participates in the validation of content along with other schema keywords. |  
+|x-oai-draft-alternativeSchema  |alternative Schema Object  |An external schema that participates in the validation of content along with other schema keywords. |  

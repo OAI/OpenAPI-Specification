@@ -16,8 +16,9 @@
 
 |Date |Responsible Party |Description |
 |---- | ---------------- | ---------- |
-|3/15/19 |C. Heazel|Initial Markup Draft |
-|4/17/19 |C. Heazel|Re-structured based on Apple Swift|
+|2019-03-15 |C. Heazel|Initial Markup Draft |
+|2019-04-17 |C. Heazel|Re-structured based on Apple Swift|
+|2020-06-04 |@MikeRalphson|Change `x-oas-` prefix to `x-oai-` |
 
 ## Introduction
 
@@ -33,7 +34,7 @@ For example: Some XML payloads are defined by an XML schema (the syntax) and a s
 
 This proposal makes the following changes to the OAS 3.0 specification:
 
-1. Extend the Schema Object by the addition of the x-oas-draft-alternativeSchema field.
+1. Extend the Schema Object by the addition of the x-oai-draft-alternativeSchema field.
 1. Addition of the Alternative Schema Object.
 1. Addition of Alternative Schema examples.
 1. Addition of a preliminary discussion of the Alternative Schema registry.
@@ -42,7 +43,7 @@ This proposal makes the following changes to the OAS 3.0 specification:
 
 ###  Extend the Schema Object 
 
-The OpenAPI Schema Object is extended by the addition of the x-oas-draft-alternativeSchema field. The proposed changes to the OpenAPI specification are provided in [schema_object.md](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/Alternative%20Schema/schema_object.md)
+The OpenAPI Schema Object is extended by the addition of the x-oai-draft-alternativeSchema field. The proposed changes to the OpenAPI specification are provided in [schema_object.md](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/Alternative%20Schema/schema_object.md)
 
 ###  Add the Alternative Schema Object 
 
@@ -55,13 +56,14 @@ Examples of the use of the Alternative Schema capability is added to the OpenAPI
 
 Values used to populate the Alternative Schema Object are required to come from the Alternative Schema Registry. The preliminary Alternative Schema Registry is located at <https://spec.openapis.org/registries/alternative-schema>.
 
-*** Note this is a placeholder registry. Don't take the values seriously. ***  
+** Note this is a placeholder registry. Don't take the values seriously. **  
 
 Inital contents of the registry will include:
 
 |Name  |Link  |Description | 
 |--- | --- | --- |
-|jsonSchema |TBD  |JSON Schema | |xsdSchema |TBD  |XML Schema |
+|jsonSchema |TBD  |JSON Schema |
+|xsdSchema |TBD |XML Schema |
 
 ## Backwards compatibility
 
@@ -69,5 +71,5 @@ This proposal makes use of the extensibility features of OpenAPI. All changes so
 
 ## Alternatives considered
 
-Embedding non-JSON content in the OAS document would have imposed an unacceptable burden on tooling. Therefore, an extenal link was prefered. Considerable discussion was held over exactly how the links should be represented in the Schema Object. The selected option should support the greatest number of possible combinations of external schema that can be expressed with the OpenAPI schema language.
+Embedding non-JSON content in the OAS document would have imposed an unacceptable burden on tooling. Therefore, an external link was prefered. Considerable discussion was held over exactly how the links should be represented in the Schema Object. The selected option should support the greatest number of possible combinations of external schema that can be expressed with the OpenAPI schema language.
 

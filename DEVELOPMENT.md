@@ -80,9 +80,9 @@ Where suitable, features will be introduced as draft but OAI approved extensions
 By introducing new features this way we enable new features to be designed, documented and then implemented by tools that are interested in the feature, without putting the burden of implementation on all tooling.
 If the feature is successfully implemented and there is demonstrable value added by the feature, it will become a candidate for inclusion in a future release of the specification, at which point all tools will be expected to support the feature.
 
-Draft feature extensions are identified by the `x-oas-draft-` prefix and can only be used where existing extensions are permitted.
+Draft feature extensions are identified by the `x-oai-draft-` prefix and can only be used where existing extensions are permitted.
 This ensures no existing tooling will affected by the introduction of the draft feature.
-If the feature is deemed appropriate for inclusion in the OAS, the `x-oas-draft-` prefix will be removed.
+If the feature is deemed appropriate for inclusion in the OAS, the `x-oai-draft-` prefix will be removed.
 Tooling that supports draft features should plan for the future removal of the prefix.
 When tooling adds support for a later version of OAS that includes the final implementation of the feature, it MUST not support the use of the draft prefix for that feature.
 Draft features will only be promoted into minor or major releases of the specification and therefore will be transparent to OpenAPI description writers and tooling providers who choose not to use the feature while in its draft state.

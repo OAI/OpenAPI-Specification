@@ -1,0 +1,50 @@
+name: convert-examples-to-json
+
+# author: @MikeRalphson / @cebe
+# issue: https://github.com/OAI/OpenAPI-Specification/issues/1385
+
+#
+# This workflow updates the *.json files in the examples/v3.x directories,
+# when the corresponding *.yaml files change.
+# JSON example files are automatically generated from the YAML example files.
+# Only the YAML files should be adjusted manually.
+#
+
+# run this on push to master
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  yaml2json:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1 # checkout repo content
+
+    - name: Install dependencies
+      run: npm i
+
+    - name: convert YAML examples to JSON
+      run: find examples/v3* -type f -name "*.yaml" | xargs node scripts/yaml2json/yaml2json.js
+
+    - name: git diff
+      run: |
+        git add examples/**/*.json
+        git --no-pager -c color.diff=always diff --staged
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch-suffix: none
+        branch: update-json-examples
+        title: Update JSON example files
+        commit-message: Update JSON example files
+        body: |
+          This pull request is automatically triggered by GitHub action `convert-examples-to-json`.
+
+          The examples/v3.* YAML files have changed, so the JSON files are automatically being recreated.
+

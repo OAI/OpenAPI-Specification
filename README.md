@@ -1,6 +1,6 @@
 # The OpenAPI Specification
 
-[![Build Status](https://travis-ci.org/OAI/OpenAPI-Specification.svg?branch=master)](https://travis-ci.org/OAI/OpenAPI-Specification)
+![Build Status](https://github.com/OAI/OpenAPI-Specification/workflows/validate-markdown/badge.svg)
 
 ![](https://avatars3.githubusercontent.com/u/16343502?v=3&s=200)
 

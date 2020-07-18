@@ -35,7 +35,7 @@ The docs have an `x-webhooks` top-level element (we use [our own docs renderer](
 
 On one of the other Nexmo APIs, we simply documented our webhooks in a markdown file separate from our API even though the two directions are very closely linked (see [Voice API webhook reference](https://developer.nexmo.com/voice/voice-api/webhook-reference) ).
 
-Neither solution is great. I'm aware of other organisations (Ebay, GitHub) who also offer webhooks as part of their API platform who have run into the same problems when looking to adopt OpenAPI. The existing approach for callbacks, which allow a Path Item Object to be described in another location, could be adapted to also describe webhooks.
+Neither solution is great. I'm aware of other organizations (Ebay, GitHub) who also offer webhooks as part of their API platform who have run into the same problems when looking to adopt OpenAPI. The existing approach for callbacks, which allow a Path Item Object to be described in another location, could be adapted to also describe webhooks.
 
 ## Proposed solution
 

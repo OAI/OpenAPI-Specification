@@ -171,7 +171,7 @@ updates:
 - This approach addresses the two distinct approaches of structured overlay vs targeted overlay which suits distinct but equally valid scenarios.
 - Addresses the problem of modifying the parameters array and removes the need to replace the entire array when a small change is required.
 - Allows sets of related overlays to be stored in a same file.
-- Enables updating a set of objects based on a pattern. This might be an effective way of apply common behaviour across many operations in an API.
+- Enables updating a set of objects based on a pattern. This might be an effective way of apply common behavior across many operations in an API.
 
 ### Challenges
 

@@ -15,6 +15,10 @@ The OpenAPI Specification does not require rewriting existing APIs. It does not 
 
 This GitHub project is the starting point for OpenAPI. Here you will find the information you need about the OpenAPI Specification, simple examples of what it looks like, and some general information regarding the project.
 
+Here is an example API description file following the OpenAPI Specification: https://petstore.swagger.io/v2/swagger.json
+
+And here is an API documentation website rendered automatically from that file: https://petstore.swagger.io
+
 ## Current Version - 3.0.3
 
 The current version of the OpenAPI specification is [OpenAPI Specification 3.0.3](versions/3.0.3.md).

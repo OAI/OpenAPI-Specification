@@ -80,7 +80,7 @@ info:
   version: 1.0.0
 updates:
 - target: "@"
-  value:
+  merge:
     info:
       x-overlay-applied: structured-overlay
     paths:
@@ -108,13 +108,13 @@ info:
   version: 1.0.0
 updates:
 - target: paths."/foo".get
-  value:
+  merge:
     description: This is the new description
 - target: paths."/bar".get
-  value:
+  merge:
     description: This is the updated description
 - target: paths."/bar"
-  value:
+  merge:
       post:
           description: This is an updated description of a child object
           x-safe: false
@@ -131,10 +131,10 @@ info:
   version: 1.0.0
 updates:
 - target: paths.*.get
-  value:
+  merge:
     x-safe: true
 - target: paths.*.get.parameters[?name=='filter' && in=='query']
-  value:
+  merge:
     schema:
       $ref: "/components/schemas/filterSchema"
 ```
@@ -149,8 +149,8 @@ info:
   title: Add an array element
   version: 1.0.0
 updates:
-- target: paths.*.get.parameters[length(@)]
-  value:
+- target: paths.*.get.parameters
+  add:
     name: newParam
     in: query
 ```

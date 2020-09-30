@@ -39,7 +39,7 @@ Looking to see how you can create your own OpenAPI definition, present it, or ot
 [list of 3.0 implementations](IMPLEMENTATIONS.md).
 
 ## Participation
-
+==========WELCOME TO README.md============
 The current process for development of the OpenAPI Specification is described in 
 [Development Guidelines](DEVELOPMENT.md).
 Development of the next version of the OpenAPI Specification is guided by the [Technical Steering Committee (TSC)](https://www.openapis.org/participate/how-to-contribute/governance#TDC). This group of committers bring their API expertise, incorporate feedback from the community, and expand the group of committers as appropriate. All development activity on the future specification will be performed as features and merged into this branch. Upon release of the future specification, this branch will be merged to master.

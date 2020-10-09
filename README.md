@@ -19,9 +19,9 @@ This GitHub project is the starting point for OpenAPI. Here you will find the in
 
 The current version of the OpenAPI specification is [OpenAPI Specification 3.0.3](versions/3.0.3.md).
 
-## Current Release Candidate Version - 3.1.0-RC0
+## Current Release Candidate Version - 3.1.0-RC1
 
-We invite the community to review and provide feedback for the current release candidate ([OpenAPI Specification 3.1.0-RC0](versions/3.1.0.md). Changes related to the upcoming 3.1.0 release should be submitted at [the development branch](https://github.com/OAI/OpenAPI-Specification/tree/v3.1.0-dev).
+We invite the community to review and provide feedback for the current release candidate ([OpenAPI Specification 3.1.0-RC1](versions/3.1.0.md). Changes related to the upcoming 3.1.0 release should be submitted at [the development branch](https://github.com/OAI/OpenAPI-Specification/tree/v3.1.0-dev).
 
 ### Previous Versions
 

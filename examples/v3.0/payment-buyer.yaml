@@ -1,0 +1,359 @@
+openapi: 3.0.1
+info:
+  version: 1.0.0
+  title: Integrated Payments service
+  description: 'APIs for the integrated payments Service'
+servers:
+  - url: 'http://localhost:6080/v1'
+    description: Payments Dev Environment
+  - url: http://localhost:4010
+    description: Mock Server Environment
+  - url: http://40.76.198.94:4010
+    description: VM Mock Server Environment
+  - url: http://127.0.0.1:4010
+    description: VM Mock Server Environment        
+paths:
+
+  /bankAccount:
+    post:
+      summary: Create a bank account
+      tags:
+        - Payments
+      requestBody:
+        description: details to create a bank account
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BankAccount'
+              example:
+                   accountType: current 
+                   accountNumber: "0899015666" 
+                   routingNumber: "167733677"
+                   bankName: JP Morgan Chase & Co
+                   branchName: Los Angeles, CA,United States
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankAccountResponse'
+              example:
+                 - message: Bank Account is created successfully
+                   id: ACC000001
+
+  /bankAccount/{accountId}:
+    get:
+      summary: Get account info 
+      tags:
+        - Payments
+      parameters:
+        - in: path
+          name: accountId
+          schema:
+            type: string
+          required: true
+          description: created accountId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/BankAccount'
+              example:
+                   accountType: current 
+                   accountNumber: "0899015666" 
+                   routingNumber: "167733677"
+                   bankName: JP Morgan Chase & Co
+                   branchName: Los Angeles, CA,United States               
+
+  /bankAccounts:
+    get:
+      summary: Get accounts list 
+      tags:
+        - Payments               
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BankAccount'
+              example:
+                  ACC000001:
+                   accountType: current 
+                   accountNumber: "0899015666" 
+                   routingNumber: "167733677"
+                   bankName: JP Morgan Chase & Co
+                   branchName: Los Angeles, CA,United States 
+                  ACC000002:
+                   accountType: current 
+                   accountNumber: "0224015337" 
+                   routingNumber: "121122676"
+                   bankName: Goldman Sachs Group Inc
+                   branchName: New York, US (HQ) 200 West Street 
+                  ACC000003:
+                   accountType: savings 
+                   accountNumber: "0114015337" 
+                   routingNumber: "121122676"
+                   bankName: Goldman Sachs Group Inc
+                   branchName: New York, US (HQ) 200 West Street                     
+                  ACC000004:
+                   accountType: savings 
+                   accountNumber: "0900099000" 
+                   routingNumber: "178800699"
+                   bankName: Bank of America Corp
+                   branchName: Clayton,NC,United States                                 
+ 
+
+
+  /bankAccounts/{accountId}:
+    put:
+      summary: Update bankAccount 
+      tags:
+        - Payments
+      parameters:
+        - in: path
+          name: accountId
+          schema:
+            type: string
+          required: true
+          description: Id of the bankAccount
+
+      requestBody:
+        description:  Update the bankAccount
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BankAccount'
+              example:
+                   accountType: current 
+                   accountNumber: "0899015666" 
+                   routingNumber: "167733677"
+                   bankName: JP Morgan Chase & Co
+                   branchName: Arozonta             
+              
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankAccountResponse'
+                example:
+                 - message: Bank Account has updated successfully
+                   id: ACC000001              
+
+  /payment:
+    post:
+      summary: To do payment
+      tags:
+        - Payments
+      requestBody:
+        description: payment description
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Payment'
+            example:
+                   businessName: "Funding Program"
+                   fromAccount :  "0899015666"
+                   toAccount :  "0224015337"                   
+                   invoiceID: "invoice_sd2hh778a" 
+                   paymentAmount: "2000" 
+                   currency: "USD"
+                   referenceNumber: tx_2134
+                   name: "thomas" 
+                   email: "thomas@gamil.com"  
+                   contactNumber: "18908773434"
+                   paymentType: Net Banking
+                   paymentStatus: Initiated                                     
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+              example:
+                 - message: Payment has completed successfully
+                   paymentId: PAY000002 
+                   invoiceID: invoice_sd2hh778a
+                   signature: hh67dfwe8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad                
+               
+
+
+  /payments/{paymentId}:
+    get:
+      summary: Get Payment info 
+      tags:
+        - Payments
+      parameters:
+        - in: path
+          name: paymentId
+          schema:
+            type: string
+          required: true
+          description: Payment Id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Payment'
+              example:
+                   businessName: "Funding Program"
+                   fromAccount :  "0899015666"
+                   toAccount :  "0224015337"                   
+                   invoiceID: "invoice_sd2hh778a" 
+                   paymentAmount: "2000" 
+                   currency: "USD"
+                   referenceNumber: tx_2134
+                   name: "thomas" 
+                   email: "thomas@gamil.com"  
+                   contactNumber: "18908773434"
+                   paymentType: Net Banking
+                   paymentStatus: completed                                     
+                   signature: hh67dfwe8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad 
+
+  /payments/:
+    get:
+      summary: Get payments list 
+      tags:
+        - Payments                       
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Payment'
+              example:    
+  
+                  PAY000001:
+                   businessName: "Funding Program"
+                   fromAccount :  "0114015337"
+                   toAccount :  "0224015337"                   
+                   invoiceID: "invoice_rtys67fhf" 
+                   paymentAmount: "5000" 
+                   currency: "USD"
+                   referenceNumber: tx_7855
+                   name: "john" 
+                   email: "john@gamil.com"  
+                   contactNumber: "18045001126"
+                   paymentType: Credit Card
+                   paymentStatus: completed                                     
+                   signature: ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad                    
+                  PAY00000s2:
+                   businessName: "Funding Program"
+                   fromAccount :  "0899015666"
+                   toAccount :  "0224015337"                   
+                   invoiceID: "invoice_sd2hh778a" 
+                   paymentAmount: "2000" 
+                   currency: "USD"
+                   referenceNumber: tx_2134
+                   name: "thomas" 
+                   email: "thomas@gamil.com"  
+                   contactNumber: "18908773434"
+                   paymentType: Net Banking
+                   paymentStatus: completed                                     
+                   signature: hh67dfwe8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad 
+                  PAY000003:
+                   businessName: "Funding Program"
+                   fromAccount :  "0224015337"
+                   toAccount :  "0899015666"                   
+                   invoiceID: "invoice_tt567k45" 
+                   paymentAmount: "1000" 
+                   currency: "USD"
+                   referenceNumber: tx_6672
+                   name: "lee" 
+                   email: "lee@gamil.com"  
+                   contactNumber: "18452312221"
+                   paymentType: Debit Card
+                   paymentStatus: Rejected                                     
+                   signature: ff123456bf8f01cfea414140de5dakkl223b00361a396177a9cb410ff61f20015ad  
+                  PAY000004:
+                   businessName: "Funding Program"
+                   fromAccount :  "0114015337"
+                   toAccount :  "0899015666"                   
+                   invoiceID: "invoice_yuf00sdfg" 
+                   paymentAmount: "4000" 
+                   currency: "USD"
+                   referenceNumber: tx_9998
+                   name: "michel" 
+                   email: "michel@gamil.com"  
+                   contactNumber: "18011226655"
+                   paymentType: Credit Card
+                   paymentStatus: completed                                     
+                   signature: cc3336bf8f01cfea414140de5dae2223b00361a396177a9cb410hh61f20015af                    
+
+
+
+components:
+  schemas:
+    BankAccount:
+      title: Generic Bank Account details 
+      type: object
+      properties:    
+        accountType :
+          type: string
+        accountNumber:
+          type: string
+        routingNumber:
+          type: string
+        bankName:
+          type: string
+        branchName:
+          type: string
+
+    Payment:
+      title: Generic Payment details 
+      type: object
+      properties: 
+        paymentId:
+          type: string          
+        fromAccount:
+          type: string
+        toAccount:
+          type: string
+        paymentType:
+          type: string
+        paymentAmount:
+          type: string
+        paymentStatus:
+          type: string
+        
+
+    BankAccountResponse:
+      title: BankAccount Response
+      type: object
+      properties:
+        message:
+          type: string
+        id:
+          type: string
+
+    PaymentResponse:
+      title: Payment Response
+      type: object
+      properties:
+        message:
+          type: string
+        id:
+          type: string     
+
+

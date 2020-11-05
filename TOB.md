@@ -12,7 +12,7 @@ Marsh Gardiner @earth2marsh
 
 Ron Ratovsky @webron
 
-## BGB Elected - terms through May 2020
+## BGB Elected - terms through May 2022
 
 Darrel Miller @darrelmiller
 

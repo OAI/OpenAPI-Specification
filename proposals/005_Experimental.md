@@ -71,7 +71,7 @@ Field Name | Type | Description
 Field Name | Type | Description
 ---|:---:|---
 ... | ... | ...
-<a name="parameterExperimental"></a>experimental | `boolean` | Specifies that a parameter is in experimental status, meaning it may change outside of the normal breaking change process. Consumers SHOULD use with caution. Default value is `false`. Cannot be `true` when value of `in` is `path`.
+<a name="parameterExperimental"></a>experimental | `boolean` | Specifies that a parameter is in experimental status, meaning it may change outside of the normal breaking change process. Consumers SHOULD use with caution. Default value is `false`. Cannot be `true` when the parameter is `required`.
 
 ### Schema Object
 

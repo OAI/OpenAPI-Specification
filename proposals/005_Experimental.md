@@ -46,9 +46,10 @@ Downstream tools could then make use of this metadata:
 A new boolean field named `experimental`, defaulting to `experimental`, is added to:
 
 - Operation
+- Parameter
 - Schema
 
-This specifies that the operation or schema is not yet stable and SHOULD be used with caution.
+This specifies that the operation, parameter or schema is not yet stable and SHOULD be used with caution.
 
 ### Operation Object
 
@@ -60,6 +61,17 @@ Field Name | Type | Description
 ---|:---:|---
 ... | ... | ...
 <a name="operationExperimental"></a>experimental | `boolean` | Specifies that an operation is in experimental status, meaning it may change outside of the normal breaking change process. Consumers SHOULD use with caution. Default value is `false`.
+
+### Parameter Object
+
+...
+
+##### Fixed Fields
+
+Field Name | Type | Description
+---|:---:|---
+... | ... | ...
+<a name="parameterExperimental"></a>experimental | `boolean` | Specifies that a parameter is in experimental status, meaning it may change outside of the normal breaking change process. Consumers SHOULD use with caution. Default value is `false`. Cannot be `true` when value of `in` is `path`.
 
 ### Schema Object
 

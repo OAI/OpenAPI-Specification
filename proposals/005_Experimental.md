@@ -38,7 +38,7 @@ _(I don't have a strong opinion about the naming - "beta" is another idea, thoug
 
 Downstream tools could then make use of this metadata:
 
-- Tools like swagger-ui could surface this in the documentation they generate so consumers are made aware. Experimental items could also be filtered out of the documentation if desired.
+- Tools like swagger-ui could surface this in the documentation they generate so consumers are made aware. Experimental items could also be filtered out of the documentation and stubs if desired.
 - Tools for detecting and preventing breaking changes could take this into consideration when deciding whether a change is breaking.
 
 ## Detailed design

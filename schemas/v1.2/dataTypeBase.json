@@ -1,6 +1,6 @@
 {
     "id": "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/schemas/v1.2/dataTypeBase.json#",
-    "$schema": "https://json-schema.org/draft-04/schema#",
+    "$schema": "http://json-schema.org/draft-04/schema#",
     "description": "Data type fields (section 4.3.3)",
     "type": "object",
     "oneOf": [

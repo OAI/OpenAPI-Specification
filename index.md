@@ -13,4 +13,4 @@ This site contains the OpenAPI Initiative Registry and content for the HTML vers
 ## The Specification
 
 * [Markdown source-of-truth](https://github.com/OAI/OpenAPI-Specification)
-* [HTML Specification version](oas/v3.0.3.html)
+* [HTML Specification version](oas/v3.1.0.html)

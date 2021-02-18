@@ -1,3 +1,4 @@
+# TODO Added the jsonSchemaDialect top-level field to allow the definition of a default $schema value for Schema Objects.
 id: https://spec.openapis.org/oas/3.1/schema/2021-02-18
 $schema: 'https://json-schema.org/draft/2020-02/schema#'
 
@@ -206,6 +207,7 @@ $defs:
         properties:
           title:
             type: string
+          summary:
           termsOfService:
             type: string
             format: uri-reference

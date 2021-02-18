@@ -1,5 +1,5 @@
 {
-  "id": "https://spec.openapis.org/oas/3.1/schema/2021-02-18",
+  "$id": "https://spec.openapis.org/oas/3.1/schema/2021-02-18",
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "type": "object",
   "required": [
@@ -37,7 +37,7 @@
       "type": "string"
     },
     "info": {
-      "$ref": "#Info"
+      "$ref": "#/$defs/Info"
     },
     "externalDocs": {
       "$ref": "#ExternalDocumentation"
@@ -603,16 +603,14 @@
           "patternProperties": {
             "^\\/": {
               "type": "object",
-              "properties": {
-                "oneOf": [
-                  {
-                    "$ref": "#Reference"
-                  },
-                  {
-                    "type": "#PathItem"
-                  }
-                ]
-              }
+              "oneOf": [
+                {
+                  "$ref": "#Reference"
+                },
+                {
+                  "$ref": "#PathItem"
+                }
+              ]
             }
           },
           "unevaluatedProperties": false
@@ -981,7 +979,9 @@
             },
             {
               "type": "object",
-              "required": "-type",
+              "required": [
+                "type"
+              ],
               "allOf": [
                 {
                   "$ref": "#/$defs/Mixins/$defs/Describable"

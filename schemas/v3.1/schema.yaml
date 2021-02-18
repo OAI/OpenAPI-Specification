@@ -1,4 +1,6 @@
+# TODO Components Object now has a new entry pathItems, to allow for reusable Path Item Objects to be defined within a valid OpenAPI document.
 # TODO Added the jsonSchemaDialect top-level field to allow the definition of a default $schema value for Schema Objects.
+
 id: https://spec.openapis.org/oas/3.1/schema/2021-02-18
 $schema: 'https://json-schema.org/draft/2020-02/schema#'
 
@@ -15,6 +17,7 @@ oneOf:
 
 allOf:
   - $ref: '#/$defs/Mixins/$defs/Extensible'
+
 properties:
   openapi:
     type: string
@@ -208,6 +211,7 @@ $defs:
           title:
             type: string
           summary:
+            type: string
           termsOfService:
             type: string
             format: uri-reference
@@ -725,46 +729,13 @@ $defs:
           - $ref: '#Reference'
           - type: object
             allOf:
-              - $ref: 'http://json-schema.org/draft-04/schema#'
-              - $ref: '#SchemaRestrictions'
+              - $ref: 'https://json-schema.org/draft/2020-02/schema#'
               - $ref: '#SchemaExtensions'
               - $ref: '#/$defs/Mixins/$def/Extensible'
-            unevaluatedProperties: false        
+            unevaluatedProperties: false   
         
         $defs:
-          Restrictions:
-            $id: '#SchemaRestrictions'
-            properties:
-              type:
-                not:
-                  const: 'null'
-              not:
-                $ref: '#/$defs/Schema'
-              allOf:
-                type: array
-                items:
-                  $ref: '#/$defs/Schema'
-              oneOf:
-                type: array
-                items:
-                  $ref: '#/$defs/Schema'
-              anyOf:
-                type: array
-                items:
-                  $ref: '#/$defs/Schema'
-              items:
-                $ref: '#/$defs/Schema'
-              properties:
-                type: object
-                additionalProperties:
-                  $ref: '#/$defs/Schema'
-              additionalProperties:
-                oneOf:
-                  - $ref: '#/$defs/Schema'
-                  - type: boolean
-                default: true
-              patternProperties: false
-    
+
           Extensions:
             $id: '#SchemaExtensions'
             properties:
@@ -829,6 +800,9 @@ $defs:
           parameters:
             additionalProperties:
               $ref: '#Parameter'
+          pathItems:
+            additionalProperties:
+              $ref: '#PathItems'
           examples:
             additionalProperties:
               $ref: '#Example'

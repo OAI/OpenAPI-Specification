@@ -1,10 +1,17 @@
 id: https://spec.openapis.org/oas/3.1/schema/2021-02-18
 $schema: 'https://json-schema.org/draft/2020-02/schema#'
+
 type: object
+
 required:
   - openapi
   - info
-  - paths
+
+oneOf:
+  - required: [components]
+  - required: [paths]
+  - required: [webhooks]
+
 allOf:
   - $ref: '#/$defs/Mixins/$defs/Extensible'
 properties:

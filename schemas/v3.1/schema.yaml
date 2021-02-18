@@ -1,23 +1,18 @@
-# TODO Components Object now has a new entry pathItems, to allow for reusable Path Item Objects to be defined within a valid OpenAPI document.
-# TODO Added the jsonSchemaDialect top-level field to allow the definition of a default $schema value for Schema Objects.
-
-id: https://spec.openapis.org/oas/3.1/schema/2021-02-18
-$schema: 'https://json-schema.org/draft/2020-02/schema#'
-
+id: 'https://spec.openapis.org/oas/3.1/schema/2021-02-18'
+$schema: 'https://json-schema.org/draft/2019-09/schema'
 type: object
-
 required:
   - openapi
   - info
-
 oneOf:
-  - required: [components]
-  - required: [paths]
-  - required: [webhooks]
-
+  - required:
+      - components
+  - required:
+      - paths
+  - required:
+      - webhooks
 allOf:
   - $ref: '#/$defs/Mixins/$defs/Extensible'
-
 properties:
   openapi:
     type: string
@@ -25,7 +20,7 @@ properties:
   jsonSchemaDialect:
     type: string
   info:
-    $ref: '#Info'
+    $ref: '#/$defs/Info'
   externalDocs:
     $ref: '#ExternalDocumentation'
   servers:
@@ -45,7 +40,6 @@ properties:
   components:
     $ref: '#Components'
 unevaluatedProperties: false
-
 $defs:
   Mixins:
     $defs:
@@ -63,17 +57,14 @@ $defs:
           deprecated:
             type: boolean
             default: false
-
       DescReqDep:
         allOf:
           - $ref: '#/$defs/Mixins/$defs/Describable'
           - $ref: '#/$defs/Mixins/$defs/Requireable'
           - $ref: '#/$defs/Mixins/$defs/Deprecatable'
-
       Extensible:
         patternProperties:
-          '^x-': true
-
+          ^x-: true
       WithSingleExample:
         properties:
           example: true
@@ -89,18 +80,15 @@ $defs:
         oneOf:
           - $ref: '#/$defs/Mixins/$defs/WithSingleExample'
           - $ref: '#/$defs/Mixins/$defs/WithExampleObjects'
-
       WithSchema:
         properties:
           schema:
             $ref: '#Schema'
           content: false
-
       WithSchemaAndExamples:
         allOf:
           - $ref: '#/$defs/Mixins/$defs/WithSchema'
           - $ref: '#/$defs/Mixins/$defs/WithExamples'
-
       WithContent:
         properties:
           schema: false
@@ -110,7 +98,6 @@ $defs:
               $ref: '#MediaType'
             minProperties: 1
             maxProperties: 1
-
       WithNameAndLocation:
         required:
           - name
@@ -125,7 +112,6 @@ $defs:
               - query
               - header
               - cookie
-
       WithExplodeAndReserved:
         properties:
           explode:
@@ -133,18 +119,15 @@ $defs:
           allowReserved:
             type: boolean
             default: false
-
       WithEmpty:
         properties:
           allowEmptyValue:
             type: boolean
             default: false
-
       WithExplodeReservedAndEmpty:
         allOf:
           - $refs: '#/$defs/Mixins/$defs/WithExplodeAndReserved'
           - $refs: '#/$defs/Mixins/$defs/WithEmpty'
-
       StyledSimple:
         allOf:
           - $refs: '#/$defs/Mixins/$defs/WithExplodeReservedAndEmpty'
@@ -188,11 +171,10 @@ $defs:
         properties:
           style:
             default: form
-
   Objects:
     $defs:
       Reference:
-        $id: '#Reference'
+        $id: Reference
         type: object
         required:
           - $ref
@@ -200,7 +182,6 @@ $defs:
           $ref:
             type: string
             format: uri-reference
-
       Info:
         type: object
         required:
@@ -221,10 +202,9 @@ $defs:
             $ref: '#Contact'
           license:
             $ref: '#License'
-
         $defs:
           Contact:
-            $id: '#Contact'
+            $id: Contact
             type: object
             allOf:
               - $ref: '#/$defs/Mixins/$defs/Extensible'
@@ -238,9 +218,8 @@ $defs:
                 type: string
                 format: email
             unevaluatedProperties: false
-
           License:
-            $id: '#License'
+            $id: License
             type: object
             required:
               - name
@@ -255,9 +234,8 @@ $defs:
               identifier:
                 type: string
             unevaluatedProperties: false
-
       Server:
-        $id: '#Server'
+        $id: Server
         type: object
         required:
           - url
@@ -285,14 +263,13 @@ $defs:
                   type: string
               unevaluatedProperties: false
         unevaluatedProperties: false
-
       Response:
-        $id: '#Response'
+        $id: Response
         oneOf:
           - $ref: '#Reference'
           - type: object
             required:
-            - description
+              - description
             allOf:
               - $ref: '#/$defs/Mixins/$defs/Describable'
               - $ref: '#/$defs/Mixins/$defs/Extensible'
@@ -310,9 +287,8 @@ $defs:
                 additionalProperteis:
                   $ref: '#Link'
             unevaluatedProperties: false
-
       MediaType:
-        $id: '#MediaType'
+        $id: MediaType
         type: object
         allOf:
           - $ref: '#/$defs/Mixins/$defs/WithSchemaAndExamples'
@@ -329,9 +305,8 @@ $defs:
                 additionalProperties:
                   $ref: '#Header'
         unevaluatedProperties: false
-
       Example:
-        $id: '#Example'
+        $id: Example
         oneOf:
           - $ref: '#Reference'
           - type: object
@@ -346,9 +321,8 @@ $defs:
                 type: string
                 format: uri-reference
             unevaluatedProperties: false
-
       Header:
-        $id: '#Header'
+        $id: Header
         oneOf:
           - $ref: '#Reference'
           - type: object
@@ -365,23 +339,20 @@ $defs:
                   - $ref: '#/$defs/Mixins/$defs/WithContent'
                   - $ref: '#/$defs/Mixins/$defs/WithEmpty'
             unevaluatedProperties: false
-
       Paths:
-        $id: '#Paths'
+        $id: Paths
         type: object
         allOf:
           - $ref: '#/$defs/Mixins/$defs/Extensible'
         patternProperties:
-          '^\/':
+          ^\/:
             type: object
-            properties:
-              oneOf:
-                - $ref: '#Reference'
-                - type: '#PathItem'    
+            oneOf:
+              - $ref: '#Reference'
+              - $ref: '#PathItem'
         unevaluatedProperties: false
-
       PathItem:
-        $id: '#PathItem'
+        $id: PathItem
         type: object
         allOf:
           - $ref: '#/$defs/Mixins/$defs/Describable'
@@ -400,9 +371,8 @@ $defs:
                 - $ref: '#Parameter'
                 - $ref: '#Reference'
             uniqueItems: true
-
       Operation:
-        $id: '#Operation'
+        $id: Operation
         type: object
         required:
           - responses
@@ -440,9 +410,8 @@ $defs:
             items:
               $ref: '#Server'
         unevaluatedProperties: false
-
       Responses:
-        $id: '#Responses'
+        $id: Responses
         type: object
         allOf:
           - $ref: '#/$defs/Mixins/$defs/Extensible'
@@ -454,17 +423,15 @@ $defs:
             $ref: '#Response'
         minProperties: 1
         unevaluatedProperties: false
-
       SecurityRequirement:
-        $id: '#SecurityRequirement'
+        $id: SecurityRequirement
         type: object
         additionalProperties:
           type: array
           items:
             type: string
-
       Tag:
-        $id: '#Tag'
+        $id: Tag
         type: object
         required:
           - name
@@ -477,9 +444,8 @@ $defs:
           externalDocs:
             $ref: '#ExternalDocumentation'
         unevaluatedProperties: false
-
       Parameter:
-        $id: '#Parameter'
+        $id: Parameter
         oneOf:
           - $ref: '#Reference'
           - type: object
@@ -499,9 +465,9 @@ $defs:
                             default: true
                   - allOf:
                       - anyOf:
-                        - $ref: '#QueryParam'
-                        - $ref: '#HeaderParam'
-                        - $ref: '#CookieParam'
+                          - $ref: '#QueryParam'
+                          - $ref: '#HeaderParam'
+                          - $ref: '#CookieParam'
                       - $ref: '#/$defs/Mixins/$defs/DescReqDep'
             oneOf:
               - allOf:
@@ -527,31 +493,29 @@ $defs:
                   - $ref: '#/$defs/Mixins/$defs/WithContent'
                   - $ref: '#/$defs/Mixins/$defs/WithEmpty'
             unevaluatedProperties: false
-
         $defs:
           PathParam:
-            $id: '#PathParam'
+            $id: PathParam
             properties:
               in:
                 const: path
           QueryParam:
-            $id: '#QueryParam'
+            $id: QueryParam
             properties:
               in:
                 const: query
           HeaderParam:
-            $id: '#HeaderParam'
+            $id: HeaderParam
             properties:
               in:
                 const: header
           CookieParam:
-            $id: '#CookieParam'
+            $id: CookieParam
             properties:
               in:
                 const: cookie
-
       RequestBody:
-        $id: '#RequestBody'
+        $id: RequestBody
         required:
           - content
         allOf:
@@ -564,20 +528,19 @@ $defs:
             additionalProperties:
               $ref: '#MediaType'
         unevaluatedProperties: false
-
       SecurityScheme:
-        $id: '#SecurityScheme'
+        $id: SecurityScheme
         oneOf:
           - $ref: '#Reference'
           - type: object
             required:
-              -type
+              - type
             allOf:
               - $ref: '#/$defs/Mixins/$defs/Describable'
               - $ref: '#/$defs/Mixins/$defs/Extensible'
             properties:
               type:
-                string:
+                string: null
                 enum:
                   - apiKey
                   - http
@@ -592,10 +555,9 @@ $defs:
                   - $ref: '#OAuth2'
                   - $ref: '#OpenIdConnect'
             unevaluatedProperties: false
-
         $defs:
           APIKey:
-            $id: '#APIKey'
+            $id: APIKey
             properties:
               type:
                 const: apiKey
@@ -604,7 +566,7 @@ $defs:
             not:
               $ref: '#PathParam'
           HTTP:
-            $id: '#HTTP'
+            $id: HTTP
             required:
               - scheme
             properties:
@@ -620,12 +582,12 @@ $defs:
                   bearerFormat:
                     type: string
           MutalTLS:
-            $id: '#MutalTLS'
+            $id: MutalTLS
             properties:
               type:
                 const: mutalTLS
           OAuth2:
-            $id: '#OAuth2'
+            $id: OAuth2
             required:
               - flows
             properties:
@@ -634,7 +596,7 @@ $defs:
               flows:
                 $ref: '#OAuthFlows'
           OpenIdConnect:
-            $id: '#OpenIdConnect'
+            $id: OpenIdConnect
             required:
               - openIdConnectUrl
             properties:
@@ -643,9 +605,8 @@ $defs:
               openIdConnectUrl:
                 type: string
                 format: uri
-
       OAuthFlows:
-        $id: '#OAuthFlows'
+        $id: OAuthFlows
         type: object
         allOf:
           - $ref: '#/$defs/Mixins/$defs/Extensible'
@@ -664,14 +625,12 @@ $defs:
               - $ref: '#TokenFlow'
               - $ref: '#/$defs/Mixins/$defs/Extensible'
             unevaluatedProperties: false
-
           clientCredentials:
             allOf:
               - $ref: '#CommonFlow'
               - $ref: '#TokenFlow'
               - $ref: '#/$defs/Mixins/$defs/Extensible'
             unevaluatedProperties: false
-              
           authorizationCode:
             allOf:
               - $ref: '#CommonFlow'
@@ -680,10 +639,9 @@ $defs:
               - $ref: '#/$defs/Mixins/$defs/Extensible'
             unevaluatedProperties: false
         unevaluatedProperties: false
-
         $defs:
           Common:
-            $id: '#CommonFlow'
+            $id: CommonFlow
             properties:
               refreshUrl:
                 type: string
@@ -693,7 +651,7 @@ $defs:
                 additionalProperties:
                   type: string
           Token:
-            $id: '#TokenFlow'
+            $id: TokenFlow
             required:
               - tokenUrl
             properties:
@@ -701,16 +659,15 @@ $defs:
                 type: string
                 format: uri-reference
           Authorization:
-            $id: '#AuthorizationFlow'
+            $id: AuthorizationFlow
             required:
               - authorizationUrl
             properties:
               authorizationUrl:
                 type: string
                 format: uri-reference
-
       Link:
-        $id: '#Link'
+        $id: Link
         oneOf:
           - $ref: '#Reference'
           - type: object
@@ -735,18 +692,16 @@ $defs:
               server:
                 $ref: '#Server'
             unevaluatedProperties: false
-
       Callback:
-        $id: '#Callback'
+        $id: Callback
         oneOf:
           - $ref: '#Reference'
           - type: object
             allOf:
               - $ref: '#/$defs/Mixins/$defs/Extensible'
             unevaluatedProperties: false
-
       Schema:
-        $id: '#Schema'
+        $id: Schema
         oneOf:
           - $ref: '#Reference'
           - type: object
@@ -754,12 +709,10 @@ $defs:
               - $ref: 'https://json-schema.org/draft/2020-02/schema#'
               - $ref: '#SchemaExtensions'
               - $ref: '#/$defs/Mixins/$def/Extensible'
-            unevaluatedProperties: false   
-        
+            unevaluatedProperties: false
         $defs:
-
           Extensions:
-            $id: '#SchemaExtensions'
+            $id: SchemaExtensions
             properties:
               discriminator:
                 $ref: '#Discriminator'
@@ -767,9 +720,8 @@ $defs:
                 $ref: '#ExternalDocumentation'
               xml:
                 $ref: '#XML'
-      
           Discriminator:
-            $id: '#Discriminator'
+            $id: Discriminator
             type: object
             required:
               - propertyName
@@ -780,9 +732,8 @@ $defs:
                 type: object
                 additionalProperties:
                   type: string
-    
           XML:
-            $id: '#XML'
+            $id: XML
             allOf:
               - $ref: '#/$defs/Mixins/$defs/Extensible'
               - type: object
@@ -801,9 +752,8 @@ $defs:
                     type: boolean
                     default: false
             additionalProperties: false
-
       Components:
-        $id: '#Components'
+        $id: Components
         type: object
         allOf:
           - $ref: '#/$defs/Mixins/$defs/Extensible'

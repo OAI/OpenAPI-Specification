@@ -1,6 +1,6 @@
 {
   "id": "https://spec.openapis.org/oas/3.1/schema/2021-02-18",
-  "$schema": "https://json-schema.org/draft/2020-02/schema#",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
   "type": "object",
   "required": [
     "openapi",
@@ -298,7 +298,7 @@
     "Objects": {
       "$defs": {
         "Reference": {
-          "$id": "#Reference",
+          "$id": "Reference",
           "type": "object",
           "required": [
             "$ref"
@@ -344,7 +344,7 @@
           },
           "$defs": {
             "Contact": {
-              "$id": "#Contact",
+              "$id": "Contact",
               "type": "object",
               "allOf": [
                 {
@@ -367,7 +367,7 @@
               "unevaluatedProperties": false
             },
             "License": {
-              "$id": "#License",
+              "$id": "License",
               "type": "object",
               "required": [
                 "name"
@@ -394,7 +394,7 @@
           }
         },
         "Server": {
-          "$id": "#Server",
+          "$id": "Server",
           "type": "object",
           "required": [
             "url"
@@ -444,7 +444,7 @@
           "unevaluatedProperties": false
         },
         "Response": {
-          "$id": "#Response",
+          "$id": "Response",
           "oneOf": [
             {
               "$ref": "#Reference"
@@ -487,7 +487,7 @@
           ]
         },
         "MediaType": {
-          "$id": "#MediaType",
+          "$id": "MediaType",
           "type": "object",
           "allOf": [
             {
@@ -518,7 +518,7 @@
           "unevaluatedProperties": false
         },
         "Example": {
-          "$id": "#Example",
+          "$id": "Example",
           "oneOf": [
             {
               "$ref": "#Reference"
@@ -548,7 +548,7 @@
           ]
         },
         "Header": {
-          "$id": "#Header",
+          "$id": "Header",
           "oneOf": [
             {
               "$ref": "#Reference"
@@ -593,7 +593,7 @@
           ]
         },
         "Paths": {
-          "$id": "#Paths",
+          "$id": "Paths",
           "type": "object",
           "allOf": [
             {
@@ -618,7 +618,7 @@
           "unevaluatedProperties": false
         },
         "PathItem": {
-          "$id": "#PathItem",
+          "$id": "PathItem",
           "type": "object",
           "allOf": [
             {
@@ -655,7 +655,7 @@
           }
         },
         "Operation": {
-          "$id": "#Operation",
+          "$id": "Operation",
           "type": "object",
           "required": [
             "responses"
@@ -718,7 +718,7 @@
           "unevaluatedProperties": false
         },
         "Responses": {
-          "$id": "#Responses",
+          "$id": "Responses",
           "type": "object",
           "allOf": [
             {
@@ -739,7 +739,7 @@
           "unevaluatedProperties": false
         },
         "SecurityRequirement": {
-          "$id": "#SecurityRequirement",
+          "$id": "SecurityRequirement",
           "type": "object",
           "additionalProperties": {
             "type": "array",
@@ -749,7 +749,7 @@
           }
         },
         "Tag": {
-          "$id": "#Tag",
+          "$id": "Tag",
           "type": "object",
           "required": [
             "name"
@@ -773,7 +773,7 @@
           "unevaluatedProperties": false
         },
         "Parameter": {
-          "$id": "#Parameter",
+          "$id": "Parameter",
           "oneOf": [
             {
               "$ref": "#Reference"
@@ -914,7 +914,7 @@
           ],
           "$defs": {
             "PathParam": {
-              "$id": "#PathParam",
+              "$id": "PathParam",
               "properties": {
                 "in": {
                   "const": "path"
@@ -922,7 +922,7 @@
               }
             },
             "QueryParam": {
-              "$id": "#QueryParam",
+              "$id": "QueryParam",
               "properties": {
                 "in": {
                   "const": "query"
@@ -930,7 +930,7 @@
               }
             },
             "HeaderParam": {
-              "$id": "#HeaderParam",
+              "$id": "HeaderParam",
               "properties": {
                 "in": {
                   "const": "header"
@@ -938,7 +938,7 @@
               }
             },
             "CookieParam": {
-              "$id": "#CookieParam",
+              "$id": "CookieParam",
               "properties": {
                 "in": {
                   "const": "cookie"
@@ -948,7 +948,7 @@
           }
         },
         "RequestBody": {
-          "$id": "#RequestBody",
+          "$id": "RequestBody",
           "required": [
             "content"
           ],
@@ -974,7 +974,7 @@
           "unevaluatedProperties": false
         },
         "SecurityScheme": {
-          "$id": "#SecurityScheme",
+          "$id": "SecurityScheme",
           "oneOf": [
             {
               "$ref": "#Reference"
@@ -1025,7 +1025,7 @@
           ],
           "$defs": {
             "APIKey": {
-              "$id": "#APIKey",
+              "$id": "APIKey",
               "properties": {
                 "type": {
                   "const": "apiKey"
@@ -1041,7 +1041,7 @@
               }
             },
             "HTTP": {
-              "$id": "#HTTP",
+              "$id": "HTTP",
               "required": [
                 "scheme"
               ],
@@ -1071,7 +1071,7 @@
               ]
             },
             "MutalTLS": {
-              "$id": "#MutalTLS",
+              "$id": "MutalTLS",
               "properties": {
                 "type": {
                   "const": "mutalTLS"
@@ -1079,7 +1079,7 @@
               }
             },
             "OAuth2": {
-              "$id": "#OAuth2",
+              "$id": "OAuth2",
               "required": [
                 "flows"
               ],
@@ -1093,7 +1093,7 @@
               }
             },
             "OpenIdConnect": {
-              "$id": "#OpenIdConnect",
+              "$id": "OpenIdConnect",
               "required": [
                 "openIdConnectUrl"
               ],
@@ -1110,7 +1110,7 @@
           }
         },
         "OAuthFlows": {
-          "$id": "#OAuthFlows",
+          "$id": "OAuthFlows",
           "type": "object",
           "allOf": [
             {
@@ -1186,7 +1186,7 @@
           "unevaluatedProperties": false,
           "$defs": {
             "Common": {
-              "$id": "#CommonFlow",
+              "$id": "CommonFlow",
               "properties": {
                 "refreshUrl": {
                   "type": "string",
@@ -1201,7 +1201,7 @@
               }
             },
             "Token": {
-              "$id": "#TokenFlow",
+              "$id": "TokenFlow",
               "required": [
                 "tokenUrl"
               ],
@@ -1213,7 +1213,7 @@
               }
             },
             "Authorization": {
-              "$id": "#AuthorizationFlow",
+              "$id": "AuthorizationFlow",
               "required": [
                 "authorizationUrl"
               ],
@@ -1227,7 +1227,7 @@
           }
         },
         "Link": {
-          "$id": "#Link",
+          "$id": "Link",
           "oneOf": [
             {
               "$ref": "#Reference"
@@ -1276,7 +1276,7 @@
           ]
         },
         "Callback": {
-          "$id": "#Callback",
+          "$id": "Callback",
           "oneOf": [
             {
               "$ref": "#Reference"
@@ -1293,7 +1293,7 @@
           ]
         },
         "Schema": {
-          "$id": "#Schema",
+          "$id": "Schema",
           "oneOf": [
             {
               "$ref": "#Reference"
@@ -1316,7 +1316,7 @@
           ],
           "$defs": {
             "Extensions": {
-              "$id": "#SchemaExtensions",
+              "$id": "SchemaExtensions",
               "properties": {
                 "discriminator": {
                   "$ref": "#Discriminator"
@@ -1330,7 +1330,7 @@
               }
             },
             "Discriminator": {
-              "$id": "#Discriminator",
+              "$id": "Discriminator",
               "type": "object",
               "required": [
                 "propertyName"
@@ -1348,7 +1348,7 @@
               }
             },
             "XML": {
-              "$id": "#XML",
+              "$id": "XML",
               "allOf": [
                 {
                   "$ref": "#/$defs/Mixins/$defs/Extensible"
@@ -1382,7 +1382,7 @@
           }
         },
         "Components": {
-          "$id": "#Components",
+          "$id": "Components",
           "type": "object",
           "allOf": [
             {

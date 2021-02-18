@@ -22,6 +22,8 @@ properties:
   openapi:
     type: string
     pattern: ^3\.1\.\d(-.+)?$
+  jsonSchemaDialect:
+    type: string
   info:
     $ref: '#Info'
   externalDocs:
@@ -372,19 +374,32 @@ $defs:
         patternProperties:
           '^\/':
             type: object
-            patternProperties:
-              '^(get|put|post|delete|options|head|patch|trace)$':
-                $ref: '#Operation'
             properties:
-              servers:
-                type: array
-                items:
-                  $ref: 'Server'
-              parameters:
-                type: array
-                items:
-                  $
+              oneOf:
+                - $ref: '#Reference'
+                - type: '#PathItem'    
         unevaluatedProperties: false
+
+      PathItem:
+        $id: '#PathItem'
+        type: object
+        allOf:
+          - $ref: '#/$defs/Mixins/$defs/Describable'
+          - $ref: '#/$defs/Mixins/$defs/Extensible'
+        properties:
+          summary:
+            type: string
+          servers:
+            type: array
+            items:
+              $ref: '#Server'
+          parameters:
+            type: array
+            items:
+              oneOf:
+                - $ref: '#Parameter'
+                - $ref: '#Reference'
+            uniqueItems: true
 
       Operation:
         $id: '#Operation'
@@ -567,11 +582,13 @@ $defs:
                   - apiKey
                   - http
                   - bearer
+                  - mutualTLS
                   - oauth2
                   - openIdConnect
                 oneOf:
                   - $ref: '#APIKey'
                   - $ref: '#HTTP'
+                  - $ref: '#MutualTLS'
                   - $ref: '#OAuth2'
                   - $ref: '#OpenIdConnect'
             unevaluatedProperties: false
@@ -602,6 +619,11 @@ $defs:
                     const: bearer
                   bearerFormat:
                     type: string
+          MutalTLS:
+            $id: '#MutalTLS'
+            properties:
+              type:
+                const: mutalTLS
           OAuth2:
             $id: '#OAuth2'
             required:
@@ -761,23 +783,23 @@ $defs:
     
           XML:
             $id: '#XML'
-            type: object
-            properties:
-              name:
-                type: string
-              namespace:
-                type: string
-                format: url
-              prefix:
-                type: string
-              attribute:
-                type: boolean
-                default: false
-              wrapped:
-                type: boolean
-                default: false
-            patternProperties:
-              '^x-': true
+            allOf:
+              - $ref: '#/$defs/Mixins/$defs/Extensible'
+              - type: object
+                properties:
+                  name:
+                    type: string
+                  namespace:
+                    type: string
+                    format: url
+                  prefix:
+                    type: string
+                  attribute:
+                    type: boolean
+                    default: false
+                  wrapped:
+                    type: boolean
+                    default: false
             additionalProperties: false
 
       Components:
@@ -802,7 +824,7 @@ $defs:
               $ref: '#Parameter'
           pathItems:
             additionalProperties:
-              $ref: '#PathItems'
+              $ref: '#PathItem'
           examples:
             additionalProperties:
               $ref: '#Example'

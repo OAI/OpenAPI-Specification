@@ -4,8 +4,24 @@
   "type": "object",
   "required": [
     "openapi",
-    "info",
-    "paths"
+    "info"
+  ],
+  "oneOf": [
+    {
+      "required": [
+        "components"
+      ]
+    },
+    {
+      "required": [
+        "paths"
+      ]
+    },
+    {
+      "required": [
+        "webhooks"
+      ]
+    }
   ],
   "allOf": [
     {
@@ -16,6 +32,9 @@
     "openapi": {
       "type": "string",
       "pattern": "^3\\.1\\.\\d(-.+)?$"
+    },
+    "jsonSchemaDialect": {
+      "type": "string"
     },
     "info": {
       "$ref": "#Info"
@@ -309,6 +328,9 @@
             "title": {
               "type": "string"
             },
+            "summary": {
+              "type": "string"
+            },
             "termsOfService": {
               "type": "string",
               "format": "uri-reference"
@@ -362,6 +384,9 @@
                 "url": {
                   "type": "string",
                   "format": "uri-reference"
+                },
+                "identifier": {
+                  "type": "string"
                 }
               },
               "unevaluatedProperties": false
@@ -578,26 +603,56 @@
           "patternProperties": {
             "^\\/": {
               "type": "object",
-              "patternProperties": {
-                "^(get|put|post|delete|options|head|patch|trace)$": {
-                  "$ref": "#Operation"
-                }
-              },
               "properties": {
-                "servers": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "Server"
+                "oneOf": [
+                  {
+                    "$ref": "#Reference"
+                  },
+                  {
+                    "type": "#PathItem"
                   }
-                },
-                "parameters": {
-                  "type": "array",
-                  "items": "$"
-                }
+                ]
               }
             }
           },
           "unevaluatedProperties": false
+        },
+        "PathItem": {
+          "$id": "#PathItem",
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Mixins/$defs/Describable"
+            },
+            {
+              "$ref": "#/$defs/Mixins/$defs/Extensible"
+            }
+          ],
+          "properties": {
+            "summary": {
+              "type": "string"
+            },
+            "servers": {
+              "type": "array",
+              "items": {
+                "$ref": "#Server"
+              }
+            },
+            "parameters": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#Parameter"
+                  },
+                  {
+                    "$ref": "#Reference"
+                  }
+                ]
+              },
+              "uniqueItems": true
+            }
+          }
         },
         "Operation": {
           "$id": "#Operation",
@@ -942,6 +997,7 @@
                     "apiKey",
                     "http",
                     "bearer",
+                    "mutualTLS",
                     "oauth2",
                     "openIdConnect"
                   ],
@@ -951,6 +1007,9 @@
                     },
                     {
                       "$ref": "#HTTP"
+                    },
+                    {
+                      "$ref": "#MutualTLS"
                     },
                     {
                       "$ref": "#OAuth2"
@@ -1010,6 +1069,14 @@
                   }
                 }
               ]
+            },
+            "MutalTLS": {
+              "$id": "#MutalTLS",
+              "properties": {
+                "type": {
+                  "const": "mutalTLS"
+                }
+              }
             },
             "OAuth2": {
               "$id": "#OAuth2",
@@ -1235,10 +1302,7 @@
               "type": "object",
               "allOf": [
                 {
-                  "$ref": "http://json-schema.org/draft-04/schema#"
-                },
-                {
-                  "$ref": "#SchemaRestrictions"
+                  "$ref": "https://json-schema.org/draft/2020-02/schema#"
                 },
                 {
                   "$ref": "#SchemaExtensions"
@@ -1251,58 +1315,6 @@
             }
           ],
           "$defs": {
-            "Restrictions": {
-              "$id": "#SchemaRestrictions",
-              "properties": {
-                "type": {
-                  "not": {
-                    "const": "null"
-                  }
-                },
-                "not": {
-                  "$ref": "#/$defs/Schema"
-                },
-                "allOf": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/$defs/Schema"
-                  }
-                },
-                "oneOf": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/$defs/Schema"
-                  }
-                },
-                "anyOf": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/$defs/Schema"
-                  }
-                },
-                "items": {
-                  "$ref": "#/$defs/Schema"
-                },
-                "properties": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "$ref": "#/$defs/Schema"
-                  }
-                },
-                "additionalProperties": {
-                  "oneOf": [
-                    {
-                      "$ref": "#/$defs/Schema"
-                    },
-                    {
-                      "type": "boolean"
-                    }
-                  ],
-                  "default": true
-                },
-                "patternProperties": false
-              }
-            },
             "Extensions": {
               "$id": "#SchemaExtensions",
               "properties": {
@@ -1337,30 +1349,34 @@
             },
             "XML": {
               "$id": "#XML",
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
+              "allOf": [
+                {
+                  "$ref": "#/$defs/Mixins/$defs/Extensible"
                 },
-                "namespace": {
-                  "type": "string",
-                  "format": "url"
-                },
-                "prefix": {
-                  "type": "string"
-                },
-                "attribute": {
-                  "type": "boolean",
-                  "default": false
-                },
-                "wrapped": {
-                  "type": "boolean",
-                  "default": false
+                {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "namespace": {
+                      "type": "string",
+                      "format": "url"
+                    },
+                    "prefix": {
+                      "type": "string"
+                    },
+                    "attribute": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "wrapped": {
+                      "type": "boolean",
+                      "default": false
+                    }
+                  }
                 }
-              },
-              "patternProperties": {
-                "^x-": true
-              },
+              ],
               "additionalProperties": false
             }
           }
@@ -1396,6 +1412,11 @@
             "parameters": {
               "additionalProperties": {
                 "$ref": "#Parameter"
+              }
+            },
+            "pathItems": {
+              "additionalProperties": {
+                "$ref": "#PathItem"
               }
             },
             "examples": {

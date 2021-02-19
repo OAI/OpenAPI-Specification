@@ -126,11 +126,11 @@ $defs:
             default: false
       WithExplodeReservedAndEmpty:
         allOf:
-          - $refs: '#/$defs/Mixins/$defs/WithExplodeAndReserved'
-          - $refs: '#/$defs/Mixins/$defs/WithEmpty'
+          - $ref: '#/$defs/Mixins/$defs/WithExplodeAndReserved'
+          - $ref: '#/$defs/Mixins/$defs/WithEmpty'
       StyledSimple:
         allOf:
-          - $refs: '#/$defs/Mixins/$defs/WithExplodeReservedAndEmpty'
+          - $ref: '#/$defs/Mixins/$defs/WithExplodeReservedAndEmpty'
         properties:
           style:
             type: string
@@ -147,7 +147,7 @@ $defs:
             default: simple
       StyledFormOnly:
         allOf:
-          - $refs: '#/$defs/Mixins/$defs/WithExplodeReservedAndEmpty'
+          - $ref: '#/$defs/Mixins/$defs/WithExplodeReservedAndEmpty'
         properties:
           style:
             type: string
@@ -155,7 +155,7 @@ $defs:
             default: form
       StyledFormComplexNoDefaultOrEmpty:
         allOf:
-          - $refs: '#/$defs/Mixins/$defs/WithExplodeAndReserved'
+          - $ref: '#/$defs/Mixins/$defs/WithExplodeAndReserved'
         properties:
           style:
             type: string
@@ -166,8 +166,8 @@ $defs:
               - deepObject
       StyledFormComplex:
         allOf:
-          - $refs: '#/$defs/Mixins/$defs/StyledFormComplexNoDefaultOrEmpty'
-          - $refs: '#/$defs/Mixins/$defs/WithExplodeReservedAndEmpty'
+          - $ref: '#/$defs/Mixins/$defs/StyledFormComplexNoDefaultOrEmpty'
+          - $ref: '#/$defs/Mixins/$defs/WithExplodeReservedAndEmpty'
         properties:
           style:
             default: form
@@ -493,14 +493,14 @@ $defs:
                           - $ref: '#PathParam'
                           - $ref: '#/$defs/Mixins/$defs/StyledMatrix'
                       - allOf:
-                          - $refs: '#QueryParam'
-                          - $refs: '#/$defs/Mixins/$defs/StyledFormComplex'
+                          - $ref: '#QueryParam'
+                          - $ref: '#/$defs/Mixins/$defs/StyledFormComplex'
                       - allOf:
                           - $ref: '#HeaderParam'
                           - $ref: '#/$defs/Mixins/$defs/StyledSimple'
                       - allOf:
                           - $ref: '#CookieParam'
-                          - $refs: '#/$defs/Mixins/$defs/StyledFormOnly'
+                          - $ref: '#/$defs/Mixins/$defs/StyledFormOnly'
               - allOf:
                   - required:
                       - content

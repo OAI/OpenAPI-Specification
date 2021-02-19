@@ -596,7 +596,7 @@ $defs:
                   bearerFormat:
                     type: string
           MutalTLS:
-            $anchor: MutalTLS
+            $anchor: MutualTLS
             properties:
               type:
                 const: mutalTLS

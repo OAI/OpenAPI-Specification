@@ -20,7 +20,7 @@ properties:
   jsonSchemaDialect:
     type: string
   info:
-    $ref: '#/$defs/Info'
+    $ref: '#Info'
   externalDocs:
     $ref: '#ExternalDocumentation'
   servers:
@@ -183,6 +183,7 @@ $defs:
             type: string
             format: uri-reference
       Info:
+        $anchor: Info
         type: object
         required:
           - title

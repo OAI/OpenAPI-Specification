@@ -722,7 +722,7 @@ $defs:
             allOf:
               - $ref: 'https://json-schema.org/draft/2020-12/schema'
               - $ref: '#SchemaExtensions'
-              - $ref: '#/$defs/Mixins/$def/Extensible'
+              - $ref: '#/$defs/Mixins/$defs/Extensible'
             unevaluatedProperties: false
         $defs:
           Extensions:

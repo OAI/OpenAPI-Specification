@@ -445,6 +445,19 @@ $defs:
           externalDocs:
             $ref: '#ExternalDocumentation'
         unevaluatedProperties: false
+      ExternalDocumentation:
+        $anchor: ExternalDocumentation
+        allOf:
+          - $ref: '#/$defs/Mixins/$defs/Extensible'
+        type: object
+        required:
+          - url
+        properties:
+          description:
+            type: string
+          url:
+            type: string
+            format: uri-reference
       Parameter:
         $anchor: Parameter
         oneOf:

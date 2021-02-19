@@ -4,7 +4,7 @@ type: object
 required:
   - openapi
   - info
-oneOf:
+anyOf:
   - required:
       - components
   - required:
@@ -37,6 +37,8 @@ properties:
       $ref: '#Tag'
   paths:
     $ref: '#Paths'
+  webhooks:
+    $comment: 'TODO: Implement meta-schema for webhooks'
   components:
     $ref: '#Components'
 unevaluatedProperties: false
@@ -260,6 +262,7 @@ $defs:
                   type: array
                   items:
                     type: string
+                  minItems: 1
                 default:
                   type: string
               unevaluatedProperties: false

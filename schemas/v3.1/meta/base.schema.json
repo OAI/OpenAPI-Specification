@@ -15,7 +15,13 @@
         "xml": { "$ref": "#/$defs/Xml" }
     },
     "$defs": {
+        "Extensible": {
+            "patternProperties": {
+                "^x-": true
+            }
+        },
         "Discriminator": {
+            "$ref": "#/$defs/Extensible",
             "type": "object",
             "properties": {
                 "propertyName": {
@@ -27,13 +33,11 @@
                     }
                 }
             },
-            "patternProperties": {
-                "^x-": true
-            },
             "required": ["propertyName"],
-            "additionalProperties": false
+            "unevaluatedProperties": false
         },
         "ExternalDocs": {
+            "$ref": "#/$defs/Extensible",
             "type": "object",
             "properties": {
                 "url": {
@@ -44,13 +48,11 @@
                     "type": "string"
                 }
             },
-            "patternProperties": {
-                "^x-": true
-            },
             "required": ["url"],
-            "additionalProperties": false
+            "unevaluatedProperties": false
         },
         "Xml": {
+            "$ref": "#/$defs/Extensible",
             "type": "object",
             "properties": {
                 "name": {
@@ -70,10 +72,7 @@
                     "type": "boolean"
                 }
             },
-            "patternProperties": {
-                "^x-": true
-            },
-            "additionalProperties": false
+            "unevaluatedProperties": false
         }
     }
 }

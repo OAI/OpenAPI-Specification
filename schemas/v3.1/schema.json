@@ -1,12 +1,12 @@
 {
   "$id": "https://spec.openapis.org/oas/3.1/schema/2021-02-18",
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "required": [
     "openapi",
     "info"
   ],
-  "oneOf": [
+  "anyOf": [
     {
       "required": [
         "components"
@@ -37,7 +37,7 @@
       "type": "string"
     },
     "info": {
-      "$ref": "#/$defs/Info"
+      "$ref": "#Info"
     },
     "externalDocs": {
       "$ref": "#ExternalDocumentation"
@@ -62,6 +62,9 @@
     },
     "paths": {
       "$ref": "#Paths"
+    },
+    "webhooks": {
+      "$comment": "TODO: Implement meta-schema for webhooks"
     },
     "components": {
       "$ref": "#Components"
@@ -212,17 +215,17 @@
         "WithExplodeReservedAndEmpty": {
           "allOf": [
             {
-              "$refs": "#/$defs/Mixins/$defs/WithExplodeAndReserved"
+              "$ref": "#/$defs/Mixins/$defs/WithExplodeAndReserved"
             },
             {
-              "$refs": "#/$defs/Mixins/$defs/WithEmpty"
+              "$ref": "#/$defs/Mixins/$defs/WithEmpty"
             }
           ]
         },
         "StyledSimple": {
           "allOf": [
             {
-              "$refs": "#/$defs/Mixins/$defs/WithExplodeReservedAndEmpty"
+              "$ref": "#/$defs/Mixins/$defs/WithExplodeReservedAndEmpty"
             }
           ],
           "properties": {
@@ -249,7 +252,7 @@
         "StyledFormOnly": {
           "allOf": [
             {
-              "$refs": "#/$defs/Mixins/$defs/WithExplodeReservedAndEmpty"
+              "$ref": "#/$defs/Mixins/$defs/WithExplodeReservedAndEmpty"
             }
           ],
           "properties": {
@@ -263,7 +266,7 @@
         "StyledFormComplexNoDefaultOrEmpty": {
           "allOf": [
             {
-              "$refs": "#/$defs/Mixins/$defs/WithExplodeAndReserved"
+              "$ref": "#/$defs/Mixins/$defs/WithExplodeAndReserved"
             }
           ],
           "properties": {
@@ -281,10 +284,10 @@
         "StyledFormComplex": {
           "allOf": [
             {
-              "$refs": "#/$defs/Mixins/$defs/StyledFormComplexNoDefaultOrEmpty"
+              "$ref": "#/$defs/Mixins/$defs/StyledFormComplexNoDefaultOrEmpty"
             },
             {
-              "$refs": "#/$defs/Mixins/$defs/WithExplodeReservedAndEmpty"
+              "$ref": "#/$defs/Mixins/$defs/WithExplodeReservedAndEmpty"
             }
           ],
           "properties": {
@@ -298,7 +301,7 @@
     "Objects": {
       "$defs": {
         "Reference": {
-          "$id": "Reference",
+          "$anchor": "Reference",
           "type": "object",
           "required": [
             "$ref"
@@ -311,6 +314,7 @@
           }
         },
         "Info": {
+          "$anchor": "Info",
           "type": "object",
           "required": [
             "title",
@@ -344,7 +348,7 @@
           },
           "$defs": {
             "Contact": {
-              "$id": "Contact",
+              "$anchor": "Contact",
               "type": "object",
               "allOf": [
                 {
@@ -367,7 +371,7 @@
               "unevaluatedProperties": false
             },
             "License": {
-              "$id": "License",
+              "$anchor": "License",
               "type": "object",
               "required": [
                 "name"
@@ -394,7 +398,7 @@
           }
         },
         "Server": {
-          "$id": "Server",
+          "$anchor": "Server",
           "type": "object",
           "required": [
             "url"
@@ -431,7 +435,8 @@
                     "type": "array",
                     "items": {
                       "type": "string"
-                    }
+                    },
+                    "minItems": 1
                   },
                   "default": {
                     "type": "string"
@@ -444,7 +449,7 @@
           "unevaluatedProperties": false
         },
         "Response": {
-          "$id": "Response",
+          "$anchor": "Response",
           "oneOf": [
             {
               "$ref": "#Reference"
@@ -487,7 +492,7 @@
           ]
         },
         "MediaType": {
-          "$id": "MediaType",
+          "$anchor": "MediaType",
           "type": "object",
           "allOf": [
             {
@@ -518,7 +523,7 @@
           "unevaluatedProperties": false
         },
         "Example": {
-          "$id": "Example",
+          "$anchor": "Example",
           "oneOf": [
             {
               "$ref": "#Reference"
@@ -548,7 +553,7 @@
           ]
         },
         "Header": {
-          "$id": "Header",
+          "$anchor": "Header",
           "oneOf": [
             {
               "$ref": "#Reference"
@@ -593,7 +598,7 @@
           ]
         },
         "Paths": {
-          "$id": "Paths",
+          "$anchor": "Paths",
           "type": "object",
           "allOf": [
             {
@@ -616,7 +621,7 @@
           "unevaluatedProperties": false
         },
         "PathItem": {
-          "$id": "PathItem",
+          "$anchor": "PathItem",
           "type": "object",
           "allOf": [
             {
@@ -653,7 +658,7 @@
           }
         },
         "Operation": {
-          "$id": "Operation",
+          "$anchor": "Operation",
           "type": "object",
           "required": [
             "responses"
@@ -716,7 +721,7 @@
           "unevaluatedProperties": false
         },
         "Responses": {
-          "$id": "Responses",
+          "$anchor": "Responses",
           "type": "object",
           "allOf": [
             {
@@ -737,7 +742,7 @@
           "unevaluatedProperties": false
         },
         "SecurityRequirement": {
-          "$id": "SecurityRequirement",
+          "$anchor": "SecurityRequirement",
           "type": "object",
           "additionalProperties": {
             "type": "array",
@@ -747,7 +752,7 @@
           }
         },
         "Tag": {
-          "$id": "Tag",
+          "$anchor": "Tag",
           "type": "object",
           "required": [
             "name"
@@ -770,8 +775,29 @@
           },
           "unevaluatedProperties": false
         },
+        "ExternalDocumentation": {
+          "$anchor": "ExternalDocumentation",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Mixins/$defs/Extensible"
+            }
+          ],
+          "type": "object",
+          "required": [
+            "url"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string",
+              "format": "uri-reference"
+            }
+          }
+        },
         "Parameter": {
-          "$id": "Parameter",
+          "$anchor": "Parameter",
           "oneOf": [
             {
               "$ref": "#Reference"
@@ -860,10 +886,10 @@
                         {
                           "allOf": [
                             {
-                              "$refs": "#QueryParam"
+                              "$ref": "#QueryParam"
                             },
                             {
-                              "$refs": "#/$defs/Mixins/$defs/StyledFormComplex"
+                              "$ref": "#/$defs/Mixins/$defs/StyledFormComplex"
                             }
                           ]
                         },
@@ -883,7 +909,7 @@
                               "$ref": "#CookieParam"
                             },
                             {
-                              "$refs": "#/$defs/Mixins/$defs/StyledFormOnly"
+                              "$ref": "#/$defs/Mixins/$defs/StyledFormOnly"
                             }
                           ]
                         }
@@ -912,7 +938,7 @@
           ],
           "$defs": {
             "PathParam": {
-              "$id": "PathParam",
+              "$anchor": "PathParam",
               "properties": {
                 "in": {
                   "const": "path"
@@ -920,7 +946,7 @@
               }
             },
             "QueryParam": {
-              "$id": "QueryParam",
+              "$anchor": "QueryParam",
               "properties": {
                 "in": {
                   "const": "query"
@@ -928,7 +954,7 @@
               }
             },
             "HeaderParam": {
-              "$id": "HeaderParam",
+              "$anchor": "HeaderParam",
               "properties": {
                 "in": {
                   "const": "header"
@@ -936,7 +962,7 @@
               }
             },
             "CookieParam": {
-              "$id": "CookieParam",
+              "$anchor": "CookieParam",
               "properties": {
                 "in": {
                   "const": "cookie"
@@ -946,7 +972,7 @@
           }
         },
         "RequestBody": {
-          "$id": "RequestBody",
+          "$anchor": "RequestBody",
           "required": [
             "content"
           ],
@@ -972,7 +998,7 @@
           "unevaluatedProperties": false
         },
         "SecurityScheme": {
-          "$id": "SecurityScheme",
+          "$anchor": "SecurityScheme",
           "oneOf": [
             {
               "$ref": "#Reference"
@@ -1025,7 +1051,7 @@
           ],
           "$defs": {
             "APIKey": {
-              "$id": "APIKey",
+              "$anchor": "APIKey",
               "properties": {
                 "type": {
                   "const": "apiKey"
@@ -1041,7 +1067,7 @@
               }
             },
             "HTTP": {
-              "$id": "HTTP",
+              "$anchor": "HTTP",
               "required": [
                 "scheme"
               ],
@@ -1071,7 +1097,7 @@
               ]
             },
             "MutalTLS": {
-              "$id": "MutalTLS",
+              "$anchor": "MutualTLS",
               "properties": {
                 "type": {
                   "const": "mutalTLS"
@@ -1079,7 +1105,7 @@
               }
             },
             "OAuth2": {
-              "$id": "OAuth2",
+              "$anchor": "OAuth2",
               "required": [
                 "flows"
               ],
@@ -1093,7 +1119,7 @@
               }
             },
             "OpenIdConnect": {
-              "$id": "OpenIdConnect",
+              "$anchor": "OpenIdConnect",
               "required": [
                 "openIdConnectUrl"
               ],
@@ -1110,7 +1136,7 @@
           }
         },
         "OAuthFlows": {
-          "$id": "OAuthFlows",
+          "$anchor": "OAuthFlows",
           "type": "object",
           "allOf": [
             {
@@ -1186,7 +1212,7 @@
           "unevaluatedProperties": false,
           "$defs": {
             "Common": {
-              "$id": "CommonFlow",
+              "$anchor": "CommonFlow",
               "properties": {
                 "refreshUrl": {
                   "type": "string",
@@ -1201,7 +1227,7 @@
               }
             },
             "Token": {
-              "$id": "TokenFlow",
+              "$anchor": "TokenFlow",
               "required": [
                 "tokenUrl"
               ],
@@ -1213,7 +1239,7 @@
               }
             },
             "Authorization": {
-              "$id": "AuthorizationFlow",
+              "$anchor": "AuthorizationFlow",
               "required": [
                 "authorizationUrl"
               ],
@@ -1227,7 +1253,7 @@
           }
         },
         "Link": {
-          "$id": "Link",
+          "$anchor": "Link",
           "oneOf": [
             {
               "$ref": "#Reference"
@@ -1276,7 +1302,7 @@
           ]
         },
         "Callback": {
-          "$id": "Callback",
+          "$anchor": "Callback",
           "oneOf": [
             {
               "$ref": "#Reference"
@@ -1293,7 +1319,7 @@
           ]
         },
         "Schema": {
-          "$id": "Schema",
+          "$anchor": "Schema",
           "oneOf": [
             {
               "$ref": "#Reference"
@@ -1302,13 +1328,13 @@
               "type": "object",
               "allOf": [
                 {
-                  "$ref": "https://json-schema.org/draft/2020-02/schema#"
+                  "$ref": "https://json-schema.org/draft/2020-12/schema"
                 },
                 {
                   "$ref": "#SchemaExtensions"
                 },
                 {
-                  "$ref": "#/$defs/Mixins/$def/Extensible"
+                  "$ref": "#/$defs/Mixins/$defs/Extensible"
                 }
               ],
               "unevaluatedProperties": false
@@ -1316,7 +1342,7 @@
           ],
           "$defs": {
             "Extensions": {
-              "$id": "SchemaExtensions",
+              "$anchor": "SchemaExtensions",
               "properties": {
                 "discriminator": {
                   "$ref": "#Discriminator"
@@ -1330,7 +1356,7 @@
               }
             },
             "Discriminator": {
-              "$id": "Discriminator",
+              "$anchor": "Discriminator",
               "type": "object",
               "required": [
                 "propertyName"
@@ -1348,7 +1374,7 @@
               }
             },
             "XML": {
-              "$id": "XML",
+              "$anchor": "XML",
               "allOf": [
                 {
                   "$ref": "#/$defs/Mixins/$defs/Extensible"
@@ -1382,7 +1408,7 @@
           }
         },
         "Components": {
-          "$id": "Components",
+          "$anchor": "Components",
           "type": "object",
           "allOf": [
             {

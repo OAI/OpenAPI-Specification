@@ -28,6 +28,7 @@
                     "type": "string"
                 },
                 "mapping": {
+                    "type": "object",
                     "additionalProperties": {
                         "type": "string"
                     }

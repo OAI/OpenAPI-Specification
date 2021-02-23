@@ -34,7 +34,8 @@
       "pattern": "^3\\.1\\.\\d(-.+)?$"
     },
     "jsonSchemaDialect": {
-      "type": "string"
+      "type": "string",
+      "format": "uri"
     },
     "info": {
       "$ref": "#Info"
@@ -606,7 +607,7 @@
             }
           ],
           "patternProperties": {
-            "^\\/": {
+            "^/": {
               "type": "object",
               "oneOf": [
                 {
@@ -660,9 +661,6 @@
         "Operation": {
           "$anchor": "Operation",
           "type": "object",
-          "required": [
-            "responses"
-          ],
           "allOf": [
             {
               "$ref": "#/$defs/Mixins/$defs/Describable"
@@ -1100,7 +1098,7 @@
               "$anchor": "MutualTLS",
               "properties": {
                 "type": {
-                  "const": "mutalTLS"
+                  "const": "mutualTLS"
                 }
               }
             },
@@ -1471,7 +1469,7 @@
               }
             }
           },
-          "unevaluatedProperties": true
+          "unevaluatedProperties": false
         }
       }
     }

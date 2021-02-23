@@ -350,7 +350,7 @@ $defs:
         allOf:
           - $ref: '#/$defs/Mixins/$defs/Extensible'
         patternProperties:
-          ^\/:
+          ^/:
             type: object
             oneOf:
               - $ref: '#Reference'

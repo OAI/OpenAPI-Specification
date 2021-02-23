@@ -19,6 +19,7 @@ properties:
     pattern: ^3\.1\.\d(-.+)?$
   jsonSchemaDialect:
     type: string
+    format: uri
   info:
     $ref: '#Info'
   externalDocs:
@@ -378,8 +379,6 @@ $defs:
       Operation:
         $anchor: Operation
         type: object
-        required:
-          - responses
         allOf:
           - $ref: '#/$defs/Mixins/$defs/Describable'
           - $ref: '#/$defs/Mixins/$defs/Deprecatable'
@@ -602,7 +601,7 @@ $defs:
             $anchor: MutualTLS
             properties:
               type:
-                const: mutalTLS
+                const: mutualTLS
           OAuth2:
             $anchor: OAuth2
             required:
@@ -807,4 +806,4 @@ $defs:
           callbacks:
             additionalProperties:
               $ref: '#Callback'
-        unevaluatedProperties: true
+        unevaluatedProperties: false

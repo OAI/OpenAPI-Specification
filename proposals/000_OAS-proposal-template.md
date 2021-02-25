@@ -13,7 +13,7 @@
 |Issues |[{issueid}](https://github.com/OAI/OpenAPI-Specification/issues/{Issueid})|
 |Previous Revisions |[{revid}](https://github.com/OAI/OpenAPI-Specification/pull/{revid}) |
 
-.Change Log
+## Change Log
 
 |Date |Responsible Party |Description |
 |---- | ---------------- | ---------- |

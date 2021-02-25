@@ -22,6 +22,7 @@ These tools are not endorsed by the OAI.
 | go-openapi | [github/nasa9084/go-openapi](https://github.com/nasa9084/go-openapi) | Go | Golang struct model for OpenAPI 3.x. |
 | openapi | [github/wzshiming/openapi](https://github.com/wzshiming/openapi) | Go | OpenAPI 3 Specification for golang |
 | kin-openapi | [github/getkin/kin-openapi](https://github.com/getkin/kin-openapi) | Go | OpenAPI 3.x implementation for Go (parsing, converting, validation) |
+| openapi-go | [github/swaggest/openapi-go](https://github.com/swaggest/openapi-go) | Go | Type-safe OpenAPI 3.x bindings and generator from code |
 | Spectral | [github/stoplightio/spectral](https://github.com/stoplightio/spectral) | TypeScript, JavaScript | A flexible JSON object linter with out of the box support for OpenAPI Specification 2 and 3 |
 | openapi-validator | [gitlab/mmal/openapi-validator](https://gitlab.com/mmalawski/openapi-validator) | PHP | Validates response against OpenAPI schema |
 | OpenAPI-Delphi | [github/paolo-rossi/OpenAPI-Delphi](https://github.com/paolo-rossi/OpenAPI-Delphi) | Delphi | Delphi implementation of a generator, parser and validator for the OpenAPI 3 Specification |
@@ -69,7 +70,7 @@ These tools are not endorsed by the OAI.
 | FastAPI | [github/tiangolo/fastapi](https://github.com/tiangolo/fastapi) | Python | OpenAPI 3 based, high performance, Python 3.6+ API framework with automatic data validation, serialization and great editor support.
 | Fastify OpenAPI v3 | [gitlab.com/m03geek/fastify-oas](https://gitlab.com/m03geek/fastify-oas) | Node.JS | Fastify OpenAPI v3+ plugin. Generates OpenAPI specification from fastify schemas and routes. Also serves swagger ui and spec in json/yaml formats.
 | openapi-backend | [github/anttiviljami/openapi-backend](https://github.com/anttiviljami/openapi-backend) | Node.js, TypeScript | Build, Validate, Route, and Mock in the backend using OpenAPI v3 spec in your favourite framework
-| Connexion | [github/zalando/connexion](https://github.com/zalando/connexion) | Python | Swagger/OpenAPI First framework for Python on top of Flask with automatic endpoint validation & OAuth2 support
+| rest | [github.com/swaggest/rest](https://github.com/swaggest/rest) | Go | API server with automatic request/response mapping/validation and OpenAPI schema
 
 #### Client Implementations
 
@@ -91,4 +92,6 @@ These tools are not endorsed by the OAI.
 | WebSphere Liberty | [Download jar](https://developer.ibm.com/wasdev/downloads/) | Java EE | Generates OpenAPI v3 documentation from Java EE applications |
 | swagger-node-codegen | [github/fmvilas/swagger-node-codegen](https://github.com/fmvilas/swagger-node-codegen) | Node.js | Generates a Node.js/express server, but also has a template engine for creating any templates needed. |
 .NET-C#-Annotations | [github/Microsoft/OpenAPI-NET-CSharpAnnotations](https://github.com/Microsoft/OpenAPI.NET.CSharpAnnotations) | dotnet | Convert your native C# comments/annotation XML from your API code into a OpenAPI document object. |
+| OpenAPI Generator | [github/OpenAPITools/openapi-generator](https://github.com/openapitools/openapi-generator) | 30+ programming languages | Generates API client libraries (SDK generation), server stubs, documentation and configuration automatically given an OpenAPI Spec (v2, v3) Note: Both "OpenAPI Tools" (https://OpenAPITools.org - the parent organization of OpenAPI Generator) and "OpenAPI Generator" are not affiliated with OpenAPI Initiative (OAI) |
 | Object Oriented OpenAPI Specification | [github/goldspecdigital/oooas](https://github.com/goldspecdigital/oooas) | PHP | Generates OpenAPI documents using PHP. |
+| swac | [github.com/swaggest/swac](https://github.com/swaggest/swac) | PHP, Go | Generates clients for Go and PHP from OpenAPI 2/3. |

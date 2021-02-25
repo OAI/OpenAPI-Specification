@@ -15,11 +15,11 @@
 |---- | ---------------- | ---------- |
 | 24th December 2019 | Darrel Miller | Initial draft |
 | 2nd January 2019 | Darrel Miller | Update to wording around removing items from arrays.  Added section on backward compatibility. Clarified process around applying a set of updates. Started to add supported scenarios.|
+| 29th July 2020 | Darrel Miller | Updated to be explicit about update operations |
 
 ## Introduction
 
 In recent months we have been discussing various use cases for overlays and various solutions.  The following proposal takes a somewhat more radical approach to the problem.  It is a more ambitious proposal than the others we have seen before but the additional complexity does allow for supporting many of the scenarios that have been discussed to date.
-
 
 #### <a name="overlayDocument"></a>Overlay Document
 
@@ -63,10 +63,11 @@ This object represents one or more changes to be applied to the target document 
 Field Name | Type | Description
 ---|:---:|---
 <a name="updateTarget"></a>target | `string` | A JMESPath expression referencing the target objects in the target document.
-<a name="updateValue"></a>value | [Any](#valueObject) | An object with the properties and values to be updated in the target document.  Property has no impact if `remove` property is `true`.
+<a name="updateAdd"></a>add | [Any](#addObject) | An object to be added as a child of the object(s) referenced by the target. Property has no impact if `remove` property is `true`.
+<a name="updateMerge"></a>merge | [Any](#mergeObject) | An object with the properties and values to be merged with the object(s) referenced by the target.  Property has no impact if `remove` property is `true`.
 <a name="updateRemove"></a>remove | `boolean` | A boolean value that indicates that the target object is to be removed from the the map or array it is contained in. The default value is false.  
 
-The properties of the `Value Object` MUST be compatible with the target object referenced by the JMESPath key.  When the Overlay document is applied, the properties in the `Value Object` replace properties in the target object with the same name and new properties are appended to the target object.
+The properties of the merge object MUST be compatible with the target object referenced by the JMESPath key.  When the Overlay document is applied, the properties in the merge obhect replace properties in the target object with the same name and new properties are appended to the target object.
 
 ##### Structured Overlays Example
 
@@ -79,7 +80,7 @@ info:
   version: 1.0.0
 updates:
 - target: "@"
-  value:
+  merge:
     info:
       x-overlay-applied: structured-overlay
     paths:
@@ -103,17 +104,17 @@ Alternatively, where only a small number of updates need to be applied to a larg
 ```yaml
 overlay: 1.0.0
 info:
-  title: Structured Overlay
+  title: Targeted Overlays
   version: 1.0.0
 updates:
 - target: paths."/foo".get
-  value:
+  merge:
     description: This is the new description
 - target: paths."/bar".get
-  value:
+  merge:
     description: This is the updated description
 - target: paths."/bar"
-  value:
+  merge:
       post:
           description: This is an updated description of a child object
           x-safe: false
@@ -130,10 +131,10 @@ info:
   version: 1.0.0
 updates:
 - target: paths.*.get
-  value:
+  merge:
     x-safe: true
 - target: paths.*.get.parameters[?name=='filter' && in=='query']
-  value:
+  merge:
     schema:
       $ref: "/components/schemas/filterSchema"
 ```
@@ -148,8 +149,8 @@ info:
   title: Add an array element
   version: 1.0.0
 updates:
-- target: paths.*.get.parameters[length(@)]
-  value: 
+- target: paths.*.get.parameters
+  add:
     name: newParam
     in: query
 ```
@@ -160,7 +161,7 @@ info:
   title: Remove a array element
   version: 1.0.0
 updates:
-- target: $.paths[*].get.parameters[? name == 'dummy']
+- target: paths[*].get.parameters[? name == 'dummy']
   remove: true
 ```
 

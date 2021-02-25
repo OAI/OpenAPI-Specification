@@ -17,8 +17,14 @@
     "README.md",
     "schemas/*"
   ],
-  "dependencies": {},
-  "devDependencies": {},
+  "dependencies": {
+    "@hyperjump/json-schema": "^0.17.0",
+    "@hyperjump/json-schema-core": "^0.20.0"
+  },
+  "devDependencies": {
+    "mdv": "^1.0.7",
+    "yaml": "^1.8.3"
+  },
   "keywords": [
     "OpenAPI",
     "OAS",

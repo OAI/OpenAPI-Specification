@@ -1,0 +1,70 @@
+# Create update methods (add,replace,merge,delete)? Is merge necessary?
+# Multiple additions or updates to the same target is more efficient with merge
+
+# Different than JSON Patch because is works in JSON and YAML
+# Has info object and spec version
+# values
+    
+overlay: 1.0.0
+info:
+  title: An example of an overlay that captures changes to an API
+  version: 1.0.0
+updates:
+# Add a property to a schema
+- target: components.schemas."todo".properties   
+  merge:
+    createdBy:
+      type: string
+# Add constraints to a schema
+- target: components.schemas."todo"
+  merge:
+    additionalProperties: false
+- target: components.schemas."todo"
+  merge:
+    type: ["object","null"]
+#Change a schema
+- target: components.schemas."todo"
+  replace:
+    type: integer
+# Add multiple constraints to a schema using merge
+- target: components.schemas."todo"
+  merge:
+    additionalProperties: false
+    type: ["object","null"]
+# Add multiple constraints to a schema using merge
+- target: components.schemas."todo"
+  merge:
+    additionalProperties: false
+    type: ["object","null"]
+    properties: 
+      someprop:
+        type: string
+# Add an operation
+- target: paths."/foo"
+  add:  
+    delete:
+        description: delete a foo
+        responses:
+          200: 
+            description: ok
+# Add a path
+- target: paths
+  add:  
+    "/items":
+      get:
+        responses:
+          200:
+            description: ok
+# Add an optional query parameter
+- target: paths."/bar".parameters
+  add:  
+    name: skip
+    in: query
+    type: string
+# Mark an operation as deprecated
+
+# Change the value of a JSON schema constraint
+# Update the version of the API
+# Change the license of an API
+# Add support for a new request media type
+# Add support for a new response media type

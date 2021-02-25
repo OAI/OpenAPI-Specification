@@ -1,0 +1,10 @@
+overlay: 1.0.0
+info:
+  title: An example of an overlay that performs a Merge Patch
+  version: 1.0.0
+updates:
+- target: "@"   
+  merge:
+    openapi: 3.0.3
+    paths: {}
+

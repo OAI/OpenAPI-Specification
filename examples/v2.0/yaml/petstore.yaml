@@ -74,6 +74,7 @@ paths:
             $ref: '#/definitions/Error'
 definitions:
   Pet:
+    type: "object"
     required:
       - id
       - name
@@ -90,6 +91,7 @@ definitions:
     items:
       $ref: '#/definitions/Pet'
   Error:
+    type: "object"
     required:
       - code
       - message

@@ -1,6 +1,6 @@
 # Governance
 
-The OpenAPI Specification is a project of the Open API Initiative (OAI), under the auspices of the Linux Foundation. For governance of the OAI, review the [OAI's charter](https://www.openapis.org/participate/how-to-contribute/governance).
+The OpenAPI Specification is a project of the OpenAPI Initiative (OAI), under the auspices of the Linux Foundation. For governance of the OAI, review the [OAI's charter](https://www.openapis.org/participate/how-to-contribute/governance).
 
 # Processes and procedures of the Technical Steering Committee (TSC)
 

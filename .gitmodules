@@ -1,0 +1,3 @@
+[submodule "schemas/v3.1/openapi3-examples"]
+	path = schemas/v3.1/openapi3-examples
+	url = git@github.com:Mermade/openapi3-examples.git

@@ -11,12 +11,11 @@ anyOf:
       - paths
   - required:
       - webhooks
-allOf:
-  - $ref: '#/$defs/Mixins/$defs/Extensible'
+$ref: '#/$defs/Mixins/$defs/Extensible'
 properties:
   openapi:
     type: string
-    pattern: ^3\.1\.\d(-.+)?$
+    pattern: ^3\.1\.\d+(-.+)?$
   jsonSchemaDialect:
     type: string
     format: uri
@@ -36,6 +35,7 @@ properties:
     type: array
     items:
       $ref: '#Tag'
+    uniqueItems: true
   paths:
     $ref: '#Paths'
   webhooks:
@@ -289,7 +289,7 @@ $defs:
                   $ref: '#MediaType'
               links:
                 type: object
-                additionalProperteis:
+                additionalProperties:
                   $ref: '#Link'
             unevaluatedProperties: false
       MediaType:
@@ -372,9 +372,7 @@ $defs:
           parameters:
             type: array
             items:
-              oneOf:
-                - $ref: '#Parameter'
-                - $ref: '#Reference'
+              $ref: '#Parameter'
             uniqueItems: true
       Operation:
         $anchor: Operation
@@ -398,6 +396,7 @@ $defs:
             type: array
             items:
               $ref: '#Parameter'
+            uniqueItems: true
           requestBody:
             $ref: '#RequestBody'
           responses:
@@ -422,7 +421,7 @@ $defs:
           default:
             $ref: '#Response'
         patternProperties:
-          '[1-5](?:\d{2}|XX)':
+          '^[1-5](?:\d{2}|XX)$':
             $ref: '#Response'
         minProperties: 1
         unevaluatedProperties: false
@@ -451,12 +450,11 @@ $defs:
         $anchor: ExternalDocumentation
         allOf:
           - $ref: '#/$defs/Mixins/$defs/Extensible'
+          - $ref: '#/$defs/Mixins/$defs/Describable'
         type: object
         required:
           - url
         properties:
-          description:
-            type: string
           url:
             type: string
             format: uri-reference
@@ -556,7 +554,7 @@ $defs:
               - $ref: '#/$defs/Mixins/$defs/Extensible'
             properties:
               type:
-                string: null
+                type: string
                 enum:
                   - apiKey
                   - http
@@ -564,12 +562,12 @@ $defs:
                   - mutualTLS
                   - oauth2
                   - openIdConnect
-                oneOf:
-                  - $ref: '#APIKey'
-                  - $ref: '#HTTP'
-                  - $ref: '#MutualTLS'
-                  - $ref: '#OAuth2'
-                  - $ref: '#OpenIdConnect'
+            oneOf:
+              - $ref: '#APIKey'
+              - $ref: '#HTTP'
+              - $ref: '#MutualTLS'
+              - $ref: '#OAuth2'
+              - $ref: '#OpenIdConnect'
             unevaluatedProperties: false
         $defs:
           APIKey:
@@ -767,7 +765,7 @@ $defs:
                   wrapped:
                     type: boolean
                     default: false
-            additionalProperties: false
+            unevaluatedProperties: false
       Components:
         $anchor: Components
         type: object
@@ -784,7 +782,7 @@ $defs:
               $ref: '#Schema'
           responses:
             additionalProperties:
-              $ref: '#Responses'
+              $ref: '#Response'
           parameters:
             additionalProperties:
               $ref: '#Parameter'

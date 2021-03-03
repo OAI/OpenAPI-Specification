@@ -2,11 +2,11 @@ const fs = require("fs");
 const yaml = require("yaml");
 const JsonSchema = require("@hyperjump/json-schema");
 const { expect } = require("chai");
-const dialect = require("./dialect/base.schema.json");
-const vocabulary = require("./meta/base.schema.json");
+const dialect = require("../../schemas/v3.1/dialect/base.schema.json");
+const vocabulary = require("../../schemas/v3.1/meta/base.schema.json");
 
 
-const testSuitePath = `${__dirname}/openapi3-examples/3.1`;
+const testSuitePath = `${__dirname}/../openapi3-examples/3.1`;
 
 JsonSchema.setMetaOutputFormat(JsonSchema.BASIC);
 //JsonSchema.setShouldMetaValidate(false);
@@ -15,9 +15,8 @@ let metaSchema;
 before(async () => {
   JsonSchema.add(dialect);
   JsonSchema.add(vocabulary);
-  JsonSchema.add(yaml.parse(fs.readFileSync(`${__dirname}/schema.yaml`, "utf8"), { prettyErrors: true }));
-  JsonSchema.add(yaml.parse(fs.readFileSync(`${__dirname}/schema-base.yaml`, "utf8"), { prettyErrors: true }));
-  metaSchema = await JsonSchema.get("https://spec.openapis.org/oas/3.1/schema-base/2021-03-02");
+  JsonSchema.add(yaml.parse(fs.readFileSync(`${__dirname}/../../schemas/v3.1/schema.yaml`, "utf8"), { prettyErrors: true }));
+  metaSchema = await JsonSchema.get("https://spec.openapis.org/oas/3.1/schema/2021-03-02");
 });
 
 describe("Pass", () => {

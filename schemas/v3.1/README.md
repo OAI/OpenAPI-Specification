@@ -13,6 +13,12 @@ The iteration version of the JSON Schema can be found in the `$id` field. For
 example, the value of `$id: https://spec.openapis.org/oas/3.1/schema/2021-03-02`
 means this iteration was created on March 2nd, 2021.
 
+The `schema.yaml` schema doesn't validate the JSON Schemas in your OpenAPI
+document because 3.1 allows you to use any JSON Schema dialect you choose. We
+have also included `schema-base.yaml` that extends the main schema to validate
+that all schemas use the default OAS base vocabulary.
+
+## Contributing
 To submit improvements to the schema, modify the schema.yaml file only.
 
 The TSC will then:

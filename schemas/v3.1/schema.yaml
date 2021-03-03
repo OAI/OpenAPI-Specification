@@ -7,7 +7,8 @@ properties:
   info:
     $ref: '#/$defs/info'
   jsonSchemaDialect:
-    type: string
+    $ref: '#/$defs/uri'
+    default: 'https://spec.openapis.org/oas/3.1/dialect/base'
   servers:
     $ref: '#/$defs/server'
   paths:
@@ -681,7 +682,9 @@ $defs:
 
   schema:
     $dynamicAnchor: meta
-    $ref: 'https://spec.openapis.org/oas/3.1/dialect/base'
+    type:
+      - object
+      - boolean
 
   security-scheme:
     type: object

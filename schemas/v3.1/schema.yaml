@@ -185,6 +185,10 @@ $defs:
           $ref:
             type: string
             format: uri-reference
+          summary:
+            type: string
+        $ref: '#/$defs/Mixins/$defs/Describable'
+        unevaluatedProperties: false
       Info:
         $anchor: Info
         type: object

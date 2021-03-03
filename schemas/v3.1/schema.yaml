@@ -374,44 +374,6 @@ $defs:
             items:
               $ref: '#Parameter'
             uniqueItems: true
-      Operation:
-        $anchor: Operation
-        type: object
-        allOf:
-          - $ref: '#/$defs/Mixins/$defs/Describable'
-          - $ref: '#/$defs/Mixins/$defs/Deprecatable'
-          - $ref: '#/$defs/Mixins/$defs/Extensible'
-        properties:
-          tags:
-            type: array
-            items:
-              type: string
-          summary:
-            type: string
-          externalDocs:
-            $ref: '#ExternalDocumentation'
-          operationId:
-            type: string
-          parameters:
-            type: array
-            items:
-              $ref: '#Parameter'
-            uniqueItems: true
-          requestBody:
-            $ref: '#RequestBody'
-          responses:
-            $ref: '#Responses'
-          callback:
-            $ref: '#Callback'
-          security:
-            type: array
-            items:
-              $ref: '#SecurityRequirement'
-          servers:
-            type: array
-            items:
-              $ref: '#Server'
-        unevaluatedProperties: false
       Responses:
         $anchor: Responses
         type: object

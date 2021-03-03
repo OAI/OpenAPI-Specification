@@ -675,6 +675,8 @@ $defs:
           - type: object
             allOf:
               - $ref: '#/$defs/Mixins/$defs/Extensible'
+            additionalProperties:
+              $ref: '#PathItem'
             unevaluatedProperties: false
       Schema:
         $anchor: Schema
@@ -696,6 +698,8 @@ $defs:
                 $ref: '#ExternalDocumentation'
               xml:
                 $ref: '#XML'
+              example:
+                deprecated: true
           Discriminator:
             $anchor: Discriminator
             type: object
@@ -731,13 +735,12 @@ $defs:
       Components:
         $anchor: Components
         type: object
-        allOf:
-          - $ref: '#/$defs/Mixins/$defs/Extensible'
-          - additionalProperties:
-              $comment: All sub-objects have the same property name constraints
-              type: object
-              propertyNames:
-                pattern: '^[a-zA-Z0-9\.\-_]+$'
+        $ref: '#/$defs/Mixins/$defs/Extensible'
+        patternProperties:
+          '':
+            $comment: All sub-objects have the same property name constraints
+            propertyNames:
+              pattern: '^[a-zA-Z0-9\.\-_]+$'
         properties:
           schemas:
             additionalProperties:

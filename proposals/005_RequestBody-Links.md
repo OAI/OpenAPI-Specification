@@ -117,9 +117,9 @@ It's acceptable for parameters to be defined in either `fragments` OR `parameter
 
 ## Alternatives considered
 
-There are multiple ways to solve this problem that other people have suggested that are in fact extremely valid. This Proposal is trying to make all parties happy by addressing each of the three major points each alternative independently address:
+There are multiple ways to solve this problem that other people have suggested that are in fact extremely valid. This Proposal is trying to make all parties happy by addressing each of the major points each alternative independently address:
 
-1 - Allow for OpenAPI authors to reference response properties from Specifications they themselves do not own. aka ["Backlinks"](https://apigraph.readthedocs.io/en/latest/reference/openapi-extensions.html#x-apigraph-backlinks-components)
-2 - Set a field in the target operation's request body [Proposal](https://apigraph.readthedocs.io/en/latest/reference/openapi-extensions.html#x-apigraph-requestbodyparameters)
+1. Allow for OpenAPI authors to reference response properties from Specifications they themselves do not own. aka ["Backlinks"](https://apigraph.readthedocs.io/en/latest/reference/openapi-extensions.html#x-apigraph-backlinks-components)
+2. Set a field in the target operation's request body [Proposal](https://apigraph.readthedocs.io/en/latest/reference/openapi-extensions.html#x-apigraph-requestbodyparameters)
 
 While this proposal is very similar to the proposal for both 1 & 2, efforts to reach out them have failed, so I have gone forward with my own more condenced and concise version. I do feel that consideration of these alternative solutions is extremely important as the larger issue is support for these points in general.

@@ -53,7 +53,7 @@ Some Explanations:
 Key: `fragments`
 type: Array of `Fragment` objects
 
-**BodyFragment**
+**Fragment**
 |Field Name |Type |Description |
 |---- | ---------------- | ---------- |
 | src | runtime expression | expresses from where in the source request to apply to `dest` |

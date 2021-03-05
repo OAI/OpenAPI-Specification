@@ -33,11 +33,11 @@ By including a way to document these dependencies among data, generated clients 
 
 ## Proposed solution
 
-Allow [Links](http://spec.openapis.org/oas/v3.1.0#link-object) to exist at the root level of an [Operation](http://spec.openapis.org/oas/v3.1.0#operationObject), rather than solely in a [Response](http://spec.openapis.org/oas/v3.1.0#responses-object) object. When defined at the `Operation` Level, each link would represent a link to a request from where to source information. The `link.operationId` would reference the "source" request. This would allow for describing from where dependent parameters get their information to make the request. In addition, a new property would be added to the `Link` object that would be called `fragments`. This new property would contain [runtime expressions](http://spec.openapis.org/oas/v3.1.0#runtime-expressions) that would evaluate which *fragments* to extract data from, and which *fragments* to populate that data with.
+Allow [Links](http://spec.openapis.org/oas/v3.1.0#link-object) to exist at the root level of an [Operation](http://spec.openapis.org/oas/v3.1.0#operationObject), rather than solely in a [Response](http://spec.openapis.org/oas/v3.1.0#responses-object) object. When defined at the `Operation` Level, each link would represent a link to a request from where to source information. The `link.operationId` would reference the "source" request. This would allow for describing from where dependent parameters get their information to make the request. In addition, a new property would be added to the `Link` object that would be called `mappings`. This new property would contain [runtime expressions](http://spec.openapis.org/oas/v3.1.0#runtime-expressions) that would evaluate which *mappings* to extract data from, and which *mappings* to populate that data with.
 
 Some Explanations:
 1. The request based `Link` object would allow for OpenAPI authors to reference response properties from OpenAPI documents they themselves do not own. For Example; A company named Foo handles billing through PayPal. This company has a billing API, and updates a plan using the PayPal [user_id](https://developer.paypal.com/docs/api/identity/v1/#userinfo-get-response). An author at company Foo could reference PayPal's OpenAPI document in theirs, opening the door for even richer sdk generation as well as many other possibilities.
-2. The `Fragments` property is more discreet than having separate properties to define whether a given response fragment belongs in a subsequent request's header, body, or path. For example: `$response.header.req_id` mapping to `$request.body#requestId` or `$response.header.req_id` mapping to `$request.header.requestId`.
+2. The `mappings` property is more discreet than having separate properties to define whether a given response mapping belongs in a subsequent request's header, body, or path. For example: `$response.header.req_id` mapping to `$request.body#requestId` or `$response.header.req_id` mapping to `$request.header.requestId`.
 3. It's easier to think about dependencies of requests from within the request itself.
 
 
@@ -49,11 +49,11 @@ Some Explanations:
 
 #### New Fields:
 
-**Fragments**
-Key: `fragments`
-type: Array of `Fragment` objects
+**mappings**
+Key: `mappings`
+type: Array of `mapping` objects
 
-**Fragment**
+**mapping**
 |Field Name |Type |Description |
 |---- | ---------------- | ---------- |
 | src | runtime expression | expresses from where in the source request to apply to `dest` |
@@ -90,7 +90,7 @@ type: Array of `Fragment` objects
     links:  # <-- Links can now exist here
       arbitraryName:
         operationId: getUserBestFriend
-        fragments: # <-- New Property for links
+        mappings: # <-- New Property for links
           - src: '$response.body#/id'
             dest: '$request.body#/from'
             required: true
@@ -111,9 +111,9 @@ type: Array of `Fragment` objects
 
 ## Backwards compatibility
 
-Since the modifications to existing Objects are purely additive and positional, there shouldn't be any issues with backwards compatibility. Should a `fragments` array be defined within a response's `Links` as the current standard supports, the effect is exactly the same.
+Since the modifications to existing Objects are purely additive and positional, there shouldn't be any issues with backwards compatibility. Should a `mappings` array be defined within a response's `Links` as the current standard supports, the effect is exactly the same.
 
-It's acceptable for parameters to be defined in either `fragments` OR `parameters` within the `link` object, and is up to preference of the individual spec's author. Perhaps in later versions of OAS should this proposal become accepted, `parameters` might be deprecated.
+It's acceptable for parameters to be defined in either `mappings` OR `parameters` within the `link` object, and is up to preference of the individual spec's author. Perhaps in later versions of OAS should this proposal become accepted, `parameters` might be deprecated.
 
 ## Alternatives considered
 

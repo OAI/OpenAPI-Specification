@@ -1,9 +1,11 @@
 $id: 'https://spec.openapis.org/oas/3.1/schema/2021-03-02'
 $schema: 'https://json-schema.org/draft/2020-12/schema'
 
+type: object
 properties:
   openapi:
     type: string
+    pattern: '^3\.1\.\d+(-.+)?$'
   info:
     $ref: '#/$defs/info'
   jsonSchemaDialect:
@@ -54,7 +56,7 @@ $defs:
         type: string
       termsOfService:
         type: string
-      contact":
+      contact:
         $ref: '#/$defs/contact'
       license:
         $ref: '#/$defs/license'
@@ -86,7 +88,7 @@ $defs:
       identifier:
         type: string
       url:
-        $ref": '#/$defs/uri'
+        $ref: '#/$defs/uri'
     required:
       - name
     oneOf:
@@ -156,7 +158,7 @@ $defs:
       headers:
         type: object
         additionalProperties:
-          $ref": '#/$defs/header-or-reference'
+          $ref: '#/$defs/header-or-reference'
       securitySchemes:
         type: object
         additionalProperties:
@@ -174,7 +176,8 @@ $defs:
         additionalProperties:
           $ref: '#/$defs/path-item-or-reference'
     patternProperties:
-      '':
+      '^schemas|responses|parameters|examples|requestBodies|headers|securitySchemes|links|callbacks|pathItems$':
+        $comment: Enumerating all of the property names in the regex above is necessary for unevaluatedProperties to work as expected
         propertyNames:
           pattern: '^[a-zA-Z0-9._-]+$'
     $ref: '#/$defs/specification-extensions'
@@ -236,7 +239,7 @@ $defs:
       parameters:
         type: array
         items:
-          $ref": '#/$defs/parameter-or-reference'
+          $ref: '#/$defs/parameter-or-reference'
       requestBody:
         $ref: '#/$defs/request-body-or-reference'
       responses:
@@ -293,8 +296,19 @@ $defs:
       allowEmptyValue:
         default: false
         type: boolean
+      schema:
+        $dynamicRef: '#meta'
+      content:
+        type: object
+        additionalProperties:
+          $ref: '#/$defs/media-type'
     required:
       - in
+    oneOf:
+      - required:
+        - schema
+      - required:
+        - content
     dependentSchemas:
       schema:
         properties:
@@ -304,9 +318,7 @@ $defs:
             type: boolean
           allowReserved:
             default: false
-            type: "boolean"
-          schema:
-            $dynamicRef: '#meta'
+            type: boolean
         allOf:
           - $ref: '#/$defs/examples'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-path'
@@ -397,12 +409,6 @@ $defs:
                 explode:
                   default: false
 
-      content:
-        properties:
-          content:
-            type: object
-            additionalProperties:
-              $ref: '#/$defs/media-type'
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
 
@@ -536,9 +542,9 @@ $defs:
       required:
         - $ref
     then:
-      $ref: "#/$defs/reference"
+      $ref: '#/$defs/reference'
     else:
-      $ref: "#/$defs/response"
+      $ref: '#/$defs/response'
 
   callbacks:
     type: object
@@ -806,7 +812,7 @@ $defs:
       password:
         $ref: '#/$defs/oauth-flows/$defs/password'
       clientCredentials:
-        $ref": '#/$defs/oauth-flows/$defs/client-credentials'
+        $ref: '#/$defs/oauth-flows/$defs/client-credentials'
       authorizationCode:
         $ref: '#/$defs/oauth-flows/$defs/authorization-code'
     $ref: '#/$defs/specification-extensions'

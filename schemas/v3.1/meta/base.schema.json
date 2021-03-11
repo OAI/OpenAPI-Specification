@@ -10,18 +10,18 @@
     "type": ["object", "boolean"],
     "properties": {
         "example": true,
-        "discriminator": { "$ref": "#/$defs/Discriminator" },
-        "externalDocs": { "$ref": "#/$defs/ExternalDocs" },
-        "xml": { "$ref": "#/$defs/Xml" }
+        "discriminator": { "$ref": "#/$defs/discriminator" },
+        "externalDocs": { "$ref": "#/$defs/external-docs" },
+        "xml": { "$ref": "#/$defs/xml" }
     },
     "$defs": {
-        "Extensible": {
+        "extensible": {
             "patternProperties": {
                 "^x-": true
             }
         },
-        "Discriminator": {
-            "$ref": "#/$defs/Extensible",
+        "discriminator": {
+            "$ref": "#/$defs/extensible",
             "type": "object",
             "properties": {
                 "propertyName": {
@@ -37,8 +37,8 @@
             "required": ["propertyName"],
             "unevaluatedProperties": false
         },
-        "ExternalDocs": {
-            "$ref": "#/$defs/Extensible",
+        "external-docs": {
+            "$ref": "#/$defs/extensible",
             "type": "object",
             "properties": {
                 "url": {
@@ -52,8 +52,8 @@
             "required": ["url"],
             "unevaluatedProperties": false
         },
-        "Xml": {
-            "$ref": "#/$defs/Extensible",
+        "xml": {
+            "$ref": "#/$defs/extensible",
             "type": "object",
             "properties": {
                 "name": {

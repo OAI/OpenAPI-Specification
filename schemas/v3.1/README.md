@@ -31,11 +31,11 @@ The TSC will then:
 The test suite is included as a git submodule of https://github.com/Mermade/openapi3-examples.
 
 ```bash
-npx mocha --recursive [repo root]/tests
+npx mocha --recursive tests
 ```
 
 You can also validate a document individually.
 
 ```bash
-node [repo root]/scripts/validate.js path/to/document/to/validate.yaml
+scripts/validate.js path/to/document/to/validate.yaml
 ```

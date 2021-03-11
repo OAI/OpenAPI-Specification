@@ -1,15 +1,18 @@
 {
   "$id": "https://spec.openapis.org/oas/3.1/schema/2021-03-02",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
   "properties": {
     "openapi": {
-      "type": "string"
+      "type": "string",
+      "pattern": "^3\\.1\\.\\d+(-.+)?$"
     },
     "info": {
       "$ref": "#/$defs/info"
     },
     "jsonSchemaDialect": {
-      "type": "string"
+      "$ref": "#/$defs/uri",
+      "default": "https://spec.openapis.org/oas/3.1/dialect/base"
     },
     "servers": {
       "$ref": "#/$defs/server"
@@ -81,7 +84,7 @@
         "termsOfService": {
           "type": "string"
         },
-        "contact\"": {
+        "contact": {
           "$ref": "#/$defs/contact"
         },
         "license": {
@@ -124,7 +127,7 @@
           "type": "string"
         },
         "url": {
-          "$ref\"": "#/$defs/uri"
+          "$ref": "#/$defs/uri"
         }
       },
       "required": [
@@ -226,7 +229,7 @@
         "headers": {
           "type": "object",
           "additionalProperties": {
-            "$ref\"": "#/$defs/header-or-reference"
+            "$ref": "#/$defs/header-or-reference"
           }
         },
         "securitySchemes": {
@@ -255,7 +258,8 @@
         }
       },
       "patternProperties": {
-        "": {
+        "^schemas|responses|parameters|examples|requestBodies|headers|securitySchemes|links|callbacks|pathItems$": {
+          "$comment": "Enumerating all of the property names in the regex above is necessary for unevaluatedProperties to work as expected",
           "propertyNames": {
             "pattern": "^[a-zA-Z0-9._-]+$"
           }
@@ -341,7 +345,7 @@
         "parameters": {
           "type": "array",
           "items": {
-            "$ref\"": "#/$defs/parameter-or-reference"
+            "$ref": "#/$defs/parameter-or-reference"
           }
         },
         "requestBody": {
@@ -420,10 +424,31 @@
         "allowEmptyValue": {
           "default": false,
           "type": "boolean"
+        },
+        "schema": {
+          "$dynamicRef": "#meta"
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/media-type"
+          }
         }
       },
       "required": [
         "in"
+      ],
+      "oneOf": [
+        {
+          "required": [
+            "schema"
+          ]
+        },
+        {
+          "required": [
+            "content"
+          ]
+        }
       ],
       "dependentSchemas": {
         "schema": {
@@ -437,9 +462,6 @@
             "allowReserved": {
               "default": false,
               "type": "boolean"
-            },
-            "schema": {
-              "$dynamicRef": "#meta"
             }
           },
           "allOf": [
@@ -586,16 +608,6 @@
                     "default": false
                   }
                 }
-              }
-            }
-          }
-        },
-        "content": {
-          "properties": {
-            "content": {
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/$defs/media-type"
               }
             }
           }
@@ -1003,7 +1015,10 @@
     },
     "schema": {
       "$dynamicAnchor": "meta",
-      "$ref": "https://spec.openapis.org/oas/3.1/dialect/base"
+      "type": [
+        "object",
+        "boolean"
+      ]
     },
     "security-scheme": {
       "type": "object",
@@ -1193,7 +1208,7 @@
           "$ref": "#/$defs/oauth-flows/$defs/password"
         },
         "clientCredentials": {
-          "$ref\"": "#/$defs/oauth-flows/$defs/client-credentials"
+          "$ref": "#/$defs/oauth-flows/$defs/client-credentials"
         },
         "authorizationCode": {
           "$ref": "#/$defs/oauth-flows/$defs/authorization-code"

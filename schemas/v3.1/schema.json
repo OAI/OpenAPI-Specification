@@ -258,7 +258,7 @@
         }
       },
       "patternProperties": {
-        "^schemas|responses|parameters|examples|requestBodies|headers|securitySchemes|links|callbacks|pathItems$": {
+        "^(schemas|responses|parameters|examples|requestBodies|headers|securitySchemes|links|callbacks|pathItems)$": {
           "$comment": "Enumerating all of the property names in the regex above is necessary for unevaluatedProperties to work as expected",
           "propertyNames": {
             "pattern": "^[a-zA-Z0-9._-]+$"
@@ -301,7 +301,7 @@
         }
       },
       "patternProperties": {
-        "^get|post|delete|options|head|patch|trace$": {
+        "^(get|post|delete|options|head|patch|trace)$": {
           "$ref": "#/$defs/operation"
         }
       },
@@ -763,7 +763,7 @@
         }
       },
       "patternProperties": {
-        "[1-5][0-9X]{2}": {
+        "^[1-5][0-9X]{2}$": {
           "$ref": "#/$defs/response-or-reference"
         }
       },

@@ -299,9 +299,7 @@ $defs:
       schema:
         $dynamicRef: '#meta'
       content:
-        type: object
-        additionalProperties:
-          $ref: '#/$defs/media-type'
+        $ref: '#/$defs/content'
     required:
       - in
     oneOf:
@@ -427,9 +425,7 @@ $defs:
       description:
         type: string
       content:
-        type: object
-        additionalProperties:
-          $ref: '#/$defs/media-type'
+        $ref: '#/$defs/content'
       required:
         default: false
         type: boolean
@@ -446,6 +442,13 @@ $defs:
       $ref: '#/$defs/reference'
     else:
       $ref: '#/$defs/request-body'
+
+  content:
+    type: object
+    additionalProperties:
+      $ref: '#/$defs/media-type'
+    propertyNames:
+      format: media-range
 
   media-type:
     type: object
@@ -466,6 +469,7 @@ $defs:
     properties:
       contentType:
         type: string
+        format: media-range
       headers:
         type: object
         additionalProperties:
@@ -525,9 +529,7 @@ $defs:
         additionalProperties:
           $ref: '#/$defs/header-or-reference'
       content:
-        type: object
-        addtionalProperties:
-          $ref: '#/$defs/media-type'
+        $ref: '#/$defs/content'
       links:
         type: object
         additionalProperties:
@@ -646,9 +648,7 @@ $defs:
       content:
         properties:
           content:
-            type: object
-            additionalProperties:
-              $ref: '#/$defs/media-type'
+            $ref: '#/$defs/content'
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
 

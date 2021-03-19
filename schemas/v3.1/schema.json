@@ -429,10 +429,7 @@
           "$dynamicRef": "#meta"
         },
         "content": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/$defs/media-type"
-          }
+          "$ref": "#/$defs/content"
         }
       },
       "required": [
@@ -636,10 +633,7 @@
           "type": "string"
         },
         "content": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/$defs/media-type"
-          }
+          "$ref": "#/$defs/content"
         },
         "required": {
           "default": false,
@@ -663,6 +657,15 @@
       },
       "else": {
         "$ref": "#/$defs/request-body"
+      }
+    },
+    "content": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/media-type"
+      },
+      "propertyNames": {
+        "format": "media-range"
       }
     },
     "media-type": {
@@ -692,7 +695,8 @@
       "type": "object",
       "properties": {
         "contentType": {
-          "type": "string"
+          "type": "string",
+          "format": "media-range"
         },
         "headers": {
           "type": "object",
@@ -783,10 +787,7 @@
           }
         },
         "content": {
-          "type": "object",
-          "addtionalProperties": {
-            "$ref": "#/$defs/media-type"
-          }
+          "$ref": "#/$defs/content"
         },
         "links": {
           "type": "object",
@@ -955,10 +956,7 @@
         "content": {
           "properties": {
             "content": {
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/$defs/media-type"
-              }
+              "$ref": "#/$defs/content"
             }
           }
         }

@@ -6,8 +6,6 @@ const dialect = require("../../schemas/v3.1/dialect/base.schema.json");
 const vocabulary = require("../../schemas/v3.1/meta/base.schema.json");
 
 
-const testSuitePath = `${__dirname}/../openapi3-examples/3.1`;
-
 JsonSchema.setMetaOutputFormat(JsonSchema.BASIC);
 //JsonSchema.setShouldMetaValidate(false);
 
@@ -20,10 +18,10 @@ before(async () => {
 });
 
 describe("Pass", () => {
-  fs.readdirSync(`${testSuitePath}/pass`, { withFileTypes: true })
+  fs.readdirSync(`${__dirname}/pass`, { withFileTypes: true })
     .filter((entry) => entry.isFile() && /\.yaml$/.test(entry.name))
     .forEach((entry) => {
-      const file = `${testSuitePath}/pass/${entry.name}`;
+      const file = `${__dirname}/pass/${entry.name}`;
 
       it(entry.name, async () => {
         const instance = yaml.parse(fs.readFileSync(file, "utf8"));
@@ -35,10 +33,10 @@ describe("Pass", () => {
 });
 
 describe("Fail", () => {
-  fs.readdirSync(`${testSuitePath}/fail`, { withFileTypes: true })
+  fs.readdirSync(`${__dirname}/fail`, { withFileTypes: true })
     .filter((entry) => entry.isFile() && /\.yaml$/.test(entry.name))
     .forEach((entry) => {
-      const file = `${testSuitePath}/fail/${entry.name}`;
+      const file = `${__dirname}/fail/${entry.name}`;
 
       it(entry.name, async () => {
         const instance = yaml.parse(fs.readFileSync(file, "utf8"));

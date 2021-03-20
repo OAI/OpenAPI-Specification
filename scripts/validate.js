@@ -24,13 +24,13 @@ const args = process.argv.reduce((acc, arg) => {
 
 (async function () {
   try {
+    const schemaType = args.schema || "schema";
+    const schemaVersion = args.version || "2021-03-02";
+    const outputFormat = args.format || JsonSchema.BASIC;
+
     // Config
     JsonSchema.setMetaOutputFormat(outputFormat);
     //JsonSchema.setShouldMetaValidate(false);
-
-    const schemaType = args.schema || "schema";
-    const schemaVersion = args.version || "2021-03-02";
-    const ouputFormat = args.format || JsonSchema.BASIC;
 
     // Load schemas
     JsonSchema.add(dialect);

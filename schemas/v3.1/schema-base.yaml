@@ -1,0 +1,17 @@
+$id: 'https://spec.openapis.org/oas/3.1/schema-base/2021-03-02'
+$schema: 'https://json-schema.org/draft/2020-12/schema'
+
+$ref: 'https://spec.openapis.org/oas/3.1/schema/2021-03-02'
+properties:
+  jsonSchemaDialect:
+    $ref: '#/$defs/dialect'
+
+$defs:
+  dialect:
+    const: 'https://spec.openapis.org/oas/3.1/dialect/base'
+  schema:
+    $dynamicAnchor: meta
+    $ref": 'https://spec.openapis.org/oas/3.1/dialect/base'
+    properties:
+      $schema:
+        $ref: '#/$defs/dialect'

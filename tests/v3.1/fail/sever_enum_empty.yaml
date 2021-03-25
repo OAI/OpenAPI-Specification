@@ -1,0 +1,11 @@
+openapi: 3.1.0
+info:
+  title: API
+  version: 1.0.0
+servers:
+  - url: https://example.com/{var}
+    variables:
+      var:
+        enum: []
+        default: a
+components: {}

@@ -67,7 +67,7 @@ Field Name | Type | Description
 <a name="updateMerge"></a>merge | [Any](#mergeObject) | An object with the properties and values to be merged with the object(s) referenced by the target.  Property has no impact if `remove` property is `true`.
 <a name="updateRemove"></a>remove | `boolean` | A boolean value that indicates that the target object is to be removed from the the map or array it is contained in. The default value is false.  
 
-The properties of the merge object MUST be compatible with the target object referenced by the JMESPath key.  When the Overlay document is applied, the properties in the merge obhect replace properties in the target object with the same name and new properties are appended to the target object.
+The properties of the merge object MUST be compatible with the target object referenced by the JMESPath key.  When the Overlay document is applied, the properties in the merge object replace properties in the target object with the same name and new properties are appended to the target object.
 
 ##### Structured Overlays Example
 

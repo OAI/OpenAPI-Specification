@@ -304,7 +304,7 @@
         }
       },
       "patternProperties": {
-        "^(get|post|delete|options|head|patch|trace)$": {
+        "^(get|put|post|delete|options|head|patch|trace)$": {
           "$ref": "#/$defs/operation"
         }
       },

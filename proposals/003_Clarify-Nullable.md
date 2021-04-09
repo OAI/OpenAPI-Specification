@@ -8,7 +8,7 @@
 |Proposal |[003](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/003_Clarify-Nullable.md)|
 |Authors|[Ted Epstein](https://github.com/tedepstein)|
 |Review Manager |TBD|
-|Status |Proposal|
+|Status |Approved, adopted in [OpenAPI 3.0.3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.3.md)|
 |Implementations |N/A|
 |Issues | [1900](https://github.com/OAI/OpenAPI-Specification/issues/1900), [1368](https://github.com/OAI/OpenAPI-Specification/issues/1368), [1389](https://github.com/OAI/OpenAPI-Specification/issues/1389), [1957](https://github.com/OAI/OpenAPI-Specification/pull/1957), [2046](https://github.com/OAI/OpenAPI-Specification/pull/2046), [1977](https://github.com/OAI/OpenAPI-Specification/pull/1977#issuecomment-533333957), [2057](https://github.com/OAI/OpenAPI-Specification/issues/2057)|
 |Previous Revisions |N/A |
@@ -18,6 +18,7 @@
 |Date |Responsible Party |Description |
 |---- | ---------------- |------------|
 |Oct 31, 2019 | Ted Epstein | Initial proposal |
+|Apr 8, 2021 | Ted Epstein | Update status to approved, adopted in 3.0.3 |
 
 ## Introduction
 

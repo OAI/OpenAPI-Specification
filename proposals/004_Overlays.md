@@ -165,6 +165,43 @@ updates:
   remove: true
 ```
 
+##### Traits Examples
+
+By annotating an OpenAPI description using extension such as `x-oai-traits` an author of OpenAPI description can identify where overlay updates should be applied.
+
+```yaml
+openapi: 3.1.0
+info:
+  title: Api with a paged collection
+  version: 1.0.0
+paths:
+  /items:
+    get:
+      x-oai-traits: ["paged"]
+      responses:
+        200:
+          description: OK
+```
+
+With the above OpenAPI description, following Overlay document will apply the necessary updates to describe how paging is implemented, where that trait has been applied.
+
+```yaml
+overlay: 1.0.0
+info:
+  title: Apply Traits
+  version: 1.0.0
+updates:
+- target: $.paths[*].get[?contains(x-traits,'paged')]
+  merge:
+    parameters:
+      - name: top
+        in: query
+      - name: skip
+        in: query
+```
+
+This approach allows flipping control of where Overlays apply updates to the OpenAPI description itself.
+
 ## Proposal Summary
 
 ### Benefits

@@ -4,11 +4,11 @@
 
 |Tag |Value |
 |---- | ---------------- |
-|Proposal |[Alternative Schema](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/Alternative%20Schema)|
+|Proposal |[Alternative Schema](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/Alternative%20Schema)|
 |Authors|[Chuck Heazel](https://github.com/{cmheazel})|
 |Review Manager |TBD |
 |Status |**Draft** |
-|Implementations |[Click Here](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/Alternative%20Schema/implementations.md)
+|Implementations |[Click Here](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/Alternative%20Schema/implementations.md)
 |Issues |[1532](https://github.com/OAI/OpenAPI-Specification/issues/1532)|
 |Previous Revisions |[March 15](https://github.com/OAI/OpenAPI-Specification/pull/1868#issue-261689900) |
  
@@ -42,14 +42,14 @@ This proposal makes the following changes to the OAS 3.0 specification:
 
 ###  Extend the Schema Object 
 
-The OpenAPI Schema Object is extended by the addition of the x-oas-draft-alternativeSchema field. The proposed changes to the OpenAPI specification are provided in [schema_object.md](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/Alternative%20Schema/schema_object.md)
+The OpenAPI Schema Object is extended by the addition of the x-oas-draft-alternativeSchema field. The proposed changes to the OpenAPI specification are provided in [schema_object.md](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/Alternative%20Schema/schema_object.md)
 
 ###  Add the Alternative Schema Object 
 
-The new object, the Alternative Schema Object is added to the OpenAPI specification. The proposed changes to the OpenAPI specification are provided in [alternative_schema_object.md](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/Alternative%20Schema/alternative_schema_object.md)
+The new object, the Alternative Schema Object is added to the OpenAPI specification. The proposed changes to the OpenAPI specification are provided in [alternative_schema_object.md](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/Alternative%20Schema/alternative_schema_object.md)
 
 ### Provide Alternative Schema Examples
-Examples of the use of the Alternative Schema capability is added to the OpenAPI specification. The proposed changes to the OpenAPI specification are provided in [alternative_schema_examples.md](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/Alternative%20Schema/alternative_schema_examples.md)
+Examples of the use of the Alternative Schema capability is added to the OpenAPI specification. The proposed changes to the OpenAPI specification are provided in [alternative_schema_examples.md](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/Alternative%20Schema/alternative_schema_examples.md)
 
 ### Alternative Schema Registry
 

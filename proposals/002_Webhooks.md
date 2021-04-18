@@ -5,7 +5,7 @@
 
 |Tag |Value |
 |---- | ---------------- |
-|Proposal |[002_Webhooks](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/002_webhooks.md)|
+|Proposal |[002_Webhooks](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/002_webhooks.md)|
 |Authors|[Lorna Mitchell](https://github.com/lornajane)|
 |Review Manager |TBD |
 |Status |Proposal|

@@ -4,7 +4,7 @@
 
 |Tag |Value |
 |---- | ---------------- |
-|Proposal |[004_Overlays](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/004_overlays.md)|
+|Proposal |[004_Overlays](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/004_overlays.md)|
 |Authors|[Darrel Miller](https://github.com/darrelmiller)|
 |Status |Proposal|
 |Issues |[1442](https://github.com/OAI/OpenAPI-Specification/issues/1442) [1722](https://github.com/OAI/OpenAPI-Specification/issues/1722)|

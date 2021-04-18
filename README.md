@@ -38,7 +38,7 @@ Looking to see how you can create your own OpenAPI definition, present it, or ot
 
 The current process for development of the OpenAPI Specification is described in 
 [Development Guidelines](DEVELOPMENT.md).
-Development of the next version of the OpenAPI Specification is guided by the [Technical Steering Committee (TSC)](https://www.openapis.org/participate/how-to-contribute/governance#TDC). This group of committers bring their API expertise, incorporate feedback from the community, and expand the group of committers as appropriate. All development activity on the future specification will be performed as features and merged into this branch. Upon release of the future specification, this branch will be merged to master.
+Development of the next version of the OpenAPI Specification is guided by the [Technical Steering Committee (TSC)](https://www.openapis.org/participate/how-to-contribute/governance#TDC). This group of committers bring their API expertise, incorporate feedback from the community, and expand the group of committers as appropriate. All development activity on the future specification will be performed as features and merged into this branch. Upon release of the future specification, this branch will be merged to `main`.
 
 The TSC holds weekly web conferences to review open pull requests and discuss open issues related to the evolving OpenAPI Specification. Participation in weekly calls and scheduled working sessions is open to the community. You can view the [TSC calendar online](https://openapi.groups.io/g/tsc/calendar), and import it to your calendar using the [iCal link](https://openapi.groups.io/g/tsc/ics/1105671/1995679554/feed.ics).
 
@@ -53,6 +53,6 @@ Not all feedback can be accommodated and there may be solid arguments for or aga
 
 ## Licensing
 
-See: [License (Apache-2.0)](https://github.com/OAI/OpenAPI-Specification/blob/master/LICENSE)
+See: [License (Apache-2.0)](https://github.com/OAI/OpenAPI-Specification/blob/main/LICENSE)
 
 ![Analytics](https://ga-beacon.appspot.com/UA-831873-42/readme.md?pixel)

@@ -228,7 +228,7 @@ for (let l in lines) {
         line = line.replace('"></a>','"> </a>');
     }
 
-    line = line.split('\\|').join('&brvbar;');
+    line = line.split('\\|').join('&#124;'); // was &brvbar
 
     if (!inCodeBlock) {
 
@@ -305,6 +305,6 @@ s = preface('OpenAPI Specification',argv)+'\n\n'+lines.join('\n');
 let out = md.render(s);
 out = out.replace(/\[([RGB])\]/g,function(match,group1){
     console.warn('Fixing',match,group1);
-    return '\\'+group1;
+    return '&#91;'+group1+'&#93;';
 });
 console.log(out);

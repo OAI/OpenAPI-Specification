@@ -5,7 +5,7 @@
 
 |Tag |Value |
 |---- | ---------------- |
-|Proposal |[003](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/003_Clarify-Nullable.md)|
+|Proposal |[003](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/003_Clarify-Nullable.md)|
 |Authors|[Ted Epstein](https://github.com/tedepstein)|
 |Review Manager |TBD|
 |Status |Proposal|

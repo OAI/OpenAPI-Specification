@@ -1,7 +1,13 @@
 #!/bin/sh
+
+# run this script from the root of the repo
+
 mkdir -p deploy/oas
 mkdir -p deploy/js
+
 cd scripts/md2html
+mkdir -p history
+git show c740e950d:MAINTAINERS.md > history/MAINTAINERS_v2.0.md
 cp -p js/* ../../deploy/js
 cp -p markdown/* ../../deploy/
 

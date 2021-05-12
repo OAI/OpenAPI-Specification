@@ -42,7 +42,7 @@ const md = require('markdown-it')({
       if (lang && hljs.getLanguage(lang)) { // && !argv.respec) {
           try {
               return '<pre class="nohighlight"><code>' +
-                  hljs.highlight(lang, str, true).value +
+                  hljs.highlight(str, { language: lang }).value +
                   '</code></pre>';
           } catch (__) { }
       }

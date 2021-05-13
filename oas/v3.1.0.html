@@ -162,7 +162,7 @@ Unless specified otherwise, relative references are resolved using the URLs defi
 </tr>
 <tr>
 <td><a id="oasWebhooks"> </a>webhooks</td>
-<td style="text-align:center">Map[<code>string</code>, <a href="#pathItemObject">Path Item Object</a> ¦ <a href="#referenceObject">Reference Object</a>] ]</td>
+<td style="text-align:center">Map[<code>string</code>, <a href="#pathItemObject">Path Item Object</a> | <a href="#referenceObject">Reference Object</a>] ]</td>
 <td>The incoming webhooks that MAY be received as part of this API and that the API consumer MAY choose to implement. Closely related to the <code>callbacks</code> feature, this section describes requests initiated other than by an API call, for example by an out of band registration. The key name is a unique string to refer to each webhook, while the (optionally referenced) Path Item Object describes a request that may be initiated by the API provider and the expected responses. An <a href="https://github.com/OAI/OpenAPI-Specification/tree/master/examples/v3.1/webhook-example.yaml">example</a> is available.</td>
 </tr>
 <tr>
@@ -521,47 +521,47 @@ All objects defined within the components object will have no effect on the API 
 </tr>
 <tr>
 <td><a id="componentsResponses"> </a> responses</td>
-<td style="text-align:left">Map[<code>string</code>, <a href="#responseObject">Response Object</a> ¦ <a href="#referenceObject">Reference Object</a>]</td>
+<td style="text-align:left">Map[<code>string</code>, <a href="#responseObject">Response Object</a> | <a href="#referenceObject">Reference Object</a>]</td>
 <td>An object to hold reusable <a href="#responseObject">Response Objects</a>.</td>
 </tr>
 <tr>
 <td><a id="componentsParameters"> </a> parameters</td>
-<td style="text-align:left">Map[<code>string</code>, <a href="#parameterObject">Parameter Object</a> ¦ <a href="#referenceObject">Reference Object</a>]</td>
+<td style="text-align:left">Map[<code>string</code>, <a href="#parameterObject">Parameter Object</a> | <a href="#referenceObject">Reference Object</a>]</td>
 <td>An object to hold reusable <a href="#parameterObject">Parameter Objects</a>.</td>
 </tr>
 <tr>
 <td><a id="componentsExamples"> </a> examples</td>
-<td style="text-align:left">Map[<code>string</code>, <a href="#exampleObject">Example Object</a> ¦ <a href="#referenceObject">Reference Object</a>]</td>
+<td style="text-align:left">Map[<code>string</code>, <a href="#exampleObject">Example Object</a> | <a href="#referenceObject">Reference Object</a>]</td>
 <td>An object to hold reusable <a href="#exampleObject">Example Objects</a>.</td>
 </tr>
 <tr>
 <td><a id="componentsRequestBodies"> </a> requestBodies</td>
-<td style="text-align:left">Map[<code>string</code>, <a href="#requestBodyObject">Request Body Object</a> ¦ <a href="#referenceObject">Reference Object</a>]</td>
+<td style="text-align:left">Map[<code>string</code>, <a href="#requestBodyObject">Request Body Object</a> | <a href="#referenceObject">Reference Object</a>]</td>
 <td>An object to hold reusable <a href="#requestBodyObject">Request Body Objects</a>.</td>
 </tr>
 <tr>
 <td><a id="componentsHeaders"> </a> headers</td>
-<td style="text-align:left">Map[<code>string</code>, <a href="#headerObject">Header Object</a> ¦ <a href="#referenceObject">Reference Object</a>]</td>
+<td style="text-align:left">Map[<code>string</code>, <a href="#headerObject">Header Object</a> | <a href="#referenceObject">Reference Object</a>]</td>
 <td>An object to hold reusable <a href="#headerObject">Header Objects</a>.</td>
 </tr>
 <tr>
 <td><a id="componentsSecuritySchemes"> </a> securitySchemes</td>
-<td style="text-align:left">Map[<code>string</code>, <a href="#securitySchemeObject">Security Scheme Object</a> ¦ <a href="#referenceObject">Reference Object</a>]</td>
+<td style="text-align:left">Map[<code>string</code>, <a href="#securitySchemeObject">Security Scheme Object</a> | <a href="#referenceObject">Reference Object</a>]</td>
 <td>An object to hold reusable <a href="#securitySchemeObject">Security Scheme Objects</a>.</td>
 </tr>
 <tr>
 <td><a id="componentsLinks"> </a> links</td>
-<td style="text-align:left">Map[<code>string</code>, <a href="#linkObject">Link Object</a> ¦ <a href="#referenceObject">Reference Object</a>]</td>
+<td style="text-align:left">Map[<code>string</code>, <a href="#linkObject">Link Object</a> | <a href="#referenceObject">Reference Object</a>]</td>
 <td>An object to hold reusable <a href="#linkObject">Link Objects</a>.</td>
 </tr>
 <tr>
 <td><a id="componentsCallbacks"> </a> callbacks</td>
-<td style="text-align:left">Map[<code>string</code>, <a href="#callbackObject">Callback Object</a> ¦ <a href="#referenceObject">Reference Object</a>]</td>
+<td style="text-align:left">Map[<code>string</code>, <a href="#callbackObject">Callback Object</a> | <a href="#referenceObject">Reference Object</a>]</td>
 <td>An object to hold reusable <a href="#callbackObject">Callback Objects</a>.</td>
 </tr>
 <tr>
 <td><a id="componentsPathItems"> </a> pathItems</td>
-<td style="text-align:left">Map[<code>string</code>, <a href="#pathItemObject">Path Item Object</a> ¦ <a href="#referenceObject">Reference Object</a>]</td>
+<td style="text-align:left">Map[<code>string</code>, <a href="#pathItemObject">Path Item Object</a> | <a href="#referenceObject">Reference Object</a>]</td>
 <td>An object to hold reusable <a href="#pathItemObject">Path Item Object</a>.</td>
 </tr>
 </tbody>
@@ -578,99 +578,99 @@ my.org.User
 </code></pre>
 </section><section><h4>Components Object Example</h4>
 <pre class="nohighlight"><code>
-<span class="hljs-string">&quot;components&quot;</span>: {
-  <span class="hljs-attr">&quot;schemas&quot;</span>: {
-    <span class="hljs-attr">&quot;GeneralError&quot;</span>: {
-      <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
-      <span class="hljs-attr">&quot;properties&quot;</span>: {
-        <span class="hljs-attr">&quot;code&quot;</span>: {
-          <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
-          <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;int32&quot;</span>
+&quot;components&quot;: {
+  &quot;schemas&quot;: {
+    &quot;GeneralError&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;code&quot;: {
+          &quot;type&quot;: &quot;integer&quot;,
+          &quot;format&quot;: &quot;int32&quot;
         },
-        <span class="hljs-attr">&quot;message&quot;</span>: {
-          <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+        &quot;message&quot;: {
+          &quot;type&quot;: &quot;string&quot;
         }
       }
     },
-    <span class="hljs-attr">&quot;Category&quot;</span>: {
-      <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
-      <span class="hljs-attr">&quot;properties&quot;</span>: {
-        <span class="hljs-attr">&quot;id&quot;</span>: {
-          <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
-          <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;int64&quot;</span>
+    &quot;Category&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;id&quot;: {
+          &quot;type&quot;: &quot;integer&quot;,
+          &quot;format&quot;: &quot;int64&quot;
         },
-        <span class="hljs-attr">&quot;name&quot;</span>: {
-          <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;string&quot;
         }
       }
     },
-    <span class="hljs-attr">&quot;Tag&quot;</span>: {
-      <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
-      <span class="hljs-attr">&quot;properties&quot;</span>: {
-        <span class="hljs-attr">&quot;id&quot;</span>: {
-          <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
-          <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;int64&quot;</span>
+    &quot;Tag&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;id&quot;: {
+          &quot;type&quot;: &quot;integer&quot;,
+          &quot;format&quot;: &quot;int64&quot;
         },
-        <span class="hljs-attr">&quot;name&quot;</span>: {
-          <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;string&quot;
         }
       }
     }
   },
-  <span class="hljs-attr">&quot;parameters&quot;</span>: {
-    <span class="hljs-attr">&quot;skipParam&quot;</span>: {
-      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;skip&quot;</span>,
-      <span class="hljs-attr">&quot;in&quot;</span>: <span class="hljs-string">&quot;query&quot;</span>,
-      <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;number of items to skip&quot;</span>,
-      <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-literal">true</span>,
-      <span class="hljs-attr">&quot;schema&quot;</span>: {
-        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
-        <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;int32&quot;</span>
+  &quot;parameters&quot;: {
+    &quot;skipParam&quot;: {
+      &quot;name&quot;: &quot;skip&quot;,
+      &quot;in&quot;: &quot;query&quot;,
+      &quot;description&quot;: &quot;number of items to skip&quot;,
+      &quot;required&quot;: true,
+      &quot;schema&quot;: {
+        &quot;type&quot;: &quot;integer&quot;,
+        &quot;format&quot;: &quot;int32&quot;
       }
     },
-    <span class="hljs-attr">&quot;limitParam&quot;</span>: {
-      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;limit&quot;</span>,
-      <span class="hljs-attr">&quot;in&quot;</span>: <span class="hljs-string">&quot;query&quot;</span>,
-      <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;max records to return&quot;</span>,
-      <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-literal">true</span>,
-      <span class="hljs-attr">&quot;schema&quot;</span> : {
-        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
-        <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;int32&quot;</span>
+    &quot;limitParam&quot;: {
+      &quot;name&quot;: &quot;limit&quot;,
+      &quot;in&quot;: &quot;query&quot;,
+      &quot;description&quot;: &quot;max records to return&quot;,
+      &quot;required&quot;: true,
+      &quot;schema&quot; : {
+        &quot;type&quot;: &quot;integer&quot;,
+        &quot;format&quot;: &quot;int32&quot;
       }
     }
   },
-  <span class="hljs-attr">&quot;responses&quot;</span>: {
-    <span class="hljs-attr">&quot;NotFound&quot;</span>: {
-      <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;Entity not found.&quot;</span>
+  &quot;responses&quot;: {
+    &quot;NotFound&quot;: {
+      &quot;description&quot;: &quot;Entity not found.&quot;
     },
-    <span class="hljs-attr">&quot;IllegalInput&quot;</span>: {
-      <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;Illegal input for operation.&quot;</span>
+    &quot;IllegalInput&quot;: {
+      &quot;description&quot;: &quot;Illegal input for operation.&quot;
     },
-    <span class="hljs-attr">&quot;GeneralError&quot;</span>: {
-      <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;General Error&quot;</span>,
-      <span class="hljs-attr">&quot;content&quot;</span>: {
-        <span class="hljs-attr">&quot;application/json&quot;</span>: {
-          <span class="hljs-attr">&quot;schema&quot;</span>: {
-            <span class="hljs-attr">&quot;$ref&quot;</span>: <span class="hljs-string">&quot;#/components/schemas/GeneralError&quot;</span>
+    &quot;GeneralError&quot;: {
+      &quot;description&quot;: &quot;General Error&quot;,
+      &quot;content&quot;: {
+        &quot;application/json&quot;: {
+          &quot;schema&quot;: {
+            &quot;$ref&quot;: &quot;#/components/schemas/GeneralError&quot;
           }
         }
       }
     }
   },
-  <span class="hljs-attr">&quot;securitySchemes&quot;</span>: {
-    <span class="hljs-attr">&quot;api_key&quot;</span>: {
-      <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;apiKey&quot;</span>,
-      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;api_key&quot;</span>,
-      <span class="hljs-attr">&quot;in&quot;</span>: <span class="hljs-string">&quot;header&quot;</span>
+  &quot;securitySchemes&quot;: {
+    &quot;api_key&quot;: {
+      &quot;type&quot;: &quot;apiKey&quot;,
+      &quot;name&quot;: &quot;api_key&quot;,
+      &quot;in&quot;: &quot;header&quot;
     },
-    <span class="hljs-attr">&quot;petstore_auth&quot;</span>: {
-      <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;oauth2&quot;</span>,
-      <span class="hljs-attr">&quot;flows&quot;</span>: {
-        <span class="hljs-attr">&quot;implicit&quot;</span>: {
-          <span class="hljs-attr">&quot;authorizationUrl&quot;</span>: <span class="hljs-string">&quot;https://example.org/api/oauth/dialog&quot;</span>,
-          <span class="hljs-attr">&quot;scopes&quot;</span>: {
-            <span class="hljs-attr">&quot;write:pets&quot;</span>: <span class="hljs-string">&quot;modify pets in your account&quot;</span>,
-            <span class="hljs-attr">&quot;read:pets&quot;</span>: <span class="hljs-string">&quot;read your pets&quot;</span>
+    &quot;petstore_auth&quot;: {
+      &quot;type&quot;: &quot;oauth2&quot;,
+      &quot;flows&quot;: {
+        &quot;implicit&quot;: {
+          &quot;authorizationUrl&quot;: &quot;https://example.org/api/oauth/dialog&quot;,
+          &quot;scopes&quot;: {
+            &quot;write:pets&quot;: &quot;modify pets in your account&quot;,
+            &quot;read:pets&quot;: &quot;read your pets&quot;
           }
         }
       }
@@ -899,7 +899,7 @@ The path itself is still exposed to the documentation viewer but they will not k
 </tr>
 <tr>
 <td><a id="pathItemParameters"> </a>parameters</td>
-<td style="text-align:center">[<a href="#parameterObject">Parameter Object</a> ¦ <a href="#referenceObject">Reference Object</a>]</td>
+<td style="text-align:center">[<a href="#parameterObject">Parameter Object</a> | <a href="#referenceObject">Reference Object</a>]</td>
 <td>A list of parameters that are applicable for all the operations described under this path. These parameters can be overridden at the operation level, but cannot be removed there. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a <a href="#parameterName">name</a> and <a href="#parameterIn">location</a>. The list can use the <a href="#referenceObject">Reference Object</a> to link to parameters that are defined at the <a href="#componentsParameters">OpenAPI Object’s components/parameters</a>.</td>
 </tr>
 </tbody>
@@ -1025,12 +1025,12 @@ The path itself is still exposed to the documentation viewer but they will not k
 </tr>
 <tr>
 <td><a id="operationParameters"> </a>parameters</td>
-<td style="text-align:center">[<a href="#parameterObject">Parameter Object</a> ¦ <a href="#referenceObject">Reference Object</a>]</td>
+<td style="text-align:center">[<a href="#parameterObject">Parameter Object</a> | <a href="#referenceObject">Reference Object</a>]</td>
 <td>A list of parameters that are applicable for this operation. If a parameter is already defined at the <a href="#pathItemParameters">Path Item</a>, the new definition will override it but can never remove it. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a <a href="#parameterName">name</a> and <a href="#parameterIn">location</a>. The list can use the <a href="#referenceObject">Reference Object</a> to link to parameters that are defined at the <a href="#componentsParameters">OpenAPI Object’s components/parameters</a>.</td>
 </tr>
 <tr>
 <td><a id="operationRequestBody"> </a>requestBody</td>
-<td style="text-align:center"><a href="#requestBodyObject">Request Body Object</a> ¦ <a href="#referenceObject">Reference Object</a></td>
+<td style="text-align:center"><a href="#requestBodyObject">Request Body Object</a> | <a href="#referenceObject">Reference Object</a></td>
 <td>The request body applicable for this operation.  The <code>requestBody</code> is fully supported in HTTP methods where the HTTP 1.1 specification [[!RFC7231]] has explicitly defined semantics for request bodies.  In other cases where the HTTP spec is vague (such as [GET]section-4.3.1), [HEAD]section-4.3.2) and [DELETE]section-4.3.5)), <code>requestBody</code> is permitted but does not have well-defined semantics and SHOULD be avoided if possible.</td>
 </tr>
 <tr>
@@ -1040,7 +1040,7 @@ The path itself is still exposed to the documentation viewer but they will not k
 </tr>
 <tr>
 <td><a id="operationCallbacks"> </a>callbacks</td>
-<td style="text-align:center">Map[<code>string</code>, <a href="#callbackObject">Callback Object</a> ¦ <a href="#referenceObject">Reference Object</a>]</td>
+<td style="text-align:center">Map[<code>string</code>, <a href="#callbackObject">Callback Object</a> | <a href="#referenceObject">Reference Object</a>]</td>
 <td>A map of possible out-of band callbacks related to the parent operation. The key is a unique identifier for the Callback Object. Each value in the map is a <a href="#callbackObject">Callback Object</a> that describes a request that may be initiated by the API provider and the expected responses.</td>
 </tr>
 <tr>
@@ -1295,7 +1295,7 @@ For simpler scenarios, a <a href="#parameterSchema"><code>schema</code></a> and 
 </tr>
 <tr>
 <td><a id="parameterExamples"> </a>examples</td>
-<td style="text-align:center">Map[ <code>string</code>, <a href="#exampleObject">Example Object</a> ¦ <a href="#referenceObject">Reference Object</a>]</td>
+<td style="text-align:center">Map[ <code>string</code>, <a href="#exampleObject">Example Object</a> | <a href="#referenceObject">Reference Object</a>]</td>
 <td>Examples of the parameter’s potential value. Each example SHOULD contain a value in the correct format as specified in the parameter encoding. The <code>examples</code> field is mutually exclusive of the <code>example</code> field. Furthermore, if referencing a <code>schema</code> that contains an example, the <code>examples</code> value SHALL <em>override</em> the example provided by the schema.</td>
 </tr>
 </tbody>
@@ -1472,8 +1472,8 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 <td>false</td>
 <td>n/a</td>
 <td>n/a</td>
-<td>blue¦black¦brown</td>
-<td>R¦100¦G¦200¦B¦150</td>
+<td>blue|black|brown</td>
+<td>R|100|G|200|B|150</td>
 </tr>
 <tr>
 <td>deepObject</td>
@@ -1481,7 +1481,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 <td>n/a</td>
 <td>n/a</td>
 <td>n/a</td>
-<td>color\R=100&amp;color\G=200&amp;color\B=150</td>
+<td>color&#91;R&#93;=100&amp;color&#91;G&#93;=200&amp;color&#91;B&#93;=150</td>
 </tr>
 </tbody>
 </table>
@@ -1786,7 +1786,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 </tr>
 <tr>
 <td><a id="mediaTypeExamples"> </a>examples</td>
-<td style="text-align:center">Map[ <code>string</code>, <a href="#exampleObject">Example Object</a> ¦ <a href="#referenceObject">Reference Object</a>]</td>
+<td style="text-align:center">Map[ <code>string</code>, <a href="#exampleObject">Example Object</a> | <a href="#referenceObject">Reference Object</a>]</td>
 <td>Examples of the media type.  Each example object SHOULD  match the media type and specified schema if present.  The <code>examples</code> field is mutually exclusive of the <code>example</code> field.  Furthermore, if referencing a <code>schema</code> which contains an example, the <code>examples</code> value SHALL <em>override</em> the example provided by the schema.</td>
 </tr>
 <tr>
@@ -1994,7 +1994,7 @@ definition may be used:</p>
 </tr>
 <tr>
 <td><a id="encodingHeaders"> </a>headers</td>
-<td style="text-align:center">Map[<code>string</code>, <a href="#headerObject">Header Object</a> ¦ <a href="#referenceObject">Reference Object</a>]</td>
+<td style="text-align:center">Map[<code>string</code>, <a href="#headerObject">Header Object</a> | <a href="#referenceObject">Reference Object</a>]</td>
 <td>A map allowing additional information to be provided as headers, for example <code>Content-Disposition</code>.  <code>Content-Type</code> is described separately and SHALL be ignored in this section. This property SHALL be ignored if the request body media type is not a <code>multipart</code>.</td>
 </tr>
 <tr>
@@ -2072,7 +2072,7 @@ call.</p>
 <tbody>
 <tr>
 <td><a id="responsesDefault"> </a>default</td>
-<td style="text-align:center"><a href="#responseObject">Response Object</a> ¦ <a href="#referenceObject">Reference Object</a></td>
+<td style="text-align:center"><a href="#responseObject">Response Object</a> | <a href="#referenceObject">Reference Object</a></td>
 <td>The documentation of responses other than the ones declared for specific HTTP response codes. Use this field to cover undeclared responses.</td>
 </tr>
 </tbody>
@@ -2089,7 +2089,7 @@ call.</p>
 <tbody>
 <tr>
 <td><a id="responsesCode"> </a><a href="#httpCodes">HTTP Status Code</a></td>
-<td style="text-align:center"><a href="#responseObject">Response Object</a> ¦ <a href="#referenceObject">Reference Object</a></td>
+<td style="text-align:center"><a href="#responseObject">Response Object</a> | <a href="#referenceObject">Reference Object</a></td>
 <td>Any <a href="#httpCodes">HTTP status code</a> can be used as the property name, but only one property per code, to describe the expected response for that HTTP status code. This field MUST be enclosed in quotation marks (for example, “200”) for compatibility between JSON and YAML. To define a range of response codes, this field MAY contain the uppercase wildcard character <code>X</code>. For example, <code>2XX</code> represents all response codes between <code>[200-299]</code>. Only the following range definitions are allowed: <code>1XX</code>, <code>2XX</code>, <code>3XX</code>, <code>4XX</code>, and <code>5XX</code>. If a response is defined using an explicit code, the explicit code definition takes precedence over the range definition for that code.</td>
 </tr>
 </tbody>
@@ -2155,7 +2155,7 @@ call.</p>
 </tr>
 <tr>
 <td><a id="responseHeaders"> </a>headers</td>
-<td style="text-align:center">Map[<code>string</code>, <a href="#headerObject">Header Object</a>  ¦ <a href="#referenceObject">Reference Object</a>]</td>
+<td style="text-align:center">Map[<code>string</code>, <a href="#headerObject">Header Object</a>  | <a href="#referenceObject">Reference Object</a>]</td>
 <td>Maps a header name to its definition. [[!RFC7230]] states header names are case insensitive. If a response header is defined with the name <code>&quot;Content-Type&quot;</code>, it SHALL be ignored.</td>
 </tr>
 <tr>
@@ -2165,7 +2165,7 @@ call.</p>
 </tr>
 <tr>
 <td><a id="responseLinks"> </a>links</td>
-<td style="text-align:center">Map[<code>string</code>, <a href="#linkObject">Link Object</a> ¦ <a href="#referenceObject">Reference Object</a>]</td>
+<td style="text-align:center">Map[<code>string</code>, <a href="#linkObject">Link Object</a> | <a href="#referenceObject">Reference Object</a>]</td>
 <td>A map of operations links that can be followed from the response. The key of the map is a short name for the link, following the naming constraints of the names for <a href="#componentsObject">Component Objects</a>.</td>
 </tr>
 </tbody>
@@ -2299,7 +2299,7 @@ The key value used to identify the path item object is an expression, evaluated 
 <tbody>
 <tr>
 <td><a id="callbackExpression"> </a>{expression}</td>
-<td style="text-align:center"><a href="#pathItemObject">Path Item Object</a> ¦ <a href="#referenceObject">Reference Object</a></td>
+<td style="text-align:center"><a href="#pathItemObject">Path Item Object</a> | <a href="#referenceObject">Reference Object</a></td>
 <td>A Path Item Object, or a reference to one, used to define a callback request and expected responses.  A <a href="https://github.com/OAI/OpenAPI-Specification/tree/master/examples/v3.0/callback-example.yaml">complete example</a> is available.</td>
 </tr>
 </tbody>
@@ -2518,12 +2518,12 @@ The presence of a link does not guarantee the caller’s ability to successfully
 </tr>
 <tr>
 <td><a id="linkParameters"> </a>parameters</td>
-<td style="text-align:center">Map[<code>string</code>, Any ¦ <a href="#runtimeExpression">{expression}</a>]</td>
+<td style="text-align:center">Map[<code>string</code>, Any | <a href="#runtimeExpression">{expression}</a>]</td>
 <td>A map representing parameters to pass to an operation as specified with <code>operationId</code> or identified via <code>operationRef</code>. The key is the parameter name to be used, whereas the value can be a constant or an expression to be evaluated and passed to the linked operation.  The parameter name can be qualified using the <a href="#parameterIn">parameter location</a> <code>[{in}.]{name}</code> for operations that use the same parameter name in different locations (e.g. <a href="http://path.id">path.id</a>).</td>
 </tr>
 <tr>
 <td><a id="linkRequestBody"> </a>requestBody</td>
-<td style="text-align:center">Any ¦ <a href="#runtimeExpression">{expression}</a></td>
+<td style="text-align:center">Any | <a href="#runtimeExpression">{expression}</a></td>
 <td>A literal value or <a href="#runtimeExpression">{expression}</a> to use as a request body when calling the target operation.</td>
 </tr>
 <tr>

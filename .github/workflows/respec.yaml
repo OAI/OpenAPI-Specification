@@ -1,0 +1,55 @@
+name: respec
+
+# author: @MikeRalphson
+# issue: https://github.com/OAI/OpenAPI-Specification/issues/1564
+
+#
+# This workflow updates the respec 'pretty' rendered versions of the spec 
+# on the gh-pages branch when the corresponding markdown files change.
+#
+
+# run this on push to main
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+jobs:
+  respec:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2 # checkout main branch
+
+    - name: Install dependencies
+      run: npm i
+
+    - uses: actions/checkout@v2 # checkout gh-pages branch
+      with:
+        ref: gh-pages
+        path: deploy
+
+    - name: run main script
+      run: scripts/md2html/build.sh
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch: update-respec-version
+        base: gh-pages
+        delete-branch: true
+        path: deploy
+        labels: Housekeeping
+        reviewers: webron,darrelmiller
+        title: Update ReSpec versions
+        commit-message: Update ReSpec versions
+        signoff: true
+        body: |
+          This pull request is automatically triggered by GitHub action `respec`.
+
+          The versions/v*.md files have changed, so the HTML files are automatically being regenerated.
+
+

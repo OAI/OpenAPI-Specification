@@ -1,8 +1,6 @@
-/* bikeshed claims to support markdown syntax, but not (yet) commonmark.
-ReSpec supports markdown formatting, but this shows up on the page before being rendered
+/* ReSpec supports markdown formatting, but this shows up on the page before being rendered
 Hence we render the markdown to HTML ourselves, this gives us
-complete control over formatting and syntax highlighting (where
-highlight.js does a better job than bikeshed's Pygments) */
+complete control over formatting and syntax highlighting */
 
 'use strict';
 
@@ -19,9 +17,6 @@ const hljs = require('highlight.js');
 const cheerio = require('cheerio');
 
 let argv = require('yargs')
-    .boolean('bikeshed')
-    .alias('b','bikeshed')
-    .describe('bikeshed','Output in bikeshed format')
     .boolean('respec')
     .alias('r','respec')
     .describe('respec','Output in respec format')
@@ -121,15 +116,24 @@ function doMaintainers() {
 }
 
 function getPublishDate(m) {
+    let result = new Date();
     let h = md.render(m);
     let $ = cheerio.load(h);
-    let t = $('tbody').last();
-    let c = $(t).children('tr').children('td');
-    let v = $(c[0]).text();
-    let d = $(c[1]).text();
-    argv.subtitle = v;
-    if (d === 'TBA') return new Date();
-    return new Date(d);
+    $('table').each(function(i,table){
+        const h = $(table).find('th');
+        const headers = [];
+        $(h).each(function(i,header){
+            headers.push($(header).text());
+        });
+        if (headers.length >= 2 && headers[0] === 'Version' && headers[1] === 'Date') {
+            let c = $(table).find('tr').find('td');
+            let v = $(c[0]).text();
+            let d = $(c[1]).text();
+            argv.subtitle = v;
+            if (d !== 'TBA') result = new Date(d);
+        }
+    });
+    return result;
 }
 
 if (argv.maintainers) {
@@ -178,8 +182,6 @@ for (let l in lines) {
         let originalIndent = indent;
 
         let prevIndent = indents[indents.length-1]; // peek
-
-        /* bikeshed is a bit of a pita when it comes to header nesting */
         let delta = indent-prevIndent;
 
         if (!argv.respec) {

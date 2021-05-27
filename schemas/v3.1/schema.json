@@ -1,5 +1,5 @@
 {
-  "$id": "https://spec.openapis.org/oas/3.1/schema/2021-04-15",
+  "$id": "https://spec.openapis.org/oas/3.1/schema/2021-05-20",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
@@ -11,7 +11,8 @@
       "$ref": "#/$defs/info"
     },
     "jsonSchemaDialect": {
-      "$ref": "#/$defs/uri",
+      "type": "string",
+      "format": "uri",
       "default": "https://spec.openapis.org/oas/3.1/dialect/base"
     },
     "servers": {
@@ -130,7 +131,8 @@
           "type": "string"
         },
         "url": {
-          "$ref": "#/$defs/uri"
+          "type": "string",
+          "format": "uri"
         }
       },
       "required": [
@@ -155,7 +157,8 @@
       "type": "object",
       "properties": {
         "url": {
-          "$ref": "#/$defs/uri"
+          "type": "string",
+          "format": "uri-reference"
         },
         "description": {
           "type": "string"
@@ -390,7 +393,8 @@
           "type": "string"
         },
         "url": {
-          "$ref": "#/$defs/uri"
+          "type": "string",
+          "format": "uri"
         }
       },
       "required": [
@@ -849,7 +853,8 @@
         },
         "value": true,
         "externalValue": {
-          "$ref": "#/$defs/uri"
+          "type": "string",
+          "format": "uri"
         }
       },
       "$ref": "#/$defs/specification-extensions",
@@ -872,7 +877,8 @@
       "type": "object",
       "properties": {
         "operationRef": {
-          "$ref": "#/$defs/uri"
+          "type": "string",
+          "format": "uri-reference"
         },
         "operationId": true,
         "parameters": {
@@ -1003,7 +1009,8 @@
       "type": "object",
       "properties": {
         "$ref": {
-          "$ref": "#/$defs/uri"
+          "type": "string",
+          "format": "uri-reference"
         },
         "summary": {
           "type": "string"
@@ -1176,7 +1183,8 @@
           "then": {
             "properties": {
               "openIdConnectUrl": {
-                "$ref": "#/$defs/uri"
+                "type": "string",
+                "format": "uri"
               }
             },
             "required": [
@@ -1328,10 +1336,6 @@
           }
         }
       }
-    },
-    "uri": {
-      "type": "string",
-      "format": "uri"
     },
     "map-of-strings": {
       "type": "object",

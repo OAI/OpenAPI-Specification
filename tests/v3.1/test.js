@@ -14,7 +14,7 @@ before(async () => {
   JsonSchema.add(dialect);
   JsonSchema.add(vocabulary);
   JsonSchema.add(yaml.parse(fs.readFileSync(`${__dirname}/../../schemas/v3.1/schema.yaml`, "utf8"), { prettyErrors: true }));
-  metaSchema = await JsonSchema.get("https://spec.openapis.org/oas/3.1/schema/2021-03-02");
+  metaSchema = await JsonSchema.get("https://spec.openapis.org/oas/3.1/schema/2021-05-20");
 });
 
 describe("Pass", () => {

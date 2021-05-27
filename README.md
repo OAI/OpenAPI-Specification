@@ -1,6 +1,6 @@
 # The OpenAPI Specification
 
-![Build Status](https://github.com/OAI/OpenAPI-Specification/workflows/validate-markdown/badge.svg)
+![Build Status](https://github.com/OAI/OpenAPI-Specification/workflows/validate-markdown/badge.svg) [![Issue triagers](https://www.codetriage.com/oai/openapi-specification/badges/users.svg)](https://www.codetriage.com/oai/openapi-specification)
 
 ![](https://avatars3.githubusercontent.com/u/16343502?v=3&s=200)
 
@@ -47,6 +47,7 @@ The OpenAPI Initiative encourages participation from individuals and companies a
 * Review the [current specification](versions/3.1.0.md). The human-readable markdown file _is the source of truth_ for the specification.
 * Review the [development](DEVELOPMENT.md) process so you understand how the spec is evolving.
 * Check the [issues](https://github.com/OAI/OpenAPI-Specification/issues) and [pull requests](https://github.com/OAI/OpenAPI-Specification/pulls) to see if someone has already documented your idea or feedback on the specification. You can follow an existing conversation by subscribing to the existing issue or PR.
+* Subscribe to an open issue a day (or a week) in your inbox via [CodeTriage.com](https://www.codetriage.com/oai/openapi-specification).
 * Create an issue to describe a new concern. If possible, propose a solution.
 
 Not all feedback can be accommodated and there may be solid arguments for or against a change being appropriate for the specification.

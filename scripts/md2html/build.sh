@@ -14,6 +14,7 @@ cp -p markdown/* ../../deploy/ 2> /dev/null
 node md2html.js --respec --maintainers ./history/MAINTAINERS_v2.0.md ../../versions/2.0.md > ../../deploy/oas/v2.0.html
 
 latest=`git describe --abbrev=0 --tags`
+latestCopied=none
 for filename in ../../versions/[3456789].*.md ; do
   version=$(basename "$filename" .md)
   node md2html.js --respec --maintainers ../../MAINTAINERS.md ${filename} > ../../deploy/oas/v$version.html
@@ -21,7 +22,9 @@ for filename in ../../versions/[3456789].*.md ; do
     if [[ ${version} != *"rc"* ]];then
       # version is not a Release Candidate
       cp -p ../../deploy/oas/v$version.html ../../deploy/oas/latest.html
+      latestCopied=v$version
     fi
   fi
 done
+echo Latest tag is $latest, copied $latestCopied to latest.html
 

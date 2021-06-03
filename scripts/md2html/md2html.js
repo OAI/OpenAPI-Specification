@@ -1,8 +1,6 @@
-/* bikeshed claims to support markdown syntax, but not (yet) commonmark.
-ReSpec supports markdown formatting, but this shows up on the page before being rendered
+/* ReSpec supports markdown formatting, but this shows up on the page before being rendered
 Hence we render the markdown to HTML ourselves, this gives us
-complete control over formatting and syntax highlighting (where
-highlight.js does a better job than bikeshed's Pygments) */
+complete control over formatting and syntax highlighting */
 
 'use strict';
 
@@ -19,9 +17,6 @@ const hljs = require('highlight.js');
 const cheerio = require('cheerio');
 
 let argv = require('yargs')
-    .boolean('bikeshed')
-    .alias('b','bikeshed')
-    .describe('bikeshed','Output in bikeshed format')
     .boolean('respec')
     .alias('r','respec')
     .describe('respec','Output in respec format')
@@ -72,6 +67,11 @@ function preface(title,options) {
     };
 
     let preface = `<html lang="en"><head><meta charset="UTF-8"><title>${md.utils.escapeHtml(title)}</title>`;
+
+    // SEO
+    preface += '<meta name="description" content="The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs.">';
+    preface += '<link rel="canonical" href="https://spec.openapis.org/oas/latest.html" />';
+
     if (options.respec) {
         preface += '<script src="https://spec.openapis.org/js/respec-oai.js" class="remove"></script>';
         preface += `<script class="remove">var respecConfig = ${JSON.stringify(respec)};</script>`;
@@ -91,7 +91,7 @@ function preface(title,options) {
         preface += fs.readFileSync(path.resolve(__dirname,'gist.css'),'utf8').split('\n').join(' ');
         preface += '</style>';
         preface += '<section id="abstract">';
-        preface += 'The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for REST APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.';
+        preface += 'The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.';
         preface += '</section>';
         preface += '<section class="notoc" id="sotd">';
         preface += '<h2>Status of This Document</h2>';
@@ -121,15 +121,24 @@ function doMaintainers() {
 }
 
 function getPublishDate(m) {
+    let result = new Date();
     let h = md.render(m);
     let $ = cheerio.load(h);
-    let t = $('tbody').last();
-    let c = $(t).children('tr').children('td');
-    let v = $(c[0]).text();
-    let d = $(c[1]).text();
-    argv.subtitle = v;
-    if (d === 'TBA') return new Date();
-    return new Date(d);
+    $('table').each(function(i,table){
+        const h = $(table).find('th');
+        const headers = [];
+        $(h).each(function(i,header){
+            headers.push($(header).text());
+        });
+        if (headers.length >= 2 && headers[0] === 'Version' && headers[1] === 'Date') {
+            let c = $(table).find('tr').find('td');
+            let v = $(c[0]).text();
+            let d = $(c[1]).text();
+            argv.subtitle = v;
+            if (d !== 'TBA') result = new Date(d);
+        }
+    });
+    return result;
 }
 
 if (argv.maintainers) {
@@ -178,8 +187,6 @@ for (let l in lines) {
         let originalIndent = indent;
 
         let prevIndent = indents[indents.length-1]; // peek
-
-        /* bikeshed is a bit of a pita when it comes to header nesting */
         let delta = indent-prevIndent;
 
         if (!argv.respec) {
@@ -301,7 +308,7 @@ for (let l in lines) {
     lines[l] = line;
 }
 
-s = preface('OpenAPI Specification',argv)+'\n\n'+lines.join('\n');
+s = preface(`OpenAPI Specification v${argv.subtitle} | Introduction, Definitions, & More`,argv)+'\n\n'+lines.join('\n');
 let out = md.render(s);
 out = out.replace(/\[([RGB])\]/g,function(match,group1){
     console.warn('Fixing',match,group1);

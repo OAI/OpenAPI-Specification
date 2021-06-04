@@ -1,6 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
-# run this script from the root of the repo
+# Author: @MikeRalphson
+
+# run this script from the root of the repo. It is designed to be run by a GitHub workflow.
+# It contains bashisms
 
 mkdir -p deploy/oas
 mkdir -p deploy/js

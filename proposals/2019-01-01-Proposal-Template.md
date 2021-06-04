@@ -5,11 +5,11 @@
 
 |Tag |Value |
 |---- | ---------------- |
-|Proposal |[short-name](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/{directory_or_file_name})|
+|Proposal |[YYYY-MM-DD-Short-Name](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/{YYYY-MM-DD-Short-Name.md})|
 |Authors|[Author 1](https://github.com/{author1}), [Author 2](https://github.com/{author2})|
 |Review Manager | TBD |
 |Status |Proposal, Draft, Promoted, or Abandoned|
-|Implementations |[Click Here](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/{short-name}/implementations.md)|
+|Implementations |[Click Here](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/{YYYY-MM-DD-Short-Name}/implementations.md)|
 |Issues |[{issueid}](https://github.com/OAI/OpenAPI-Specification/issues/{IssueId})|
 |Previous Revisions |[{revid}](https://github.com/OAI/OpenAPI-Specification/pull/{revid}) |
 

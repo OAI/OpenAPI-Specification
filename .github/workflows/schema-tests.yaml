@@ -1,0 +1,31 @@
+name: schema-test
+
+# Author: @MikeRalphson / runs @jdesrosiers tests
+# Issue: https://github.com/OAI/OpenAPI-Specification/pull/2489
+
+#
+# This workflow runs the npm test script to validate passing and failing
+# testcases for the metaschema.
+#
+
+# run this on push to any branch and creation of pull-requests
+on: 
+  push: {}
+  pull_request: {}
+  workflow_dispatch: {}
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1 # checkout repo content
+    - uses: actions/setup-node@v1 # setup Node.js
+      with:
+        node-version: '14.x'
+    - name: Install dependencies
+      run: npm i
+    - name: Run tests
+      run: npm run test
+

@@ -12,6 +12,9 @@
     "url": "https://github.com/OAI/OpenAPI-Specification.git"
   },
   "license": "Apache-2.0",
+  "scripts": {
+    "test": "npx mocha tests/**/test.js"
+  },
   "readmeFilename": "README.md",
   "files": [
     "README.md",

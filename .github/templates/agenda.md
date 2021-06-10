@@ -6,11 +6,14 @@ In order to give some more visibility into the topics we cover in the TDC meetin
 
 **Please submit comments below for topics or proposals that you wish to present in the TDC meeting**
 
+![F10B5460-B4B3-4463-9CDE-C7F782202EA9](https://user-images.githubusercontent.com/21603/121568843-0b260900-ca18-11eb-9362-69fda4162be8.jpeg)
+
 The agenda backlog is currently maintained in issue #2482
 
 | Topic | Owner | Decision/NextStep |
 |-------|---------|---------|  
 | | | |
+Reports from Special Interest Groups | TDC | |
 AOB (see below) | TDC | |
 New issues / PRs labelled [review](https://github.com/OAI/OpenAPI-Specification/labels/review) | @OAI/triage | |
 [New issues](https://github.com/search?q=repo%3Aoai%2Fopenapi-specification+is%3Aissue+comments%3A0+no%3Alabel+is%3Aopen) without response yet | @OAI/triage  | |

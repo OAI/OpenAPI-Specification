@@ -4,11 +4,11 @@
 
 |Tag |Value |
 |---- | ---------------- |
-|Proposal |[Alternative Schema](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/Alternative%20Schema)|
-|Authors|[Chuck Heazel](https://github.com/{cmheazel})|
+|Proposal |[Alternative Schema](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/2019-03-15-Alternative-Schema.md)|
+|Authors|[Chuck Heazel](https://github.com/cmheazel)|
 |Review Manager |TBD |
 |Status |**Draft** |
-|Implementations |[Click Here](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/Alternative%20Schema/implementations.md)
+|Implementations |[Click Here](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/Alternative-Schema/implementations.md)
 |Issues |[1532](https://github.com/OAI/OpenAPI-Specification/issues/1532)|
 |Previous Revisions |[March 15](https://github.com/OAI/OpenAPI-Specification/pull/1868#issue-261689900) |
  
@@ -16,8 +16,8 @@
 
 |Date |Responsible Party |Description |
 |---- | ---------------- | ---------- |
-|3/15/19 |C. Heazel|Initial Markup Draft |
-|4/17/19 |C. Heazel|Re-structured based on Apple Swift|
+|2019-03-15 |C. Heazel|Initial Markup Draft |
+|2019-04-17 |C. Heazel|Re-structured based on Apple Swift|
 
 ## Introduction
 

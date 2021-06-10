@@ -26,6 +26,7 @@ let argv = require('yargs')
     .describe('maintainers','path to MAINTAINERS.md')
     .require(1)
     .argv;
+const abstract = 'What is the OpenAPI Specification?';
 let maintainers = [];
 let emeritus = [];
 
@@ -66,14 +67,14 @@ function preface(title,options) {
         includePermalinks: true
     };
 
-    let preface = `<html lang="en"><head><meta charset="UTF-8"><title>${md.utils.escapeHtml(title)}</title>`;
+    let preface = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>${md.utils.escapeHtml(title)}</title>`;
 
     // SEO
     preface += '<meta name="description" content="The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs.">';
     preface += '<link rel="canonical" href="https://spec.openapis.org/oas/latest.html" />';
 
     if (options.respec) {
-        preface += '<script src="https://spec.openapis.org/js/respec-oai.js" class="remove"></script>';
+        preface += '<script src="../js/respec-oai.js" class="remove"></script>';
         preface += `<script class="remove">var respecConfig = ${JSON.stringify(respec)};</script>`;
         preface += fs.readFileSync('./analytics/google.html','utf8');
         preface += '</head><body>';
@@ -90,7 +91,8 @@ function preface(title,options) {
         preface += 'pre { background-color: #f6f8fa !important; }';
         preface += fs.readFileSync(path.resolve(__dirname,'gist.css'),'utf8').split('\n').join(' ');
         preface += '</style>';
-        preface += '<section id="abstract">';
+        preface += `<h1 id="title">${title.split('|')[0]}</h1>`;
+        preface += `<section id="abstract" title="${abstract}">`;
         preface += 'The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.';
         preface += '</section>';
         preface += '<section class="notoc" id="sotd">';

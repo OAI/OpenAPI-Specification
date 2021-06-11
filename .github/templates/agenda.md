@@ -1,6 +1,6 @@
 **NOTE: This meeting is on Thursday at 9am - 10am PT**
 
-Zoom Meeting link: [https://zoom.us/j/975841675](https://zoom.us/j/975841675?pwd=SUh4MjRLaEFKNlI3RElpWTdhRDVVUT09). Dial-in passcode: 763054
+Zoom Meeting link: [https://zoom.us/j/975841675](https://zoom.us/j/975841675?pwd=SUh4MjRLaEFKNlI3RElpWTdhRDVVUT09). Dial-in passcode: 763054 - [Code-of-Conduct](https://github.com/OAI/OpenAPI-Specification/blob/main/CODE_OF_CONDUCT.md#code-of-conduct)
 
 In order to give some more visibility into the topics we cover in the TDC meetings here is the planned agenda for the next meeting.  Hopefully this will allow people to plan to attend meetings for topics that they have an interest in.  And for folks who cannot attend they can comment on this issue prior to the meeting.  Feel free to suggest other potential agenda topics.
 

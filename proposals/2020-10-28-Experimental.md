@@ -4,7 +4,7 @@
 
 |Tag |Value |
 |---- | ---------------- |
-|Proposal |[005_Experimental](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/005_Experimental.md)|
+|Proposal |[Experimental](https://github.com/OAI/OpenAPI-Specification/blob/main/proposals/2020-10-28-Experimental.md)|
 |Authors|[David Goss](https://github.com/davidjgoss)|
 |Review Manager |TBD |
 |Status |Proposal|
@@ -123,6 +123,6 @@ The `experimental` field would default to false, meaning existing behaviour is p
 
 - _Specification extensions_ - publishers could add an extension in their own domain, but the benefit of the metadata being available to downstream tools (including those used by consumers, not just publishers) would be lost.
 - _Tags_ - as above, but this also gets to mixing other kinds of metadata in with resource taxonomy, which seems wrong.
-- _Overlays_ - The [Overlays proposal](https://github.com/OAI/OpenAPI-Specification/blob/master/proposals/004_Overlays.md) is sufficiently powerful to be able to implement this, with a canonical spec representing the stable API and an overlay used to apply experimental additions. Downsides: not as ergonomic for authors, the OpenAPI specification would still not have "experimental" as a first-class concept so there'd be reliance on conventions being observed across the ecosystem for how it's done with overlays.
+- _Overlays_ - The [Overlays proposal](https://github.com/OAI/OpenAPI-Specification/blob/main/proposals/2019-12-24-Overlays.md) is sufficiently powerful to be able to implement this, with a canonical spec representing the stable API and an overlay used to apply experimental additions. Downsides: not as ergonomic for authors, the OpenAPI specification would still not have "experimental" as a first-class concept so there'd be reliance on conventions being observed across the ecosystem for how it's done with overlays.
 - _Different API_ - this would be the least messy from a technical perspective - maintain a completely separate API for experimental items, and then "promote" them to the main API once they are considered stable. This has increased overhead for publishers and consumers, and could also reduce the likelihood of getting feedback on, and early uptake of, experimental items if they are segregated in a different place altogether.
 

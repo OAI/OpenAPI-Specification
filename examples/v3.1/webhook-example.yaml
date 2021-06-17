@@ -2,28 +2,7 @@ openapi: 3.1.0
 info:
   title: Webhook Example
   version: 1.0.0
-paths:
-  # OpenAPI documents all need a paths element
-  /pets:
-    get:
-      summary: List all pets
-      operationId: listPets
-      parameters:
-        - name: limit
-          in: query
-          description: How many items to return at one time (max 100)
-          required: false
-          schema:
-            type: integer
-            format: int32
-      responses:
-        '200':
-          description: A paged array of pets
-          content:
-            application/json:    
-              schema:
-                $ref: "#/components/schemas/Pets"
-
+# Since OAS 3.1.0 the paths element isn't necessary. Now a valid OpenAPI Document can describe only paths, webhooks, or even only reusable components
 webhooks:
   # Each webhook needs a name
   newPet:
@@ -53,9 +32,4 @@ components:
           type: string
         tag:
           type: string
-    Pets:
-      type: array
-      items:
-        $ref: "#/components/schemas/Pet"
-
 

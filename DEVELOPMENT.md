@@ -40,7 +40,7 @@ Spec changes should be approved by a majority of the committers. Approval can be
 
 * At any given time, there would be *at most* 4 work branches. The branches would exist if work has started on them. Assuming a current version of 3.0.0:
 
-    * master - Current stable version. No PRs would be accepted directly to modify the specification. PRs against supporting files can be accepted.
+    * main - Current stable version. No PRs would be accepted directly to modify the specification. PRs against supporting files can be accepted.
 
     * v3.0.1-dev - The next PATCH version of the specification. This would include non-breaking changes such as typo fixes, document fixes, wording clarifications.
 
@@ -48,7 +48,7 @@ Spec changes should be approved by a majority of the committers. Approval can be
 
     * v4.0.0 - The next MAJOR version.
 
-* The master branch shall remain the current, released OpenAPI Specification. We will describe and link the work branch(es) on the **default** README.md on master.
+* The main branch shall remain the current, released OpenAPI Specification. We will describe and link the work branch(es) on the **default** README.md on main.
 
 * Examples of how something is described *currently* vs. the proposed solution should accompany any change proposal.
 
@@ -62,11 +62,11 @@ Spec changes should be approved by a majority of the committers. Approval can be
 
 * Not all committers will contribute to every single proposed change. There may be many open proposals at once, and multiple efforts may happen in parallel.
 
-* When the work branch is ready and approved, the branch will be merged to master.
+* When the work branch is ready and approved, the branch will be merged to main.
 
 ## Release Process
 
-A release requires a vote on the release notes by TSC members within the voting period. Major or minor release voting periods will be announced by the Liaison in the Slack channel and noted on the calendar at least 6 days in advance. During this time, TSC members who have not yet voted must note their approval on the GitHub pull request for the release notes. Patch releases happen at the first TSC meeting of a calendar month. The Liaison is responsible for coordinating the actual merge to Master with marketing support, if any.
+A release requires a vote on the release notes by TSC members within the voting period. Major or minor release voting periods will be announced by the Liaison in the Slack channel and noted on the calendar at least 6 days in advance. During this time, TSC members who have not yet voted must note their approval on the GitHub pull request for the release notes. Patch releases happen at the first TSC meeting of a calendar month. The Liaison is responsible for coordinating the actual merge to main with marketing support, if any.
 
 * Patch-level releases require majority approval by TSC members. (Max voting period 3 days)
 

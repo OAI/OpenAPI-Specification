@@ -1,5 +1,5 @@
 {
-  "$id": "https://spec.openapis.org/oas/3.1/schema/2021-03-02",
+  "$id": "https://spec.openapis.org/oas/3.1/schema/2021-05-20",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
@@ -11,11 +11,15 @@
       "$ref": "#/$defs/info"
     },
     "jsonSchemaDialect": {
-      "$ref": "#/$defs/uri",
+      "type": "string",
+      "format": "uri",
       "default": "https://spec.openapis.org/oas/3.1/dialect/base"
     },
     "servers": {
-      "$ref": "#/$defs/server"
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/server"
+      }
     },
     "paths": {
       "$ref": "#/$defs/paths"
@@ -127,7 +131,8 @@
           "type": "string"
         },
         "url": {
-          "$ref": "#/$defs/uri"
+          "type": "string",
+          "format": "uri"
         }
       },
       "required": [
@@ -152,7 +157,8 @@
       "type": "object",
       "properties": {
         "url": {
-          "$ref": "#/$defs/uri"
+          "type": "string",
+          "format": "uri-reference"
         },
         "description": {
           "type": "string"
@@ -301,7 +307,7 @@
         }
       },
       "patternProperties": {
-        "^(get|post|delete|options|head|patch|trace)$": {
+        "^(get|put|post|delete|options|head|patch|trace)$": {
           "$ref": "#/$defs/operation"
         }
       },
@@ -387,7 +393,8 @@
           "type": "string"
         },
         "url": {
-          "$ref": "#/$defs/uri"
+          "type": "string",
+          "format": "uri"
         }
       },
       "required": [
@@ -846,7 +853,8 @@
         },
         "value": true,
         "externalValue": {
-          "$ref": "#/$defs/uri"
+          "type": "string",
+          "format": "uri"
         }
       },
       "$ref": "#/$defs/specification-extensions",
@@ -869,7 +877,8 @@
       "type": "object",
       "properties": {
         "operationRef": {
-          "$ref": "#/$defs/uri"
+          "type": "string",
+          "format": "uri-reference"
         },
         "operationId": true,
         "parameters": {
@@ -1000,7 +1009,8 @@
       "type": "object",
       "properties": {
         "$ref": {
-          "$ref": "#/$defs/uri"
+          "type": "string",
+          "format": "uri-reference"
         },
         "summary": {
           "type": "string"
@@ -1173,7 +1183,8 @@
           "then": {
             "properties": {
               "openIdConnectUrl": {
-                "$ref": "#/$defs/uri"
+                "type": "string",
+                "format": "uri"
               }
             },
             "required": [
@@ -1325,10 +1336,6 @@
           }
         }
       }
-    },
-    "uri": {
-      "type": "string",
-      "format": "uri"
     },
     "map-of-strings": {
       "type": "object",

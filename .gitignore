@@ -6,4 +6,6 @@ target
 atlassian-ide-plugin.xml
 node_modules/
 package-lock.json
+deploy/
+history
 Gemfile.lock

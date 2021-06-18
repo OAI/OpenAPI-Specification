@@ -1,0 +1,29 @@
+name: agenda
+
+# author: @MikeRalphson
+# issue: various
+
+#
+# This workflow creates the agenda issue each week. It runs on a cron every
+# Monday morning, raising an issue for the following Thursday.
+# It can also be run manually, in case GitHub Actions has a failure.
+#
+
+on:
+  schedule:
+    - cron: '0 9 * * 2'
+  workflow_dispatch: {}
+  
+jobs:
+  agenda:
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1 # checkout repo content
+
+    - name: Create agenda issue
+      run: gh issue create -l Housekeeping -t "Open Community (TDC) Meeting, `date --date='next Thu' +'%A %d %B %Y'`" -F .github/templates/agenda.md
+

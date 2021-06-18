@@ -81,7 +81,7 @@ When referencing locally (within the current document), the target references sh
 
 An example of a local definition reference:
 
-_Example from https://github.com/OAI/OpenAPI-Specification/blob/master/examples/v2.0/json/petstore.json_
+_Example from https://github.com/OAI/OpenAPI-Specification/blob/main/examples/v2.0/json/petstore.json_
 ``` json
           // ... 
           "200": {
@@ -100,7 +100,7 @@ _Example from https://github.com/OAI/OpenAPI-Specification/blob/master/examples/
 
 Files can be referred to in relative paths to the current document. 
 
-_Example from https://github.com/OAI/OpenAPI-Specification/tree/master/examples/v2.0/json/petstore-separate/spec/swagger.json_
+_Example from https://github.com/OAI/OpenAPI-Specification/tree/main/examples/v2.0/json/petstore-separate/spec/swagger.json_
 
 ``` json
 // ... 
@@ -116,7 +116,7 @@ _Example from https://github.com/OAI/OpenAPI-Specification/tree/master/examples/
 
 Remote references may also reference properties within the relative remote file.
 
-_Example from https://github.com/OAI/OpenAPI-Specification/tree/master/examples/v2.0/json/petstore-separate/spec/swagger.json_
+_Example from https://github.com/OAI/OpenAPI-Specification/tree/main/examples/v2.0/json/petstore-separate/spec/swagger.json_
 ``` json
 // ... 
 "parameters": [

@@ -1,6 +1,6 @@
 # The OpenAPI Specification
 
-![Build Status](https://github.com/OAI/OpenAPI-Specification/workflows/validate-markdown/badge.svg)
+![Build Status](https://github.com/OAI/OpenAPI-Specification/workflows/validate-markdown/badge.svg) [![Issue triagers](https://www.codetriage.com/oai/openapi-specification/badges/users.svg)](https://www.codetriage.com/oai/openapi-specification)
 
 ![](https://avatars3.githubusercontent.com/u/16343502?v=3&s=200)
 
@@ -40,13 +40,14 @@ The current process for development of the OpenAPI Specification is described in
 [Development Guidelines](DEVELOPMENT.md).
 Development of the next version of the OpenAPI Specification is guided by the [Technical Steering Committee (TSC)](https://www.openapis.org/participate/how-to-contribute/governance#TDC). This group of committers bring their API expertise, incorporate feedback from the community, and expand the group of committers as appropriate. All development activity on the future specification will be performed as features and merged into this branch. Upon release of the future specification, this branch will be merged to `main`.
 
-The TSC holds weekly web conferences to review open pull requests and discuss open issues related to the evolving OpenAPI Specification. Participation in weekly calls and scheduled working sessions is open to the community. You can view the [TSC calendar online](https://openapi.groups.io/g/tsc/calendar), and import it to your calendar using the [iCal link](https://openapi.groups.io/g/tsc/ics/1105671/1995679554/feed.ics).
+The TSC holds weekly web conferences to review open pull requests and discuss open issues related to the evolving OpenAPI Specification. Participation in weekly calls and scheduled working sessions is open to the community. You can view the [TSC calendar online](https://openapi.groups.io/g/tsc/calendar). Look for the "Subscribe to Calendar" button for instructions on subscribing.
 
 The OpenAPI Initiative encourages participation from individuals and companies alike. If you want to participate in the evolution of the OpenAPI Specification, consider taking the following actions:
 
 * Review the [current specification](versions/3.1.0.md). The human-readable markdown file _is the source of truth_ for the specification.
 * Review the [development](DEVELOPMENT.md) process so you understand how the spec is evolving.
 * Check the [issues](https://github.com/OAI/OpenAPI-Specification/issues) and [pull requests](https://github.com/OAI/OpenAPI-Specification/pulls) to see if someone has already documented your idea or feedback on the specification. You can follow an existing conversation by subscribing to the existing issue or PR.
+* Subscribe to an open issue a day (or a week) in your inbox via [CodeTriage.com](https://www.codetriage.com/oai/openapi-specification).
 * Create an issue to describe a new concern. If possible, propose a solution.
 
 Not all feedback can be accommodated and there may be solid arguments for or against a change being appropriate for the specification.

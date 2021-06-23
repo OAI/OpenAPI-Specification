@@ -128,6 +128,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="http://www.bloodbone.ws/"><img src="https://avatars.githubusercontent.com/u/69268?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Brendan Abbott</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=brendo" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/hkosova"><img src="https://avatars.githubusercontent.com/u/8576823?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Helen Kosova</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=hkosova" title="Documentation">📖</a> <a href="#example-hkosova" title="Examples">💡</a></td>
   </tr>
 </table>
 

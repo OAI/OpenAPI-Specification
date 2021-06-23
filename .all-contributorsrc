@@ -623,6 +623,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "eerwitt",
+      "name": "Erik Erwitt",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1329385?v=4",
+      "profile": "http://eerwitt.github.com/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

@@ -859,6 +859,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "willdady",
+      "name": "Will Dady",
+      "avatar_url": "https://avatars.githubusercontent.com/u/204259?v=4",
+      "profile": "https://willdady.com/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

@@ -423,6 +423,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "tarlog",
+      "name": "Michael Elman",
+      "avatar_url": "https://avatars.githubusercontent.com/u/666673?v=4",
+      "profile": "https://github.com/tarlog",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

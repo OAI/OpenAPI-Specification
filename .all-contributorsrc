@@ -1114,6 +1114,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "richardklose",
+      "name": "Richard Klose",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4137663?v=4",
+      "profile": "https://github.com/richardklose",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

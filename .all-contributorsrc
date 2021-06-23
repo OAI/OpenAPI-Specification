@@ -234,6 +234,15 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "kmatheussen",
+      "name": "Kjetil Matheussen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1146279?v=4",
+      "profile": "http://users.notam02.no/~kjetism",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

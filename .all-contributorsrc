@@ -805,6 +805,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "jobol",
+      "name": "jobol",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4094125?v=4",
+      "profile": "https://github.com/jobol",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

@@ -1314,6 +1314,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "vearutop",
+      "name": "Viacheslav Poturaev",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1381436?v=4",
+      "profile": "https://dev.to/vearutop",
+      "contributions": [
+        "example",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

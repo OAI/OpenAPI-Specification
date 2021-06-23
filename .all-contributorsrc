@@ -270,6 +270,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "gigablah",
+      "name": "Chris Heng",
+      "avatar_url": "https://avatars.githubusercontent.com/u/471275?v=4",
+      "profile": "http://vgmdb.net/",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

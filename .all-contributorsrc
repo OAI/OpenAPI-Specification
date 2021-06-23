@@ -351,6 +351,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "casualjim",
+      "name": "Ivan Porto Carrero",
+      "avatar_url": "https://avatars.githubusercontent.com/u/456109?v=4",
+      "profile": "http://flanders.co.nz/",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

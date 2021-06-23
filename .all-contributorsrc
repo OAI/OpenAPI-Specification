@@ -832,6 +832,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "raymondfeng",
+      "name": "Raymond Feng",
+      "avatar_url": "https://avatars.githubusercontent.com/u/540892?v=4",
+      "profile": "http://www.cyberfeng.com/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

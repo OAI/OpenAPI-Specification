@@ -148,6 +148,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://chrisk.app/"><img src="https://avatars.githubusercontent.com/u/2505846?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Christoph Kappestein</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=chriskapp" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/PerthCharern"><img src="https://avatars.githubusercontent.com/u/26418622?v=4?s=75" width="75px;" alt=""/><br /><sub><b>PerthCharern</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=PerthCharern" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/jstoiko"><img src="https://avatars.githubusercontent.com/u/9660342?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Jonathan Stoikovitch</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=jstoiko" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/mathieuales"><img src="https://avatars.githubusercontent.com/u/13030250?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Mathieu Alès</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=mathieuales" title="Documentation">📖</a></td>
   </tr>
 </table>
 

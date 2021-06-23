@@ -1105,6 +1105,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "mathieuales",
+      "name": "Mathieu Alès",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13030250?v=4",
+      "profile": "https://github.com/mathieuales",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

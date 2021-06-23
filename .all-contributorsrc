@@ -641,6 +641,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "georgthegreat",
+      "name": "Yuriy Chernyshov",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1121500?v=4",
+      "profile": "https://leftparagraphs.com/",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

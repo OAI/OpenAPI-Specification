@@ -48,6 +48,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/mbartel"><img src="https://avatars.githubusercontent.com/u/253451?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Michael Bartel</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=mbartel" title="Documentation">📖</a></td>
     <td align="center"><a href="https://mattischneider.fr/"><img src="https://avatars.githubusercontent.com/u/222463?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Matti Schneider</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=MattiSG" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/khrt"><img src="https://avatars.githubusercontent.com/u/736103?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Artur Khabibullin</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=khrt" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://dret.net/netdret/"><img src="https://avatars.githubusercontent.com/u/1848612?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Erik Wilde</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=dret" title="Documentation">📖</a></td>
   </tr>
 </table>
 

@@ -36,6 +36,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://devopsy.com/"><img src="https://avatars.githubusercontent.com/u/896878?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Max Lincoln</b></sub></a><br /><a href="#example-maxlinc" title="Examples">💡</a> <a href="https://github.com/OAI/OpenAPI-Specification/commits?author=maxlinc" title="Code">💻</a> <a href="https://github.com/OAI/OpenAPI-Specification/commits?author=maxlinc" title="Documentation">📖</a></td>
     <td align="center"><a href="http://users.notam02.no/~kjetism"><img src="https://avatars.githubusercontent.com/u/1146279?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Kjetil Matheussen</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=kmatheussen" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/wonderlic-chrisk"><img src="https://avatars.githubusercontent.com/u/8118392?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Chris Katz</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=wonderlic-chrisk" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://noirbizarre.info/"><img src="https://avatars.githubusercontent.com/u/15725?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Axel H.</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=noirbizarre" title="Documentation">📖</a></td>
   </tr>
 </table>
 

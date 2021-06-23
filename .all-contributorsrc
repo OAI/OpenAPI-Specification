@@ -252,6 +252,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "noirbizarre",
+      "name": "Axel H.",
+      "avatar_url": "https://avatars.githubusercontent.com/u/15725?v=4",
+      "profile": "http://noirbizarre.info/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

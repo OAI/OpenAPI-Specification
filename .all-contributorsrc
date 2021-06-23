@@ -1442,6 +1442,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "anttiviljami",
+      "name": "Viljami Kuosmanen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6105650?v=4",
+      "profile": "https://viljami.io/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

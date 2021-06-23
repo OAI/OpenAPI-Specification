@@ -62,6 +62,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/tarlog"><img src="https://avatars.githubusercontent.com/u/666673?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Michael Elman</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=tarlog" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/matt-gibbs"><img src="https://avatars.githubusercontent.com/u/6565986?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Matt Gibbs</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=matt-gibbs" title="Documentation">📖</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/xrysanthos"><img src="https://avatars.githubusercontent.com/u/4200677?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Chrysanthos Spiliotopoulos</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=xrysanthos" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://twitter.com/ikitommi"><img src="https://avatars.githubusercontent.com/u/567532?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Tommi Reiman</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=ikitommi" title="Documentation">📖</a></td>
   </tr>
 </table>
 

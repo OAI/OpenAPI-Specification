@@ -450,6 +450,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "ikitommi",
+      "name": "Tommi Reiman",
+      "avatar_url": "https://avatars.githubusercontent.com/u/567532?v=4",
+      "profile": "https://twitter.com/ikitommi",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

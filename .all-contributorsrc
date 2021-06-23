@@ -468,6 +468,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "RobWin",
+      "name": "Robert Winkler",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5815046?v=4",
+      "profile": "https://github.com/RobWin",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

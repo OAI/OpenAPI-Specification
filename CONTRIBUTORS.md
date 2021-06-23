@@ -21,6 +21,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="http://corevity.com/"><img src="https://avatars.githubusercontent.com/u/3385715?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Pat</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=pconnelly15" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/xhh"><img src="https://avatars.githubusercontent.com/u/159740?v=4?s=75" width="75px;" alt=""/><br /><sub><b>xhh</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=xhh" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/kalmanh"><img src="https://avatars.githubusercontent.com/u/869312?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Kalman Hazins</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=kalmanh" title="Documentation">📖</a></td>
   </tr>
 </table>
 

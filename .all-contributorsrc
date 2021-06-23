@@ -130,6 +130,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "kalmanh",
+      "name": "Kalman Hazins",
+      "avatar_url": "https://avatars.githubusercontent.com/u/869312?v=4",
+      "profile": "https://github.com/kalmanh",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

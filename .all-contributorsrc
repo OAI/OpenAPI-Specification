@@ -1370,6 +1370,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "lornajane",
+      "name": "Lorna Jane Mitchell",
+      "avatar_url": "https://avatars.githubusercontent.com/u/172607?v=4",
+      "profile": "http://www.lornajane.net/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

@@ -1096,6 +1096,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "jstoiko",
+      "name": "Jonathan Stoikovitch",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9660342?v=4",
+      "profile": "https://github.com/jstoiko",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

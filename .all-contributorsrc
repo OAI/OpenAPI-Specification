@@ -1361,6 +1361,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "darren987469",
+      "name": "Darren",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5189060?v=4",
+      "profile": "https://github.com/darren987469",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

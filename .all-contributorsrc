@@ -1015,6 +1015,15 @@
         "example",
         "doc"
       ]
+    },
+    {
+      "login": "andylowry",
+      "name": "Andy Lowry",
+      "avatar_url": "https://avatars.githubusercontent.com/u/108675?v=4",
+      "profile": "https://github.com/andylowry",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

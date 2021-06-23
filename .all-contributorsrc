@@ -1460,6 +1460,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "josteink",
+      "name": "Jostein Kjønigsen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/411338?v=4",
+      "profile": "https://jostein.kjonigsen.net/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

@@ -632,6 +632,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "RomanHotsiy",
+      "name": "Roman Hotsiy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3975738?v=4",
+      "profile": "https://redoc.ly/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

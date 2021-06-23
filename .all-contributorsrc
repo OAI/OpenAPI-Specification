@@ -978,6 +978,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "krizalys",
+      "name": "Christophe Vidal",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1499352?v=4",
+      "profile": "http://www.krizalys.com/",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

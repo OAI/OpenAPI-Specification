@@ -139,6 +139,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "striglia",
+      "name": "Scott Triglia",
+      "avatar_url": "https://avatars.githubusercontent.com/u/262630?v=4",
+      "profile": "https://github.com/striglia",
+      "contributions": [
+        "example",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

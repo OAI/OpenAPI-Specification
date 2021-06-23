@@ -176,6 +176,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="http://technosloth.blogspot.com/"><img src="https://avatars.githubusercontent.com/u/1058384?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Nathan Herring</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=Capstan" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/mmalawskigog"><img src="https://avatars.githubusercontent.com/u/41375454?v=4?s=75" width="75px;" alt=""/><br /><sub><b>mmalawskigog</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=mmalawskigog" title="Documentation">📖</a></td>
   </tr>
 </table>
 

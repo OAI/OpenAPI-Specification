@@ -1005,6 +1005,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "bjorn-jarisch",
+      "name": "Björn Jarisch",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22248170?v=4",
+      "profile": "https://github.com/bjorn-jarisch",
+      "contributions": [
+        "example",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

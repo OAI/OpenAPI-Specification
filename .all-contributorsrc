@@ -1287,6 +1287,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "tiangolo",
+      "name": "Sebastián Ramírez",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1326112?v=4",
+      "profile": "https://tiangolo.com/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

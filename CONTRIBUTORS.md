@@ -172,6 +172,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/handrews"><img src="https://avatars.githubusercontent.com/u/2358015?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Henry Andrews</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=handrews" title="Documentation">📖</a> <a href="#example-handrews" title="Examples">💡</a></td>
     <td align="center"><a href="https://taylorbar.net/"><img src="https://avatars.githubusercontent.com/u/2008034?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Taylor Barnett</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=tbarn" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/H1Gdev"><img src="https://avatars.githubusercontent.com/u/11144112?v=4?s=75" width="75px;" alt=""/><br /><sub><b>H1Gdev</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=H1Gdev" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://tiangolo.com/"><img src="https://avatars.githubusercontent.com/u/1326112?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Sebastián Ramírez</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=tiangolo" title="Documentation">📖</a></td>
   </tr>
 </table>
 

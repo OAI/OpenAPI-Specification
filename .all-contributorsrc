@@ -732,6 +732,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "ePaul",
+      "name": "Paŭlo Ebermann",
+      "avatar_url": "https://avatars.githubusercontent.com/u/645859?v=4",
+      "profile": "https://github.com/ePaul",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

@@ -99,6 +99,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://www.sjaensch.org/"><img src="https://avatars.githubusercontent.com/u/852075?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Stephan Jaensch</b></sub></a><br /><a href="#example-sjaensch" title="Examples">💡</a></td>
     <td align="center"><a href="https://github.com/EricHenry"><img src="https://avatars.githubusercontent.com/u/4412771?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Henry</b></sub></a><br /><a href="#example-EricHenry" title="Examples">💡</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/ralfhandl"><img src="https://avatars.githubusercontent.com/u/951576?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Ralf Handl</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=ralfhandl" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/ePaul"><img src="https://avatars.githubusercontent.com/u/645859?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Paŭlo Ebermann</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=ePaul" title="Documentation">📖</a></td>
   </tr>
 </table>
 

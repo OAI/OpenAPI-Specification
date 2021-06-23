@@ -213,6 +213,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "mohsen1",
+      "name": "Mohsen Azimi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/543633?v=4",
+      "profile": "https://azimi.me/",
+      "contributions": [
+        "example",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

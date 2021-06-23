@@ -30,6 +30,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/unsetbit"><img src="https://avatars.githubusercontent.com/u/788536?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Ozan Turgut</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=unsetbit" title="Documentation">📖</a></td>
     <td align="center"><a href="https://www.madskristensen.net/"><img src="https://avatars.githubusercontent.com/u/1258877?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Mads Kristensen</b></sub></a><br /><a href="#example-madskristensen" title="Examples">💡</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="http://varyous-simbir.blogspot.com/"><img src="https://avatars.githubusercontent.com/u/889406?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Yuriy Vasiyarov</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=yvasiyarov" title="Documentation">📖</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->

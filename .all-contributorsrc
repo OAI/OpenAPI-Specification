@@ -204,6 +204,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "yvasiyarov",
+      "name": "Yuriy Vasiyarov",
+      "avatar_url": "https://avatars.githubusercontent.com/u/889406?v=4",
+      "profile": "http://varyous-simbir.blogspot.com/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

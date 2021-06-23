@@ -914,6 +914,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "krishahn",
+      "name": "Kris Hahn",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16125343?v=4",
+      "profile": "https://github.com/krishahn",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

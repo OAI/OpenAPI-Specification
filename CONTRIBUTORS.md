@@ -46,6 +46,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://about.me/trevorlivingston"><img src="https://avatars.githubusercontent.com/u/20686?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Trevor Livingston</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=tlivings" title="Documentation">📖</a></td>
     <td align="center"><a href="https://matthewturland.com/"><img src="https://avatars.githubusercontent.com/u/15487?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Matthew Turland</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=elazar" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/mbartel"><img src="https://avatars.githubusercontent.com/u/253451?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Michael Bartel</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=mbartel" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://mattischneider.fr/"><img src="https://avatars.githubusercontent.com/u/222463?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Matti Schneider</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=MattiSG" title="Documentation">📖</a></td>
   </tr>
 </table>
 

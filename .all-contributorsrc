@@ -324,6 +324,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "MattiSG",
+      "name": "Matti Schneider",
+      "avatar_url": "https://avatars.githubusercontent.com/u/222463?v=4",
+      "profile": "https://mattischneider.fr/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

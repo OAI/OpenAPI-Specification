@@ -58,6 +58,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://x.verg.es/"><img src="https://avatars.githubusercontent.com/u/460418?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Xavier Vergés</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=xverges" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/mac-"><img src="https://avatars.githubusercontent.com/u/1530281?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Mac Angell</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=mac-" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/fliptoo"><img src="https://avatars.githubusercontent.com/u/736482?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Huang Yee</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=fliptoo" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://www.xdev.net/"><img src="https://avatars.githubusercontent.com/u/8448201?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Ben Merrills</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=skrusty" title="Documentation">📖</a></td>
   </tr>
 </table>
 

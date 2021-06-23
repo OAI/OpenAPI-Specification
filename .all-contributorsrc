@@ -841,6 +841,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "timburks",
+      "name": "Tim Burks",
+      "avatar_url": "https://avatars.githubusercontent.com/u/405?v=4",
+      "profile": "https://timburks.me/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

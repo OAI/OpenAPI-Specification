@@ -114,6 +114,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://lukeangel.co/"><img src="https://avatars.githubusercontent.com/u/22433329?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Dr Luke Angel</b></sub></a><br /><a href="#example-drlukeangel" title="Examples">💡</a></td>
     <td align="center"><a href="http://www.cyberfeng.com/"><img src="https://avatars.githubusercontent.com/u/540892?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Raymond Feng</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=raymondfeng" title="Documentation">📖</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://timburks.me/"><img src="https://avatars.githubusercontent.com/u/405?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Tim Burks</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=timburks" title="Documentation">📖</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->

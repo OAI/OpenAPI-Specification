@@ -196,6 +196,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://viljami.io/"><img src="https://avatars.githubusercontent.com/u/6105650?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Viljami Kuosmanen</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=anttiviljami" title="Documentation">📖</a></td>
     <td align="center"><a href="http://xpepper.github.io/AboutMe/"><img src="https://avatars.githubusercontent.com/u/450934?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Pietro Di Bello</b></sub></a><br /><a href="#example-xpepper" title="Examples">💡</a></td>
     <td align="center"><a href="https://jostein.kjonigsen.net/"><img src="https://avatars.githubusercontent.com/u/411338?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Jostein Kjønigsen</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=josteink" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/philb-lr"><img src="https://avatars.githubusercontent.com/u/62034965?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Phil Barila</b></sub></a><br /><a href="#example-philb-lr" title="Examples">💡</a></td>
   </tr>
 </table>
 

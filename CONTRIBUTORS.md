@@ -184,6 +184,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/ncaidin"><img src="https://avatars.githubusercontent.com/u/5399652?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Neal Caidin</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=ncaidin" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/darren987469"><img src="https://avatars.githubusercontent.com/u/5189060?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Darren</b></sub></a><br /><a href="#example-darren987469" title="Examples">💡</a></td>
     <td align="center"><a href="http://www.lornajane.net/"><img src="https://avatars.githubusercontent.com/u/172607?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Lorna Jane Mitchell</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=lornajane" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/aaadel"><img src="https://avatars.githubusercontent.com/u/6369335?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Ahmed Aadel</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=aaadel" title="Documentation">📖</a></td>
   </tr>
 </table>
 

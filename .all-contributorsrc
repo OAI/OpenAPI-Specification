@@ -705,6 +705,15 @@
         "doc",
         "example"
       ]
+    },
+    {
+      "login": "sjaensch",
+      "name": "Stephan Jaensch",
+      "avatar_url": "https://avatars.githubusercontent.com/u/852075?v=4",
+      "profile": "http://www.sjaensch.org/",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

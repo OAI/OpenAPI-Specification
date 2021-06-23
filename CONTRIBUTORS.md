@@ -18,6 +18,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://www.sewell.org/"><img src="https://avatars.githubusercontent.com/u/18528?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Silas Sewell</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=silas" title="Documentation">📖</a> <a href="#example-silas" title="Examples">💡</a></td>
     <td align="center"><a href="https://github.com/steffkes"><img src="https://avatars.githubusercontent.com/u/325361?v=4?s=75" width="75px;" alt=""/><br /><sub><b>steffkes</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=steffkes" title="Documentation">📖</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="http://corevity.com/"><img src="https://avatars.githubusercontent.com/u/3385715?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Pat</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=pconnelly15" title="Documentation">📖</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->

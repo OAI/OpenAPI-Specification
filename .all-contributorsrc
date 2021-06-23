@@ -93,6 +93,16 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "silas",
+      "name": "Silas Sewell",
+      "avatar_url": "https://avatars.githubusercontent.com/u/18528?v=4",
+      "profile": "https://www.sewell.org/",
+      "contributions": [
+        "doc",
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

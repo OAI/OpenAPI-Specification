@@ -477,6 +477,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "JamesMessinger",
+      "name": "James Messinger",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3453903?v=4",
+      "profile": "https://github.com/JamesMessinger",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

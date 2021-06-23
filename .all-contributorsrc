@@ -1060,6 +1060,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "taxpon",
+      "name": "Takuro Wada",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1885971?v=4",
+      "profile": "https://takuro.ws/",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

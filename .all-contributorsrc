@@ -1169,6 +1169,15 @@
         "doc",
         "example"
       ]
+    },
+    {
+      "login": "notEthan",
+      "name": "Ethan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/133719?v=4",
+      "profile": "https://github.com/notEthan",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

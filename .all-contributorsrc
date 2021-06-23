@@ -932,6 +932,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "brendo",
+      "name": "Brendan Abbott",
+      "avatar_url": "https://avatars.githubusercontent.com/u/69268?v=4",
+      "profile": "http://www.bloodbone.ws/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

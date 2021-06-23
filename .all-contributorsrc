@@ -868,6 +868,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "gmile",
+      "name": "Eugene Pirogov",
+      "avatar_url": "https://avatars.githubusercontent.com/u/207112?v=4",
+      "profile": "https://github.com/gmile",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

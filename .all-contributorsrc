@@ -243,6 +243,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "wonderlic-chrisk",
+      "name": "Chris Katz",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8118392?v=4",
+      "profile": "https://github.com/wonderlic-chrisk",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

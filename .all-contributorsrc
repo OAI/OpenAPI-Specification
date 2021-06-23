@@ -82,6 +82,17 @@
         "example",
         "code"
       ]
+    },
+    {
+      "login": "jharmn",
+      "name": "Jason Harmon",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1305160?v=4",
+      "profile": "https://github.com/jharmn",
+      "contributions": [
+        "example",
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

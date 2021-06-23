@@ -787,6 +787,15 @@
         "doc",
         "example"
       ]
+    },
+    {
+      "login": "sanchojaf",
+      "name": "Miguel Sancho Fernandez",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4213488?v=4",
+      "profile": "https://cenit.io/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

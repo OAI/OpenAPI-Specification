@@ -1498,7 +1498,16 @@
         "example",
         "code"
       ]
+    },
+    {
+      "login": "SamiAkkawi",
+      "name": "Sami Akkawi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/45228655?v=4",
+      "profile": "https://github.com/SamiAkkawi",
+      "contributions": [
+        "example"
+      ]
     }
   ],
-  "contributorsPerLine": 10
+  "contributorsPerLine": 9
 }

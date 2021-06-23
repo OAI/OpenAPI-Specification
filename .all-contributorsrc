@@ -1269,6 +1269,15 @@
         "doc",
         "example"
       ]
+    },
+    {
+      "login": "tbarn",
+      "name": "Taylor Barnett",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2008034?v=4",
+      "profile": "https://taylorbar.net/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

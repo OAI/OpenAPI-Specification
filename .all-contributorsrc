@@ -741,6 +741,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "baileylo",
+      "name": "Logan Bailey",
+      "avatar_url": "https://avatars.githubusercontent.com/u/145345?v=4",
+      "profile": "https://logansbailey.com/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

@@ -51,6 +51,17 @@
         "doc",
         "example"
       ]
+    },
+    {
+      "login": "MikeRalphson",
+      "name": "Mike Ralphson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/21603?v=4",
+      "profile": "http://mermade.github.io/",
+      "contributions": [
+        "doc",
+        "example",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 10

@@ -1123,6 +1123,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "eropple",
+      "name": "Ed Ropple",
+      "avatar_url": "https://avatars.githubusercontent.com/u/109262?v=4",
+      "profile": "https://github.com/eropple",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

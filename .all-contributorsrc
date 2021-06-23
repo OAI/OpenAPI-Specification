@@ -1451,6 +1451,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "xpepper",
+      "name": "Pietro Di Bello",
+      "avatar_url": "https://avatars.githubusercontent.com/u/450934?v=4",
+      "profile": "http://xpepper.github.io/AboutMe/",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

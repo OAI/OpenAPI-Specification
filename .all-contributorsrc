@@ -333,6 +333,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "khrt",
+      "name": "Artur Khabibullin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/736103?v=4",
+      "profile": "https://github.com/khrt",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

@@ -200,6 +200,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/christianfds"><img src="https://avatars.githubusercontent.com/u/16166854?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Christian Franchin</b></sub></a><br /><a href="#example-christianfds" title="Examples">💡</a></td>
+    <td align="center"><a href="https://github.com/jdesrosiers"><img src="https://avatars.githubusercontent.com/u/716571?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Jason Desrosiers</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=jdesrosiers" title="Documentation">📖</a> <a href="#example-jdesrosiers" title="Examples">💡</a> <a href="https://github.com/OAI/OpenAPI-Specification/commits?author=jdesrosiers" title="Code">💻</a></td>
   </tr>
 </table>
 

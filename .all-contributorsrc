@@ -1487,6 +1487,17 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "jdesrosiers",
+      "name": "Jason Desrosiers",
+      "avatar_url": "https://avatars.githubusercontent.com/u/716571?v=4",
+      "profile": "https://github.com/jdesrosiers",
+      "contributions": [
+        "doc",
+        "example",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 10

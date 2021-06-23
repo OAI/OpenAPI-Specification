@@ -315,6 +315,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "mbartel",
+      "name": "Michael Bartel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/253451?v=4",
+      "profile": "https://github.com/mbartel",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

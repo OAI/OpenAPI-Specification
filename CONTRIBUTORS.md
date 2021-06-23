@@ -133,6 +133,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/prsn-uk"><img src="https://avatars.githubusercontent.com/u/30239321?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Person</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=prsn-uk" title="Documentation">📖</a></td>
     <td align="center"><a href="http://golangfortwo.com/"><img src="https://avatars.githubusercontent.com/u/1374633?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Andrii Soldatenko</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=andriisoldatenko" title="Documentation">📖</a></td>
     <td align="center"><a href="http://www.krizalys.com/"><img src="https://avatars.githubusercontent.com/u/1499352?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Christophe Vidal</b></sub></a><br /><a href="#example-krizalys" title="Examples">💡</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/alex-akimov/"><img src="https://avatars.githubusercontent.com/u/22469605?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Aleksei Akimov</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=a-akimov" title="Documentation">📖</a></td>
   </tr>
 </table>
 

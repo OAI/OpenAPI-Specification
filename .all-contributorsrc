@@ -987,6 +987,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "a-akimov",
+      "name": "Aleksei Akimov",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22469605?v=4",
+      "profile": "https://www.linkedin.com/in/alex-akimov/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

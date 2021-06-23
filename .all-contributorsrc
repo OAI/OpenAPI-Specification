@@ -405,6 +405,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "fliptoo",
+      "name": "Huang Yee",
+      "avatar_url": "https://avatars.githubusercontent.com/u/736482?v=4",
+      "profile": "https://github.com/fliptoo",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

@@ -306,6 +306,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "elazar",
+      "name": "Matthew Turland",
+      "avatar_url": "https://avatars.githubusercontent.com/u/15487?v=4",
+      "profile": "https://matthewturland.com/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

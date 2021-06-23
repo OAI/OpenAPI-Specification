@@ -159,6 +159,15 @@
         "example",
         "doc"
       ]
+    },
+    {
+      "login": "astaxie",
+      "name": "astaxie",
+      "avatar_url": "https://avatars.githubusercontent.com/u/233907?v=4",
+      "profile": "http://beego.me/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

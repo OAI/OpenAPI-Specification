@@ -1333,6 +1333,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "cmheazel",
+      "name": "Chuck Heazel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7959995?v=4",
+      "profile": "https://github.com/cmheazel",
+      "contributions": [
+        "doc",
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

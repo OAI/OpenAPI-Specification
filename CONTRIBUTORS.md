@@ -130,6 +130,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://www.bloodbone.ws/"><img src="https://avatars.githubusercontent.com/u/69268?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Brendan Abbott</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=brendo" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/hkosova"><img src="https://avatars.githubusercontent.com/u/8576823?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Helen Kosova</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=hkosova" title="Documentation">📖</a> <a href="#example-hkosova" title="Examples">💡</a></td>
     <td align="center"><a href="https://github.com/EricWittmann"><img src="https://avatars.githubusercontent.com/u/1890703?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Eric Wittmann</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=EricWittmann" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/prsn-uk"><img src="https://avatars.githubusercontent.com/u/30239321?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Person</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=prsn-uk" title="Documentation">📖</a></td>
   </tr>
 </table>
 

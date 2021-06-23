@@ -960,6 +960,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "prsn-uk",
+      "name": "Person",
+      "avatar_url": "https://avatars.githubusercontent.com/u/30239321?v=4",
+      "profile": "https://github.com/prsn-uk",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

@@ -576,6 +576,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "analogue",
+      "name": "Semir Patel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/26757?v=4",
+      "profile": "https://github.com/analogue",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

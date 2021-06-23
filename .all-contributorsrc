@@ -168,6 +168,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "oogg",
+      "name": "Oliver Ogg",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137507?v=4",
+      "profile": "http://www.twitter.com/oliverogg",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

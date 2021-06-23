@@ -25,6 +25,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/striglia"><img src="https://avatars.githubusercontent.com/u/262630?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Scott Triglia</b></sub></a><br /><a href="#example-striglia" title="Examples">💡</a> <a href="https://github.com/OAI/OpenAPI-Specification/commits?author=striglia" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/paulhill"><img src="https://avatars.githubusercontent.com/u/754053?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Paul Hill</b></sub></a><br /><a href="#example-paulhill" title="Examples">💡</a> <a href="https://github.com/OAI/OpenAPI-Specification/commits?author=paulhill" title="Documentation">📖</a></td>
     <td align="center"><a href="http://beego.me/"><img src="https://avatars.githubusercontent.com/u/233907?v=4?s=75" width="75px;" alt=""/><br /><sub><b>astaxie</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=astaxie" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://www.twitter.com/oliverogg"><img src="https://avatars.githubusercontent.com/u/137507?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Oliver Ogg</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=oogg" title="Documentation">📖</a></td>
   </tr>
 </table>
 

@@ -750,6 +750,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "robertpanzer",
+      "name": "Robert Panzer",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1163662?v=4",
+      "profile": "http://robertpanzer.github.io/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

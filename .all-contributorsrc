@@ -41,6 +41,16 @@
         "doc",
         "example"
       ]
+    },
+    {
+      "login": "darrelmiller",
+      "name": "Darrel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/447694?v=4",
+      "profile": "http://www.bizcoder.com/",
+      "contributions": [
+        "doc",
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

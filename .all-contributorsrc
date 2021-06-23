@@ -1232,6 +1232,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "dragetd",
+      "name": "Michael G.",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3639577?v=4",
+      "profile": "https://github.com/dragetd",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

@@ -119,6 +119,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://maxgoldste.in/"><img src="https://avatars.githubusercontent.com/u/1191970?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Max Goldstein</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=mgold" title="Documentation">📖</a></td>
     <td align="center"><a href="https://willdady.com/"><img src="https://avatars.githubusercontent.com/u/204259?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Will Dady</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=willdady" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/gmile"><img src="https://avatars.githubusercontent.com/u/207112?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Eugene Pirogov</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=gmile" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/tfesenko"><img src="https://avatars.githubusercontent.com/u/644582?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Tanya Fesenko</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=tfesenko" title="Documentation">📖</a> <a href="#example-tfesenko" title="Examples">💡</a></td>
   </tr>
 </table>
 

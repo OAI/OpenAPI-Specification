@@ -877,6 +877,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "tfesenko",
+      "name": "Tanya Fesenko",
+      "avatar_url": "https://avatars.githubusercontent.com/u/644582?v=4",
+      "profile": "https://github.com/tfesenko",
+      "contributions": [
+        "doc",
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

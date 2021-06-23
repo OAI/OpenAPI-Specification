@@ -93,6 +93,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/bkonetzny"><img src="https://avatars.githubusercontent.com/u/5451122?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Bastian Konetzny</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=bkonetzny" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/steverice"><img src="https://avatars.githubusercontent.com/u/1423851?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Steve Rice</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=steverice" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/rutsky"><img src="https://avatars.githubusercontent.com/u/46573?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Vladimir Rutsky</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=rutsky" title="Documentation">📖</a></td>
   </tr>
 </table>
 

@@ -88,6 +88,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://eerwitt.github.com/"><img src="https://avatars.githubusercontent.com/u/1329385?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Erik Erwitt</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=eerwitt" title="Documentation">📖</a></td>
     <td align="center"><a href="https://redoc.ly/"><img src="https://avatars.githubusercontent.com/u/3975738?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Roman Hotsiy</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=RomanHotsiy" title="Documentation">📖</a></td>
     <td align="center"><a href="https://leftparagraphs.com/"><img src="https://avatars.githubusercontent.com/u/1121500?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Yuriy Chernyshov</b></sub></a><br /><a href="#example-georgthegreat" title="Examples">💡</a></td>
+    <td align="center"><a href="https://twitter.com/exois"><img src="https://avatars.githubusercontent.com/u/1586774?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Justin</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=JustinJruby" title="Documentation">📖</a></td>
   </tr>
 </table>
 

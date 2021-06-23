@@ -923,6 +923,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "tedepstein",
+      "name": "Ted Epstein",
+      "avatar_url": "https://avatars.githubusercontent.com/u/692813?v=4",
+      "profile": "http://reprezen.com/blog",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

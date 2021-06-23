@@ -124,6 +124,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://cv.ojford.com/"><img src="https://avatars.githubusercontent.com/u/3946014?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Oliver Ford</b></sub></a><br /><a href="#example-OJFord" title="Examples">💡</a></td>
     <td align="center"><a href="https://johannes-bader.com/"><img src="https://avatars.githubusercontent.com/u/9320958?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Johannes Bader</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=olydis" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/krishahn"><img src="https://avatars.githubusercontent.com/u/16125343?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Kris Hahn</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=krishahn" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://reprezen.com/blog"><img src="https://avatars.githubusercontent.com/u/692813?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Ted Epstein</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=tedepstein" title="Documentation">📖</a></td>
   </tr>
 </table>
 

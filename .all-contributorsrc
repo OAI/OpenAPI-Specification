@@ -814,6 +814,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "gibson042",
+      "name": "Richard Gibson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1199584?v=4",
+      "profile": "https://twitter.com/gibson042",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

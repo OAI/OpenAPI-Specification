@@ -169,6 +169,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/dragetd"><img src="https://avatars.githubusercontent.com/u/3639577?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Michael G.</b></sub></a><br /><a href="#example-dragetd" title="Examples">💡</a></td>
     <td align="center"><a href="https://github.com/jban332"><img src="https://avatars.githubusercontent.com/u/1622399?v=4?s=75" width="75px;" alt=""/><br /><sub><b>jban332</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=jban332" title="Documentation">📖</a></td>
     <td align="center"><a href="https://tqdev.com/"><img src="https://avatars.githubusercontent.com/u/1288217?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Maurits van der Schee</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=mevdschee" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/handrews"><img src="https://avatars.githubusercontent.com/u/2358015?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Henry Andrews</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=handrews" title="Documentation">📖</a> <a href="#example-handrews" title="Examples">💡</a></td>
   </tr>
 </table>
 

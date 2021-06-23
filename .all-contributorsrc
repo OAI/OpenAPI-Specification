@@ -1259,6 +1259,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "handrews",
+      "name": "Henry Andrews",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2358015?v=4",
+      "profile": "https://github.com/handrews",
+      "contributions": [
+        "doc",
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

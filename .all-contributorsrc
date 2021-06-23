@@ -149,6 +149,16 @@
         "example",
         "doc"
       ]
+    },
+    {
+      "login": "paulhill",
+      "name": "Paul Hill",
+      "avatar_url": "https://avatars.githubusercontent.com/u/754053?v=4",
+      "profile": "https://github.com/paulhill",
+      "contributions": [
+        "example",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

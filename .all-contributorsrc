@@ -714,6 +714,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "EricHenry",
+      "name": "Henry",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4412771?v=4",
+      "profile": "https://github.com/EricHenry",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

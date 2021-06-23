@@ -177,6 +177,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "wting",
+      "name": "William Ting",
+      "avatar_url": "https://avatars.githubusercontent.com/u/622170?v=4",
+      "profile": "http://williamting.com/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

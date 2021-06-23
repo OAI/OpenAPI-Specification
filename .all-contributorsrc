@@ -288,6 +288,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "picsoung",
+      "name": "Nicolas Grenié",
+      "avatar_url": "https://avatars.githubusercontent.com/u/172072?v=4",
+      "profile": "https://nicolasgrenie.com/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

@@ -9,6 +9,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="http://swagger.io/"><img src="https://avatars.githubusercontent.com/u/241629?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Ron</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=webron" title="Documentation">📖</a> <a href="#example-webron" title="Examples">💡</a> <a href="https://github.com/OAI/OpenAPI-Specification/commits?author=webron" title="Code">💻</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/marshgardiner/"><img src="https://avatars.githubusercontent.com/u/54582?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Marsh Gardiner</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=earth2marsh" title="Documentation">📖</a> <a href="#example-earth2marsh" title="Examples">💡</a></td>
+    <td align="center"><a href="http://thoughtspark.org/"><img src="https://avatars.githubusercontent.com/u/98899?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Jeremy Whitlock</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=whitlockjc" title="Documentation">📖</a> <a href="#example-whitlockjc" title="Examples">💡</a></td>
   </tr>
 </table>
 

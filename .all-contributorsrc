@@ -31,6 +31,16 @@
         "doc",
         "example"
       ]
+    },
+    {
+      "login": "whitlockjc",
+      "name": "Jeremy Whitlock",
+      "avatar_url": "https://avatars.githubusercontent.com/u/98899?v=4",
+      "profile": "http://thoughtspark.org/",
+      "contributions": [
+        "doc",
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

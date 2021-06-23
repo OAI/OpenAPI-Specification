@@ -279,6 +279,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "fotinakis",
+      "name": "Mike Fotinakis",
+      "avatar_url": "https://avatars.githubusercontent.com/u/75300?v=4",
+      "profile": "https://percy.io/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

@@ -39,6 +39,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://noirbizarre.info/"><img src="https://avatars.githubusercontent.com/u/15725?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Axel H.</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=noirbizarre" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/mission-liao"><img src="https://avatars.githubusercontent.com/u/1988671?v=4?s=75" width="75px;" alt=""/><br /><sub><b>mission.liao</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=mission-liao" title="Documentation">📖</a></td>
     <td align="center"><a href="http://vgmdb.net/"><img src="https://avatars.githubusercontent.com/u/471275?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Chris Heng</b></sub></a><br /><a href="#example-gigablah" title="Examples">💡</a></td>
+    <td align="center"><a href="https://percy.io/"><img src="https://avatars.githubusercontent.com/u/75300?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Mike Fotinakis</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=fotinakis" title="Documentation">📖</a></td>
   </tr>
 </table>
 

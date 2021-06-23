@@ -905,6 +905,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "olydis",
+      "name": "Johannes Bader",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9320958?v=4",
+      "profile": "https://johannes-bader.com/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

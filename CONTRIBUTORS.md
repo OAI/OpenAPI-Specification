@@ -82,6 +82,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/kaizhu256"><img src="https://avatars.githubusercontent.com/u/280571?v=4?s=75" width="75px;" alt=""/><br /><sub><b>kai zhu</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=kaizhu256" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/analogue"><img src="https://avatars.githubusercontent.com/u/26757?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Semir Patel</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=analogue" title="Documentation">📖</a></td>
     <td align="center"><a href="https://www.git-pull.com/"><img src="https://avatars.githubusercontent.com/u/26336?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Tony Narlock</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=tony" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://apis.guru/"><img src="https://avatars.githubusercontent.com/u/8336157?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Ivan Goncharov</b></sub></a><br /><a href="#example-IvanGoncharov" title="Examples">💡</a> <a href="https://github.com/OAI/OpenAPI-Specification/commits?author=IvanGoncharov" title="Documentation">📖</a> <a href="https://github.com/OAI/OpenAPI-Specification/commits?author=IvanGoncharov" title="Code">💻</a></td>
   </tr>
 </table>
 

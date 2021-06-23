@@ -614,6 +614,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "joelwurtz",
+      "name": "Joel Wurtz",
+      "avatar_url": "https://avatars.githubusercontent.com/u/90466?v=4",
+      "profile": "https://redirection.io/",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

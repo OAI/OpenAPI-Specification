@@ -531,6 +531,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "kongchen",
+      "name": "Yukai Kong",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1485800?v=4",
+      "profile": "https://github.com/kongchen",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

@@ -1214,6 +1214,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "wzshiming",
+      "name": "Shiming Zhang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6565744?v=4",
+      "profile": "https://blog.zsm.io/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

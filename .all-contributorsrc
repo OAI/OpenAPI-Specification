@@ -387,6 +387,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "xverges",
+      "name": "Xavier Vergés",
+      "avatar_url": "https://avatars.githubusercontent.com/u/460418?v=4",
+      "profile": "http://x.verg.es/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

@@ -10,6 +10,18 @@
   "imageSize": 75,
   "commit": true,
   "commitConvention": "none",
-  "contributors": [],
+  "contributors": [
+    {
+      "login": "webron",
+      "name": "Ron",
+      "avatar_url": "https://avatars.githubusercontent.com/u/241629?v=4",
+      "profile": "http://swagger.io/",
+      "contributions": [
+        "doc",
+        "example",
+        "code"
+      ]
+    }
+  ],
   "contributorsPerLine": 10
 }

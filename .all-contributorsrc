@@ -1415,6 +1415,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "matthew-inamdar",
+      "name": "Matthew Inamdar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13454566?v=4",
+      "profile": "https://inamdar.co.uk/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

@@ -190,6 +190,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/DSotnikov"><img src="https://avatars.githubusercontent.com/u/6956107?v=4?s=75" width="75px;" alt=""/><br /><sub><b>DSotnikov</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=DSotnikov" title="Documentation">📖</a></td>
     <td align="center"><a href="https://benhutton.me/"><img src="https://avatars.githubusercontent.com/u/731158?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Ben Hutton</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=Relequestual" title="Documentation">📖</a></td>
     <td align="center"><a href="https://blog.paolorossi.net/"><img src="https://avatars.githubusercontent.com/u/4686497?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Paolo Rossi</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=paolo-rossi" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://inamdar.co.uk/"><img src="https://avatars.githubusercontent.com/u/13454566?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Matthew Inamdar</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=matthew-inamdar" title="Documentation">📖</a></td>
   </tr>
 </table>
 

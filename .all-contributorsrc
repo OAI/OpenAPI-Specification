@@ -103,6 +103,15 @@
         "doc",
         "example"
       ]
+    },
+    {
+      "login": "steffkes",
+      "name": "steffkes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/325361?v=4",
+      "profile": "https://github.com/steffkes",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

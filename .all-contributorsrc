@@ -887,6 +887,15 @@
         "doc",
         "example"
       ]
+    },
+    {
+      "login": "ckriley",
+      "name": "Chris Riley",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4662533?v=4",
+      "profile": "https://github.com/ckriley",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

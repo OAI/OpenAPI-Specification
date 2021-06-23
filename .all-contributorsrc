@@ -668,6 +668,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "steverice",
+      "name": "Steve Rice",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1423851?v=4",
+      "profile": "https://github.com/steverice",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

@@ -188,6 +188,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/DSotnikov"><img src="https://avatars.githubusercontent.com/u/6956107?v=4?s=75" width="75px;" alt=""/><br /><sub><b>DSotnikov</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=DSotnikov" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://benhutton.me/"><img src="https://avatars.githubusercontent.com/u/731158?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Ben Hutton</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=Relequestual" title="Documentation">📖</a></td>
   </tr>
 </table>
 

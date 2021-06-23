@@ -1397,6 +1397,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "Relequestual",
+      "name": "Ben Hutton",
+      "avatar_url": "https://avatars.githubusercontent.com/u/731158?v=4",
+      "profile": "https://benhutton.me/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

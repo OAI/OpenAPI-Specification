@@ -686,6 +686,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "vanderlee",
+      "name": "Martijn van der Lee",
+      "avatar_url": "https://avatars.githubusercontent.com/u/649240?v=4",
+      "profile": "http://toyls.com/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

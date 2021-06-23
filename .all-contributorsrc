@@ -369,6 +369,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "muenchhausen",
+      "name": "Derk Muenchhausen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1210783?v=4",
+      "profile": "https://github.com/muenchhausen",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

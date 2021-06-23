@@ -1051,6 +1051,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "arthurdm",
+      "name": "Arthur De Magalhaes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5042215?v=4",
+      "profile": "https://github.com/arthurdm",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

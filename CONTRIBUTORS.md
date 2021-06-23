@@ -74,6 +74,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/z0mt3c"><img src="https://avatars.githubusercontent.com/u/1782471?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Timo Behrmann</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=z0mt3c" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/kand617"><img src="https://avatars.githubusercontent.com/u/5092518?v=4?s=75" width="75px;" alt=""/><br /><sub><b>kand617</b></sub></a><br /><a href="#example-kand617" title="Examples">💡</a></td>
     <td align="center"><a href="https://github.com/kongchen"><img src="https://avatars.githubusercontent.com/u/1485800?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Yukai Kong</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=kongchen" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://twitter.com/batdevis"><img src="https://avatars.githubusercontent.com/u/55850?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Devis Battisti</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=batdevis" title="Documentation">📖</a></td>
   </tr>
 </table>
 

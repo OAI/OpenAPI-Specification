@@ -540,6 +540,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "batdevis",
+      "name": "Devis Battisti",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55850?v=4",
+      "profile": "https://twitter.com/batdevis",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

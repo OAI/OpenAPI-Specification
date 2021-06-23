@@ -156,6 +156,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/namdeirf"><img src="https://avatars.githubusercontent.com/u/3673813?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Jeff ErnstFriedman</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=namdeirf" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/adambutler"><img src="https://avatars.githubusercontent.com/u/1238468?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Adam Butler</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=adambutler" title="Documentation">📖</a></td>
     <td align="center"><a href="https://about.me/tongzhou"><img src="https://avatars.githubusercontent.com/u/7485710?v=4?s=75" width="75px;" alt=""/><br /><sub><b>torychow</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=ToryZhou" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://eirinikos.github.io/"><img src="https://avatars.githubusercontent.com/u/9170701?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Andrea Kao</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=eirinikos" title="Documentation">📖</a> <a href="#example-eirinikos" title="Examples">💡</a></td>
   </tr>
 </table>
 

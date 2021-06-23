@@ -1159,6 +1159,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "eirinikos",
+      "name": "Andrea Kao",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9170701?v=4",
+      "profile": "http://eirinikos.github.io/",
+      "contributions": [
+        "doc",
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

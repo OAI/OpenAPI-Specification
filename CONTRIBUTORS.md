@@ -160,6 +160,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/notEthan"><img src="https://avatars.githubusercontent.com/u/133719?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Ethan</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=notEthan" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/jwalton"><img src="https://avatars.githubusercontent.com/u/1771003?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Jason Walton</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=jwalton" title="Documentation">📖</a></td>
     <td align="center"><a href="https://blog.web-apps.tech/"><img src="https://avatars.githubusercontent.com/u/11725486?v=4?s=75" width="75px;" alt=""/><br /><sub><b>nasa9084</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=nasa9084" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://www.ravennasoftware.com/"><img src="https://avatars.githubusercontent.com/u/1396695?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Eric Langland</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=ravennasoftware" title="Documentation">📖</a></td>
   </tr>
 </table>
 

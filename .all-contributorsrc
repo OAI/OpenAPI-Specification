@@ -1196,6 +1196,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "ravennasoftware",
+      "name": "Eric Langland",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1396695?v=4",
+      "profile": "http://www.ravennasoftware.com/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

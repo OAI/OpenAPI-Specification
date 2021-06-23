@@ -659,6 +659,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "bkonetzny",
+      "name": "Bastian Konetzny",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5451122?v=4",
+      "profile": "https://github.com/bkonetzny",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

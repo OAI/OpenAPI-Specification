@@ -174,6 +174,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/H1Gdev"><img src="https://avatars.githubusercontent.com/u/11144112?v=4?s=75" width="75px;" alt=""/><br /><sub><b>H1Gdev</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=H1Gdev" title="Documentation">📖</a></td>
     <td align="center"><a href="https://tiangolo.com/"><img src="https://avatars.githubusercontent.com/u/1326112?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Sebastián Ramírez</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=tiangolo" title="Documentation">📖</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="http://technosloth.blogspot.com/"><img src="https://avatars.githubusercontent.com/u/1058384?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Nathan Herring</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=Capstan" title="Documentation">📖</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->

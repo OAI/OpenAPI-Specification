@@ -27,6 +27,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://beego.me/"><img src="https://avatars.githubusercontent.com/u/233907?v=4?s=75" width="75px;" alt=""/><br /><sub><b>astaxie</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=astaxie" title="Documentation">📖</a></td>
     <td align="center"><a href="http://www.twitter.com/oliverogg"><img src="https://avatars.githubusercontent.com/u/137507?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Oliver Ogg</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=oogg" title="Documentation">📖</a></td>
     <td align="center"><a href="http://williamting.com/"><img src="https://avatars.githubusercontent.com/u/622170?v=4?s=75" width="75px;" alt=""/><br /><sub><b>William Ting</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=wting" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/unsetbit"><img src="https://avatars.githubusercontent.com/u/788536?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Ozan Turgut</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=unsetbit" title="Documentation">📖</a></td>
   </tr>
 </table>
 

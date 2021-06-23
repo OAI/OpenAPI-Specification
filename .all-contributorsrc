@@ -186,6 +186,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "unsetbit",
+      "name": "Ozan Turgut",
+      "avatar_url": "https://avatars.githubusercontent.com/u/788536?v=4",
+      "profile": "https://github.com/unsetbit",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

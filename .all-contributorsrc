@@ -1150,6 +1150,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "ToryZhou",
+      "name": "torychow",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7485710?v=4",
+      "profile": "https://about.me/tongzhou",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

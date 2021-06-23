@@ -969,6 +969,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "andriisoldatenko",
+      "name": "Andrii Soldatenko",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1374633?v=4",
+      "profile": "http://golangfortwo.com/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

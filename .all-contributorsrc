@@ -605,6 +605,15 @@
         "doc",
         "code"
       ]
+    },
+    {
+      "login": "hornc",
+      "name": "Charles Horn",
+      "avatar_url": "https://avatars.githubusercontent.com/u/905545?v=4",
+      "profile": "https://github.com/hornc",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

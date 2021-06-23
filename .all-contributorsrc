@@ -1141,6 +1141,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "adambutler",
+      "name": "Adam Butler",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1238468?v=4",
+      "profile": "https://github.com/adambutler",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

@@ -153,6 +153,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/richardklose"><img src="https://avatars.githubusercontent.com/u/4137663?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Richard Klose</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=richardklose" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/eropple"><img src="https://avatars.githubusercontent.com/u/109262?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Ed Ropple</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=eropple" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/namdeirf"><img src="https://avatars.githubusercontent.com/u/3673813?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Jeff ErnstFriedman</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=namdeirf" title="Documentation">📖</a></td>
   </tr>
 </table>
 

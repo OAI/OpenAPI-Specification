@@ -360,6 +360,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "kevgo",
+      "name": "Kevin Goslar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/268934?v=4",
+      "profile": "https://github.com/kevgo",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

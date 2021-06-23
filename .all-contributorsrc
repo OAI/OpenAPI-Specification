@@ -522,6 +522,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "kand617",
+      "name": "kand617",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5092518?v=4",
+      "profile": "https://github.com/kand617",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

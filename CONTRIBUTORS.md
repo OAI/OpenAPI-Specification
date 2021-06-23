@@ -72,6 +72,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/dilipkrish"><img src="https://avatars.githubusercontent.com/u/73257?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Dilip Krishnan</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=dilipkrish" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/Maks3w"><img src="https://avatars.githubusercontent.com/u/1301698?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Maks3w</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=Maks3w" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/z0mt3c"><img src="https://avatars.githubusercontent.com/u/1782471?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Timo Behrmann</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=z0mt3c" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/kand617"><img src="https://avatars.githubusercontent.com/u/5092518?v=4?s=75" width="75px;" alt=""/><br /><sub><b>kand617</b></sub></a><br /><a href="#example-kand617" title="Examples">💡</a></td>
   </tr>
 </table>
 

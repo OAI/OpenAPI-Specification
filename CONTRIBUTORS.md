@@ -178,6 +178,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://technosloth.blogspot.com/"><img src="https://avatars.githubusercontent.com/u/1058384?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Nathan Herring</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=Capstan" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/mmalawskigog"><img src="https://avatars.githubusercontent.com/u/41375454?v=4?s=75" width="75px;" alt=""/><br /><sub><b>mmalawskigog</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=mmalawskigog" title="Documentation">📖</a></td>
     <td align="center"><a href="https://dev.to/vearutop"><img src="https://avatars.githubusercontent.com/u/1381436?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Viacheslav Poturaev</b></sub></a><br /><a href="#example-vearutop" title="Examples">💡</a> <a href="https://github.com/OAI/OpenAPI-Specification/commits?author=vearutop" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://mhf.ir/"><img src="https://avatars.githubusercontent.com/u/1172526?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Muhammad Hussein Fattahizadeh</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=mhf-ir" title="Documentation">📖</a></td>
   </tr>
 </table>
 

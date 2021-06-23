@@ -1324,6 +1324,15 @@
         "example",
         "doc"
       ]
+    },
+    {
+      "login": "mhf-ir",
+      "name": "Muhammad Hussein Fattahizadeh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1172526?v=4",
+      "profile": "http://mhf.ir/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

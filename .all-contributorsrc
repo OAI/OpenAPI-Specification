@@ -1024,6 +1024,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "Bert-R",
+      "name": "Bert Roos",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7149792?v=4",
+      "profile": "https://github.com/Bert-R",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

@@ -138,6 +138,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/bjorn-jarisch"><img src="https://avatars.githubusercontent.com/u/22248170?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Björn Jarisch</b></sub></a><br /><a href="#example-bjorn-jarisch" title="Examples">💡</a> <a href="https://github.com/OAI/OpenAPI-Specification/commits?author=bjorn-jarisch" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/andylowry"><img src="https://avatars.githubusercontent.com/u/108675?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Andy Lowry</b></sub></a><br /><a href="#example-andylowry" title="Examples">💡</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/Bert-R"><img src="https://avatars.githubusercontent.com/u/7149792?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Bert Roos</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=Bert-R" title="Documentation">📖</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->

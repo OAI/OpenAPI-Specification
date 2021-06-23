@@ -165,6 +165,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/felzan"><img src="https://avatars.githubusercontent.com/u/4649261?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Luís Felipe Zanatto</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=felzan" title="Documentation">📖</a></td>
     <td align="center"><a href="https://blog.zsm.io/"><img src="https://avatars.githubusercontent.com/u/6565744?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Shiming Zhang</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=wzshiming" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/danielgtaylor"><img src="https://avatars.githubusercontent.com/u/106826?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Daniel G. Taylor</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=danielgtaylor" title="Documentation">📖</a></td>
   </tr>
 </table>
 

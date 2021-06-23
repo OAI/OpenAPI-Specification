@@ -1223,6 +1223,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "danielgtaylor",
+      "name": "Daniel G. Taylor",
+      "avatar_url": "https://avatars.githubusercontent.com/u/106826?v=4",
+      "profile": "https://github.com/danielgtaylor",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

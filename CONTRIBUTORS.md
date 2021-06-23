@@ -95,6 +95,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/steverice"><img src="https://avatars.githubusercontent.com/u/1423851?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Steve Rice</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=steverice" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/rutsky"><img src="https://avatars.githubusercontent.com/u/46573?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Vladimir Rutsky</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=rutsky" title="Documentation">📖</a></td>
     <td align="center"><a href="http://toyls.com/"><img src="https://avatars.githubusercontent.com/u/649240?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Martijn van der Lee</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=vanderlee" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/jsdevel"><img src="https://avatars.githubusercontent.com/u/2605980?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Joe Spencer</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=jsdevel" title="Documentation">📖</a> <a href="#example-jsdevel" title="Examples">💡</a></td>
   </tr>
 </table>
 

@@ -695,6 +695,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "jsdevel",
+      "name": "Joe Spencer",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2605980?v=4",
+      "profile": "https://www.linkedin.com/in/jsdevel",
+      "contributions": [
+        "doc",
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

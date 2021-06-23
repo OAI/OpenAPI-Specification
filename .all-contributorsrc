@@ -1042,6 +1042,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "slinkydeveloper",
+      "name": "Francesco Guardiani",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6706544?v=4",
+      "profile": "https://github.com/slinkydeveloper",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

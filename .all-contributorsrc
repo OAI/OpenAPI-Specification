@@ -223,6 +223,17 @@
         "example",
         "doc"
       ]
+    },
+    {
+      "login": "maxlinc",
+      "name": "Max Lincoln",
+      "avatar_url": "https://avatars.githubusercontent.com/u/896878?v=4",
+      "profile": "http://devopsy.com/",
+      "contributions": [
+        "example",
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

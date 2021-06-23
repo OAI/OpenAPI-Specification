@@ -486,6 +486,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "OwenBrotherwood",
+      "name": "Owen Brotherwood",
+      "avatar_url": "https://avatars.githubusercontent.com/u/866122?v=4",
+      "profile": "https://www.linkedin.com/in/owenbrotherwood/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

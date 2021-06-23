@@ -68,6 +68,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/JamesMessinger"><img src="https://avatars.githubusercontent.com/u/3453903?v=4?s=75" width="75px;" alt=""/><br /><sub><b>James Messinger</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=JamesMessinger" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/owenbrotherwood/"><img src="https://avatars.githubusercontent.com/u/866122?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Owen Brotherwood</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=OwenBrotherwood" title="Documentation">📖</a></td>
   </tr>
 </table>
 

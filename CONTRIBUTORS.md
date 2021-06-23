@@ -111,6 +111,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/gustavooferreira"><img src="https://avatars.githubusercontent.com/u/17534422?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Gustavo Ferreira</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=gustavooferreira" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/jobol"><img src="https://avatars.githubusercontent.com/u/4094125?v=4?s=75" width="75px;" alt=""/><br /><sub><b>jobol</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=jobol" title="Documentation">📖</a></td>
     <td align="center"><a href="https://twitter.com/gibson042"><img src="https://avatars.githubusercontent.com/u/1199584?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Richard Gibson</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=gibson042" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://lukeangel.co/"><img src="https://avatars.githubusercontent.com/u/22433329?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Dr Luke Angel</b></sub></a><br /><a href="#example-drlukeangel" title="Examples">💡</a></td>
   </tr>
 </table>
 

@@ -823,6 +823,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "drlukeangel",
+      "name": "Dr Luke Angel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22433329?v=4",
+      "profile": "http://lukeangel.co/",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

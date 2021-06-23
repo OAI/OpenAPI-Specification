@@ -1478,6 +1478,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "christianfds",
+      "name": "Christian Franchin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16166854?v=4",
+      "profile": "https://github.com/christianfds",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 10

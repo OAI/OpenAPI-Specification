@@ -1033,6 +1033,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "bungoume",
+      "name": "ume",
+      "avatar_url": "https://avatars.githubusercontent.com/u/507733?v=4",
+      "profile": "https://github.com/bungoume",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

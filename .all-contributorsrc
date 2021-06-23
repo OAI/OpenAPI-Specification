@@ -558,6 +558,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "sarnowski",
+      "name": "Tobias Sarnowski",
+      "avatar_url": "https://avatars.githubusercontent.com/u/294104?v=4",
+      "profile": "https://github.com/sarnowski",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

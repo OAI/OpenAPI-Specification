@@ -76,6 +76,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/kongchen"><img src="https://avatars.githubusercontent.com/u/1485800?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Yukai Kong</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=kongchen" title="Documentation">📖</a></td>
     <td align="center"><a href="https://twitter.com/batdevis"><img src="https://avatars.githubusercontent.com/u/55850?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Devis Battisti</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=batdevis" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/josephpconley"><img src="https://avatars.githubusercontent.com/u/1165287?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Joe Conley</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=josephpconley" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/sarnowski"><img src="https://avatars.githubusercontent.com/u/294104?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Tobias Sarnowski</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=sarnowski" title="Documentation">📖</a></td>
   </tr>
 </table>
 

@@ -768,6 +768,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "danhorst",
+      "name": "Dan Horst",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2133?v=4",
+      "profile": "https://www.danhorst.com/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

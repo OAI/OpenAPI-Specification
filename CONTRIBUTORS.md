@@ -105,6 +105,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="http://robertpanzer.github.io/"><img src="https://avatars.githubusercontent.com/u/1163662?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Robert Panzer</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=robertpanzer" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/it33"><img src="https://avatars.githubusercontent.com/u/177788?v=4?s=75" width="75px;" alt=""/><br /><sub><b>it33</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=it33" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://www.danhorst.com/"><img src="https://avatars.githubusercontent.com/u/2133?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Dan Horst</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=danhorst" title="Documentation">📖</a></td>
   </tr>
 </table>
 

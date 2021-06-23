@@ -1352,6 +1352,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "ncaidin",
+      "name": "Neal Caidin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5399652?v=4",
+      "profile": "https://github.com/ncaidin",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

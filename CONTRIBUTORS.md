@@ -181,6 +181,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://mhf.ir/"><img src="https://avatars.githubusercontent.com/u/1172526?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Muhammad Hussein Fattahizadeh</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=mhf-ir" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/cmheazel"><img src="https://avatars.githubusercontent.com/u/7959995?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Chuck Heazel</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=cmheazel" title="Documentation">📖</a> <a href="#example-cmheazel" title="Examples">💡</a></td>
     <td align="center"><a href="https://github.com/eemeli"><img src="https://avatars.githubusercontent.com/u/617000?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Eemeli Aro</b></sub></a><br /><a href="#example-eemeli" title="Examples">💡</a></td>
+    <td align="center"><a href="https://github.com/ncaidin"><img src="https://avatars.githubusercontent.com/u/5399652?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Neal Caidin</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=ncaidin" title="Documentation">📖</a></td>
   </tr>
 </table>
 

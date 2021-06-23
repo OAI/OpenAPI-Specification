@@ -378,6 +378,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "rahulsom",
+      "name": "Rahul Somasunderam",
+      "avatar_url": "https://avatars.githubusercontent.com/u/193047?v=4",
+      "profile": "https://rahulsom.github.io/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

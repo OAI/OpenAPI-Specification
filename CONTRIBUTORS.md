@@ -52,6 +52,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://flanders.co.nz/"><img src="https://avatars.githubusercontent.com/u/456109?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Ivan Porto Carrero</b></sub></a><br /><a href="#example-casualjim" title="Examples">💡</a></td>
     <td align="center"><a href="https://github.com/kevgo"><img src="https://avatars.githubusercontent.com/u/268934?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Kevin Goslar</b></sub></a><br /><a href="#example-kevgo" title="Examples">💡</a></td>
     <td align="center"><a href="https://github.com/muenchhausen"><img src="https://avatars.githubusercontent.com/u/1210783?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Derk Muenchhausen</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=muenchhausen" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://rahulsom.github.io/"><img src="https://avatars.githubusercontent.com/u/193047?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Rahul Somasunderam</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=rahulsom" title="Documentation">📖</a></td>
   </tr>
 </table>
 

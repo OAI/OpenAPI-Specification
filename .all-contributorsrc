@@ -1,0 +1,15 @@
+{
+  "projectName": "OpenAPI-Specification",
+  "projectOwner": "OAI",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "CONTRIBUTORS.md",
+    "README.md"
+  ],
+  "imageSize": 75,
+  "commit": true,
+  "commitConvention": "none",
+  "contributors": [],
+  "contributorsPerLine": 10
+}

@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@hyperjump/json-schema": "^0.17.0",
+    "all-contributors-cli": "^6.20.0",
     "chai": "^4.3.1",
     "mdv": "^1.0.7",
     "mocha": "^8.3.0",

@@ -585,6 +585,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "tony",
+      "name": "Tony Narlock",
+      "avatar_url": "https://avatars.githubusercontent.com/u/26336?v=4",
+      "profile": "https://www.git-pull.com/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

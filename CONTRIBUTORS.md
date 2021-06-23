@@ -81,6 +81,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/kaizhu256"><img src="https://avatars.githubusercontent.com/u/280571?v=4?s=75" width="75px;" alt=""/><br /><sub><b>kai zhu</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=kaizhu256" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/analogue"><img src="https://avatars.githubusercontent.com/u/26757?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Semir Patel</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=analogue" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://www.git-pull.com/"><img src="https://avatars.githubusercontent.com/u/26336?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Tony Narlock</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=tony" title="Documentation">📖</a></td>
   </tr>
 </table>
 

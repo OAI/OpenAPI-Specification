@@ -1078,6 +1078,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "chriskapp",
+      "name": "Christoph Kappestein",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2505846?v=4",
+      "profile": "https://chrisk.app/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

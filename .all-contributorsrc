@@ -723,6 +723,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "ralfhandl",
+      "name": "Ralf Handl",
+      "avatar_url": "https://avatars.githubusercontent.com/u/951576?v=4",
+      "profile": "https://www.linkedin.com/in/ralfhandl",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

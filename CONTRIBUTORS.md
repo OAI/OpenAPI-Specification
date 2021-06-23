@@ -42,6 +42,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://percy.io/"><img src="https://avatars.githubusercontent.com/u/75300?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Mike Fotinakis</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=fotinakis" title="Documentation">📖</a></td>
     <td align="center"><a href="https://nicolasgrenie.com/"><img src="https://avatars.githubusercontent.com/u/172072?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Nicolas Grenié</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=picsoung" title="Documentation">📖</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="http://about.me/trevorlivingston"><img src="https://avatars.githubusercontent.com/u/20686?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Trevor Livingston</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=tlivings" title="Documentation">📖</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->

@@ -297,6 +297,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "tlivings",
+      "name": "Trevor Livingston",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20686?v=4",
+      "profile": "http://about.me/trevorlivingston",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

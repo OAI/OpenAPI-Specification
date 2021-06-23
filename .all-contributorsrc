@@ -1406,6 +1406,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "paolo-rossi",
+      "name": "Paolo Rossi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4686497?v=4",
+      "profile": "https://blog.paolorossi.net/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

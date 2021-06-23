@@ -144,6 +144,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/slinkydeveloper"><img src="https://avatars.githubusercontent.com/u/6706544?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Francesco Guardiani</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=slinkydeveloper" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/arthurdm"><img src="https://avatars.githubusercontent.com/u/5042215?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Arthur De Magalhaes</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=arthurdm" title="Documentation">📖</a></td>
     <td align="center"><a href="https://takuro.ws/"><img src="https://avatars.githubusercontent.com/u/1885971?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Takuro Wada</b></sub></a><br /><a href="#example-taxpon" title="Examples">💡</a></td>
+    <td align="center"><a href="https://kevindew.me/"><img src="https://avatars.githubusercontent.com/u/282717?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Kevin Dew</b></sub></a><br /><a href="https://github.com/OAI/OpenAPI-Specification/commits?author=kevindew" title="Documentation">📖</a></td>
   </tr>
 </table>
 

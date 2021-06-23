@@ -1069,6 +1069,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "kevindew",
+      "name": "Kevin Dew",
+      "avatar_url": "https://avatars.githubusercontent.com/u/282717?v=4",
+      "profile": "https://kevindew.me/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

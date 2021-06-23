@@ -996,6 +996,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "hikari-desu",
+      "name": "will",
+      "avatar_url": "https://avatars.githubusercontent.com/u/33923476?v=4",
+      "profile": "https://github.com/hikari-desu",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

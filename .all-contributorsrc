@@ -1178,6 +1178,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "jwalton",
+      "name": "Jason Walton",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1771003?v=4",
+      "profile": "https://github.com/jwalton",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10

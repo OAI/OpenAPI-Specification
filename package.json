@@ -31,6 +31,7 @@
     "chai": "^4.3.1",
     "mdv": "^1.0.7",
     "mocha": "^8.3.0",
+    "node-readfiles": "^0.2.0",
     "yaml": "^1.8.3"
   },
   "keywords": [

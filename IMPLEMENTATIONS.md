@@ -69,6 +69,7 @@ These tools are not endorsed by the OAI.
 | FastAPI | [github/tiangolo/fastapi](https://github.com/tiangolo/fastapi) | Python | OpenAPI 3 based, high performance, Python 3.6+ API framework with automatic data validation, serialization and great editor support.
 | Fastify OpenAPI v3 | [gitlab.com/m03geek/fastify-oas](https://gitlab.com/m03geek/fastify-oas) | Node.JS | Fastify OpenAPI v3+ plugin. Generates OpenAPI specification from fastify schemas and routes. Also serves swagger ui and spec in json/yaml formats.
 | openapi-backend | [github/anttiviljami/openapi-backend](https://github.com/anttiviljami/openapi-backend) | Node.js, TypeScript | Build, Validate, Route, and Mock in the backend using OpenAPI v3 spec in your favourite framework
+| Connexion | [github/zalando/connexion](https://github.com/zalando/connexion) | Python | Swagger/OpenAPI First framework for Python on top of Flask with automatic endpoint validation & OAuth2 support
 
 #### Client Implementations
 

@@ -51,6 +51,7 @@ These tools are not endorsed by the OAI.
 | Widdershins | [github/Mermade/widdershins](https://github.com/Mermade/widdershins) | Node.js | Generate Slate/Shins markdown from OpenAPI 3.0.x |
 | angular-swagger-ui | [github/angular-swagger-ui](https://github.com/Orange-OpenSource/angular-swagger-ui) | AngularJS | An angularJS implementation of Swagger UI |
 | Redoc | [github/Redocly/redoc](https://github.com/Redocly/redoc) | JavaScript | A React-based renderer with deep support for OAS v2 and v3 and zero dev-dependency|
+| OAS UI | [github/vahanito/oas-ui](https://github.com/vahanito/oas-ui) | React.js | OAS UI allows to visualize API resources based on the given OpenAPI specification v3 |
 
 #### Mock Servers
 | Title          | Project Link | Language | Description |

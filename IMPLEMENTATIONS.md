@@ -31,6 +31,7 @@ These tools are not endorsed by the OAI.
 
 | Title          | Project Link | Language |Description                          |
 |----------------|--------------|----------|---------------------|
+| Martini Desktop | [torocloud.com/martini](https://www.torocloud.com/martini) | Java | Desktop IDE for creating, consuming, integrating and publishing OpenAPI 2 and 3 |
 | Visual Studio Code extension | [VS Code marketplace / OpenAPI (Swagger) editor](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi) | TypeScript | Extends VS Code to provide OpenAPI 2.0 and 3.0 navigation, code snippets, new API creation |
 | Apicurio Studio | [github/Apicurio/apicurio-studio](https://github.com/Apicurio/apicurio-studio) | Java/TypeScript | Web-Based **visual designer** for OpenAPI 2.0 and 3.0.0. |
 | KaiZen OpenAPI Editor | [github/RepreZen/KaiZen-OpenAPI-Editor](https://github.com/RepreZen/KaiZen-OpenAPI-Editor) | Java | Eclipse Editor for OpenAPI 2.0 and 3.0 |
@@ -81,6 +82,7 @@ These tools are not endorsed by the OAI.
 
 | Title          | Project Link | Language |Description                          |
 |----------------|--------------|----------|---------------------|
+| TORO Docs to OpenAPI | [chrome.google.com/webstore/detail/toro-docs-to-openapi](https://chrome.google.com/webstore/detail/toro-docs-to-openapi/oncldjijcpoadligbmejgbiokpkgamoj) | JavaScript | Generate an OpenAPI 3 schema from regular web-based API documentation |
 | baucis-openapi3 | [github/metadevpro/baucis-openapi3](https://github.com/metadevpro/baucis-openapi3) | Node.js | [Baucis.js](https://github.com/wprl/baucis) plugin for generating OpenAPI 3.0 compliant API contracts. |
 | Google Gnostic | [github/googleapis/gnostic](https://github.com/googleapis/gnostic) | Go | Compile OpenAPI descriptions into equivalent Protocol Buffer representations. |
 | Gen | [github/wzshiming/gen](https://github.com/wzshiming/gen) | Go | Generate OpenAPI 3, client, and route based on golang source code. |

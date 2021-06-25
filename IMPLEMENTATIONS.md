@@ -57,6 +57,11 @@ These tools are not endorsed by the OAI.
 | -------------- | ------------ | -------- | ----------- |
 | API Sprout     | [github/danielgtaylor/apisprout](https://github.com/danielgtaylor/apisprout) | Go | Lightweight, blazing fast, cross-platform OpenAPI 3 mock server with validation |
 
+#### Testing tools
+| Title          | Project Link | Language | Description |
+| -------------- | ------------ | -------- | ----------- |
+| Schemathesis   | [github/schemathesis/schemathesis](https://github.com/schemathesis/schemathesis) | Python | A modern API testing tool for web applications built with OpenAPI and GraphQL specifications |
+
 #### Server Implementations
 | Title          | Project Link | Language |Description                          |
 |----------------|--------------|----------|---------------------|

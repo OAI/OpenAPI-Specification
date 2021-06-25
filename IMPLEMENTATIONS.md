@@ -85,6 +85,7 @@ These tools are not endorsed by the OAI.
 | Google Gnostic | [github/googleapis/gnostic](https://github.com/googleapis/gnostic) | Go | Compile OpenAPI descriptions into equivalent Protocol Buffer representations. |
 | Gen | [github/wzshiming/gen](https://github.com/wzshiming/gen) | Go | Generate OpenAPI 3, client, and route based on golang source code. |
 | serverless-openapi-documentation | [github/temando/serverless-openapi-documentation](https://github.com/temando/serverless-openapi-documentation) | TypeScript | Serverless 1.0 plugin to generate OpenAPI V3 documentation from serverless configuration |
+| OpenApi Client Generators | [OpenApiClientGen](https://github.com/zijianhuang/openapiclientgen) | dotnet | .NET Core command line program to generate strongly typed client API codes in C# on .NET Frameworks and .NET Core, and in TypeScript for Angular 5+, Aurelia, jQuery, AXIOS and Fetch API. |
 | zero-rails_openapi | [github/zhandao/zero-rails_openapi](https://github.com/zhandao/zero-rails_openapi) | Ruby | Provide concise DSL for generating the OpenAPI Specification 3 documentation file for Rails application |
 | slush-vertx | [github/pmlopes/slush-vertx](https://github.com/pmlopes/slush-vertx) | Java, Kotlin & Groovy | Generate server skeleton for [Vert.x Web API Contract](http://vertx.io/docs/#web) and API Client based on [Vert.x 3 Web Client](http://vertx.io/docs/#web)
 | WebSphere Liberty | [Download jar](https://developer.ibm.com/wasdev/downloads/) | Java EE | Generates OpenAPI v3 documentation from Java EE applications |

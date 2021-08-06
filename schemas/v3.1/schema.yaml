@@ -637,6 +637,10 @@ $defs:
       allowEmptyValue:
         default: false
         type: boolean
+      schema:
+        $dynamicRef: '#meta'
+      content:
+        $ref: '#/$defs/content'
     dependentSchemas:
       schema:
         properties:
@@ -650,13 +654,7 @@ $defs:
           allowReserved:
             default: false
             type: boolean
-          schema:
-            $dynamicRef: '#meta'
         $ref: '#/$defs/examples'
-      content:
-        properties:
-          content:
-            $ref: '#/$defs/content'
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
 

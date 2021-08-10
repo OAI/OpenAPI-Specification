@@ -934,10 +934,6 @@
           "default": false,
           "type": "boolean"
         },
-        "allowEmptyValue": {
-          "default": false,
-          "type": "boolean"
-        },
         "schema": {
           "$dynamicRef": "#meta"
         },
@@ -967,10 +963,6 @@
               ]
             },
             "explode": {
-              "default": false,
-              "type": "boolean"
-            },
-            "allowReserved": {
               "default": false,
               "type": "boolean"
             }

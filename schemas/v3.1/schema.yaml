@@ -634,9 +634,6 @@ $defs:
       deprecated:
         default: false
         type: boolean
-      allowEmptyValue:
-        default: false
-        type: boolean
       schema:
         $dynamicRef: '#meta'
       content:
@@ -654,9 +651,6 @@ $defs:
             enum:
               - simple
           explode:
-            default: false
-            type: boolean
-          allowReserved:
             default: false
             type: boolean
         $ref: '#/$defs/examples'

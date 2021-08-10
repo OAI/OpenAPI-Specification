@@ -945,6 +945,18 @@
           "$ref": "#/$defs/content"
         }
       },
+      "oneOf": [
+        {
+          "required": [
+            "schema"
+          ]
+        },
+        {
+          "required": [
+            "content"
+          ]
+        }
+      ],
       "dependentSchemas": {
         "schema": {
           "properties": {

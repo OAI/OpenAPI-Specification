@@ -502,6 +502,9 @@
               },
               "then": {
                 "properties": {
+                  "name": {
+                    "pattern": "[^/#?]+$"
+                  },
                   "style": {
                     "default": "simple",
                     "enum": [

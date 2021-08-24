@@ -1,0 +1,798 @@
+openapi: 3.0.1
+info:
+  title: FSS Financial Services
+  description: Delivery of Sales or PaymentDocuments to FSS SAP Brim Services
+  contact:
+    name: FSS
+    url: https://confluence.sbb.ch/pages/viewpage.action?pageId=850440892
+    email: dl_fss_all@sbb.ch
+  license:
+    name: SBB
+    url: file:~/LICENSE.txt
+  version: 1.1.0
+servers:
+- url:  http://127.0.0.1:4010/
+paths:
+  /GeschaeftsfallCreate:
+    post:
+      tags:
+      - GeschaeftsfallCreate
+      summary: Delivery of Sales or PaymentDocuments to FSS SAP Brim Services
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GeschaeftsfallCreate'
+        required: true
+      responses:
+        201:
+          description: Item(s) successfully created in FSS SAP Brim
+          content: {}
+        400:
+          description: Bad request
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        500:
+          description: Internal server error
+          content: {}
+      x-codegen-request-body-name: BusinessCase
+components:
+  schemas:
+    GeschaeftsfallCreate:
+      required:
+      - BusinessCase
+      type: object
+      properties:
+        BusinessCase:
+          $ref: '#/components/schemas/BusinessCase'
+
+    BusinessCase:
+      required:
+      - Documents
+      - Header
+      type: object
+      properties:
+        Header:
+          $ref: '#/components/schemas/Header'
+        Documents:
+          $ref: '#/components/schemas/Documents'
+    Header:
+      required:
+      - SalesPoint
+      - TechnicalInformation
+      - businessCaseId
+      - dossierId
+      - salesId
+      type: object
+      properties:
+        businessCaseId:
+          type: string
+          maxLength: 36
+          example: "1b89c448-3580-482f-9137-ca7b86bd676e"
+        salesId:
+          type: string
+          maxLength: 36
+          example: "1b89c448-3580-482f-9137-ca7b86bd676e"
+        dossierId:
+          type: string
+          maxLength: 20
+          example: "21316465485"
+        TechnicalInformation:
+          $ref: '#/components/schemas/TechnicalInformation'
+        SalesPoint:
+          $ref: '#/components/schemas/SalesPoint'
+        CustomerData:
+          $ref: '#/components/schemas/CustomerData'
+        AccountingData:
+          $ref: '#/components/schemas/AccountingData'
+    TechnicalInformation:
+      required:
+      - environment
+      - version
+      type: object
+      properties:
+        version:
+          type: string
+          maxLength: 10
+          example: "1.0"
+        environment:
+          type: string
+          maxLength: 30
+          example: "IC"
+    SalesPoint:
+      required:
+      - channelId
+      - salesPointId
+      - salesPointIdCheckdigit
+      - salesPointIdWithCheckdigit
+      - salesService
+      - salesType
+      - transportCompany
+      - workStationId
+      type: object
+      properties:
+        transportCompany:
+          type: string
+          maxLength: 4
+          example: "11"
+        salesPointId:
+          type: string
+          maxLength: 5
+          example: "01620"
+        salesPointIdCheckdigit:
+          type: string
+          maxLength: 1
+          example: "4"
+        salesPointIdWithCheckdigit:
+          type: string
+          maxLength: 6
+          example: "016204"
+        salesType:
+          $ref: '#/components/schemas/Salestype'
+        workStationId:
+          type: string
+          maxLength: 5
+          example: "941"
+        channelId:
+          type: string
+          maxLength: 4
+          example: "53"
+        salesService:
+          type: string
+          maxLength: 2
+          example: "01"
+        ServicedSale:
+          $ref: '#/components/schemas/ServicedSale'
+    ServicedSale:
+      required:
+      - cashRegisterId
+      - userId
+      type: object
+      properties:
+        userId:
+          type: string
+          maxLength: 7
+          example: "U999999"
+        cashRegisterId:
+          type: string
+          maxLength: 20
+          example: "43214442"
+    CustomerData:
+      required:
+      - contractNumber
+      - novaTKId
+      type: object
+      properties:
+        novaTKId:
+          type: string
+          maxLength: 36
+          example: 4589c147-f739-4fa1-9a56-30fbd9716b42
+        contractNumber:
+          type: string
+          maxLength: 36
+          example: "ABC001"
+    AccountingData:
+      required:
+      - accoutingOfficeDescription
+      - accoutingOfficeId
+      - costAllocation
+      type: object
+      properties:
+        accoutingOfficeId:
+          type: string
+          example: "11421422"
+        accoutingOfficeDescription:
+          type: string
+          example: "Muster FSS AG"
+        costAllocation:
+          type: string
+          maxLength: 30
+    Documents:
+      type: object
+      properties:
+        SalesDocuments:
+          $ref: '#/components/schemas/SalesDocuments'
+        PaymentDocuments:
+          $ref: '#/components/schemas/PaymentDocuments'
+      minProperties: 1 
+    SalesDocuments:
+      required:
+      - SalesDocument
+      type: object
+      properties:
+        SalesDocument:
+          type: array
+          items:
+            $ref: '#/components/schemas/SalesDocument'
+        Deductible:
+            $ref: '#/components/schemas/Deductible'
+    SalesDocument:
+      required:
+      - Price
+      - SupplierData
+      - Vat
+      - productId
+      - transactionDate
+      - transactionStatus
+      - transactionTime
+      - transactionType
+      type: object
+      properties:
+        transactionDate:
+          type: string
+          format: date
+          example: 2021-05-03
+        transactionTime:
+          type: string
+          example: "10:03:21.00"
+        transactionType:
+          $ref: '#/components/schemas/SalesTransactiontype'
+        transactionStatus:
+          type: string
+          example: "proceeded"
+          enum:
+            - proceeded
+        SupplierData:
+          $ref: '#/components/schemas/SupplierData'
+        productId:
+          type: string
+          maxLength: 20
+          example: "125"
+        productDescription:
+          type: string
+          maxLength: 32
+          example: "Streckenbillett"
+        Price:
+          $ref: '#/components/schemas/VendorCurrencyAmount'
+        Vat:
+          maxItems: 5
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/Vat'
+        Discount:
+          $ref: '#/components/schemas/Discount'
+        FxCurrencyPrice:
+          $ref: '#/components/schemas/FxCurrencyAmount'
+        AfterSales:
+          $ref: '#/components/schemas/AfterSales'
+    Deductible:
+      required:
+      - DeductibleAmount
+      - DeductibleVat
+      type: object
+      properties:
+        DeductibleAmount:
+          $ref: '#/components/schemas/VendorCurrencyAmount'
+        DeductibleVat:
+          $ref: '#/components/schemas/Vat'
+    Discount:
+      required:
+      - DiscountAmount
+      - DiscountVat
+      - discountId
+      - discountReason
+      type: object
+      properties:
+        discountId:
+          type: string
+          example: "17231124444d"
+          maxLength: 38
+        discountReason:
+          type: string
+          example: "B2B"
+        DiscountAmount:
+          $ref: '#/components/schemas/VendorCurrencyAmount'
+        DiscountVat:
+          $ref: '#/components/schemas/Vat'
+    SupplierData:
+      required:
+      - supplierCategory
+      - supplierId
+      - supplierReferenceId
+      type: object
+      properties:
+        supplierId:
+          type: string
+          maxLength: 20
+          example: "NOVA"
+        supplierCategory:
+          type: string
+          example: "PublicTransport"
+        supplierOrderId:
+          type: string
+          maxLength: 20
+        supplierReferenceId:
+          type: string
+          maxLength: 38
+          example: "17231124444"
+        PublicTransport:
+          $ref: '#/components/schemas/PublicTransport'
+        additionalServices:
+          type: string
+    PublicTransport:
+      required:
+      - TravelData
+      type: object
+      properties:
+        TravelData:
+          $ref: '#/components/schemas/TravelData'
+        StatisticalData:
+          $ref: '#/components/schemas/StatisticalData'
+        ReferenceInformation:
+          $ref: '#/components/schemas/ReferenceInformation'
+    TravelData:
+      required:
+      - startValidityDate
+      - endValidityDate
+      - travelClass
+      type: object
+      properties:
+        startValidityDate:
+          type: string
+          format: date
+          example: 2021-05-15
+        endValidityDate:
+          type: string
+          format: date
+          example: 2021-05-20
+        DepartureStation:
+          $ref: '#/components/schemas/Station'
+        DestinationStation:
+          $ref: '#/components/schemas/Station'
+        travelClass:
+          type: string
+          maxLength: 20
+          example: "001"
+        trainNumber:
+          type: string
+          maxLength: 10
+          example: "8231"
+        numberOfTravelers:
+          type: integer
+          example: 1
+    StatisticalData:
+      required:
+      - Buyer
+      - Traveler
+      type: object
+      properties:
+        Buyer:
+          $ref: '#/components/schemas/Buyer'
+        Traveler:
+          $ref: '#/components/schemas/Traveler'
+    Buyer:
+      type: object
+      properties:
+        userLogin:
+          type: string
+          example: hansmuster@muster.ch
+        BuyerName:
+          $ref: '#/components/schemas/Name'
+        customerId:
+          type: string
+          maxLength: 20
+          example: "11308072"
+    Traveler:
+      required:
+      - customerId
+      - employeeNumber
+      - Reduction
+      - TravelerName
+      type: object
+      properties:
+        TravelerName:
+          $ref: '#/components/schemas/Name'
+        employeeNumber:
+          type: string
+          maxLength: 20
+          example: "E211241"
+        customerId:
+          type: string
+          maxLength: 20
+          example: "11308072"
+        Reduction:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reduction'             
+    ReferenceInformation:
+      required:
+      - referenceText1
+      - referenceText2
+      type: object
+      properties:
+        referenceText1:
+          type: string
+          example: "Reise Vortrag XY"
+        referenceText2:
+          type: string
+    AfterSales:
+      type: object
+      properties:
+        afterSale:
+          type: array
+          items:
+            $ref: '#/components/schemas/AfterSale'
+    AfterSale:
+      required:
+      - originalSupplierReferenceId
+      type: object
+      properties:
+        originalSupplierReferenceId:
+          type: string
+          maxLength: 32
+          example: "1124222332"
+        OriginalService:
+          $ref: '#/components/schemas/Service'
+        UsedService:
+          $ref: '#/components/schemas/Service'
+        CarrierPenalty:
+          $ref: '#/components/schemas/VendorCurrencyAmount'
+        refundReason:
+          type: string
+          maxLength: 36
+          example: "NOT USED"
+        originalProductId:
+          type: string
+          maxLength: 20
+          example: "125"
+    PaymentDocuments:
+      type: object
+      properties:
+        PaymentDocument:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentDocument'
+        CashTransaction:
+          $ref: '#/components/schemas/CashTransaction'
+      minProperties: 1 
+    PaymentDocument:
+      required:
+      - paymentMethodTypeDescription
+      - paymentMethodTypeId
+      - paymentReferenceId
+      - transactionDate
+      - transactionStatus
+      - transactionTime
+      type: object
+      properties:
+        transactionDate:
+          type: string
+          format: date
+          example: 2021-05-03
+        transactionTime:
+          type: string
+          example: "10:03:21.00"
+        TransactionType:
+          $ref: '#/components/schemas/PaymentTransactiontype'
+        transactionStatus:
+          type: string
+          example: "proceeded"
+          enum:
+            - proceeded
+            - settlement_failed
+        paymentReferenceId:
+          type: string
+          maxLength: 20
+          example: "21233212"
+        paymentMethodTypeDescription:
+          type: string
+          maxLength: 4
+          example: "VIS"
+        paymentMethodTypeId:
+          type: string
+          example: "20"
+        Price:
+          $ref: '#/components/schemas/VendorCurrencyAmount'
+        FxCurrencyPrice:
+          $ref: '#/components/schemas/FxCurrencyAmount'
+        OnlinePayment:
+          $ref: '#/components/schemas/OnlinePayment'
+        TerminalPayment:
+          $ref: '#/components/schemas/TerminalPayment'
+        VoucherPayment:
+          $ref: '#/components/schemas/VoucherPayment'
+        PromocodePayment:
+          $ref: '#/components/schemas/PromocodePayment'
+        NovaPayment:
+          $ref: '#/components/schemas/NovaPayment'
+        InvoicePayment:
+            $ref: '#/components/schemas/InvoicePayment'
+    CashTransaction:
+      title: CashTransaction
+      required:
+      - sender
+      type: object
+      properties:
+        sender:
+          $ref: '#/components/schemas/CashTransactionParticipant'
+        receiver:
+          $ref: '#/components/schemas/CashTransactionParticipant'
+    CashTransactionParticipant:
+      required:
+      - cashTransactionParticipantId
+      - salesPointNumber
+      - salesPointNumberCheckDigit
+      - salesPointNumberWithCheckDigit
+      type: object
+      properties:
+        salesPointNumber:
+          type: string
+          maxLength: 5
+          example: "01620"
+        salesPointNumberCheckDigit:
+          type: string
+          maxLength: 1
+          example: "4"
+        salesPointNumberWithCheckDigit:
+          type: string
+          maxLength: 6
+          example: "016204"
+        CashTransactionParticipantType:
+          $ref: '#/components/schemas/CashTransactionParticipantPartnerType'
+        cashTransactionParticipantId:
+          type: string
+          maxLength: 32
+        userId:
+          type: string
+          maxLength: 7
+          example: "U124124"
+    OnlinePayment:
+      required:
+      - uppTransactionId
+      type: object
+      properties:
+        uppTransactionId:
+          type: string
+          maxLength: 20
+          example: "2314299124852138929"
+        pspReferenceId:
+          type: string
+          maxLength: 16
+    TerminalPayment:
+      required:
+      - sequenceCounter
+      - terminalId
+      type: object
+      properties:
+        terminalId:
+          type: string
+          maxLength: 8
+          example: "83214227"
+        sequenceCounter:
+          type: string
+          maxLength: 8
+          example: "2831"
+    VoucherPayment:
+      required:
+      - voucherCode
+      type: object
+      properties:
+        voucherCode:
+          type: string
+          maxLength: 20
+          example: "Coupon123456"
+    PromocodePayment:
+      required:
+      - paySerie
+      - promocode
+      type: object
+      properties:
+        promocode:
+          type: string
+          maxLength: 20
+          example: "Promo123"
+        paySerie:
+          type: string
+          maxLength: 50
+          example: "2141980000999"
+    NovaPayment:
+      required:
+      - PaymentInstrument
+      - PaymentTransaction
+      type: object
+      properties:
+        PaymentInstrument:
+          $ref: '#/components/schemas/PaymentInstrument'
+        PaymentTransaction:
+          $ref: '#/components/schemas/PaymentTransaction'
+    PaymentInstrument:
+      required:
+      - contractNumber
+      - couponCode
+      - gutscheinCode
+      type: object
+      properties:
+        contractNumber:
+          type: string
+        gutscheinCode:
+          type: string
+        couponCode:
+          type: string
+    PaymentTransaction:
+      required:
+      - novaPaymentPositionId
+      - novaPaymentTransactionId
+      type: object
+      properties:
+        novaPaymentTransactionId:
+          type: string
+          maxLength: 36
+        novaPaymentPositionId:
+          type: string
+          maxLength: 2
+        OriginalPaymentTransaction:
+          $ref: '#/components/schemas/OriginalPaymentTransaction'
+    OriginalPaymentTransaction:
+      required:
+      - operationType
+      - originalPaymentTransactionId
+      - originalPaymentTransactionPositionId
+      type: object
+      properties:
+        originalPaymentTransactionId:
+          type: string
+          maxLength: 36
+        originalPaymentTransactionPositionId:
+          type: string
+          maxLength: 2
+        operationType:
+          $ref: '#/components/schemas/OperationType'
+    InvoicePayment:
+      required:
+      - invoiceType
+      type: object
+      properties:
+        invoiceType:
+          $ref: '#/components/schemas/InvoiceType'
+        Bonuspass:
+          $ref: '#/components/schemas/BonusPass'
+
+    BonusPass:
+      title: BonusPass
+      required:
+      - CompanyAmount
+      - EmployeeAmount
+      type: object
+      properties:
+        CompanyAmount:
+          $ref: '#/components/schemas/VendorCurrencyAmount'
+        EmployeeAmount:
+          $ref: '#/components/schemas/VendorCurrencyAmount'
+    VendorCurrencyAmount:
+      required:
+      - amount
+      - currency
+      type: object
+      properties:
+        amount:
+          type: number
+          example: 25.00
+        currency:
+          type: string
+          example: "CHF"
+    Vat:
+      required:
+      - vatBasisAmount
+      - vatRate
+      type: object
+      properties:
+        vatAmount:
+          type: number
+          example: 25.00
+        vatBasisAmount:
+          type: number
+          example: 25.00
+        vatRate:
+          type: string
+          example: "7.70"
+    FxCurrencyAmount:
+      required:
+      - amount
+      - currency
+      type: object
+      properties:
+        amount:
+          type: number
+          example: 22.70
+        currency:
+          type: string
+          example: "EUR"
+        exchangeRate:
+          type: number
+          example: 1.10
+    Station:
+      required:
+      - stationCode
+      - stationDescription
+      type: object
+      properties:
+        stationDescription:
+          type: string
+          maxLength: 50
+          example: "Zürich HB"
+        stationCode:
+          type: string
+          maxLength: 7
+          example: "8503007"
+    Name:
+      required:
+      - firstName
+      - lastName
+      type: object
+      properties:
+        firstName:
+          type: string
+          maxLength: 50
+          example: "Hans"
+        lastName:
+          type: string
+          maxLength: 50
+          example: "Muster"
+    Service:
+      required:
+      - Price
+      - Vat
+      type: object
+      properties:
+        Price:
+          $ref: '#/components/schemas/VendorCurrencyAmount'
+        Vat:
+          $ref: '#/components/schemas/Vat'
+    CashTransactionParticipantPartnerType:
+      type: string
+      enum:
+      - CashRegister
+      - Tresor
+      - ATM
+      - REKA
+      - Bank
+    InvoiceType:
+      type: string
+      enum:
+      - Standard
+      - Bonuspass
+    Salestype:
+      type: string
+      enum:
+      - B2C
+      - B2B
+      - B2P
+    SalesTransactiontype:
+      type: string
+      enum:
+      - Annullation
+      - Refund
+      - Sale
+      - VertragsaenderungBezahlt
+      - VertragsaenderungGuthaben
+      - VertragsaenderungAnnulliert
+      - VertragsaenderungGuthabenAnnulliert
+    PaymentTransactiontype:
+      type: string
+      enum:
+      - Payment
+      - Credit
+      - Deposit
+      - Payout
+      - DepositReversal
+      - PayoutReversal
+      - CashBalanceDeficit
+      - CashBalanceSurplus
+    OperationType:
+      type: string
+      enum:
+      - Payment
+      - Cancellation
+      - Refund
+    Reduction:
+      required:
+      - reduction
+      type: object
+      properties:
+        reduction:
+          type: string
+          maxLength: 50
+          example: "KEINE"      

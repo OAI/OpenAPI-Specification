@@ -1,5 +1,5 @@
 {
-  "id": "https://spec.openapis.org/oas/3.0/schema/2019-04-02",
+  "id": "https://spec.openapis.org/oas/3.0/schema/2021-08-12",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "description": "Validation schema for OpenAPI Specification 3.0.X.",
   "type": "object",
@@ -46,8 +46,7 @@
     }
   },
   "patternProperties": {
-    "^x-": {
-    }
+    "^x-": {}
   },
   "additionalProperties": false,
   "definitions": {
@@ -91,8 +90,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -112,8 +110,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -132,8 +129,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -157,8 +153,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -182,8 +177,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -327,8 +321,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -402,8 +395,7 @@
         },
         "enum": {
           "type": "array",
-          "items": {
-          },
+          "items": {},
           "minItems": 1,
           "uniqueItems": false
         },
@@ -510,8 +502,7 @@
         "format": {
           "type": "string"
         },
-        "default": {
-        },
+        "default": {},
         "nullable": {
           "type": "boolean",
           "default": false
@@ -527,8 +518,7 @@
           "type": "boolean",
           "default": false
         },
-        "example": {
-        },
+        "example": {},
         "externalDocs": {
           "$ref": "#/definitions/ExternalDocumentation"
         },
@@ -541,8 +531,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -586,8 +575,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -634,8 +622,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -652,8 +639,7 @@
             }
           ]
         },
-        "example": {
-        },
+        "example": {},
         "examples": {
           "type": "object",
           "additionalProperties": {
@@ -675,8 +661,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false,
       "allOf": [
@@ -694,16 +679,14 @@
         "description": {
           "type": "string"
         },
-        "value": {
-        },
+        "value": {},
         "externalValue": {
           "type": "string",
           "format": "uri-reference"
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -757,8 +740,7 @@
           "minProperties": 1,
           "maxProperties": 1
         },
-        "example": {
-        },
+        "example": {},
         "examples": {
           "type": "object",
           "additionalProperties": {
@@ -774,8 +756,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false,
       "allOf": [
@@ -793,8 +774,7 @@
         "^\\/": {
           "$ref": "#/definitions/PathItem"
         },
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -835,8 +815,7 @@
         "^(get|put|post|delete|options|head|patch|trace)$": {
           "$ref": "#/definitions/Operation"
         },
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -922,8 +901,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -952,8 +930,7 @@
             }
           ]
         },
-        "^x-": {
-        }
+        "^x-": {}
       },
       "minProperties": 1,
       "additionalProperties": false
@@ -984,8 +961,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -1004,8 +980,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -1129,8 +1104,7 @@
           "minProperties": 1,
           "maxProperties": 1
         },
-        "example": {
-        },
+        "example": {},
         "examples": {
           "type": "object",
           "additionalProperties": {
@@ -1146,8 +1120,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false,
       "required": [
@@ -1269,8 +1242,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -1320,8 +1292,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -1349,8 +1320,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false,
       "oneOf": [
@@ -1404,8 +1374,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -1431,8 +1400,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -1453,8 +1421,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -1481,15 +1448,15 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
     "PasswordOAuthFlow": {
       "type": "object",
       "required": [
-        "tokenUrl"
+        "tokenUrl",
+        "scopes"
       ],
       "properties": {
         "tokenUrl": {
@@ -1508,15 +1475,15 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
     "ClientCredentialsFlow": {
       "type": "object",
       "required": [
-        "tokenUrl"
+        "tokenUrl",
+        "scopes"
       ],
       "properties": {
         "tokenUrl": {
@@ -1535,8 +1502,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -1544,7 +1510,8 @@
       "type": "object",
       "required": [
         "authorizationUrl",
-        "tokenUrl"
+        "tokenUrl",
+        "scopes"
       ],
       "properties": {
         "authorizationUrl": {
@@ -1567,8 +1534,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -1584,11 +1550,9 @@
         },
         "parameters": {
           "type": "object",
-          "additionalProperties": {
-          }
+          "additionalProperties": {}
         },
-        "requestBody": {
-        },
+        "requestBody": {},
         "description": {
           "type": "string"
         },
@@ -1597,8 +1561,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false,
       "not": {
@@ -1615,8 +1578,7 @@
         "$ref": "#/definitions/PathItem"
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       }
     },
     "Encoding": {
@@ -1628,7 +1590,14 @@
         "headers": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/Header"
+            "oneOf": [
+              {
+                "$ref": "#/definitions/Header"
+              },
+              {
+                "$ref": "#/definitions/Reference"
+              }
+            ]
           }
         },
         "style": {

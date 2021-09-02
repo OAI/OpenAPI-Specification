@@ -316,6 +316,7 @@
     },
     "path-item-or-reference": {
       "if": {
+        "type": "object",
         "required": [
           "$ref"
         ]
@@ -655,6 +656,7 @@
     },
     "request-body-or-reference": {
       "if": {
+        "type": "object",
         "required": [
           "$ref"
         ]
@@ -811,6 +813,7 @@
     },
     "response-or-reference": {
       "if": {
+        "type": "object",
         "required": [
           "$ref"
         ]
@@ -831,6 +834,7 @@
     },
     "callbacks-or-reference": {
       "if": {
+        "type": "object",
         "required": [
           "$ref"
         ]
@@ -909,6 +913,7 @@
     },
     "link-or-reference": {
       "if": {
+        "type": "object",
         "required": [
           "$ref"
         ]
@@ -975,6 +980,7 @@
     },
     "header-or-reference": {
       "if": {
+        "type": "object",
         "required": [
           "$ref"
         ]
@@ -1196,6 +1202,7 @@
     },
     "security-scheme-or-reference": {
       "if": {
+        "type": "object",
         "required": [
           "$ref"
         ]

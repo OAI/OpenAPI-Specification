@@ -765,7 +765,8 @@ $defs:
             type:
               const: http
             scheme:
-              const: bearer
+              type: string
+              pattern: ^[Bb][Ee][Aa][Rr][Ee][Rr]$
           required:
             - type
             - scheme
@@ -773,8 +774,6 @@ $defs:
           properties:
             bearerFormat:
               type: string
-          required:
-            - scheme
 
       type-oauth2:
         if:

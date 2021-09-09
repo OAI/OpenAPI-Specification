@@ -806,7 +806,8 @@ definitions:
       - description: Bearer
         properties:
           scheme:
-            enum: [bearer]
+            type: string
+            pattern: ^[Bb][Ee][Aa][Rr][Ee][Rr]$
 
       - description: Non Bearer
         not:
@@ -814,7 +815,8 @@ definitions:
         properties:
           scheme:
             not:
-              enum: [bearer]
+              type: string
+              pattern: ^[Bb][Ee][Aa][Rr][Ee][Rr]$
 
   OAuth2SecurityScheme:
     type: object

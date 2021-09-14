@@ -534,9 +534,7 @@
                 "properties": {
                   "style": {
                     "default": "simple",
-                    "enum": [
-                      "simple"
-                    ]
+                    "const": "simple"
                   }
                 }
               }
@@ -581,9 +579,7 @@
                 "properties": {
                   "style": {
                     "default": "form",
-                    "enum": [
-                      "form"
-                    ]
+                    "const": "form"
                   }
                 }
               }
@@ -958,9 +954,7 @@
           "properties": {
             "style": {
               "default": "simple",
-              "enum": [
-                "simple"
-              ]
+              "const": "simple"
             },
             "explode": {
               "default": false,

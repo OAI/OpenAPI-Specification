@@ -534,9 +534,7 @@
                 "properties": {
                   "style": {
                     "default": "simple",
-                    "enum": [
-                      "simple"
-                    ]
+                    "const": "simple"
                   }
                 }
               }
@@ -581,9 +579,7 @@
                 "properties": {
                   "style": {
                     "default": "form",
-                    "enum": [
-                      "form"
-                    ]
+                    "const": "form"
                   }
                 }
               }
@@ -934,40 +930,38 @@
           "default": false,
           "type": "boolean"
         },
-        "allowEmptyValue": {
-          "default": false,
-          "type": "boolean"
+        "schema": {
+          "$dynamicRef": "#meta"
+        },
+        "content": {
+          "$ref": "#/$defs/content"
         }
       },
+      "oneOf": [
+        {
+          "required": [
+            "schema"
+          ]
+        },
+        {
+          "required": [
+            "content"
+          ]
+        }
+      ],
       "dependentSchemas": {
         "schema": {
           "properties": {
             "style": {
               "default": "simple",
-              "enum": [
-                "simple"
-              ]
+              "const": "simple"
             },
             "explode": {
               "default": false,
               "type": "boolean"
-            },
-            "allowReserved": {
-              "default": false,
-              "type": "boolean"
-            },
-            "schema": {
-              "$dynamicRef": "#meta"
             }
           },
           "$ref": "#/$defs/examples"
-        },
-        "content": {
-          "properties": {
-            "content": {
-              "$ref": "#/$defs/content"
-            }
-          }
         }
       },
       "$ref": "#/$defs/specification-extensions",

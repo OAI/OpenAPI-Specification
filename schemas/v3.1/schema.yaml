@@ -219,6 +219,7 @@ $defs:
 
   path-item-or-reference:
     if:
+      type: object
       required:
         - $ref
     then:
@@ -416,6 +417,7 @@ $defs:
 
   parameter-or-reference:
     if:
+      type: object
       required:
         - $ref
     then:
@@ -440,6 +442,7 @@ $defs:
 
   request-body-or-reference:
     if:
+      type: object
       required:
         - $ref
     then:
@@ -545,6 +548,7 @@ $defs:
 
   response-or-reference:
     if:
+      type: object
       required:
         - $ref
     then:
@@ -560,6 +564,7 @@ $defs:
 
   callbacks-or-reference:
     if:
+      type: object
       required:
         - $ref
     then:
@@ -583,6 +588,7 @@ $defs:
 
   example-or-reference:
     if:
+      type: object
       required:
         - $ref
     then:
@@ -614,6 +620,7 @@ $defs:
 
   link-or-reference:
     if:
+      type: object
       required:
         - $ref
     then:
@@ -656,6 +663,7 @@ $defs:
 
   header-or-reference:
     if:
+      type: object
       required:
         - $ref
     then:
@@ -801,6 +809,7 @@ $defs:
 
   security-scheme-or-reference:
     if:
+      type: object
       required:
         - $ref
     then:

@@ -1628,7 +1628,14 @@
         "headers": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/Header"
+            "oneOf": [
+              {
+                "$ref": "#/definitions/Header"
+              },
+              {
+                "$ref": "#/definitions/Reference"
+              }
+            ]
           }
         },
         "style": {

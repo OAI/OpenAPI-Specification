@@ -1489,7 +1489,8 @@
     "PasswordOAuthFlow": {
       "type": "object",
       "required": [
-        "tokenUrl"
+        "tokenUrl",
+        "scopes"
       ],
       "properties": {
         "tokenUrl": {
@@ -1516,7 +1517,8 @@
     "ClientCredentialsFlow": {
       "type": "object",
       "required": [
-        "tokenUrl"
+        "tokenUrl",
+        "scopes"
       ],
       "properties": {
         "tokenUrl": {
@@ -1544,7 +1546,8 @@
       "type": "object",
       "required": [
         "authorizationUrl",
-        "tokenUrl"
+        "tokenUrl",
+        "scopes"
       ],
       "properties": {
         "authorizationUrl": {

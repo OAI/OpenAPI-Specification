@@ -1358,9 +1358,8 @@
           "description": "Bearer",
           "properties": {
             "scheme": {
-              "enum": [
-                "bearer"
-              ]
+              "type": "string",
+              "pattern": "^[Bb][Ee][Aa][Rr][Ee][Rr]$"
             }
           }
         },
@@ -1374,9 +1373,8 @@
           "properties": {
             "scheme": {
               "not": {
-                "enum": [
-                  "bearer"
-                ]
+                "type": "string",
+                "pattern": "^[Bb][Ee][Aa][Rr][Ee][Rr]$"
               }
             }
           }

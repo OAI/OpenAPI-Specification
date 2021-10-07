@@ -1,5 +1,5 @@
 {
-  "$id": "https://spec.openapis.org/oas/3.1/schema/2021-05-20",
+  "$id": "https://spec.openapis.org/oas/3.1/schema/2021-09-28",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
@@ -622,6 +622,7 @@
     },
     "parameter-or-reference": {
       "if": {
+        "type": "object",
         "required": [
           "$ref"
         ]
@@ -865,6 +866,7 @@
     },
     "example-or-reference": {
       "if": {
+        "type": "object",
         "required": [
           "$ref"
         ]
@@ -1131,7 +1133,8 @@
                 "const": "http"
               },
               "scheme": {
-                "const": "bearer"
+                "type": "string",
+                "pattern": "^[Bb][Ee][Aa][Rr][Ee][Rr]$"
               }
             },
             "required": [
@@ -1144,10 +1147,7 @@
               "bearerFormat": {
                 "type": "string"
               }
-            },
-            "required": [
-              "scheme"
-            ]
+            }
           }
         },
         "type-oauth2": {

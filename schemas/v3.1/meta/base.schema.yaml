@@ -17,7 +17,8 @@ properties:
     - propertyName
     type: object
     unevaluatedProperties: false
-  example: true
+  example:
+    deprecated: true
   externalDocs:
     $ref: '#/$defs/extensible'
     properties:

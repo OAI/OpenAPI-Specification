@@ -9,7 +9,9 @@
 
     "type": ["object", "boolean"],
     "properties": {
-        "example": true,
+        "example": {
+          "deprecated": true
+        },
         "discriminator": {
             "$ref": "#/$defs/extensible",
             "type": "object",

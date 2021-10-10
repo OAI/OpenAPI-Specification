@@ -10,6 +10,7 @@ properties:
       mapping:
         additionalProperties:
           type: string
+          format: uri-reference
         type: object
       propertyName:
         type: string
@@ -47,6 +48,12 @@ properties:
         type: boolean
     type: object
     unevaluatedProperties: false
+dependentSchemas:
+  discriminator:
+    anyOf:
+    - required: [ oneOf ]
+    - required: [ anyOf ]
+    - required: [ allOf ]
 $dynamicAnchor: meta
 $id: https://spec.openapis.org/oas/3.1/meta/base
 $schema: https://json-schema.org/draft/2020-12/schema

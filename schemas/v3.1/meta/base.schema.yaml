@@ -1,5 +1,9 @@
 ---
 $defs:
+  extensible:
+    patternProperties:
+      ^x-: true
+properties:
   discriminator:
     $ref: '#/$defs/extensible'
     properties:
@@ -13,10 +17,8 @@ $defs:
     - propertyName
     type: object
     unevaluatedProperties: false
-  extensible:
-    patternProperties:
-      ^x-: true
-  external-docs:
+  example: true
+  externalDocs:
     $ref: '#/$defs/extensible'
     properties:
       description:
@@ -49,14 +51,6 @@ $id: https://spec.openapis.org/oas/3.1/meta/base
 $schema: https://json-schema.org/draft/2020-12/schema
 $vocabulary:
   https://spec.openapis.org/oas/3.1/vocab/base: true
-properties:
-  discriminator:
-    $ref: '#/$defs/discriminator'
-  example: true
-  externalDocs:
-    $ref: '#/$defs/external-docs'
-  xml:
-    $ref: '#/$defs/xml'
 title: OAS Base vocabulary
 type:
 - object

@@ -10,16 +10,6 @@
     "type": ["object", "boolean"],
     "properties": {
         "example": true,
-        "discriminator": { "$ref": "#/$defs/discriminator" },
-        "externalDocs": { "$ref": "#/$defs/external-docs" },
-        "xml": { "$ref": "#/$defs/xml" }
-    },
-    "$defs": {
-        "extensible": {
-            "patternProperties": {
-                "^x-": true
-            }
-        },
         "discriminator": {
             "$ref": "#/$defs/extensible",
             "type": "object",
@@ -37,7 +27,7 @@
             "required": ["propertyName"],
             "unevaluatedProperties": false
         },
-        "external-docs": {
+        "externalDocs": {
             "$ref": "#/$defs/extensible",
             "type": "object",
             "properties": {
@@ -74,6 +64,13 @@
                 }
             },
             "unevaluatedProperties": false
+        }
+    },
+    "$defs": {
+        "extensible": {
+            "patternProperties": {
+                "^x-": true
+            }
         }
     }
 }

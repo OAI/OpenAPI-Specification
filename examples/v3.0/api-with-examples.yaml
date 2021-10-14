@@ -1,170 +1,1435 @@
-openapi: "3.0.0"
+---
+swagger: "2.0"
 info:
-  title: Simple API overview
-  version: 2.0.0
+  description: "This is a marketplace of Elerance inc.  You can find out more about\
+    \     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net,\
+    \ #swagger](http://swagger.io/irc/).      For this sample, you can use the api\
+    \ key `special-key` to test the authorization     filters."
+  version: "1.0.0"
+  title: "Elerance store"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "zaglushka@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:8080"
+basePath: "/api"
+tags:
+- name: "app"
+  description: "Application managment"
+- name: "developers"
+  description: "Developers of app"
+- name: "downloads"
+  description: "Download managment"
+- name: "login"
+  description: "Login into application"
+- name: "logout"
+  description: "Logout from application"
+- name: "register"
+  description: "Register new user"
+- name: "reviews"
+  description: "Review managment"
+- name: "roles"
+  description: "Role managment"
+- name: "tags"
+  description: "Tag managment"
+- name: "users"
+  description: "User managment"
+schemes:
+- "https"
+- "http"
 paths:
-  /:
-    get:
-      operationId: listVersionsv2
-      summary: List API versions
+  /apps:
+    put:
+      tags:
+      - "app"
+      summary: "Add a new app to the store"
+      description: ""
+      operationId: "addApp"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "App object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/App"
+        x-exportParamName: "Body"
+      security:
+      - Bearer: []
       responses:
-        '200':
-          description: |-
-            200 response
-          content:
-            application/json:
-              examples: 
-                foo:
-                  value:
-                    {
-                      "versions": [
-                        {
-                            "status": "CURRENT",
-                            "updated": "2011-01-21T11:33:21Z",
-                            "id": "v2.0",
-                            "links": [
-                                {
-                                    "href": "http://127.0.0.1:8774/v2/",
-                                    "rel": "self"
-                                }
-                            ]
-                        },
-                        {
-                            "status": "EXPERIMENTAL",
-                            "updated": "2013-07-23T11:33:21Z",
-                            "id": "v3.0",
-                            "links": [
-                                {
-                                    "href": "http://127.0.0.1:8774/v3/",
-                                    "rel": "self"
-                                }
-                            ]
-                        }
-                      ]
-                    }
-        '300':
-          description: |-
-            300 response
-          content:
-            application/json: 
-              examples: 
-                foo:
-                  value: |
-                   {
-                    "versions": [
-                          {
-                            "status": "CURRENT",
-                            "updated": "2011-01-21T11:33:21Z",
-                            "id": "v2.0",
-                            "links": [
-                                {
-                                    "href": "http://127.0.0.1:8774/v2/",
-                                    "rel": "self"
-                                }
-                            ]
-                        },
-                        {
-                            "status": "EXPERIMENTAL",
-                            "updated": "2013-07-23T11:33:21Z",
-                            "id": "v3.0",
-                            "links": [
-                                {
-                                    "href": "http://127.0.0.1:8774/v3/",
-                                    "rel": "self"
-                                }
-                            ]
-                        }
-                    ]
-                   }
-  /v2:
+        "405":
+          description: "Invalid input"
+  /apps/{id}:
     get:
-      operationId: getVersionDetailsv2
-      summary: Show API version details
+      tags:
+      - "app"
+      summary: "Find App by id"
+      description: "Find App by id"
+      operationId: "findAppById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of app to return"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      security:
+      - Bearer: []
       responses:
-        '200':
-          description: |-
-            200 response
-          content:
-            application/json: 
-              examples:
-                foo:
-                  value:
-                    {
-                      "version": {
-                        "status": "CURRENT",
-                        "updated": "2011-01-21T11:33:21Z",
-                        "media-types": [
-                          {
-                              "base": "application/xml",
-                              "type": "application/vnd.openstack.compute+xml;version=2"
-                          },
-                          {
-                              "base": "application/json",
-                              "type": "application/vnd.openstack.compute+json;version=2"
-                          }
-                        ],
-                        "id": "v2.0",
-                        "links": [
-                          {
-                              "href": "http://127.0.0.1:8774/v2/",
-                              "rel": "self"
-                          },
-                          {
-                              "href": "http://docs.openstack.org/api/openstack-compute/2/os-compute-devguide-2.pdf",
-                              "type": "application/pdf",
-                              "rel": "describedby"
-                          },
-                          {
-                              "href": "http://docs.openstack.org/api/openstack-compute/2/wadl/os-compute-2.wadl",
-                              "type": "application/vnd.sun.wadl+xml",
-                              "rel": "describedby"
-                          },
-                          {
-                            "href": "http://docs.openstack.org/api/openstack-compute/2/wadl/os-compute-2.wadl",
-                            "type": "application/vnd.sun.wadl+xml",
-                            "rel": "describedby"
-                          }
-                        ]
-                      }
-                    }
-        '203':
-          description: |-
-            203 response
-          content:
-            application/json: 
-              examples:
-                foo:
-                  value:
-                    {
-                      "version": {
-                        "status": "CURRENT",
-                        "updated": "2011-01-21T11:33:21Z",
-                        "media-types": [
-                          {
-                              "base": "application/xml",
-                              "type": "application/vnd.openstack.compute+xml;version=2"
-                          },
-                          {
-                              "base": "application/json",
-                              "type": "application/vnd.openstack.compute+json;version=2"
-                          }
-                        ],
-                        "id": "v2.0",
-                        "links": [
-                          {
-                              "href": "http://23.253.228.211:8774/v2/",
-                              "rel": "self"
-                          },
-                          {
-                              "href": "http://docs.openstack.org/api/openstack-compute/2/os-compute-devguide-2.pdf",
-                              "type": "application/pdf",
-                              "rel": "describedby"
-                          },
-                          {
-                              "href": "http://docs.openstack.org/api/openstack-compute/2/wadl/os-compute-2.wadl",
-                              "type": "application/vnd.sun.wadl+xml",
-                              "rel": "describedby"
-                          }
-                        ]
-                      }
-                    }
+        "200":
+          description: "successful operation"
+          schema:
+            type: "object"
+            properties:
+              success:
+                type: "boolean"
+                description: "Success result"
+              message:
+                type: "string"
+                description: "Response message"
+              result:
+                type: "array"
+                items:
+                  $ref: "#/definitions/App"
+        "400":
+          description: "Invalid status value"
+        "404":
+          description: "Not found"
+  /developers:
+    put:
+      tags:
+      - "developers"
+      summary: "Add a new developer to the store"
+      description: ""
+      operationId: "addDevelopers"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Developer object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/Developer"
+        x-exportParamName: "Body"
+      security:
+      - Bearer: []
+      responses:
+        "405":
+          description: "Invalid input"
+  /developers/{id}:
+    get:
+      tags:
+      - "developers"
+      summary: "Find Developer by id"
+      description: "Find Developer by id"
+      operationId: "findDevelopersById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of developer to return"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      security:
+      - Bearer: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "object"
+            properties:
+              success:
+                type: "boolean"
+                description: "Success result"
+              message:
+                type: "string"
+                description: "Response message"
+              result:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Developer"
+        "400":
+          description: "Invalid status value"
+        "404":
+          description: "Not found"
+  /downloads:
+    put:
+      tags:
+      - "downloads"
+      summary: "Add a new download to the table"
+      description: ""
+      operationId: "addDownload"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "App object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/App"
+        x-exportParamName: "Body"
+      security:
+      - Bearer: []
+      responses:
+        "405":
+          description: "Invalid input"
+  /downloads/{id}:
+    get:
+      tags:
+      - "downloads"
+      summary: "Find Download by id"
+      description: "Find Download by id"
+      operationId: "findDownloadById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of app to return"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      security:
+      - Bearer: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "object"
+            properties:
+              success:
+                type: "boolean"
+                description: "Success result"
+              message:
+                type: "string"
+                description: "Response message"
+              result:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Download"
+        "400":
+          description: "Invalid status value"
+        "404":
+          description: "Not found"
+  /login:
+    post:
+      tags:
+      - "login"
+      summary: "Login into application"
+      description: "Login into application"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      parameters:
+      - name: "email"
+        in: "formData"
+        required: true
+        type: "string"
+        x-exportParamName: "Email"
+      - name: "password"
+        in: "formData"
+        required: true
+        type: "string"
+        x-exportParamName: "Password"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "object"
+            properties:
+              success:
+                type: "boolean"
+                description: "Success result"
+              message:
+                type: "string"
+                description: "Response message"
+              result:
+                type: "object"
+                properties:
+                  token:
+                    $ref: "#/definitions/Token"
+        "400":
+          description: "Invalid status value"
+        "404":
+          description: "Not found"
+  /logout:
+    post:
+      tags:
+      - "logout"
+      summary: "Logout from application"
+      description: "Logout from  application"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "object"
+            properties:
+              success:
+                type: "boolean"
+                description: "Success result"
+              message:
+                type: "string"
+                description: "Response message"
+        "400":
+          description: "Invalid status value"
+        "404":
+          description: "Not found"
+  /register:
+    post:
+      tags:
+      - "register"
+      summary: "Register new user"
+      description: "Register new user"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      parameters:
+      - name: "name"
+        in: "formData"
+        required: true
+        type: "string"
+        x-exportParamName: "Name"
+      - name: "email"
+        in: "formData"
+        required: true
+        type: "string"
+        x-exportParamName: "Email"
+      - name: "password"
+        in: "formData"
+        required: true
+        type: "string"
+        x-exportParamName: "Password"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "object"
+            properties:
+              success:
+                type: "boolean"
+                description: "Success result"
+              message:
+                type: "string"
+                description: "Response message"
+        "400":
+          description: "Invalid status value"
+        "404":
+          description: "Not found"
+  /reviews:
+    put:
+      tags:
+      - "reviews"
+      summary: "Add a new reviews to the table"
+      description: ""
+      operationId: "addReviews"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "App object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/Review"
+        x-exportParamName: "Body"
+      security:
+      - Bearer: []
+      responses:
+        "405":
+          description: "Invalid input"
+  /reviews/{id}:
+    get:
+      tags:
+      - "reviews"
+      summary: "Find Reviews by id"
+      description: "Find Reviews by id"
+      operationId: "findReviewsById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of reviews to return"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      security:
+      - Bearer: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "object"
+            properties:
+              success:
+                type: "boolean"
+                description: "Success result"
+              message:
+                type: "string"
+                description: "Response message"
+              result:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Review"
+        "400":
+          description: "Invalid status value"
+        "404":
+          description: "Not found"
+  /roles:
+    put:
+      tags:
+      - "roles"
+      summary: "Add a new role to the table"
+      description: ""
+      operationId: "addRoles"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "App object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/Role"
+        x-exportParamName: "Body"
+      security:
+      - Bearer: []
+      responses:
+        "405":
+          description: "Invalid input"
+  /roles/{id}:
+    get:
+      tags:
+      - "roles"
+      summary: "Find Roles by id"
+      description: "Find Roles by id"
+      operationId: "findRolesById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of roles to return"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      security:
+      - Bearer: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "object"
+            properties:
+              success:
+                type: "boolean"
+                description: "Success result"
+              message:
+                type: "string"
+                description: "Response message"
+              result:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Role"
+        "400":
+          description: "Invalid status value"
+        "404":
+          description: "Not found"
+  /tags:
+    put:
+      tags:
+      - "tags"
+      summary: "Add a new tags to the table"
+      description: ""
+      operationId: "addTag"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Tag object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/Role"
+        x-exportParamName: "Body"
+      security:
+      - Bearer: []
+      responses:
+        "405":
+          description: "Invalid input"
+  /tags/{id}:
+    get:
+      tags:
+      - "tags"
+      summary: "Find Tag by id"
+      description: "Find Tag by id"
+      operationId: "findTagById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of tag to return"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      security:
+      - Bearer: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "object"
+            properties:
+              success:
+                type: "boolean"
+                description: "Success result"
+              message:
+                type: "string"
+                description: "Response message"
+              result:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Tag"
+        "400":
+          description: "Invalid status value"
+        "404":
+          description: "Not found"
+  /users:
+    put:
+      tags:
+      - "users"
+      summary: "Add a new user to the table"
+      description: ""
+      operationId: "addUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Tag object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+        x-exportParamName: "Body"
+      security:
+      - Bearer: []
+      responses:
+        "405":
+          description: "Invalid input"
+  /user/{id}:
+    get:
+      tags:
+      - "users"
+      summary: "Find user by id"
+      description: "Find user by id"
+      operationId: "findUserById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of user to return"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      security:
+      - Bearer: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "object"
+            properties:
+              success:
+                type: "boolean"
+                description: "Success result"
+              message:
+                type: "string"
+                description: "Response message"
+              result:
+                type: "array"
+                items:
+                  $ref: "#/definitions/User"
+        "400":
+          description: "Invalid status value"
+        "404":
+          description: "Not found"
+securityDefinitions:
+  Bearer:
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"
+definitions:
+  App:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      developers_id:
+        type: "integer"
+        format: "int64"
+      code:
+        type: "string"
+      name:
+        type: "string"
+      description:
+        type: "string"
+      logo:
+        type: "array"
+        items:
+          $ref: "#/definitions/Logo"
+      backgroung:
+        type: "array"
+        items:
+          $ref: "#/definitions/Logo"
+      rights:
+        type: "string"
+      price:
+        type: "number"
+        format: "float"
+      currency:
+        type: "string"
+      file_id:
+        type: "integer"
+        format: "int64"
+      status:
+        type: "string"
+      statusWorking:
+        type: "string"
+      developer:
+        type: "array"
+        items:
+          $ref: "#/definitions/Developer"
+      tags:
+        type: "array"
+        items:
+          $ref: "#/definitions/Tag"
+      reviews:
+        type: "array"
+        items:
+          $ref: "#/definitions/Review"
+      downloads:
+        type: "array"
+        items:
+          $ref: "#/definitions/Download"
+      attachment:
+        type: "array"
+        items:
+          $ref: "#/definitions/Attachment"
+      published_at:
+        type: "string"
+        format: "date-time"
+      withdrawn_at:
+        type: "string"
+        format: "date-time"
+      created_at:
+        type: "string"
+        format: "date-time"
+      updated_at:
+        type: "string"
+        format: "date-time"
+    xml:
+      name: "App"
+    example:
+      code: "code"
+      statusWorking: "statusWorking"
+      developers_id: 6
+      description: "description"
+      backgroung:
+      - extension: "extension"
+        mime: "mime"
+        alt: "alt"
+        description: "description"
+        created_at: "2000-01-23T04:56:07.000+00:00"
+        sort: 5
+        relativeUrl: "relativeUrl"
+        url: "url"
+        path: "path"
+        disk: "disk"
+        size: 5
+        updated_at: "2000-01-23T04:56:07.000+00:00"
+        user_id: 2
+        original_name: "original_name"
+        name: "name"
+        id: 1
+        hash: "hash"
+        group: 7
+      - extension: "extension"
+        mime: "mime"
+        alt: "alt"
+        description: "description"
+        created_at: "2000-01-23T04:56:07.000+00:00"
+        sort: 5
+        relativeUrl: "relativeUrl"
+        url: "url"
+        path: "path"
+        disk: "disk"
+        size: 5
+        updated_at: "2000-01-23T04:56:07.000+00:00"
+        user_id: 2
+        original_name: "original_name"
+        name: "name"
+        id: 1
+        hash: "hash"
+        group: 7
+      created_at: "2000-01-23T04:56:07.000+00:00"
+      tags:
+      - name: "name"
+        id: 7
+      - name: "name"
+        id: 7
+      reviews:
+      - apps_id: 1
+        updated_at: "2000-01-23T04:56:07.000+00:00"
+        user_id: 1
+        rate: 6
+        created_at: "2000-01-23T04:56:07.000+00:00"
+        id: 1
+        text: "text"
+      - apps_id: 1
+        updated_at: "2000-01-23T04:56:07.000+00:00"
+        user_id: 1
+        rate: 6
+        created_at: "2000-01-23T04:56:07.000+00:00"
+        id: 1
+        text: "text"
+      attachment:
+      - extension: "extension"
+        mime: "mime"
+        alt: "alt"
+        description: "description"
+        created_at: "2000-01-23T04:56:07.000+00:00"
+        sort: 9
+        relativeUrl: "relativeUrl"
+        url: "url"
+        path: "path"
+        disk: "disk"
+        size: 9
+        updated_at: "2000-01-23T04:56:07.000+00:00"
+        user_id: 6
+        original_name: "original_name"
+        name: "name"
+        pivot:
+        - attachment_id: 6
+          attachmentable_type: 3
+          attachmentable_id: 9
+        - attachment_id: 6
+          attachmentable_type: 3
+          attachmentable_id: 9
+        id: 5
+        hash: "hash"
+        group: 8
+      - extension: "extension"
+        mime: "mime"
+        alt: "alt"
+        description: "description"
+        created_at: "2000-01-23T04:56:07.000+00:00"
+        sort: 9
+        relativeUrl: "relativeUrl"
+        url: "url"
+        path: "path"
+        disk: "disk"
+        size: 9
+        updated_at: "2000-01-23T04:56:07.000+00:00"
+        user_id: 6
+        original_name: "original_name"
+        name: "name"
+        pivot:
+        - attachment_id: 6
+          attachmentable_type: 3
+          attachmentable_id: 9
+        - attachment_id: 6
+          attachmentable_type: 3
+          attachmentable_id: 9
+        id: 5
+        hash: "hash"
+        group: 8
+      updated_at: "2000-01-23T04:56:07.000+00:00"
+      downloads:
+      - apps_id: 4
+        updated_at: "2000-01-23T04:56:07.000+00:00"
+        users_id: 1
+        created_at: "2000-01-23T04:56:07.000+00:00"
+        id: 7
+      - apps_id: 4
+        updated_at: "2000-01-23T04:56:07.000+00:00"
+        users_id: 1
+        created_at: "2000-01-23T04:56:07.000+00:00"
+        id: 7
+      price: 9.301444
+      rights: "rights"
+      file_id: 3
+      name: "name"
+      logo:
+      - extension: "extension"
+        mime: "mime"
+        alt: "alt"
+        description: "description"
+        created_at: "2000-01-23T04:56:07.000+00:00"
+        sort: 5
+        relativeUrl: "relativeUrl"
+        url: "url"
+        path: "path"
+        disk: "disk"
+        size: 5
+        updated_at: "2000-01-23T04:56:07.000+00:00"
+        user_id: 2
+        original_name: "original_name"
+        name: "name"
+        id: 1
+        hash: "hash"
+        group: 7
+      - extension: "extension"
+        mime: "mime"
+        alt: "alt"
+        description: "description"
+        created_at: "2000-01-23T04:56:07.000+00:00"
+        sort: 5
+        relativeUrl: "relativeUrl"
+        url: "url"
+        path: "path"
+        disk: "disk"
+        size: 5
+        updated_at: "2000-01-23T04:56:07.000+00:00"
+        user_id: 2
+        original_name: "original_name"
+        name: "name"
+        id: 1
+        hash: "hash"
+        group: 7
+      withdrawn_at: "2000-01-23T04:56:07.000+00:00"
+      currency: "currency"
+      developer:
+      - updated_at: "2000-01-23T04:56:07.000+00:00"
+        background:
+        - extension: "extension"
+          mime: "mime"
+          alt: "alt"
+          description: "description"
+          created_at: "2000-01-23T04:56:07.000+00:00"
+          sort: 5
+          relativeUrl: "relativeUrl"
+          url: "url"
+          path: "path"
+          disk: "disk"
+          size: 5
+          updated_at: "2000-01-23T04:56:07.000+00:00"
+          user_id: 2
+          original_name: "original_name"
+          name: "name"
+          id: 1
+          hash: "hash"
+          group: 7
+        - extension: "extension"
+          mime: "mime"
+          alt: "alt"
+          description: "description"
+          created_at: "2000-01-23T04:56:07.000+00:00"
+          sort: 5
+          relativeUrl: "relativeUrl"
+          url: "url"
+          path: "path"
+          disk: "disk"
+          size: 5
+          updated_at: "2000-01-23T04:56:07.000+00:00"
+          user_id: 2
+          original_name: "original_name"
+          name: "name"
+          id: 1
+          hash: "hash"
+          group: 7
+        statusWorking: "statusWorking"
+        name: "name"
+        verified: 4
+        description: "description"
+        logo:
+        - extension: "extension"
+          mime: "mime"
+          alt: "alt"
+          description: "description"
+          created_at: "2000-01-23T04:56:07.000+00:00"
+          sort: 5
+          relativeUrl: "relativeUrl"
+          url: "url"
+          path: "path"
+          disk: "disk"
+          size: 5
+          updated_at: "2000-01-23T04:56:07.000+00:00"
+          user_id: 2
+          original_name: "original_name"
+          name: "name"
+          id: 1
+          hash: "hash"
+          group: 7
+        - extension: "extension"
+          mime: "mime"
+          alt: "alt"
+          description: "description"
+          created_at: "2000-01-23T04:56:07.000+00:00"
+          sort: 5
+          relativeUrl: "relativeUrl"
+          url: "url"
+          path: "path"
+          disk: "disk"
+          size: 5
+          updated_at: "2000-01-23T04:56:07.000+00:00"
+          user_id: 2
+          original_name: "original_name"
+          name: "name"
+          id: 1
+          hash: "hash"
+          group: 7
+        created_at: "2000-01-23T04:56:07.000+00:00"
+        id: 2
+        status: "status"
+      - updated_at: "2000-01-23T04:56:07.000+00:00"
+        background:
+        - extension: "extension"
+          mime: "mime"
+          alt: "alt"
+          description: "description"
+          created_at: "2000-01-23T04:56:07.000+00:00"
+          sort: 5
+          relativeUrl: "relativeUrl"
+          url: "url"
+          path: "path"
+          disk: "disk"
+          size: 5
+          updated_at: "2000-01-23T04:56:07.000+00:00"
+          user_id: 2
+          original_name: "original_name"
+          name: "name"
+          id: 1
+          hash: "hash"
+          group: 7
+        - extension: "extension"
+          mime: "mime"
+          alt: "alt"
+          description: "description"
+          created_at: "2000-01-23T04:56:07.000+00:00"
+          sort: 5
+          relativeUrl: "relativeUrl"
+          url: "url"
+          path: "path"
+          disk: "disk"
+          size: 5
+          updated_at: "2000-01-23T04:56:07.000+00:00"
+          user_id: 2
+          original_name: "original_name"
+          name: "name"
+          id: 1
+          hash: "hash"
+          group: 7
+        statusWorking: "statusWorking"
+        name: "name"
+        verified: 4
+        description: "description"
+        logo:
+        - extension: "extension"
+          mime: "mime"
+          alt: "alt"
+          description: "description"
+          created_at: "2000-01-23T04:56:07.000+00:00"
+          sort: 5
+          relativeUrl: "relativeUrl"
+          url: "url"
+          path: "path"
+          disk: "disk"
+          size: 5
+          updated_at: "2000-01-23T04:56:07.000+00:00"
+          user_id: 2
+          original_name: "original_name"
+          name: "name"
+          id: 1
+          hash: "hash"
+          group: 7
+        - extension: "extension"
+          mime: "mime"
+          alt: "alt"
+          description: "description"
+          created_at: "2000-01-23T04:56:07.000+00:00"
+          sort: 5
+          relativeUrl: "relativeUrl"
+          url: "url"
+          path: "path"
+          disk: "disk"
+          size: 5
+          updated_at: "2000-01-23T04:56:07.000+00:00"
+          user_id: 2
+          original_name: "original_name"
+          name: "name"
+          id: 1
+          hash: "hash"
+          group: 7
+        created_at: "2000-01-23T04:56:07.000+00:00"
+        id: 2
+        status: "status"
+      id: 0
+      published_at: "2000-01-23T04:56:07.000+00:00"
+      status: "status"
+  Developer:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      description:
+        type: "string"
+      status:
+        type: "string"
+      statusWorking:
+        type: "string"
+      logo:
+        type: "array"
+        items:
+          $ref: "#/definitions/Logo"
+      background:
+        type: "array"
+        items:
+          $ref: "#/definitions/Logo"
+      verified:
+        type: "integer"
+        format: "int8"
+      created_at:
+        type: "string"
+        format: "date-time"
+      updated_at:
+        type: "string"
+        format: "date-time"
+    xml:
+      name: "Developer"
+    example:
+      updated_at: "2000-01-23T04:56:07.000+00:00"
+      background:
+      - extension: "extension"
+        mime: "mime"
+        alt: "alt"
+        description: "description"
+        created_at: "2000-01-23T04:56:07.000+00:00"
+        sort: 5
+        relativeUrl: "relativeUrl"
+        url: "url"
+        path: "path"
+        disk: "disk"
+        size: 5
+        updated_at: "2000-01-23T04:56:07.000+00:00"
+        user_id: 2
+        original_name: "original_name"
+        name: "name"
+        id: 1
+        hash: "hash"
+        group: 7
+      - extension: "extension"
+        mime: "mime"
+        alt: "alt"
+        description: "description"
+        created_at: "2000-01-23T04:56:07.000+00:00"
+        sort: 5
+        relativeUrl: "relativeUrl"
+        url: "url"
+        path: "path"
+        disk: "disk"
+        size: 5
+        updated_at: "2000-01-23T04:56:07.000+00:00"
+        user_id: 2
+        original_name: "original_name"
+        name: "name"
+        id: 1
+        hash: "hash"
+        group: 7
+      statusWorking: "statusWorking"
+      name: "name"
+      verified: 4
+      description: "description"
+      logo:
+      - extension: "extension"
+        mime: "mime"
+        alt: "alt"
+        description: "description"
+        created_at: "2000-01-23T04:56:07.000+00:00"
+        sort: 5
+        relativeUrl: "relativeUrl"
+        url: "url"
+        path: "path"
+        disk: "disk"
+        size: 5
+        updated_at: "2000-01-23T04:56:07.000+00:00"
+        user_id: 2
+        original_name: "original_name"
+        name: "name"
+        id: 1
+        hash: "hash"
+        group: 7
+      - extension: "extension"
+        mime: "mime"
+        alt: "alt"
+        description: "description"
+        created_at: "2000-01-23T04:56:07.000+00:00"
+        sort: 5
+        relativeUrl: "relativeUrl"
+        url: "url"
+        path: "path"
+        disk: "disk"
+        size: 5
+        updated_at: "2000-01-23T04:56:07.000+00:00"
+        user_id: 2
+        original_name: "original_name"
+        name: "name"
+        id: 1
+        hash: "hash"
+        group: 7
+      created_at: "2000-01-23T04:56:07.000+00:00"
+      id: 2
+      status: "status"
+  Attachment:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      original_name:
+        type: "string"
+      mime:
+        type: "string"
+      extension:
+        type: "string"
+      size:
+        type: "integer"
+        format: "int64"
+      sort:
+        type: "integer"
+        format: "int32"
+      path:
+        type: "string"
+      description:
+        type: "string"
+      alt:
+        type: "string"
+      hash:
+        type: "string"
+      disk:
+        type: "string"
+      user_id:
+        type: "integer"
+        format: "int32"
+      group:
+        type: "integer"
+        format: "int32"
+      url:
+        type: "string"
+      relativeUrl:
+        type: "string"
+      pivot:
+        type: "array"
+        items:
+          $ref: "#/definitions/Pivot"
+      created_at:
+        type: "string"
+        format: "date-time"
+      updated_at:
+        type: "string"
+        format: "date-time"
+    xml:
+      name: "Attachment"
+    example:
+      extension: "extension"
+      mime: "mime"
+      alt: "alt"
+      description: "description"
+      created_at: "2000-01-23T04:56:07.000+00:00"
+      sort: 9
+      relativeUrl: "relativeUrl"
+      url: "url"
+      path: "path"
+      disk: "disk"
+      size: 9
+      updated_at: "2000-01-23T04:56:07.000+00:00"
+      user_id: 6
+      original_name: "original_name"
+      name: "name"
+      pivot:
+      - attachment_id: 6
+        attachmentable_type: 3
+        attachmentable_id: 9
+      - attachment_id: 6
+        attachmentable_type: 3
+        attachmentable_id: 9
+      id: 5
+      hash: "hash"
+      group: 8
+  Download:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      users_id:
+        type: "integer"
+        format: "int64"
+      apps_id:
+        type: "integer"
+        format: "int64"
+      created_at:
+        type: "string"
+        format: "date-time"
+      updated_at:
+        type: "string"
+        format: "date-time"
+    xml:
+      name: "Download"
+    example:
+      apps_id: 4
+      updated_at: "2000-01-23T04:56:07.000+00:00"
+      users_id: 1
+      created_at: "2000-01-23T04:56:07.000+00:00"
+      id: 7
+  Logo:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      original_name:
+        type: "string"
+      mime:
+        type: "string"
+      extension:
+        type: "string"
+      size:
+        type: "integer"
+        format: "int64"
+      sort:
+        type: "integer"
+        format: "int32"
+      path:
+        type: "string"
+      description:
+        type: "string"
+      alt:
+        type: "string"
+      hash:
+        type: "string"
+      disk:
+        type: "string"
+      user_id:
+        type: "integer"
+        format: "int32"
+      group:
+        type: "integer"
+        format: "int32"
+      url:
+        type: "string"
+      relativeUrl:
+        type: "string"
+      created_at:
+        type: "string"
+        format: "date-time"
+      updated_at:
+        type: "string"
+        format: "date-time"
+    xml:
+      name: "Logo"
+    example:
+      extension: "extension"
+      mime: "mime"
+      alt: "alt"
+      description: "description"
+      created_at: "2000-01-23T04:56:07.000+00:00"
+      sort: 5
+      relativeUrl: "relativeUrl"
+      url: "url"
+      path: "path"
+      disk: "disk"
+      size: 5
+      updated_at: "2000-01-23T04:56:07.000+00:00"
+      user_id: 2
+      original_name: "original_name"
+      name: "name"
+      id: 1
+      hash: "hash"
+      group: 7
+  Pivot:
+    type: "object"
+    properties:
+      attachmentable_id:
+        type: "integer"
+        format: "int64"
+      attachment_id:
+        type: "integer"
+        format: "int64"
+      attachmentable_type:
+        type: "integer"
+        format: "int64"
+    xml:
+      name: "Pivot"
+    example:
+      attachment_id: 6
+      attachmentable_type: 3
+      attachmentable_id: 9
+  Review:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      user_id:
+        type: "integer"
+        format: "int64"
+      apps_id:
+        type: "integer"
+        format: "int64"
+      text:
+        type: "string"
+      rate:
+        type: "integer"
+        format: "int32"
+      created_at:
+        type: "string"
+        format: "date-time"
+      updated_at:
+        type: "string"
+        format: "date-time"
+    xml:
+      name: "Review"
+    example:
+      apps_id: 1
+      updated_at: "2000-01-23T04:56:07.000+00:00"
+      user_id: 1
+      rate: 6
+      created_at: "2000-01-23T04:56:07.000+00:00"
+      id: 1
+      text: "text"
+  Role:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      slug:
+        type: "string"
+      name:
+        type: "string"
+      permissions:
+        type: "string"
+      created_at:
+        type: "string"
+        format: "date-time"
+      updated_at:
+        type: "string"
+        format: "date-time"
+    xml:
+      name: "Role"
+    example:
+      updated_at: "2000-01-23T04:56:07.000+00:00"
+      permissions: "permissions"
+      name: "name"
+      created_at: "2000-01-23T04:56:07.000+00:00"
+      id: 0
+      slug: "slug"
+  Tag:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+    xml:
+      name: "Tag"
+    example:
+      name: "name"
+      id: 7
+  Token:
+    type: "object"
+    properties:
+      token:
+        type: "string"
+      type:
+        type: "string"
+      expires:
+        type: "string"
+        format: "date-time"
+    xml:
+      name: "Token"
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      email:
+        type: "string"
+      login:
+        type: "string"
+      email_verified_at:
+        type: "string"
+        format: "date-time"
+      password:
+        type: "string"
+      remember_token:
+        type: "string"
+      permissions:
+        type: "string"
+      created_at:
+        type: "string"
+        format: "date-time"
+      updated_at:
+        type: "string"
+        format: "date-time"
+    xml:
+      name: "User"
+    example:
+      password: "password"
+      updated_at: "2000-01-23T04:56:07.000+00:00"
+      permissions: "permissions"
+      name: "name"
+      created_at: "2000-01-23T04:56:07.000+00:00"
+      email_verified_at: "2000-01-23T04:56:07.000+00:00"
+      id: 0
+      login: "login"
+      remember_token: "remember_token"
+      email: "email"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

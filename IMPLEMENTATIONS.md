@@ -6,8 +6,8 @@ These tools are not endorsed by the OAI.
 
 #### Low-Level tooling
 
-| Title          | Project Link | Language |Description                          |
-|----------------|--------------|----------|---------------------|
+| Title | Project Link | Language | Description |
+|-------|--------------|----------|-------------|
 | swagger-parser | [github/swagger-api](https://github.com/swagger-api/swagger-parser) | Java | Swagger 1.0, 1.1, 1.2, 2.0 to OpenAPI Specification converter |
 | swagger-models | [github/swagger-api](https://github.com/swagger-api/swagger-core/tree/master/modules/swagger-models) | Java | OpenAPI 3.0 Java Pojos |
 | springdoc-openapi | [github/springdoc/springdoc-openapi](https://github.com/springdoc/springdoc-openapi) | Java | Library that produces OpenAPI 3.x specification documentation for spring-boot applications.  |
@@ -29,8 +29,8 @@ These tools are not endorsed by the OAI.
 
 #### Editors
 
-| Title          | Project Link | Language |Description                          |
-|----------------|--------------|----------|---------------------|
+| Title | Project Link | Language | Description |
+|-------|--------------|----------|-------------|
 | Visual Studio Code extension | [VS Code marketplace / OpenAPI (Swagger) editor](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi) | TypeScript | Extends VS Code to provide OpenAPI 2.0 and 3.0 navigation, code snippets, new API creation |
 | Apicurio Studio | [github/Apicurio/apicurio-studio](https://github.com/Apicurio/apicurio-studio) | Java/TypeScript | Web-Based **visual designer** for OpenAPI 2.0 and 3.0.0. |
 | KaiZen OpenAPI Editor | [github/RepreZen/KaiZen-OpenAPI-Editor](https://github.com/RepreZen/KaiZen-OpenAPI-Editor) | Java | Eclipse Editor for OpenAPI 2.0 and 3.0 |
@@ -42,24 +42,27 @@ These tools are not endorsed by the OAI.
 
 #### User Interfaces
 
-| Title          | Project Link | Language |Description                          |
-|----------------|--------------|----------|---------------------|
+| Title | Project Link | Language | Description |
+|-------|--------------|----------|-------------|
 | openapi-viewer | [github/koumoul/openapi-viewer](https://github.com/koumoul-dev/openapi-viewer) | Vue.js | Browse and test a REST API described with the OpenAPI 3.0 Specification. |
 | swagger-ui | [github/swagger-api](https://github.com/swagger-api/swagger-UI) | JavaScript | Web-Based interface for visualizing and testing OpenAPI\Swagger definitions |
 | lincoln | [github/temando/open-api-renderer](https://github.com/temando/open-api-renderer)| React.js| A React renderer for OpenAPI v3 |
 | WebSphere Liberty | [Download jar](https://developer.ibm.com/wasdev/downloads/) | JavaScript | Includes a native OpenAPI v3 UI which allows for customization of its banners and URL |
 | Widdershins | [github/Mermade/widdershins](https://github.com/Mermade/widdershins) | Node.js | Generate Slate/Shins markdown from OpenAPI 3.0.x |
 | angular-swagger-ui | [github/angular-swagger-ui](https://github.com/Orange-OpenSource/angular-swagger-ui) | AngularJS | An angularJS implementation of Swagger UI |
-| Redoc | [github/Redocly/redoc](https://github.com/Redocly/redoc) | JavaScript | A React-based renderer with deep support for OAS v2 and v3 and zero dev-dependency|
+| Redoc | [github/Redocly/redoc](https://github.com/Redocly/redoc) | JavaScript | A React-based renderer with deep support for OAS v2 and v3 and zero dev-dependency |
+| RapiDoc | [github/mrin9/RapiDoc](https://github.com/mrin9/RapiDoc) | JavaScript | A highly customizable Web Component for viewing Swagger and OpenAPI definitions |
 
 #### Mock Servers
-| Title          | Project Link | Language | Description |
-| -------------- | ------------ | -------- | ----------- |
+
+| Title | Project Link | Language | Description |
+|-------|--------------|----------|-------------|
 | API Sprout     | [github/danielgtaylor/apisprout](https://github.com/danielgtaylor/apisprout) | Go | Lightweight, blazing fast, cross-platform OpenAPI 3 mock server with validation |
 
 #### Server Implementations
-| Title          | Project Link | Language |Description                          |
-|----------------|--------------|----------|---------------------|
+
+| Title | Project Link | Language | Description |
+|-------|--------------|----------|-------------|
 | Vert.x Web API Contract | [github/vert-x3/vertx-web](http://vertx.io/docs/#web) | Java, Kotlin, JavaScript, Groovy, Ruby, Ceylon & Scala | Create an API endpoint with Vert.x 3 and OpenAPI 3 with automatic requests validation
 | Fusio | [github/apioo/fusio](https://github.com/apioo/fusio) | PHP, JavaScript | Build API endpoints based on OpenAPI 3
 | Modern | [github/modern-project/modern-ruby](https://github.com/modern-project/modern-ruby) | Ruby | OpenAPI 3-based Rack framework with automatic OAS generation and requests/response validation
@@ -71,15 +74,15 @@ These tools are not endorsed by the OAI.
 
 #### Client Implementations
 
-| Title          | Project Link | Language | Description |
-|----------------|--------------|----------|-------------|
+| Title | Project Link | Language | Description |
+|-------|--------------|----------|-------------|
 | Scorpio        | [github/notEthan/scorpio](https://github.com/notEthan/Scorpio) | Ruby | OpenAPI 2 and 3 implementation offering a HTTP client library |
 | openapi-client-axios | [github/anttiviljami/openapi-client-axios](https://github.com/anttiviljami/openapi-client-axios) | JavaScript, TypeScript | JavaScript client library for consuming OpenAPI-enabled APIs with axios. Types included.
 
 #### Code Generators
 
-| Title          | Project Link | Language |Description                          |
-|----------------|--------------|----------|---------------------|
+| Title | Project Link | Language | Description |
+|-------|--------------|----------|-------------|
 | baucis-openapi3 | [github/metadevpro/baucis-openapi3](https://github.com/metadevpro/baucis-openapi3) | Node.js | [Baucis.js](https://github.com/wprl/baucis) plugin for generating OpenAPI 3.0 compliant API contracts. |
 | Google Gnostic | [github/googleapis/gnostic](https://github.com/googleapis/gnostic) | Go | Compile OpenAPI descriptions into equivalent Protocol Buffer representations. |
 | Gen | [github/wzshiming/gen](https://github.com/wzshiming/gen) | Go | Generate OpenAPI 3, client, and route based on golang source code. |

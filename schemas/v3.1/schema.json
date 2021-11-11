@@ -437,10 +437,13 @@
           "$dynamicRef": "#meta"
         },
         "content": {
-          "$ref": "#/$defs/content"
+          "$ref": "#/$defs/content",
+          "minProperties": 1,
+          "maxProperties": 1
         }
       },
       "required": [
+        "name",
         "in"
       ],
       "oneOf": [
@@ -944,7 +947,9 @@
           "$dynamicRef": "#meta"
         },
         "content": {
-          "$ref": "#/$defs/content"
+          "$ref": "#/$defs/content",
+          "minProperties": 1,
+          "maxProperties": 1
         }
       },
       "oneOf": [

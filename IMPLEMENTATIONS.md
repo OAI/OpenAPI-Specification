@@ -63,7 +63,6 @@ These tools are not endorsed by the OAI.
 | Vert.x Web API Contract | [github/vert-x3/vertx-web](http://vertx.io/docs/#web) | Java, Kotlin, JavaScript, Groovy, Ruby, Ceylon & Scala | Create an API endpoint with Vert.x 3 and OpenAPI 3 with automatic requests validation
 | Fusio | [github/apioo/fusio](https://github.com/apioo/fusio) | PHP, JavaScript | Build API endpoints based on OpenAPI 3
 | Modern | [github/modern-project/modern-ruby](https://github.com/modern-project/modern-ruby) | Ruby | OpenAPI 3-based Rack framework with automatic OAS generation and requests/response validation
-| Koa2-OAS3 | [github/OverSpeedIO/koa2-oas3](https://github.com/OverSpeedIO/koa2-oas3) | Node.js | OpenAPI 3 request validation middleware for Koa2 based apps.
 | Exegesis | [github/exegesis-js/exegesis](https://github.com/exegesis-js/exegesis) | Node.js | OpenAPI 3 server-side framework for express and other frameworks.
 | PHP-CRUD-API | [github/mevdschee/php-crud-api](https://github.com/mevdschee/php-crud-api) | PHP | Automatic CRUD API with OpenAPI 3 docs
 | FastAPI | [github/tiangolo/fastapi](https://github.com/tiangolo/fastapi) | Python | OpenAPI 3 based, high performance, Python 3.6+ API framework with automatic data validation, serialization and great editor support.

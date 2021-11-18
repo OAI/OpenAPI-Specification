@@ -74,6 +74,7 @@
   "unevaluatedProperties": false,
   "$defs": {
     "info": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#info-object",
       "type": "object",
       "properties": {
         "title": {
@@ -106,6 +107,7 @@
       "unevaluatedProperties": false
     },
     "contact": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#contact-object",
       "type": "object",
       "properties": {
         "name": {
@@ -122,6 +124,7 @@
       "unevaluatedProperties": false
     },
     "license": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#license-object",
       "type": "object",
       "properties": {
         "name": {
@@ -154,6 +157,7 @@
       "unevaluatedProperties": false
     },
     "server": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#server-object",
       "type": "object",
       "properties": {
         "url": {
@@ -177,6 +181,7 @@
       "unevaluatedProperties": false
     },
     "server-variable": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#server-variable-object",
       "type": "object",
       "properties": {
         "enum": {
@@ -200,6 +205,7 @@
       "unevaluatedProperties": false
     },
     "components": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#components-object",
       "type": "object",
       "properties": {
         "schemas": {
@@ -275,6 +281,7 @@
       "unevaluatedProperties": false
     },
     "paths": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#paths-object",
       "type": "object",
       "patternProperties": {
         "^/": {
@@ -285,6 +292,7 @@
       "unevaluatedProperties": false
     },
     "path-item": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#path-item-object",
       "type": "object",
       "properties": {
         "summary": {
@@ -329,6 +337,7 @@
       }
     },
     "operation": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#operation-object",
       "type": "object",
       "properties": {
         "tags": {
@@ -388,6 +397,7 @@
       "unevaluatedProperties": false
     },
     "external-documentation": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#external-documentation-object",
       "type": "object",
       "properties": {
         "description": {
@@ -405,6 +415,7 @@
       "unevaluatedProperties": false
     },
     "parameter": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#parameter-object",
       "type": "object",
       "properties": {
         "name": {
@@ -638,6 +649,7 @@
       }
     },
     "request-body": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#request-body-object",
       "type": "object",
       "properties": {
         "description": {
@@ -672,6 +684,7 @@
       }
     },
     "content": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#fixed-fields-10",
       "type": "object",
       "additionalProperties": {
         "$ref": "#/$defs/media-type"
@@ -681,6 +694,7 @@
       }
     },
     "media-type": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#media-type-object",
       "type": "object",
       "properties": {
         "schema": {
@@ -704,6 +718,7 @@
       "unevaluatedProperties": false
     },
     "encoding": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#encoding-object",
       "type": "object",
       "properties": {
         "contentType": {
@@ -772,6 +787,7 @@
       }
     },
     "responses": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#responses-object",
       "type": "object",
       "properties": {
         "default": {
@@ -787,6 +803,7 @@
       "unevaluatedProperties": false
     },
     "response": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#response-object",
       "type": "object",
       "properties": {
         "description": {
@@ -829,6 +846,7 @@
       }
     },
     "callbacks": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#callback-object",
       "type": "object",
       "$ref": "#/$defs/specification-extensions",
       "additionalProperties": {
@@ -850,6 +868,7 @@
       }
     },
     "example": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#example-object",
       "type": "object",
       "properties": {
         "summary": {
@@ -882,6 +901,7 @@
       }
     },
     "link": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#link-object",
       "type": "object",
       "properties": {
         "operationRef": {
@@ -930,6 +950,7 @@
       }
     },
     "header": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#header-object",
       "type": "object",
       "properties": {
         "description": {
@@ -997,6 +1018,7 @@
       }
     },
     "tag": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#tag-object",
       "type": "object",
       "properties": {
         "name": {
@@ -1016,6 +1038,7 @@
       "unevaluatedProperties": false
     },
     "reference": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#reference-object",
       "type": "object",
       "properties": {
         "$ref": {
@@ -1032,6 +1055,7 @@
       "unevaluatedProperties": false
     },
     "schema": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#schema-object",
       "$dynamicAnchor": "meta",
       "type": [
         "object",
@@ -1039,6 +1063,7 @@
       ]
     },
     "security-scheme": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#security-scheme-object",
       "type": "object",
       "properties": {
         "type": {
@@ -1322,6 +1347,7 @@
       }
     },
     "security-requirement": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#security-requirement-object",
       "type": "object",
       "additionalProperties": {
         "type": "array",
@@ -1331,6 +1357,7 @@
       }
     },
     "specification-extensions": {
+      "$comment": "https://spec.openapis.org/oas/v3.1.0#specification-extensions",
       "patternProperties": {
         "^x-": true
       }

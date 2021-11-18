@@ -86,6 +86,7 @@ These tools are not endorsed by the OAI.
 |-------|--------------|----------|-------------|
 | Scorpio        | [github/notEthan/scorpio](https://github.com/notEthan/Scorpio) | Ruby | OpenAPI 2 and 3 implementation offering a HTTP client library |
 | openapi-client-axios | [github/anttiviljami/openapi-client-axios](https://github.com/anttiviljami/openapi-client-axios) | JavaScript, TypeScript | JavaScript client library for consuming OpenAPI-enabled APIs with axios. Types included.
+| restful-react | [github/contiamo/restful-react](https://github.com/contiamo/restful-react) | Typescript | Well tested library to generate typesafe hooks and components. Easy to integrate into your development process. |
 
 #### Code Generators
 

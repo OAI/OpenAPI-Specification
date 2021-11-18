@@ -189,7 +189,7 @@
         "default": {
           "type": "string"
         },
-        "descriptions": {
+        "description": {
           "type": "string"
         }
       },

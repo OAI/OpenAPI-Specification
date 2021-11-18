@@ -130,7 +130,7 @@ $defs:
         minItems: 1
       default:
         type: string
-      descriptions:
+      description:
         type: string
     required:
       - default

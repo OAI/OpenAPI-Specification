@@ -343,9 +343,6 @@ $defs:
             type: string
           explode:
             type: boolean
-          allowReserved:
-            default: false
-            type: boolean
         allOf:
           - $ref: '#/$defs/examples'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-path'
@@ -406,7 +403,9 @@ $defs:
                     - spaceDelimited
                     - pipeDelimited
                     - deepObject
-
+                allowReserved:
+                  default: false
+                  type: boolean
           styles-for-cookie:
             if:
               properties:

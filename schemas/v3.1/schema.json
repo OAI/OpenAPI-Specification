@@ -491,10 +491,6 @@
             },
             "explode": {
               "type": "boolean"
-            },
-            "allowReserved": {
-              "default": false,
-              "type": "boolean"
             }
           },
           "allOf": [
@@ -592,6 +588,10 @@
                       "pipeDelimited",
                       "deepObject"
                     ]
+                  },
+                  "allowReserved": {
+                    "default": false,
+                    "type": "boolean"
                   }
                 }
               }

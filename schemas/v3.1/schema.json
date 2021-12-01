@@ -440,10 +440,6 @@
           "default": false,
           "type": "boolean"
         },
-        "allowEmptyValue": {
-          "default": false,
-          "type": "boolean"
-        },
         "schema": {
           "$dynamicRef": "#meta"
         },
@@ -469,6 +465,24 @@
           ]
         }
       ],
+      "if": {
+        "properties": {
+          "in": {
+            "const": "query"
+          }
+        },
+        "required": [
+          "in"
+        ]
+      },
+      "then": {
+        "properties": {
+          "allowEmptyValue": {
+            "default": false,
+            "type": "boolean"
+          }
+        }
+      },
       "dependentSchemas": {
         "schema": {
           "properties": {

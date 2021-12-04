@@ -11,7 +11,7 @@ The OpenAPI Specification (OAS) defines a standard, programming language-agnosti
 
 Use cases for machine-readable API definition documents include, but are not limited to: interactive documentation; code generation for documentation, clients, and servers; and automation of test cases. OpenAPI documents describe an APIs services and are represented in either YAML or JSON formats. These documents may either be produced and served statically or be generated dynamically from an application.
 
-The OpenAPI Specification does not require rewriting existing APIs. It does not require binding any software to a service – the service being described may not even be owned by the creator of its description. It does, however, require the capabilities of the service be described in the structure of the OpenAPI Specification. Not all services can be described by OpenAPI – this specification is not intended to cover every possible style of HTTP APIs, but does include support for [REST APIs](https://en.wikipedia.org/wiki/Representational_state_transfer). The OpenAPI Specification does not mandate a specific development process such as design-first or code-first. It does facilitate either technique by establishing clear interactions with a HTTP API.
+The OpenAPI Specification does not require rewriting existing APIs. It does not require binding any software to a service – the service being described may not even be owned by the creator of its description. It does, however, require the capabilities of the service to be described in the structure of the OpenAPI Specification. Not all services can be described by OpenAPI – this specification is not intended to cover every possible style of HTTP APIs, but does include support for [REST APIs](https://en.wikipedia.org/wiki/Representational_state_transfer). The OpenAPI Specification does not mandate a specific development process such as design-first or code-first. It does facilitate either technique by establishing clear interactions with a HTTP API.
 
 This GitHub project is the starting point for OpenAPI. Here you will find the information you need about the OpenAPI Specification, simple examples of what it looks like, and some general information regarding the project.
 
@@ -36,9 +36,9 @@ Looking to see how you can create your own OpenAPI definition, present it, or ot
 
 ## Participation
 
-The current process for development of the OpenAPI Specification is described in 
+The current process for the development of the OpenAPI Specification is described in 
 [Development Guidelines](DEVELOPMENT.md).
-Development of the next version of the OpenAPI Specification is guided by the [Technical Steering Committee (TSC)](https://www.openapis.org/participate/how-to-contribute/governance#TDC). This group of committers bring their API expertise, incorporate feedback from the community, and expand the group of committers as appropriate. All development activity on the future specification will be performed as features and merged into this branch. Upon release of the future specification, this branch will be merged to `main`.
+Development of the next version of the OpenAPI Specification is guided by the [Technical Steering Committee (TSC)](https://www.openapis.org/participate/how-to-contribute/governance#TDC). This group of committers bring their API expertise, incorporate feedback from the community, and expand the group of committers as appropriate. All development activities on the future specification will be performed as features and merged into this branch. Upon release of the future specification, this branch will be merged to `main`.
 
 The TSC holds weekly web conferences to review open pull requests and discuss open issues related to the evolving OpenAPI Specification. Participation in weekly calls and scheduled working sessions is open to the community. You can view the [TSC calendar online](https://openapi.groups.io/g/tsc/calendar). Look for the "Subscribe to Calendar" button for instructions on subscribing.
 

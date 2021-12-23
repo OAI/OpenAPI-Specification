@@ -263,10 +263,6 @@ for (let l in lines) {
             //return (group1 ? group1 : '')+']]';
             return ']]';
         });
-
-        while (line.indexOf('https://tools.ietf.org/html/rfc')>=0) {
-            line = line.replace(/.https:..tools.ietf.org.html.rfc[0-9]{1,5}./g,'');
-        }
     }
 
     // minor fixup to get bibliography link to work

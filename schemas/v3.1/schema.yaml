@@ -311,9 +311,6 @@ $defs:
       deprecated:
         default: false
         type: boolean
-      allowEmptyValue:
-        default: false
-        type: boolean
       schema:
         $dynamicRef: '#meta'
       content:
@@ -328,15 +325,23 @@ $defs:
         - schema
       - required:
         - content
+    if:
+      properties:
+        in:
+          const: query
+      required:
+        - in
+    then:
+      properties:
+        allowEmptyValue:
+          default: false
+          type: boolean
     dependentSchemas:
       schema:
         properties:
           style:
             type: string
           explode:
-            type: boolean
-          allowReserved:
-            default: false
             type: boolean
         allOf:
           - $ref: '#/$defs/examples'
@@ -398,7 +403,9 @@ $defs:
                     - spaceDelimited
                     - pipeDelimited
                     - deepObject
-
+                allowReserved:
+                  default: false
+                  type: boolean
           styles-for-cookie:
             if:
               properties:

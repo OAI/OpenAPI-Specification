@@ -883,6 +883,12 @@
           "format": "uri"
         }
       },
+      "not": {
+        "required": [
+          "value",
+          "externalValue"
+        ]
+      },
       "$ref": "#/$defs/specification-extensions",
       "unevaluatedProperties": false
     },

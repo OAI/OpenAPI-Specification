@@ -1,4 +1,4 @@
-id: https://spec.openapis.org/oas/3.0/schema/2019-04-02
+id: https://spec.openapis.org/oas/3.0/schema/2021-09-28
 $schema: http://json-schema.org/draft-04/schema#
 description: Validation schema for OpenAPI Specification 3.0.X.
 type: object
@@ -806,7 +806,8 @@ definitions:
       - description: Bearer
         properties:
           scheme:
-            enum: [bearer]
+            type: string
+            pattern: ^[Bb][Ee][Aa][Rr][Ee][Rr]$
 
       - description: Non Bearer
         not:
@@ -814,7 +815,8 @@ definitions:
         properties:
           scheme:
             not:
-              enum: [bearer]
+              type: string
+              pattern: ^[Bb][Ee][Aa][Rr][Ee][Rr]$
 
   OAuth2SecurityScheme:
     type: object
@@ -892,6 +894,7 @@ definitions:
     type: object
     required:
       - tokenUrl
+      - scopes
     properties:
       tokenUrl:
         type: string
@@ -911,6 +914,7 @@ definitions:
     type: object
     required:
       - tokenUrl
+      - scopes
     properties:
       tokenUrl:
         type: string
@@ -931,6 +935,7 @@ definitions:
     required:
       - authorizationUrl
       - tokenUrl
+      - scopes
     properties:
       authorizationUrl:
         type: string
@@ -987,7 +992,9 @@ definitions:
       headers:
         type: object
         additionalProperties:
-          $ref: '#/definitions/Header'
+          oneOf:
+            - $ref: '#/definitions/Header'
+            - $ref: '#/definitions/Reference'
       style:
         type: string
         enum:

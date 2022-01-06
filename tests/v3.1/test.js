@@ -14,10 +14,10 @@ before(async () => {
   JsonSchema.add(dialect);
   JsonSchema.add(vocabulary);
   JsonSchema.add(yaml.parse(fs.readFileSync(`${__dirname}/../../schemas/v3.1/schema.yaml`, "utf8"), { prettyErrors: true }));
-  metaSchema = await JsonSchema.get("https://spec.openapis.org/oas/3.1/schema/2021-03-02");
+  metaSchema = await JsonSchema.get("https://spec.openapis.org/oas/3.1/schema/2021-09-28");
 });
 
-describe("Pass", () => {
+describe("v3.1 Pass", () => {
   fs.readdirSync(`${__dirname}/pass`, { withFileTypes: true })
     .filter((entry) => entry.isFile() && /\.yaml$/.test(entry.name))
     .forEach((entry) => {
@@ -32,7 +32,7 @@ describe("Pass", () => {
     });
 });
 
-describe("Fail", () => {
+describe("v3.1 Fail", () => {
   fs.readdirSync(`${__dirname}/fail`, { withFileTypes: true })
     .filter((entry) => entry.isFile() && /\.yaml$/.test(entry.name))
     .forEach((entry) => {

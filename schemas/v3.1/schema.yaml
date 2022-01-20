@@ -16,6 +16,8 @@ properties:
     type: array
     items:
       $ref: '#/$defs/server'
+    default:
+      - url: /
   paths:
     $ref: '#/$defs/paths'
   webhooks:

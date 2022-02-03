@@ -64,6 +64,7 @@ These tools are not endorsed by the OAI.
 | Title | Project Link | Language | Description |
 | ------|--------------|----------|-------------|
 | Schemathesis   | [github/schemathesis/schemathesis](https://github.com/schemathesis/schemathesis) | Python | A modern API testing tool for web applications built with OpenAPI and GraphQL specifications |
+| Tcases for OpenAPI   | [github/Cornutum/tcases](https://github.com/Cornutum/tcases/blob/master/tcases-openapi/README.md#tcases-for-openapi-from-rest-ful-to-test-ful) | Java | Generates test cases directly from an OpenAPI 3.0.X definition. Creates tests executable using various test frameworks. Bonus: Semantic linter reports elements that are inconsistent, superfluous, or dubious. |
 
 #### Server Implementations
 

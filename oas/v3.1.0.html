@@ -1031,7 +1031,7 @@ The path itself is still exposed to the documentation viewer but they will not k
 <tr>
 <td><a id="operationRequestBody"> </a>requestBody</td>
 <td style="text-align:center"><a href="#requestBodyObject">Request Body Object</a> | <a href="#referenceObject">Reference Object</a></td>
-<td>The request body applicable for this operation.  The <code>requestBody</code> is fully supported in HTTP methods where the HTTP 1.1 specification [[!RFC7231]] has explicitly defined semantics for request bodies.  In other cases where the HTTP spec is vague (such as [GET]section-4.3.1), [HEAD]section-4.3.2) and [DELETE]section-4.3.5)), <code>requestBody</code> is permitted but does not have well-defined semantics and SHOULD be avoided if possible.</td>
+<td>The request body applicable for this operation.  The <code>requestBody</code> is fully supported in HTTP methods where the HTTP 1.1 specification [[!RFC7231]] has explicitly defined semantics for request bodies.  In other cases where the HTTP spec is vague (such as <a href="https://tools.ietf.org/html/rfc7231#section-4.3.1">GET</a>, <a href="https://tools.ietf.org/html/rfc7231#section-4.3.2">HEAD</a> and <a href="https://tools.ietf.org/html/rfc7231#section-4.3.5">DELETE</a>), <code>requestBody</code> is permitted but does not have well-defined semantics and SHOULD be avoided if possible.</td>
 </tr>
 <tr>
 <td><a id="operationResponses"> </a>responses</td>
@@ -1650,7 +1650,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 <tr>
 <td><a id="requestBodyContent"> </a>content</td>
 <td style="text-align:center">Map[<code>string</code>, <a href="#mediaTypeObject">Media Type Object</a>]</td>
-<td><strong>REQUIRED</strong>. The content of the request body. The key is a media type or [media type range]appendix-D) and the value describes it.  For requests that match multiple keys, only the most specific key is applicable. e.g. text/plain overrides text/*</td>
+<td><strong>REQUIRED</strong>. The content of the request body. The key is a media type or <a href="https://tools.ietf.org/html/rfc7231#appendix-D">media type range</a> and the value describes it.  For requests that match multiple keys, only the most specific key is applicable. e.g. text/plain overrides text/*</td>
 </tr>
 <tr>
 <td><a id="requestBodyRequired"> </a>required</td>
@@ -2161,7 +2161,7 @@ call.</p>
 <tr>
 <td><a id="responseContent"> </a>content</td>
 <td style="text-align:center">Map[<code>string</code>, <a href="#mediaTypeObject">Media Type Object</a>]</td>
-<td>A map containing descriptions of potential response payloads. The key is a media type or [media type range]appendix-D) and the value describes it.  For responses that match multiple keys, only the most specific key is applicable. e.g. text/plain overrides text/*</td>
+<td>A map containing descriptions of potential response payloads. The key is a media type or <a href="https://tools.ietf.org/html/rfc7231#appendix-D">media type range</a> and the value describes it.  For responses that match multiple keys, only the most specific key is applicable. e.g. text/plain overrides text/*</td>
 </tr>
 <tr>
 <td><a id="responseLinks"> </a>links</td>
@@ -2628,7 +2628,7 @@ using JSON references.</p>
 </section><section><h4><span id="runtimeExpression">Runtime Expressions</span></h4>
 <p>Runtime expressions allow defining values based on information that will only be available within the HTTP message in an actual API call.
 This mechanism is used by <a href="#linkObject">Link Objects</a> and <a href="#callbackObject">Callback Objects</a>.</p>
-<p>The runtime expression is defined by the following [ABNF] syntax</p>
+<p>The runtime expression is defined by the following <a href="https://tools.ietf.org/html/rfc5234">ABNF</a> syntax</p>
 <pre class="nohighlight"><code>
       expression = ( <span class="hljs-string">&quot;$url&quot;</span> / <span class="hljs-string">&quot;$method&quot;</span> / <span class="hljs-string">&quot;$statusCode&quot;</span> / <span class="hljs-string">&quot;$request.&quot;</span> source / <span class="hljs-string">&quot;$response.&quot;</span> source )
       source = ( header-reference / query-reference / path-reference / body-reference )

@@ -87,7 +87,8 @@
           "type": "string"
         },
         "termsOfService": {
-          "type": "string"
+          "type": "string",
+          "format": "uri"
         },
         "contact": {
           "$ref": "#/$defs/contact"
@@ -114,10 +115,12 @@
           "type": "string"
         },
         "url": {
-          "type": "string"
+          "type": "string",
+          "format": "uri"
         },
         "email": {
-          "type": "string"
+          "type": "string",
+          "format": "email"
         }
       },
       "$ref": "#/$defs/specification-extensions",
@@ -1284,10 +1287,12 @@
           "type": "object",
           "properties": {
             "authorizationUrl": {
-              "type": "string"
+              "type": "string",
+              "format": "uri"
             },
             "refreshUrl": {
-              "type": "string"
+              "type": "string",
+              "format": "uri"
             },
             "scopes": {
               "$ref": "#/$defs/map-of-strings"
@@ -1304,10 +1309,12 @@
           "type": "object",
           "properties": {
             "tokenUrl": {
-              "type": "string"
+              "type": "string",
+              "format": "uri"
             },
             "refreshUrl": {
-              "type": "string"
+              "type": "string",
+              "format": "uri"
             },
             "scopes": {
               "$ref": "#/$defs/map-of-strings"
@@ -1324,10 +1331,12 @@
           "type": "object",
           "properties": {
             "tokenUrl": {
-              "type": "string"
+              "type": "string",
+              "format": "uri"
             },
             "refreshUrl": {
-              "type": "string"
+              "type": "string",
+              "format": "uri"
             },
             "scopes": {
               "$ref": "#/$defs/map-of-strings"
@@ -1344,13 +1353,16 @@
           "type": "object",
           "properties": {
             "authorizationUrl": {
-              "type": "string"
+              "type": "string",
+              "format": "uri"
             },
             "tokenUrl": {
-              "type": "string"
+              "type": "string",
+              "format": "uri"
             },
             "refreshUrl": {
-              "type": "string"
+              "type": "string",
+              "format": "uri"
             },
             "scopes": {
               "$ref": "#/$defs/map-of-strings"

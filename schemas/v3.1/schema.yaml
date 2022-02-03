@@ -60,6 +60,7 @@ $defs:
         type: string
       termsOfService:
         type: string
+        format: uri
       contact:
         $ref: '#/$defs/contact'
       license:
@@ -80,8 +81,10 @@ $defs:
         type: string
       url:
         type: string
+        format: uri
       email:
         type: string
+        format: email
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
 
@@ -879,8 +882,10 @@ $defs:
         properties:
           authorizationUrl:
             type: string
+            format: uri
           refreshUrl:
             type: string
+            format: uri
           scopes:
             $ref: '#/$defs/map-of-strings'
         required:
@@ -894,8 +899,10 @@ $defs:
         properties:
           tokenUrl:
             type: string
+            format: uri
           refreshUrl:
             type: string
+            format: uri
           scopes:
             $ref: '#/$defs/map-of-strings'
         required:
@@ -909,8 +916,10 @@ $defs:
         properties:
           tokenUrl:
             type: string
+            format: uri
           refreshUrl:
             type: string
+            format: uri
           scopes:
             $ref: '#/$defs/map-of-strings'
         required:
@@ -924,10 +933,13 @@ $defs:
         properties:
           authorizationUrl:
             type: string
+            format: uri
           tokenUrl:
             type: string
+            format: uri
           refreshUrl:
             type: string
+            format: uri
           scopes:
             $ref: '#/$defs/map-of-strings'
         required:

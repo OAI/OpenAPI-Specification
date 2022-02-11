@@ -27,6 +27,7 @@ These tools are not endorsed by the OAI.
 | openapi-validator | [gitlab/mmal/openapi-validator](https://gitlab.com/mmalawski/openapi-validator) | PHP | Validates response against OpenAPI schema |
 | OpenAPI-Delphi | [github/paolo-rossi/OpenAPI-Delphi](https://github.com/paolo-rossi/OpenAPI-Delphi) | Delphi | Delphi implementation of a generator, parser and validator for the OpenAPI 3 Specification |
 | spring-openapi | [github/jrcodeza/spring-openapi](https://github.com/jrcodeza/spring-openapi) | Java | OpenAPI v3 generator for Java Spring. Includes also client generation. Supports inheritance with discriminators and Jackson annotations and custom interceptors. |
+| schema2dts | [nfroidure/schema2dts](https://github.com/nfroidure/schema2dts) | Typescript | Create types definitions from an OpenAPI schema. |
 
 #### Editors
 
@@ -79,6 +80,7 @@ These tools are not endorsed by the OAI.
 | openapi-backend | [github/anttiviljami/openapi-backend](https://github.com/anttiviljami/openapi-backend) | Node.js, TypeScript | Build, Validate, Route, and Mock in the backend using OpenAPI v3 spec in your favourite framework
 | JSONSchema::Validator | [https://github.com/skbkontur/perl-jsonschema-validator](https://github.com/skbkontur/perl-jsonschema-validator) | Perl | OpenAPI 3 request/response validation
 | rest | [github.com/swaggest/rest](https://github.com/swaggest/rest) | Go | API server with automatic request/response mapping/validation and OpenAPI schema
+| whook | [nfroidure/whook](https://github.com/nfroidure/whook) | Typescript | OpenAPI 3 based NodeJS server. |
 
 #### Client Implementations
 
@@ -87,6 +89,7 @@ These tools are not endorsed by the OAI.
 | Scorpio        | [github/notEthan/scorpio](https://github.com/notEthan/Scorpio) | Ruby | OpenAPI 2 and 3 implementation offering a HTTP client library |
 | openapi-client-axios | [github/anttiviljami/openapi-client-axios](https://github.com/anttiviljami/openapi-client-axios) | JavaScript, TypeScript | JavaScript client library for consuming OpenAPI-enabled APIs with axios. Types included.
 | restful-react | [github/contiamo/restful-react](https://github.com/contiamo/restful-react) | Typescript | Well tested library to generate typesafe hooks and components. Easy to integrate into your development process. |
+| openapi-ts-sdk-builder | [nfroidure/openapi-ts-sdk-builder](https://github.com/nfroidure/openapi-ts-sdk-builder) | Typescript | Generate a TypeScript SDK from OpenAPI 3 definitions. |
 
 #### Code Generators
 

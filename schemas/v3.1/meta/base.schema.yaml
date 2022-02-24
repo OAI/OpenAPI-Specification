@@ -1,4 +1,6 @@
 ---
+title: OAS Base vocabulary
+description: A JSON Schema Vocabulary used in the OpenAPI Schema Dialect
 $defs:
   discriminator:
     $ref: '#/$defs/extensible'
@@ -57,7 +59,6 @@ properties:
     $ref: '#/$defs/external-docs'
   xml:
     $ref: '#/$defs/xml'
-title: OAS Base vocabulary
 type:
 - object
 - boolean

@@ -820,6 +820,7 @@
           "$ref": "#/$defs/response-or-reference"
         }
       },
+      "minProperties": 1,
       "$ref": "#/$defs/specification-extensions",
       "unevaluatedProperties": false
     },

@@ -25,7 +25,7 @@ const args = process.argv.reduce((acc, arg) => {
 (async function () {
   try {
     const schemaType = args.schema || "schema";
-    const schemaVersion = args.version || "2021-03-02";
+    const schemaVersion = args.version || "2022-02-27";
     const outputFormat = args.format || JsonSchema.BASIC;
 
     // Config

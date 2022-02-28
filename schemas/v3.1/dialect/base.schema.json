@@ -1,8 +1,10 @@
 {
-    "title": "OpenAPI 3.1 Schema Object Dialect",
-    "description": "A JSON Schema dialect describing schemas found in OpenAPI documents",
     "$id": "https://spec.openapis.org/oas/3.1/dialect/base",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
+
+    "title": "OpenAPI 3.1 Schema Object Dialect",
+    "description": "A JSON Schema dialect describing schemas found in OpenAPI documents",
+
     "$vocabulary": {
         "https://json-schema.org/draft/2020-12/vocab/core": true,
         "https://json-schema.org/draft/2020-12/vocab/applicator": true,
@@ -13,6 +15,7 @@
         "https://json-schema.org/draft/2020-12/vocab/content": true,
         "https://spec.openapis.org/oas/3.1/vocab/base": false
     },
+
     "$dynamicAnchor": "meta",
 
     "allOf": [

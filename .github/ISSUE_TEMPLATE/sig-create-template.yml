@@ -1,0 +1,110 @@
+name: "SIG Create Form"
+description: "Request form to create a SIG under the OAI. Please provide a brief title, description, and fill out the details below and we'll get back to you ASAP."
+title: "[Request to Create SIG]: "
+labels: SIG, creationn-request
+assignees:
+  - namdeirf
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out the SIG creation form!
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: Please share the contact details of the main principals of the SIG
+    validations:
+      required: true
+  - type: textarea
+    id: Title
+    attributes:
+      label: Give your SIG a unique name, a one or two word descriptor.
+      description: Each SIG needs a unique name starting with "SIG-"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Give an overview of your SIG.
+      description: A brief description, ideally a single paragraph that describes your SIG.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Statement of Work 
+      description: A detailed statement of work (SOW) defining what your SIG will accomplish and the overall scope of the group.
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: SIG Class
+      description: What is the class of SIG you want to create? Technical SIGs are narrow scope that addresses specific, known technical needs, limitations, features or enhancements. Industry SIGs are created to address a series of domain specific needs which may or may not require in changes to the spec.
+      options:
+        - Technical SIG
+        - Industry SIG
+    validations:
+      required: true
+  - type: dropdown
+    id: history
+    attributes:
+      label: History
+      description: Is this an existing group that you want to move to the OAI, or are you forming this group for the first time.
+      options:
+        - Pre-existing group
+        - A new group
+    validations:
+      required: true
+  - type: dropdown
+    id: Cadence
+    attributes:
+      label: How often do you intend to need to meet
+      multiple: false
+      options:
+        - Weekly
+        - Every other week
+        - Monthly
+        - Every other month
+        - Quarterly
+        - Annual
+        - Ad hoc
+  - type: dropdown
+    id: comunication
+    attributes:
+      label: Teleconference link
+      description: Will you need OpenAPI to provide a teleconference link?
+      options:
+        - 'Yes'
+        - 'No'
+    validations:
+      required: true
+  - type: dropdown
+    id: slack
+    attributes:
+      label: Slack
+      description: Would you like us to create a channel on the OAI Slack?
+      options:
+        - 'Yes'
+        - 'No'
+    validations:
+      required: true
+  - type: dropdown
+    id: discord
+    attributes:
+      label: discord
+      description: Would you like us to create a channel on the OAI Discord?
+      options:
+        - 'Yes'
+        - 'No'
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/OAI/OpenAPI-Specification/blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

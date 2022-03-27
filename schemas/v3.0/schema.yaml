@@ -495,6 +495,22 @@ definitions:
         type: string
       description:
         type: string
+      get:
+        $ref: '#/definitions/Operation'
+      put:
+        $ref: '#/definitions/Operation'
+      post:
+        $ref: '#/definitions/Operation'
+      delete:
+        $ref: '#/definitions/Operation'
+      options:
+        $ref: '#/definitions/Operation'
+      head:
+        $ref: '#/definitions/Operation'
+      patch:
+        $ref: '#/definitions/Operation'
+      trace:
+        $ref: '#/definitions/Operation'
       servers:
         type: array
         items:
@@ -507,8 +523,6 @@ definitions:
             - $ref: '#/definitions/Reference'
         uniqueItems: true
     patternProperties:
-      '^(get|put|post|delete|options|head|patch|trace)$':
-        $ref: '#/definitions/Operation'
       '^x-': {}
     additionalProperties: false
 

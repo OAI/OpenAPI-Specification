@@ -6,9 +6,9 @@ These tools are not endorsed by the OAI.
 
 #### Low-Level tooling
 
-| Title          | Project Link | Language |Description                          |
-|----------------|--------------|----------|---------------------|
-| oasdiff        | [github/tufin/oasdiff](https://github.com/tufin/oasdiff) | Go | Diff tool for OpenAPI 3.x specs, written as a Golang module |
+| Title | Project Link | Language | Description |
+|-------|--------------|----------|-------------|
+| oasdiff | [github/tufin/oasdiff](https://github.com/tufin/oasdiff) | Go | Diff tool for OpenAPI 3.x specs, written as a Golang module |
 | swagger-parser | [github/swagger-api](https://github.com/swagger-api/swagger-parser) | Java | Swagger 1.0, 1.1, 1.2, 2.0 to OpenAPI Specification converter |
 | swagger-models | [github/swagger-api](https://github.com/swagger-api/swagger-core/tree/master/modules/swagger-models) | Java | OpenAPI 3.0 Java Pojos |
 | springdoc-openapi | [github/springdoc/springdoc-openapi](https://github.com/springdoc/springdoc-openapi) | Java | Library that produces OpenAPI 3.x specification documentation for spring-boot applications.  |
@@ -23,15 +23,17 @@ These tools are not endorsed by the OAI.
 | go-openapi | [github/nasa9084/go-openapi](https://github.com/nasa9084/go-openapi) | Go | Golang struct model for OpenAPI 3.x. |
 | openapi | [github/wzshiming/openapi](https://github.com/wzshiming/openapi) | Go | OpenAPI 3 Specification for golang |
 | kin-openapi | [github/getkin/kin-openapi](https://github.com/getkin/kin-openapi) | Go | OpenAPI 3.x implementation for Go (parsing, converting, validation) |
+| openapi-go | [github/swaggest/openapi-go](https://github.com/swaggest/openapi-go) | Go | Type-safe OpenAPI 3.x bindings and generator from code |
 | Spectral | [github/stoplightio/spectral](https://github.com/stoplightio/spectral) | TypeScript, JavaScript | A flexible JSON object linter with out of the box support for OpenAPI Specification 2 and 3 |
 | openapi-validator | [gitlab/mmal/openapi-validator](https://gitlab.com/mmalawski/openapi-validator) | PHP | Validates response against OpenAPI schema |
 | OpenAPI-Delphi | [github/paolo-rossi/OpenAPI-Delphi](https://github.com/paolo-rossi/OpenAPI-Delphi) | Delphi | Delphi implementation of a generator, parser and validator for the OpenAPI 3 Specification |
 | spring-openapi | [github/jrcodeza/spring-openapi](https://github.com/jrcodeza/spring-openapi) | Java | OpenAPI v3 generator for Java Spring. Includes also client generation. Supports inheritance with discriminators and Jackson annotations and custom interceptors. |
+| schema2dts | [nfroidure/schema2dts](https://github.com/nfroidure/schema2dts) | Typescript | Create types definitions from an OpenAPI schema. |
 
 #### Editors
 
-| Title          | Project Link | Language |Description                          |
-|----------------|--------------|----------|---------------------|
+| Title | Project Link | Language | Description |
+|-------|--------------|----------|-------------|
 | Visual Studio Code extension | [VS Code marketplace / OpenAPI (Swagger) editor](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi) | TypeScript | Extends VS Code to provide OpenAPI 2.0 and 3.0 navigation, code snippets, new API creation |
 | Apicurio Studio | [github/Apicurio/apicurio-studio](https://github.com/Apicurio/apicurio-studio) | Java/TypeScript | Web-Based **visual designer** for OpenAPI 2.0 and 3.0.0. |
 | KaiZen OpenAPI Editor | [github/RepreZen/KaiZen-OpenAPI-Editor](https://github.com/RepreZen/KaiZen-OpenAPI-Editor) | Java | Eclipse Editor for OpenAPI 2.0 and 3.0 |
@@ -43,45 +45,59 @@ These tools are not endorsed by the OAI.
 
 #### User Interfaces
 
-| Title          | Project Link | Language |Description                          |
-|----------------|--------------|----------|---------------------|
+| Title | Project Link | Language | Description |
+|-------|--------------|----------|-------------|
 | openapi-viewer | [github/koumoul/openapi-viewer](https://github.com/koumoul-dev/openapi-viewer) | Vue.js | Browse and test a REST API described with the OpenAPI 3.0 Specification. |
 | swagger-ui | [github/swagger-api](https://github.com/swagger-api/swagger-UI) | JavaScript | Web-Based interface for visualizing and testing OpenAPI\Swagger definitions |
 | lincoln | [github/temando/open-api-renderer](https://github.com/temando/open-api-renderer)| React.js| A React renderer for OpenAPI v3 |
 | WebSphere Liberty | [Download jar](https://developer.ibm.com/wasdev/downloads/) | JavaScript | Includes a native OpenAPI v3 UI which allows for customization of its banners and URL |
 | Widdershins | [github/Mermade/widdershins](https://github.com/Mermade/widdershins) | Node.js | Generate Slate/Shins markdown from OpenAPI 3.0.x |
 | angular-swagger-ui | [github/angular-swagger-ui](https://github.com/Orange-OpenSource/angular-swagger-ui) | AngularJS | An angularJS implementation of Swagger UI |
-| Redoc | [github/Redocly/redoc](https://github.com/Redocly/redoc) | JavaScript | A React-based renderer with deep support for OAS v2 and v3 and zero dev-dependency|
+| Redoc | [github/Redocly/redoc](https://github.com/Redocly/redoc) | JavaScript | A React-based renderer with deep support for OAS v2 and v3 and zero dev-dependency |
+| RapiDoc | [github/mrin9/RapiDoc](https://github.com/mrin9/RapiDoc) | JavaScript | A highly customizable Web Component for viewing Swagger and OpenAPI definitions |
 
 #### Mock Servers
-| Title          | Project Link | Language | Description |
-| -------------- | ------------ | -------- | ----------- |
+
+| Title | Project Link | Language | Description |
+|-------|--------------|----------|-------------|
 | API Sprout     | [github/danielgtaylor/apisprout](https://github.com/danielgtaylor/apisprout) | Go | Lightweight, blazing fast, cross-platform OpenAPI 3 mock server with validation |
 
+#### Testing tools
+| Title | Project Link | Language | Description |
+| ------|--------------|----------|-------------|
+| Schemathesis   | [github/schemathesis/schemathesis](https://github.com/schemathesis/schemathesis) | Python | A modern API testing tool for web applications built with OpenAPI and GraphQL specifications |
+| Tcases for OpenAPI   | [github/Cornutum/tcases](https://github.com/Cornutum/tcases/blob/master/tcases-openapi/README.md#tcases-for-openapi-from-rest-ful-to-test-ful) | Java | Generates test cases directly from an OpenAPI 3.0.X definition. Creates tests executable using various test frameworks. Bonus: Semantic linter reports elements that are inconsistent, superfluous, or dubious. |
+
 #### Server Implementations
-| Title          | Project Link | Language |Description                          |
-|----------------|--------------|----------|---------------------|
+
+| Title | Project Link | Language | Description |
+|-------|--------------|----------|-------------|
 | Vert.x Web API Contract | [github/vert-x3/vertx-web](http://vertx.io/docs/#web) | Java, Kotlin, JavaScript, Groovy, Ruby, Ceylon & Scala | Create an API endpoint with Vert.x 3 and OpenAPI 3 with automatic requests validation
 | Fusio | [github/apioo/fusio](https://github.com/apioo/fusio) | PHP, JavaScript | Build API endpoints based on OpenAPI 3
 | Modern | [github/modern-project/modern-ruby](https://github.com/modern-project/modern-ruby) | Ruby | OpenAPI 3-based Rack framework with automatic OAS generation and requests/response validation
-| Koa2-OAS3 | [github/OverSpeedIO/koa2-oas3](https://github.com/OverSpeedIO/koa2-oas3) | Node.js | OpenAPI 3 request validation middleware for Koa2 based apps.
 | Exegesis | [github/exegesis-js/exegesis](https://github.com/exegesis-js/exegesis) | Node.js | OpenAPI 3 server-side framework for express and other frameworks.
 | PHP-CRUD-API | [github/mevdschee/php-crud-api](https://github.com/mevdschee/php-crud-api) | PHP | Automatic CRUD API with OpenAPI 3 docs
 | FastAPI | [github/tiangolo/fastapi](https://github.com/tiangolo/fastapi) | Python | OpenAPI 3 based, high performance, Python 3.6+ API framework with automatic data validation, serialization and great editor support.
 | Fastify OpenAPI v3 | [gitlab.com/m03geek/fastify-oas](https://gitlab.com/m03geek/fastify-oas) | Node.JS | Fastify OpenAPI v3+ plugin. Generates OpenAPI specification from fastify schemas and routes. Also serves swagger ui and spec in json/yaml formats.
 | openapi-backend | [github/anttiviljami/openapi-backend](https://github.com/anttiviljami/openapi-backend) | Node.js, TypeScript | Build, Validate, Route, and Mock in the backend using OpenAPI v3 spec in your favourite framework
+| Connexion | [github/zalando/connexion](https://github.com/zalando/connexion) | Python | Swagger/OpenAPI First framework for Python on top of Flask with automatic endpoint validation & OAuth2 support
+| JSONSchema::Validator | [https://github.com/skbkontur/perl-jsonschema-validator](https://github.com/skbkontur/perl-jsonschema-validator) | Perl | OpenAPI 3 request/response validation
+| rest | [github.com/swaggest/rest](https://github.com/swaggest/rest) | Go | API server with automatic request/response mapping/validation and OpenAPI schema
+| whook | [nfroidure/whook](https://github.com/nfroidure/whook) | Typescript | OpenAPI 3 based NodeJS server. |
 
 #### Client Implementations
 
-| Title          | Project Link | Language | Description |
-|----------------|--------------|----------|-------------|
+| Title | Project Link | Language | Description |
+|-------|--------------|----------|-------------|
 | Scorpio        | [github/notEthan/scorpio](https://github.com/notEthan/Scorpio) | Ruby | OpenAPI 2 and 3 implementation offering a HTTP client library |
 | openapi-client-axios | [github/anttiviljami/openapi-client-axios](https://github.com/anttiviljami/openapi-client-axios) | JavaScript, TypeScript | JavaScript client library for consuming OpenAPI-enabled APIs with axios. Types included.
+| restful-react | [github/contiamo/restful-react](https://github.com/contiamo/restful-react) | Typescript | Well tested library to generate typesafe hooks and components. Easy to integrate into your development process. |
+| openapi-ts-sdk-builder | [nfroidure/openapi-ts-sdk-builder](https://github.com/nfroidure/openapi-ts-sdk-builder) | Typescript | Generate a TypeScript SDK from OpenAPI 3 definitions. |
 
 #### Code Generators
 
-| Title          | Project Link | Language |Description                          |
-|----------------|--------------|----------|---------------------|
+| Title | Project Link | Language | Description |
+|-------|--------------|----------|-------------|
 | baucis-openapi3 | [github/metadevpro/baucis-openapi3](https://github.com/metadevpro/baucis-openapi3) | Node.js | [Baucis.js](https://github.com/wprl/baucis) plugin for generating OpenAPI 3.0 compliant API contracts. |
 | Google Gnostic | [github/googleapis/gnostic](https://github.com/googleapis/gnostic) | Go | Compile OpenAPI descriptions into equivalent Protocol Buffer representations. |
 | Gen | [github/wzshiming/gen](https://github.com/wzshiming/gen) | Go | Generate OpenAPI 3, client, and route based on golang source code. |
@@ -92,3 +108,4 @@ These tools are not endorsed by the OAI.
 | swagger-node-codegen | [github/fmvilas/swagger-node-codegen](https://github.com/fmvilas/swagger-node-codegen) | Node.js | Generates a Node.js/express server, but also has a template engine for creating any templates needed. |
 .NET-C#-Annotations | [github/Microsoft/OpenAPI-NET-CSharpAnnotations](https://github.com/Microsoft/OpenAPI.NET.CSharpAnnotations) | dotnet | Convert your native C# comments/annotation XML from your API code into a OpenAPI document object. |
 | Object Oriented OpenAPI Specification | [github/goldspecdigital/oooas](https://github.com/goldspecdigital/oooas) | PHP | Generates OpenAPI documents using PHP. |
+| swac | [github.com/swaggest/swac](https://github.com/swaggest/swac) | PHP, Go | Generates clients for Go and PHP from OpenAPI 2/3. |

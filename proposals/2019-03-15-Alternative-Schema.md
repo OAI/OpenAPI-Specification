@@ -4,11 +4,11 @@
 
 |Tag |Value |
 |---- | ---------------- |
-|Proposal |[Alternative Schema](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/Alternative%20Schema)|
-|Authors|[Chuck Heazel](https://github.com/{cmheazel})|
+|Proposal |[Alternative Schema](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/2019-03-15-Alternative-Schema.md)|
+|Authors|[Chuck Heazel](https://github.com/cmheazel)|
 |Review Manager |TBD |
 |Status |**Draft** |
-|Implementations |[Click Here](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/Alternative%20Schema/implementations.md)
+|Implementations |[Click Here](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/Alternative-Schema/implementations.md)
 |Issues |[1532](https://github.com/OAI/OpenAPI-Specification/issues/1532)|
 |Previous Revisions |[March 15](https://github.com/OAI/OpenAPI-Specification/pull/1868#issue-261689900) |
  
@@ -16,8 +16,8 @@
 
 |Date |Responsible Party |Description |
 |---- | ---------------- | ---------- |
-|3/15/19 |C. Heazel|Initial Markup Draft |
-|4/17/19 |C. Heazel|Re-structured based on Apple Swift|
+|2019-03-15 |C. Heazel|Initial Markup Draft |
+|2019-04-17 |C. Heazel|Re-structured based on Apple Swift|
 
 ## Introduction
 
@@ -42,14 +42,14 @@ This proposal makes the following changes to the OAS 3.0 specification:
 
 ###  Extend the Schema Object 
 
-The OpenAPI Schema Object is extended by the addition of the x-oas-draft-alternativeSchema field. The proposed changes to the OpenAPI specification are provided in [schema_object.md](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/Alternative%20Schema/schema_object.md)
+The OpenAPI Schema Object is extended by the addition of the x-oas-draft-alternativeSchema field. The proposed changes to the OpenAPI specification are provided in [schema_object.md](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/Alternative%20Schema/schema_object.md)
 
 ###  Add the Alternative Schema Object 
 
-The new object, the Alternative Schema Object is added to the OpenAPI specification. The proposed changes to the OpenAPI specification are provided in [alternative_schema_object.md](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/Alternative%20Schema/alternative_schema_object.md)
+The new object, the Alternative Schema Object is added to the OpenAPI specification. The proposed changes to the OpenAPI specification are provided in [alternative_schema_object.md](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/Alternative%20Schema/alternative_schema_object.md)
 
 ### Provide Alternative Schema Examples
-Examples of the use of the Alternative Schema capability is added to the OpenAPI specification. The proposed changes to the OpenAPI specification are provided in [alternative_schema_examples.md](https://github.com/OAI/OpenAPI-Specification/tree/master/proposals/Alternative%20Schema/alternative_schema_examples.md)
+Examples of the use of the Alternative Schema capability is added to the OpenAPI specification. The proposed changes to the OpenAPI specification are provided in [alternative_schema_examples.md](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/Alternative%20Schema/alternative_schema_examples.md)
 
 ### Alternative Schema Registry
 
@@ -57,7 +57,7 @@ Values used to populate the Alternative Schema Object are required to come from 
 
 *** Note this is a placeholder registry. Don't take the values seriously. ***  
 
-Inital contents of the registry will include:
+Initial contents of the registry will include:
 
 |Name  |Link  |Description | 
 |--- | --- | --- |
@@ -69,5 +69,5 @@ This proposal makes use of the extensibility features of OpenAPI. All changes so
 
 ## Alternatives considered
 
-Embedding non-JSON content in the OAS document would have imposed an unacceptable burden on tooling. Therefore, an extenal link was prefered. Considerable discussion was held over exactly how the links should be represented in the Schema Object. The selected option should support the greatest number of possible combinations of external schema that can be expressed with the OpenAPI schema language.
+Embedding non-JSON content in the OAS document would have imposed an unacceptable burden on tooling. Therefore, an external link was preferred. Considerable discussion was held over exactly how the links should be represented in the Schema Object. The selected option should support the greatest number of possible combinations of external schema that can be expressed with the OpenAPI schema language.
 

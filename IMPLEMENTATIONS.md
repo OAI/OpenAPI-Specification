@@ -8,6 +8,7 @@ These tools are not endorsed by the OAI.
 
 | Title | Project Link | Language | Description |
 |-------|--------------|----------|-------------|
+| oasdiff | [github/tufin/oasdiff](https://github.com/tufin/oasdiff) | Go | Diff tool for OpenAPI 3.x specs, written as a Golang module |
 | swagger-parser | [github/swagger-api](https://github.com/swagger-api/swagger-parser) | Java | Swagger 1.0, 1.1, 1.2, 2.0 to OpenAPI Specification converter |
 | swagger-models | [github/swagger-api](https://github.com/swagger-api/swagger-core/tree/master/modules/swagger-models) | Java | OpenAPI 3.0 Java Pojos |
 | springdoc-openapi | [github/springdoc/springdoc-openapi](https://github.com/springdoc/springdoc-openapi) | Java | Library that produces OpenAPI 3.x specification documentation for spring-boot applications.  |

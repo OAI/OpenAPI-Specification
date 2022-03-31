@@ -24,7 +24,7 @@ The specification *will evolve over time*. Changes  may be made when any of the 
 
 For each change in the specification we should *always* consider the following:
 
-* Migration. Is this a construct that has a path from the existing 2.0 specification? If so, how complicated is it to migrate to the proposed change?
+* Migration. Is this a construct that has a path from the [existing specification](https://github.com/OAI/OpenAPI-Specification/releases))? If so, how complicated is it to migrate to the proposed change?
 
 * Tooling. Strive to support code generation, software interfaces, spec generation techniques, as well as other utilities. Some features may be impossible to support in different frameworks/languages. These should be documented and considered during the change approval process.
 
@@ -36,7 +36,7 @@ Spec changes should be approved by a majority of the committers. Approval can be
 
 * GitHub is the medium of record for all spec designs, use cases, and so on.
 
-* As with 2.0, the **human readable** document is the source of truth. If using a JSON Schema again to document the spec, it is secondary to the human documentation. The documentation should live in a *.md file, in parallel to the 2.0 document (versions/3.0.0.md for example).
+* The **human readable** document is the source of truth. If using a JSON Schema again to document the spec, it is secondary to the human documentation. The documentation should live in a *.md file, in parallel to the latest document (versions/3.0.0.md for example).
 
 * At any given time, there would be *at most* 4 work branches. The branches would exist if work has started on them. Assuming a current version of 3.0.0:
 

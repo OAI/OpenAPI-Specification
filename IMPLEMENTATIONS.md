@@ -93,6 +93,7 @@ These tools are not endorsed by the OAI.
 | openapi-client-axios | [github/anttiviljami/openapi-client-axios](https://github.com/anttiviljami/openapi-client-axios) | JavaScript, TypeScript | JavaScript client library for consuming OpenAPI-enabled APIs with axios. Types included.
 | restful-react | [github/contiamo/restful-react](https://github.com/contiamo/restful-react) | Typescript | Well tested library to generate typesafe hooks and components. Easy to integrate into your development process. |
 | openapi-ts-sdk-builder | [nfroidure/openapi-ts-sdk-builder](https://github.com/nfroidure/openapi-ts-sdk-builder) | Typescript | Generate a TypeScript SDK from OpenAPI 3 definitions. |
+| aiopenapi3 | [github.com/commonism/aiopenapi3](https://github.com/commonism/aiopenapi3) | Python | OpenAPI 3, Python3.7+ client & validator with automatic data validation & serialization, sync or asyncio.
 
 #### Code Generators
 

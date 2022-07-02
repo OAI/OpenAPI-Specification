@@ -936,7 +936,9 @@
           "type": "string",
           "format": "uri-reference"
         },
-        "operationId": true,
+        "operationId": {
+          "type": "string"
+        },
         "parameters": {
           "$ref": "#/$defs/map-of-strings"
         },

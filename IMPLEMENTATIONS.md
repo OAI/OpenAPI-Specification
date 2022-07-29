@@ -42,6 +42,7 @@ These tools are not endorsed by the OAI.
 | SwaggerHub | [swaggerhub.com](https://swaggerhub.com) | | API Design and Documentation Platform, Built For Teams
 | swagger-editor | [github/swagger-api](https://github.com/swagger-api/swagger-editor) | JavaScript | Web-Based editor for creating, editing, validating and testing OpenAPI\Swagger definitions |
 | Remain OpenAPI Studio | Direct download: https://remainsoftware.com/extranet/download-type/openapi-studio-download <br> Or via Eclipse MarketPlace https://marketplace.eclipse.org/content/openapi-studio-rich-oas3-editor | Java | A user-friendly, visually rich studio supporting all features defined by the OpenAPI 3. Easy but powerful UI-based components creation, API testing, import, export, code generation and much more. |
+| Perseid Modeler | [datensen.com](https://www.datensen.com/data-modeling/perseid-modeler-for-json-schema.html) | ReactJS | A data modeling tool for OpenAPI and JSON schema. Key features: visual OpenAPI creation using tree and ERD-like diagrams, import from files, HTML reports, export to PDF, script generation and more. |
 
 #### User Interfaces
 

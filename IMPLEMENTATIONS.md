@@ -43,6 +43,7 @@ These tools are not endorsed by the OAI.
 | SwaggerHub | [swaggerhub.com](https://swaggerhub.com) | | API Design and Documentation Platform, Built For Teams
 | swagger-editor | [github/swagger-api](https://github.com/swagger-api/swagger-editor) | JavaScript | Web-Based editor for creating, editing, validating and testing OpenAPI\Swagger definitions |
 | Remain OpenAPI Studio | Direct download: https://remainsoftware.com/extranet/download-type/openapi-studio-download <br> Or via Eclipse MarketPlace https://marketplace.eclipse.org/content/openapi-studio-rich-oas3-editor | Java | A user-friendly, visually rich studio supporting all features defined by the OpenAPI 3. Easy but powerful UI-based components creation, API testing, import, export, code generation and much more. |
+| Zuplo | [zuplo.com](zuplo.com) | TypeScript | Programmable API gateway with integrated OpenAPI designer |
 
 #### User Interfaces
 
@@ -56,6 +57,7 @@ These tools are not endorsed by the OAI.
 | angular-swagger-ui | [github/angular-swagger-ui](https://github.com/Orange-OpenSource/angular-swagger-ui) | AngularJS | An angularJS implementation of Swagger UI |
 | Redoc | [github/Redocly/redoc](https://github.com/Redocly/redoc) | JavaScript | A React-based renderer with deep support for OAS v2 and v3 and zero dev-dependency |
 | RapiDoc | [github/mrin9/RapiDoc](https://github.com/mrin9/RapiDoc) | JavaScript | A highly customizable Web Component for viewing Swagger and OpenAPI definitions |
+| Zuplo | [zuplo.com](zuplo.com) | TypeScript | API Gateway with OpenAPI visualization and Developer Portal |
 
 #### Mock Servers
 
@@ -85,6 +87,7 @@ These tools are not endorsed by the OAI.
 | JSONSchema::Validator | [https://github.com/skbkontur/perl-jsonschema-validator](https://github.com/skbkontur/perl-jsonschema-validator) | Perl | OpenAPI 3 request/response validation
 | rest | [github.com/swaggest/rest](https://github.com/swaggest/rest) | Go | API server with automatic request/response mapping/validation and OpenAPI schema
 | whook | [nfroidure/whook](https://github.com/nfroidure/whook) | Typescript | OpenAPI 3 based NodeJS server. |
+| Zuplo | [zuplo.com](zuplo.com) | TypeScript | Programmable API gateway with integrated OpenAPI designer |
 
 #### Client Implementations
 

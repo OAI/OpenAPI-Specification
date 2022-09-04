@@ -1,6 +1,6 @@
 {
-    "id": "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/schemas/v1.2/authorizationObject.json#",
-    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$id": "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/schemas/v1.2/authorizationObject.json#",
+    "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "additionalProperties": {
         "oneOf": [

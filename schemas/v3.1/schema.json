@@ -304,10 +304,29 @@
           "items": {
             "$ref": "#/$defs/parameter-or-reference"
           }
-        }
-      },
-      "patternProperties": {
-        "^(get|put|post|delete|options|head|patch|trace)$": {
+        },
+        "get": {
+          "$ref": "#/$defs/operation"
+        },
+        "put": {
+          "$ref": "#/$defs/operation"
+        },
+        "post": {
+          "$ref": "#/$defs/operation"
+        },
+        "delete": {
+          "$ref": "#/$defs/operation"
+        },
+        "options": {
+          "$ref": "#/$defs/operation"
+        },
+        "head": {
+          "$ref": "#/$defs/operation"
+        },
+        "patch": {
+          "$ref": "#/$defs/operation"
+        },
+        "trace": {
           "$ref": "#/$defs/operation"
         }
       },

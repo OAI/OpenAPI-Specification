@@ -1,6 +1,7 @@
 {
-  "$id": "https://spec.openapis.org/oas/3.1/schema/2021-09-28",
+  "$id": "https://spec.openapis.org/oas/3.1/schema/2022-02-27",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "The description of OpenAPI v3.1.x documents without schema validation, as defined by https://spec.openapis.org/oas/v3.1.0",
   "type": "object",
   "properties": {
     "openapi": {
@@ -19,7 +20,10 @@
       "type": "array",
       "items": {
         "$ref": "#/$defs/server"
-      }
+      },
+      "default": [
+        { "url": "/" }
+      ]
     },
     "paths": {
       "$ref": "#/$defs/paths"
@@ -87,7 +91,8 @@
           "type": "string"
         },
         "termsOfService": {
-          "type": "string"
+          "type": "string",
+          "format": "uri"
         },
         "contact": {
           "$ref": "#/$defs/contact"
@@ -114,10 +119,12 @@
           "type": "string"
         },
         "url": {
-          "type": "string"
+          "type": "string",
+          "format": "uri"
         },
         "email": {
-          "type": "string"
+          "type": "string",
+          "format": "email"
         }
       },
       "$ref": "#/$defs/specification-extensions",
@@ -813,6 +820,7 @@
           "$ref": "#/$defs/response-or-reference"
         }
       },
+      "minProperties": 1,
       "$ref": "#/$defs/specification-extensions",
       "unevaluatedProperties": false
     },
@@ -1284,10 +1292,12 @@
           "type": "object",
           "properties": {
             "authorizationUrl": {
-              "type": "string"
+              "type": "string",
+              "format": "uri"
             },
             "refreshUrl": {
-              "type": "string"
+              "type": "string",
+              "format": "uri"
             },
             "scopes": {
               "$ref": "#/$defs/map-of-strings"
@@ -1304,10 +1314,12 @@
           "type": "object",
           "properties": {
             "tokenUrl": {
-              "type": "string"
+              "type": "string",
+              "format": "uri"
             },
             "refreshUrl": {
-              "type": "string"
+              "type": "string",
+              "format": "uri"
             },
             "scopes": {
               "$ref": "#/$defs/map-of-strings"
@@ -1324,10 +1336,12 @@
           "type": "object",
           "properties": {
             "tokenUrl": {
-              "type": "string"
+              "type": "string",
+              "format": "uri"
             },
             "refreshUrl": {
-              "type": "string"
+              "type": "string",
+              "format": "uri"
             },
             "scopes": {
               "$ref": "#/$defs/map-of-strings"
@@ -1344,13 +1358,16 @@
           "type": "object",
           "properties": {
             "authorizationUrl": {
-              "type": "string"
+              "type": "string",
+              "format": "uri"
             },
             "tokenUrl": {
-              "type": "string"
+              "type": "string",
+              "format": "uri"
             },
             "refreshUrl": {
-              "type": "string"
+              "type": "string",
+              "format": "uri"
             },
             "scopes": {
               "$ref": "#/$defs/map-of-strings"

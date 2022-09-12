@@ -1,6 +1,6 @@
 id: https://spec.openapis.org/oas/3.0/schema/2021-09-28
 $schema: http://json-schema.org/draft-04/schema#
-description: Validation schema for OpenAPI Specification 3.0.X.
+description: The description of OpenAPI v3.0.x documents, as defined by https://spec.openapis.org/oas/v3.0.3
 type: object
 required:
   - openapi
@@ -495,6 +495,22 @@ definitions:
         type: string
       description:
         type: string
+      get:
+        $ref: '#/definitions/Operation'
+      put:
+        $ref: '#/definitions/Operation'
+      post:
+        $ref: '#/definitions/Operation'
+      delete:
+        $ref: '#/definitions/Operation'
+      options:
+        $ref: '#/definitions/Operation'
+      head:
+        $ref: '#/definitions/Operation'
+      patch:
+        $ref: '#/definitions/Operation'
+      trace:
+        $ref: '#/definitions/Operation'
       servers:
         type: array
         items:
@@ -507,8 +523,6 @@ definitions:
             - $ref: '#/definitions/Reference'
         uniqueItems: true
     patternProperties:
-      '^(get|put|post|delete|options|head|patch|trace)$':
-        $ref: '#/definitions/Operation'
       '^x-': {}
     additionalProperties: false
 

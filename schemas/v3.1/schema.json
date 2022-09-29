@@ -774,7 +774,7 @@
         }
       },
       "patternProperties": {
-        "^[1-5][0-9X]{2}$": {
+        "^[1-5](?:[0-9][0-9]|XX)$": {
           "$ref": "#/$defs/response-or-reference"
         }
       },

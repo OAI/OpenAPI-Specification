@@ -105,11 +105,11 @@ $defs:
         format: uri
     required:
       - name
-    oneOf:
-      - required:
-        - identifier
-      - required:
-        - url
+    dependentSchemas:
+      identifier:
+        not:
+          required:
+            - url
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
 

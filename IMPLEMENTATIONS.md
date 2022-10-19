@@ -35,6 +35,7 @@ These tools are not endorsed by the OAI.
 
 | Title | Project Link | Language | Description |
 |-------|--------------|----------|-------------|
+| Oxygen OpenAPI Editor | [OpenAPI (Swagger) Editor](https://www.oxygenxml.com/openapi.html) | Java | OpenAPI editor with a variety of editing features and helper views. Support for validation and editing OpenAPI 2.0, 3.0, and 3.1 based on JSON Schema specification. Includes a tool for generating documentations and a tool for testing OpenAPIs. |
 | Visual Studio Code extension | [VS Code marketplace / OpenAPI (Swagger) editor](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi) | TypeScript | Extends VS Code to provide OpenAPI 2.0 and 3.0 navigation, code snippets, new API creation |
 | Apicurio Studio | [github/Apicurio/apicurio-studio](https://github.com/Apicurio/apicurio-studio) | Java/TypeScript | Web-Based **visual designer** for OpenAPI 2.0 and 3.0.0. |
 | KaiZen OpenAPI Editor | [github/RepreZen/KaiZen-OpenAPI-Editor](https://github.com/RepreZen/KaiZen-OpenAPI-Editor) | Java | Eclipse Editor for OpenAPI 2.0 and 3.0 |

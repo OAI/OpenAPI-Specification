@@ -28,6 +28,7 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "maximum": 100,
               "format": "int32"
             }
           }
@@ -152,6 +153,7 @@
       },
       "Pets": {
         "type": "array",
+        "maxItems": 100,
         "items": {
           "$ref": "#/components/schemas/Pet"
         }

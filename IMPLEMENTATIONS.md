@@ -57,6 +57,7 @@ These tools are not endorsed by the OAI.
 | angular-swagger-ui | [github/angular-swagger-ui](https://github.com/Orange-OpenSource/angular-swagger-ui) | AngularJS | An angularJS implementation of Swagger UI |
 | Redoc | [github/Redocly/redoc](https://github.com/Redocly/redoc) | JavaScript | A React-based renderer with deep support for OAS v2 and v3 and zero dev-dependency |
 | RapiDoc | [github/mrin9/RapiDoc](https://github.com/mrin9/RapiDoc) | JavaScript | A highly customizable Web Component for viewing Swagger and OpenAPI definitions |
+| Bump.sh | [github/bump-sh/CLI](https://github.com/bump-sh/cli) | NodeJS | Generate documentations from OpenAPI contracts, visualize changelogs and get notified of breaking changes |
 
 #### Mock Servers
 

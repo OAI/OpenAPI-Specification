@@ -30,6 +30,7 @@ These tools are not endorsed by the OAI.
 | OpenAPI-Delphi | [github/paolo-rossi/OpenAPI-Delphi](https://github.com/paolo-rossi/OpenAPI-Delphi) | Delphi | Delphi implementation of a generator, parser and validator for the OpenAPI 3 Specification |
 | spring-openapi | [github/jrcodeza/spring-openapi](https://github.com/jrcodeza/spring-openapi) | Java | OpenAPI v3 generator for Java Spring. Includes also client generation. Supports inheritance with discriminators and Jackson annotations and custom interceptors. |
 | schema2dts | [nfroidure/schema2dts](https://github.com/nfroidure/schema2dts) | Typescript | Create types definitions from an OpenAPI schema. |
+| openapi-runtime-expression | [char0n/openapi-runtime-expression](https://github.com/char0n/openapi-runtime-expression) | JavaScript | OpenAPI Runtime Expressions parser and validator. |
 
 #### Editors
 

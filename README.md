@@ -7,11 +7,11 @@
 
 The OpenAPI Specification is a community-driven open specification within the [OpenAPI Initiative](https://www.openapis.org/), a Linux Foundation Collaborative Project.
 
-The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.
+The OpenAPI Specification (OAS) defines a standard and programming language-agnostic interface description for HTTP APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with minimal implementation logic. Similar to what interface descriptions do for lower-level programming, the OpenAPI Specification removes the guesswork in calling a service.
 
-Use cases for machine-readable API definition documents include, but are not limited to: interactive documentation; code generation for documentation, clients, and servers; and automation of test cases. OpenAPI documents describe an APIs services and are represented in either YAML or JSON formats. These documents may either be produced and served statically or be generated dynamically from an application.
+Use cases for machine-readable API definition documents include, but are not limited to: interactive documentation; code generation for documentation, clients, and servers; and automation of test cases. OpenAPI documents describe APIs services and are represented in YAML or JSON formats. These documents may be produced and served statically or generated dynamically from an application.
 
-The OpenAPI Specification does not require rewriting existing APIs. It does not require binding any software to a service – the service being described may not even be owned by the creator of its description. It does, however, require the capabilities of the service be described in the structure of the OpenAPI Specification. Not all services can be described by OpenAPI – this specification is not intended to cover every possible style of HTTP APIs, but does include support for [REST APIs](https://en.wikipedia.org/wiki/Representational_state_transfer). The OpenAPI Specification does not mandate a specific development process such as design-first or code-first. It does facilitate either technique by establishing clear interactions with a HTTP API.
+The OpenAPI Specification does not require rewriting existing APIs. It does not require binding any software to a service – the described service may not even be owned by the creator of its description. It does, however, require the service's capabilities be described in the structure of the OpenAPI Specification. Not all services can be described by OpenAPI – this specification is not intended to cover every possible style of HTTP APIs, but does include support for [REST APIs](https://en.wikipedia.org/wiki/Representational_state_transfer). The OpenAPI Specification does not mandate a specific development process such as design-first or code-first. It does facilitate either technique by establishing clear interactions with an HTTP API.
 
 This GitHub project is the starting point for OpenAPI. Here you will find the information you need about the OpenAPI Specification, simple examples of what it looks like, and some general information regarding the project.
 
@@ -36,9 +36,9 @@ Looking to see how you can create your own OpenAPI definition, present it, or ot
 
 ## Participation
 
-The current process for development of the OpenAPI Specification is described in 
+The current process for developing the OpenAPI Specification is described in 
 [Development Guidelines](DEVELOPMENT.md).
-Development of the next version of the OpenAPI Specification is guided by the [Technical Steering Committee (TSC)](https://www.openapis.org/participate/how-to-contribute/governance#TDC). This group of committers bring their API expertise, incorporate feedback from the community, and expand the group of committers as appropriate. All development activity on the future specification will be performed as features and merged into this branch. Upon release of the future specification, this branch will be merged to `main`.
+Developing the next version of the OpenAPI Specification is guided by the [Technical Steering Committee (TSC)](https://www.openapis.org/participate/how-to-contribute/governance#TDC). This group of committers bring their API expertise, incorporate feedback from the community, and expand the group of committers as appropriate. All development activity on the future specification will be performed as features and merged into this branch. Upon release of the future specification, this branch will be merged to `main`.
 
 The TSC holds weekly web conferences to review open pull requests and discuss open issues related to the evolving OpenAPI Specification. Participation in weekly calls and scheduled working sessions is open to the community. You can view the entire OpenAPI [technical meeting calendar](https://calendar.google.com/calendar/u/0/embed?src=c_fue82vsncog6ahhjvuokjo8qsk@group.calendar.google.com) online.
 
@@ -50,7 +50,7 @@ The OpenAPI Initiative encourages participation from individuals and companies a
 * Subscribe to an open issue a day (or a week) in your inbox via [CodeTriage.com](https://www.codetriage.com/oai/openapi-specification).
 * Create an issue to describe a new concern. If possible, propose a solution.
 
-Not all feedback can be accommodated and there may be solid arguments for or against a change being appropriate for the specification.
+Not all feedback can be accommodated, and there may be solid arguments for or against a change being appropriate for the specification.
 
 ## Licensing
 

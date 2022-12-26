@@ -30,3 +30,8 @@ collections:
     name: Alternative Schema Type Registry
     output: true
     permalink: /registry/:collection/:title
+  namespace:
+    slug: namespace
+    name: Extension Namespace Registry
+    output: true
+    permalink: /registry/:collection/:title

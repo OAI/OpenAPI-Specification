@@ -12,7 +12,7 @@ layout: default
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format represents any sequece of octets encoded as a base64 string. This format entry is to ensure future versions of OpenAPI maintain compatibility with [OpenAPI 3.0.x](https://spec.openapis.org/oas/v3.0.0).
+The `{{page.slug}}` format represents any sequence of octets encoded as a base64 string. This format entry is to ensure future versions of OpenAPI maintain compatibility with [OpenAPI 3.0.x](https://spec.openapis.org/oas/v3.0.0).
 
 {% if page.issue %}
 ### GitHub Issue

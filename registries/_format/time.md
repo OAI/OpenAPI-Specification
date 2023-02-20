@@ -1,7 +1,7 @@
 ---
-owner: DarrelMiller
+owner: baywet
 issue: 
-description: date and time as defined by date-time - RFC3339
+description: time as defined by full-time - RFC3339
 base_type: string
 layout: default
 source: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-dates-times-and-duration
@@ -13,7 +13,7 @@ source: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-d
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format represents a date and time as defined by date-time - [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339#anchor14one). This format entry is to ensure future versions of OpenAPI maintain compatibility with [OpenAPI 3.0.x](https://spec.openapis.org/oas/v3.0.0).
+The `{{page.slug}}` format represents a time as defined by full-time - [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339#anchor14one).
 
 {% if page.issue %}
 ### GitHub Issue

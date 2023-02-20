@@ -2,7 +2,7 @@
 owner: baywet
 issue:
 description: A fixed point decimal number as defined by ISO/IEC 9075-2 2016 12 15
-base_type: number
+base_type: string
 layout: default
 ---
 

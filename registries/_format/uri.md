@@ -4,6 +4,7 @@ issue:
 description: A Uniform Resource Identifier as defined in RFC3986
 base_type: string
 layout: default
+source: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-resource-identifiers
 ---
 
 # <a href="..">{{ page.collection }}</a>
@@ -13,8 +14,6 @@ layout: default
 Base type: `{{ page.base_type }}`.
 
 The `{{page.slug}}` format is a Uniform Resource Identifier as defined in RFC3986.
-
-[Source](https://json-schema.org/draft/2020-12/json-schema-validation.html#name-resource-identifiers).
 
 {% if page.issue %}
 ### GitHub Issue

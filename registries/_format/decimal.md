@@ -12,7 +12,7 @@ layout: default
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format is a fixed point decimal number as defined by ISO/IEC 9075-2 2016 12 15.
+The `{{page.slug}}` format represents a fixed or floating point decimal number as defined by ISO/IEC 9075-2 2016 12 15.
 
 {% if page.issue %}
 ### GitHub Issue

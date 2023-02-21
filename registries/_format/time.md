@@ -13,7 +13,7 @@ source: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-d
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format represents a time as defined by full-time - [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339#anchor14one).
+The `{{page.slug}}` format represents a time as defined by full-time - [RFC3339](https://www.rfc-editor.org/rfc/rfc3339.html#section-5.6).
 
 {% if page.issue %}
 ### GitHub Issue

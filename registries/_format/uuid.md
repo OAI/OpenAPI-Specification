@@ -13,7 +13,7 @@ source: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-r
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format a Universally Unique IDentifier as defined in RFC4122.
+The `{{page.slug}}` format a Universally Unique IDentifier as defined in [RFC4122](https://www.rfc-editor.org/rfc/rfc4122).
 
 {% if page.issue %}
 ### GitHub Issue

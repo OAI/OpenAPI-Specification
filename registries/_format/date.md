@@ -4,7 +4,7 @@ issue:
 description: date as defined by full-date - RFC3339
 base_type: string
 layout: default
-source: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-resource-identifiers
+source: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-dates-times-and-duration
 ---
 
 # <a href="..">{{ page.collection }}</a>

@@ -13,7 +13,7 @@ source: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-h
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format is an internationalized host name as defined by RFC5890.
+The `{{page.slug}}` format is an internationalized host name as defined by [RFC5890](https://www.rfc-editor.org/rfc/rfc5890.html).
 
 {% if page.issue %}
 ### GitHub Issue

@@ -19,3 +19,15 @@ The `{{page.slug}}` format represents any sequence of octets. This format entry 
 
 * [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
 {% endif %}
+
+{% if page.oas_version %}
+### OpenAPI Specification version
+
+#{{ page.oas_version }}
+{% endif %}
+
+{% if page.remarks %}
+### Remarks
+
+#{{ page.remarks }}
+{% endif %}

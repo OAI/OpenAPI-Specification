@@ -20,3 +20,15 @@ The `{{page.slug}}` format represents a time as defined by full-time - [RFC3339]
 
 * [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
 {% endif %}
+
+{% if page.oas_version %}
+### OpenAPI Specification version
+
+#{{ page.oas_version }}
+{% endif %}
+
+{% if page.remarks %}
+### Remarks
+
+#{{ page.remarks }}
+{% endif %}

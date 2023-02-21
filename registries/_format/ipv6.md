@@ -20,3 +20,15 @@ The `{{page.slug}}` format is an IPv6 address as defined by RFC4673.
 
 * [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
 {% endif %}
+
+{% if page.oas_version %}
+### OpenAPI Specification version
+
+#{{ page.oas_version }}
+{% endif %}
+
+{% if page.remarks %}
+### Remarks
+
+#{{ page.remarks }}
+{% endif %}

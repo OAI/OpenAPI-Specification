@@ -20,3 +20,15 @@ The `{{page.slug}}` format is a JSON string representation of a JSON Pointer as 
 
 * [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
 {% endif %}
+
+{% if page.oas_version %}
+### OpenAPI Specification version
+
+#{{ page.oas_version }}
+{% endif %}
+
+{% if page.remarks %}
+### Remarks
+
+#{{ page.remarks }}
+{% endif %}

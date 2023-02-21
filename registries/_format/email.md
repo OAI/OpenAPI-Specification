@@ -13,7 +13,7 @@ source: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-e
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format is an email address as defined as Mailbox in RFC5351.
+The `{{page.slug}}` format is an email address as defined as Mailbox in [RFC5321](https://www.rfc-editor.org/rfc/rfc5321).
 
 {% if page.issue %}
 ### GitHub Issue

@@ -5,7 +5,7 @@ description: A url-safe binary array as defined in RFC4648
 base_type: string
 layout: default
 oas_version: < 3.1
-remarks: "When using OpenAPI 3.1 or above it's recommended not to use this format and instead use contentEncoding with a value of base64url."
+remarks: "When using OpenAPI 3.1 or above it's recommended not to use this format and instead use [`contentEncoding` with a value of `base64url`](https://json-schema.org/draft/2020-12/json-schema-validation.html#name-contentencoding)."
 ---
 
 # <a href="..">{{ page.collection }}</a>

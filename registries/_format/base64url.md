@@ -12,7 +12,7 @@ layout: default
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format is a url-safe binary array as defined in RFC4648.
+The `{{page.slug}}` format is a url-safe binary array as defined in [RFC4648](https://www.rfc-editor.org/rfc/rfc4648#section-5).
 
 {% if page.issue %}
 ### GitHub Issue

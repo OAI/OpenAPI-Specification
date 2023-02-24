@@ -16,6 +16,107 @@ Base type: `{{ page.base_type }}`.
 
 The `{{page.slug}}` format is a url-safe binary array as defined in [RFC4648](https://www.rfc-editor.org/rfc/rfc4648#section-5).
 
+### Upgrading from < 3.1 to >= 3.1
+
+#### Entire response body
+
+```yaml
+#OAS 3.0
+paths:
+  '/picture':
+    get:
+      responses:
+        '200':
+          content:
+            image/png:
+              schema:
+                type: string
+                format: byte
+
+#OAS 3.1
+paths:
+  '/picture':
+    get:
+      responses:
+        '200':
+          content:
+            image/png:
+              type: string
+              contentEncoding: base64
+```
+
+#### Encoded property as part of a structured response
+
+```yaml
+#OAS 3.0
+paths:
+  '/picture':
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  width:
+                    schema:
+                      type: string
+                  height:
+                    schema:
+                      type: string
+                  image:
+                    type: string
+                    format: base64url
+
+#OAS 3.1
+paths:
+  '/picture':
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  width:
+                    schema:
+                      type: string
+                  height:
+                    schema:
+                      type: string
+                  image:
+                    type: string
+                    contentMediaType: image/png
+                    contentEncoding: base64url
+```
+
+#### Query or Path parameters
+
+```yaml
+#OAS 3.0
+parameters:
+  - name: anImage
+    in: query
+    content:
+      image/png:
+        schema:
+          type: string
+          format: byte 
+
+#OAS 3.1
+parameters:
+  - name: anImage
+    in: query
+    schema:
+      type: string
+      contentMediaType: image/png
+      contentEncoding: base64url
+```
+
+#### Multipart/form-data
+
+Using base64url for multipart/form-data parts is not recommended since it artificially inflates the payload size with not added value.
+
 {% if page.issue %}
 ### GitHub Issue
 

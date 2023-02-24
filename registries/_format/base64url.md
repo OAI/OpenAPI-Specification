@@ -1,7 +1,7 @@
 ---
 owner: baywet
 issue:
-description: A url-safe binary array as defined in RFC4648
+description: A url-safe binary array as defined in [RFC4648](https://www.rfc-editor.org/rfc/rfc4648#section-5)
 base_type: string
 layout: default
 oas_version: < 3.1

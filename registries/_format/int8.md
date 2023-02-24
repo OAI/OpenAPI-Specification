@@ -23,11 +23,11 @@ The `{{page.slug}}` format represents a signed 8-bit integer, with the range -12
 {% if page.oas_version %}
 ### OpenAPI Specification version
 
-#{{ page.oas_version }}
+{{ page.oas_version }}
 {% endif %}
 
 {% if page.remarks %}
 ### Remarks
 
-#{{ page.remarks }}
+{{ page.remarks }}
 {% endif %}

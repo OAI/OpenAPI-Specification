@@ -26,11 +26,11 @@ The `{{page.slug}}` format is a JSON string representation of a relative JSON Po
 {% if page.oas_version %}
 ### OpenAPI Specification version
 
-#{{ page.oas_version }}
+{{ page.oas_version }}
 {% endif %}
 
 {% if page.remarks %}
 ### Remarks
 
-#{{ page.remarks }}
+{{ page.remarks }}
 {% endif %}

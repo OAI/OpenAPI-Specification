@@ -24,11 +24,11 @@ The `{{page.slug}}` format is an IPv6 address as defined by RFC4673.
 {% if page.oas_version %}
 ### OpenAPI Specification version
 
-#{{ page.oas_version }}
+{{ page.oas_version }}
 {% endif %}
 
 {% if page.remarks %}
 ### Remarks
 
-#{{ page.remarks }}
+{{ page.remarks }}
 {% endif %}

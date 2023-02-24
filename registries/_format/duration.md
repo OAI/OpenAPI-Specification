@@ -24,11 +24,11 @@ The `{{page.slug}}` format represents a duration as defined by duration - [RFC33
 {% if page.oas_version %}
 ### OpenAPI Specification version
 
-#{{ page.oas_version }}
+{{ page.oas_version }}
 {% endif %}
 
 {% if page.remarks %}
 ### Remarks
 
-#{{ page.remarks }}
+{{ page.remarks }}
 {% endif %}

@@ -13,7 +13,7 @@ source: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-r
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format is a Uniform Resource Identifier as defined in RFC3986.
+The `{{page.slug}}` format is a Uniform Resource Identifier as defined in [RFC3986](https://www.rfc-editor.org/rfc/rfc3986.html).
 
 {% if page.issue %}
 ### GitHub Issue

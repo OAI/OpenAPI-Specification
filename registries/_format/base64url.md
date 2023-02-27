@@ -20,6 +20,8 @@ The `{{page.slug}}` format is binary data encoded as a url-safe string as define
 
 #### Entire response body
 
+> Note: Encoding a binary message body to a string is not necessary in HTTP, and will increase the size by 33% to 300%.
+
 ```yaml
 #OAS 3.0
 paths:
@@ -117,7 +119,7 @@ parameters:
 
 #### Multipart/form-data
 
-Using base64url for multipart/form-data parts is not recommended since it artificially inflates the payload size with not added value.
+Encoding a binary part to a string is not necessary for multipart/form-data, and will increase the size by 33% to 300%.
 
 {% if page.issue %}
 ### GitHub Issue

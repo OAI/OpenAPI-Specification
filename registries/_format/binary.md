@@ -5,7 +5,7 @@ description: any sequence of octets
 base_type: string
 layout: default
 oas_version: < 3.1
-remarks: "When using OpenAPI 3.1 or above it's recommended not to use this format and instead set the `mediaType` to `application/octet-stream`, `image/png`,... without a `schema` property. This format MUST ONLY be used for schemas that represent the whole request/response body and MUST NOT be used for properties, arrays, etc..."
+remarks: "In OpenAPI 3.1, instead set the media type appropriately and do not use a schema property. Note that only complete HTTP message bodies or complete parts in a multipart media type can accommodate binary data. JSON strings and URL path components cannot."
 ---
 
 # <a href="..">{{ page.collection }}</a>

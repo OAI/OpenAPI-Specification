@@ -5,7 +5,7 @@ description: base64 encoded data as defined in [RFC4648](https://www.rfc-editor.
 base_type: string
 layout: default
 oas_version: < 3.1
-remarks: "When using OpenAPI 3.1 or above it's recommended not to use this format and instead use [`contentEncoding` with a value of `base64`](https://json-schema.org/draft/2020-12/json-schema-validation.html#name-contentencoding)."
+remarks: "In OpenAPI 3.1, instead use [`contentEncoding: base64url`](https://json-schema.org/draft/2020-12/json-schema-validation.html#name-contentencoding), optionally alongside [contentMediaType](https://json-schema.org/draft/2020-12/json-schema-validation.html#name-contentmediatype)."
 ---
 
 # <a href="..">{{ page.collection }}</a>
@@ -19,6 +19,8 @@ The `{{page.slug}}` format represents any sequence of octets encoded as a base64
 ### Upgrading from < 3.1 to >= 3.1
 
 #### Entire response body
+
+> Note: Encoding a binary message body to a string is not necessary in HTTP, and will increase the size by 33% to 300%.
 
 ```yaml
 #OAS 3.0
@@ -92,11 +94,11 @@ paths:
 
 #### Query or Path parameters
 
-Using byte or base64 for path or query parameters is not recommended since this encoding makes use of characters that are not URL safe.
+Data encoded using byte or base64 will require URL percent-encoding before it can be used in a path or query parameter. Use base64url instead to avoid this problem.
 
 #### Multipart/form-data
 
-Using byte or base64 for multipart/form-data parts is not recommended since it artificially inflates the payload size with not added value.
+Encoding a binary part to a string is not necessary for multipart/form-data, and will increase the size by 33% to 300%.
 
 {% if page.issue %}
 ### GitHub Issue

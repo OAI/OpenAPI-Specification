@@ -31,7 +31,7 @@ paths:
             image/png:
               schema:
                 type: string
-                format: byte
+                format: base64url
 
 #OAS 3.1
 paths:
@@ -42,7 +42,7 @@ paths:
           content:
             image/png:
               type: string
-              contentEncoding: base64
+              contentEncoding: base64url
 ```
 
 #### Encoded property as part of a structured response
@@ -57,6 +57,7 @@ paths:
           content:
             application/json:
               schema:
+                type: object
                 properties:
                   width:
                     schema:
@@ -77,6 +78,7 @@ paths:
           content:
             application/json:
               schema:
+                type: object
                 properties:
                   width:
                     schema:
@@ -101,7 +103,7 @@ parameters:
       image/png:
         schema:
           type: string
-          format: byte 
+          format: base64url
 
 #OAS 3.1
 parameters:

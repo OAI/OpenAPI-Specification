@@ -1,7 +1,7 @@
 ---
 owner: DarrelMiller
 issue: 
-description: base64 encoded characters as defined in [RFC4648](https://www.rfc-editor.org/rfc/rfc4648#section-4)
+description: base64 encoded data as defined in [RFC4648](https://www.rfc-editor.org/rfc/rfc4648#section-4)
 base_type: string
 layout: default
 oas_version: < 3.1

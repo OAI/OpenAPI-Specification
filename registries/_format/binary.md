@@ -46,11 +46,11 @@ paths:
 
 #### Encoded property as part of a structured response
 
-Using the binary format as part of a structured response for a property or an array is invalid. The only exception is for `multipart/form-data` content.
+Using the binary format as part of a structured response for a property or an array is invalid. Use `multipart/form-data` content instead.
 
 #### Query or Path parameters
 
-Using the binary format query or path parameters is invalid.
+Using the binary format for query or path parameters is invalid.
 
 #### Multipart/form-data
 

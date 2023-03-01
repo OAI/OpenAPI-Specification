@@ -17,6 +17,6 @@ Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls
 
 |Value|Description|Issue|
 |---|---|---|
-{% for value in site.draft-feature %}| <a href="/registry/draft-feature/{{ value.slug }}.html">{{ value.slug }}</a> | {{ value.description }} | {% if value.issue %}<a href="https://github.com/OAI/OpenAPI-Specification/issues/{{ value.issue }}">#{{ value.issue }}</a>{% endif %} |
+{% for value in site.draft-feature %}| <a href="./{{ value.slug }}.html">{{ value.slug }}</a> | {{ value.description }} | {% if value.issue %}<a href="https://github.com/OAI/OpenAPI-Specification/issues/{{ value.issue }}">#{{ value.issue }}</a>{% endif %} |
 {% endfor %}
 

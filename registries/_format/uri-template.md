@@ -4,6 +4,7 @@ issue:
 description: A URI Template as defined in RFC6570
 base_type: string
 layout: default
+source_label: JSON Schema
 source: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-uri-template
 ---
 

@@ -4,6 +4,7 @@ issue:
 description: An IPv6 address as defined by RFC4673
 base_type: string
 layout: default
+source_label: JSON Schema
 source: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-ip-addresses
 ---
 

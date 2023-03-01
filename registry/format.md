@@ -13,6 +13,6 @@ Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls
 
 |Value|Description|Type|Source|OAS Version|Remarks|
 |---|---|----|---|---|----|
-{% for value in site.format %}| <a href="./{{ value.slug }}.html">{{ value.slug }}</a> | {{ value.description }} | {{ value.base_type }} | {% if value.source %}<a href="{{ value.source }}">Open</a>{% endif %} | {{ value.oas_version }} | {{ value.remarks }} |
+{% for value in site.format %}| <a href="./{{ value.slug }}.html">{{ value.slug }}</a> | {{ value.description }} | {{ value.base_type }} | {% if value.source %}<a href="{{ value.source }}">{% if value.source_label %}{{value.source_label}}{% else %}Open{% endif %}</a>{% endif %} | {{ value.oas_version }} | {{ value.remarks }} |
 {% endfor %}
 

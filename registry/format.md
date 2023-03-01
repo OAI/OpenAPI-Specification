@@ -11,8 +11,8 @@ Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls
 
 ## Values
 
-|Value|Description|Type|OpenAPI Version|Source|Remarks|
+|Value|Description|Type|Source|OAS Version|Remarks|
 |---|---|----|---|---|----|
-{% for value in site.format %}| <a href="./{{ value.slug }}.html">{{ value.slug }}</a> | {{ value.description }} | {{ value.base_type }} | {{ value.oas_version }} | {% if value.source %}<a href="{{ value.source }}">Open</a>{% endif %} | {{ value.remarks }} |
+{% for value in site.format %}| <a href="./{{ value.slug }}.html">{{ value.slug }}</a> | {{ value.description }} | {{ value.base_type }} | {% if value.source %}<a href="{{ value.source }}">Open</a>{% endif %} | {{ value.oas_version }} | {{ value.remarks }} |
 {% endfor %}
 

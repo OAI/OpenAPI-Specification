@@ -20,5 +20,5 @@ Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls
 
 #### RSS feed
 
-* [feed.xml](./rss/feed.xml)
+* [feed.xml](../rss/feed.xml)
 

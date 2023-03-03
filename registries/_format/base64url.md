@@ -4,7 +4,7 @@ issue:
 description: Binary data encoded as a url-safe string as defined in [RFC4648](https://www.rfc-editor.org/rfc/rfc4648#section-5)
 base_type: string
 layout: default
-oas_version: < 3.1
+deprecated_version: '3.1'
 remarks: "When using OpenAPI 3.1 it's recommended not to use this format and instead use [`contentEncoding` with a value of `base64url`](https://json-schema.org/draft/2020-12/json-schema-validation.html#name-contentencoding)."
 ---
 
@@ -22,10 +22,10 @@ The `{{page.slug}}` format is binary data encoded as a url-safe string as define
 * [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
 {% endif %}
 
-{% if page.oas_version %}
-### OpenAPI Specification version
+{% if page.deprecated_version %}
+### Deprecated Since
 
-{{ page.oas_version }}
+{{ page.deprecated_version }}
 {% endif %}
 
 {% if page.remarks %}

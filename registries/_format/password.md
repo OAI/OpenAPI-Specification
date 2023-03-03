@@ -20,10 +20,10 @@ The `{{page.slug}}` format is a string that hints to UIs to obscure input.
 * [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
 {% endif %}
 
-{% if page.oas_version %}
-### OpenAPI Specification version
+{% if page.deprecated_version %}
+### Deprecated Since
 
-{{ page.oas_version }}
+{{ page.deprecated_version }}
 {% endif %}
 
 {% if page.remarks %}

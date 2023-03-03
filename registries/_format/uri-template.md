@@ -22,10 +22,10 @@ The `{{page.slug}}` format is a URI Template as defined in [RFC6570](https://www
 * [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
 {% endif %}
 
-{% if page.oas_version %}
-### OpenAPI Specification version
+{% if page.deprecated_version %}
+### Deprecated Since
 
-{{ page.oas_version }}
+{{ page.deprecated_version }}
 {% endif %}
 
 {% if page.remarks %}

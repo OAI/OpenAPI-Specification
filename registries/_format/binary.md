@@ -4,7 +4,7 @@ issue:
 description: any sequence of octets
 base_type: string
 layout: default
-oas_version: < 3.1
+deprecated_version: '3.1'
 remarks: "In OpenAPI 3.1, instead set the media type appropriately and do not use a schema property. Note that only complete HTTP message bodies or complete parts in a multipart media type can accommodate binary data. JSON strings and URL path components cannot."
 ---
 
@@ -22,10 +22,10 @@ The `{{page.slug}}` format represents any sequence of octets. This format entry 
 * [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
 {% endif %}
 
-{% if page.oas_version %}
-### OpenAPI Specification version
+{% if page.deprecated_version %}
+### Deprecated Since
 
-{{ page.oas_version }}
+{{ page.deprecated_version }}
 {% endif %}
 
 {% if page.remarks %}

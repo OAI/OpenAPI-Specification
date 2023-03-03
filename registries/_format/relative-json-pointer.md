@@ -24,10 +24,10 @@ The `{{page.slug}}` format is a JSON string representation of a relative JSON Po
 * [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
 {% endif %}
 
-{% if page.oas_version %}
-### OpenAPI Specification version
+{% if page.deprecated_version %}
+### Deprecated Since
 
-{{ page.oas_version }}
+{{ page.deprecated_version }}
 {% endif %}
 
 {% if page.remarks %}

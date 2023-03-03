@@ -22,12 +22,6 @@ The `{{page.slug}}` format is an IPv6 address as defined by RFC4673.
 * [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
 {% endif %}
 
-{% if page.deprecated_version %}
-### Deprecated Since
-
-{{ page.deprecated_version }}
-{% endif %}
-
 {% if page.remarks %}
 ### Remarks
 

@@ -22,12 +22,6 @@ The `{{page.slug}}` format is a regular expression as defined in ECMA-262.
 * [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
 {% endif %}
 
-{% if page.deprecated_version %}
-### Deprecated Since
-
-{{ page.deprecated_version }}
-{% endif %}
-
 {% if page.remarks %}
 ### Remarks
 

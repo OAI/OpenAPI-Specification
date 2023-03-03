@@ -20,12 +20,6 @@ The `{{page.slug}}` format represents HTML-formatted text.
 * [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
 {% endif %}
 
-{% if page.deprecated_version %}
-### Deprecated Since
-
-{{ page.deprecated_version }}
-{% endif %}
-
 {% if page.remarks %}
 ### Remarks
 

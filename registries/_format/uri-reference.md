@@ -22,12 +22,6 @@ The `{{page.slug}}` format is a URI reference as defined in RFC3986.
 * [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
 {% endif %}
 
-{% if page.deprecated_version %}
-### Deprecated Since
-
-{{ page.deprecated_version }}
-{% endif %}
-
 {% if page.remarks %}
 ### Remarks
 

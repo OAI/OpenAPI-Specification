@@ -8,7 +8,7 @@ This site contains the OpenAPI Initiative Registry and content for the HTML vers
 
 ## Registry
 
-* Proceed to [Registry](/registry/index.html)
+* Proceed to [Registry](./registry/index.html)
 
 ## The Specification
 

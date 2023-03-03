@@ -9,16 +9,16 @@ Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls
 
 ### Contents
 
-{% for registry in site.collections %}{% unless registry.hidden %}* <a href="/registry/{{ registry.slug }}">{{ registry.name }}{% endunless %}
+{% for registry in site.collections %}{% unless registry.hidden %}* <a href="./{{ registry.slug }}">{{ registry.name }}{% endunless %}
 {% endfor %}
 
 #### API access
 
-* [registries.json](/api/registries.json) - Registries meta-registry
-{% for registry in site.collections %}{% unless registry.hidden %}* <a href="/api/{{ registry.slug }}.json">{{ registry.slug }}.json</a>{% endunless %}
+* [registries.json](./api/registries.json) - Registries meta-registry
+{% for registry in site.collections %}{% unless registry.hidden %}* <a href="../api/{{ registry.slug }}.json">{{ registry.slug }}.json</a>{% endunless %}
 {% endfor %}
 
 #### RSS feed
 
-* [feed.xml](/rss/feed.xml)
+* [feed.xml](../rss/feed.xml)
 

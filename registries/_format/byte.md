@@ -4,7 +4,7 @@ issue:
 description: base64 encoded data as defined in [RFC4648](https://www.rfc-editor.org/rfc/rfc4648#section-4)
 base_type: string
 layout: default
-deprecated_version: '3.1'
+deprecated_note: '3.1'
 remarks: "In OpenAPI 3.1, instead use [`contentEncoding: base64url`](https://json-schema.org/draft/2020-12/json-schema-validation.html#name-contentencoding), optionally alongside [contentMediaType](https://json-schema.org/draft/2020-12/json-schema-validation.html#name-contentmediatype)."
 ---
 

@@ -13,6 +13,6 @@ Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls
 
 |Value|Description|Type|Source|Deprecated|
 |---|---|----|---|---|----|
-{% for value in site.format %}| <a href="./{{ value.slug }}.html">{{ value.slug }}</a> | {{ value.description }} | {{ value.base_type }} | {% if value.source %}<a href="{{ value.source }}">{% if value.source_label %}{{value.source_label}}{% else %}Open{% endif %}</a>{% endif %} | {% if value.deprecated_version %}Yes{% else %}No{% endif %} |
+{% for value in site.format %}| <a href="./{{ value.slug }}.html">{{ value.slug }}</a> | {{ value.description }} | {{ value.base_type }} | {% if value.source %}<a href="{{ value.source }}">{% if value.source_label %}{{value.source_label}}{% else %}Open{% endif %}</a>{% endif %} | {% if value.deprecated_note %}Yes{% else %}No{% endif %} |
 {% endfor %}
 

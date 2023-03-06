@@ -1,11 +1,11 @@
 ---
-owner: MikeRalphson
-issue: 845
-description: unsigned 8-bit integer
-base_type: number
+owner: baywet
+issue:
+description: A Universally Unique IDentifier as defined in RFC4122
+base_type: string
 layout: default
-source: https://spec.openapis.org/oas/latest.html#data-types
-source_label: OAS
+source_label: JSON Schema
+source: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-resource-identifiers
 ---
 
 # <a href="..">{{ page.collection }}</a>
@@ -14,7 +14,7 @@ source_label: OAS
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format represents an unsigned 8-bit integer, with the range 0 to 255.
+The `{{page.slug}}` format a Universally Unique IDentifier as defined in [RFC4122](https://www.rfc-editor.org/rfc/rfc4122).
 
 {% if page.issue %}
 ### GitHub Issue

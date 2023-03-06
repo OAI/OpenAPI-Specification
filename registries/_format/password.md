@@ -1,8 +1,8 @@
 ---
-owner: MikeRalphson
-description: HTML-formatted text
-base_type: string
+owner: baywet
 issue:
+description: a string that hints to UIs to obscure input.
+base_type: string
 layout: default
 source: https://spec.openapis.org/oas/latest.html#data-types
 source_label: OAS
@@ -12,9 +12,9 @@ source_label: OAS
 
 ## {{ page.slug }} - {{ page.description }}
 
-Base type: `{{ page.base_type}}`.
+Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format represents HTML-formatted text.
+The `{{page.slug}}` format is a string that hints to UIs to obscure input.
 
 {% if page.issue %}
 ### GitHub Issue

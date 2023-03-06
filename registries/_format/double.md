@@ -4,6 +4,8 @@ issue:
 description: double precision floating point number
 base_type: number
 layout: default
+source: https://spec.openapis.org/oas/latest.html#data-types
+source_label: OAS
 ---
 
 # <a href="..">{{ page.collection }}</a>
@@ -18,4 +20,10 @@ The `{{page.slug}}` format represents a double precision (64bit) floating point 
 ### GitHub Issue
 
 * [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
+{% endif %}
+
+{% if page.remarks %}
+### Remarks
+
+{{ page.remarks }}
 {% endif %}

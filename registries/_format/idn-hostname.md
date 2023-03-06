@@ -1,11 +1,11 @@
 ---
-owner: MikeRalphson
-description: commonmark-formatted text
-base_type: string
+owner: baywet
 issue:
+description: An internationalized host name as defined by RFC5890
+base_type: string
 layout: default
-source: https://spec.openapis.org/oas/latest.html#data-types
-source_label: OAS
+source_label: JSON Schema
+source: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-hostnames
 ---
 
 # <a href="..">{{ page.collection }}</a>
@@ -14,7 +14,7 @@ source_label: OAS
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format represents [CommonMark](https://commonmark.org/) formatted text.
+The `{{page.slug}}` format is an internationalized host name as defined by [RFC5890](https://www.rfc-editor.org/rfc/rfc5890.html).
 
 {% if page.issue %}
 ### GitHub Issue

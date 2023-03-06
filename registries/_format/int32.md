@@ -4,6 +4,8 @@ issue:
 description: signed 32-bit integer
 base_type: number
 layout: default
+source: https://spec.openapis.org/oas/latest.html#data-types
+source_label: OAS
 ---
 
 # <a href="..">{{ page.collection }}</a>
@@ -18,4 +20,10 @@ The `{{page.slug}}` format represents a signed 32-bit integer, with the range âˆ
 ### GitHub Issue
 
 * [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
+{% endif %}
+
+{% if page.remarks %}
+### Remarks
+
+{{ page.remarks }}
 {% endif %}

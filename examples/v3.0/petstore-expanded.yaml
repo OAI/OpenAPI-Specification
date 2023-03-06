@@ -12,7 +12,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
 servers:
-  - url: https://petstore.swagger.io
+  - url: https://petstore.swagger.io/v2
 paths:
   /pets:
     get:

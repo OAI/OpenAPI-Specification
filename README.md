@@ -56,4 +56,4 @@ Not all feedback can be accommodated, and there may be solid arguments for or ag
 
 See: [License (Apache-2.0)](https://github.com/OAI/OpenAPI-Specification/blob/main/LICENSE)
 
-![Analytics](https://ga-beacon.appspot.com/UA-831873-42/readme.md?pixel)
+

@@ -4,6 +4,8 @@ issue:
 description: single precision floating point number
 base_type: number
 layout: default
+source: https://spec.openapis.org/oas/latest.html#data-types
+source_label: OAS
 ---
 
 # <a href="..">{{ page.collection }}</a>

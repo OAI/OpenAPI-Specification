@@ -6,6 +6,8 @@ base_type: string
 layout: default
 deprecated_note: '3.1'
 remarks: "In OpenAPI 3.1, instead use [`contentEncoding: base64`](https://json-schema.org/draft/2020-12/json-schema-validation.html#name-contentencoding), optionally alongside [contentMediaType](https://json-schema.org/draft/2020-12/json-schema-validation.html#name-contentmediatype)."
+source: https://spec.openapis.org/oas/v3.0.3.html#data-types
+source_label: OAS
 ---
 
 # <a href="..">{{ page.collection }}</a>

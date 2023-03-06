@@ -4,6 +4,8 @@ issue: 845
 description: signed 8-bit integer
 base_type: number
 layout: default
+source: https://spec.openapis.org/oas/latest.html#data-types
+source_label: OAS
 ---
 
 # <a href="..">{{ page.collection }}</a>

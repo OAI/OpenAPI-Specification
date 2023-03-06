@@ -4,6 +4,8 @@ issue:
 description: a string that hints to UIs to obscure input.
 base_type: string
 layout: default
+source: https://spec.openapis.org/oas/latest.html#data-types
+source_label: OAS
 ---
 
 # <a href="..">{{ page.collection }}</a>

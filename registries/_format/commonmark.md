@@ -4,6 +4,8 @@ description: commonmark-formatted text
 base_type: string
 issue:
 layout: default
+source: https://spec.openapis.org/oas/latest.html#data-types
+source_label: OAS
 ---
 
 # <a href="..">{{ page.collection }}</a>

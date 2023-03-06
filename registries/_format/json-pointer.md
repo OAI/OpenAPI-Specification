@@ -14,7 +14,7 @@ source: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-j
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format is a JSON string representation of a JSON Pointer as defined in RFC6901.
+The `{{page.slug}}` format is a JSON string representation of a JSON Pointer as defined in [RFC6901](https://www.rfc-editor.org/info/rfc6901).
 
 {% if page.issue %}
 ### GitHub Issue

@@ -14,7 +14,7 @@ source: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-i
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format is an IPv4 address as defined as dotted-quad by RFC2673.
+The `{{page.slug}}` format is an IPv4 address as defined as dotted-quad by [RFC2673](https://www.rfc-editor.org/info/rfc2673).
 
 {% if page.issue %}
 ### GitHub Issue

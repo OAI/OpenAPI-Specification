@@ -5,7 +5,7 @@ description: base64 encoded data as defined in [RFC4648](https://www.rfc-editor.
 base_type: string
 layout: default
 deprecated_note: '3.1'
-remarks: "In OpenAPI 3.1, instead use [`contentEncoding: base64url`](https://json-schema.org/draft/2020-12/json-schema-validation.html#name-contentencoding), optionally alongside [contentMediaType](https://json-schema.org/draft/2020-12/json-schema-validation.html#name-contentmediatype)."
+remarks: "In OpenAPI 3.1, instead use [`contentEncoding: base64`](https://json-schema.org/draft/2020-12/json-schema-validation.html#name-contentencoding), optionally alongside [contentMediaType](https://json-schema.org/draft/2020-12/json-schema-validation.html#name-contentmediatype)."
 ---
 
 # <a href="..">{{ page.collection }}</a>

@@ -1,7 +1,7 @@
 ---
 owner: baywet
 issue:
-description: A URI reference as defined in RFC3986
+description: A URI reference as defined in [RFC3986](https://www.rfc-editor.org/info/rfc3986)
 base_type: string
 layout: default
 source_label: JSON Schema

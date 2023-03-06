@@ -14,7 +14,7 @@ source: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-i
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format is an IPv6 address as defined by RFC4673.
+The `{{page.slug}}` format is an IPv6 address as defined by [RFC4291](https://www.rfc-editor.org/info/rfc4291).
 
 {% if page.issue %}
 ### GitHub Issue

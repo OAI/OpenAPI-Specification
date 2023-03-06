@@ -14,7 +14,7 @@ source: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-r
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format is a Internationalized Resource Identifier as defined in RFC3987.
+The `{{page.slug}}` format is a Internationalized Resource Identifier as defined in [RFC3987](https://www.rfc-editor.org/info/rfc3987).
 
 {% if page.issue %}
 ### GitHub Issue

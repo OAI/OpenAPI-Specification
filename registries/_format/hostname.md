@@ -14,7 +14,7 @@ source: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-h
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format is a host name as defined by RFC1123.
+The `{{page.slug}}` format is a host name as defined by [RFC1123](https://www.rfc-editor.org/info/rfc1123).
 
 {% if page.issue %}
 ### GitHub Issue

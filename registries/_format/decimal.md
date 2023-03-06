@@ -1,6 +1,6 @@
 ---
 owner: baywet
-issue:
+issue: 889
 description: A fixed or floating point decimal number as defined by ISO/IEC 9075-2 2016 12 15
 base_type: string
 layout: default

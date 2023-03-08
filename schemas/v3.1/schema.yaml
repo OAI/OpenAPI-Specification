@@ -438,7 +438,9 @@ $defs:
                 style:
                   default: form
                   const: form
-
+                explode:
+                  default: false
+                  const: false
           styles-for-form:
             if:
               properties:

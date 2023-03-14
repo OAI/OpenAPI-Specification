@@ -76,7 +76,10 @@ function preface(title,options) {
     if (options.respec) {
         preface += '<script src="../js/respec-oai.js" class="remove"></script>';
         preface += `<script class="remove">var respecConfig = ${JSON.stringify(respec)};</script>`;
-        preface += fs.readFileSync('./analytics/google.html','utf8');
+        try {
+          preface += fs.readFileSync('./analytics/google.html','utf8');
+        }
+        catch (ex) {}
         preface += '</head><body>';
         preface += '<style>';
         preface += '#respec-ui { visibility: hidden; }';
@@ -167,6 +170,7 @@ let indents = [0];
 // process the markdown
 for (let l in lines) {
     let line = lines[l];
+    let linkTarget;
 
     if (line.startsWith('## Table of Contents')) inTOC = true;
     if (line.startsWith('<!-- /TOC')) inTOC = false;
@@ -213,7 +217,9 @@ for (let l in lines) {
             let title = comp[1];
             if (inDefs) title = '<dfn>'+title+'</dfn>';
             let link = comp[0].split('<a ')[1].replace('name=','id=');
-            line = ('#'.repeat(newIndent)+' <span '+link+title+'</span>');
+            const anchor = link.split("'").join('"').split('"')[1];
+            line = '#'.repeat(newIndent)+' <span>'+title+'</span>';
+            linkTarget = '<a id="'+anchor+'"></a>';
         }
         else {
             let title = line.split('# ')[1];
@@ -303,7 +309,7 @@ for (let l in lines) {
         line = prefix+md.render(line);
     }
 
-    lines[l] = line;
+    lines[l] = (linkTarget ? linkTarget : '') + line;
 }
 
 s = preface(`OpenAPI Specification v${argv.subtitle} | Introduction, Definitions, & More`,argv)+'\n\n'+lines.join('\n');

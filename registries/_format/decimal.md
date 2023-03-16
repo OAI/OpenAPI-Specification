@@ -28,5 +28,4 @@ When the decimal format is used in combination with the number type, unintention
 
 This format is not prescriptive enough to enable interoperability and its usage is discouraged.
 
-{{ page.remarks }}
 {% endif %}

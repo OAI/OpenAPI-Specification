@@ -16,13 +16,13 @@
 <p>An OpenAPI definition can then be used by documentation generation tools to display the API, code generation tools to generate servers and clients in various programming languages, testing tools, and many other use cases.</p>
 <!-- /TOC -->
 </section><section><h1><dfn>Definitions</dfn></h1>
-<section><h4><span id="oasDocument"><dfn>OpenAPI Document</dfn></span></h4>
+<p><a id="oasDocument"></a><section><h4><span><dfn>OpenAPI Document</dfn></span></h4></p>
 <p>A self-contained or composite resource which defines or describes an API or elements of an API. The OpenAPI document MUST contain at least one <a href="#pathsObject">paths</a> field, a <a href="#oasComponents">components</a> field or a <a href="#oasWebhooks">webhooks</a> field. An OpenAPI document uses and conforms to the OpenAPI Specification.</p>
-</section><section><h4><span id="pathTemplating"><dfn>Path Templating</dfn></span></h4>
+<p><a id="pathTemplating"></a></section><section><h4><span><dfn>Path Templating</dfn></span></h4></p>
 <p>Path templating refers to the usage of template expressions, delimited by curly braces ({}), to mark a section of a URL path as replaceable using path parameters.</p>
 <p>Each template expression in the path MUST correspond to a path parameter that is included in the <a href="#path-item-object">Path Item</a> itself and/or in each of the Path Item’s <a href="#operation-object">Operations</a>. An exception is if the path item is empty, for example due to ACL constraints, matching path parameters are not required.</p>
 <p>The value for these path parameters MUST NOT contain any unescaped “generic syntax” characters described by [[!RFC3986]]: forward slashes (<code>/</code>), question marks (<code>?</code>), or hashes (<code>#</code>).</p>
-</section><section><h4><span id="mediaTypes"><dfn>Media Types</dfn></span></h4>
+<p><a id="mediaTypes"></a></section><section><h4><span><dfn>Media Types</dfn></span></h4></p>
 <p>Media type definitions are spread across several resources.
 The media type definitions SHOULD be in compliance with [[!RFC6838]].</p>
 <p>Some examples of possible media type definitions:</p>
@@ -38,7 +38,7 @@ The media type definitions SHOULD be in compliance with [[!RFC6838]].</p>
   application/vnd.github.v3.diff
   application/vnd.github.v3.patch
 </code></pre>
-</section><section><h4><span id="httpCodes"><dfn>HTTP Status Codes</dfn></span></h4>
+<p><a id="httpCodes"></a></section><section><h4><span><dfn>HTTP Status Codes</dfn></span></h4></p>
 <p>The HTTP Status Codes are used to indicate the status of the executed operation.
 The available status codes are defined by [[!RFC7231]] and registered status codes are listed in the <a href="https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">IANA Status Code Registry</a>.</p>
 </section></section></section></section><section><h1>Specification</h1>
@@ -64,10 +64,10 @@ This includes all fields that are used as keys in a map, except where explicitly
 <li>Keys used in YAML maps MUST be limited to a scalar string, as defined by the <a href="https://yaml.org/spec/1.2/spec.html#id2802346">YAML Failsafe schema ruleset</a>.</li>
 </ul>
 <p><strong>Note:</strong> While APIs may be defined by OpenAPI documents in either YAML or JSON format, the API request and response bodies and other content are not required to be JSON or YAML.</p>
-</section><section><h2><span id="documentStructure">Document Structure</span></h2>
+<p><a id="documentStructure"></a></section><section><h2><span>Document Structure</span></h2></p>
 <p>An OpenAPI document MAY be made up of a single document or be divided into multiple, connected parts at the discretion of the author. In the latter case, <a href="#referenceObject"><code>Reference Objects</code></a> and <a href="#schemaObject"><code>Schema Object</code></a> <code>$ref</code> keywords are used.</p>
 <p>It is RECOMMENDED that the root OpenAPI document be named: <code>openapi.json</code> or <code>openapi.yaml</code>.</p>
-</section><section><h2><span id="dataTypes">Data Types</span></h2>
+<p><a id="dataTypes"></a></section><section><h2><span>Data Types</span></h2></p>
 <p>Data types in the OAS are based on the types supported by the <a href="https://tools.ietf.org/html/draft-bhutton-json-schema-00#section-4.2.1">JSON Schema Specification Draft 2020-12</a>.
 Note that <code>integer</code> as a type is also supported and is defined as a JSON number without a fraction or exponent part.
 Models are defined using the <a href="#schemaObject">Schema Object</a>, which is a superset of JSON Schema Specification Draft 2020-12.</p>
@@ -110,20 +110,20 @@ OAS defines additional formats to provide fine detail for primitive data types.<
 </tr>
 </tbody>
 </table>
-</section><section><h2><span id="richText">Rich Text Formatting</span></h2>
+<p><a id="richText"></a></section><section><h2><span>Rich Text Formatting</span></h2></p>
 <p>Throughout the specification <code>description</code> fields are noted as supporting CommonMark markdown formatting.
 Where OpenAPI tooling renders rich text it MUST support, at a minimum, markdown syntax as described by <a href="https://spec.commonmark.org/0.27/">CommonMark 0.27</a>. Tooling MAY choose to ignore some CommonMark features to address security concerns.</p>
-</section><section><h2><span id="relativeReferencesURI">Relative References in URIs</span></h2>
+<p><a id="relativeReferencesURI"></a></section><section><h2><span>Relative References in URIs</span></h2></p>
 <p>Unless specified otherwise, all properties that are URIs MAY be relative references as defined by [[!RFC3986]].</p>
 <p>Relative references, including those in <a href="#referenceObject"><code>Reference Objects</code></a>, <a href="#pathItemObject"><code>PathItem Object</code></a> <code>$ref</code> fields, <a href="#linkObject"><code>Link Object</code></a> <code>operationRef</code> fields and <a href="#exampleObject"><code>Example Object</code></a> <code>externalValue</code> fields, are resolved using the referring document as the Base URI according to [[!RFC3986]].</p>
 <p>If a URI contains a fragment identifier, then the fragment should be resolved per the fragment resolution mechanism of the referenced document.  If the representation of the referenced document is JSON or YAML, then the fragment identifier SHOULD be interpreted as a JSON-Pointer as per [[!RFC6901]].</p>
 <p>Relative references in <a href="#schemaObject"><code>Schema Objects</code></a>, including any that appear as <code>$id</code> values, use the nearest parent <code>$id</code> as a Base URI, as described by <a href="https://tools.ietf.org/html/draft-bhutton-json-schema-00#section-8.2">JSON Schema Specification Draft 2020-12</a>.  If no parent schema contains an <code>$id</code>, then the Base URI MUST be determined according to [[!RFC3986]].</p>
-</section><section><h2><span id="relativeReferencesURL">Relative References in URLs</span></h2>
+<p><a id="relativeReferencesURL"></a></section><section><h2><span>Relative References in URLs</span></h2></p>
 <p>Unless specified otherwise, all properties that are URLs MAY be relative references as defined by [[!RFC3986]].
 Unless specified otherwise, relative references are resolved using the URLs defined in the <a href="#serverObject"><code>Server Object</code></a> as a Base URL. Note that these themselves MAY be relative to the referring document.</p>
 </section><section><h2>Schema</h2>
 <p>In the following description, if a field is not explicitly <strong>REQUIRED</strong> or described with a MUST or SHALL, it can be considered OPTIONAL.</p>
-<section><h3><span id="oasObject">OpenAPI Object</span></h3>
+<p><a id="oasObject"></a><section><h3><span>OpenAPI Object</span></h3></p>
 <p>This is the root object of the <a href="#oasDocument">OpenAPI document</a>.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -188,7 +188,7 @@ Unless specified otherwise, relative references are resolved using the URLs defi
 </tbody>
 </table>
 <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
-</section></section><section><h3><span id="infoObject">Info Object</span></h3>
+<p><a id="infoObject"></a></section></section><section><h3><span>Info Object</span></h3></p>
 <p>The object provides metadata about the API.
 The metadata MAY be used by the clients if needed, and MAY be presented in editing or documentation generation tools for convenience.</p>
 <section><h4>Fixed Fields</h4>
@@ -272,7 +272,7 @@ The metadata MAY be used by the clients if needed, and MAY be presented in editi
   <span class="hljs-attr">url:</span> <span class="hljs-string">https://www.apache.org/licenses/LICENSE-2.0.html</span>
 <span class="hljs-attr">version:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.1</span>
 </code></pre>
-</section></section><section><h3><span id="contactObject">Contact Object</span></h3>
+<p><a id="contactObject"></a></section></section><section><h3><span>Contact Object</span></h3></p>
 <p>Contact information for the exposed API.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -315,7 +315,7 @@ The metadata MAY be used by the clients if needed, and MAY be presented in editi
 <span class="hljs-attr">url:</span> <span class="hljs-string">https://www.example.com/support</span>
 <span class="hljs-attr">email:</span> <span class="hljs-string">support@example.com</span>
 </code></pre>
-</section></section><section><h3><span id="licenseObject">License Object</span></h3>
+<p><a id="licenseObject"></a></section></section><section><h3><span>License Object</span></h3></p>
 <p>License information for the exposed API.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -356,7 +356,7 @@ The metadata MAY be used by the clients if needed, and MAY be presented in editi
 <span class="hljs-attr">name:</span> <span class="hljs-string">Apache</span> <span class="hljs-number">2.0</span>
 <span class="hljs-attr">identifier:</span> <span class="hljs-string">Apache-2.0</span>
 </code></pre>
-</section></section><section><h3><span id="serverObject">Server Object</span></h3>
+<p><a id="serverObject"></a></section></section><section><h3><span>Server Object</span></h3></p>
 <p>An object representing a Server.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -471,7 +471,7 @@ The metadata MAY be used by the clients if needed, and MAY be presented in editi
       <span class="hljs-comment"># open meaning there is the opportunity to use special base paths as assigned by the provider, default is `v2`</span>
       <span class="hljs-attr">default:</span> <span class="hljs-string">v2</span>
 </code></pre>
-</section></section><section><h3><span id="serverVariableObject">Server Variable Object</span></h3>
+<p><a id="serverVariableObject"></a></section></section><section><h3><span>Server Variable Object</span></h3></p>
 <p>An object representing a Server Variable for server URL template substitution.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -501,7 +501,7 @@ The metadata MAY be used by the clients if needed, and MAY be presented in editi
 </tbody>
 </table>
 <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
-</section></section><section><h3><span id="componentsObject">Components Object</span></h3>
+<p><a id="componentsObject"></a></section></section><section><h3><span>Components Object</span></h3></p>
 <p>Holds a set of reusable objects for different aspects of the OAS.
 All objects defined within the components object will have no effect on the API unless they are explicitly referenced from properties outside the components object.</p>
 <section><h4>Fixed Fields</h4>
@@ -747,7 +747,7 @@ my.org.User
             <span class="hljs-attr">write:pets:</span> <span class="hljs-string">modify</span> <span class="hljs-string">pets</span> <span class="hljs-string">in</span> <span class="hljs-string">your</span> <span class="hljs-string">account</span>
             <span class="hljs-attr">read:pets:</span> <span class="hljs-string">read</span> <span class="hljs-string">your</span> <span class="hljs-string">pets</span>
 </code></pre>
-</section></section><section><h3><span id="pathsObject">Paths Object</span></h3>
+<p><a id="pathsObject"></a></section></section><section><h3><span>Paths Object</span></h3></p>
 <p>Holds the relative paths to the individual endpoints and their operations.
 The path is appended to the URL from the <a href="#serverObject"><code>Server Object</code></a> in order to construct the full URL.  The Paths MAY be empty, due to <a href="#securityFiltering">Access Control List (ACL) constraints</a>.</p>
 <section><h4>Patterned Fields</h4>
@@ -823,7 +823,7 @@ The path is appended to the URL from the <a href="#serverObject"><code>Server Ob
               <span class="hljs-attr">items:</span>
                 <span class="hljs-string">$ref:</span> <span class="hljs-string">&#x27;#/components/schemas/pet&#x27;</span>
 </code></pre>
-</section></section><section><h3><span id="pathItemObject">Path Item Object</span></h3>
+<p><a id="pathItemObject"></a></section></section><section><h3><span>Path Item Object</span></h3></p>
 <p>Describes the operations available on a single path.
 A Path Item MAY be empty, due to <a href="#securityFiltering">ACL constraints</a>.
 The path itself is still exposed to the documentation viewer but they will not know which operations and parameters are available.</p>
@@ -986,7 +986,7 @@ The path itself is still exposed to the documentation viewer but they will not k
       <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>  
   <span class="hljs-attr">style:</span> <span class="hljs-string">simple</span>
 </code></pre>
-</section></section><section><h3><span id="operationObject">Operation Object</span></h3>
+<p><a id="operationObject"></a></section></section><section><h3><span>Operation Object</span></h3></p>
 <p>Describes a single API operation on a path.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -1168,7 +1168,7 @@ The path itself is still exposed to the documentation viewer but they will not k
   <span class="hljs-bullet">-</span> <span class="hljs-string">write:pets</span>
   <span class="hljs-bullet">-</span> <span class="hljs-string">read:pets</span>
 </code></pre>
-</section></section><section><h3><span id="externalDocumentationObject">External Documentation Object</span></h3>
+<p><a id="externalDocumentationObject"></a></section></section><section><h3><span>External Documentation Object</span></h3></p>
 <p>Allows referencing an external resource for extended documentation.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -1204,7 +1204,7 @@ The path itself is still exposed to the documentation viewer but they will not k
 <span class="hljs-attr">description:</span> <span class="hljs-string">Find</span> <span class="hljs-string">more</span> <span class="hljs-string">info</span> <span class="hljs-string">here</span>
 <span class="hljs-attr">url:</span> <span class="hljs-string">https://example.com</span>
 </code></pre>
-</section></section><section><h3><span id="parameterObject">Parameter Object</span></h3>
+<p><a id="parameterObject"></a></section></section><section><h3><span>Parameter Object</span></h3></p>
 <p>Describes a single operation parameter.</p>
 <p>A unique parameter is defined by a combination of a <a href="#parameterName">name</a> and <a href="#parameterIn">location</a>.</p>
 <section><h4>Parameter Locations</h4>
@@ -1319,7 +1319,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 </tr>
 </tbody>
 </table>
-</section><section><h4><span id="styleValues">Style Values</span></h4>
+<p><a id="styleValues"></a></section><section><h4><span>Style Values</span></h4></p>
 <p>In order to support common ways of serializing simple parameters, a set of <code>style</code> values are defined.</p>
 <table>
 <thead>
@@ -1630,7 +1630,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
         <span class="hljs-attr">long:</span>
           <span class="hljs-attr">type:</span> <span class="hljs-string">number</span>
 </code></pre>
-</section></section><section><h3><span id="requestBodyObject">Request Body Object</span></h3>
+<p><a id="requestBodyObject"></a></section></section><section><h3><span>Request Body Object</span></h3></p>
 <p>Describes a single request body.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -1762,7 +1762,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
       <span class="hljs-attr">items:</span>
         <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 </code></pre>
-</section></section><section><h3><span id="mediaTypeObject">Media Type Object</span></h3>
+<p><a id="mediaTypeObject"></a></section></section><section><h3><span>Media Type Object</span></h3></p>
 <p>Each Media Type Object provides schema and examples for the media type identified by its key.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -1975,7 +1975,7 @@ definition may be used:</p>
               <span class="hljs-string">$ref:</span> <span class="hljs-string">&#x27;#/components/schemas/Address&#x27;</span>
 </code></pre>
 <p>An <code>encoding</code> attribute is introduced to give you control over the serialization of parts of <code>multipart</code> request bodies.  This attribute is <em>only</em> applicable to <code>multipart</code> and <code>application/x-www-form-urlencoded</code> request bodies.</p>
-</section></section><section><h3><span id="encodingObject">Encoding Object</span></h3>
+<p><a id="encodingObject"></a></section></section><section><h3><span>Encoding Object</span></h3></p>
 <p>A single encoding definition applied to a single schema property.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -2050,7 +2050,7 @@ definition may be used:</p>
               <span class="hljs-attr">schema:</span>
                 <span class="hljs-attr">type:</span> <span class="hljs-string">integer</span>
 </code></pre>
-</section></section><section><h3><span id="responsesObject">Responses Object</span></h3>
+<p><a id="responsesObject"></a></section></section><section><h3><span>Responses Object</span></h3></p>
 <p>A container for the expected responses of an operation.
 The container maps a HTTP response code to the expected response.</p>
 <p>The documentation is not necessarily expected to cover all possible HTTP response codes because they may not be known in advance.
@@ -2135,7 +2135,7 @@ call.</p>
       <span class="hljs-attr">schema:</span>
         <span class="hljs-string">$ref:</span> <span class="hljs-string">&#x27;#/components/schemas/ErrorModel&#x27;</span>
 </code></pre>
-</section></section><section><h3><span id="responseObject">Response Object</span></h3>
+<p><a id="responseObject"></a></section></section><section><h3><span>Response Object</span></h3></p>
 <p>Describes a single response from an API Operation, including design-time, static
 <code>links</code> to operations based on the response.</p>
 <section><h4>Fixed Fields</h4>
@@ -2282,7 +2282,7 @@ call.</p>
 <pre class="nohighlight"><code>
 <span class="hljs-attr">description:</span> <span class="hljs-string">object</span> <span class="hljs-string">created</span>
 </code></pre>
-</section></section><section><h3><span id="callbackObject">Callback Object</span></h3>
+<p><a id="callbackObject"></a></section></section><section><h3><span>Callback Object</span></h3></p>
 <p>A map of possible out-of band callbacks related to the parent operation.
 Each value in the map is a <a href="#pathItemObject">Path Item Object</a> that describes a set of requests that may be initiated by the API provider and the expected responses.
 The key value used to identify the path item object is an expression, evaluated at runtime, that identifies a URL to use for the callback operation.</p>
@@ -2403,7 +2403,7 @@ Location: https:<span class="hljs-regexp">//</span>example.org<span class="hljs-
         <span class="hljs-attr">&#x27;200&#x27;:</span>
           <span class="hljs-attr">description:</span> <span class="hljs-string">callback</span> <span class="hljs-string">successfully</span> <span class="hljs-string">processed</span>
 </code></pre>
-</section></section><section><h3><span id="exampleObject">Example Object</span></h3>
+<p><a id="exampleObject"></a></section></section><section><h3><span>Example Object</span></h3></p>
 <section><h4>Fixed Fields</h4>
 <table>
 <thead>
@@ -2491,7 +2491,7 @@ validate compatibility automatically, and reject the example value(s) if incompa
           <span class="hljs-attr">confirmation-success:</span>
             <span class="hljs-string">$ref:</span> <span class="hljs-string">&#x27;#/components/examples/confirmation-success&#x27;</span>
 </code></pre>
-</section></section><section><h3><span id="linkObject">Link Object</span></h3>
+<p><a id="linkObject"></a></section></section><section><h3><span>Link Object</span></h3></p>
 <p>The <code>Link object</code> represents a possible design-time link for a response.
 The presence of a link does not guarantee the caller’s ability to successfully invoke it, rather it provides a known relationship and traversal mechanism between responses and other operations.</p>
 <p>Unlike <em>dynamic</em> links (i.e. links provided <strong>in</strong> the response payload), the OAS linking mechanism does not require link information in the runtime response.</p>
@@ -2625,7 +2625,7 @@ field in an <a href="#operationObject">Operation Object</a>), references MAY als
 </code></pre>
 <p>Note that in the use of <code>operationRef</code>, the <em>escaped forward-slash</em> is necessary when
 using JSON references.</p>
-</section><section><h4><span id="runtimeExpression">Runtime Expressions</span></h4>
+<p><a id="runtimeExpression"></a></section><section><h4><span>Runtime Expressions</span></h4></p>
 <p>Runtime expressions allow defining values based on information that will only be available within the HTTP message in an actual API call.
 This mechanism is used by <a href="#linkObject">Link Objects</a> and <a href="#callbackObject">Callback Objects</a>.</p>
 <p>The runtime expression is defined by the following <a href="https://tools.ietf.org/html/rfc5234">ABNF</a> syntax</p>
@@ -2650,7 +2650,7 @@ This mechanism is used by <a href="#linkObject">Link Objects</a> and <a href="#c
 <p>Here, <code>json-pointer</code> is taken from [[!RFC6901]], <code>char</code> from [[!RFC7159]] and <code>token</code> from [[!RFC7230]].</p>
 <p>The <code>name</code> identifier is case-sensitive, whereas <code>token</code> is not.</p>
 <p>The table below provides examples of runtime expressions and examples of their use in a value:</p>
-</section><section><h4><span id="runtimeExpressionExamples">Examples</span></h4>
+<p><a id="runtimeExpressionExamples"></a></section><section><h4><span>Examples</span></h4></p>
 <table>
 <thead>
 <tr>
@@ -2699,7 +2699,7 @@ This mechanism is used by <a href="#linkObject">Link Objects</a> and <a href="#c
 </table>
 <p>Runtime expressions preserve the type of the referenced value.
 Expressions can be embedded into string values by surrounding the expression with <code>{}</code> curly braces.</p>
-</section></section><section><h3><span id="headerObject">Header Object</span></h3>
+<p><a id="headerObject"></a></section></section><section><h3><span>Header Object</span></h3></p>
 <p>The Header Object follows the structure of the <a href="#parameterObject">Parameter Object</a> with the following changes:</p>
 <ol>
 <li><code>name</code> MUST NOT be specified, it is given in the corresponding <code>headers</code> map.</li>
@@ -2721,7 +2721,7 @@ Expressions can be embedded into string values by surrounding the expression wit
 <span class="hljs-attr">schema:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">integer</span>
 </code></pre>
-</section></section><section><h3><span id="tagObject">Tag Object</span></h3>
+<p><a id="tagObject"></a></section></section><section><h3><span>Tag Object</span></h3></p>
 <p>Adds metadata to a single tag that is used by the <a href="#operationObject">Operation Object</a>.
 It is not mandatory to have a Tag Object per tag defined in the Operation Object instances.</p>
 <section><h4>Fixed Fields</h4>
@@ -2763,7 +2763,7 @@ It is not mandatory to have a Tag Object per tag defined in the Operation Object
 <span class="hljs-attr">name:</span> <span class="hljs-string">pet</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">Pets</span> <span class="hljs-string">operations</span>
 </code></pre>
-</section></section><section><h3><span id="referenceObject">Reference Object</span></h3>
+<p><a id="referenceObject"></a></section></section><section><h3><span>Reference Object</span></h3></p>
 <p>A simple object to allow referencing other components in the OpenAPI document, internally and externally.</p>
 <p>The <code>$ref</code> string value contains a URI [[!RFC3986]], which identifies the location of the value being referenced.</p>
 <p>See the rules for resolving <a href="#relativeReferencesURI">Relative References</a>.</p>
@@ -2823,7 +2823,7 @@ It is not mandatory to have a Tag Object per tag defined in the Operation Object
 <pre class="nohighlight"><code>
 <span class="hljs-string">$ref:</span> <span class="hljs-string">definitions.yaml#/Pet</span>
 </code></pre>
-</section></section><section><h3><span id="schemaObject">Schema Object</span></h3>
+<p><a id="schemaObject"></a></section></section><section><h3><span>Schema Object</span></h3></p>
 <p>The Schema Object allows the definition of input and output data types.
 These types can be objects, but also primitives and arrays. This object is a superset of the <a href="https://tools.ietf.org/html/draft-bhutton-json-schema-00">JSON Schema Specification Draft 2020-12</a>.</p>
 <p>For more information about the properties, see <a href="https://tools.ietf.org/html/draft-bhutton-json-schema-00">JSON Schema Core</a> and <a href="https://tools.ietf.org/html/draft-bhutton-json-schema-validation-00">JSON Schema Validation</a>.</p>
@@ -2839,7 +2839,7 @@ Where JSON Schema indicates that behavior is defined by the application (e.g. fo
 </ul>
 <p>In addition to the JSON Schema properties comprising the OAS dialect, the Schema Object supports keywords from any other vocabularies, or entirely arbitrary properties.</p>
 <p>The OpenAPI Specification’s base vocabulary is comprised of the following keywords:</p>
-</section><section><h4><span id="baseVocabulary">Fixed Fields</span></h4>
+<p><a id="baseVocabulary"></a></section><section><h4><span>Fixed Fields</span></h4></p>
 <table>
 <thead>
 <tr>
@@ -2872,7 +2872,7 @@ Where JSON Schema indicates that behavior is defined by the application (e.g. fo
 </tbody>
 </table>
 <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>, though as noted, additional properties MAY omit the <code>x-</code> prefix within this object.</p>
-<section><h5><span id="schemaComposition">Composition and Inheritance (Polymorphism)</span></h5>
+<p><a id="schemaComposition"></a><section><h5><span>Composition and Inheritance (Polymorphism)</span></h5></p>
 <p>The OpenAPI Specification allows combining and extending model definitions using the <code>allOf</code> property of JSON Schema, in effect offering model composition.
 <code>allOf</code> takes an array of object definitions that are validated <em>independently</em> but together compose a single object.</p>
 <p>While composition offers model extensibility, it does not imply a hierarchy between the models.
@@ -3198,7 +3198,7 @@ The <a href="#xmlObject">XML Object</a> contains additional information about th
         <span class="hljs-attr">required:</span>
         <span class="hljs-bullet">-</span> <span class="hljs-string">packSize</span>
 </code></pre>
-</section></section></section><section><h3><span id="discriminatorObject">Discriminator Object</span></h3>
+<p><a id="discriminatorObject"></a></section></section></section><section><h3><span>Discriminator Object</span></h3></p>
 <p>When request bodies or response payloads may be one of a number of different schemas, a <code>discriminator</code> object can be used to aid in serialization, deserialization, and validation.  The discriminator is a specific object in a schema which is used to inform the consumer of the document of an alternative schema based on the value associated with it.</p>
 <p>When using the discriminator, <em>inline</em> schemas will not be considered.</p>
 <section><h4>Fixed Fields</h4>
@@ -3323,7 +3323,7 @@ The <a href="#xmlObject">XML Object</a> contains additional information about th
 }
 </code></pre>
 <p>will map to <code>Dog</code> because of the definition in the <code>mapping</code> element.</p>
-</section></section><section><h3><span id="xmlObject">XML Object</span></h3>
+<p><a id="xmlObject"></a></section></section><section><h3><span>XML Object</span></h3></p>
 <p>A metadata object that allows for more fine-tuned XML model definitions.</p>
 <p>When using arrays, XML element names are <em>not</em> inferred (for singular/plural forms) and the <code>name</code> property SHOULD be used to add that information.
 See examples for expected behavior.</p>
@@ -3654,7 +3654,7 @@ See examples for expected behavior.</p>
   <span class="hljs-tag">&lt;<span class="hljs-name">aliens</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>&gt;</span>
 </code></pre>
-</section></section></section><section><h3><span id="securitySchemeObject">Security Scheme Object</span></h3>
+<p><a id="securitySchemeObject"></a></section></section></section><section><h3><span>Security Scheme Object</span></h3></p>
 <p>Defines a security scheme that can be used by the operations.</p>
 <p>Supported schemes are HTTP authentication, an API key (either as a header, a cookie parameter or as a query parameter), mutual TLS (use of a client certificate), OAuth2’s common flows (implicit, password, client credentials and authorization code) as defined in [[!RFC6749]], and <a href="https://tools.ietf.org/html/draft-ietf-oauth-discovery-06">OpenID Connect Discovery</a>.
 Please note that as of 2020, the implicit flow is about to be deprecated by <a href="https://tools.ietf.org/html/draft-ietf-oauth-security-topics">OAuth 2.0 Security Best Current Practice</a>. Recommended for most use case is Authorization Code Grant flow with PKCE.</p>
@@ -3782,7 +3782,7 @@ Please note that as of 2020, the implicit flow is about to be deprecated by <a h
       <span class="hljs-attr">write:pets:</span> <span class="hljs-string">modify</span> <span class="hljs-string">pets</span> <span class="hljs-string">in</span> <span class="hljs-string">your</span> <span class="hljs-string">account</span>
       <span class="hljs-attr">read:pets:</span> <span class="hljs-string">read</span> <span class="hljs-string">your</span> <span class="hljs-string">pets</span>
 </code></pre>
-</section></section></section><section><h3><span id="oauthFlowsObject">OAuth Flows Object</span></h3>
+<p><a id="oauthFlowsObject"></a></section></section></section><section><h3><span>OAuth Flows Object</span></h3></p>
 <p>Allows configuration of the supported OAuth Flows.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -3817,7 +3817,7 @@ Please note that as of 2020, the implicit flow is about to be deprecated by <a h
 </tbody>
 </table>
 <p>This object MAY be extended with <a href="#specificationExtensions">Specification Extensions</a>.</p>
-</section></section><section><h3><span id="oauthFlowObject">OAuth Flow Object</span></h3>
+<p><a id="oauthFlowObject"></a></section></section><section><h3><span>OAuth Flow Object</span></h3></p>
 <p>Configuration details for a supported OAuth Flow</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -3895,7 +3895,7 @@ Please note that as of 2020, the implicit flow is about to be deprecated by <a h
       <span class="hljs-attr">write:pets:</span> <span class="hljs-string">modify</span> <span class="hljs-string">pets</span> <span class="hljs-string">in</span> <span class="hljs-string">your</span> <span class="hljs-string">account</span>
       <span class="hljs-attr">read:pets:</span> <span class="hljs-string">read</span> <span class="hljs-string">your</span> <span class="hljs-string">pets</span> 
 </code></pre>
-</section></section><section><h3><span id="securityRequirementObject">Security Requirement Object</span></h3>
+<p><a id="securityRequirementObject"></a></section></section><section><h3><span>Security Requirement Object</span></h3></p>
 <p>Lists the required security schemes to execute this operation.
 The name used for each property MUST correspond to a security scheme declared in the <a href="#componentsSecuritySchemes">Security Schemes</a> under the <a href="#componentsObject">Components Object</a>.</p>
 <p>Security Requirement Objects that contain multiple schemes require that all schemes MUST be satisfied for a request to be authorized.
@@ -3964,7 +3964,7 @@ This enables support for scenarios where multiple query parameters or HTTP heade
     <span class="hljs-bullet">-</span> <span class="hljs-string">write:pets</span>
     <span class="hljs-bullet">-</span> <span class="hljs-string">read:pets</span>
 </code></pre>
-</section></section></section></section><section><h2><span id="specificationExtensions">Specification Extensions</span></h2>
+<p><a id="specificationExtensions"></a></section></section></section></section><section><h2><span>Specification Extensions</span></h2></p>
 <p>While the OpenAPI Specification tries to accommodate most use cases, additional data can be added to extend the specification at certain points.</p>
 <p>The extensions properties are implemented as patterned fields that are always prefixed by <code>&quot;x-&quot;</code>.</p>
 <table>
@@ -3984,7 +3984,7 @@ This enables support for scenarios where multiple query parameters or HTTP heade
 </tbody>
 </table>
 <p>The extensions may or may not be supported by the available tooling, but those may be extended as well to add requested support (if tools are internal or open-sourced).</p>
-</section><section><h2><span id="securityFiltering">Security Filtering</span></h2>
+<p><a id="securityFiltering"></a></section><section><h2><span>Security Filtering</span></h2></p>
 <p>Some objects in the OpenAPI Specification MAY be declared and remain empty, or be completely removed, even though they are inherently the core of the API documentation.</p>
 <p>The reasoning is to allow an additional layer of access control over the documentation.
 While not part of the specification itself, certain libraries MAY choose to allow access to parts of the documentation based on some form of authentication/authorization.</p>
@@ -3993,7 +3993,7 @@ While not part of the specification itself, certain libraries MAY choose to allo
 <li>The <a href="#pathsObject">Paths Object</a> MAY be present but empty. It may be counterintuitive, but this may tell the viewer that they got to the right place, but can’t access any documentation. They would still have access to at least the <a href="#infoObject">Info Object</a> which may contain additional information regarding authentication.</li>
 <li>The <a href="#pathItemObject">Path Item Object</a> MAY be empty. In this case, the viewer will be aware that the path exists, but will not be able to see any of its operations or parameters. This is different from hiding the path itself from the <a href="#pathsObject">Paths Object</a>, because the user will be aware of its existence. This allows the documentation provider to finely control what the viewer can see.</li>
 </ol>
-</section></section><section><h1><span id="revisionHistory">Appendix A: Revision History</span></h1>
+<p><a id="revisionHistory"></a></section></section><section><h1><span>Appendix A: Revision History</span></h1></p>
 <table>
 <thead>
 <tr>

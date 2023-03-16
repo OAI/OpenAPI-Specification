@@ -48,9 +48,9 @@
 </tbody>
 </table>
 </section><section><h1><dfn>Definitions</dfn></h1>
-<section><h4><span id="pathTemplating"><dfn>Path Templating</dfn></span></h4>
+<p><a id="pathTemplating"></a><section><h4><span><dfn>Path Templating</dfn></span></h4></p>
 <p>Path templating refers to the usage of curly braces ({}) to mark a section of a URL path as replaceable using path parameters.</p>
-</section><section><h4><span id="mimeTypes"><dfn>Mime Types</dfn></span></h4>
+<p><a id="mimeTypes"></a></section><section><h4><span><dfn>Mime Types</dfn></span></h4></p>
 <p>Mime type definitions are spread across several resources. The mime type definitions should be in compliance with [[!RFC6838]].</p>
 <p>Some examples of possible mime type definitions:</p>
 <pre class="highlight "><code>
@@ -65,7 +65,7 @@
   application/vnd.github.v3.diff
   application/vnd.github.v3.patch
 </code></pre>
-</section><section><h4><span id="httpCodes"><dfn>HTTP Status Codes</dfn></span></h4>
+<p><a id="httpCodes"></a></section><section><h4><span><dfn>HTTP Status Codes</dfn></span></h4></p>
 <p>The HTTP Status Codes are used to indicate the status of the executed operation. The available status codes are described by [[!RFC7231]] and in the <a href="http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">IANA Status Code Registry</a>.</p>
 </section></section></section></section><section><h1>Specification</h1>
 <section><h2>Format</h2>
@@ -166,7 +166,7 @@ represent a Swagger specification file.</p>
 </tbody>
 </table>
 </section><section><h2>Schema</h2>
-<section><h3><span id="swaggerObject">Swagger Object</span></h3>
+<p><a id="swaggerObject"></a><section><h3><span>Swagger Object</span></h3></p>
 <p>This is the root document object for the API specification. It combines what previously was the Resource Listing and API Declaration (version 1.2 and earlier) together into one document.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -272,7 +272,7 @@ represent a Swagger specification file.</p>
 </tr>
 </tbody>
 </table>
-</section></section><section><h3><span id="infoObject">Info Object</span></h3>
+<p><a id="infoObject"></a></section></section><section><h3><span>Info Object</span></h3></p>
 <p>The object provides metadata about the API. The metadata can be used by the clients if needed, and can be presented in the Swagger-UI for convenience.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -364,7 +364,7 @@ represent a Swagger specification file.</p>
   <span class="hljs-attr">url:</span> <span class="hljs-string">http://www.apache.org/licenses/LICENSE-2.0.html</span>
 <span class="hljs-attr">version:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.1</span>
 </code></pre>
-</section></section><section><h3><span id="contactObject">Contact Object</span></h3>
+<p><a id="contactObject"></a></section></section><section><h3><span>Contact Object</span></h3></p>
 <p>Contact information for the exposed API.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -423,7 +423,7 @@ represent a Swagger specification file.</p>
 <span class="hljs-attr">url:</span> <span class="hljs-string">http://www.swagger.io/support</span>
 <span class="hljs-attr">email:</span> <span class="hljs-string">support@swagger.io</span>
 </code></pre>
-</section></section><section><h3><span id="licenseObject">License Object</span></h3>
+<p><a id="licenseObject"></a></section></section><section><h3><span>License Object</span></h3></p>
 <p>License information for the exposed API.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -475,7 +475,7 @@ represent a Swagger specification file.</p>
 <span class="hljs-attr">name:</span> <span class="hljs-string">Apache</span> <span class="hljs-number">2.0</span>
 <span class="hljs-attr">url:</span> <span class="hljs-string">http://www.apache.org/licenses/LICENSE-2.0.html</span>
 </code></pre>
-</section></section><section><h3><span id="pathsObject">Paths Object</span></h3>
+<p><a id="pathsObject"></a></section></section><section><h3><span>Paths Object</span></h3></p>
 <p>Holds the relative paths to the individual endpoints. The path is appended to the <a href="#swaggerBasePath"><code>basePath</code></a> in order to construct the full URL.
 The Paths may be empty, due to <a href="#securityFiltering">ACL constraints</a>.</p>
 <section><h4>Patterned Fields</h4>
@@ -538,7 +538,7 @@ The Paths may be empty, due to <a href="#securityFiltering">ACL constraints</a>.
           <span class="hljs-attr">items:</span>
             <span class="hljs-string">$ref:</span> <span class="hljs-string">&#x27;#/definitions/pet&#x27;</span>
 </code></pre>
-</section></section><section><h3><span id="pathItemObject">Path Item Object</span></h3>
+<p><a id="pathItemObject"></a></section></section><section><h3><span>Path Item Object</span></h3></p>
 <p>Describes the operations available on a single path.
 A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a>. The path itself is still exposed to the documentation viewer but they will not know which operations and parameters are available.</p>
 <section><h4>Fixed Fields</h4>
@@ -688,7 +688,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
     <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
   <span class="hljs-attr">collectionFormat:</span> <span class="hljs-string">csv</span>
 </code></pre>
-</section></section><section><h3><span id="operationObject">Operation Object</span></h3>
+<p><a id="operationObject"></a></section></section><section><h3><span>Operation Object</span></h3></p>
 <p>Describes a single API operation on a path.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -873,7 +873,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
   <span class="hljs-bullet">-</span> <span class="hljs-string">write:pets</span>
   <span class="hljs-bullet">-</span> <span class="hljs-string">read:pets</span>
 </code></pre>
-</section></section><section><h3><span id="externalDocumentationObject">External Documentation Object</span></h3>
+<p><a id="externalDocumentationObject"></a></section></section><section><h3><span>External Documentation Object</span></h3></p>
 <p>Allows referencing an external resource for extended documentation.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -925,7 +925,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">description:</span> <span class="hljs-string">Find</span> <span class="hljs-string">more</span> <span class="hljs-string">info</span> <span class="hljs-string">here</span>
 <span class="hljs-attr">url:</span> <span class="hljs-string">https://swagger.io</span>
 </code></pre>
-</section></section><section><h3><span id="parameterObject">Parameter Object</span></h3>
+<p><a id="parameterObject"></a></section></section><section><h3><span>Parameter Object</span></h3></p>
 <p>Describes a single operation parameter.</p>
 <p>A unique parameter is defined by a combination of a <a href="#parameterName">name</a> and <a href="#parameterIn">location</a>.</p>
 <p>There are five possible parameter types.</p>
@@ -1241,7 +1241,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">required:</span> <span class="hljs-literal">true</span>
 <span class="hljs-attr">type:</span> <span class="hljs-string">file</span>
 </code></pre>
-</section></section></section><section><h3><span id="itemsObject">Items Object</span></h3>
+<p><a id="itemsObject"></a></section></section></section><section><h3><span>Items Object</span></h3></p>
 <p>A limited subset of JSON-Schema’s items object. It is used by parameter definitions that are not located <a href="#parameterIn"><code>in</code></a> <code>&quot;body&quot;</code>.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -1387,7 +1387,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
   <span class="hljs-attr">minimum:</span> <span class="hljs-number">0</span>
   <span class="hljs-attr">maximum:</span> <span class="hljs-number">63</span>
 </code></pre>
-</section></section><section><h3><span id="responsesObject">Responses Object</span></h3>
+<p><a id="responsesObject"></a></section></section><section><h3><span>Responses Object</span></h3></p>
 <p>A container for the expected responses of an operation. The container maps a HTTP response code to the expected response. It is not expected from the documentation to necessarily cover all possible HTTP response codes, since they may not be known in advance. However, it is expected from the documentation to cover a successful operation response and any known errors.</p>
 <p>The <code>default</code> can be used as the default response object for all HTTP codes that are not covered individually by the specification.</p>
 <p>The <code>Responses Object</code> MUST contain at least one response code, and it SHOULD be the response for a successful operation call.</p>
@@ -1458,7 +1458,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
   <span class="hljs-attr">schema:</span>
     <span class="hljs-string">$ref:</span> <span class="hljs-string">&#x27;#/definitions/ErrorModel&#x27;</span>
 </code></pre>
-</section></section><section><h3><span id="responseObject">Response Object</span></h3>
+<p><a id="responseObject"></a></section></section><section><h3><span>Response Object</span></h3></p>
 <p>Describes a single response from an API Operation.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -1590,7 +1590,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <pre class="nohighlight"><code>
 <span class="hljs-attr">description:</span> <span class="hljs-string">object</span> <span class="hljs-string">created</span>
 </code></pre>
-</section></section><section><h3><span id="headersObject">Headers Object</span></h3>
+<p><a id="headersObject"></a></section></section><section><h3><span>Headers Object</span></h3></p>
 <p>Lists the headers that can be sent as part of a response.</p>
 <section><h4>Patterned Fields</h4>
 <table>
@@ -1638,7 +1638,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
   <span class="hljs-attr">description:</span> <span class="hljs-string">The</span> <span class="hljs-string">number</span> <span class="hljs-string">of</span> <span class="hljs-string">seconds</span> <span class="hljs-string">left</span> <span class="hljs-string">in</span> <span class="hljs-string">the</span> <span class="hljs-string">current</span> <span class="hljs-string">period</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">integer</span>
 </code></pre>
-</section></section><section><h3><span id="exampleObject">Example Object</span></h3>
+<p><a id="exampleObject"></a></section></section><section><h3><span>Example Object</span></h3></p>
 <p>Allows sharing examples for operation responses.</p>
 <section><h4>Patterned Fields</h4>
 <table>
@@ -1678,7 +1678,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
   <span class="hljs-attr">gender:</span> <span class="hljs-string">Female</span>
   <span class="hljs-attr">breed:</span> <span class="hljs-string">Mixed</span>
 </code></pre>
-</section></section><section><h3><span id="headerObject">Header Object</span></h3>
+<p><a id="headerObject"></a></section></section><section><h3><span>Header Object</span></h3></p>
 <table>
 <thead>
 <tr>
@@ -1809,7 +1809,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">description:</span> <span class="hljs-string">The</span> <span class="hljs-string">number</span> <span class="hljs-string">of</span> <span class="hljs-string">allowed</span> <span class="hljs-string">requests</span> <span class="hljs-string">in</span> <span class="hljs-string">the</span> <span class="hljs-string">current</span> <span class="hljs-string">period</span>
 <span class="hljs-attr">type:</span> <span class="hljs-string">integer</span>
 </code></pre>
-</section></section><section><h3><span id="tagObject">Tag Object</span></h3>
+<p><a id="tagObject"></a></section></section><section><h3><span>Tag Object</span></h3></p>
 <p>Allows adding meta data to a single tag that is used by the <a href="#operationObject">Operation Object</a>. It is not mandatory to have a Tag Object per tag used there.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -1866,7 +1866,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">name:</span> <span class="hljs-string">pet</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">Pets</span> <span class="hljs-string">operations</span>
 </code></pre>
-</section></section><section><h3><span id="referenceObject">Reference Object</span></h3>
+<p><a id="referenceObject"></a></section></section><section><h3><span>Reference Object</span></h3></p>
 <p>A simple object to allow referencing other definitions in the specification. It can be used to reference parameters and responses that are defined at the top level for reuse.</p>
 <p>The Reference Object is a <a href="https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-02">JSON Reference</a> that uses a <a href="http://tools.ietf.org/html/rfc6901">JSON Pointer</a> as its value. For this specification, only <a href="https://tools.ietf.org/html/draft-zyp-json-schema-04#section-7.2.3">canonical dereferencing</a> is supported.</p>
 <section><h4>Fixed Fields</h4>
@@ -1913,7 +1913,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <pre class="nohighlight"><code>
 <span class="hljs-string">$ref:</span> <span class="hljs-string">&#x27;definitions.yaml#/Pet&#x27;</span>
 </code></pre>
-</section></section><section><h3><span id="schemaObject">Schema Object</span></h3>
+<p><a id="schemaObject"></a></section></section><section><h3><span>Schema Object</span></h3></p>
 <p>The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays. This object is based on the <a href="http://json-schema.org/">JSON Schema Specification Draft 4</a> and uses a predefined subset of it. On top of this subset, there are extensions provided by this specification to allow for more complete documentation.</p>
 <p>Further information about the properties can be found in <a href="https://tools.ietf.org/html/draft-zyp-json-schema-04">JSON Schema Core</a> and <a href="https://tools.ietf.org/html/draft-fge-json-schema-validation-00">JSON Schema Validation</a>. Unless stated otherwise, the property definitions follow the JSON Schema specification as referenced here.</p>
 <p>The following properties are taken directly from the JSON Schema definition and follow the same specifications:</p>
@@ -2305,7 +2305,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <span class="hljs-attr">required:</span>
       <span class="hljs-bullet">-</span> <span class="hljs-string">packSize</span>
 </code></pre>
-</section></section></section><section><h3><span id="xmlObject">XML Object</span></h3>
+<p><a id="xmlObject"></a></section></section></section><section><h3><span>XML Object</span></h3></p>
 <p>A metadata object that allows for more fine-tuned XML model definitions.</p>
 <p>When using arrays, XML element names are <em>not</em> inferred (for singular/plural forms) and the <code>name</code> property should be used to add that information. See examples for expected behavior.</p>
 <section><h4>Fixed Fields</h4>
@@ -2651,7 +2651,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
   <span class="hljs-tag">&lt;<span class="hljs-name">aliens</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>&gt;</span>
 </code></pre>
-</section></section></section><section><h3><span id="definitionsObject">Definitions Object</span></h3>
+<p><a id="definitionsObject"></a></section></section></section><section><h3><span>Definitions Object</span></h3></p>
 <p>An object to hold data types that can be consumed and produced by operations. These data types can be primitives, arrays or models.</p>
 <section><h4>Patterned Fields</h4>
 <table>
@@ -2717,7 +2717,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
     <span class="hljs-attr">name:</span>
       <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 </code></pre>
-</section></section><section><h3><span id="parametersDefinitionsObject">Parameters Definitions Object</span></h3>
+<p><a id="parametersDefinitionsObject"></a></section></section><section><h3><span>Parameters Definitions Object</span></h3></p>
 <p>An object to hold parameters to be reused across operations. Parameter definitions can be referenced to the ones defined here.</p>
 <p>This does <em>not</em> define global operation parameters.</p>
 <section><h4>Patterned Fields</h4>
@@ -2774,7 +2774,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
   <span class="hljs-attr">type:</span> <span class="hljs-string">integer</span>
   <span class="hljs-attr">format:</span> <span class="hljs-string">int32</span>
 </code></pre>
-</section></section><section><h3><span id="responsesDefinitionsObject">Responses Definitions Object</span></h3>
+<p><a id="responsesDefinitionsObject"></a></section></section><section><h3><span>Responses Definitions Object</span></h3></p>
 <p>An object to hold responses to be reused across operations. Response definitions can be referenced to the ones defined here.</p>
 <p>This does <em>not</em> define global operation responses.</p>
 <section><h4>Patterned Fields</h4>
@@ -2821,7 +2821,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
   <span class="hljs-attr">schema:</span>
     <span class="hljs-string">$ref:</span> <span class="hljs-string">&#x27;#/definitions/GeneralError&#x27;</span>
 </code></pre>
-</section></section><section><h3><span id="securityDefinitionsObject">Security Definitions Object</span></h3>
+<p><a id="securityDefinitionsObject"></a></section></section><section><h3><span>Security Definitions Object</span></h3></p>
 <p>A declaration of the security schemes available to be used in the specification. This does not enforce the security schemes on the operations and only serves to provide the relevant details for each scheme.</p>
 <section><h4>Patterned Fields</h4>
 <table>
@@ -2872,7 +2872,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
     <span class="hljs-attr">write:pets:</span> <span class="hljs-string">modify</span> <span class="hljs-string">pets</span> <span class="hljs-string">in</span> <span class="hljs-string">your</span> <span class="hljs-string">account</span>
     <span class="hljs-attr">read:pets:</span> <span class="hljs-string">read</span> <span class="hljs-string">your</span> <span class="hljs-string">pets</span>
 </code></pre>
-</section></section><section><h3><span id="securitySchemeObject">Security Scheme Object</span></h3>
+<p><a id="securitySchemeObject"></a></section></section><section><h3><span>Security Scheme Object</span></h3></p>
 <p>Allows the definition of a security scheme that can be used by the operations. Supported schemes are basic authentication, an API key (either as a header or as a query parameter) and OAuth2’s common flows (implicit, password, application and access code).</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -2995,7 +2995,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
   <span class="hljs-attr">write:pets:</span> <span class="hljs-string">modify</span> <span class="hljs-string">pets</span> <span class="hljs-string">in</span> <span class="hljs-string">your</span> <span class="hljs-string">account</span>
   <span class="hljs-attr">read:pets:</span> <span class="hljs-string">read</span> <span class="hljs-string">your</span> <span class="hljs-string">pets</span>
 </code></pre>
-</section></section></section><section><h3><span id="scopesObject">Scopes Object</span></h3>
+<p><a id="scopesObject"></a></section></section></section><section><h3><span>Scopes Object</span></h3></p>
 <p>Lists the available scopes for an OAuth2 security scheme.</p>
 <section><h4>Patterned Fields</h4>
 <table>
@@ -3042,7 +3042,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">write:pets:</span> <span class="hljs-string">modify</span> <span class="hljs-string">pets</span> <span class="hljs-string">in</span> <span class="hljs-string">your</span> <span class="hljs-string">account</span>
 <span class="hljs-attr">read:pets:</span> <span class="hljs-string">read</span> <span class="hljs-string">your</span> <span class="hljs-string">pets</span>
 </code></pre>
-</section></section><section><h3><span id="securityRequirementObject">Security Requirement Object</span></h3>
+<p><a id="securityRequirementObject"></a></section></section><section><h3><span>Security Requirement Object</span></h3></p>
 <p>Lists the required security schemes to execute this operation. The object can have multiple security schemes declared in it which are all required (that is, there is a logical AND between the schemes).</p>
 <p>The name used for each property MUST correspond to a security scheme declared in the <a href="#securityDefinitionsObject">Security Definitions</a>.</p>
 <section><h4>Patterned Fields</h4>
@@ -3086,11 +3086,11 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-bullet">-</span> <span class="hljs-string">write:pets</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">read:pets</span>
 </code></pre>
-</section></section></section></section><section><h2><span id="vendorExtensions">Specification Extensions</span></h2>
+<p><a id="vendorExtensions"></a></section></section></section></section><section><h2><span>Specification Extensions</span></h2></p>
 <p>While the Swagger Specification tries to accommodate most use cases, additional data can be added to extend the specification at certain points.</p>
 <p>The extensions properties are always prefixed by <code>&quot;x-&quot;</code> and can have any valid JSON format value.</p>
 <p>The extensions may or may not be supported by the available tooling, but those may be extended as well to add requested support (if tools are internal or open-sourced).</p>
-</section><section><h2><span id="securityFiltering">Security Filtering</span></h2>
+<p><a id="securityFiltering"></a></section><section><h2><span>Security Filtering</span></h2></p>
 <p>Some objects in the Swagger specification may be declared and remain empty, or completely be removed, even though they are inherently the core of the API documentation.</p>
 <p>The reasoning behind it is to allow an additional layer of access control over the documentation itself. While not part of the specification itself, certain libraries may choose to allow access to parts of the documentation based on some form of authentication/authorization.</p>
 <p>Two examples for this:</p>

@@ -1,8 +1,9 @@
 ---
-title: OpenAPI Initiative gh-pages repository
+title: Home
 description: HTML Spec. and extensible registry
 layout: default
 ---
+
 # OpenAPI Initiative Registry
 
 This site contains the OpenAPI Initiative Registry and content for the HTML versions of the OpenAPI Specification.

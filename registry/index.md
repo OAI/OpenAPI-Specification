@@ -14,7 +14,7 @@ Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls
 
 #### API access
 
-* [registries.json](./api/registries.json) - Registries meta-registry
+* [registries.json](../api/registries.json) - Registries meta-registry
 {% for registry in site.collections %}{% unless registry.hidden %}* <a href="../api/{{ registry.slug }}.json">{{ registry.slug }}.json</a>{% endunless %}
 {% endfor %}
 

@@ -1,6 +1,7 @@
 ---
 title: OpenAPI Initiative gh-pages repository
 description: HTML Spec. and extensible registry
+layout: default
 ---
 # OpenAPI Initiative Registry
 
@@ -13,4 +14,4 @@ This site contains the OpenAPI Initiative Registry and content for the HTML vers
 ## The Specification
 
 * [Markdown source-of-truth](https://github.com/OAI/OpenAPI-Specification)
-* [HTML Specification version](oas/v3.1.0.html)
+* [HTML Specification version](oas/latest.html)

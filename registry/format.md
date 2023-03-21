@@ -9,9 +9,9 @@ permalink: /registry/format/index.html
 
 The existence of a format in this registry DOES NOT require tools to implement it.
 
-If tools choose to implement any format present in this registry, they SHOULD implement the format following the provided standard.
+If tools choose to implement any format present in this registry, they SHOULD implement the format following the provided behavior.
 
-Each format name and behavior MUST be unique to be added to this registry except when formats are ambiguous (no standard) by nature or deprecated.
+Each format name and behavior MUST be unique to be added to this registry except when formats are ambiguous (no standard or single behavior) by nature or deprecated.
 
 Ambiguous formats MUST contain recommendations to use more precise format definitions that exist in this registry or are part of the same submission.
 

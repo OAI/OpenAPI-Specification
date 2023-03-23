@@ -1,6 +1,8 @@
 ---
+title: Alternative Schema Registry
 layout: default
 permalink: /registry/alternative-schema/index.html
+parent: Registry
 ---
 
 # Alternative Schema Type Registry

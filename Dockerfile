@@ -3,7 +3,7 @@ FROM bretfisher/jekyll-serve
 WORKDIR /site
 
 # install dependencies
-COPY Gemfile Gemfile.lock . 
+COPY Gemfile Gemfile.lock ./
 RUN bundle install
 
 # install the site

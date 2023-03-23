@@ -1,5 +1,7 @@
-theme: jekyll-theme-dinky
-title: OpenAPI Initiative Registry - DRAFT CONTENT
+# theme: just-the-docs
+remote_theme: just-the-docs/just-the-docs
+color_scheme: oai
+title: OpenAPI Initiative Registry
 description: Extensible data value repository
 show_downloads: true
 collections_dir: /registries
@@ -18,7 +20,8 @@ collections:
   extension:
     slug: extension
     name: Specification Extension Registry
-    output: true
+    output: false
+    hidden: true
     permalink: /registry/:collection/:title
   draft-feature:
     slug: draft-feature
@@ -35,3 +38,30 @@ collections:
     name: Extension Namespace Registry
     output: true
     permalink: /registry/:collection/:title
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - tmp
+  - vendor/bundle
+#just_the_docs:
+#  collections:
+#    draft-feature:
+#      name: Draft features
+#    alternative-schema:
+#      name: Alternative schemas
+#    namespace:
+#      name: Extension namespaces
+#    draft-feature:
+#      name: Draft features
+#    format:
+#      name: Formats
+plugins:
+  - jekyll-remote-theme
+  - jekyll-sitemap
+aux_links:
+  "Latest Specification":
+    - "https://spec.openapis.org/oas/latest.html"
+footer_content: "\xA9 2023 OpenAPI Initiative.
+ <br />This work is licensed under the <a rel=\"license\" href=\"https://www.apache.org/licenses/LICENSE-2.0\"\
+  >Apache 2.0 License</a>. This site is\
+  \ maintained at <a href=\"https://github.com/OAI/OpenAPI-Specification/tree/gh-pages/\">https://github.com/OAI/OpenAPI-Specification/</a>."

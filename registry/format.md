@@ -1,6 +1,8 @@
 ---
+title: Format Registry
 layout: default
 permalink: /registry/format/index.html
+parent: Registry
 ---
 
 # Formats Registry

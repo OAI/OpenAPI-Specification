@@ -1,10 +1,13 @@
 ---
+title: Namespace API
+parent: API
 ---
 {
 {% for page in site.namespace %}"{{ page.slug }}": {
   "slug": "{{ page.slug }}",
   "issue": "{{ page.issue }}",
   "description": "{{ page.description }}",
+  "url": "{{ site.baseurl }}{{ page.url }}",
   "owner": "{{ page.owner }}"
 }{% unless forloop.last %},{% endunless %}
 {% endfor %}

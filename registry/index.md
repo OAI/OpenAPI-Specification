@@ -1,6 +1,14 @@
 ---
+title: Registry
 layout: default
 permalink: /registry/index.html
+has_children: true
+children:
+- title: Alternative Schema Registry
+- title: Draft Features Registry
+- title: Format Registry
+- title: Namespace Registry
+has_toc: false
 ---
 
 ## Contributing
@@ -9,14 +17,13 @@ Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls
 
 ### Contents
 
-{% for registry in site.collections %}{% unless registry.hidden %}* <a href="./{{ registry.slug }}">{{ registry.name }}{% endunless %}
-{% endfor %}
+{% for registry in site.collections %}{% unless registry.hidden %}
+* <a href="./{{ registry.slug }}">{{ registry.name }}{% endunless %}{% endfor %}
 
 #### API access
 
-* [registries.json](../api/registries.json) - Registries meta-registry
-{% for registry in site.collections %}{% unless registry.hidden %}* <a href="../api/{{ registry.slug }}.json">{{ registry.slug }}.json</a>{% endunless %}
-{% endfor %}
+* [registries.json](../api/registries.json) - Registries meta-registry{% for registry in site.collections %}{% unless registry.hidden %}
+* <a href="../api/{{ registry.slug }}.json">{{ registry.slug }}.json</a>{% endunless %} {% endfor %}
 
 #### RSS feed
 

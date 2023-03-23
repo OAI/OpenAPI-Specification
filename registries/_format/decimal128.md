@@ -2,7 +2,7 @@
 owner:
 issue:
 description: A decimal floating-point number with 34 significant decimal digits
-base_type: string number
+base_type: string, number
 layout: default
 ---
 

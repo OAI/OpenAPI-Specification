@@ -1,5 +1,5 @@
 {
-  "$id": "https://spec.openapis.org/oas/3.1/schema/2022-02-27",
+  "$id": "https://spec.openapis.org/oas/3.1/schema/2022-10-07",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "The description of OpenAPI v3.1.x documents without schema validation, as defined by https://spec.openapis.org/oas/v3.1.0",
   "type": "object",
@@ -22,7 +22,9 @@
         "$ref": "#/$defs/server"
       },
       "default": [
-        { "url": "/" }
+        {
+          "url": "/"
+        }
       ]
     },
     "paths": {
@@ -148,18 +150,15 @@
       "required": [
         "name"
       ],
-      "oneOf": [
-        {
-          "required": [
-            "identifier"
-          ]
-        },
-        {
-          "required": [
-            "url"
-          ]
+      "dependentSchemas": {
+        "identifier": {
+          "not": {
+            "required": [
+              "url"
+            ]
+          }
         }
-      ],
+      },
       "$ref": "#/$defs/specification-extensions",
       "unevaluatedProperties": false
     },
@@ -319,10 +318,29 @@
           "items": {
             "$ref": "#/$defs/parameter-or-reference"
           }
-        }
-      },
-      "patternProperties": {
-        "^(get|put|post|delete|options|head|patch|trace)$": {
+        },
+        "get": {
+          "$ref": "#/$defs/operation"
+        },
+        "put": {
+          "$ref": "#/$defs/operation"
+        },
+        "post": {
+          "$ref": "#/$defs/operation"
+        },
+        "delete": {
+          "$ref": "#/$defs/operation"
+        },
+        "options": {
+          "$ref": "#/$defs/operation"
+        },
+        "head": {
+          "$ref": "#/$defs/operation"
+        },
+        "patch": {
+          "$ref": "#/$defs/operation"
+        },
+        "trace": {
           "$ref": "#/$defs/operation"
         }
       },
@@ -822,7 +840,16 @@
       },
       "minProperties": 1,
       "$ref": "#/$defs/specification-extensions",
-      "unevaluatedProperties": false
+      "unevaluatedProperties": false,
+      "if": {
+        "$comment": "either default, or at least one response code property must exist",
+        "patternProperties": {
+          "^[1-5](?:[0-9]{2}|XX)$": false
+        }
+      },
+      "then" : {
+        "required": [ "default" ]
+      }
     },
     "response": {
       "$comment": "https://spec.openapis.org/oas/v3.1.0#response-object",
@@ -936,7 +963,9 @@
           "type": "string",
           "format": "uri-reference"
         },
-        "operationId": true,
+        "operationId": {
+          "type": "string"
+        },
         "parameters": {
           "$ref": "#/$defs/map-of-strings"
         },

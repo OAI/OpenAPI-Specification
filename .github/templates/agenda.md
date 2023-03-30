@@ -15,6 +15,7 @@ The agenda backlog is currently maintained in issue #2482
 | | | |
 Reports from Special Interest Groups | TDC | |
 AOB (see below) | TDC | |
+[Approved spec PRs](https://github.com/OAI/OpenAPI-Specification/pulls?q=is%3Apr+is%3Aopen+review%3Aapproved) | TDC | |
 New issues / PRs labelled [review](https://github.com/OAI/OpenAPI-Specification/labels/review) | @OAI/triage | |
 [New issues](https://github.com/search?q=repo%3Aoai%2Fopenapi-specification+is%3Aissue+comments%3A0+no%3Alabel+is%3Aopen) without response yet | @OAI/triage  | |
 

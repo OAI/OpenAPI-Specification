@@ -1,6 +1,8 @@
 ---
+title: Alternative Schema Registry
 layout: default
 permalink: /registry/alternative-schema/index.html
+parent: Registry
 ---
 
 # Alternative Schema Type Registry
@@ -17,6 +19,6 @@ Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls
 
 |Value|Description|Issue|
 |---|---|---|
-{% for value in site.alternative-schema %}| <a href="/registry/alternative-schema/{{ value.slug }}.html">{{ value.slug }}</a> | <a id="{{ value.slug }}"/>{{ value.description }} | {% if value.issue %}<a href="https://github.com/OAI/OpenAPI-Specification/issues/{{ value.issue }}">#{{ value.issue }}</a>{% endif %} |
+{% for value in site.alternative-schema %}| <a href="./{{ value.slug }}.html">{{ value.slug }}</a> | <a id="{{ value.slug }}"/>{{ value.description }} | {% if value.issue %}<a href="https://github.com/OAI/OpenAPI-Specification/issues/{{ value.issue }}">#{{ value.issue }}</a>{% endif %} |
 {% endfor %}
 

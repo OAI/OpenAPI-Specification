@@ -1,4 +1,5 @@
 ---
+parent: API
 ---
 {
 {% for page in site.extension %}"{{ page.slug }}": {
@@ -7,6 +8,7 @@
   "issue": "{{ page.issue }}",
   "description": "{{ page.description }}",
   "owner": "{{ page.owner }}",
+  "url": "{{ site.baseurl }}{{ page.url }}",
   "objects": {{ page.objects | jsonify }},
   "schema": {{ page.schema | jsonify }}
 }{% unless forloop.last %},{% endunless %}

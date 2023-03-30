@@ -4,6 +4,8 @@ issue: 845
 description: unsigned 8-bit integer
 base_type: number
 layout: default
+source: https://spec.openapis.org/oas/latest.html#data-types
+source_label: OAS
 ---
 
 # <a href="..">{{ page.collection }}</a>
@@ -20,3 +22,8 @@ The `{{page.slug}}` format represents an unsigned 8-bit integer, with the range 
 * [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
 {% endif %}
 
+{% if page.remarks %}
+### Remarks
+
+{{ page.remarks }}
+{% endif %}

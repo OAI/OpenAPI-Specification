@@ -1,6 +1,8 @@
 ---
+# title: Extensions Registry
 layout: default
 permalink: /registry/extension/index.html
+parent: Registry
 ---
 
 # Extensions Registry
@@ -17,6 +19,6 @@ Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls
 
 |Value|Description|Issue|
 |---|---|---|
-{% for value in site.extension %}| <a href="/registry/extension/{{ value.slug }}.html">{{ value.slug }}</a> | {{ value.description }} | {% if value.issue %}<a href="https://github.com/OAI/OpenAPI-Specification/issues/{{ value.issue }}">#{{ value.issue }}</a>{% endif %} |
+{% for value in site.extension %}| <a href="./{{ value.slug }}.html">{{ value.slug }}</a> | {{ value.description }} | {% if value.issue %}<a href="https://github.com/OAI/OpenAPI-Specification/issues/{{ value.issue }}">#{{ value.issue }}</a>{% endif %} |
 {% endfor %}
 

@@ -119,7 +119,7 @@ $defs:
     properties:
       url:
         type: string
-        format: uri-reference
+        format: templated-url
       description:
         type: string
       variables:
@@ -664,7 +664,7 @@ $defs:
     properties:
       operationRef:
         type: string
-        format: uri-reference
+        format: templated-url
       operationId:
         type: string
       parameters:

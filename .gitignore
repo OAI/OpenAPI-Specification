@@ -3,3 +3,5 @@ deploy/
 node_modules/
 scripts/
 package-lock.json
+.bundle/
+vendor/bundle/

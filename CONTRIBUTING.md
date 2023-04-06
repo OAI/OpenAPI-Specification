@@ -2,15 +2,15 @@
 
 ## Building the site
 
-The registy site uses [jekyll](https://jekyllrb.com/), a Ruby based static site generator, with the Dinky theme.
+The registy site uses [jekyll](https://jekyllrb.com/), a Ruby based static site generator, with the Just-the-Docs theme.
 
 ### Docker dev
 
-You can use the following Docker command to build and serve the site:
+You can use the following Docker or Podman command to build and serve the site:
 
 ```shell
-docker build . -t oas-spec/latest
-docker run -v $(pwd):/site -p 4000:4000 oas-spec/latest
+docker build . -t oas-reg/latest
+docker run -v $(pwd):/site -p 4000:4000 oas-reg/latest
 ```
 
 ### Local Ruby dev

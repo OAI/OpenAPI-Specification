@@ -14,6 +14,8 @@ Roles:
 
 * [Maintainer](https://www.merriam-webster.com/dictionary/maintainer) — all and only members of the TSC are maintainers, and are responsible for approving proposed changes to the specification. If membership drops below 3, work is suspended until the BGB can re-establish the minimum. To maintain agility, the TSC should be capped at a maximum 9 members, though that number can be reconsidered by the TSC in the future. Past members will be noted as emeritus status once they are no longer members. 
 
+* [Community Manager](https://en.wikipedia.org/wiki/Online_community_manager) — responsible for onboarding of new contributors, dealing with antisocial behaviour before it becomes a code of conduct violation, and managing the issue triage team.
+
 * [Rick](https://www.youtube.com/watch?v=dQw4w9WgXcQ) — Responsible for not giving up or letting down. Requires plurality vote of TSC members.
 
 ## 2. Adding members to the TSC

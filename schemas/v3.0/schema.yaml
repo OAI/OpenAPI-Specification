@@ -1021,4 +1021,6 @@ definitions:
       allowReserved:
         type: boolean
         default: false
+    patternProperties:
+      '^x-': {}
     additionalProperties: false

@@ -9,3 +9,6 @@ package-lock.json
 deploy/
 history
 Gemfile.lock
+
+# macOS
+.DS_Store

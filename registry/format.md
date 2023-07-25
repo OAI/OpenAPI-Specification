@@ -7,6 +7,15 @@ parent: Registry
 
 # Formats Registry
 
+## Considerations
+
+The existence of a format in this registry DOES NOT require tools to implement it.
+
+If tools choose to implement any format present in this registry, they SHOULD implement the format following the provided behavior.
+
+The registry SHOULD NOT contain two entries that have the same meaning, unless all but one have been deprecated.
+
+
 ## Contributing
 
 Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls) or [Issue](https://github.com/OAI/OpenAPI-Specification/issues) to contribute or discuss a registry value.

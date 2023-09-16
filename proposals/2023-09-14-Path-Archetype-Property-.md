@@ -26,7 +26,7 @@ Provide a mechanism to convey path "archetype" information or information about 
 
 When working with larger product API sets that span multiple features and teams, it is important to ensure that the "Paths" associated with the different features produce consistent patterns of behavior across the entire product API.  It is also equally important that API Paths communicate any patterns they are attempting to implement to the tools that will work with the API reflection document.
 
-When API paths sets are tested, the tests need to ensure that the path, properly implements all aspects of specific archetypical patterns.  For example, an api path that implements a 'editable-collection' pattern for users on '/v1/users/' might need to adhere to the following set of design rules:
+When API path sets are tested, the tests need to ensure that the path, properly implements all aspects of specific archetypical patterns.  For example, an api path that implements a 'editable-collection' pattern for users on '/v1/users/' might need to adhere to the following set of design rules:
 
 * Provide a 'post' method for creating new collection items
 * Provide a 'delete' method for removing items from the collection

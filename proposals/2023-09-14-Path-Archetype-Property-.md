@@ -10,7 +10,7 @@ Path Archetype Property
 |Review Manager | TBD |
 |Status |Proposal|
 |Implementations |[Click Here](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/{YYYY-MM-DD-Short-Name}/implementations.md)|
-|Issues |[{issueid}](https://github.com/OAI/OpenAPI-Specification/issues/{IssueId})|
+|Issues |[3372](https://github.com/OAI/OpenAPI-Specification/issues/3372)|
 |Previous Revisions |[{revid}](https://github.com/OAI/OpenAPI-Specification/pull/{revid}) |
 
 ## Change Log
@@ -37,7 +37,7 @@ When API path sets are tested, the tests need to ensure that the path, properly 
 
 Having the information about the archetype that an API is supposed to implement is critical for testing to ensure that the APIs are meeting architectural standards across the entire API.
 
-Also, when API path information is consumed by a code generation tool that is attempting to create an interop client, the tool can utilize the archetype information declared for a path to help tune the generated code to better align with the intended behavioral patterns and functionality.
+When API path information is consumed by a code generation tool that is attempting to create an interop client, currently the tool must infer information about how to generate code for a path from different pieces of information from the URL, methods and method descriptions or possibly form method tags. This means that tools often cannot accurately distinguish implied patterns when bugs are present or missing elements of information. Tools can utilize the archetype identifier declared for a path to uniquely identify design and architectural patterns and then tune the generated code to better align with the intended behavioral patterns and functionality of an API
 
 By providing archetype desciptions for paths, the OpenAPI document can play a vital role in ensuring that APIs are testable across larger API sets and that code generators have the informaiton they need to properly implement API interop patterns for APIs.
 

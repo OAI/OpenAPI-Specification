@@ -369,7 +369,7 @@ $defs:
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-header'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-query'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-cookie'
-          - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-form'
+          - $ref: '#/$defs/styles-for-form'
 
         $defs:
           styles-for-path:
@@ -426,6 +426,7 @@ $defs:
                 allowReserved:
                   default: false
                   type: boolean
+
           styles-for-cookie:
             if:
               properties:
@@ -438,22 +439,6 @@ $defs:
                 style:
                   default: form
                   const: form
-
-          styles-for-form:
-            if:
-              properties:
-                style:
-                  const: form
-              required:
-                - style
-            then:
-              properties:
-                explode:
-                  default: true
-            else:
-              properties:
-                explode:
-                  default: false
 
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
@@ -542,25 +527,8 @@ $defs:
         type: boolean
     allOf:
       - $ref: '#/$defs/specification-extensions'
-      - $ref: '#/$defs/encoding/$defs/explode-default'
+      - $ref: '#/$defs/styles-for-form'
     unevaluatedProperties: false
-
-    $defs:
-      explode-default:
-        if:
-          properties:
-            style:
-              const: form
-          required:
-            - style
-        then:
-          properties:
-            explode:
-              default: true
-        else:
-          properties:
-            explode:
-              default: false
 
   responses:
     $comment: https://spec.openapis.org/oas/v3.1.0#responses-object
@@ -999,3 +967,19 @@ $defs:
     type: object
     additionalProperties:
       type: string
+
+  styles-for-form:
+    if:
+      properties:
+        style:
+          const: form
+      required:
+        - style
+    then:
+      properties:
+        explode:
+          default: true
+    else:
+      properties:
+        explode:
+          default: false

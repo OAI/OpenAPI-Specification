@@ -1,7 +1,7 @@
 ---
 owner: mikekistler
 issue: 
-description: structured fields byte sequence as defined by `sf-binary` in [RFC 8941]
+description: structured fields byte sequence as defined in [RFC 8941]
 base_type: string
 layout: default
 ---
@@ -12,7 +12,7 @@ layout: default
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format represents a structured fields byte sequence as defined by `sf-binary` in [RFC 8941].
+The `{{page.slug}}` format represents a structured fields byte sequence as defined in [RFC 8941].
 
 ```abnf
 sf-binary = ":" *(base64) ":"

@@ -1,7 +1,7 @@
 ---
 owner: mikekistler
 issue: 
-description: structured fields decimal as defined by `sf-decimal` in [RFC 8941]
+description: structured fields decimal as defined in [RFC 8941]
 base_type: integer
 layout: default
 ---
@@ -12,7 +12,7 @@ layout: default
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format represents a structured fields decimal as defined by `sf-decimal` in [RFC 8941].
+The `{{page.slug}}` format represents a structured fields decimal as defined in [RFC 8941].
 
 ```abnf
 sf-decimal  = ["-"] 1*12DIGIT "." 1*3DIGIT

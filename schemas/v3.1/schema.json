@@ -535,7 +535,7 @@
               "$ref": "#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-cookie"
             },
             {
-              "$ref": "#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-form"
+              "$ref": "#/$defs/styles-for-form"
             }
           ],
           "$defs": {
@@ -637,32 +637,6 @@
                   "style": {
                     "default": "form",
                     "const": "form"
-                  }
-                }
-              }
-            },
-            "styles-for-form": {
-              "if": {
-                "properties": {
-                  "style": {
-                    "const": "form"
-                  }
-                },
-                "required": [
-                  "style"
-                ]
-              },
-              "then": {
-                "properties": {
-                  "explode": {
-                    "default": true
-                  }
-                }
-              },
-              "else": {
-                "properties": {
-                  "explode": {
-                    "default": false
                   }
                 }
               }
@@ -792,38 +766,10 @@
           "$ref": "#/$defs/specification-extensions"
         },
         {
-          "$ref": "#/$defs/encoding/$defs/explode-default"
+          "$ref": "#/$defs/styles-for-form"
         }
       ],
-      "unevaluatedProperties": false,
-      "$defs": {
-        "explode-default": {
-          "if": {
-            "properties": {
-              "style": {
-                "const": "form"
-              }
-            },
-            "required": [
-              "style"
-            ]
-          },
-          "then": {
-            "properties": {
-              "explode": {
-                "default": true
-              }
-            }
-          },
-          "else": {
-            "properties": {
-              "explode": {
-                "default": false
-              }
-            }
-          }
-        }
-      }
+      "unevaluatedProperties": false
     },
     "responses": {
       "$comment": "https://spec.openapis.org/oas/v3.1.0#responses-object",
@@ -1443,6 +1389,32 @@
       "type": "object",
       "additionalProperties": {
         "type": "string"
+      }
+    },
+    "styles-for-form": {
+      "if": {
+        "properties": {
+          "style": {
+            "const": "form"
+          }
+        },
+        "required": [
+          "style"
+        ]
+      },
+      "then": {
+        "properties": {
+          "explode": {
+            "default": true
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "explode": {
+            "default": false
+          }
+        }
       }
     }
   }

@@ -2,6 +2,8 @@
 owner: mikekistler
 issue: 
 description: structured fields token as defined in [RFC 8941]
+source: https://www.rfc-editor.org/rfc/rfc8941#name-tokens
+source_label: RFC 8941
 base_type: string
 layout: default
 ---

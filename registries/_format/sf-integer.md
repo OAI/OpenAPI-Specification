@@ -2,7 +2,9 @@
 owner: mikekistler
 issue: 
 description: structured fields integer as defined in [RFC 8941]
-base_type: integer
+source: https://www.rfc-editor.org/rfc/rfc8941#name-integers
+source_label: RFC 8941
+base_type: integer, number
 layout: default
 ---
 

@@ -18,15 +18,6 @@
         "externalDocs": { "$ref": "#/$defs/external-docs" },
         "xml": { "$ref": "#/$defs/xml" }
     },
-    "dependentSchemas": {
-      "discriminator": {
-        "anyOf": [
-          { "required": [ "oneOf" ] },
-          { "required": [ "anyOf" ] },
-          { "required": [ "allOf" ] }
-        ]
-      }
-    },
 
     "$defs": {
         "extensible": {

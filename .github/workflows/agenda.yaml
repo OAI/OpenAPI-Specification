@@ -13,17 +13,25 @@ on:
   schedule:
     - cron: '0 16 * * 4'
   workflow_dispatch: {}
-  
+
+permissions:
+  issues: write
+
 jobs:
   agenda:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      TITLE_PREFIX: "Open Community (TDC) Meeting, "
+      LABEL: "Housekeeping"
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1 # checkout repo content
+    - uses: actions/checkout@v4 # checkout repo content
 
     - name: Create agenda issue
-      run: gh issue create -l Housekeeping -t "Open Community (TDC) Meeting, `date --date='next Thu' +'%A %d %B %Y'`" -F .github/templates/agenda.md
+      run: gh issue create -l ${{ env.LABEL }} -t "${{ env.TITLE_PREFIX }}`date --date='next Thu' +'%A %d %B %Y'`" -F .github/templates/agenda.md
 
+    - name: Close old agenda issues
+      run: gh issue list -l ${{ env.LABEL }} --author "app/github-actions" --json number,title | ConvertFrom-Json | Where-Object { $_.title -like "${{ env.TITLE_PREFIX }}*" -and [datetime]::Parse([regex]::Replace($_.title.Replace("${{ env.TITLE_PREFIX }}", ""), "\([^)]+\)", "")) -le [datetime]::UtcNow} | ForEach-Object { gh issue close $_.number }
+      shell: pwsh

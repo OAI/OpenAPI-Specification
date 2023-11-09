@@ -19,7 +19,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2 # checkout repo content
-    - uses: actions/setup-node@v1 # setup Node.js
+    - uses: actions/setup-node@v4 # setup Node.js
       with:
         node-version: '14.x'
     - name: Validate markdown

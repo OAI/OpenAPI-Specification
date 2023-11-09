@@ -23,6 +23,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       TITLE_PREFIX: "Open Community (TDC) Meeting, "
       LABEL: "Housekeeping"
+      POST_MEETING_CLOSE_DURATION_IN_DAYS: 10
 
     runs-on: ubuntu-latest
 
@@ -30,8 +31,12 @@ jobs:
     - uses: actions/checkout@v4 # checkout repo content
 
     - name: Create agenda issue
-      run: gh issue create -l ${{ env.LABEL }} -t "${{ env.TITLE_PREFIX }}`date --date='next Thu' +'%A %d %B %Y'`" -F .github/templates/agenda.md
+      run: |
+        $nextThursday = @(@(1..8) | % {$(Get-Date).AddDays($_)} | ? {$_.DayOfWeek -ieq "Thursday"})[0].ToString("dddd dd MMMM yyyy", [CultureInfo]::InvariantCulture)
+        $result = gh issue create -l ${{ env.LABEL }} -t "${{ env.TITLE_PREFIX }}$nextThursday" -F .github/templates/agenda.md
+        gh issue pin $result
+      shell: pwsh
 
     - name: Close old agenda issues
-      run: gh issue list -l ${{ env.LABEL }} --author "app/github-actions" --json number,title | ConvertFrom-Json | Where-Object { $_.title -like "${{ env.TITLE_PREFIX }}*" -and [datetime]::Parse([regex]::Replace($_.title.Replace("${{ env.TITLE_PREFIX }}", ""), "\([^)]+\)", "")) -le [datetime]::UtcNow} | ForEach-Object { gh issue close $_.number }
+      run: gh issue list -l ${{ env.LABEL }} --author "app/github-actions" --json number,title | ConvertFrom-Json | Where-Object { $_.title -like "${{ env.TITLE_PREFIX }}*" -and ([datetime]::UtcNow - [datetime]::Parse([regex]::Replace($_.title.Replace("${{ env.TITLE_PREFIX }}", ""), "\([^)]+\)", ""))) -ge [timespan]::FromDays([int]::Parse("${{ env.POST_MEETING_CLOSE_DURATION_IN_DAYS }}"))} | ForEach-Object { gh issue close $_.number && gh issue unpin $_.number }
       shell: pwsh

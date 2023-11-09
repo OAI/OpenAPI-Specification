@@ -1,4 +1,4 @@
-$inactivityDelay = [timespan]::Parse($Env:NO_RECENT_ACTIVITY_DURATION_CLOSE)
+$inactivityDelay = [timespan]::FromDays([int]::Parse($Env:NO_RECENT_ACTIVITY_DURATION_CLOSE_IN_DAYS))
 $oldIssues = gh issue list --label "$Env:NO_RECENT_ACTIVITY_LABEL" --state open --limit 100 --json number,author,createdAt | ConvertFrom-Json
 foreach($oldIssue in $oldIssues) {
 	$lastComment = gh issue view $oldIssue.number --json comments | ConvertFrom-Json | Select-Object -ExpandProperty comments | Where-Object {$_.author.login -eq $oldIssue.author.login} | Select-Object -Last 1

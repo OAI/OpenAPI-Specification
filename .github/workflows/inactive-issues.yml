@@ -7,6 +7,7 @@ on:
 
 permissions:
   issues: write
+  contents: read
 
 name: Label and close issues with no recent activity
 

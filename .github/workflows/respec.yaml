@@ -21,14 +21,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2 # checkout main branch
+    - uses: actions/checkout@v4 # checkout main branch
       with:
         fetch-depth: 0
 
     - name: Install dependencies
       run: npm i
 
-    - uses: actions/checkout@v2 # checkout gh-pages branch
+    - uses: actions/checkout@v4 # checkout gh-pages branch
       with:
         ref: gh-pages
         path: deploy

@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2 # checkout repo content
+    - uses: actions/checkout@v4 # checkout repo content
 
     - name: Install dependencies
       run: npm i

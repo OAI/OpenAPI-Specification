@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1 # checkout repo content
+    - uses: actions/checkout@v4 # checkout repo content
     - uses: actions/setup-node@v1 # setup Node.js
       with:
         node-version: '14.x'

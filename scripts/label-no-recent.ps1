@@ -12,7 +12,7 @@ foreach($oldIssue in $oldIssues) {
 	$lastLabelEventDate = [datetime]::Parse($lastLabelEvent.created_at)
 	if ($lastCommentDate -gt $lastLabelEventDate) {
 		gh issue edit $oldIssue.number --remove-label "$Env:NO_RECENT_ACTIVITY_LABEL" --remove-label "$Env:NEEDS_AUTHOR_FEEDBACK_LABEL" --add-label "$Env:NEEDS_ATTENTION_LABEL"
-	} elseif (($lastCommentDate - $lastLabelEventDate) -le $inactivityDelay) {
+	} elseif (($lastLabelEventDate -$lastCommentDate) -ge $inactivityDelay) {
 		gh issue edit $oldIssue.number --add-label "$Env:NO_RECENT_ACTIVITY_LABEL" --remove-label "$Env:NEEDS_ATTENTION_LABEL"
 		gh issue comment $oldIssue.number -b "$Env:NO_RECENT_ACTIVITY_COMMENT"
 	}

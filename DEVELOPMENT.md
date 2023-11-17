@@ -20,11 +20,52 @@ The specification *will evolve over time*. Changes  may be made when any of the 
 
 * Impact. A change will provide impact on a large number of use cases. We should not be forced to accommodate every use case. We should strive to make the *common* and *important* use cases both well supported and common in the definition of the OAI Spec. We cannot be edge-case driven.
 
+## Automated closure of issues Process
+
+In an effort to keep the list of issues up to date and easier to navigate through, issues get closed automatically when they become inactive.
+
+The following flowchart describes the automation process:
+
+```mermaid
+flowchart TD
+  openIssue["anyone opens an issue"]
+  reviewerReplies["a reviewer replies to the issue"]
+  authorRepliesWithin7Days{"author of the issue replies within 7 days"}
+  authorRepliesWithin28Days{"author of the issue replies within 28 days"}
+  reviewerAddsLabel["reviewer adds the Needs author feedback label"]
+  botAddsMessage["bot adds a message indicating the issue will be closed if the author doesn't reply within 28 days"]
+  botLabelsRecentActivity["bot adds the No recent activity label"]
+  botClosesIssue["bot closes the issue as not planned"]
+  botRemovesNoRecentLabel["bot removes No recent activity label"]
+  botRemovesNeedsFeedbackLabel["bot removes Needs author feedback label"]
+  botAddsNeedsAttentionLabel["bot adds Needs attention label"]
+  reviewerRemovesNeedsAttentionLabel["a reviewer removes the Needs attention label"]
+  openIssue---->reviewerReplies
+  reviewerReplies---->reviewerAddsLabel
+  reviewerAddsLabel---->reviewerRemovesNeedsAttentionLabel
+  reviewerRemovesNeedsAttentionLabel---->authorRepliesWithin7Days
+  authorRepliesWithin7Days--"no"-->botLabelsRecentActivity
+  authorRepliesWithin7Days--"yes"-->botRemovesNeedsFeedbackLabel
+  botRemovesNeedsFeedbackLabel---->botAddsNeedsAttentionLabel
+  botLabelsRecentActivity---->botAddsMessage
+  botAddsMessage---->authorRepliesWithin28Days
+  authorRepliesWithin28Days--"no"-->botClosesIssue
+  authorRepliesWithin28Days--"yes"-->botRemovesNoRecentLabel
+  botRemovesNoRecentLabel---->botAddsNeedsAttentionLabel
+  botAddsNeedsAttentionLabel---->reviewerReplies
+```
+
+## Automated TDC agenda issues Process
+
+An issue is opened every week, 7 days in advance, for the Technical Direction Committee (TDC), it provides the information to connect the the meeting, and serves as a placeholder to build the agenda for the meeting. Anyone is welcome to attend the meeting, or to add items to the agenda as long as they plan on attending to present the item. These issues are also automatically pinned for visibility and labeled with "Housekeeping".
+
+Ten (10) days after the meeting date is passed (date in the title of the issue), it gets closed and unpinned automatically.
+
 ## Specification Change Process
 
 For each change in the specification we should *always* consider the following:
 
-* Migration. Is this a construct that has a path from the [existing specification](https://github.com/OAI/OpenAPI-Specification/releases))? If so, how complicated is it to migrate to the proposed change?
+* Migration. Is this a construct that has a path from the [existing specification](https://github.com/OAI/OpenAPI-Specification/releases)? If so, how complicated is it to migrate to the proposed change?
 
 * Tooling. Strive to support code generation, software interfaces, spec generation techniques, as well as other utilities. Some features may be impossible to support in different frameworks/languages. These should be documented and considered during the change approval process.
 

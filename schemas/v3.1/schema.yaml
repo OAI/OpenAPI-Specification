@@ -119,7 +119,6 @@ $defs:
     properties:
       url:
         type: string
-        format: uri-reference
       description:
         type: string
       variables:
@@ -632,7 +631,6 @@ $defs:
     properties:
       operationRef:
         type: string
-        format: uri-reference
       operationId:
         type: string
       parameters:

@@ -975,7 +975,6 @@ definitions:
         type: string
       operationRef:
         type: string
-        format: uri-reference
       parameters:
         type: object
         additionalProperties: {}

@@ -20,47 +20,6 @@ The specification *will evolve over time*. Changes  may be made when any of the 
 
 * Impact. A change will provide impact on a large number of use cases. We should not be forced to accommodate every use case. We should strive to make the *common* and *important* use cases both well supported and common in the definition of the OAI Spec. We cannot be edge-case driven.
 
-## Automated closure of issues Process
-
-In an effort to keep the list of issues up to date and easier to navigate through, issues get closed automatically when they become inactive.
-
-The following flowchart describes the automation process:
-
-```mermaid
-flowchart TD
-  openIssue["anyone opens an issue"]
-  reviewerReplies["a reviewer replies to the issue"]
-  authorRepliesWithin7Days{"author of the issue replies within 7 days"}
-  authorRepliesWithin28Days{"author of the issue replies within 28 days"}
-  reviewerAddsLabel["reviewer adds the Needs author feedback label"]
-  botAddsMessage["bot adds a message indicating the issue will be closed if the author doesn't reply within 28 days"]
-  botLabelsRecentActivity["bot adds the No recent activity label"]
-  botClosesIssue["bot closes the issue as not planned"]
-  botRemovesNoRecentLabel["bot removes No recent activity label"]
-  botRemovesNeedsFeedbackLabel["bot removes Needs author feedback label"]
-  botAddsNeedsAttentionLabel["bot adds Needs attention label"]
-  reviewerRemovesNeedsAttentionLabel["a reviewer removes the Needs attention label"]
-  openIssue---->reviewerReplies
-  reviewerReplies---->reviewerAddsLabel
-  reviewerAddsLabel---->reviewerRemovesNeedsAttentionLabel
-  reviewerRemovesNeedsAttentionLabel---->authorRepliesWithin7Days
-  authorRepliesWithin7Days--"no"-->botLabelsRecentActivity
-  authorRepliesWithin7Days--"yes"-->botRemovesNeedsFeedbackLabel
-  botRemovesNeedsFeedbackLabel---->botAddsNeedsAttentionLabel
-  botLabelsRecentActivity---->botAddsMessage
-  botAddsMessage---->authorRepliesWithin28Days
-  authorRepliesWithin28Days--"no"-->botClosesIssue
-  authorRepliesWithin28Days--"yes"-->botRemovesNoRecentLabel
-  botRemovesNoRecentLabel---->botAddsNeedsAttentionLabel
-  botAddsNeedsAttentionLabel---->reviewerReplies
-```
-
-## Automated TDC agenda issues Process
-
-An issue is opened every week, 7 days in advance, for the Technical Direction Committee (TDC), it provides the information to connect the the meeting, and serves as a placeholder to build the agenda for the meeting. Anyone is welcome to attend the meeting, or to add items to the agenda as long as they plan on attending to present the item. These issues are also automatically pinned for visibility and labeled with "Housekeeping".
-
-Ten (10) days after the meeting date is passed (date in the title of the issue), it gets closed and unpinned automatically.
-
 ## Specification Change Process
 
 For each change in the specification we should *always* consider the following:
@@ -141,6 +100,53 @@ However, where a new feature can be introduced in this way, it should be.
 ## Transparency
 
 The process should be as transparent as possible. Sometimes there will be discussions that use customer names, sensitive use cases, and so on. These must be anonymized, discussed in a private repository, or conducted offline. General discussions should happen on the GitHub issues for this project.
+
+## Automated closure of issues Process
+
+In an effort to keep the list of issues up to date and easier to navigate through, issues get closed automatically when they become inactive.
+
+The following flowchart describes the automation process:
+
+```mermaid
+flowchart TD
+  openIssue["anyone opens an issue"]
+  reviewerReplies["a reviewer replies to the issue"]
+  authorRepliesWithin7Days{"author of the issue replies within 7 days"}
+  authorRepliesWithin28Days{"author of the issue replies within 28 days"}
+  reviewerAddsLabel["reviewer adds the Needs author feedback label"]
+  botAddsMessage["bot adds a message indicating the issue will be closed if the author doesn't reply within 28 days"]
+  botLabelsRecentActivity["bot adds the No recent activity label"]
+  botClosesIssue["bot closes the issue as not planned"]
+  botRemovesNoRecentLabel["bot removes No recent activity label"]
+  botRemovesNeedsFeedbackLabel["bot removes Needs author feedback label"]
+  botAddsNeedsAttentionLabel["bot adds Needs attention label"]
+  reviewerRemovesNeedsAttentionLabel["a reviewer removes the Needs attention label"]
+  openIssue---->reviewerReplies
+  reviewerReplies---->reviewerAddsLabel
+  reviewerAddsLabel---->reviewerRemovesNeedsAttentionLabel
+  reviewerRemovesNeedsAttentionLabel---->authorRepliesWithin7Days
+  authorRepliesWithin7Days--"no"-->botLabelsRecentActivity
+  authorRepliesWithin7Days--"yes"-->botRemovesNeedsFeedbackLabel
+  botRemovesNeedsFeedbackLabel---->botAddsNeedsAttentionLabel
+  botLabelsRecentActivity---->botAddsMessage
+  botAddsMessage---->authorRepliesWithin28Days
+  authorRepliesWithin28Days--"no"-->botClosesIssue
+  authorRepliesWithin28Days--"yes"-->botRemovesNoRecentLabel
+  botRemovesNoRecentLabel---->botAddsNeedsAttentionLabel
+  botAddsNeedsAttentionLabel---->reviewerReplies
+```
+
+This process makes use of the following labels:
+
+* Needs author feedback: the issue has been replied to by the triage team and is awaiting a follow up from the issue's author.
+* No recent activity: the issue hasn't received a reply from its author within the last 10 days since `Needs author feedback` was added and will be closed within 28 days if the author doesn't follow up.
+* Needs attention: The issue's author has replied since the `Needs author feedback` label was set and the triage team will reply as soon as possible.
+
+## Automated TDC agenda issues Process
+
+An issue is opened every week, 7 days in advance, for the Technical Direction Committee (TDC), it provides the information to connect the the meeting, and serves as a placeholder to build the agenda for the meeting. Anyone is welcome to attend the meeting, or to add items to the agenda as long as they plan on attending to present the item. These issues are also automatically pinned for visibility and labeled with "Housekeeping".
+
+Ten (10) days after the meeting date is passed (date in the title of the issue), it gets closed and unpinned automatically.
 
 ## Participation
 

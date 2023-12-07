@@ -31,6 +31,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4 # checkout repo content
 
+    # we want to close old agenda issues before creating a new one because there's a limit of 3 pinned items on a repo
+    - name: Close old agenda issues
+      run: gh issue list -l ${{ env.LABEL }} --author "app/github-actions" --json number,title | ConvertFrom-Json | Where-Object { $_.title -like "${{ env.TITLE_PREFIX }}*" -and ([datetime]::UtcNow - [datetime]::Parse([regex]::Replace($_.title.Replace("${{ env.TITLE_PREFIX }}", ""), "\([^)]+\)", ""))) -ge [timespan]::FromDays([int]::Parse("${{ env.POST_MEETING_CLOSE_DURATION_IN_DAYS }}"))} | ForEach-Object { gh issue close $_.number && gh issue unpin $_.number }
+      shell: pwsh
+
     - name: Create agenda issue
       run: |
         $nextThursday = @(@(1..8) | % {$(Get-Date).AddDays($_)} | ? {$_.DayOfWeek -ieq "Thursday"})[0].ToString("dddd dd MMMM yyyy", [CultureInfo]::InvariantCulture)
@@ -38,6 +43,4 @@ jobs:
         gh issue pin $result
       shell: pwsh
 
-    - name: Close old agenda issues
-      run: gh issue list -l ${{ env.LABEL }} --author "app/github-actions" --json number,title | ConvertFrom-Json | Where-Object { $_.title -like "${{ env.TITLE_PREFIX }}*" -and ([datetime]::UtcNow - [datetime]::Parse([regex]::Replace($_.title.Replace("${{ env.TITLE_PREFIX }}", ""), "\([^)]+\)", ""))) -ge [timespan]::FromDays([int]::Parse("${{ env.POST_MEETING_CLOSE_DURATION_IN_DAYS }}"))} | ForEach-Object { gh issue close $_.number && gh issue unpin $_.number }
-      shell: pwsh
+

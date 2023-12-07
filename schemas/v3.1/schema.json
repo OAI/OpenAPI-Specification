@@ -1008,8 +1008,7 @@
         "description": {
           "type": "string"
         }
-      },
-      "unevaluatedProperties": false
+      }
     },
     "schema": {
       "$dynamicAnchor": "meta",

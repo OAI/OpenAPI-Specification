@@ -105,37 +105,6 @@ The process should be as transparent as possible. Sometimes there will be discus
 
 In an effort to keep the list of issues up to date and easier to navigate through, issues get closed automatically when they become inactive.
 
-The following flowchart describes the automation process:
-
-```mermaid
-flowchart TD
-  openIssue["anyone opens an issue"]
-  reviewerReplies["a reviewer replies to the issue"]
-  authorRepliesWithin7Days{"author of the issue replies within 7 days"}
-  authorRepliesWithin28Days{"author of the issue replies within 28 days"}
-  reviewerAddsLabel["reviewer adds the Needs author feedback label"]
-  botAddsMessage["bot adds a message indicating the issue will be closed if the author doesn't reply within 28 days"]
-  botLabelsRecentActivity["bot adds the No recent activity label"]
-  botClosesIssue["bot closes the issue as not planned"]
-  botRemovesNoRecentLabel["bot removes No recent activity label"]
-  botRemovesNeedsFeedbackLabel["bot removes Needs author feedback label"]
-  botAddsNeedsAttentionLabel["bot adds Needs attention label"]
-  reviewerRemovesNeedsAttentionLabel["a reviewer removes the Needs attention label"]
-  openIssue---->reviewerReplies
-  reviewerReplies---->reviewerAddsLabel
-  reviewerAddsLabel---->reviewerRemovesNeedsAttentionLabel
-  reviewerRemovesNeedsAttentionLabel---->authorRepliesWithin7Days
-  authorRepliesWithin7Days--"no"-->botLabelsRecentActivity
-  authorRepliesWithin7Days--"yes"-->botRemovesNeedsFeedbackLabel
-  botRemovesNeedsFeedbackLabel---->botAddsNeedsAttentionLabel
-  botLabelsRecentActivity---->botAddsMessage
-  botAddsMessage---->authorRepliesWithin28Days
-  authorRepliesWithin28Days--"no"-->botClosesIssue
-  authorRepliesWithin28Days--"yes"-->botRemovesNoRecentLabel
-  botRemovesNoRecentLabel---->botAddsNeedsAttentionLabel
-  botAddsNeedsAttentionLabel---->reviewerReplies
-```
-
 This process makes use of the following labels:
 
 * Needs author feedback: the issue has been replied to by the triage team and is awaiting a follow up from the issue's author.

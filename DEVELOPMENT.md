@@ -107,9 +107,9 @@ In an effort to keep the list of issues up to date and easier to navigate throug
 
 This process makes use of the following labels:
 
-* Needs author feedback: the issue has been replied to by the triage team and is awaiting a follow up from the issue's author.
-* No recent activity: the issue hasn't received a reply from its author within the last 10 days since `Needs author feedback` was added and will be closed within 28 days if the author doesn't follow up.
-* Needs attention: The issue's author has replied since the `Needs author feedback` label was set and the triage team will reply as soon as possible.
+* Needs author feedback: the issue has been replied to by the triage team and is awaiting a follow up from the issue's author. This label needs to be added manually by people doing triage/experts whenever they reply. It's removed automatically by the workflow.
+* No recent activity: the issue hasn't received a reply from its author within the last 10 days since `Needs author feedback` was added and will be closed within 28 days if the author doesn't follow up. This label is added/removed automatically by the workflow.
+* Needs attention: The issue's author has replied since the `Needs author feedback` label was set and the triage team will reply as soon as possible. This label needs to be removed manually by people doing triage/experts whenever they reply. It's added automatically by the workflow.
 
 ## Automated TDC agenda issues Process
 

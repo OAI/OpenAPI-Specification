@@ -24,7 +24,7 @@ The specification *will evolve over time*. Changes  may be made when any of the 
 
 For each change in the specification we should *always* consider the following:
 
-* Migration. Is this a construct that has a path from the [existing specification](https://github.com/OAI/OpenAPI-Specification/releases))? If so, how complicated is it to migrate to the proposed change?
+* Migration. Is this a construct that has a path from the [existing specification](https://github.com/OAI/OpenAPI-Specification/releases)? If so, how complicated is it to migrate to the proposed change?
 
 * Tooling. Strive to support code generation, software interfaces, spec generation techniques, as well as other utilities. Some features may be impossible to support in different frameworks/languages. These should be documented and considered during the change approval process.
 
@@ -100,6 +100,22 @@ However, where a new feature can be introduced in this way, it should be.
 ## Transparency
 
 The process should be as transparent as possible. Sometimes there will be discussions that use customer names, sensitive use cases, and so on. These must be anonymized, discussed in a private repository, or conducted offline. General discussions should happen on the GitHub issues for this project.
+
+## Automated closure of issues Process
+
+In an effort to keep the list of issues up to date and easier to navigate through, issues get closed automatically when they become inactive.
+
+This process makes use of the following labels:
+
+* Needs author feedback: the issue has been replied to by the triage team and is awaiting a follow up from the issue's author. This label needs to be added manually by people doing triage/experts whenever they reply. It's removed automatically by the workflow.
+* No recent activity: the issue hasn't received a reply from its author within the last 10 days since `Needs author feedback` was added and will be closed within 28 days if the author doesn't follow up. This label is added/removed automatically by the workflow.
+* Needs attention: The issue's author has replied since the `Needs author feedback` label was set and the triage team will reply as soon as possible. This label needs to be removed manually by people doing triage/experts whenever they reply. It's added automatically by the workflow.
+
+## Automated TDC agenda issues Process
+
+An issue is opened every week, 7 days in advance, for the Technical Direction Committee (TDC), it provides the information to connect the the meeting, and serves as a placeholder to build the agenda for the meeting. Anyone is welcome to attend the meeting, or to add items to the agenda as long as they plan on attending to present the item. These issues are also automatically pinned for visibility and labeled with "Housekeeping".
+
+Ten (10) days after the meeting date is passed (date in the title of the issue), it gets closed and unpinned automatically.
 
 ## Participation
 

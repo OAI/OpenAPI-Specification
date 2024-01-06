@@ -4,7 +4,7 @@ contact_links:
     url: https://spec.openapis.org/oas/latest.html
     about: View the latest version of the specification
   - name: Getting started documentation
-    url: https://oai.github.io/Documentation
+    url: https://learn.openapis.org
     about: Learn about the OpenAPI Specification
   - name: OpenAPI Tooling
     url: https://tools.openapis.org

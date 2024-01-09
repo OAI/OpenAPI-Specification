@@ -20,6 +20,7 @@ permissions:
 
 jobs:
   agenda:
+    if: github.repository == 'OAI/OpenAPI-Specification'
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       TITLE_PREFIX: "Open Community (TDC) Meeting, "

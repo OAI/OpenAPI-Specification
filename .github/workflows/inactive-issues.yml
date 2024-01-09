@@ -25,6 +25,7 @@ env:
 
 jobs:
   run:
+    if: github.repository == 'OAI/OpenAPI-Specification'
     runs-on: ubuntu-latest
     name: Label issues with no recent activity
     steps:

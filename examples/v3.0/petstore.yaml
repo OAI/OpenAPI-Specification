@@ -45,6 +45,12 @@ paths:
       operationId: createPets
       tags:
         - pets
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+        required: true
       responses:
         '201':
           description: Null response

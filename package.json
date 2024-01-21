@@ -13,7 +13,7 @@
   },
   "license": "Apache-2.0",
   "scripts": {
-    "test": "npx mocha tests/**/test.mjs"
+    "test": "vitest --watch=false"
   },
   "readmeFilename": "README.md",
   "files": [
@@ -28,9 +28,8 @@
   },
   "devDependencies": {
     "@hyperjump/json-schema": "^1.7.2",
-    "chai": "^4.3.1",
     "mdv": "^1.3.4",
-    "mocha": "^8.3.0",
+    "vitest": "^1.2.1",
     "yaml": "^2.3.4"
   },
   "keywords": [

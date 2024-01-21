@@ -2,7 +2,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import YAML from "yaml";
 import { validate, setMetaSchemaOutputFormat } from "@hyperjump/json-schema/openapi-3-1";
 import { BASIC } from "@hyperjump/json-schema/experimental";
-import { expect } from "chai";
+import { describe, test, expect } from "vitest";
 
 
 const parseYamlFromFile = (filePath) => {
@@ -20,7 +20,7 @@ describe("v3.1", () => {
     readdirSync(`./tests/v3.1/pass`, { withFileTypes: true })
       .filter((entry) => entry.isFile() && /\.yaml$/.test(entry.name))
       .forEach((entry) => {
-        it(entry.name, () => {
+        test(entry.name, () => {
           const instance = parseYamlFromFile(`./tests/v3.1/pass/${entry.name}`);
           const output = validateOpenApi(instance, BASIC);
           expect(output.valid).to.equal(true);
@@ -32,7 +32,7 @@ describe("v3.1", () => {
     readdirSync(`./tests/v3.1/fail`, { withFileTypes: true })
       .filter((entry) => entry.isFile() && /\.yaml$/.test(entry.name))
       .forEach((entry) => {
-        it(entry.name, () => {
+        test(entry.name, () => {
           const instance = parseYamlFromFile(`./tests/v3.1/fail/${entry.name}`);
           const output = validateOpenApi(instance, BASIC);
           expect(output.valid).to.equal(false);

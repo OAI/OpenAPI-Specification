@@ -2,7 +2,7 @@
 owner: DarrelMiller
 issue: 
 description: signed 64-bit integer
-base_type: number, string
+base_type: [number, string]
 layout: default
 source: https://spec.openapis.org/oas/latest.html#data-types
 source_label: OAS

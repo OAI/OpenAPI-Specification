@@ -8,8 +8,6 @@ In order to give some more visibility into the topics we cover in the TDC meetin
 
 ![F10B5460-B4B3-4463-9CDE-C7F782202EA9](https://user-images.githubusercontent.com/21603/121568843-0b260900-ca18-11eb-9362-69fda4162be8.jpeg)
 
-The agenda backlog is currently maintained in issue #2482
-
 | Topic | Owner | Decision/NextStep |
 |-------|---------|---------|  
 | | | |

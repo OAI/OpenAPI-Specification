@@ -1,7 +1,7 @@
 ---
 owner: baywet
 issue:
-description: a string that hints to UIs to obscure input.
+description: a string that hints to obscure the value.
 base_type: string
 layout: default
 source: https://spec.openapis.org/oas/latest.html#data-types
@@ -14,7 +14,7 @@ source_label: OAS
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format is a string that hints to UIs to obscure input.
+The `{{page.slug}}` format is a string that hints to obscure the value.
 
 {% if page.issue %}
 ### GitHub Issue

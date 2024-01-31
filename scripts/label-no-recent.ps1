@@ -3,7 +3,7 @@ $oldIssues = gh issue list --label "$Env:NEEDS_AUTHOR_FEEDBACK_LABEL" --state op
 foreach($oldIssue in $oldIssues) {
 	$lastComment = gh issue view $oldIssue.number --json comments | ConvertFrom-Json | Select-Object -ExpandProperty comments | Where-Object {$_.author.login -eq $oldIssue.author.login} | Select-Object -Last 1
 	if($null -eq $lastComment) {
-		$lastCommentDate = [datetime]$null
+		$lastCommentDate = [Nullable[datetime]]$null
 	} else {
 		$lastCommentDate = $lastComment.createdAt #powershell already parses the date for us with the json conversion
 	}

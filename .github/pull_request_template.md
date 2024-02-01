@@ -12,5 +12,5 @@ branch and file:
 * registry templates: gh-pages branch, registry/...
 * registry contents: gh-pages branch, registries/...
 
-Note that we do not accept changes to pulblished specifications.
+Note that we do not accept changes to published specifications.
 -->

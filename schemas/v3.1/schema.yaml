@@ -25,7 +25,7 @@ properties:
   webhooks:
     type: object
     additionalProperties:
-      $ref: '#/$defs/path-item-or-reference'
+      $ref: '#/$defs/path-item'
   components:
     $ref: '#/$defs/components'
   security:
@@ -192,7 +192,7 @@ $defs:
       pathItems:
         type: object
         additionalProperties:
-          $ref: '#/$defs/path-item-or-reference'
+          $ref: '#/$defs/path-item'
     patternProperties:
       '^(schemas|responses|parameters|examples|requestBodies|headers|securitySchemes|links|callbacks|pathItems)$':
         $comment: Enumerating all of the property names in the regex above is necessary for unevaluatedProperties to work as expected
@@ -214,6 +214,9 @@ $defs:
     $comment: https://spec.openapis.org/oas/v3.1.0#path-item-object
     type: object
     properties:
+      $ref:
+        type: string
+        format: uri-reference
       summary:
         type: string
       description:
@@ -244,16 +247,6 @@ $defs:
         $ref: '#/$defs/operation'
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
-
-  path-item-or-reference:
-    if:
-      type: object
-      required:
-        - $ref
-    then:
-      $ref: '#/$defs/reference'
-    else:
-      $ref: '#/$defs/path-item'
 
   operation:
     $comment: https://spec.openapis.org/oas/v3.1.0#operation-object
@@ -583,7 +576,7 @@ $defs:
     type: object
     $ref: '#/$defs/specification-extensions'
     additionalProperties:
-      $ref: '#/$defs/path-item-or-reference'
+      $ref: '#/$defs/path-item'
 
   callbacks-or-reference:
     if:

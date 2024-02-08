@@ -18,7 +18,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2 # checkout repo content
+    - uses: actions/checkout@v4 # checkout repo content
+      with:
+        fetch-depth: 0
+    - name: use the javascript environment from main
+      run: |
+        git checkout remotes/origin/main -- package.json
     - uses: actions/setup-node@v4 # setup Node.js
       with:
         node-version: '14.x'

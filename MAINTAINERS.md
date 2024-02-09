@@ -4,8 +4,8 @@
 * Marsh Gardiner [@earth2marsh](https://github.com/earth2marsh)
 * Mike Ralphson [@MikeRalphson](https://github.com/MikeRalphson)
 * Ron Ratovsky [@webron](https://github.com/webron)
-* Uri Sarid [@usarid](https://github.com/usarid)
 
 ## Emeritus
+* Uri Sarid [@usarid](https://github.com/usarid)
 * Jason Harmon [@jharmn](https://github.com/jharmn)
 * Tony Tam [@fehguy](https://github.com/fehguy)

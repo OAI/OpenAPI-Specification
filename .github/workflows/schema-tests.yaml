@@ -29,7 +29,7 @@ jobs:
     - name: Install dependencies from main
       run: |
         git checkout remotes/origin/main -- package.json
-        npm i
+        npm ci
     - name: Run tests
       run: npm run test
 

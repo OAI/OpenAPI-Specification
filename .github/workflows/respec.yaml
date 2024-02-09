@@ -25,8 +25,12 @@ jobs:
       with:
         fetch-depth: 0
 
+    - uses: actions/setup-node@v4 # setup Node.js
+      with:
+        node-version: '20.x'
+    
     - name: Install dependencies
-      run: npm i
+      run: npm ci
 
     - uses: actions/checkout@v2 # checkout gh-pages branch
       with:

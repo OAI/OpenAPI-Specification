@@ -48,9 +48,9 @@
 </tbody>
 </table>
 </section><section><h1><dfn>Definitions</dfn></h1>
-<p><a id="pathTemplating"></a><section><h4><span><dfn>Path Templating</dfn></span></h4></p>
+<section><h4><dfn>Path Templating</dfn></h4>
 <p>Path templating refers to the usage of curly braces ({}) to mark a section of a URL path as replaceable using path parameters.</p>
-<p><a id="mimeTypes"></a></section><section><h4><span><dfn>Mime Types</dfn></span></h4></p>
+</section><section><h4><dfn>Mime Types</dfn></h4>
 <p>Mime type definitions are spread across several resources. The mime type definitions should be in compliance with [[!RFC6838]].</p>
 <p>Some examples of possible mime type definitions:</p>
 <pre class="highlight "><code>
@@ -65,7 +65,7 @@
   application/vnd.github.v3.diff
   application/vnd.github.v3.patch
 </code></pre>
-<p><a id="httpCodes"></a></section><section><h4><span><dfn>HTTP Status Codes</dfn></span></h4></p>
+</section><section><h4><dfn>HTTP Status Codes</dfn></h4>
 <p>The HTTP Status Codes are used to indicate the status of the executed operation. The available status codes are described by [[!RFC7231]] and in the <a href="http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">IANA Status Code Registry</a>.</p>
 </section></section></section></section><section><h1>Specification</h1>
 <section><h2>Format</h2>
@@ -84,8 +84,8 @@ represent a Swagger specification file.</p>
 <p>The Swagger representation of the API is made of a single file. However, parts of the definitions can be split into separate files, at the discretion of the user. This is applicable for <code>$ref</code> fields in the specification as follows from the <a href="http://json-schema.org">JSON Schema</a> definitions.</p>
 <p>By convention, the Swagger specification file is named <code>swagger.json</code>.</p>
 </section><section><h2>Data Types</h2>
-<p>Primitive data types in the Swagger Specification are based on the types supported by the <a href="https://tools.ietf.org/html/draft-zyp-json-schema-04#section-3.5">JSON-Schema Draft 4</a>. Models are described using the <a href="#schemaObject">Schema Object</a> which is a subset of JSON Schema Draft 4.</p>
-<p>An additional primitive data type <code>&quot;file&quot;</code> is used by the <a href="#parameterObject">Parameter Object</a> and the <a href="#responseObject">Response Object</a> to set the parameter type or the response as being a file.</p>
+<p>Primitive data types in the Swagger Specification are based on the types supported by the <a href="https://tools.ietf.org/html/draft-zyp-json-schema-04#section-3.5">JSON-Schema Draft 4</a>. Models are described using the <a href="#schema-object">Schema Object</a> which is a subset of JSON Schema Draft 4.</p>
+<p>An additional primitive data type <code>&quot;file&quot;</code> is used by the <a href="#parameter-object">Parameter Object</a> and the <a href="#response-object">Response Object</a> to set the parameter type or the response as being a file.</p>
 <p><a id="dataTypeFormat"> </a>Primitives have an optional modifier property <code>format</code>. Swagger uses several known formats to more finely define the data type being used. However, the <code>format</code> property is an open <code>string</code>-valued property, and can have any value to support documentation needs. Formats such as <code>&quot;email&quot;</code>, <code>&quot;uuid&quot;</code>, etc., can be used even though they are not defined by this specification. Types that are not accompanied by a <code>format</code> property follow their definition from the JSON Schema (except for <code>file</code> type which is defined above). The formats defined by the Swagger Specification are:</p>
 <table>
 <thead>
@@ -166,7 +166,7 @@ represent a Swagger specification file.</p>
 </tbody>
 </table>
 </section><section><h2>Schema</h2>
-<p><a id="swaggerObject"></a><section><h3><span>Swagger Object</span></h3></p>
+<section><h3>Swagger Object</h3>
 <p>This is the root document object for the API specification. It combines what previously was the Resource Listing and API Declaration (version 1.2 and earlier) together into one document.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -185,18 +185,18 @@ represent a Swagger specification file.</p>
 </tr>
 <tr>
 <td><a id="swaggerInfo"> </a>info</td>
-<td style="text-align:center"><a href="#infoObject">Info Object</a></td>
+<td style="text-align:center"><a href="#info-object">Info Object</a></td>
 <td><strong>Required.</strong> Provides metadata about the API. The metadata can be used by the clients if needed.</td>
 </tr>
 <tr>
 <td><a id="swaggerHost"> </a>host</td>
 <td style="text-align:center"><code>string</code></td>
-<td>The host (name or ip) serving the API. This MUST be the host only and does not include the scheme nor sub-paths. It MAY include a port. If the <code>host</code> is not included, the host serving the documentation is to be used (including the port). The <code>host</code> does not support <a href="#pathTemplating">path templating</a>.</td>
+<td>The host (name or ip) serving the API. This MUST be the host only and does not include the scheme nor sub-paths. It MAY include a port. If the <code>host</code> is not included, the host serving the documentation is to be used (including the port). The <code>host</code> does not support <a href="#path-templating">path templating</a>.</td>
 </tr>
 <tr>
 <td><a id="swaggerBasePath"> </a>basePath</td>
 <td style="text-align:center"><code>string</code></td>
-<td>The base path on which the API is served, which is relative to the <a href="#swaggerHost"><code>host</code></a>. If it is not included, the API is served directly under the <code>host</code>. The value MUST start with a leading slash (<code>/</code>). The <code>basePath</code> does not support <a href="#pathTemplating">path templating</a>.</td>
+<td>The base path on which the API is served, which is relative to the <a href="#swaggerHost"><code>host</code></a>. If it is not included, the API is served directly under the <code>host</code>. The value MUST start with a leading slash (<code>/</code>). The <code>basePath</code> does not support <a href="#path-templating">path templating</a>.</td>
 </tr>
 <tr>
 <td><a id="swaggerSchemes"> </a>schemes</td>
@@ -206,51 +206,51 @@ represent a Swagger specification file.</p>
 <tr>
 <td><a id="swaggerConsumes"> </a>consumes</td>
 <td style="text-align:center">[<code>string</code>]</td>
-<td>A list of MIME types the APIs can consume. This is global to all APIs but can be overridden on specific API calls. Value MUST be as described under <a href="#mimeTypes">Mime Types</a>.</td>
+<td>A list of MIME types the APIs can consume. This is global to all APIs but can be overridden on specific API calls. Value MUST be as described under <a href="#mime-types">Mime Types</a>.</td>
 </tr>
 <tr>
 <td><a id="swaggerProduces"> </a>produces</td>
 <td style="text-align:center">[<code>string</code>]</td>
-<td>A list of MIME types the APIs can produce. This is global to all APIs but can be overridden on specific API calls. Value MUST be as described under <a href="#mimeTypes">Mime Types</a>.</td>
+<td>A list of MIME types the APIs can produce. This is global to all APIs but can be overridden on specific API calls. Value MUST be as described under <a href="#mime-types">Mime Types</a>.</td>
 </tr>
 <tr>
 <td><a id="swaggerPaths"> </a>paths</td>
-<td style="text-align:center"><a href="#pathsObject">Paths Object</a></td>
+<td style="text-align:center"><a href="#paths-object">Paths Object</a></td>
 <td><strong>Required.</strong> The available paths and operations for the API.</td>
 </tr>
 <tr>
 <td><a id="swaggerDefinitions"> </a>definitions</td>
-<td style="text-align:center"><a href="#definitionsObject">Definitions Object</a></td>
+<td style="text-align:center"><a href="#definitions-object">Definitions Object</a></td>
 <td>An object to hold data types produced and consumed by operations.</td>
 </tr>
 <tr>
 <td><a id="swaggerParameters"> </a>parameters</td>
-<td style="text-align:center"><a href="#parametersDefinitionsObject">Parameters Definitions Object</a></td>
+<td style="text-align:center"><a href="#parameters-definitions-object">Parameters Definitions Object</a></td>
 <td>An object to hold parameters that can be used across operations. This property <em>does not</em> define global parameters for all operations.</td>
 </tr>
 <tr>
 <td><a id="swaggerResponses"> </a>responses</td>
-<td style="text-align:center"><a href="#responsesDefinitionsObject">Responses Definitions Object</a></td>
+<td style="text-align:center"><a href="#responses-definitions-object">Responses Definitions Object</a></td>
 <td>An object to hold responses that can be used across operations. This property <em>does not</em> define global responses for all operations.</td>
 </tr>
 <tr>
 <td><a id="swaggerSecurityDefinitions"> </a>securityDefinitions</td>
-<td style="text-align:center"><a href="#securityDefinitionsObject">Security Definitions Object</a></td>
+<td style="text-align:center"><a href="#security-definitions-object">Security Definitions Object</a></td>
 <td>Security scheme definitions that can be used across the specification.</td>
 </tr>
 <tr>
 <td><a id="swaggerSecurity"> </a>security</td>
-<td style="text-align:center">[<a href="#securityRequirementObject">Security Requirement Object</a>]</td>
+<td style="text-align:center">[<a href="#security-requirement-object">Security Requirement Object</a>]</td>
 <td>A declaration of which security schemes are applied for the API as a whole. The list of values describes alternative security schemes that can be used (that is, there is a logical OR between the security requirements). Individual operations can override this definition.</td>
 </tr>
 <tr>
 <td><a id="swaggerTags"> </a>tags</td>
-<td style="text-align:center">[<a href="#tagObject">Tag Object</a>]</td>
-<td>A list of tags used by the specification with additional metadata. The order of the tags can be used to reflect on their order by the parsing tools. Not all tags that are used by the <a href="#operationObject">Operation Object</a> must be declared. The tags that are not declared may be organized randomly or based on the tools’ logic. Each tag name in the list MUST be unique.</td>
+<td style="text-align:center">[<a href="#tag-object">Tag Object</a>]</td>
+<td>A list of tags used by the specification with additional metadata. The order of the tags can be used to reflect on their order by the parsing tools. Not all tags that are used by the <a href="#operation-object">Operation Object</a> must be declared. The tags that are not declared may be organized randomly or based on the tools’ logic. Each tag name in the list MUST be unique.</td>
 </tr>
 <tr>
 <td><a id="swaggerExternalDocs"> </a>externalDocs</td>
-<td style="text-align:center"><a href="#externalDocumentationObject">External Documentation Object</a></td>
+<td style="text-align:center"><a href="#external-documentation-object">External Documentation Object</a></td>
 <td>Additional external documentation.</td>
 </tr>
 </tbody>
@@ -268,11 +268,11 @@ represent a Swagger specification file.</p>
 <tr>
 <td><a id="swaggerExtensions"> </a>^x-</td>
 <td style="text-align:center">Any</td>
-<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.</td>
+<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#specification-extensions">Vendor Extensions</a> for further details.</td>
 </tr>
 </tbody>
 </table>
-<p><a id="infoObject"></a></section></section><section><h3><span>Info Object</span></h3></p>
+</section></section><section><h3>Info Object</h3>
 <p>The object provides metadata about the API. The metadata can be used by the clients if needed, and can be presented in the Swagger-UI for convenience.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -301,12 +301,12 @@ represent a Swagger specification file.</p>
 </tr>
 <tr>
 <td><a id="infoContact"> </a>contact</td>
-<td style="text-align:center"><a href="#contactObject">Contact Object</a></td>
+<td style="text-align:center"><a href="#contact-object">Contact Object</a></td>
 <td>The contact information for the exposed API.</td>
 </tr>
 <tr>
 <td><a id="infoLicense"> </a>license</td>
-<td style="text-align:center"><a href="#licenseObject">License Object</a></td>
+<td style="text-align:center"><a href="#license-object">License Object</a></td>
 <td>The license information for the exposed API.</td>
 </tr>
 <tr>
@@ -329,7 +329,7 @@ represent a Swagger specification file.</p>
 <tr>
 <td><a id="infoExtensions"> </a>^x-</td>
 <td style="text-align:center">Any</td>
-<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.</td>
+<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#specification-extensions">Vendor Extensions</a> for further details.</td>
 </tr>
 </tbody>
 </table>
@@ -364,7 +364,7 @@ represent a Swagger specification file.</p>
   <span class="hljs-attr">url:</span> <span class="hljs-string">http://www.apache.org/licenses/LICENSE-2.0.html</span>
 <span class="hljs-attr">version:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.1</span>
 </code></pre>
-<p><a id="contactObject"></a></section></section><section><h3><span>Contact Object</span></h3></p>
+</section></section><section><h3>Contact Object</h3>
 <p>Contact information for the exposed API.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -406,7 +406,7 @@ represent a Swagger specification file.</p>
 <tr>
 <td><a id="contactExtensions"> </a>^x-</td>
 <td style="text-align:center">Any</td>
-<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.</td>
+<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#specification-extensions">Vendor Extensions</a> for further details.</td>
 </tr>
 </tbody>
 </table>
@@ -423,7 +423,7 @@ represent a Swagger specification file.</p>
 <span class="hljs-attr">url:</span> <span class="hljs-string">http://www.swagger.io/support</span>
 <span class="hljs-attr">email:</span> <span class="hljs-string">support@swagger.io</span>
 </code></pre>
-<p><a id="licenseObject"></a></section></section><section><h3><span>License Object</span></h3></p>
+</section></section><section><h3>License Object</h3>
 <p>License information for the exposed API.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -460,7 +460,7 @@ represent a Swagger specification file.</p>
 <tr>
 <td><a id="licenseExtensions"> </a>^x-</td>
 <td style="text-align:center">Any</td>
-<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.</td>
+<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#specification-extensions">Vendor Extensions</a> for further details.</td>
 </tr>
 </tbody>
 </table>
@@ -475,9 +475,9 @@ represent a Swagger specification file.</p>
 <span class="hljs-attr">name:</span> <span class="hljs-string">Apache</span> <span class="hljs-number">2.0</span>
 <span class="hljs-attr">url:</span> <span class="hljs-string">http://www.apache.org/licenses/LICENSE-2.0.html</span>
 </code></pre>
-<p><a id="pathsObject"></a></section></section><section><h3><span>Paths Object</span></h3></p>
+</section></section><section><h3>Paths Object</h3>
 <p>Holds the relative paths to the individual endpoints. The path is appended to the <a href="#swaggerBasePath"><code>basePath</code></a> in order to construct the full URL.
-The Paths may be empty, due to <a href="#securityFiltering">ACL constraints</a>.</p>
+The Paths may be empty, due to <a href="#security-filtering">ACL constraints</a>.</p>
 <section><h4>Patterned Fields</h4>
 <table>
 <thead>
@@ -490,13 +490,13 @@ The Paths may be empty, due to <a href="#securityFiltering">ACL constraints</a>.
 <tbody>
 <tr>
 <td><a id="pathsPath"> </a>/{path}</td>
-<td style="text-align:center"><a href="#pathItemObject">Path Item Object</a></td>
-<td>A relative path to an individual endpoint. The field name MUST begin with a slash. The path is appended to the <a href="#swaggerBasePath"><code>basePath</code></a> in order to construct the full URL. <a href="#pathTemplating">Path templating</a> is allowed.</td>
+<td style="text-align:center"><a href="#path-item-object">Path Item Object</a></td>
+<td>A relative path to an individual endpoint. The field name MUST begin with a slash. The path is appended to the <a href="#swaggerBasePath"><code>basePath</code></a> in order to construct the full URL. <a href="#path-templating">Path templating</a> is allowed.</td>
 </tr>
 <tr>
 <td><a id="pathsExtensions"> </a>^x-</td>
 <td style="text-align:center">Any</td>
-<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.</td>
+<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#specification-extensions">Vendor Extensions</a> for further details.</td>
 </tr>
 </tbody>
 </table>
@@ -538,9 +538,9 @@ The Paths may be empty, due to <a href="#securityFiltering">ACL constraints</a>.
           <span class="hljs-attr">items:</span>
             <span class="hljs-string">$ref:</span> <span class="hljs-string">&#x27;#/definitions/pet&#x27;</span>
 </code></pre>
-<p><a id="pathItemObject"></a></section></section><section><h3><span>Path Item Object</span></h3></p>
+</section></section><section><h3>Path Item Object</h3>
 <p>Describes the operations available on a single path.
-A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a>. The path itself is still exposed to the documentation viewer but they will not know which operations and parameters are available.</p>
+A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</a>. The path itself is still exposed to the documentation viewer but they will not know which operations and parameters are available.</p>
 <section><h4>Fixed Fields</h4>
 <table>
 <thead>
@@ -554,47 +554,47 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tr>
 <td><a id="pathItemRef"> </a>$ref</td>
 <td style="text-align:center"><code>string</code></td>
-<td>Allows for an external definition of this path item. The referenced structure MUST be in the format of a <a href="#pathItemObject">Path Item Object</a>. If there are conflicts between the referenced definition and this Path Item’s definition, the behavior is <em>undefined</em>.</td>
+<td>Allows for an external definition of this path item. The referenced structure MUST be in the format of a <a href="#path-item-object">Path Item Object</a>. If there are conflicts between the referenced definition and this Path Item’s definition, the behavior is <em>undefined</em>.</td>
 </tr>
 <tr>
 <td><a id="pathItemGet"> </a>get</td>
-<td style="text-align:center"><a href="#operationObject">Operation Object</a></td>
+<td style="text-align:center"><a href="#operation-object">Operation Object</a></td>
 <td>A definition of a GET operation on this path.</td>
 </tr>
 <tr>
 <td><a id="pathItemPut"> </a>put</td>
-<td style="text-align:center"><a href="#operationObject">Operation Object</a></td>
+<td style="text-align:center"><a href="#operation-object">Operation Object</a></td>
 <td>A definition of a PUT operation on this path.</td>
 </tr>
 <tr>
 <td><a id="pathItemPost"> </a>post</td>
-<td style="text-align:center"><a href="#operationObject">Operation Object</a></td>
+<td style="text-align:center"><a href="#operation-object">Operation Object</a></td>
 <td>A definition of a POST operation on this path.</td>
 </tr>
 <tr>
 <td><a id="pathItemDelete"> </a>delete</td>
-<td style="text-align:center"><a href="#operationObject">Operation Object</a></td>
+<td style="text-align:center"><a href="#operation-object">Operation Object</a></td>
 <td>A definition of a DELETE operation on this path.</td>
 </tr>
 <tr>
 <td><a id="pathItemOptions"> </a>options</td>
-<td style="text-align:center"><a href="#operationObject">Operation Object</a></td>
+<td style="text-align:center"><a href="#operation-object">Operation Object</a></td>
 <td>A definition of a OPTIONS operation on this path.</td>
 </tr>
 <tr>
 <td><a id="pathItemHead"> </a>head</td>
-<td style="text-align:center"><a href="#operationObject">Operation Object</a></td>
+<td style="text-align:center"><a href="#operation-object">Operation Object</a></td>
 <td>A definition of a HEAD operation on this path.</td>
 </tr>
 <tr>
 <td><a id="pathItemPatch"> </a>patch</td>
-<td style="text-align:center"><a href="#operationObject">Operation Object</a></td>
+<td style="text-align:center"><a href="#operation-object">Operation Object</a></td>
 <td>A definition of a PATCH operation on this path.</td>
 </tr>
 <tr>
 <td><a id="pathItemParameters"> </a>parameters</td>
-<td style="text-align:center">[<a href="#parameterObject">Parameter Object</a> | <a href="#referenceObject">Reference Object</a>]</td>
-<td>A list of parameters that are applicable for all the operations described under this path. These parameters can be overridden at the operation level, but cannot be removed there. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a <a href="#parameterName">name</a> and <a href="#parameterIn">location</a>. The list can use the <a href="#referenceObject">Reference Object</a> to link to parameters that are defined at the <a href="#swaggerParameters">Swagger Object’s parameters</a>. There can be one “body” parameter at most.</td>
+<td style="text-align:center">[<a href="#parameter-object">Parameter Object</a> | <a href="#reference-object">Reference Object</a>]</td>
+<td>A list of parameters that are applicable for all the operations described under this path. These parameters can be overridden at the operation level, but cannot be removed there. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a <a href="#parameterName">name</a> and <a href="#parameterIn">location</a>. The list can use the <a href="#reference-object">Reference Object</a> to link to parameters that are defined at the <a href="#swaggerParameters">Swagger Object’s parameters</a>. There can be one “body” parameter at most.</td>
 </tr>
 </tbody>
 </table>
@@ -611,7 +611,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tr>
 <td><a id="pathItemExtensions"> </a>^x-</td>
 <td style="text-align:center">Any</td>
-<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.</td>
+<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#specification-extensions">Vendor Extensions</a> for further details.</td>
 </tr>
 </tbody>
 </table>
@@ -688,7 +688,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
     <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
   <span class="hljs-attr">collectionFormat:</span> <span class="hljs-string">csv</span>
 </code></pre>
-<p><a id="operationObject"></a></section></section><section><h3><span>Operation Object</span></h3></p>
+</section></section><section><h3>Operation Object</h3>
 <p>Describes a single API operation on a path.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -717,7 +717,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 <tr>
 <td><a id="operationExternalDocs"> </a>externalDocs</td>
-<td style="text-align:center"><a href="#externalDocumentationObject">External Documentation Object</a></td>
+<td style="text-align:center"><a href="#external-documentation-object">External Documentation Object</a></td>
 <td>Additional external documentation for this operation.</td>
 </tr>
 <tr>
@@ -728,21 +728,21 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tr>
 <td><a id="operationConsumes"> </a>consumes</td>
 <td style="text-align:center">[<code>string</code>]</td>
-<td>A list of MIME types the operation can consume. This overrides the <a href="#swaggerConsumes"><code>consumes</code></a> definition at the Swagger Object. An empty value MAY be used to clear the global definition. Value MUST be as described under <a href="#mimeTypes">Mime Types</a>.</td>
+<td>A list of MIME types the operation can consume. This overrides the <a href="#swaggerConsumes"><code>consumes</code></a> definition at the Swagger Object. An empty value MAY be used to clear the global definition. Value MUST be as described under <a href="#mime-types">Mime Types</a>.</td>
 </tr>
 <tr>
 <td><a id="operationProduces"> </a>produces</td>
 <td style="text-align:center">[<code>string</code>]</td>
-<td>A list of MIME types the operation can produce. This overrides the <a href="#swaggerProduces"><code>produces</code></a> definition at the Swagger Object. An empty value MAY be used to clear the global definition. Value MUST be as described under <a href="#mimeTypes">Mime Types</a>.</td>
+<td>A list of MIME types the operation can produce. This overrides the <a href="#swaggerProduces"><code>produces</code></a> definition at the Swagger Object. An empty value MAY be used to clear the global definition. Value MUST be as described under <a href="#mime-types">Mime Types</a>.</td>
 </tr>
 <tr>
 <td><a id="operationParameters"> </a>parameters</td>
-<td style="text-align:center">[<a href="#parameterObject">Parameter Object</a> | <a href="#referenceObject">Reference Object</a>]</td>
-<td>A list of parameters that are applicable for this operation. If a parameter is already defined at the <a href="#pathItemParameters">Path Item</a>, the new definition will override it, but can never remove it. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a <a href="#parameterName">name</a> and <a href="#parameterIn">location</a>. The list can use the <a href="#referenceObject">Reference Object</a> to link to parameters that are defined at the <a href="#swaggerParameters">Swagger Object’s parameters</a>. There can be one “body” parameter at most.</td>
+<td style="text-align:center">[<a href="#parameter-object">Parameter Object</a> | <a href="#reference-object">Reference Object</a>]</td>
+<td>A list of parameters that are applicable for this operation. If a parameter is already defined at the <a href="#pathItemParameters">Path Item</a>, the new definition will override it, but can never remove it. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a <a href="#parameterName">name</a> and <a href="#parameterIn">location</a>. The list can use the <a href="#reference-object">Reference Object</a> to link to parameters that are defined at the <a href="#swaggerParameters">Swagger Object’s parameters</a>. There can be one “body” parameter at most.</td>
 </tr>
 <tr>
 <td><a id="operationResponses"> </a>responses</td>
-<td style="text-align:center"><a href="#responsesObject">Responses Object</a></td>
+<td style="text-align:center"><a href="#responses-object">Responses Object</a></td>
 <td><strong>Required.</strong> The list of possible responses as they are returned from executing this operation.</td>
 </tr>
 <tr>
@@ -757,7 +757,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 <tr>
 <td><a id="operationSecurity"> </a>security</td>
-<td style="text-align:center">[<a href="#securityRequirementObject">Security Requirement Object</a>]</td>
+<td style="text-align:center">[<a href="#security-requirement-object">Security Requirement Object</a>]</td>
 <td>A declaration of which security schemes are applied for this operation. The list of values describes alternative security schemes that can be used (that is, there is a logical OR between the security requirements). This definition overrides any declared top-level <a href="#swaggerSecurity"><code>security</code></a>. To remove a top-level security declaration, an empty array can be used.</td>
 </tr>
 </tbody>
@@ -775,7 +775,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tr>
 <td><a id="operationExtensions"> </a>^x-</td>
 <td style="text-align:center">Any</td>
-<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.</td>
+<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#specification-extensions">Vendor Extensions</a> for further details.</td>
 </tr>
 </tbody>
 </table>
@@ -873,7 +873,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
   <span class="hljs-bullet">-</span> <span class="hljs-string">write:pets</span>
   <span class="hljs-bullet">-</span> <span class="hljs-string">read:pets</span>
 </code></pre>
-<p><a id="externalDocumentationObject"></a></section></section><section><h3><span>External Documentation Object</span></h3></p>
+</section></section><section><h3>External Documentation Object</h3>
 <p>Allows referencing an external resource for extended documentation.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -910,7 +910,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tr>
 <td><a id="externalDocExtensions"> </a>^x-</td>
 <td style="text-align:center">Any</td>
-<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.</td>
+<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#specification-extensions">Vendor Extensions</a> for further details.</td>
 </tr>
 </tbody>
 </table>
@@ -925,12 +925,12 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">description:</span> <span class="hljs-string">Find</span> <span class="hljs-string">more</span> <span class="hljs-string">info</span> <span class="hljs-string">here</span>
 <span class="hljs-attr">url:</span> <span class="hljs-string">https://swagger.io</span>
 </code></pre>
-<p><a id="parameterObject"></a></section></section><section><h3><span>Parameter Object</span></h3></p>
+</section></section><section><h3>Parameter Object</h3>
 <p>Describes a single operation parameter.</p>
 <p>A unique parameter is defined by a combination of a <a href="#parameterName">name</a> and <a href="#parameterIn">location</a>.</p>
 <p>There are five possible parameter types.</p>
 <ul>
-<li>Path - Used together with <a href="#pathTemplating">Path Templating</a>, where the parameter value is actually part of the operation’s URL. This does not include the host or base path of the API. For example, in <code>/items/{itemId}</code>, the path parameter is <code>itemId</code>.</li>
+<li>Path - Used together with <a href="#path-templating">Path Templating</a>, where the parameter value is actually part of the operation’s URL. This does not include the host or base path of the API. For example, in <code>/items/{itemId}</code>, the path parameter is <code>itemId</code>.</li>
 <li>Query - Parameters that are appended to the URL. For example, in <code>/items?id=###</code>, the query parameter is <code>id</code>.</li>
 <li>Header - Custom headers that are expected as part of the request.</li>
 <li>Body - The payload that’s appended to the HTTP request. Since there can only be one payload, there can only be <em>one</em> body parameter. The name of the body parameter has no effect on the parameter itself and is used for documentation purposes only. Since Form parameters are also in the payload, body and form parameters cannot exist together for the same operation.</li>
@@ -954,7 +954,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tr>
 <td><a id="parameterName"> </a>name</td>
 <td style="text-align:center"><code>string</code></td>
-<td><strong>Required.</strong> The name of the parameter. Parameter names are <em>case sensitive</em>. <ul><li>If <a href="#parameterIn"><code>in</code></a> is <code>&quot;path&quot;</code>, the <code>name</code> field MUST correspond to the associated path segment from the <a href="#pathsPath">path</a> field in the <a href="#pathsObject">Paths Object</a>. See <a href="#pathTemplating">Path Templating</a> for further information.<li>For all other cases, the <code>name</code> corresponds to the parameter name used based on the <a href="#parameterIn"><code>in</code></a> property.</ul></td>
+<td><strong>Required.</strong> The name of the parameter. Parameter names are <em>case sensitive</em>. <ul><li>If <a href="#parameterIn"><code>in</code></a> is <code>&quot;path&quot;</code>, the <code>name</code> field MUST correspond to the associated path segment from the <a href="#pathsPath">path</a> field in the <a href="#paths-object">Paths Object</a>. See <a href="#path-templating">Path Templating</a> for further information.<li>For all other cases, the <code>name</code> corresponds to the parameter name used based on the <a href="#parameterIn"><code>in</code></a> property.</ul></td>
 </tr>
 <tr>
 <td><a id="parameterIn"> </a>in</td>
@@ -985,7 +985,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tbody>
 <tr>
 <td><a id="parameterSchema"> </a>schema</td>
-<td style="text-align:center"><a href="#schemaObject">Schema Object</a></td>
+<td style="text-align:center"><a href="#schema-object">Schema Object</a></td>
 <td><strong>Required.</strong> The schema defining the type used for the body parameter.</td>
 </tr>
 </tbody>
@@ -1017,7 +1017,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 <tr>
 <td><a id="parameterItems"> </a>items</td>
-<td style="text-align:center"><a href="#itemsObject">Items Object</a></td>
+<td style="text-align:center"><a href="#items-object">Items Object</a></td>
 <td><strong>Required if <a href="#parameterType"><code>type</code></a> is “array”.</strong> Describes the type of items in the array.</td>
 </tr>
 <tr>
@@ -1105,7 +1105,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tr>
 <td><a id="parameterExtensions"> </a>^x-</td>
 <td style="text-align:center">Any</td>
-<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.</td>
+<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#specification-extensions">Vendor Extensions</a> for further details.</td>
 </tr>
 </tbody>
 </table>
@@ -1241,7 +1241,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">required:</span> <span class="hljs-literal">true</span>
 <span class="hljs-attr">type:</span> <span class="hljs-string">file</span>
 </code></pre>
-<p><a id="itemsObject"></a></section></section></section><section><h3><span>Items Object</span></h3></p>
+</section></section></section><section><h3>Items Object</h3>
 <p>A limited subset of JSON-Schema’s items object. It is used by parameter definitions that are not located <a href="#parameterIn"><code>in</code></a> <code>&quot;body&quot;</code>.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -1265,7 +1265,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 <tr>
 <td><a id="itemsItems"> </a>items</td>
-<td style="text-align:center"><a href="#itemsObject">Items Object</a></td>
+<td style="text-align:center"><a href="#items-object">Items Object</a></td>
 <td><strong>Required if <a href="#itemsType"><code>type</code></a> is “array”.</strong> Describes the type of items in the array.</td>
 </tr>
 <tr>
@@ -1353,7 +1353,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tr>
 <td><a id="itemsExtensions"> </a>^x-</td>
 <td style="text-align:center">Any</td>
-<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.</td>
+<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#specification-extensions">Vendor Extensions</a> for further details.</td>
 </tr>
 </tbody>
 </table>
@@ -1387,7 +1387,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
   <span class="hljs-attr">minimum:</span> <span class="hljs-number">0</span>
   <span class="hljs-attr">maximum:</span> <span class="hljs-number">63</span>
 </code></pre>
-<p><a id="responsesObject"></a></section></section><section><h3><span>Responses Object</span></h3></p>
+</section></section><section><h3>Responses Object</h3>
 <p>A container for the expected responses of an operation. The container maps a HTTP response code to the expected response. It is not expected from the documentation to necessarily cover all possible HTTP response codes, since they may not be known in advance. However, it is expected from the documentation to cover a successful operation response and any known errors.</p>
 <p>The <code>default</code> can be used as the default response object for all HTTP codes that are not covered individually by the specification.</p>
 <p>The <code>Responses Object</code> MUST contain at least one response code, and it SHOULD be the response for a successful operation call.</p>
@@ -1403,8 +1403,8 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tbody>
 <tr>
 <td><a id="responsesDefault"> </a>default</td>
-<td style="text-align:center"><a href="#responseObject">Response Object</a> | <a href="#referenceObject">Reference Object</a></td>
-<td>The documentation of responses other than the ones declared for specific HTTP response codes. It can be used to cover undeclared responses. <a href="#referenceObject">Reference Object</a> can be used to link to a response that is defined at the <a href="#swaggerResponses">Swagger Object’s responses</a> section.</td>
+<td style="text-align:center"><a href="#response-object">Response Object</a> | <a href="#reference-object">Reference Object</a></td>
+<td>The documentation of responses other than the ones declared for specific HTTP response codes. It can be used to cover undeclared responses. <a href="#reference-object">Reference Object</a> can be used to link to a response that is defined at the <a href="#swaggerResponses">Swagger Object’s responses</a> section.</td>
 </tr>
 </tbody>
 </table>
@@ -1419,14 +1419,14 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </thead>
 <tbody>
 <tr>
-<td><a id="responsesCode"> </a>{<a href="#httpCodes">HTTP Status Code</a>}</td>
-<td style="text-align:center"><a href="#responseObject">Response Object</a> | <a href="#referenceObject">Reference Object</a></td>
-<td>Any <a href="#httpCodes">HTTP status code</a> can be used as the property name (one property per HTTP status code). Describes the expected response for that HTTP status code.  <a href="#referenceObject">Reference Object</a> can be used to link to a response that is defined at the <a href="#swaggerResponses">Swagger Object’s responses</a> section.</td>
+<td><a id="responsesCode"> </a>{<a href="#http-status-codes">HTTP Status Code</a>}</td>
+<td style="text-align:center"><a href="#response-object">Response Object</a> | <a href="#reference-object">Reference Object</a></td>
+<td>Any <a href="#http-status-codes">HTTP status code</a> can be used as the property name (one property per HTTP status code). Describes the expected response for that HTTP status code.  <a href="#reference-object">Reference Object</a> can be used to link to a response that is defined at the <a href="#swaggerResponses">Swagger Object’s responses</a> section.</td>
 </tr>
 <tr>
 <td><a id="responsesExtensions"> </a>^x-</td>
 <td style="text-align:center">Any</td>
-<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.</td>
+<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#specification-extensions">Vendor Extensions</a> for further details.</td>
 </tr>
 </tbody>
 </table>
@@ -1458,7 +1458,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
   <span class="hljs-attr">schema:</span>
     <span class="hljs-string">$ref:</span> <span class="hljs-string">&#x27;#/definitions/ErrorModel&#x27;</span>
 </code></pre>
-<p><a id="responseObject"></a></section></section><section><h3><span>Response Object</span></h3></p>
+</section></section><section><h3>Response Object</h3>
 <p>Describes a single response from an API Operation.</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -1477,17 +1477,17 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 <tr>
 <td><a id="responseSchema"> </a>schema</td>
-<td style="text-align:center"><a href="#schemaObject">Schema Object</a></td>
-<td>A definition of the response structure. It can be a primitive, an array or an object. If this field does not exist, it means no content is returned as part of the response. As an extension to the <a href="#schemaObject">Schema Object</a>, its root <code>type</code> value may also be <code>&quot;file&quot;</code>. This SHOULD be accompanied by a relevant <code>produces</code> mime-type.</td>
+<td style="text-align:center"><a href="#schema-object">Schema Object</a></td>
+<td>A definition of the response structure. It can be a primitive, an array or an object. If this field does not exist, it means no content is returned as part of the response. As an extension to the <a href="#schema-object">Schema Object</a>, its root <code>type</code> value may also be <code>&quot;file&quot;</code>. This SHOULD be accompanied by a relevant <code>produces</code> mime-type.</td>
 </tr>
 <tr>
 <td><a id="responseHeaders"> </a>headers</td>
-<td style="text-align:center"><a href="#headersObject">Headers Object</a></td>
+<td style="text-align:center"><a href="#headers-object">Headers Object</a></td>
 <td>A list of headers that are sent with the response.</td>
 </tr>
 <tr>
 <td><a id="responseExamples"> </a>examples</td>
-<td style="text-align:center"><a href="#exampleObject">Example Object</a></td>
+<td style="text-align:center"><a href="#example-object">Example Object</a></td>
 <td>An example of the response message.</td>
 </tr>
 </tbody>
@@ -1505,7 +1505,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tr>
 <td><a id="responseExtensions"> </a>^x-</td>
 <td style="text-align:center">Any</td>
-<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.</td>
+<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#specification-extensions">Vendor Extensions</a> for further details.</td>
 </tr>
 </tbody>
 </table>
@@ -1590,7 +1590,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <pre class="nohighlight"><code>
 <span class="hljs-attr">description:</span> <span class="hljs-string">object</span> <span class="hljs-string">created</span>
 </code></pre>
-<p><a id="headersObject"></a></section></section><section><h3><span>Headers Object</span></h3></p>
+</section></section><section><h3>Headers Object</h3>
 <p>Lists the headers that can be sent as part of a response.</p>
 <section><h4>Patterned Fields</h4>
 <table>
@@ -1604,7 +1604,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tbody>
 <tr>
 <td><a id="headersName"> </a>{name}</td>
-<td style="text-align:center"><a href="#headerObject">Header Object</a></td>
+<td style="text-align:center"><a href="#header-object">Header Object</a></td>
 <td>The name of the property corresponds to the name of the header. The value describes the type of the header.</td>
 </tr>
 </tbody>
@@ -1638,7 +1638,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
   <span class="hljs-attr">description:</span> <span class="hljs-string">The</span> <span class="hljs-string">number</span> <span class="hljs-string">of</span> <span class="hljs-string">seconds</span> <span class="hljs-string">left</span> <span class="hljs-string">in</span> <span class="hljs-string">the</span> <span class="hljs-string">current</span> <span class="hljs-string">period</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">integer</span>
 </code></pre>
-<p><a id="exampleObject"></a></section></section><section><h3><span>Example Object</span></h3></p>
+</section></section><section><h3>Example Object</h3>
 <p>Allows sharing examples for operation responses.</p>
 <section><h4>Patterned Fields</h4>
 <table>
@@ -1651,7 +1651,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </thead>
 <tbody>
 <tr>
-<td><a id="exampleMimeType"> </a>{<a href="#mimeTypes">mime type</a>}</td>
+<td><a id="exampleMimeType"> </a>{<a href="#mime-types">mime type</a>}</td>
 <td style="text-align:center">Any</td>
 <td>The name of the property MUST be one of the Operation <code>produces</code> values (either implicit or inherited). The value SHOULD be an example of what such a response would look like.</td>
 </tr>
@@ -1678,7 +1678,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
   <span class="hljs-attr">gender:</span> <span class="hljs-string">Female</span>
   <span class="hljs-attr">breed:</span> <span class="hljs-string">Mixed</span>
 </code></pre>
-<p><a id="headerObject"></a></section></section><section><h3><span>Header Object</span></h3></p>
+</section></section><section><h3>Header Object</h3>
 <table>
 <thead>
 <tr>
@@ -1705,7 +1705,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 <tr>
 <td><a id="headerItems"> </a>items</td>
-<td style="text-align:center"><a href="#itemsObject">Items Object</a></td>
+<td style="text-align:center"><a href="#items-object">Items Object</a></td>
 <td><strong>Required if <a href="#stType"><code>type</code></a> is “array”.</strong> Describes the type of items in the array.</td>
 </tr>
 <tr>
@@ -1793,7 +1793,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tr>
 <td><a id="headerExtensions"> </a>^x-</td>
 <td style="text-align:center">Any</td>
-<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.</td>
+<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#specification-extensions">Vendor Extensions</a> for further details.</td>
 </tr>
 </tbody>
 </table>
@@ -1809,8 +1809,8 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">description:</span> <span class="hljs-string">The</span> <span class="hljs-string">number</span> <span class="hljs-string">of</span> <span class="hljs-string">allowed</span> <span class="hljs-string">requests</span> <span class="hljs-string">in</span> <span class="hljs-string">the</span> <span class="hljs-string">current</span> <span class="hljs-string">period</span>
 <span class="hljs-attr">type:</span> <span class="hljs-string">integer</span>
 </code></pre>
-<p><a id="tagObject"></a></section></section><section><h3><span>Tag Object</span></h3></p>
-<p>Allows adding meta data to a single tag that is used by the <a href="#operationObject">Operation Object</a>. It is not mandatory to have a Tag Object per tag used there.</p>
+</section></section><section><h3>Tag Object</h3>
+<p>Allows adding meta data to a single tag that is used by the <a href="#operation-object">Operation Object</a>. It is not mandatory to have a Tag Object per tag used there.</p>
 <section><h4>Fixed Fields</h4>
 <table>
 <thead>
@@ -1833,7 +1833,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 <tr>
 <td><a id="tagExternalDocs"> </a>externalDocs</td>
-<td style="text-align:center"><a href="#externalDocumentationObject">External Documentation Object</a></td>
+<td style="text-align:center"><a href="#external-documentation-object">External Documentation Object</a></td>
 <td>Additional external documentation for this tag.</td>
 </tr>
 </tbody>
@@ -1851,7 +1851,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tr>
 <td><a id="tagExtensions"> </a>^x-</td>
 <td style="text-align:center">Any</td>
-<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.</td>
+<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#specification-extensions">Vendor Extensions</a> for further details.</td>
 </tr>
 </tbody>
 </table>
@@ -1866,7 +1866,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">name:</span> <span class="hljs-string">pet</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">Pets</span> <span class="hljs-string">operations</span>
 </code></pre>
-<p><a id="referenceObject"></a></section></section><section><h3><span>Reference Object</span></h3></p>
+</section></section><section><h3>Reference Object</h3>
 <p>A simple object to allow referencing other definitions in the specification. It can be used to reference parameters and responses that are defined at the top level for reuse.</p>
 <p>The Reference Object is a <a href="https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-02">JSON Reference</a> that uses a <a href="http://tools.ietf.org/html/rfc6901">JSON Pointer</a> as its value. For this specification, only <a href="https://tools.ietf.org/html/draft-zyp-json-schema-04#section-7.2.3">canonical dereferencing</a> is supported.</p>
 <section><h4>Fixed Fields</h4>
@@ -1913,7 +1913,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <pre class="nohighlight"><code>
 <span class="hljs-string">$ref:</span> <span class="hljs-string">&#x27;definitions.yaml#/Pet&#x27;</span>
 </code></pre>
-<p><a id="schemaObject"></a></section></section><section><h3><span>Schema Object</span></h3></p>
+</section></section><section><h3>Schema Object</h3>
 <p>The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays. This object is based on the <a href="http://json-schema.org/">JSON Schema Specification Draft 4</a> and uses a predefined subset of it. On top of this subset, there are extensions provided by this specification to allow for more complete documentation.</p>
 <p>Further information about the properties can be found in <a href="https://tools.ietf.org/html/draft-zyp-json-schema-04">JSON Schema Core</a> and <a href="https://tools.ietf.org/html/draft-fge-json-schema-validation-00">JSON Schema Validation</a>. Unless stated otherwise, the property definitions follow the JSON Schema specification as referenced here.</p>
 <p>The following properties are taken directly from the JSON Schema definition and follow the same specifications:</p>
@@ -1940,7 +1940,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <li>enum</li>
 <li>type</li>
 </ul>
-<p>The following properties are taken from the JSON Schema definition but their definitions were adjusted to the Swagger Specification. Their definition is the same as the one from JSON Schema, only where the original definition references the JSON Schema definition, the <a href="#schemaObject">Schema Object</a> definition is used instead.</p>
+<p>The following properties are taken from the JSON Schema definition but their definitions were adjusted to the Swagger Specification. Their definition is the same as the one from JSON Schema, only where the original definition references the JSON Schema definition, the <a href="#schema-object">Schema Object</a> definition is used instead.</p>
 <ul>
 <li>items</li>
 <li>allOf</li>
@@ -1970,12 +1970,12 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 <tr>
 <td><a id="schemaXml"> </a>xml</td>
-<td style="text-align:center"><a href="#xmlObject">XML Object</a></td>
+<td style="text-align:center"><a href="#xml-object">XML Object</a></td>
 <td>This MAY be used only on properties schemas. It has no effect on root schemas. Adds Additional metadata to describe the XML representation format of this property.</td>
 </tr>
 <tr>
 <td><a id="schemaExternalDocs"> </a>externalDocs</td>
-<td style="text-align:center"><a href="#externalDocumentationObject">External Documentation Object</a></td>
+<td style="text-align:center"><a href="#external-documentation-object">External Documentation Object</a></td>
 <td>Additional external documentation for this schema.</td>
 </tr>
 <tr>
@@ -1998,7 +1998,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tr>
 <td><a id="schemaExtensions"> </a>^x-</td>
 <td style="text-align:center">Any</td>
-<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.</td>
+<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#specification-extensions">Vendor Extensions</a> for further details.</td>
 </tr>
 </tbody>
 </table>
@@ -2006,7 +2006,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <p>Swagger allows combining and extending model definitions using the <code>allOf</code> property of JSON Schema, in effect offering model composition. <code>allOf</code> takes in an array of object definitions that are validated <em>independently</em> but together compose a single object.</p>
 <p>While composition offers model extensibility, it does not imply a hierarchy between the models. To support polymorphism, Swagger adds the support of the <code>discriminator</code> field. When used, the <code>discriminator</code> will be the name of the property used to decide which schema definition is used to validate the structure of the model. As such, the <code>discriminator</code> field MUST be a required field. The value of the chosen property has to be the friendly name given to the model under the <code>definitions</code> property. As such, inline schema definitions, which do not have a given id, <em>cannot</em> be used in polymorphism.</p>
 </section><section><h5>XML Modeling</h5>
-<p>The <a href="#schemaXml">xml</a> property allows extra definitions when translating the JSON definition to XML. The <a href="#xmlObject">XML Object</a> contains additional information about the available options.</p>
+<p>The <a href="#schemaXml">xml</a> property allows extra definitions when translating the JSON definition to XML. The <a href="#xml-object">XML Object</a> contains additional information about the available options.</p>
 </section></section><section><h4>Schema Object Examples</h4>
 <section><h5>Primitive Sample</h5>
 <p>Unlike previous versions of Swagger, Schema definitions can be used to describe primitive and arrays as well.</p>
@@ -2305,7 +2305,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
       <span class="hljs-attr">required:</span>
       <span class="hljs-bullet">-</span> <span class="hljs-string">packSize</span>
 </code></pre>
-<p><a id="xmlObject"></a></section></section></section><section><h3><span>XML Object</span></h3></p>
+</section></section></section><section><h3>XML Object</h3>
 <p>A metadata object that allows for more fine-tuned XML model definitions.</p>
 <p>When using arrays, XML element names are <em>not</em> inferred (for singular/plural forms) and the <code>name</code> property should be used to add that information. See examples for expected behavior.</p>
 <section><h4>Fixed Fields</h4>
@@ -2358,12 +2358,12 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tr>
 <td><a id="xmlExtensions"> </a>^x-</td>
 <td style="text-align:center">Any</td>
-<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.</td>
+<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#specification-extensions">Vendor Extensions</a> for further details.</td>
 </tr>
 </tbody>
 </table>
 </section><section><h4>XML Object Examples</h4>
-<p>The examples of the XML object definitions are included inside a property definition of a <a href="#schemaObject">Schema Object</a> with a sample of the XML representation of it.</p>
+<p>The examples of the XML object definitions are included inside a property definition of a <a href="#schema-object">Schema Object</a> with a sample of the XML representation of it.</p>
 <section><h5>No XML Element</h5>
 <p>Basic string property:</p>
 <pre class="nohighlight"><code>
@@ -2651,7 +2651,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
   <span class="hljs-tag">&lt;<span class="hljs-name">aliens</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>&gt;</span>
 </code></pre>
-<p><a id="definitionsObject"></a></section></section></section><section><h3><span>Definitions Object</span></h3></p>
+</section></section></section><section><h3>Definitions Object</h3>
 <p>An object to hold data types that can be consumed and produced by operations. These data types can be primitives, arrays or models.</p>
 <section><h4>Patterned Fields</h4>
 <table>
@@ -2665,7 +2665,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tbody>
 <tr>
 <td><a id="definitionsName"> </a>{name}</td>
-<td style="text-align:center"><a href="#schemaObject">Schema Object</a></td>
+<td style="text-align:center"><a href="#schema-object">Schema Object</a></td>
 <td>A single definition, mapping a “name” to the schema it defines.</td>
 </tr>
 </tbody>
@@ -2717,7 +2717,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
     <span class="hljs-attr">name:</span>
       <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 </code></pre>
-<p><a id="parametersDefinitionsObject"></a></section></section><section><h3><span>Parameters Definitions Object</span></h3></p>
+</section></section><section><h3>Parameters Definitions Object</h3>
 <p>An object to hold parameters to be reused across operations. Parameter definitions can be referenced to the ones defined here.</p>
 <p>This does <em>not</em> define global operation parameters.</p>
 <section><h4>Patterned Fields</h4>
@@ -2732,7 +2732,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tbody>
 <tr>
 <td><a id="pdName"> </a>{name}</td>
-<td style="text-align:center"><a href="#parameterObject">Parameter Object</a></td>
+<td style="text-align:center"><a href="#parameter-object">Parameter Object</a></td>
 <td>A single parameter definition, mapping a “name” to the parameter it defines.</td>
 </tr>
 </tbody>
@@ -2774,7 +2774,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
   <span class="hljs-attr">type:</span> <span class="hljs-string">integer</span>
   <span class="hljs-attr">format:</span> <span class="hljs-string">int32</span>
 </code></pre>
-<p><a id="responsesDefinitionsObject"></a></section></section><section><h3><span>Responses Definitions Object</span></h3></p>
+</section></section><section><h3>Responses Definitions Object</h3>
 <p>An object to hold responses to be reused across operations. Response definitions can be referenced to the ones defined here.</p>
 <p>This does <em>not</em> define global operation responses.</p>
 <section><h4>Patterned Fields</h4>
@@ -2789,7 +2789,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tbody>
 <tr>
 <td><a id="rdName"> </a>{name}</td>
-<td style="text-align:center"><a href="#responseObject">Response Object</a></td>
+<td style="text-align:center"><a href="#response-object">Response Object</a></td>
 <td>A single response definition, mapping a “name” to the response it defines.</td>
 </tr>
 </tbody>
@@ -2821,7 +2821,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
   <span class="hljs-attr">schema:</span>
     <span class="hljs-string">$ref:</span> <span class="hljs-string">&#x27;#/definitions/GeneralError&#x27;</span>
 </code></pre>
-<p><a id="securityDefinitionsObject"></a></section></section><section><h3><span>Security Definitions Object</span></h3></p>
+</section></section><section><h3>Security Definitions Object</h3>
 <p>A declaration of the security schemes available to be used in the specification. This does not enforce the security schemes on the operations and only serves to provide the relevant details for each scheme.</p>
 <section><h4>Patterned Fields</h4>
 <table>
@@ -2835,7 +2835,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tbody>
 <tr>
 <td><a id="sdName"> </a>{name}</td>
-<td style="text-align:center"><a href="#securitySchemeObject">Security Scheme Object</a></td>
+<td style="text-align:center"><a href="#security-scheme-object">Security Scheme Object</a></td>
 <td>A single security scheme definition, mapping a “name” to the scheme it defines.</td>
 </tr>
 </tbody>
@@ -2872,7 +2872,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
     <span class="hljs-attr">write:pets:</span> <span class="hljs-string">modify</span> <span class="hljs-string">pets</span> <span class="hljs-string">in</span> <span class="hljs-string">your</span> <span class="hljs-string">account</span>
     <span class="hljs-attr">read:pets:</span> <span class="hljs-string">read</span> <span class="hljs-string">your</span> <span class="hljs-string">pets</span>
 </code></pre>
-<p><a id="securitySchemeObject"></a></section></section><section><h3><span>Security Scheme Object</span></h3></p>
+</section></section><section><h3>Security Scheme Object</h3>
 <p>Allows the definition of a security scheme that can be used by the operations. Supported schemes are basic authentication, an API key (either as a header or as a query parameter) and OAuth2’s common flows (implicit, password, application and access code).</p>
 <section><h4>Fixed Fields</h4>
 <table>
@@ -2929,7 +2929,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 </tr>
 <tr>
 <td><a id="securitySchemeScopes"> </a>scopes</td>
-<td style="text-align:center"><a href="#scopesObject">Scopes Object</a></td>
+<td style="text-align:center"><a href="#scopes-object">Scopes Object</a></td>
 <td><code>oauth2</code></td>
 <td><strong>Required.</strong> The available scopes for the OAuth2 security scheme.</td>
 </tr>
@@ -2948,7 +2948,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tr>
 <td><a id="securitySchemeExtensions"> </a>^x-</td>
 <td style="text-align:center">Any</td>
-<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.</td>
+<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#specification-extensions">Vendor Extensions</a> for further details.</td>
 </tr>
 </tbody>
 </table>
@@ -2995,7 +2995,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
   <span class="hljs-attr">write:pets:</span> <span class="hljs-string">modify</span> <span class="hljs-string">pets</span> <span class="hljs-string">in</span> <span class="hljs-string">your</span> <span class="hljs-string">account</span>
   <span class="hljs-attr">read:pets:</span> <span class="hljs-string">read</span> <span class="hljs-string">your</span> <span class="hljs-string">pets</span>
 </code></pre>
-<p><a id="scopesObject"></a></section></section></section><section><h3><span>Scopes Object</span></h3></p>
+</section></section></section><section><h3>Scopes Object</h3>
 <p>Lists the available scopes for an OAuth2 security scheme.</p>
 <section><h4>Patterned Fields</h4>
 <table>
@@ -3027,7 +3027,7 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <tr>
 <td><a id="scopesExtensions"> </a>^x-</td>
 <td style="text-align:center">Any</td>
-<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#vendorExtensions">Vendor Extensions</a> for further details.</td>
+<td>Allows extensions to the Swagger Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be <code>null</code>, a primitive, an array or an object. See <a href="#specification-extensions">Vendor Extensions</a> for further details.</td>
 </tr>
 </tbody>
 </table>
@@ -3042,9 +3042,9 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-attr">write:pets:</span> <span class="hljs-string">modify</span> <span class="hljs-string">pets</span> <span class="hljs-string">in</span> <span class="hljs-string">your</span> <span class="hljs-string">account</span>
 <span class="hljs-attr">read:pets:</span> <span class="hljs-string">read</span> <span class="hljs-string">your</span> <span class="hljs-string">pets</span>
 </code></pre>
-<p><a id="securityRequirementObject"></a></section></section><section><h3><span>Security Requirement Object</span></h3></p>
+</section></section><section><h3>Security Requirement Object</h3>
 <p>Lists the required security schemes to execute this operation. The object can have multiple security schemes declared in it which are all required (that is, there is a logical AND between the schemes).</p>
-<p>The name used for each property MUST correspond to a security scheme declared in the <a href="#securityDefinitionsObject">Security Definitions</a>.</p>
+<p>The name used for each property MUST correspond to a security scheme declared in the <a href="#security-definitions-object">Security Definitions</a>.</p>
 <section><h4>Patterned Fields</h4>
 <table>
 <thead>
@@ -3086,16 +3086,16 @@ A Path Item may be empty, due to <a href="#securityFiltering">ACL constraints</a
 <span class="hljs-bullet">-</span> <span class="hljs-string">write:pets</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">read:pets</span>
 </code></pre>
-<p><a id="vendorExtensions"></a></section></section></section></section><section><h2><span>Specification Extensions</span></h2></p>
+</section></section></section></section><section><h2>Specification Extensions</h2>
 <p>While the Swagger Specification tries to accommodate most use cases, additional data can be added to extend the specification at certain points.</p>
 <p>The extensions properties are always prefixed by <code>&quot;x-&quot;</code> and can have any valid JSON format value.</p>
 <p>The extensions may or may not be supported by the available tooling, but those may be extended as well to add requested support (if tools are internal or open-sourced).</p>
-<p><a id="securityFiltering"></a></section><section><h2><span>Security Filtering</span></h2></p>
+</section><section><h2>Security Filtering</h2>
 <p>Some objects in the Swagger specification may be declared and remain empty, or completely be removed, even though they are inherently the core of the API documentation.</p>
 <p>The reasoning behind it is to allow an additional layer of access control over the documentation itself. While not part of the specification itself, certain libraries may choose to allow access to parts of the documentation based on some form of authentication/authorization.</p>
 <p>Two examples for this:</p>
 <ol>
-<li>The <a href="#pathsObject">Paths Object</a> may be empty. It may be counterintuitive, but this may tell the viewer that they got to the right place, but can’t access any documentation. They’d still have access to the <a href="#infoObject">Info Object</a> which may contain additional information regarding authentication.</li>
-<li>The <a href="#pathItemObject">Path Item Object</a> may be empty. In this case, the viewer will be aware that the path exists, but will not be able to see any of its operations or parameters. This is different than hiding the path itself from the <a href="#pathsObject">Paths Object</a> so the user will not be aware of its existence. This allows the documentation provider a finer control over what the viewer can see.</li>
+<li>The <a href="#paths-object">Paths Object</a> may be empty. It may be counterintuitive, but this may tell the viewer that they got to the right place, but can’t access any documentation. They’d still have access to the <a href="#info-object">Info Object</a> which may contain additional information regarding authentication.</li>
+<li>The <a href="#path-item-object">Path Item Object</a> may be empty. In this case, the viewer will be aware that the path exists, but will not be able to see any of its operations or parameters. This is different than hiding the path itself from the <a href="#paths-object">Paths Object</a> so the user will not be aware of its existence. This allows the documentation provider a finer control over what the viewer can see.</li>
 </ol>
 

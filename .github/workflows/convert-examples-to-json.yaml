@@ -24,8 +24,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2 # checkout repo content
 
+    - uses: actions/setup-node@v4 # setup Node.js
+      with:
+        node-version: '20.x'
+
     - name: Install dependencies
-      run: npm i
+      run: npm ci
 
     - name: convert YAML examples to JSON
       run: find examples/v3* -type f -name "*.yaml" | xargs node scripts/yaml2json/yaml2json.js

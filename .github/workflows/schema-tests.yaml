@@ -28,8 +28,8 @@ jobs:
         node-version: '20.x'
     - name: Install dependencies from main
       run: |
-        git checkout remotes/origin/main -- package.json
-        npm i
+        git checkout remotes/origin/main -- package.json package-lock.json
+        npm ci
     - name: Run tests
       run: npm run test
 

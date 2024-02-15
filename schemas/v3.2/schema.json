@@ -89,10 +89,10 @@
           "type": "string"
         },
         "contact": {
-          "$ref": "#/$defs/contact"
+          "$ref": "#/$defs/contact-or-reference"
         },
         "license": {
-          "$ref": "#/$defs/license"
+          "$ref": "#/$defs/license-or-reference"
         },
         "version": {
           "type": "string"
@@ -120,6 +120,19 @@
       },
       "$ref": "#/$defs/specification-extensions",
       "unevaluatedProperties": false
+    },
+    "contact-or-reference": {
+      "if": {
+        "required": [
+          "$ref"
+        ]
+      },
+      "then": {
+        "$ref": "#/$defs/reference"
+      },
+      "else": {
+        "$ref": "#/$defs/contact"
+      }
     },
     "license": {
       "type": "object",
@@ -152,6 +165,19 @@
       ],
       "$ref": "#/$defs/specification-extensions",
       "unevaluatedProperties": false
+    },
+    "license-or-reference": {
+      "if": {
+        "required": [
+          "$ref"
+        ]
+      },
+      "then": {
+        "$ref": "#/$defs/reference"
+      },
+      "else": {
+        "$ref": "#/$defs/license"
+      }
     },
     "server": {
       "type": "object",

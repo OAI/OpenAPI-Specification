@@ -1,5 +1,5 @@
 {
-  "$id": "https://spec.openapis.org/oas/3.1/schema/2021-05-20",
+  "$id": "https://spec.openapis.org/oas/3.2/schema/2021-05-20",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
@@ -13,7 +13,7 @@
     "jsonSchemaDialect": {
       "type": "string",
       "format": "uri",
-      "default": "https://spec.openapis.org/oas/3.1/dialect/base"
+      "default": "https://spec.openapis.org/oas/3.2/dialect/base"
     },
     "servers": {
       "type": "array",

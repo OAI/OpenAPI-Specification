@@ -1,7 +1,7 @@
-# OpenAPI 3.1.X JSON Schema
+# OpenAPI 3.2.X JSON Schema
 
 Here you can find the JSON Schema for validating OpenAPI definitions of versions
-3.1.X.
+3.2.X.
 
 As a reminder, the JSON Schema is not the source of truth for the Specification.
 In cases of conflicts between the Specification itself and the JSON Schema, the
@@ -10,11 +10,11 @@ with the JSON Schema so it's highly recommended to employ other methods to
 ensure compliance.
 
 The iteration version of the JSON Schema can be found in the `$id` field. For
-example, the value of `$id: https://spec.openapis.org/oas/3.1/schema/2021-03-02`
+example, the value of `$id: https://spec.openapis.org/oas/3.2/schema/2021-03-02`
 means this iteration was created on March 2nd, 2021.
 
 The `schema.yaml` schema doesn't validate the JSON Schemas in your OpenAPI
-document because 3.1 allows you to use any JSON Schema dialect you choose. We
+document because 3.2 allows you to use any JSON Schema dialect you choose. We
 have also included `schema-base.yaml` that extends the main schema to validate
 that all schemas use the default OAS base vocabulary.
 

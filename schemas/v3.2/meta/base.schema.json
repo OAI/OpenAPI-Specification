@@ -1,8 +1,8 @@
 {
-    "$id": "https://spec.openapis.org/oas/3.1/meta/base",
+    "$id": "https://spec.openapis.org/oas/3.2/meta/base",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$vocabulary": {
-        "https://spec.openapis.org/oas/3.1/vocab/base": true
+        "https://spec.openapis.org/oas/3.2/vocab/base": true
     },
     "$dynamicAnchor": "meta",
     "title": "OAS Base vocabulary",

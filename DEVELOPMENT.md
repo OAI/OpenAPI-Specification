@@ -2,6 +2,33 @@
 
 This document intends to establish guidelines which build a transparent, open mechanism for deciding how to evolve the OpenAPI Specification. The OpenAPI Technical Steering Committee (TSC) will initially follow these processes when merging changes from external contributors or from the TSC itself. This guideline document will be adjusted as practicality dictates.
 
+### Essential Policies
+
+If in doubt about a policy, please [ask on our Slack](https://communityinviter.com/apps/open-api/openapi) before opening a PR.
+
+_Note that the later sections of this document have not been updated recently.  Until that has happened, if this section and later sections disagree, this section is to be considered the current policy._
+
+#### No changes to published specifications
+
+No changes, ***no matter how trivial***, are ever made to the contents of published specifications.  The only potential changes to those documents are updates to link URLs _if and only if_ the targeted document is moved by a 3rd party.  Other changes to link URLs are not allowed.
+
+#### Current branches and documents open to change
+
+The first PR for a change should be against the oldest release line to which it applies.  Changes can then be forward-ported as appropriate.
+
+The current (February 2024) active releases are:
+
+| Version | Branch | File |
+| ------- | ------ | ---- |
+| 3.0.4 | `v3.0.4-dev` | `versions/3.0.4.md` |
+| 3.1.1 | `v3.1.1-dev` | `versions/3.1.1.md` |
+| 3.2.0 | `v3.2.0-dev` | `versions/3.2.0.md` |
+| 4.0.0 | [OAI/sig-moonwalk](https://github.com/OAI/sig-moonwalk) | [discussions only](https://github.com/OAI/sig-moonwalk/discussions) |
+
+#### Changing the schemas
+
+Schemas are only changed _after_ the specification is changed.  Changes are made on the `main` branch, and should be made to the YAML version _only_.  The JSON version will be generated automatically.
+
 ## OAI Specification Driving factors
 
 The OpenAPI Specification should be use-case driven. We can specify support for hypothetical use cases as we see fit, but specifications should be backed by realistic scenarios.

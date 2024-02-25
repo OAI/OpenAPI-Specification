@@ -1,7 +1,7 @@
 ---
 owner: mikekistler
-issue: 
-description: structured fields token as defined in [RFC 8941]
+issue:
+description: structured fields token as defined in [RFC8941]
 source: https://www.rfc-editor.org/rfc/rfc8941#name-tokens
 source_label: RFC 8941
 base_type: string
@@ -14,13 +14,15 @@ layout: default
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format represents a structured fields token as defined in [RFC 8941].
+The `{{page.slug}}` format represents a structured fields token as defined in [RFC8941].
 
 ```abnf
 sf-token = ( ALPHA / "*" ) *( tchar / ":" / "/" )
 ```
 
 Tokens are short textual words; their abstract model is identical to their expression in the HTTP field value serialization.
+
+This format is appropriate for a header value that must conform to the {{page.slug}} structured field definition.
 
 {% if page.issue %}
 ### GitHub Issue
@@ -34,4 +36,4 @@ Tokens are short textual words; their abstract model is identical to their expre
 {{ page.remarks }}
 {% endif %}
 
-[RFC 8941]: https://www.rfc-editor.org/rfc/rfc8941#name-tokens
+[RFC8941]: https://www.rfc-editor.org/rfc/rfc8941#name-tokens

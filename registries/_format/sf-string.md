@@ -1,7 +1,7 @@
 ---
 owner: mikekistler
-issue: 
-description: structured fields string as defined in [RFC 8941]
+issue:
+description: structured fields string as defined in [RFC8941]
 source: https://www.rfc-editor.org/rfc/rfc8941#name-strings
 source_label: RFC 8941
 base_type: string
@@ -14,7 +14,7 @@ layout: default
 
 Base type: `{{ page.base_type }}`.
 
-The `{{page.slug}}` format represents a structured fields string as defined in [RFC 8941].
+The `{{page.slug}}` format represents a structured fields string as defined in [RFC8941].
 
 ```abnf
 sf-string = DQUOTE *chr DQUOTE
@@ -28,6 +28,8 @@ Note that this excludes tabs, newlines, carriage returns, etc.
 
 Strings are delimited with double quotes, using a backslash ("\") to escape double quotes and backslashes.
 
+This format is appropriate for a header value that must conform to the {{page.slug}} structured field definition.
+
 {% if page.issue %}
 ### GitHub Issue
 
@@ -40,4 +42,4 @@ Strings are delimited with double quotes, using a backslash ("\") to escape doub
 {{ page.remarks }}
 {% endif %}
 
-[RFC 8941]: https://www.rfc-editor.org/rfc/rfc8941#name-strings
+[RFC8941]: https://www.rfc-editor.org/rfc/rfc8941#name-strings

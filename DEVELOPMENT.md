@@ -6,8 +6,6 @@ This document intends to establish guidelines which build a transparent, open me
 
 If in doubt about a policy, please [ask on our Slack](https://communityinviter.com/apps/open-api/openapi) before opening a PR.
 
-_Note that the later sections of this document have not been updated recently.  Until that has happened, if this section and later sections disagree, this section is to be considered the current policy._
-
 #### No changes to published specifications
 
 No changes, ***no matter how trivial***, are ever made to the contents of published specifications.  The only potential changes to those documents are updates to link URLs _if and only if_ the targeted document is moved by a 3rd party.  Other changes to link URLs are not allowed.

@@ -1,8 +1,8 @@
 # Security Considerations
 
 OpenAPI documents use JSON, YAML, and JSON Schema, and therefore share their security considerations:
-- [JSON](https://datatracker.ietf.org/doc/html/rfc8259)
-- [YAML](https://datatracker.ietf.org/doc/html/rfc9512)
+- [JSON](https://www.iana.org/assignments/media-types/application/json)
+- [YAML](https://www.iana.org/assignments/media-types/application/yaml)
 - [JSON Schema Core](https://json-schema.org/draft/2020-12/json-schema-core#section-13)
 - [JSON Schema Validation](https://json-schema.org/draft/2020-12/json-schema-validation#name-security-considerations)
 

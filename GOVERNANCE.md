@@ -24,7 +24,7 @@ A call-for-nominations period may be agreed upon by the TSC voting members and a
 
 ## 3. Removal of membership from the TSC
 
-Occassionally it may be necessary to remove a TSC member, such as behavior that violates the code of conduct or prolonged absenteeism. A 66% vote (confidential, electronic) of the other TSC members is required to remove a member. Otherwise, TSC members are removed when they renounce their position by informing the TSC of their effective resignation date via email.
+Occasionally it may be necessary to remove a TSC member, such as behavior that violates the code of conduct or prolonged absenteeism. A 66% vote (confidential, electronic) of the other TSC members is required to remove a member. Otherwise, TSC members are removed when they renounce their position by informing the TSC of their effective resignation date via email.
 
 ## 4. Criteria for decisions
 

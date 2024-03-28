@@ -57,6 +57,32 @@ For each change in the specification we should *always* consider the following:
 
 Spec changes should be approved by a majority of the committers. Approval can be given by commenting on the issue itself, for example, "Approved by @webron" however at least one formal GitHub-based  flow approval must be given. After voting criteria is met, any committer can merge the PR. No change should be approved until there is documentation for it, supplied in an accompanying PR. 
 
+### Proposals for Specification Changes
+
+As an organisation, we're open to changes, and these can be proposed by anyone.
+The specification is very widely adopted, and there is an appropriately high bar for wide appeal and due scrutiny as a result.
+We do not accept changes lightly (but we will consider any that we can).
+
+Small changes are welcome as pull requests.
+
+Bigger changes require a more formal process.
+
+1. Start a [discussion](https://github.com/OAI/OpenAPI-Specification/discussions) of type "Enhancements".
+   The discussion entry must include some use cases, your proposed solution and the alternatives you have considered.
+   If there is engagement and support for the proposal over time, then it can be considered as a candidate to move to the next stage.
+
+2. It really helps to see the proposed change in action.
+   Start using it as a `x-*` extension if that's appropriate, or try to bring other evidence of your proposed solution being adopted.
+
+3. If the suggested change has good support, you will be asked to create a formal proposal.
+   Use the [template in the proposals directory](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals), copy it to a new file, and complete it.
+   Once you the document is ready, open a pull request.
+
+4. The proposal will be more closely reviewed and commented on or amended until it is either rejected or accepted.
+   At that point, the proposal is merged to the `main` branch and a final pull request is opened to add the feature to the appropriate version of the specification.
+
+Questions are welcome on the process and at any time. Use the discussions feature or find us in Slack.
+
 ## Tracking Process
 
 * GitHub is the medium of record for all spec designs, use cases, and so on.
@@ -98,29 +124,6 @@ A release requires a vote on the release notes by TSC members within the voting 
 * Minor: requires approval by 66% of TSC members. (Max voting period 7 days)
 
 * Major: requires approval by 66% of TSC members. (Max voting period 14 days)
-
-## Draft Features
-
-Where suitable, features will be introduced as draft but OAI approved extensions.
-By introducing new features this way we enable new features to be designed, documented and then implemented by tools that are interested in the feature, without putting the burden of implementation on all tooling.
-If the feature is successfully implemented and there is demonstrable value added by the feature, it will become a candidate for inclusion in a future release of the specification, at which point all tools will be expected to support the feature.
-
-Draft feature extensions are identified by the `x-oas-draft-` prefix and can only be used where existing extensions are permitted.
-This ensures no existing tooling will affected by the introduction of the draft feature.
-If the feature is deemed appropriate for inclusion in the OAS, the `x-oas-draft-` prefix will be removed.
-Tooling that supports draft features should plan for the future removal of the prefix.
-When tooling adds support for a later version of OAS that includes the final implementation of the feature, it MUST not support the use of the draft prefix for that feature.
-Draft features will only be promoted into minor or major releases of the specification and therefore will be transparent to OpenAPI description writers and tooling providers who choose not to use the feature while in its draft state.
-
-Draft features will be documented as GitHub issues and labeled with the `draft-feature` label and will be initially labelled as `draft:proposal`. When the proposal is considered sufficiently stable for pilot implementation, it will be labeled `draft:pilot`.
-If during the development of a draft feature, it is determined that the feature needs to change in a way that may break existing draft implementations, the extension name itself may be versioned with a version suffix. e.g. `-v2`
-When a draft feature becomes part of a future update to the specification any version suffix will be removed.
-Draft features that are deemed not appropriate for inclusion MUST be marked with the `draft:abandoned` label.
-Draft-features that are considered suitably specified and have had successful pilot implementations will be marked with the `draft:graduated` label.
-
-Not all future new features will be introduced in this way.
-Some new features impact the specification in ways that cannot be encapsulated in an extension.
-However, where a new feature can be introduced in this way, it should be.
 
 ## Transparency
 

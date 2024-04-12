@@ -916,13 +916,13 @@ $defs:
           refreshUrl:
             type: string
           ciba_delivery_modes:
-              type: array
-              items:
-                type: string
+            type: array
+            items:
+              type: string
           ciba_signing_algs:
-*             type: array
-              items:
-                type: string
+*           type: array
+            items:
+              type: string
           ciba_user_code:
             type: boolean
           scopes:

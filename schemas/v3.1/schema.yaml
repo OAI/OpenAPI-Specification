@@ -837,6 +837,8 @@ $defs:
         $ref: '#/$defs/oauth-flows/$defs/client-credentials'
       authorizationCode:
         $ref: '#/$defs/oauth-flows/$defs/authorization-code'
+      ciba:
+        $ref: '#/$defs/oauth-flows/$defs/ciba'
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
 
@@ -900,6 +902,36 @@ $defs:
         required:
           - authorizationUrl
           - tokenUrl
+          - scopes
+        $ref: '#/$defs/specification-extensions'
+        unevaluatedProperties: false
+        
+      ciba:
+        type: object
+        properties:
+          authorizationUrl:
+            type: string
+          tokenUrl:
+            type: string
+          refreshUrl:
+            type: string
+          ciba_delivery_modes:
+              type: array
+              items:
+                type: string
+          ciba_signing_algs:
+*             type: array
+              items:
+                type: string
+          ciba_user_code:
+            type: boolean
+          scopes:
+            $ref: '#/$defs/map-of-strings'
+        required:
+          - authorizationUrl
+          - tokenUrl
+          - ciba_delivery_modes
+          - ciba_signing_algs
           - scopes
         $ref: '#/$defs/specification-extensions'
         unevaluatedProperties: false

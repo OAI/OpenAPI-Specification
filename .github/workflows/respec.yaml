@@ -21,14 +21,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2 # checkout main branch
+    - uses: actions/checkout@v4 # checkout main branch
       with:
         fetch-depth: 0
 
+    - uses: actions/setup-node@v4 # setup Node.js
+      with:
+        node-version: '20.x'
+    
     - name: Install dependencies
-      run: npm i
+      run: npm ci
 
-    - uses: actions/checkout@v2 # checkout gh-pages branch
+    - uses: actions/checkout@v4 # checkout gh-pages branch
       with:
         ref: gh-pages
         path: deploy
@@ -37,7 +41,7 @@ jobs:
       run: scripts/md2html/build.sh
 
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v3
+      uses: peter-evans/create-pull-request@v6
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: update-respec-version

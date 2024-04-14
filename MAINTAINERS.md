@@ -2,10 +2,16 @@
 * Darrel Miller [@darrelmiller](https://github.com/darrelmiller)
 * Jeremy Whitlock [@whitlockjc](https://github.com/whitlockjc)
 * Marsh Gardiner [@earth2marsh](https://github.com/earth2marsh)
-* Mike Ralphson [@MikeRalphson](https://github.com/MikeRalphson)
 * Ron Ratovsky [@webron](https://github.com/webron)
-* Uri Sarid [@usarid](https://github.com/usarid)
+
+## Provisional
+* Lorna Mitchell [@lornajane](https://github.com/lornajane)
+* Mike Kistler [@mkistler](https://github.com/mkistler)
+* Miguel Quintero [@miqui](https://github.com/miqui)
+* Ralf Handl [@ralfhandl](https://github.com/ralfhandl)
 
 ## Emeritus
+* Mike Ralphson [@MikeRalphson](https://github.com/MikeRalphson)
+* Uri Sarid [@usarid](https://github.com/usarid)
 * Jason Harmon [@jharmn](https://github.com/jharmn)
 * Tony Tam [@fehguy](https://github.com/fehguy)

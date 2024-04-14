@@ -1,19 +1,35 @@
-**NOTE: This meeting is on Thursday at 9am - 10am PT**
+## Weekly meetings happen on Thursdays at 9am - 10am Pacific
 
-Zoom Meeting link: [https://zoom.us/j/975841675](https://zoom.us/j/975841675?pwd=SUh4MjRLaEFKNlI3RElpWTdhRDVVUT09). Dial-in passcode: 763054
+This agenda gives visibility into discussion topics for the weekly Technical Developer Community (TDC) meetings. Sharing agenda items in advance allows people to plan to attend meetings where they have an interest in specific topics. 
 
-In order to give some more visibility into the topics we cover in the TDC meetings here is the planned agenda for the next meeting.  Hopefully this will allow people to plan to attend meetings for topics that they have an interest in.  And for folks who cannot attend they can comment on this issue prior to the meeting.  Feel free to suggest other potential agenda topics.
+Whether attending or not, **anyone can comment on this issue prior to the meeting to suggest topics or to add comments on planned topics or proposals**.
 
-**Please submit comments below for topics or proposals that you wish to present in the TDC meeting**
+Meetings take place over Zoom: [https://zoom.us/j/975841675](https://zoom.us/j/975841675?pwd=SUh4MjRLaEFKNlI3RElpWTdhRDVVUT09), dial-in passcode: 763054
 
-The agenda backlog is currently maintained in issue #2482
+### Accessibility & Etiquette
+* Participants must abide by our [Code-of-Conduct](https://github.com/OAI/OpenAPI-Specification/blob/main/CODE_OF_CONDUCT.md#code-of-conduct).
+
+* Meetings are recorded for future reference, and for those who are not able to attend in-person.
+
+* We invite you to feel comfortable to challenge any language or behaviour that is harmful or not inclusive during this meeting.
+
+* We look forward to your participation, but please consider these acts of etiquette:
+  * Remain on mute when not speaking to prevent interruptions.
+  * Blur your background to reduce visual distractions.
+  * Use the Zoom meeting "Raise Hand" feature to notify the group when you wish to speak.
+
+| Blur My Background | Raise Hand |
+|-|-|
+| <img width="323" alt="Screenshot of Zoom UI showing the 'Stop Video' and 'Blur My Background' control" src="https://github.com/OAI/OpenAPI-Specification/assets/7367/7e43dbbb-6529-46e6-8b04-4c1aa852d9dd"> | <img width="323" alt="Screenshot of Zoom UI showing the 'Reaction' and 'Raise Hand' control" src="https://github.com/OAI/OpenAPI-Specification/assets/7367/f991722f-4651-40aa-9bc4-7e9a2a165a6a"> |
+
+### Agenda Structure
 
 | Topic | Owner | Decision/NextStep |
-|-------|---------|---------|  
-| | | |
-AOB (see below) | TDC | |
-New issues / PRs labelled [review](https://github.com/OAI/OpenAPI-Specification/labels/review) | @OAI/triage | |
-[New issues](https://github.com/search?q=repo%3Aoai%2Fopenapi-specification+is%3Aissue+comments%3A0+no%3Alabel+is%3Aopen) without response yet | @OAI/triage  | |
+|-|-|-|
+Intros and governance meta-topics (5 mins) | TDC | |
+Reports from Special Interest Groups (5 mins) | SIG members | |
+Any other business (add comments below to suggest topics) | TDC | |
+[Approved spec PRs](https://github.com/OAI/OpenAPI-Specification/pulls?q=is%3Apr+is%3Aopen+review%3Aapproved) | TDC | |
+[New issues needing attention](https://github.com/search?q=repo%3Aoai%2Fopenapi-specification+is%3Aissue+comments%3A0+no%3Alabel+is%3Aopen) | @OAI/triage  | |
 
-
-/cc @OAI/tsc Please suggest items for inclusion
+/cc [@OAI/tsc](https://github.com/orgs/OAI/teams/tsc) please suggest items for inclusion.

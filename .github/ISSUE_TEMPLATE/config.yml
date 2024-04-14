@@ -1,0 +1,17 @@
+blank_issues_enabled: true
+contact_links:
+  - name: OpenAPI Specification
+    url: https://spec.openapis.org/oas/latest.html
+    about: View the latest version of the specification
+  - name: Getting started documentation
+    url: https://learn.openapis.org
+    about: Learn about the OpenAPI Specification
+  - name: OpenAPI Tooling
+    url: https://tools.openapis.org
+    about: Open-source and commercial tools for OpenAPI
+  - name: OpenAPI Initiative Registry
+    url: https://spec.openapis.org/registry/index.html
+    about: Registry of formats, extension namespaces etc.
+  - name: OpenAPI Initiative Slack
+    url: https://communityinviter.com/apps/open-api/openapi
+    about: Join our online community.

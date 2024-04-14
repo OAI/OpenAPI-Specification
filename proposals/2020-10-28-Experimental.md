@@ -43,7 +43,7 @@ Downstream tools could then make use of this metadata:
 
 ## Detailed design
 
-A new boolean field named `experimental`, defaulting to `experimental`, is added to:
+A new boolean field named `experimental`, defaulting to `false`, is added to:
 
 - Operation
 - Parameter

@@ -113,11 +113,12 @@ This kind of requirement is handled for TypeScript libraries by [api-extractor](
 ### Unanswered Questions
 
 - If an operation is not marked as experimental, but it is using a schema which is (i.e. as its request object), then it is implicitly also unstable. Would this usage be considered invalid?
-- Should `experimental` and `deprecated` be mutually exclusive?
 
 ## Backwards compatibility
 
 The `experimental` field would default to false, meaning existing behaviour is preserved, and the new field is only used on an opt-in basis.
+
+`experimental` can coexist with `deprecated` - an operation, parameter or schema can be both experimental and deprecated, having never gotten to a stable point before being deprecated.
 
 ## Alternatives considered
 

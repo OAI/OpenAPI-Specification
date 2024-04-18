@@ -27,7 +27,7 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@hyperjump/json-schema": "^1.7.3",
+    "@hyperjump/json-schema": "^1.8.0",
     "mdv": "^1.3.4",
     "vitest": "^1.5.0",
     "yaml": "^2.4.1"

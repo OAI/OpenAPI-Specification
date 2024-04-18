@@ -74,11 +74,14 @@ Bigger changes require a more formal process.
 2. It really helps to see the proposed change in action.
    Start using it as a `x-*` extension if that's appropriate, or try to bring other evidence of your proposed solution being adopted.
 
-3. If the suggested change has good support, you will be asked to create a formal proposal.
+3. If you are adding support for something from another specification (such as OAuth), please point to implementations of that
+   specification so that we can understand how, and to what degree, it is being used.
+
+4. If the suggested change has good support, you will be asked to create a formal proposal.
    Use the [template in the proposals directory](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals), copy it to a new file, and complete it.
    Once you the document is ready, open a pull request.
 
-4. The proposal will be more closely reviewed and commented on or amended until it is either rejected or accepted.
+5. The proposal will be more closely reviewed and commented on or amended until it is either rejected or accepted.
    At that point, the proposal is merged to the `main` branch and a final pull request is opened to add the feature to the appropriate version of the specification.
 
 Questions are welcome on the process and at any time. Use the discussions feature or find us in Slack.

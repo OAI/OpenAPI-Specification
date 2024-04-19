@@ -3,7 +3,7 @@ contact_links:
   - name: Have a question about using OpenAPI?
     url: https://communityinviter.com/apps/open-api/openapi
     about: Ask us on our Slack!
-  - name: Have a question bout OpenAPI Tooling?
+  - name: Have a question about OpenAPI Tooling?
     url: https://tools.openapis.org/
     about: Please ask your tooling vendor!
   - name: Want to add to our list of OpenAPI Tools?

@@ -84,6 +84,130 @@ Some examples of possible media type definitions:
   application/vnd.github.v3.patch
 ```
 
+#### Media Type Registry
+
+While the [Schema Object](#schema-object) is designed to describe and validate JSON, several other media types are commonly used in APIs.
+Requirements regarding support for other media types are documented in this Media Types section and in several Object sections later in this specification.
+For convenience and future extensibility, these are cataloged in the OpenAPI Initiative's [Media Type Registry](https://spec.openapis.org/registry/media-type/), which indicates where in this specification the relevant requirements can be found.
+
+#### Sequential Media Types
+
+Several media types exist to transport a sequence of values, separated by some delimiter, either as a single document or as multiple documents representing chunks of a logical stream.
+Depending on the media type, the values could either be in another existing format such as JSON, or in a custom format specific to the sequential media type.
+
+Implementations MUST support modeling sequential media types with the [Schema Object](#schema-object) by treating the sequence as an array with the same items and ordering as the sequence.
+
+##### Working With Indefinite-Length Streams
+
+In addition to regular document-style use, sequential media types can be used to represent some portion of a stream that may not have a well-defined beginning or end.
+In such use cases, either the client or server makes a decision to work with one or more elements in the sequence at a time, but this subsequence is not a complete array in the sense of normal JSON arrays.
+
+OpenAPI Description authors are responsible for avoiding the use of JSON Schema keywords such as `prefixItems`, `minItems`, `maxItems`, `contains`, `minContains`, or `maxContains` that rely on a beginning (for relative positioning) or an ending (to determine if a threshold has been reached or a limit has been exceeded) when the sequence is intended to represent a subsequence of a larger stream.
+If such keywords are used, their behavior remains well-defined but may be counter-intuitive for users that expect them to apply to the stream as a whole rather than each subsequence as it is processed.
+
+##### Sequential JSON
+
+For any media type where the items in the sequence are JSON values, no conversion beyond treating the sequence as an array is required.
+JSON Text Sequences (`application/json-seq` and the `+json-seq` suffix, [[?RFC7464]]), JSON Lines (`application/jsonl`), and NDJSON (`application/x-ndjson`) are all in this category.
+Note that the media types for JSON Lines and NDJSON are not registered with the IANA, but are in common use.
+
+The following example, which uses `application/json-seq` but would be identical aside from the media type for either `application/jsonl` or `application/ndjson`, models a finite stream consisting of a single metadata document followed by an indefinite number of data documents consisting of numeric measurements with units:
+
+```YAML
+content:
+  application/json-seq:
+    schema:
+      type: array
+      prefixItems:
+      - $comment: Metadata for all subsequent data documents
+        type: object
+        required:
+        - subject
+        - dateCollected
+        properties:
+          subject:
+            type: string
+          dateCollected:
+            type: string
+            format: date-time
+      items:
+        $comment: A JSON document holding data
+        type: object
+        required:
+         - measurement
+         - unit
+        properties:
+          measurement:
+            type: number
+          unit:
+            type: string
+```
+
+##### Server-Sent Event Streams
+
+The `text/event-stream` from the [HTML specification](https://html.spec.whatwg.org/multipage/iana.html#text/event-stream), which is also not IANA-registered, uses a custom named field format for its items.
+Field names can be repeated within an item to allow splitting the value across multiple lines; such split values MUST be treated the same as if they were a single field, with newlines added as required by the `text/event-stream` specification.
+
+Field value types MUST be handled as specified by the `text/event-stream` specification (e.g. the `retry` field value is modeled as a JSON number that is expected to be of JSON Schema `type: integer`), and fields not given an explicit value type MUST be handled as strings.
+
+The `text/event-stream` specification requires that fields with Unknown names, as well as `id` fields where the value contains `U+0000 NULL` be ignored.
+These fields SHOULD NOT be present in the data used with the Schema Object.
+
+For example, the following `text/event-stream` document:
+
+```EVENTSTREAM
+event: add
+data: This data is formatted
+data: across two lines
+retry: 5
+
+event: add
+data: 1234.5678
+unknown-field: this is ignored
+```
+
+is equivalent to this JSON instance for the purpose of working with the Schema Object:
+
+```JSON
+[
+  {
+    "event": "add",
+    "data": "This data is formatted\nacross two lines",
+    "retry": 5
+  },
+  {
+    "event": "add",
+    "data": "1234.5678"
+  }
+]
+```
+
+Note that `"1234.5678"` is a string, which avoids problems with number sizes and precision.
+See [Data Type Format](#data-type-format) for options for handling numbers transported as strings.
+Note also the newline inserted in the string in the first entry, and the absence of the field labeled `unknown-field` in the second entry.
+
+The following Schema Object is a generic schema for the `text/event-stream` media type as documented by the HTML specification as of the time of this writing:
+
+```YAML
+type: array
+items:
+  type: object
+  required:
+  - data
+  properties:
+    data:
+      type: string
+    event:
+      type: string
+    id:
+      type: string
+    retry:
+      type: integer
+```
+
+Some users of `text/event-stream` use a format such as JSON for field values, particularly the `data` field.
+Use JSON Schema's keywords for working with the [contents of string-encoded data](https://www.ietf.org/archive/id/draft-bhutton-json-schema-validation-01.html#name-a-vocabulary-for-the-conten), particularly `contentMediaType` and `contentSchema`, to describe and validate such fields with more detail than string-related validation keywords such as `pattern` can support.
+
 ### HTTP Status Codes
 
 The HTTP Status Codes are used to indicate the status of the executed operation.

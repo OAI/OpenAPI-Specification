@@ -25,7 +25,7 @@ properties:
   webhooks:
     type: object
     additionalProperties:
-      $ref: '#/$defs/path-item-or-reference'
+      $ref: '#/$defs/path-item'
   components:
     $ref: '#/$defs/components'
   security:
@@ -119,7 +119,6 @@ $defs:
     properties:
       url:
         type: string
-        format: uri-reference
       description:
         type: string
       variables:
@@ -192,7 +191,7 @@ $defs:
       pathItems:
         type: object
         additionalProperties:
-          $ref: '#/$defs/path-item-or-reference'
+          $ref: '#/$defs/path-item'
     patternProperties:
       '^(schemas|responses|parameters|examples|requestBodies|headers|securitySchemes|links|callbacks|pathItems)$':
         $comment: Enumerating all of the property names in the regex above is necessary for unevaluatedProperties to work as expected
@@ -214,6 +213,9 @@ $defs:
     $comment: https://spec.openapis.org/oas/v3.1.0#path-item-object
     type: object
     properties:
+      $ref:
+        type: string
+        format: uri-reference
       summary:
         type: string
       description:
@@ -244,16 +246,6 @@ $defs:
         $ref: '#/$defs/operation'
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
-
-  path-item-or-reference:
-    if:
-      type: object
-      required:
-        - $ref
-    then:
-      $ref: '#/$defs/reference'
-    else:
-      $ref: '#/$defs/path-item'
 
   operation:
     $comment: https://spec.openapis.org/oas/v3.1.0#operation-object
@@ -369,7 +361,7 @@ $defs:
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-header'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-query'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-cookie'
-          - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-form'
+          - $ref: '#/$defs/styles-for-form'
 
         $defs:
           styles-for-path:
@@ -381,8 +373,6 @@ $defs:
                 - in
             then:
               properties:
-                name:
-                  pattern: '[^/#?]+$'
                 style:
                   default: simple
                   enum:
@@ -426,6 +416,7 @@ $defs:
                 allowReserved:
                   default: false
                   type: boolean
+
           styles-for-cookie:
             if:
               properties:
@@ -438,22 +429,6 @@ $defs:
                 style:
                   default: form
                   const: form
-
-          styles-for-form:
-            if:
-              properties:
-                style:
-                  const: form
-              required:
-                - style
-            then:
-              properties:
-                explode:
-                  default: true
-            else:
-              properties:
-                explode:
-                  default: false
 
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
@@ -542,25 +517,8 @@ $defs:
         type: boolean
     allOf:
       - $ref: '#/$defs/specification-extensions'
-      - $ref: '#/$defs/encoding/$defs/explode-default'
+      - $ref: '#/$defs/styles-for-form'
     unevaluatedProperties: false
-
-    $defs:
-      explode-default:
-        if:
-          properties:
-            style:
-              const: form
-          required:
-            - style
-        then:
-          properties:
-            explode:
-              default: true
-        else:
-          properties:
-            explode:
-              default: false
 
   responses:
     $comment: https://spec.openapis.org/oas/v3.1.0#responses-object
@@ -617,7 +575,7 @@ $defs:
     type: object
     $ref: '#/$defs/specification-extensions'
     additionalProperties:
-      $ref: '#/$defs/path-item-or-reference'
+      $ref: '#/$defs/path-item'
 
   callbacks-or-reference:
     if:
@@ -664,7 +622,6 @@ $defs:
     properties:
       operationRef:
         type: string
-        format: uri-reference
       operationId:
         type: string
       parameters:
@@ -764,7 +721,6 @@ $defs:
         type: string
       description:
         type: string
-    unevaluatedProperties: false
 
   schema:
     $comment: https://spec.openapis.org/oas/v3.1.0#schema-object
@@ -999,3 +955,19 @@ $defs:
     type: object
     additionalProperties:
       type: string
+
+  styles-for-form:
+    if:
+      properties:
+        style:
+          const: form
+      required:
+        - style
+    then:
+      properties:
+        explode:
+          default: true
+    else:
+      properties:
+        explode:
+          default: false

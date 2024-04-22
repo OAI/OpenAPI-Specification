@@ -706,46 +706,51 @@ definitions:
     allOf:
       - $ref: '#/definitions/ExampleXORExamples'
       - $ref: '#/definitions/SchemaXORContent'
-      - $ref: '#/definitions/ParameterLocation'
-
-  ParameterLocation:
-    description: Parameter location
     oneOf:
-      - description: Parameter in path
-        required:
-          - required
-        properties:
-          in:
-            enum: [path]
-          style:
-            enum: [matrix, label, simple]
-            default: simple
-          required:
-            enum: [true]
+      - $ref: '#/definitions/PathParameter'
+      - $ref: '#/definitions/QueryParameter'
+      - $ref: '#/definitions/HeaderParameter'
+      - $ref: '#/definitions/CookieParameter'
 
-      - description: Parameter in query
-        properties:
-          in:
-            enum: [query]
-          style:
-            enum: [form, spaceDelimited, pipeDelimited, deepObject]
-            default: form
+  PathParameter:
+    description: Parameter in path
+    required:
+      - required
+    properties:
+      in:
+        enum: [path]
+      style:
+        enum: [matrix, label, simple]
+        default: simple
+      required:
+        enum: [true]
 
-      - description: Parameter in header
-        properties:
-          in:
-            enum: [header]
-          style:
-            enum: [simple]
-            default: simple
+  QueryParameter:
+    description: Parameter in query
+    properties:
+      in:
+        enum: [query]
+      style:
+        enum: [form, spaceDelimited, pipeDelimited, deepObject]
+        default: form
 
-      - description: Parameter in cookie
-        properties:
-          in:
-            enum: [cookie]
-          style:
-            enum: [form]
-            default: form
+  HeaderParameter:
+    description: Parameter in header
+    properties:
+      in:
+        enum: [header]
+      style:
+        enum: [simple]
+        default: simple
+
+  CookieParameter:
+    description: Parameter in cookie
+    properties:
+      in:
+        enum: [cookie]
+      style:
+        enum: [form]
+        default: form
 
   RequestBody:
     type: object
@@ -975,7 +980,6 @@ definitions:
         type: string
       operationRef:
         type: string
-        format: uri-reference
       parameters:
         type: object
         additionalProperties: {}

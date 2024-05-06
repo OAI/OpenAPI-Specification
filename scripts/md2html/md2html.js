@@ -48,6 +48,39 @@ const md = require('markdown-it')({
 });
 
 function preface(title,options) {
+const localBiblio = {};
+const baseURL = 'https://github.com/OAI/OpenAPI-Specification/';
+
+md.renderer.rules.link_open = function(tokens, idx, options, env, self) {
+    if (
+        idx > 0
+        && tokens[idx + 1] && tokens[idx + 1].type === 'text'
+        && tokens[idx + 2] && tokens[idx + 2].type === 'link_close'
+    ) {
+        const text = tokens[idx + 1].content;
+        const url = tokens[idx].attrs[tokens[idx].attrIndex('href')][1];
+
+        if (
+            url.startsWith('http')
+            && !url.startsWith(baseURL)
+            && !url.startsWith('https://tools.ietf.org')
+        ) {
+            localBiblio[text] = {
+                title: text,
+                href: url
+            };
+
+            // Do not show url text and closing html tag.
+            tokens[idx + 1].content = '';
+            tokens[idx + 2].hidden = true;
+
+            return '[[' + text + ']]';
+        }
+    }
+
+    return self.renderToken(tokens, idx, options);
+};
+
     const respec = {
         specStatus: "base",
         editors: maintainers,
@@ -55,9 +88,9 @@ function preface(title,options) {
         publishDate: options.publishDate,
         subtitle: 'Version '+options.subtitle,
         processVersion: 2017,
-        edDraftURI: "https://github.com/OAI/OpenAPI-Specification/",
+        edDraftURI: baseURL,
         github: {
-            repoURL: "https://github.com/OAI/OpenAPI-Specification/",
+            repoURL: baseURL,
             branch: "master"
         },
         shortName: "OAS",

@@ -4,14 +4,12 @@ import { validate, setMetaSchemaOutputFormat } from "@hyperjump/json-schema/open
 import { BASIC } from "@hyperjump/json-schema/experimental";
 import { describe, test, expect } from "vitest";
 
-
 const parseYamlFromFile = (filePath) => {
   const schemaYaml = readFileSync(filePath, "utf8");
   return YAML.parse(schemaYaml, { prettyErrors: true });
 };
 
 setMetaSchemaOutputFormat(BASIC);
-// setShouldValidateSchema(false);
 
 const validateOpenApi = await validate("./schemas/v3.1/schema.json");
 

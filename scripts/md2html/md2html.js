@@ -49,6 +49,7 @@ const md = require('markdown-it')({
 
 const localBiblio = {};
 const baseURL = 'https://github.com/OAI/OpenAPI-Specification/';
+const formativeRFC = 'https://tools.ietf.org';
 
 md.renderer.rules.link_open = function(tokens, idx, options, env, self) {
     if (
@@ -62,7 +63,7 @@ md.renderer.rules.link_open = function(tokens, idx, options, env, self) {
         if (
             url.startsWith('http')
             && !url.startsWith(baseURL)
-            && !url.startsWith('https://tools.ietf.org')
+            && !url.startsWith(formativeRFC)
         ) {
             localBiblio[text] = {
                 title: text,

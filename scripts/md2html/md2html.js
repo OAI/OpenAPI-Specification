@@ -47,7 +47,6 @@ const md = require('markdown-it')({
     }
 });
 
-function preface(title,options) {
 const localBiblio = {};
 const baseURL = 'https://github.com/OAI/OpenAPI-Specification/';
 
@@ -81,6 +80,7 @@ md.renderer.rules.link_open = function(tokens, idx, options, env, self) {
     return self.renderToken(tokens, idx, options);
 };
 
+function preface(title, options, localBublio) {
     const respec = {
         specStatus: "base",
         editors: maintainers,
@@ -97,7 +97,8 @@ md.renderer.rules.link_open = function(tokens, idx, options, env, self) {
         noTOC: false,
         lint: false,
         additionalCopyrightHolders: "the Linux Foundation",
-        includePermalinks: true
+        includePermalinks: true,
+        localBiblio
     };
 
     let preface = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>${md.utils.escapeHtml(title)}</title>`;
@@ -345,7 +346,7 @@ for (let l in lines) {
     lines[l] = (linkTarget ? linkTarget : '') + line;
 }
 
-s = preface(`OpenAPI Specification v${argv.subtitle} | Introduction, Definitions, & More`,argv)+'\n\n'+lines.join('\n');
+s = preface(`OpenAPI Specification v${argv.subtitle} | Introduction, Definitions, & More`, argv, localBiblio)+'\n\n'+lines.join('\n');
 let out = md.render(s);
 out = out.replace(/\[([RGB])\]/g,function(match,group1){
     console.warn('Fixing',match,group1);

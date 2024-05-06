@@ -17,10 +17,9 @@ cat > history/MAINTAINERS_v2.0.md <<EOF
 * Ron Ratovsky [@webron](https://github.com/webron)
 * Tony Tam [@fehguy](https://github.com/fehguy)
 EOF
-git show c740e95:MAINTAINERS.md > history/MAINTAINERS_v3.0.0.md
-cp history/MAINTAINERS_v3.0.0.md history/MAINTAINERS_v3.0.1.md
+cp history/MAINTAINERS_v2.0.md history/MAINTAINERS_v3.0.0.md
+git show c740e95:MAINTAINERS.md > history/MAINTAINERS_v3.0.1.md
 git show 3140640:MAINTAINERS.md > history/MAINTAINERS_v3.0.2.md
-cp history/MAINTAINERS_v3.0.2.md history/MAINTAINERS_v3.0.3.md
 cp history/MAINTAINERS_v3.0.2.md history/MAINTAINERS_v3.0.3.md
 cp history/MAINTAINERS_v3.0.2.md history/MAINTAINERS_v3.1.0.md
 # add lines for 3.0.4, 3.1.1, ...

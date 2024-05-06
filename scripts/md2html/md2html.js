@@ -49,7 +49,6 @@ const md = require('markdown-it')({
 
 const localBiblio = {};
 const baseURL = 'https://github.com/OAI/OpenAPI-Specification/';
-const formativeRFC = 'https://tools.ietf.org';
 
 md.renderer.rules.link_open = function(tokens, idx, options, env, self) {
     if (
@@ -58,14 +57,16 @@ md.renderer.rules.link_open = function(tokens, idx, options, env, self) {
         && tokens[idx + 2] && tokens[idx + 2].type === 'link_close'
     ) {
         const text = tokens[idx + 1].content;
+        // Reference must not contain any whitespace.
+        const reference = text.replace(/\s+/g, '-');
         const url = tokens[idx].attrs[tokens[idx].attrIndex('href')][1];
 
         if (
             url.startsWith('http')
             && !url.startsWith(baseURL)
-            && !url.startsWith(formativeRFC)
+            && !text.includes('RFC')
         ) {
-            localBiblio[text] = {
+            localBiblio[reference] = {
                 title: text,
                 href: url
             };
@@ -74,7 +75,7 @@ md.renderer.rules.link_open = function(tokens, idx, options, env, self) {
             tokens[idx + 1].content = '';
             tokens[idx + 2].hidden = true;
 
-            return '[[' + text + ']]';
+            return '[[' + reference + ']]';
         }
     }
 

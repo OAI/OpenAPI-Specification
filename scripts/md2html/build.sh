@@ -11,7 +11,7 @@ mkdir -p deploy/js
 cd scripts/md2html
 mkdir -p history
 git show c740e95:MAINTAINERS.md > history/MAINTAINERS_v2.0.md
-git show e9fe5bc:MAINTAINERS.md > history/MAINTAINERS_v3.0.0.md
+git show c740e95:MAINTAINERS.md > history/MAINTAINERS_v3.0.0.md
 cp history/MAINTAINERS_v3.0.0.md history/MAINTAINERS_v3.0.1.md
 git show 3140640:MAINTAINERS.md > history/MAINTAINERS_v3.0.2.md
 cp history/MAINTAINERS_v3.0.2.md history/MAINTAINERS_v3.0.3.md

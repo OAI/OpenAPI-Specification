@@ -6,7 +6,7 @@
 
 ## Provisional
 * Lorna Mitchell [@lornajane](https://github.com/lornajane)
-* Mike Kistler [@mkistler](https://github.com/mkistler)
+* Mike Kistler [@mikekistler](https://github.com/mikekistler)
 * Miguel Quintero [@miqui](https://github.com/miqui)
 * Ralf Handl [@ralfhandl](https://github.com/ralfhandl)
 

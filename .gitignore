@@ -7,5 +7,4 @@ atlassian-ide-plugin.xml
 node_modules/
 deploy/
 history
-package-lock.json
 Gemfile.lock

@@ -26,7 +26,7 @@
 # EXAMPLE
 # -------
 #
-#   ./update-schema-id -v 3.1
+#   ./scripts/update-schema-id -v 3.1
 #
 #   If the above command line is executed on May 7, 2024, the following
 #   external commands are invoked by the script.

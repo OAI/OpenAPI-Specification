@@ -1,0 +1,245 @@
+#!/usr/bin/env ruby
+#
+# OVERVIEW
+# --------
+#
+#   This script updates the schema IDs in the following YAML files:
+#
+#     schemas/v{major}.{minor}/schema.yaml
+#     schemas/v{major}.{minor}/schema-base.yaml
+#
+#   and generates the following JSON files from the updated YAML files:
+#
+#     schemas/v{major}.{minor}/schema.json
+#     schemas/v{major}.{minor}/schema-base.json
+#
+# USAGE
+# -----
+#
+#   update-schema-id
+#     --version VERSION   # -v VERSION (required)
+#     --date DATE         # -d DATE
+#     --dry-run           # -n
+#     --quiet             # -q
+#     --help              # -h
+#
+# EXAMPLE
+# -------
+#
+#   ./update-schema-id -v 3.1
+#
+#   If the above command line is executed on May 7, 2024, the following
+#   external commands are invoked by the script.
+#
+#     ex -s -c '/^$id:/s/^.*$/$id: '\''https:\/\/spec.openapis.org\/oas\/3.1\/schema\/2024-05-07'\''/' \
+#           -c wq schemas/v3.1/schema.yaml
+#
+#     ./scripts/yaml2json/yaml2json.js schemas/v3.1/schema.yaml
+#
+#     ex -s -c '/^$id:/s/^.*$/$id: '\''https:\/\/spec.openapis.org\/oas\/3.1\/schema-base\/2024-05-07'\''/' \
+#           -c '/^$ref:/s/^.*$/$ref: '\''https:\/\/spec.openapis.org\/oas\/3.1\/schema\/2024-05-07'\''/' \
+#           -c wq schemas/v3.1/schema-base.yaml
+#
+#     ./scripts/yaml2json/yaml2json.js schemas/v3.1/schema-base.yaml
+#
+
+
+require 'bundler/inline'
+require 'time'
+
+gemfile do
+  source 'https://rubygems.org'
+  gem 'optparse'
+end
+
+
+#------------------------------------------------------------
+# main
+#------------------------------------------------------------
+def main(args)
+  # Process the command line options.
+  options = Options.process(args)
+
+  # Update schemas/v{major}.{minor}/schema.yaml.
+  update_schema_yaml(options)
+
+  # Generate schemas/v{major}.{minor}/schema.json from the updated YAML file.
+  update_schema_json(options)
+
+  # Update schemas/v{major}.{minor}/schema-base.yaml.
+  update_schema_base_yaml(options)
+
+  # Generate schemas/v{major}.{minor}/schema-base.json from the updated YAML file.
+  update_schema_base_json(options)
+end
+
+
+#------------------------------------------------------------
+# Ver
+#------------------------------------------------------------
+class Ver
+  attr_reader :major, :minor
+
+  def initialize(version)
+    m = /^(\d+)\.(\d+)$/.match(version)
+
+    @major = m[1]
+    @minor = m[2]
+  end
+end
+
+
+#------------------------------------------------------------
+# Options
+#------------------------------------------------------------
+class Options < OptionParser
+  DESC_VERSION = "specifies the target version in the 'major.minor' format. For example, '3.1'. This option is mandatory."
+  DESC_DATE    = "specifies the release date in the 'YYYY-MM-DD' format. For example, '2024-10-01'. If omitted, the current date is used."
+  DESC_DRY_RUN = "turns on the dry-run mode that shows external commands to execute but does not actually execute them."
+  DESC_QUIET   = "turns on the quiet mode."
+
+  attr_reader :version, :date, :dry_run, :quiet
+
+  def initialize
+    super
+
+    @version = nil
+    @date    = Time.now.utc.strftime('%F')
+    @dry_run = false
+    @quiet   = false
+
+    self.on('-v VERSION', '--version VERSION', DESC_VERSION) do |value|
+      check_pattern(value, 'version', /^\d+\.\d+$/)
+      @version = Ver.new(value)
+    end
+
+    self.on('-d DATE', '--date DATE', DESC_DATE) do |value|
+      check_pattern(value, 'date', /^\d{4}-\d{2}-\d{2}$/)
+      @date = value
+    end
+
+    self.on('-n', '--dry-run', DESC_DRY_RUN) do
+      @dry_run = true
+    end
+
+    self.on('-q', '--quiet', DESC_QUIET) do
+      @quiet = true
+    end
+  end
+
+  private
+
+  def error_exit(message)
+    $stderr.puts message
+    exit false
+  end
+
+  def check_pattern(value, option, pattern)
+    if value !~ pattern then
+      error_exit "ERROR: The given string '#{value}' does not match the expected #{option} pattern."
+    end
+  end
+
+  def error_if_missing(value, option)
+    if value.nil?
+      error_exit "ERROR: '#{option}' is missing."
+    end
+  end
+
+  public
+
+  def validate
+    error_if_missing(@version, '--version VERSION')
+  end
+
+  def self.process(args)
+    options = Options.new
+    options.parse(args)
+    options.validate()
+
+    return options
+  end
+end
+
+
+#------------------------------------------------------------
+# execute_command
+#------------------------------------------------------------
+def execute_command(options, command)
+  # Print the command unless the quiet mode is on.
+  puts command unless options.quiet
+
+  # Execute the command unless the dry-run mode is on.
+  system command unless options.dry_run
+end
+
+
+#------------------------------------------------------------
+# update_schema_yaml
+#------------------------------------------------------------
+def update_schema_yaml(options)
+  ver  = options.version
+  file = "schemas/v#{ver.major}.#{ver.minor}/schema.yaml"
+  id   = "https:\\/\\/spec.openapis.org\\/oas\\/#{ver.major}.#{ver.minor}\\/schema\\/#{options.date}"
+
+  # Prepare a command line to update the $id in the file.
+  command = "ex -s -c '/^$id:/s/^.*$/$id: '\\''#{id}'\\''/' -c wq #{file}"
+
+  # Execute the command line.
+  execute_command(options, command)
+end
+
+
+#------------------------------------------------------------
+# update_schema_json
+#------------------------------------------------------------
+def update_schema_json(options)
+  ver   = options.version
+  input = "schemas/v#{ver.major}.#{ver.minor}/schema.yaml"
+
+  # Prepare a command line to generate a JSON file from the input file.
+  command = "./scripts/yaml2json/yaml2json.js #{input}"
+
+  # Execute the command line.
+  execute_command(options, command)
+end
+
+
+#------------------------------------------------------------
+# update_schema_base_yaml
+#------------------------------------------------------------
+def update_schema_base_yaml(options)
+  ver  = options.version
+  file = "schemas/v#{ver.major}.#{ver.minor}/schema-base.yaml"
+  id   = "https:\\/\\/spec.openapis.org\\/oas\\/#{ver.major}.#{ver.minor}\\/schema-base\\/#{options.date}"
+  ref  = "https:\\/\\/spec.openapis.org\\/oas\\/#{ver.major}.#{ver.minor}\\/schema\\/#{options.date}"
+
+  # Prepare a command line to update the $id and $ref in the file.
+  command = "ex -s -c '/^$id:/s/^.*$/$id: '\\''#{id}'\\''/' " +
+                  "-c '/^$ref:/s/^.*$/$ref: '\\''#{ref}'\\''/' " +
+                  "-c wq #{file}"
+
+  # Execute the command line.
+  execute_command(options, command)
+end
+
+
+#------------------------------------------------------------
+# update_schema_base_json
+#------------------------------------------------------------
+def update_schema_base_json(options)
+  ver   = options.version
+  input = "schemas/v#{ver.major}.#{ver.minor}/schema-base.yaml"
+
+  # Prepare a command line to generate a JSON file from the input file.
+  command = "./scripts/yaml2json/yaml2json.js #{input}"
+
+  # Execute the command line.
+  execute_command(options, command)
+end
+
+
+#------------------------------------------------------------
+# Entry Point
+#------------------------------------------------------------
+main(ARGV)

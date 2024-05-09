@@ -622,6 +622,7 @@ $defs:
     properties:
       operationRef:
         type: string
+        format: uri-reference
       operationId:
         type: string
       parameters:

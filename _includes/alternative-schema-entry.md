@@ -8,4 +8,4 @@
 ### GitHub Issue
 
 * [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
-  {% endif %}
+{% endif %}

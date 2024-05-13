@@ -129,20 +129,15 @@ class Options < OptionParser
 
   private
 
-  def error_exit(message)
-    $stderr.puts message
-    exit false
-  end
-
   def check_pattern(value, option, pattern)
     if value !~ pattern then
-      error_exit "ERROR: The given string '#{value}' does not match the expected #{option} pattern."
+      abort "ERROR: The given string '#{value}' does not match the expected #{option} pattern."
     end
   end
 
   def error_if_missing(value, option)
     if value.nil?
-      error_exit "ERROR: '#{option}' is missing."
+      abort "ERROR: '#{option}' is missing."
     end
   end
 

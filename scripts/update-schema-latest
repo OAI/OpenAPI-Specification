@@ -145,13 +145,13 @@ class Options < OptionParser
 
   def check_pattern(value, option, pattern)
     if value !~ pattern then
-      error_exit "ERROR: The given string '#{value}' does not match the expected #{option} pattern."
+      abort "ERROR: The given string '#{value}' does not match the expected #{option} pattern."
     end
   end
 
   def error_if_missing(value, option)
     if value.nil?
-      error_exit "ERROR: '#{option}' is missing."
+      abort "ERROR: '#{option}' is missing."
     end
   end
 
@@ -172,15 +172,6 @@ end
 
 
 #------------------------------------------------------------
-# error_exit
-#------------------------------------------------------------
-def error_exit(message)
-  $stderr.puts message
-  exit false
-end
-
-
-#------------------------------------------------------------
 # execute_command
 #------------------------------------------------------------
 def execute_command(options, command)
@@ -191,7 +182,7 @@ def execute_command(options, command)
   system command unless options.dry_run
 
   if !options.dry_run && $?.exitstatus != 0
-    error_exit "ERROR: The command failed."
+    abort "ERROR: The command failed."
   end
 end
 

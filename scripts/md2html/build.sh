@@ -10,17 +10,28 @@ mkdir -p deploy/js
 
 cd scripts/md2html
 mkdir -p history
-git show c740e950d:MAINTAINERS.md > history/MAINTAINERS_v2.0.md
+cat > history/MAINTAINERS_v2.0.md <<EOF
+## Active
+* Jeremy Whitlock [@whitlockjc](https://github.com/whitlockjc)
+* Marsh Gardiner [@earth2marsh](https://github.com/earth2marsh)
+* Ron Ratovsky [@webron](https://github.com/webron)
+* Tony Tam [@fehguy](https://github.com/fehguy)
+EOF
+cp history/MAINTAINERS_v2.0.md history/MAINTAINERS_v3.0.0.md
+git show c740e95:MAINTAINERS.md > history/MAINTAINERS_v3.0.1.md
+git show 3140640:MAINTAINERS.md > history/MAINTAINERS_v3.0.2.md
+cp history/MAINTAINERS_v3.0.2.md history/MAINTAINERS_v3.0.3.md
+cp history/MAINTAINERS_v3.0.2.md history/MAINTAINERS_v3.1.0.md
+# add lines for 3.0.4, 3.1.1, ...
+
 cp -p js/* ../../deploy/js 2> /dev/null
 cp -p markdown/* ../../deploy/ 2> /dev/null
 
-node md2html.js --respec --maintainers ./history/MAINTAINERS_v2.0.md ../../versions/2.0.md > ../../deploy/oas/v2.0.html
-
 latest=`git describe --abbrev=0 --tags`
 latestCopied=none
-for filename in ../../versions/[3456789].*.md ; do
+for filename in ../../versions/[23456789].*.md ; do
   version=$(basename "$filename" .md)
-  node md2html.js --respec --maintainers ../../MAINTAINERS.md ${filename} > ../../deploy/oas/v$version.html
+  node md2html.js --respec --maintainers ./history/MAINTAINERS_v$version.md ${filename} > ../../deploy/oas/v$version.html
   if [ $version = $latest ]; then
     if [[ ${version} != *"rc"* ]];then
       # version is not a Release Candidate

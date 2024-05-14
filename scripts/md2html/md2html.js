@@ -118,7 +118,8 @@ function doMaintainers() {
         let t = $(this).text().split('@')[0];
         maintainers.push({name:t});
     });
-    u = $('ul').eq(1);
+    if ($("ul").length < 2) return;
+    u = $("ul").last();
     $(u).children('li').each(function(e){
         let t = $(this).text().split('@')[0];
         emeritus.push({name:t});

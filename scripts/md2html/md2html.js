@@ -293,18 +293,22 @@ for (let l in lines) {
         //if (delta<0) delta = -1;
         if (Math.abs(delta)>1) console.warn(delta,line);
         let prefix = '';
+        let newSection = '<section>';
+        if (line.includes('Appendix')) {
+            newSection = '<section class="appendix">';
+        }
 
         // heading level delta is either 0 or is +1/-1, or we're in respec mode
         /* respec insists on <section>...</section> breaks around headings */
 
         if (delta === 0) {
-            prefix = '</section><section>';
+            prefix = '</section>'+newSection;
         }
         else if (delta > 0) {
-            prefix = '<section>'.repeat(delta);
+            prefix = newSection.repeat(delta);
         }
         else {
-            prefix = '</section>'+('</section>').repeat(Math.abs(delta))+'<section>';
+            prefix = '</section>'+('</section>').repeat(Math.abs(delta))+newSection;
         }
         prevHeading = heading;
         line = prefix+md.render(line);

@@ -17,7 +17,16 @@ cat > history/MAINTAINERS_v2.0.md <<EOF
 * Ron Ratovsky [@webron](https://github.com/webron)
 * Tony Tam [@fehguy](https://github.com/fehguy)
 EOF
-cp history/MAINTAINERS_v2.0.md history/MAINTAINERS_v3.0.0.md
+cat > history/MAINTAINERS_v3.0.0.md <<EOF
+## Active
+* Jeremy Whitlock [@whitlockjc](https://github.com/whitlockjc)
+* Marsh Gardiner [@earth2marsh](https://github.com/earth2marsh)
+* Ron Ratovsky [@webron](https://github.com/webron)
+* Tony Tam [@fehguy](https://github.com/fehguy)
+
+## Emeritus
+* Jason Harmon [@jharmn](https://github.com/jharmn)
+EOF
 git show c740e95:MAINTAINERS.md > history/MAINTAINERS_v3.0.1.md
 git show 3140640:MAINTAINERS.md > history/MAINTAINERS_v3.0.2.md
 cp history/MAINTAINERS_v3.0.2.md history/MAINTAINERS_v3.0.3.md

@@ -2,7 +2,7 @@
 
 ## {{ page.slug }} - {{ page.description }}
 
-{{ page.summary }}
+{{ include.summary }}
 
 {% if page.issue %}
 ### GitHub Issue

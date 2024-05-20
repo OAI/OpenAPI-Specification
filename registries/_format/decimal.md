@@ -7,22 +7,8 @@ layout: default
 remarks: This format is used in a variety of conflicting ways and is not interoperable.
 ---
 
-# <a href="..">{{ page.collection }}</a>
-
-## {{ page.slug }} - {{ page.description }}
-
-Base type: `{{ page.base_type }}`.
-
+{% capture summary %}
 The `{{page.slug}}` format represents a fixed point decimal number of unspecified precision and range.
+{% endcapture %}
 
-{% if page.issue %}
-### GitHub Issue
-
-* [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
-{% endif %}
-
-{% if page.remarks %}
-### Remarks
-
-{{ page.issue }}
-{% endif %}
+{% include format-entry.md summary=summary %}

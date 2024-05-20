@@ -9,9 +9,7 @@ remarks: "When using OpenAPI 3.1 it's recommended not to use this format and ins
 ---
 
 {% capture summary %}
-Base type: `{{ page.base_type }}`.
-
 The `{{page.slug}}` format is binary data encoded as a url-safe string as defined in [RFC4648](https://www.rfc-editor.org/rfc/rfc4648#section-5).
 {% endcapture %}
 
-{% include format-entry.md summary=summary%}
+{% include format-entry.md summary=summary %}

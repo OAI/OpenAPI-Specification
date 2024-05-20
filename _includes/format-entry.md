@@ -4,7 +4,7 @@
 
 Base type: `{{ page.base_type }}`.
 
-{% include.summary %}
+{{ include.summary }}
 
 {% if page.issue %}
 ### GitHub Issue

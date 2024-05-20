@@ -12,7 +12,7 @@ layout: default
 The `x-twitter` extension is used to hold a reference to the API provider's Twitter account. It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 {% endcapture %}
 
-{%capture example $}
+{% capture example %}
 ```yaml
 openapi: 3.0.0
 info:

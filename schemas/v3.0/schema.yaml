@@ -405,6 +405,26 @@ definitions:
           oneOf:
             - $ref: '#/definitions/Example'
             - $ref: '#/definitions/Reference'
+    patternProperties:
+      '^x-': {}
+    additionalProperties: false
+    allOf:
+      - $ref: '#/definitions/ExampleXORExamples'
+
+  MediaTypeWithEncoding:
+    type: object
+    properties:
+      schema:
+        oneOf:
+          - $ref: '#/definitions/Schema'
+          - $ref: '#/definitions/Reference'
+      example: {}
+      examples:
+        type: object
+        additionalProperties:
+          oneOf:
+            - $ref: '#/definitions/Example'
+            - $ref: '#/definitions/Reference'
       encoding:
         type: object
         additionalProperties:
@@ -763,6 +783,9 @@ definitions:
         type: object
         additionalProperties:
           $ref: '#/definitions/MediaType'
+        patternProperties:
+          "^application/x-www-form-urlencoded$|^multipart\/.+$":
+            $ref: "#/definitions/MediaTypeWithEncoding"
       required:
         type: boolean
         default: false

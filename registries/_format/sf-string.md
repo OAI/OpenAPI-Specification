@@ -8,12 +8,7 @@ base_type: string
 layout: default
 ---
 
-# <a href="..">{{ page.collection }}</a>
-
-## {{ page.slug }} - {{ page.description }}
-
-Base type: `{{ page.base_type }}`.
-
+{% capture summary %}
 The `{{page.slug}}` format represents a structured fields string as defined in [RFC8941].
 
 ```abnf
@@ -29,17 +24,8 @@ Note that this excludes tabs, newlines, carriage returns, etc.
 Strings are delimited with double quotes, using a backslash ("\") to escape double quotes and backslashes.
 
 This format is appropriate for a header value that must conform to the {{page.slug}} structured field definition.
+{% endcapture %}
 
-{% if page.issue %}
-### GitHub Issue
-
-* [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
-{% endif %}
-
-{% if page.remarks %}
-### Remarks
-
-{{ page.remarks }}
-{% endif %}
+{% include format-entry.md summary=summary %}
 
 [RFC8941]: https://www.rfc-editor.org/rfc/rfc8941#name-strings

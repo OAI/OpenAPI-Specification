@@ -8,12 +8,7 @@ base_type: string
 layout: default
 ---
 
-# <a href="..">{{ page.collection }}</a>
-
-## {{ page.slug }} - {{ page.description }}
-
-Base type: `{{ page.base_type }}`.
-
+{% capture summary %}
 The `{{page.slug}}` format represents a structured fields boolean as defined in [RFC8941].
 
 ```abnf
@@ -24,17 +19,8 @@ boolean    = "0" / "1"
 A Boolean is indicated with a leading "?" character followed by a "1" for a true value or "0" for false.
 
 This format is appropriate for a header value that must conform to the {{page.slug}} structured field definition.
+{% endcapture %}
 
-{% if page.issue %}
-### GitHub Issue
-
-* [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
-{% endif %}
-
-{% if page.remarks %}
-### Remarks
-
-{{ page.remarks }}
-{% endif %}
+{% include format-entry.md summary=summary %}
 
 [RFC8941]: https://www.rfc-editor.org/rfc/rfc8941#name-booleans

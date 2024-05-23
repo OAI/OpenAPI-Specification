@@ -6,13 +6,15 @@ layout: default
 
 # OpenAPI Initiative Registry
 
-This site contains the OpenAPI Initiative Registry and content for the HTML versions of the OpenAPI Specification.
+This site contains the OpenAPI Initiative Registry and content for the HTML versions of specifications managed by the OpenAPI Initiative such as the OpenAPI Specification.
 
 ## Registry
 
 * Proceed to [Registry](./registry/index.html)
 
-## The Specification
+## OpenAPI Initiative Specifications
 
-* [Markdown source-of-truth](https://github.com/OAI/OpenAPI-Specification)
-* [HTML Specification version](oas/latest.html)
+| Specification  | Markdown Repository | HTML Version  |
+| :--------------| :------------------ | :------- |
+| `OpenAPI Specification` | [View](https://github.com/OAI/OpenAPI-Specification)|[View](oas/latest.html)|
+| `Workflows Specification` | [View](https://github.com/OAI/sig-workflows) | _coming soon..._

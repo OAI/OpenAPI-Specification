@@ -8,22 +8,8 @@ source_label: JSON Schema
 source: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-json-pointers
 ---
 
-# <a href="..">{{ page.collection }}</a>
-
-## {{ page.slug }} - {{ page.description }}
-
-Base type: `{{ page.base_type }}`.
-
+{% capture summary %}
 The `{{page.slug}}` format is a JSON string representation of a JSON Pointer as defined in [RFC6901](https://www.rfc-editor.org/info/rfc6901).
+{% endcapture %}
 
-{% if page.issue %}
-### GitHub Issue
-
-* [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
-{% endif %}
-
-{% if page.remarks %}
-### Remarks
-
-{{ page.remarks }}
-{% endif %}
+{% include format-entry.md summary=summary %}

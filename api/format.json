@@ -10,7 +10,7 @@ parent: API
   "description": "{{ page.description }}",
   "url": "{{ site.baseurl }}{{ page.url }}",
   "owner": "{{ page.owner }}",
-  "base_type": "{{ page.base_type" }}"
+  "base_type": ["{{ page.base_type | join: '", "' }}"]
 }{% unless forloop.last %},{% endunless %}
 {% endfor %}
 }

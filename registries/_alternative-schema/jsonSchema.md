@@ -5,14 +5,8 @@ description: JSON Schema
 layout: default
 ---
 
-# <a href="..">{{ page.collection }}</a>
-
-## {{ page.slug }} - {{ page.description }}
-
+{% capture summary %}
 The `{{ page.slug }}` `alternativeSchema` `type` refers to [JSON Schema](http://json-schema.org/) in any version.
+{% endcapture %}
 
-{% if page.issue %}
-### GitHub Issue
-
-* [#{{ page.issue }}](https://github.com/OAI/OpenAPI-Specification/issues/{{ page.issue }})
-{% endif %}
+{% include alternative-schema-entry.md summary=summary %}

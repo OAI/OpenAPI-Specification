@@ -475,7 +475,7 @@ $defs:
     additionalProperties:
       $ref: '#/$defs/media-type'
     patternProperties:
-      '^application/x-www-form-urlencoded$|^multipart\/.+$':
+      '\*\/\*|^application/x-www-form-urlencoded$|^multipart\/.+$':
         $ref: '#/$defs/media-type-with-encoding'
     propertyNames:
       format: media-range

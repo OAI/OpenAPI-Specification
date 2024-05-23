@@ -6,7 +6,7 @@ layout: default
 
 # OpenAPI Initiative Registry
 
-This site contains the OpenAPI Initiative Registry and content for the HTML versions of specifications managed by the OpenAPI Initiative such as the OpenAPI Specification.
+This site contains the OpenAPI Initiative Registry and content for the HTML versions of specifications managed by the OpenAPI Initiative such as the OpenAPI Specification and the Arazzo Specification.
 
 ## Registry
 
@@ -17,4 +17,4 @@ This site contains the OpenAPI Initiative Registry and content for the HTML vers
 | Specification  | Markdown Repository | HTML Version  |
 | :--------------| :------------------ | :------- |
 | `OpenAPI Specification` | [View](https://github.com/OAI/OpenAPI-Specification)|[View](oas/latest.html)|
-| `Workflows Specification` | [View](https://github.com/OAI/sig-workflows) | _coming soon..._
+| `Arazzo Specification` | [View](https://github.com/OAI/Arazzo-Specification) | [View](arazzo/latest.html)|

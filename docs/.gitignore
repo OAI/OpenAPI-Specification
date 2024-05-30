@@ -1,0 +1,5 @@
+_site/
+deploy/
+node_modules/
+scripts/
+package-lock.json

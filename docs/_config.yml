@@ -1,0 +1,68 @@
+# theme: just-the-docs
+remote_theme: just-the-docs/just-the-docs
+color_scheme: oai
+title: OpenAPI Initiative Registry
+description: Extensible data value repository
+show_downloads: true
+collections_dir: /registries
+collections:
+  posts:
+    hidden: true
+  object:
+    slug: object
+    name: Object Registry
+    hidden: true
+  format:
+    slug: format
+    name: Format Registry
+    output: true
+    permalink: /registry/:collection/:title
+  extension:
+    slug: extension
+    name: Specification Extension Registry
+    output: true
+    permalink: /registry/:collection/:title
+  draft-feature:
+    slug: draft-feature
+    name: Draft Features Registry
+    output: true
+    permalink: /registry/:collection/:title
+  alternative-schema:
+    slug: alternative-schema
+    name: Alternative Schema Type Registry
+    output: true
+    permalink: /registry/:collection/:title
+  namespace:
+    slug: namespace
+    name: Extension Namespace Registry
+    output: true
+    permalink: /registry/:collection/:title
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - tmp
+  - vendor/bundle
+#just_the_docs:
+#  collections:
+#    draft-feature:
+#      name: Draft features
+#    alternative-schema:
+#      name: Alternative schemas
+#    namespace:
+#      name: Extension namespaces
+#    draft-feature:
+#      name: Draft features
+#    format:
+#      name: Formats
+plugins:
+  - jekyll-remote-theme
+  - jekyll-sitemap
+aux_links:
+  "Latest OpenAPI Specification":
+    - "https://spec.openapis.org/oas/latest.html"
+  "Latest Arazzo Specification":
+    - "https://spec.openapis.org/arazzo/latest.html"
+footer_content: "\xA9 2024 OpenAPI Initiative.
+ <br />This work is licensed under the <a rel=\"license\" href=\"https://www.apache.org/licenses/LICENSE-2.0\"\
+  >Apache 2.0 License</a>. This site is\
+  \ maintained at <a href=\"https://github.com/OAI/OpenAPI-Specification/tree/gh-pages/\">https://github.com/OAI/OpenAPI-Specification/</a>."

@@ -1,0 +1,1277 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>The Arazzo Specification v1.0.0 | Introduction, Definitions, &amp; More</title><meta name="description" content="The Arazzo Specification provides a mechanism that can define sequences of calls and their dependencies to be woven together and expressed in the context of delivering a particular outcome or set of outcomes when dealing with API descriptions (such as OpenAPI descriptions)"><link rel="canonical" href="https://spec.openapis.org/arazzo/latest.html" /><script src="../js/respec-arazzo.js" class="remove"></script><script class="remove">var respecConfig = {"specStatus":"base","editors":[{"name":"Frank Kilcommins "},{"name":"Nick Denny "},{"name":"Kevin Duffey "}],"formerEditors":[],"publishDate":"2024-05-29T00:00:00.000Z","subtitle":"Version 1.0.0","processVersion":2017,"edDraftURI":"https://github.com/OAI/Arazzo-Specification/","github":{"repoURL":"https://github.com/OAI/Arazzo-Specification/","branch":"main"},"shortName":"Arazzo","noTOC":false,"lint":false,"additionalCopyrightHolders":"the Linux Foundation","includePermalinks":true};</script><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-831873-42"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+ gtag('config', 'UA-831873-42');
+</script>
+</head><body><style>#respec-ui { visibility: hidden; }h1,h2,h3 { color: #629b34; }a[href] { color: #45512c; }body:not(.toc-inline) #toc h2 { color: #45512c; }table { display: block; width: 100%; overflow: auto; }table th { font-weight: 600; }table th, table td { padding: 6px 13px; border: 1px solid #dfe2e5; }table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }table tr:nth-child(2n) { background-color: #f6f8fa; }pre { background-color: #f6f8fa !important; }/**  * GitHub Gist Theme  * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro  */  .hljs {   display: block;   background: white;   padding: 0.5em;   color: #333333;   overflow-x: auto; }  .hljs-comment, .hljs-meta {   color: #969896; }  .hljs-string, .hljs-variable, .hljs-template-variable, .hljs-strong, .hljs-emphasis, .hljs-quote {   color: #df5000; }  .hljs-keyword, .hljs-selector-tag, .hljs-type {   color: #a71d5d; }  .hljs-literal, .hljs-symbol, .hljs-bullet, .hljs-attribute {   color: #0086b3; }  .hljs-section, .hljs-name {   color: #63a35c; }  .hljs-tag {   color: #333333; }  .hljs-title, .hljs-attr, .hljs-selector-id, .hljs-selector-class, .hljs-selector-attr, .hljs-selector-pseudo {   color: #795da3; }  .hljs-addition {   color: #55a532;   background-color: #eaffea; }  .hljs-deletion {   color: #bd2c00;   background-color: #ffecec; }  .hljs-link {   text-decoration: underline; } </style><h1 id="title">The Arazzo Specification v1.0.0 </h1><section id="abstract" title="What is the Arazzo Specification?">The Arazzo Specification provides a mechanism that can define sequences of calls and their dependencies to be woven together and expressed in the context of delivering a particular outcome or set of outcomes when dealing with API descriptions (such as OpenAPI descriptions).</section><section class="notoc" id="sotd"><h2>Status of This Document</h2>The source-of-truth for the specification is the GitHub markdown file referenced above.</section>
+<section><h1>Arazzo Specification</h1>
+<section><h3>Version 1.0.0</h3>
+<p>The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in <a href="https://tools.ietf.org/html/bcp14">BCP 14</a> [[!RFC2119]] [[!RFC8174]] when, and only when, they appear in all capitals, as shown here.</p>
+<p>This document is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0.html">The Apache License, Version 2.0</a>.</p>
+</section></section></section><section><h1>Introduction</h1>
+<p>Being able to express specific sequences of calls and articulate the dependencies between them to achieve a particular goal is desirable in the context of API descriptions. The aim of the Arazzo Specification is to provide a mechanism that can define sequences of calls and their dependencies to be woven together and expressed in the context of delivering a particular outcome or set of outcomes when dealing with API descriptions (such as OpenAPI descriptions).</p>
+<p>The Arazzo Specification can articulate these workflows in a human-readable and machine-readable manner, thus improving the capability of API specifications to tell the story of the API in a manner that can improve the consuming developer experience.</p>
+<!-- TOC depthFrom:1 depthTo:3 withLinks:1 updateOnSave:1 orderedList:0 -->
+<!-- /TOC -->
+</section><section><h1><dfn>Definitions</dfn></h1>
+<section><h4><dfn>Arazzo Description</dfn></h4>
+<p>A self-contained document (or set of documents) which defines or describes API workflows (specific sequence of calls to achieve a particular goal in the context of an API definition). An Arazzo Description uses and conforms to the Arazzo Specification, and <code>MUST</code> contain a valid Arazzo Specification version field (<code>arazzo</code>), an <a href="#info-object">Info</a> field, a <code>sourceDescriptions</code> field with at least one defined <a href="#source-description-object">Source</a>, and there <code>MUST</code> be at least one <a href="#workflow-object">Workflow</a> defined in the <code>workflows</code> fixed field.</p>
+</section></section></section></section><section><h1>Specification</h1>
+<section><h2>Versions</h2>
+<p>The Arazzo Specification is versioned using a <code>major</code>.<code>minor</code>.<code>patch</code> versioning scheme. The <code>major</code>.<code>minor</code> portion of the version string (for example 1.0) SHALL designate the Arazzo feature set. <code>.patch</code> versions address errors in, or provide clarifications to, this document, not the feature set. The patch version SHOULD NOT be considered by tooling, making no distinction between 1.0.0 and 1.0.1 for example.</p>
+</section><section><h2>Format</h2>
+<p>An Arazzo Description that conforms to the Arazzo Specification is itself a JSON object, which may be represented either in JSON or YAML format.</p>
+<p>All field names in the specification are <strong>case sensitive</strong>.
+This includes all fields that are used as keys in a map, except where explicitly noted that keys are <strong>case insensitive</strong>.</p>
+<p>In order to preserve the ability to round-trip between YAML and JSON formats, YAML version <a href="https://yaml.org/spec/1.2/spec.html">1.2</a> is RECOMMENDED along with some additional constraints:</p>
+<ul>
+<li>Tags MUST be limited to those allowed by the <a href="https://yaml.org/spec/1.2/spec.html#id2803231">JSON Schema ruleset</a>.</li>
+<li>Keys used in YAML maps MUST be limited to a scalar string, as defined by the <a href="https://yaml.org/spec/1.2/spec.html#id2802346">YAML Failsafe schema ruleset</a>.</li>
+</ul>
+</section><section><h2>Arazzo Description Structure</h2>
+<p>It is RECOMMENDED that the entry Arazzo document be named: <code>arazzo.json</code> or <code>arazzo.yaml</code>.</p>
+<p>An Arazzo Description MAY be made up of a single document or be divided into multiple, connected parts at the discretion of the author. If workflows from other documents are being referenced, they must by included as a <a href="#source-description-object">Source Description Object</a>. In a multi-document description, the document containing the <a href="#arazzo-specification-object">Arazzo Specification Object</a> is known as the <strong>entry Arazzo document</strong>.</p>
+</section><section><h2>Data Types</h2>
+<p>Data types in the Arazzo Specification are based on the types supported by the <a href="https://tools.ietf.org/html/draft-bhutton-json-schema-00#section-4.2.1">JSON Schema Specification Draft 2020-12</a>. Note that integer as a type is also supported and is defined as a JSON number without a fraction or exponent part.</p>
+<p>As defined by the <a href="https://tools.ietf.org/html/draft-bhutton-json-schema-validation-00#section-7">JSON Schema Validation vocabulary</a>, data types can have an optional modifier property: <code>format</code>. Arazzo additionally supports the formats (similar to the OpenAPI specification) to provide fine detail for primitive data types.</p>
+<p>The formats defined are:</p>
+<table>
+<thead>
+<tr>
+<th><a href="#data-types"><code>type</code></a></th>
+<th><code>format</code></th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>integer</code></td>
+<td><code>int32</code></td>
+<td>signed 32 bits</td>
+</tr>
+<tr>
+<td><code>integer</code></td>
+<td><code>int64</code></td>
+<td>signed 64 bits (a.k.a long)</td>
+</tr>
+<tr>
+<td><code>number</code></td>
+<td><code>float</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>number</code></td>
+<td><code>double</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>string</code></td>
+<td><code>password</code></td>
+<td>A hint to UIs to obscure input.</td>
+</tr>
+</tbody>
+</table>
+</section><section><h2>Relative References in URLs</h2>
+<p>Unless specified otherwise, all properties that are URLs MAY be relative references as defined by [[!RFC3986]].
+Unless specified otherwise, relative references are resolved using the URL of the referring document.</p>
+</section><section><h2>Schema</h2>
+<p>In the following description, if a field is not explicitly <strong>REQUIRED</strong> or described with a MUST or SHALL, it can be considered OPTIONAL.</p>
+<section><h3>Arazzo Specification Object</h3>
+<p>This is the root object of the <a href="#arazzo-description">Arazzo Description</a>.</p>
+<section><h4>Fixed Fields</h4>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th style="text-align:center">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="arazzoVersion"> </a>arazzo</td>
+<td style="text-align:center"><code>string</code></td>
+<td><strong>REQUIRED</strong>. This string MUST be the <a href="#versions">version number</a> of the Arazzo Specification that the Arazzo Description uses. The <code>arazzo</code> field MUST be used by tooling to interpret the Arazzo Description.</td>
+</tr>
+<tr>
+<td><a id="arazzoInfo"> </a>info</td>
+<td style="text-align:center"><a href="#info-object">Info Object</a></td>
+<td><strong>REQUIRED</strong>. Provides metadata about the workflows contain within the Arazzo Description. The metadata MAY be used by tooling as required.</td>
+</tr>
+<tr>
+<td><a id="arazzoSources"> </a>sourceDescriptions</td>
+<td style="text-align:center">[<a href="#source-description-object">Source Description Object</a>]</td>
+<td><strong>REQUIRED</strong>. A list of source descriptions (such as an OpenAPI description) this Arazzo Description SHALL apply to. The list MUST have at least one entry.</td>
+</tr>
+<tr>
+<td><a id="workflows"> </a>workflows</td>
+<td style="text-align:center">[<a href="#workflow-object">Workflow Object</a>]</td>
+<td><strong>REQUIRED</strong>. A list of workflows. The list MUST have at least one entry.</td>
+</tr>
+<tr>
+<td><a id="components"> </a>components</td>
+<td style="text-align:center"><a href="#components-object">Components Object</a></td>
+<td>An element to hold various schemas for the Arazzo Description.</td>
+</tr>
+</tbody>
+</table>
+<p>This object MAY be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
+</section><section><h4>Arazzo Specification Object Example</h4>
+<pre class="nohighlight"><code>
+<span class="hljs-attr">arazzo:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+<span class="hljs-attr">info:</span>
+  <span class="hljs-attr">title:</span> <span class="hljs-string">A</span> <span class="hljs-string">pet</span> <span class="hljs-string">purchasing</span> <span class="hljs-string">workflow</span>
+  <span class="hljs-attr">summary:</span> <span class="hljs-string">This</span> <span class="hljs-string">Arazzo</span> <span class="hljs-string">Description</span> <span class="hljs-string">showcases</span> <span class="hljs-string">the</span> <span class="hljs-string">workflow</span> <span class="hljs-string">for</span> <span class="hljs-string">how</span> <span class="hljs-string">to</span> <span class="hljs-string">purchase</span> <span class="hljs-string">a</span> <span class="hljs-string">pet</span> <span class="hljs-string">through</span> <span class="hljs-string">a</span> <span class="hljs-string">sequence</span> <span class="hljs-string">of</span> <span class="hljs-string">API</span> <span class="hljs-string">calls</span>
+  <span class="hljs-attr">description:</span> <span class="hljs-string">|
+      This Arazzo Description walks you through the workflow and steps of `searching` for, `selecting`, and `purchasing` an available pet.
+</span>  <span class="hljs-attr">version:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.1</span>
+<span class="hljs-attr">sourceDescriptions:</span>
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">petStoreDescription</span>
+  <span class="hljs-attr">url:</span> <span class="hljs-string">https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml</span>
+  <span class="hljs-attr">type:</span> <span class="hljs-string">openapi</span>
+
+<span class="hljs-attr">workflows:</span>
+<span class="hljs-bullet">-</span> <span class="hljs-attr">workflowId:</span> <span class="hljs-string">loginUserAndRetrievePet</span>
+  <span class="hljs-attr">summary:</span> <span class="hljs-string">Login</span> <span class="hljs-string">User</span> <span class="hljs-string">and</span> <span class="hljs-string">then</span> <span class="hljs-string">retrieve</span> <span class="hljs-string">pets</span>
+  <span class="hljs-attr">description:</span> <span class="hljs-string">This</span> <span class="hljs-string">workflow</span> <span class="hljs-string">lays</span> <span class="hljs-string">out</span> <span class="hljs-string">the</span> <span class="hljs-string">steps</span> <span class="hljs-string">to</span> <span class="hljs-string">login</span> <span class="hljs-string">a</span> <span class="hljs-string">user</span> <span class="hljs-string">and</span> <span class="hljs-string">then</span> <span class="hljs-string">retrieve</span> <span class="hljs-string">pets</span>
+  <span class="hljs-attr">inputs:</span>
+      <span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
+      <span class="hljs-attr">properties:</span>
+          <span class="hljs-attr">username:</span>
+              <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
+          <span class="hljs-attr">password:</span>
+              <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
+  <span class="hljs-attr">steps:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">stepId:</span> <span class="hljs-string">loginStep</span>
+    <span class="hljs-attr">description:</span> <span class="hljs-string">This</span> <span class="hljs-string">step</span> <span class="hljs-string">demonstrates</span> <span class="hljs-string">the</span> <span class="hljs-string">user</span> <span class="hljs-string">login</span> <span class="hljs-string">step</span>
+    <span class="hljs-attr">operationId:</span> <span class="hljs-string">loginUser</span>
+    <span class="hljs-attr">parameters:</span>
+      <span class="hljs-comment"># parameters to inject into the loginUser operation (parameter name must be resolvable at the referenced operation and the value is determined using {expression} syntax)</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">username</span>
+        <span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
+        <span class="hljs-attr">value:</span> <span class="hljs-string">$inputs.username</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">password</span>
+        <span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
+        <span class="hljs-attr">value:</span> <span class="hljs-string">$inputs.password</span>
+    <span class="hljs-attr">successCriteria:</span>
+      <span class="hljs-comment"># assertions to determine step was successful</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">condition:</span> <span class="hljs-string">$statusCode</span> <span class="hljs-string">==</span> <span class="hljs-number">200</span>
+    <span class="hljs-attr">outputs:</span>
+      <span class="hljs-comment"># outputs from this step</span>
+      <span class="hljs-attr">tokenExpires:</span> <span class="hljs-string">$response.header.X-Expires-After</span>
+      <span class="hljs-attr">rateLimit:</span> <span class="hljs-string">$response.header.X-Rate-Limit</span>
+      <span class="hljs-attr">sessionToken:</span> <span class="hljs-string">$response.body</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">stepId:</span> <span class="hljs-string">getPetStep</span>
+    <span class="hljs-attr">description:</span> <span class="hljs-string">retrieve</span> <span class="hljs-string">a</span> <span class="hljs-string">pet</span> <span class="hljs-string">by</span> <span class="hljs-string">status</span> <span class="hljs-string">from</span> <span class="hljs-string">the</span> <span class="hljs-string">GET</span> <span class="hljs-string">pets</span> <span class="hljs-string">endpoint</span>
+    <span class="hljs-attr">operationPath:</span> <span class="hljs-string">&#x27;{$sourceDescriptions.petstoreDescription.url}#/paths/~1pet~1findByStatus/get&#x27;</span>
+    <span class="hljs-attr">parameters:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">status</span>
+        <span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
+        <span class="hljs-attr">value:</span> <span class="hljs-string">&#x27;available&#x27;</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Authorization</span>
+        <span class="hljs-attr">in:</span> <span class="hljs-string">header</span>
+        <span class="hljs-attr">value:</span> <span class="hljs-string">$steps.loginUser.outputs.sessionToken</span>
+    <span class="hljs-attr">successCriteria:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">condition:</span> <span class="hljs-string">$statusCode</span> <span class="hljs-string">==</span> <span class="hljs-number">200</span>
+    <span class="hljs-attr">outputs:</span>
+      <span class="hljs-comment"># outputs from this step</span>
+      <span class="hljs-attr">availablePets:</span> <span class="hljs-string">$response.body</span>
+  <span class="hljs-attr">outputs:</span>
+      <span class="hljs-attr">available:</span> <span class="hljs-string">$steps.getPetStep.availablePets</span>
+</code></pre>
+</section></section><section><h3>Info Object</h3>
+<p>The object provides metadata about API workflows defined in this Arazzo document.
+The metadata MAY be used by the clients if needed.</p>
+<section><h4>Fixed Fields</h4>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th style="text-align:center">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="infoTitle"> </a>title</td>
+<td style="text-align:center"><code>string</code></td>
+<td><strong>REQUIRED</strong>. A human readable title of the Arazzo Description.</td>
+</tr>
+<tr>
+<td><a id="infoSummary"> </a>summary</td>
+<td style="text-align:center"><code>string</code></td>
+<td>A short summary of the Arazzo Description.</td>
+</tr>
+<tr>
+<td><a id="infoDescription"> </a>description</td>
+<td style="text-align:center"><code>string</code></td>
+<td>A description of the purpose of the workflows defined. <a href="https://spec.commonmark.org/">CommonMark syntax</a> MAY be used for rich text representation.</td>
+</tr>
+<tr>
+<td><a id="infoVersion"> </a>version</td>
+<td style="text-align:center"><code>string</code></td>
+<td><strong>REQUIRED</strong>. The version identifier of the Arazzo document (which is distinct from the <a href="#versions">Arazzo Specification version</a>).</td>
+</tr>
+</tbody>
+</table>
+<p>This object MAY be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
+</section><section><h4>Info Object Example</h4>
+<pre class="nohighlight"><code>
+<span class="hljs-attr">title:</span> <span class="hljs-string">A</span> <span class="hljs-string">pet</span> <span class="hljs-string">purchasing</span> <span class="hljs-string">workflow</span>
+<span class="hljs-attr">summary:</span> <span class="hljs-string">This</span> <span class="hljs-string">workflow</span> <span class="hljs-string">showcases</span> <span class="hljs-string">how</span> <span class="hljs-string">to</span> <span class="hljs-string">purchase</span> <span class="hljs-string">a</span> <span class="hljs-string">pet</span> <span class="hljs-string">through</span> <span class="hljs-string">a</span> <span class="hljs-string">sequence</span> <span class="hljs-string">of</span> <span class="hljs-string">API</span> <span class="hljs-string">calls</span>
+<span class="hljs-attr">description:</span> <span class="hljs-string">|
+    This workflow walks you through the steps of searching for, selecting, and purchasing an available pet.
+</span><span class="hljs-attr">version:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.1</span>
+</code></pre>
+</section></section><section><h3>Source Description Object</h3>
+<p>Describes a source description (such as an OpenAPI description) that will be referenced by one or more workflows described within an Arazzo Description.</p>
+<p>An object storing a map between named description keys and location URLs to the source descriptions (such as an OpenAPI description) this Arazzo Description SHALL apply to. Each source location <code>string</code> MUST be in the form of a URI-reference as defined by <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-4.1">RFC3986 section 4.1</a>.</p>
+<section><h4>Fixed Fields</h4>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th style="text-align:center">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="sourceName"> </a>name</td>
+<td style="text-align:center"><code>string</code></td>
+<td><strong>REQUIRED</strong>. A unique name for the source description. Tools and libraries MAY use the <code>name</code> to uniquely identify a source description, therefore, it is RECOMMENDED to follow common programming naming conventions. SHOULD conform to the regular expression <code>[A-Za-z0-9_\-]+</code>.</td>
+</tr>
+<tr>
+<td><a id="sourceURL"> </a>url</td>
+<td style="text-align:center"><code>string</code></td>
+<td><strong>REQUIRED</strong>. A URL to a source description to be used by a workflow. If a relative reference is used, it MUST be in the form of a URI-reference as defined by <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-4.2">RFC3986 section 4.2</a>.</td>
+</tr>
+<tr>
+<td><a id="sourceType"> </a>type</td>
+<td style="text-align:center"><code>string</code></td>
+<td>The type of source description. Possible values are <code>&quot;openapi&quot;</code> or <code>&quot;arazzo&quot;</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>This object MAY be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
+</section><section><h4>Source Description Object Example</h4>
+<pre class="nohighlight"><code>
+<span class="hljs-attr">name:</span> <span class="hljs-string">petStoreDescription</span>
+<span class="hljs-attr">url:</span> <span class="hljs-string">https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml</span>
+<span class="hljs-attr">type:</span> <span class="hljs-string">openapi</span>
+</code></pre>
+</section></section><section><h3>Workflow Object</h3>
+<p>Describes the steps to be taken across one or more APIs to achieve an objective. The workflow object MAY define inputs needed in order to execute workflow steps, where the defined steps represent a call to an API operation or another workflow, and a set of outputs.</p>
+<section><h4>Fixed Fields</h4>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th style="text-align:center">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="workflowId"> </a>workflowId</td>
+<td style="text-align:center"><code>string</code></td>
+<td><strong>REQUIRED</strong>. Unique string to represent the workflow. The id MUST be unique amongst all workflows describe in the Arazzo Description. The <code>workflowId</code> value is <strong>case-sensitive</strong>. Tools and libraries MAY use the <code>workflowId</code> to uniquely identify a workflow, therefore, it is RECOMMENDED to follow common programming naming conventions. SHOULD conform to the regular expression <code>[A-Za-z0-9_\-]+</code>.</td>
+</tr>
+<tr>
+<td><a id="workflowSummary"> </a>summary</td>
+<td style="text-align:center"><code>string</code></td>
+<td>A summary of the purpose or objective of the workflow.</td>
+</tr>
+<tr>
+<td><a id="workflowDescription"> </a>description</td>
+<td style="text-align:center"><code>string</code></td>
+<td>A description of the workflow. <a href="https://spec.commonmark.org/">CommonMark syntax</a> MAY be used for rich text representation.</td>
+</tr>
+<tr>
+<td><a id="workflowInputs"> </a>inputs</td>
+<td style="text-align:center"><code>JSON Schema</code></td>
+<td>A JSON Schema 2020-12 object representing the input parameters used by this workflow.</td>
+</tr>
+<tr>
+<td><a id="dependsOn"> </a>dependsOn</td>
+<td style="text-align:center">[<code>string</code>]</td>
+<td>A list of workflows that MUST be completed before this workflow can be processed. The values provided MUST be a <code>workflowId</code>. If the workflow depended on is defined within the current Workflow Document, then specify the <code>workflowId</code> of the relevant local workflow. If the workflow is defined in a separate Arazzo Document then the workflow MUST be defined in the <code>sourceDescriptions</code> and the <code>workflowId</code> MUST be specified using a <a href="#runtime-expressions">runtime expression</a> (e.g., <code>$sourceDescriptions.&lt;name&gt;.&lt;workflowId&gt;</code>) to avoid ambiguity or potential clashes.</td>
+</tr>
+<tr>
+<td><a id="workflowSteps"> </a>steps</td>
+<td style="text-align:center">[<a href="#step-object">Step Object</a>]</td>
+<td><strong>REQUIRED</strong>. An ordered list of steps where each step represents a call to an API operation or to another workflow.</td>
+</tr>
+<tr>
+<td><a id="workflowSuccessActions"> </a>successActions</td>
+<td style="text-align:center">[<a href="#success-action-object">Success Action Object</a> | <a href="#reusable-object">Reusable Object</a>]</td>
+<td>A list of success actions that are applicable for all steps described under this workflow. These success actions can be overridden at the step level but cannot be removed there. If a Reusable Object is provided, it MUST link to success actions defined in the <a href="#components-object">components/successActions</a> of the current Arazzo document. The list MUST NOT include duplicate success actions.</td>
+</tr>
+<tr>
+<td><a id="workflowFailureActions"> </a>failureActions</td>
+<td style="text-align:center">[<a href="#failure-action-object">Failure Action Object</a> | <a href="#reusable-object">Reusable Object</a>]</td>
+<td>A list of failure actions that are applicable for all steps described under this workflow. These failure actions can be overridden at the step level but cannot be removed there. If a Reusable Object is provided, it MUST link to failure actions defined in the <a href="#components-object">components/failureActions</a> of the current Arazzo document. The list MUST NOT include duplicate failure actions.</td>
+</tr>
+<tr>
+<td><a id="workflowOutputs"> </a>outputs</td>
+<td style="text-align:center">Map[<code>string</code>, {expression}]</td>
+<td>A map between a friendly name and a dynamic output value. The name MUST use keys that match the regular expression: <code>^[a-zA-Z0-9\.\-_]+$</code>.</td>
+</tr>
+<tr>
+<td><a id="workflowParameters"> </a>parameters</td>
+<td style="text-align:center">[<a href="#parameter-object">Parameter Object</a> | <a href="#reusable-object">Reusable Object</a>]</td>
+<td>A list of parameters that are applicable for all steps described under this workflow. These parameters can be overridden at the step level but cannot be removed there. Each parameter MUST be passed to an operation or workflow as referenced by <code>operationId</code>, <code>operationPath</code>, or <code>workflowId</code> as specified within each step. If a Reusable Object is provided, it MUST link to a parameter defined in the <a href="#components-object">components/parameters</a> of the current Arazzo document. The list MUST NOT include duplicate parameters.</td>
+</tr>
+</tbody>
+</table>
+<p>This object MAY be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
+</section><section><h4>Workflow Object Example</h4>
+<pre class="nohighlight"><code>
+<span class="hljs-attr">workflowId:</span> <span class="hljs-string">loginUser</span>
+<span class="hljs-attr">summary:</span> <span class="hljs-string">Login</span> <span class="hljs-string">User</span>
+<span class="hljs-attr">description:</span> <span class="hljs-string">This</span> <span class="hljs-string">workflow</span> <span class="hljs-string">lays</span> <span class="hljs-string">out</span> <span class="hljs-string">the</span> <span class="hljs-string">steps</span> <span class="hljs-string">to</span> <span class="hljs-string">login</span> <span class="hljs-string">a</span> <span class="hljs-string">user</span>
+<span class="hljs-attr">inputs:</span>
+    <span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
+    <span class="hljs-attr">properties:</span>
+        <span class="hljs-attr">username:</span>
+            <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
+        <span class="hljs-attr">password:</span>
+            <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
+<span class="hljs-attr">steps:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">stepId:</span> <span class="hljs-string">loginStep</span>
+    <span class="hljs-attr">description:</span> <span class="hljs-string">This</span> <span class="hljs-string">step</span> <span class="hljs-string">demonstrates</span> <span class="hljs-string">the</span> <span class="hljs-string">user</span> <span class="hljs-string">login</span> <span class="hljs-string">step</span>
+    <span class="hljs-attr">operationId:</span> <span class="hljs-string">loginUser</span>
+    <span class="hljs-attr">parameters:</span>
+      <span class="hljs-comment"># parameters to inject into the loginUser operation (parameter name must be resolvable at the referenced operation and the value is determined using {expression} syntax)</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">username</span>
+        <span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
+        <span class="hljs-attr">value:</span> <span class="hljs-string">$inputs.username</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">password</span>
+        <span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
+        <span class="hljs-attr">value:</span> <span class="hljs-string">$inputs.password</span>
+    <span class="hljs-attr">successCriteria:</span>
+        <span class="hljs-comment"># assertions to determine step was successful </span>
+        <span class="hljs-bullet">-</span> <span class="hljs-attr">condition:</span> <span class="hljs-string">$statusCode</span> <span class="hljs-string">==</span> <span class="hljs-number">200</span>
+    <span class="hljs-attr">outputs:</span>
+        <span class="hljs-comment"># outputs from this step</span>
+        <span class="hljs-attr">tokenExpires:</span> <span class="hljs-string">$response.header.X-Expires-After</span>
+        <span class="hljs-attr">rateLimit:</span> <span class="hljs-string">$response.header.X-Rate-Limit</span>
+<span class="hljs-attr">outputs:</span>
+    <span class="hljs-attr">tokenExpires:</span> <span class="hljs-string">$steps.loginStep.outputs.tokenExpires</span>
+</code></pre>
+</section></section><section><h3>Step Object</h3>
+<p>Describes a single workflow step which MAY be a call to an API operation (<a href="https://spec.openapis.org/oas/latest.html#operation-object">OpenAPI Operation Object</a> or another <a href="#workflow-object">Workflow Object</a>.</p>
+<section><h4>Fixed Fields</h4>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th style="text-align:center">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="stepDescription"> </a>description</td>
+<td style="text-align:center"><code>string</code></td>
+<td>A description of the step. <a href="https://spec.commonmark.org/">CommonMark syntax</a> MAY be used for rich text representation.</td>
+</tr>
+<tr>
+<td><a id="stepId"> </a>stepId</td>
+<td style="text-align:center"><code>string</code></td>
+<td><strong>REQUIRED</strong>. Unique string to represent the step. The <code>stepId</code> MUST be unique amongst all steps described in the workflow. The <code>stepId</code> value is <strong>case-sensitive</strong>. Tools and libraries MAY use the <code>stepId</code> to uniquely identify a workflow step, therefore, it is RECOMMENDED to follow common programming naming conventions. SHOULD conform to the regular expression <code>[A-Za-z0-9_\-]+</code>.</td>
+</tr>
+<tr>
+<td><a id="stepOperationId"> </a>operationId</td>
+<td style="text-align:center"><code>string</code></td>
+<td>The name of an existing, resolvable operation, as defined with a unique <code>operationId</code> and existing within one of the <code>sourceDescriptions</code>. The referenced operation will be invoked by this workflow step. If multiple (non <code>arazzo</code> type) <code>sourceDescriptions</code> are defined, then the <code>operationId</code> MUST be specified using a <a href="#runtime-expressions">runtime expression</a> (e.g., <code>$sourceDescriptions.&lt;name&gt;.&lt;operationId&gt;</code>) to avoid ambiguity or potential clashes. This field is mutually exclusive of the <code>operationPath</code> and <code>workflowId</code> fields respectively.</td>
+</tr>
+<tr>
+<td><a id="stepOperationPath"> </a>operationPath</td>
+<td style="text-align:center"><code>string</code></td>
+<td>A reference to a <a href="#source-description-object">Source</a> combined with a <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to reference an operation. This field is mutually exclusive of the <code>operationId</code> and <code>workflowId</code> fields respectively. The operation being referenced MUST be described within one of the <code>sourceDescriptions</code> descriptions. A <a href="#runtime-expressions">runtime expression</a> syntax MUST be used to identify the source description document. If the referenced operation has an <code>operationId</code> defined then the <code>operationId</code> SHOULD be preferred over the <code>operationPath</code>.</td>
+</tr>
+<tr>
+<td><a id="stepWorkflowId"> </a>workflowId</td>
+<td style="text-align:center"><code>string</code></td>
+<td>The <a href="#fixed-fields-2">workflowId</a> referencing an existing workflow within the Arazzo Description. If multiple <code>arazzo</code> type <code>sourceDescriptions</code> are defined, then the <code>workflowId</code> MUST be specified using a <a href="#runtime-expressions">runtime expression</a> (e.g., <code>$sourceDescriptions.&lt;name&gt;.&lt;workflowId&gt;</code>) to avoid ambiguity or potential clashes. The field is mutually exclusive of the <code>operationId</code> and <code>operationPath</code> fields respectively.</td>
+</tr>
+<tr>
+<td><a id="stepParameters"> </a>parameters</td>
+<td style="text-align:center">[<a href="#parameter-object">Parameter Object</a> | <a href="#reusable-object">Reusable Object</a>]</td>
+<td>A list of parameters that MUST be passed to an operation or workflow as referenced by <code>operationId</code>, <code>operationPath</code>, or <code>workflowId</code>. If a parameter is already defined at the <a href="#workflow-object">Workflow</a>, the new definition will override it but can never remove it. If a Reusable Object is provided, it MUST link to a parameter defined in the <a href="#components-object">components/parameters</a> of the current Arazzo document. The list MUST NOT include duplicate parameters.</td>
+</tr>
+<tr>
+<td><a id="stepRequestBody"> </a>requestBody</td>
+<td style="text-align:center"><a href="#request-body-object">Request Body Object</a></td>
+<td>The request body to pass to an operation as referenced by <code>operationId</code> or <code>operationPath</code>. The <code>requestBody</code> is fully supported in HTTP methods where the HTTP 1.1 specification [[!RFC7231]] has explicitly defined semantics for request bodies.  In other cases where the HTTP spec is vague (such as <a href="https://tools.ietf.org/html/rfc7231#section-4.3.1">GET</a>, <a href="https://tools.ietf.org/html/rfc7231#section-4.3.2">HEAD</a> and <a href="https://tools.ietf.org/html/rfc7231#section-4.3.5">DELETE</a>), <code>requestBody</code> is permitted but does not have well-defined semantics and SHOULD be avoided if possible.</td>
+</tr>
+<tr>
+<td><a id="stepSuccessCriteria"> </a>successCriteria</td>
+<td style="text-align:center">[<a href="#criterion-object">Criterion Object</a>]</td>
+<td>A list of assertions to determine the success of the step. Each assertion is described using a <a href="#criterion-object">Criterion Object</a>. All assertions <code>MUST</code> be satisfied for the step to be deemed successful.</td>
+</tr>
+<tr>
+<td><a id="stepOnSuccess"> </a>onSuccess</td>
+<td style="text-align:center">[<a href="#success-action-object">Success Action Object</a> | <a href="#reusable-object">Reusable Object</a>]</td>
+<td>An array of success action objects that specify what to do upon step success. If omitted, the next sequential step shall be executed as the default behavior. If multiple success actions have similar <code>criteria</code>, the first sequential action matching the criteria SHALL be the action executed. If a success action is already defined at the <a href="#workflow-object">Workflow</a>, the new definition will override it but can never remove it. If a Reusable Object is provided, it MUST link to a success action defined in the <a href="#components-object">components</a> of the current Arazzo document. The list MUST NOT include duplicate success actions.</td>
+</tr>
+<tr>
+<td><a id="stepOnFailure"> </a>onFailure</td>
+<td style="text-align:center">[<a href="#failure-action-object">Failure Action Object</a> | <a href="#reusable-object">Reusable Object</a>]</td>
+<td>An array of failure action objects that specify what to do upon step failure. If omitted, the default behavior is to break and return. If multiple failure actions have similar <code>criteria</code>, the first sequential action matching the criteria SHALL be the action executed. If a failure action is already defined at the <a href="#workflow-object">Workflow</a>, the new definition will override it but can never remove it. If a Reusable Object is provided, it MUST link to a failure action defined in the <a href="#components-object">components</a> of the current Arazzo document. The list MUST NOT include duplicate failure actions.</td>
+</tr>
+<tr>
+<td><a id="stepOutputs"> </a>outputs</td>
+<td style="text-align:center">Map[<code>string</code>, {expression}]</td>
+<td>A map between a friendly name and a dynamic output value defined using a <a href="#runtime-expressions">runtime expression</a>. The name MUST use keys that match the regular expression: <code>^[a-zA-Z0-9\.\-_]+$</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>This object MAY be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
+</section><section><h4>Step Object Example</h4>
+<p><strong>Single step</strong></p>
+<pre class="nohighlight"><code>
+<span class="hljs-attr">stepId:</span> <span class="hljs-string">loginStep</span>
+<span class="hljs-attr">description:</span> <span class="hljs-string">This</span> <span class="hljs-string">step</span> <span class="hljs-string">demonstrates</span> <span class="hljs-string">the</span> <span class="hljs-string">user</span> <span class="hljs-string">login</span> <span class="hljs-string">step</span>
+<span class="hljs-attr">operationId:</span> <span class="hljs-string">loginUser</span>
+<span class="hljs-attr">parameters:</span>
+    <span class="hljs-comment"># parameters to inject into the loginUser operation (parameter name must be resolvable at the referenced operation and the value is determined using {expression} syntax)</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">username</span>
+      <span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
+      <span class="hljs-attr">value:</span> <span class="hljs-string">$inputs.username</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">password</span>
+      <span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
+      <span class="hljs-attr">value:</span> <span class="hljs-string">$inputs.password</span>
+<span class="hljs-attr">successCriteria:</span>
+    <span class="hljs-comment"># assertions to determine step was successful</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">condition:</span> <span class="hljs-string">$statusCode</span> <span class="hljs-string">==</span> <span class="hljs-number">200</span>
+<span class="hljs-attr">outputs:</span>
+    <span class="hljs-comment"># outputs from this step</span>
+    <span class="hljs-attr">tokenExpires:</span> <span class="hljs-string">$response.header.X-Expires-After</span>
+    <span class="hljs-attr">rateLimit:</span> <span class="hljs-string">$response.header.X-Rate-Limit</span>
+</code></pre>
+<p><strong>Multiple steps</strong></p>
+<pre class="nohighlight"><code>
+<span class="hljs-attr">steps:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">stepId:</span> <span class="hljs-string">loginStep</span>
+    <span class="hljs-attr">description:</span> <span class="hljs-string">This</span> <span class="hljs-string">step</span> <span class="hljs-string">demonstrates</span> <span class="hljs-string">the</span> <span class="hljs-string">user</span> <span class="hljs-string">login</span> <span class="hljs-string">step</span>
+    <span class="hljs-attr">operationId:</span> <span class="hljs-string">loginUser</span>
+    <span class="hljs-attr">parameters:</span>
+        <span class="hljs-comment"># parameters to inject into the loginUser operation (parameter name must be resolvable at the referenced operation and the value is determined using {expression} syntax)</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">username</span>
+        <span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
+        <span class="hljs-attr">value:</span> <span class="hljs-string">$inputs.username</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">password</span>
+        <span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
+        <span class="hljs-attr">value:</span> <span class="hljs-string">$inputs.password</span>
+    <span class="hljs-attr">successCriteria:</span>
+        <span class="hljs-comment"># assertions to determine step was successful</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">condition:</span> <span class="hljs-string">$statusCode</span> <span class="hljs-string">==</span> <span class="hljs-number">200</span>
+    <span class="hljs-attr">outputs:</span>
+        <span class="hljs-comment"># outputs from this step</span>
+        <span class="hljs-attr">tokenExpires:</span> <span class="hljs-string">$response.header.X-Expires-After</span>
+        <span class="hljs-attr">rateLimit:</span> <span class="hljs-string">$response.header.X-Rate-Limit</span>
+        <span class="hljs-attr">sessionToken:</span> <span class="hljs-string">$response.body</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">stepId:</span> <span class="hljs-string">getPetStep</span>
+    <span class="hljs-attr">description:</span> <span class="hljs-string">retrieve</span> <span class="hljs-string">a</span> <span class="hljs-string">pet</span> <span class="hljs-string">by</span> <span class="hljs-string">status</span> <span class="hljs-string">from</span> <span class="hljs-string">the</span> <span class="hljs-string">GET</span> <span class="hljs-string">pets</span> <span class="hljs-string">endpoint</span>
+    <span class="hljs-attr">operationPath:</span> <span class="hljs-string">&#x27;{$sourceDescriptions.petStoreDescription.url}#/paths/~1pet~1findByStatus/get&#x27;</span>
+    <span class="hljs-attr">parameters:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">status</span>
+        <span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
+        <span class="hljs-attr">value:</span> <span class="hljs-string">&#x27;available&#x27;</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Authorization</span>
+        <span class="hljs-attr">in:</span> <span class="hljs-string">header</span>
+        <span class="hljs-attr">value:</span> <span class="hljs-string">$steps.loginUser.outputs.sessionToken</span>
+    <span class="hljs-attr">successCriteria:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">condition:</span> <span class="hljs-string">$statusCode</span> <span class="hljs-string">==</span> <span class="hljs-number">200</span>
+    <span class="hljs-attr">outputs:</span>
+        <span class="hljs-comment"># outputs from this step</span>
+        <span class="hljs-attr">availablePets:</span> <span class="hljs-string">$response.body</span>
+</code></pre>
+</section></section><section><h3>Parameter Object</h3>
+<p>Describes a single step parameter. A unique parameter is defined by the combination of a <code>name</code> and <code>in</code> fields. There are four possible locations specified by the <code>in</code> field:</p>
+<ul>
+<li>path - Used together with OpenAPI style <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#path-templating">Path Templating</a>, where the parameter value is actually part of the operation’s URL. This does not include the host or base path of the API. For example, in /items/{itemId}, the path parameter is itemId.</li>
+<li>query - Parameters that are appended to the URL. For example, in <code>/items?id=###</code>, the query parameter is <code>id</code>.</li>
+<li>header - Custom headers that are expected as part of the request. Note that [[!RFC7230]] states header names are case insensitive.</li>
+<li>cookie - Used to pass a specific cookie value to the source API.</li>
+</ul>
+<section><h4>Fixed Fields</h4>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th style="text-align:center">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="parameterName"> </a> name</td>
+<td style="text-align:center"><code>string</code></td>
+<td><strong>REQUIRED</strong>. The name of the parameter. Parameter names are <em>case sensitive</em>.</td>
+</tr>
+<tr>
+<td><a id="parameterIn"> </a> in</td>
+<td style="text-align:center"><code>string</code></td>
+<td>The name location of the parameter. Possible values are <code>&quot;path&quot;</code>, <code>&quot;query&quot;</code>, <code>&quot;header&quot;</code>, <code>&quot;cookie&quot;</code>, or <code>&quot;body&quot;</code>.  When the step in context specifies a <code>workflowId</code>, then all parameters map to workflow inputs. In all other scenarios (e.g., a step specifies an <code>operationId</code>), the <code>in</code> field MUST be specified.</td>
+</tr>
+<tr>
+<td><a id="parameterValue"> </a> value</td>
+<td style="text-align:center">Any | {expression}</td>
+<td><strong>REQUIRED</strong>. The value to pass in the parameter. The value can be a constant or an <a href="#runtime-expressions">Runtime Expression</a> to be evaluated and passed to the referenced operation or workflow.</td>
+</tr>
+</tbody>
+</table>
+<p>This object MAY be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
+</section><section><h4>Parameter Object Example</h4>
+<p><strong>Query Example</strong></p>
+<pre class="nohighlight"><code>
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">username</span>
+  <span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
+  <span class="hljs-attr">value:</span> <span class="hljs-string">$inputs.username</span>
+</code></pre>
+<p><strong>Header Example</strong></p>
+<pre class="nohighlight"><code>
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">X-Api-Key</span>
+  <span class="hljs-attr">in:</span> <span class="hljs-string">header</span>
+  <span class="hljs-attr">value:</span> <span class="hljs-string">$inputs.x-api-key</span>
+</code></pre>
+</section></section><section><h3>Success Action Object</h3>
+<p>A single success action which describes an action to take upon success of a workflow step. There are two possible values for the <code>type</code> field.</p>
+<ul>
+<li>end - The workflow ends, and context returns to the caller with applicable outputs</li>
+<li>goto - A one-way transfer of workflow control to the specified label (either a <code>workflowId</code> or <code>stepId</code>)</li>
+</ul>
+<section><h4>Fixed Fields</h4>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th style="text-align:center">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="successActionName"> </a> name</td>
+<td style="text-align:center"><code>string</code></td>
+<td><strong>REQUIRED</strong>. The name of the success action. Names are <em>case sensitive</em>.</td>
+</tr>
+<tr>
+<td><a id="successActionType"> </a> type</td>
+<td style="text-align:center"><code>string</code></td>
+<td><strong>REQUIRED</strong>. The type of action to take. Possible values are <code>&quot;end&quot;</code> or <code>&quot;goto&quot;</code>.</td>
+</tr>
+<tr>
+<td><a id="successWorkflowId"> </a> workflowId</td>
+<td style="text-align:center"><code>string</code></td>
+<td>The <a href="#fixed-fields-2">workflowId</a> referencing an existing workflow within the Arazzo Description to transfer to upon success of the step. This field is only relevant when the <code>type</code> field value is <code>&quot;goto&quot;</code>. If multiple <code>arazzo</code> type <code>sourceDescriptions</code> are defined, then the <code>workflowId</code> MUST be specified using a <a href="#runtime-expressions">runtime expression</a> (e.g., <code>$sourceDescriptions.&lt;name&gt;.&lt;workflowId&gt;</code>) to avoid ambiguity or potential clashes.  This field is mutually exclusive to <code>stepId</code>.</td>
+</tr>
+<tr>
+<td><a id="successStepId"> </a> stepId</td>
+<td style="text-align:center"><code>string</code></td>
+<td>The <code>stepId</code> to transfer to upon success of the step. This field is only relevant when the <code>type</code> field value is <code>&quot;goto&quot;</code>. The referenced <code>stepId</code> MUST be within the current workflow. This field is mutually exclusive to <code>workflowId</code>.</td>
+</tr>
+<tr>
+<td><a id="successCriteria"> </a> criteria</td>
+<td style="text-align:center">[<a href="#criterion-object">Criterion Object</a>]</td>
+<td>A list of assertions to determine if this action SHALL be executed. Each assertion is described using a <a href="#criterion-object">Criterion Object</a>. All criteria assertions <code>MUST</code> be satisfied for the action to be executed.</td>
+</tr>
+</tbody>
+</table>
+<p>This object MAY be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
+</section><section><h4>Success Action Object Example</h4>
+<pre class="nohighlight"><code>
+<span class="hljs-attr">name:</span> <span class="hljs-string">JoinWaitingList</span>
+<span class="hljs-attr">type:</span> <span class="hljs-string">goto</span>
+<span class="hljs-attr">stepId:</span> <span class="hljs-string">joinWaitingListStep</span>
+<span class="hljs-attr">criteria:</span>
+    <span class="hljs-comment"># assertions to determine if this success action should be executed</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">context:</span> <span class="hljs-string">$response.body</span>
+      <span class="hljs-attr">condition:</span> <span class="hljs-string">$[?count(@.pets)</span> <span class="hljs-string">&gt;</span> <span class="hljs-number">0</span><span class="hljs-string">]</span>
+      <span class="hljs-attr">type:</span> <span class="hljs-string">JSONPath</span>
+</code></pre>
+</section></section><section><h3>Failure Action Object</h3>
+<p>A single failure action which describes an action to take upon failure of a workflow step. There are three possible values for the <code>type</code> field.</p>
+<ul>
+<li>end - The workflow ends, and context returns to the caller with applicable outputs</li>
+<li>retry - The current step will be retried. The retry will be constrained by the <code>retryAfter</code> and <code>retryLimit</code> fields. If a <code>stepId</code> or <code>workflowId</code> are specified, then the reference is executed and the context is returned, after which the current step is retried.</li>
+<li>goto - A one-way transfer of workflow control to the specified label (either a <code>workflowId</code> or <code>stepId</code>)</li>
+</ul>
+<section><h4>Fixed Fields</h4>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th style="text-align:center">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="failureActionName"> </a> name</td>
+<td style="text-align:center"><code>string</code></td>
+<td><strong>REQUIRED</strong>. The name of the failure action. Names are <em>case sensitive</em>.</td>
+</tr>
+<tr>
+<td><a id="failureActionType"> </a> type</td>
+<td style="text-align:center"><code>string</code></td>
+<td><strong>REQUIRED</strong>. The type of action to take. Possible values are <code>&quot;end&quot;</code>, <code>&quot;retry&quot;</code>, or <code>&quot;goto&quot;</code>.</td>
+</tr>
+<tr>
+<td><a id="failureWorkflowId"> </a> workflowId</td>
+<td style="text-align:center"><code>string</code></td>
+<td>The <a href="#fixed-fields-2">workflowId</a> referencing an existing workflow within the Arazzo Description to transfer to upon failure of the step. This field is only relevant when the <code>type</code> field value is <code>&quot;goto&quot;</code> or <code>&quot;retry&quot;</code>. If multiple <code>arazzo</code> type <code>sourceDescriptions</code> are defined, then the <code>workflowId</code> MUST be specified using a <a href="#runtime-expressions">runtime expression</a> (e.g., <code>$sourceDescriptions.&lt;name&gt;.&lt;workflowId&gt;</code>) to avoid ambiguity or potential clashes.  This field is mutually exclusive to <code>stepId</code>. When used with <code>&quot;retry&quot;</code>, context transfers back upon completion of the specified workflow.</td>
+</tr>
+<tr>
+<td><a id="failureStepId"> </a> stepId</td>
+<td style="text-align:center"><code>string</code></td>
+<td>The <code>stepId</code> to transfer to upon failure of the step. This field is only relevant when the <code>type</code> field value is <code>&quot;goto&quot;</code> or <code>&quot;retry&quot;</code>. The referenced <code>stepId</code> MUST be within the current workflow. This field is mutually exclusive to <code>workflowId</code>. When used with <code>&quot;retry&quot;</code>, context transfers back upon completion of the specified step.</td>
+</tr>
+<tr>
+<td><a id="failureRetryAfter"> </a> retryAfter</td>
+<td style="text-align:center"><code>number</code></td>
+<td>A non-negative decimal indicating the seconds to delay after the step failure before another attempt SHALL be made. <strong>Note:</strong> if an HTTP <a href="https://www.rfc-editor.org/rfc/rfc9110.html#name-retry-after">Retry-After</a> response header was returned to a step from a targeted operation, then it SHOULD overrule this particular field value. This field only applies when the <code>type</code> field value is <code>&quot;retry&quot;</code> or <code>&quot;function&quot;</code>.</td>
+</tr>
+<tr>
+<td><a id="failureRetryLimit"> </a> retryLimit</td>
+<td style="text-align:center"><code>integer</code></td>
+<td>A non-negative integer indicating how many attempts to retry the step MAY be attempted before failing the overall step. If not specified then a single retry SHALL be attempted. This field only applies when the <code>type</code> field value is <code>&quot;retry&quot;</code>. The <code>retryLimit</code> MUST be exhausted prior to executing subsequent failure actions.</td>
+</tr>
+<tr>
+<td><a id="failureCriteria"> </a> criteria</td>
+<td style="text-align:center">[<a href="#criterion-object">Criterion Object</a>]</td>
+<td>A list of assertions to determine if this action SHALL be executed. Each assertion is described using a <a href="#criterion-object">Criterion Object</a>.</td>
+</tr>
+</tbody>
+</table>
+<p>This object MAY be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
+</section><section><h4>Failure Action Object Example</h4>
+<pre class="nohighlight"><code>
+<span class="hljs-attr">name:</span> <span class="hljs-string">retryStep</span>
+<span class="hljs-attr">type:</span> <span class="hljs-string">retry</span>
+<span class="hljs-attr">retryAfter:</span> <span class="hljs-number">1</span>
+<span class="hljs-attr">retryLimit:</span> <span class="hljs-number">5</span>
+<span class="hljs-attr">criteria:</span>
+    <span class="hljs-comment"># assertions to determine if this action should be executed</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">condition:</span> <span class="hljs-string">$statusCode</span> <span class="hljs-string">==</span> <span class="hljs-number">503</span>
+</code></pre>
+</section></section><section><h3>Components Object</h3>
+<p>Holds a set of reusable objects for different aspects of the Arazzo Specification. All objects defined within the components object will have no effect on the Arazzo Description unless they are explicitly referenced from properties outside the components object.</p>
+<p>Components are scoped to the Arazzo document they are defined in. For example, if a step defined in Arazzo document “A” references a workflow defined in Arazzo document “B”, the components in “A” are not considered when evaluating the workflow referenced in “B”.</p>
+<section><h4>Fixed Fields</h4>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th style="text-align:left">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="componentInputs"> </a> inputs</td>
+<td style="text-align:left">Map[<code>string</code>, <code>JSON Schema</code>]</td>
+<td>An object to hold reusable JSON Schema objects to be referenced from workflow inputs.</td>
+</tr>
+<tr>
+<td><a id="componentParameters"> </a>parameters</td>
+<td style="text-align:left">Map[<code>string</code>, <a href="#parameter-object">Parameter Object</a>]</td>
+<td>An object to hold reusable Parameter Objects</td>
+</tr>
+<tr>
+<td><a id="componentSuccessActions"> </a>successActions</td>
+<td style="text-align:left">Map[<code>string</code>, <a href="#success-action-object">Success Action Object</a>]</td>
+<td>An object to hold reusable Success Actions Objects.</td>
+</tr>
+<tr>
+<td><a id="componentFailureActions"> </a>failureActions</td>
+<td style="text-align:left">Map[<code>string</code>, <a href="#failure-action-object">Failure Action Object</a>]</td>
+<td>An object to hold reusable Failure Actions Objects.</td>
+</tr>
+</tbody>
+</table>
+<p>This object MAY be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
+<p>All the fixed fields declared above are objects that MUST use keys that match the regular expression: <code>^[a-zA-Z0-9\.\-_]+$</code>. The key is used to refer to the input or parameter in other parts of the Workflow Description.</p>
+<p>Field Name Examples:</p>
+<pre class="highlight "><code>
+User
+User_1
+User_Name
+user-name
+my.org.User
+</code></pre>
+</section><section><h4>Components Object Example</h4>
+<pre class="nohighlight"><code>
+<span class="hljs-attr">components:</span>
+  <span class="hljs-attr">parameters:</span>
+    <span class="hljs-attr">storeId:</span>
+      <span class="hljs-attr">name:</span> <span class="hljs-string">storeId</span>
+      <span class="hljs-attr">in:</span> <span class="hljs-string">header</span>
+      <span class="hljs-attr">value:</span> <span class="hljs-string">$inputs.x-store-id</span>
+  <span class="hljs-attr">inputs:</span>
+    <span class="hljs-attr">pagination:</span>
+      <span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
+      <span class="hljs-attr">properties:</span>
+        <span class="hljs-attr">page:</span>
+          <span class="hljs-attr">type:</span> <span class="hljs-string">integer</span>
+          <span class="hljs-attr">format:</span> <span class="hljs-string">int32</span>
+        <span class="hljs-attr">pageSize:</span>
+          <span class="hljs-attr">type:</span> <span class="hljs-string">integer</span>
+          <span class="hljs-attr">format:</span> <span class="hljs-string">int32</span>
+  <span class="hljs-attr">failureActions:</span>
+    <span class="hljs-attr">refreshToken:</span>
+      <span class="hljs-attr">name:</span> <span class="hljs-string">refreshExpiredToken</span>
+      <span class="hljs-attr">type:</span> <span class="hljs-string">retry</span>
+      <span class="hljs-attr">retryAfter:</span> <span class="hljs-number">1</span>
+      <span class="hljs-attr">retryLimit:</span> <span class="hljs-number">5</span>
+      <span class="hljs-attr">workflowId:</span> <span class="hljs-string">refreshTokenWorkflowId</span>
+      <span class="hljs-attr">criteria:</span>
+          <span class="hljs-comment"># assertions to determine if this action should be executed</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-attr">condition:</span> <span class="hljs-string">$statusCode</span> <span class="hljs-string">==</span> <span class="hljs-number">401</span>       
+</code></pre>
+<pre class="nohighlight"><code>
+<span class="hljs-attr">&quot;components&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;parameters&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;storeId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;storeId&quot;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;in&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;header&quot;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$inputs.x-store-id&quot;</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;inputs&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;pagination&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;object&quot;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;properties&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;page&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+          <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;integer&quot;</span><span class="hljs-punctuation">,</span>
+          <span class="hljs-attr">&quot;format&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;int32&quot;</span>
+        <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;pageSize&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+          <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;integer&quot;</span><span class="hljs-punctuation">,</span>
+          <span class="hljs-attr">&quot;format&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;int32&quot;</span>
+        <span class="hljs-punctuation">}</span>
+      <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;failureActions&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;refreshToken&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;refreshExpiredToken&quot;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;retry&quot;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;retryAfter&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;retryLimit&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">5</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;workflowId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;refreshTokenWorkflowId&quot;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;criteria&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+        <span class="hljs-punctuation">{</span>
+          <span class="hljs-attr">&quot;condition&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;{$statusCode == 401}&quot;</span>
+        <span class="hljs-punctuation">}</span>
+      <span class="hljs-punctuation">]</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+</section></section><section><h3>Reusable Object</h3>
+<p>A simple object to allow referencing of objects contained within the <a href="#components-object">Components Object</a>. It can be used from locations within steps or workflows in the Arazzo Description. <strong>Note</strong> - Input Objects MUST use standard JSON Schema referencing via the <code>$ref</code> keyword while all non JSON Schema objects use this object and its expression based referencing mechanism.</p>
+<section><h4>Fixed Fields</h4>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th style="text-align:center">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="reusableObjectValue"> </a>value</td>
+<td style="text-align:center"><code>string</code></td>
+<td>Sets a value of the referenced parameter. This is only applicable for parameter object references.</td>
+</tr>
+</tbody>
+</table>
+<p>This object cannot be extended with additional properties and any properties added MUST be ignored.</p>
+</section><section><h4>Reusable Object Example</h4>
+<pre class="nohighlight"><code>
+  <span class="hljs-attr">reference:</span> <span class="hljs-string">$components.successActions.notify</span>
+</code></pre>
+<pre class="nohighlight"><code>
+  <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;reference&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$components.successActions.notify&quot;</span>
+  <span class="hljs-punctuation">}</span>
+</code></pre>
+<pre class="nohighlight"><code>
+  <span class="hljs-attr">reference:</span> <span class="hljs-string">$components.parameters.page</span>
+  <span class="hljs-attr">value:</span> <span class="hljs-number">1</span>
+</code></pre>
+<pre class="nohighlight"><code>
+  <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;reference&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$components.parameters.page&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span>
+  <span class="hljs-punctuation">}</span>
+</code></pre>
+</section></section><section><h3>Criterion Object</h3>
+<p>An object used to specify the context, conditions, and condition types that can be used to prove or satisfy assertions specified in <a href="#step-object">Step Object</a> <code>successCriteria</code>, <a href="#success-action-object">Success Action Object</a> <code>criteria</code>, and <a href="#failure-action-object">Failure Action Object</a> <code>criteria</code>.</p>
+<p>There are four flavors of conditions supported:</p>
+<ul>
+<li>simple - where basic literals, operators, and loose comparisons are used in combination with <a href="#runtime-expressions">Runtime Expressions</a>.</li>
+<li>regex - where a regex pattern is applied on the supplied context. The context is defined by a <a href="#runtime-expressions">Runtime Expression</a>.</li>
+<li>jsonpath - where a JSON Path expression is applied. The root node context is defined by a <a href="#runtime-expressions">Runtime Expression</a>.</li>
+<li>xpath - where an XPath expression is applied. The root node context is defined by a <a href="#runtime-expressions">Runtime Expression</a>.</li>
+</ul>
+<section><h4>Literals</h4>
+<p>As part of a condition expression, you can use <code>boolean</code>, <code>null</code>, <code>number</code>, or <code>string</code> data types.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Literal value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>boolean</code></td>
+<td><code>true</code> or <code>false</code></td>
+</tr>
+<tr>
+<td><code>null</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>number</code></td>
+<td>Any number format supported in <a href="#data-types">Data Types</a></td>
+</tr>
+<tr>
+<td><code>string</code></td>
+<td>Strings MUST use single quotes (‘) around the string. To use a literal single quote, escape the literal single quote using an additional single quote (’').</td>
+</tr>
+</tbody>
+</table>
+</section><section><h4>Operators</h4>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;</code></td>
+<td>Less than</td>
+</tr>
+<tr>
+<td><code>&lt;=</code></td>
+<td>Less than or equal</td>
+</tr>
+<tr>
+<td><code>&gt;</code></td>
+<td>Greater than</td>
+</tr>
+<tr>
+<td><code>&gt;=</code></td>
+<td>Greater than or equal</td>
+</tr>
+<tr>
+<td><code>==</code></td>
+<td>Equal</td>
+</tr>
+<tr>
+<td><code>!=</code></td>
+<td>Not equal</td>
+</tr>
+<tr>
+<td><code>!</code></td>
+<td>Not</td>
+</tr>
+<tr>
+<td><code>&amp;&amp;</code></td>
+<td>And</td>
+</tr>
+<tr>
+<td><code>&amp;#124;&amp;#124;</code></td>
+<td>Or</td>
+</tr>
+<tr>
+<td><code>()</code></td>
+<td>Logical Grouping</td>
+</tr>
+<tr>
+<td><code>[]</code></td>
+<td>Index (0-based)</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>Property de-reference</td>
+</tr>
+</tbody>
+</table>
+<p>String comparisons <code>MUST</code> be case insensitive.</p>
+</section><section><h4>Fixed Fields</h4>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th style="text-align:center">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="criterionContext"> </a>context</td>
+<td style="text-align:center"><code>{expression}</code></td>
+<td>A <a href="#runtime-expressions">runtime expression</a> used to set the context for the condition to be applied on. If <code>type</code> is specified, then the <code>context</code> MUST be provided (e.g. <code>$response.body</code> would set the context that a JSONPath query expression could be applied to).</td>
+</tr>
+<tr>
+<td><a id="criterionCondition"> </a>condition</td>
+<td style="text-align:center"><code>string</code></td>
+<td><strong>REQUIRED</strong>. The condition to apply. Conditions can be simple (e.g. <code>$statusCode == 200</code> which applies a operator on a value obtained from a runtime expression), or a regex, or a JSONPath expression. For regex and <a href="https://datatracker.ietf.org/doc/draft-ietf-jsonpath-base/21/">JSONPath</a>, the <code>type</code> and <code>context</code> MUST be specified.</td>
+</tr>
+<tr>
+<td><a id="criterionType"> </a>type</td>
+<td style="text-align:center"><code>string</code> | <a href="#criterion-expression-type-object">Criterion Expression Type Object</a></td>
+<td>The type of condition to be applied. If specified, the options allowed are <code>simple</code>, <code>regex</code>, <code>jsonpath</code> or <code>xpath</code>. If omitted, then the condition is assumed to be <code>simple</code>, which at most combines literals, operators and <a href="#runtime-expressions">Runtime Expressions</a>. If <code>jsonpath</code>, then the expression MUST conform to <a href="https://www.rfc-editor.org/rfc/rfc9535.html">JSON Path</a>. If <code>xpath</code> the expression MUST conform to <a href="https://www.w3.org/TR/xpath-31/#d2e24229">XML Path Language 3.1</a>. Should other variants of JSON Path or XPath be required, then a <a href="#criterion-expression-type-object">Criterion Expression Type Object</a> MUST be specified.</td>
+</tr>
+</tbody>
+</table>
+<p>This object MAY be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
+</section><section><h4>Criterion Object Example</h4>
+<p><strong>Simple Condition Example</strong></p>
+<pre class="nohighlight"><code>
+<span class="hljs-bullet">-</span> <span class="hljs-attr">condition:</span> <span class="hljs-string">$statusCode</span> <span class="hljs-string">==</span> <span class="hljs-number">200</span>
+</code></pre>
+<p><strong>Regex Condition Example</strong></p>
+<pre class="nohighlight"><code>
+<span class="hljs-bullet">-</span> <span class="hljs-attr">context:</span> <span class="hljs-string">$statusCode</span>
+  <span class="hljs-attr">condition:</span> <span class="hljs-string">&#x27;^200$&#x27;</span>
+  <span class="hljs-attr">type:</span> <span class="hljs-string">regex</span>
+</code></pre>
+<p><strong>JSONPath Condition Example</strong></p>
+<pre class="nohighlight"><code>
+<span class="hljs-bullet">-</span> <span class="hljs-attr">context:</span> <span class="hljs-string">$response.body</span>
+  <span class="hljs-attr">condition:</span> <span class="hljs-string">$[?count(@.pets)</span> <span class="hljs-string">&gt;</span> <span class="hljs-number">0</span><span class="hljs-string">]</span>
+  <span class="hljs-attr">type:</span> <span class="hljs-string">jsonpath</span>
+</code></pre>
+</section></section><section><h3>Criterion Expression Type Object</h3>
+<p>An object used to describe the type and version of an expression used within a <a href="#criterion-object">Criterion Object</a>. If this object is not defined, then the following defaults apply:</p>
+<ul>
+<li>JSON Path as described by <a href="https://www.rfc-editor.org/rfc/rfc9535.html">[!RFC9535]</a></li>
+<li>XPath as described by <a href="https://www.w3.org/TR/xpath-31">XML Path Language 3.1</a></li>
+</ul>
+<p>Defining this object gives the ability to utilize tooling compatible with older versions of either JSON Path or XPath.</p>
+<h5>Fixed Fields</h5>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th style="text-align:center">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="criterionExpressionType"> </a>type</td>
+<td style="text-align:center"><code>string</code></td>
+<td><strong>REQUIRED</strong>. The type of condition to be applied. The options allowed are <code>jsonpath</code> or <code>xpath</code>.</td>
+</tr>
+<tr>
+<td><a id="criterionExpressionVersion"> </a>version</td>
+<td style="text-align:center"><code>string</code></td>
+<td><strong>REQUIRED</strong>. A short hand string representing the version of the expression type being used. The allowed values for JSON Path are <code>draft-goessner-dispatch-jsonpath-00</code>. The allowed values for XPath are <code>xpath-30</code>, <code>xpath-20</code>, or <code>xpath-10</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>This object MAY be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
+<section><h4>Criterion Expression Type Example</h4>
+<p><strong>JSON Path Example</strong></p>
+<pre class="nohighlight"><code>
+  <span class="hljs-attr">type:</span> <span class="hljs-string">jsonpath</span>
+  <span class="hljs-attr">version:</span> <span class="hljs-string">draft-goessner-dispatch-jsonpath-00</span>
+</code></pre>
+<p><strong>XPath Example</strong></p>
+<pre class="nohighlight"><code>
+  <span class="hljs-attr">type:</span> <span class="hljs-string">xpath</span>
+  <span class="hljs-attr">version:</span> <span class="hljs-string">xpath-30</span>
+</code></pre>
+</section></section><section><h3>Request Body Object</h3>
+<p>A single request body describing the <code>Content-Type</code> and request body content to be passed by a step to an operation.</p>
+<section><h4>Fixed Fields</h4>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th style="text-align:center">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="requestBodyContentType"> </a>contentType</td>
+<td style="text-align:center"><code>string</code></td>
+<td>The Content-Type for the request content. If omitted then refer to Content-Type specified at the targeted operation to understand serialization requirements.</td>
+</tr>
+<tr>
+<td><a id="requestBodyPayload"> </a>payload</td>
+<td style="text-align:center">Any</td>
+<td>A value representing the request body payload. The value can be a literal value or can contain <a href="#runtime-expressions">Runtime Expressions</a> which MUST be evaluated prior to calling the referenced operation. To represent examples of media types that cannot be naturally represented in JSON or YAML, use a string value to contain the example, escaping where necessary.</td>
+</tr>
+</tbody>
+</table>
+<p><a id="requestBodyReplacements"> </a>replacements | [<a href="#payload-replacement-object">Payload Replacement Object</a>] | A list of locations and values to set within a payload.</p>
+<p>This object MAY be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
+</section><section><h4>RequestBody Object Example</h4>
+<p><strong>JSON Templated Example</strong></p>
+<pre class="nohighlight"><code> <span class="hljs-attr">contentType:</span> <span class="hljs-string">application/json</span>
+ <span class="hljs-attr">payload:</span> <span class="hljs-string">|
+   {
+     &quot;petOrder&quot;: {
+       &quot;petId&quot;: &quot;{$inputs.pet_id}&quot;,
+       &quot;couponCode&quot;: &quot;{$inputs.coupon_code}&quot;,
+       &quot;quantity&quot;: &quot;{$inputs.quantity}&quot;,
+       &quot;status&quot;: &quot;placed&quot;,
+       &quot;complete&quot;: false
+     }
+   }
+</span></code></pre>
+<p><strong>JSON Object Example</strong></p>
+<pre class="nohighlight"><code> <span class="hljs-attr">contentType:</span> <span class="hljs-string">application/json</span>
+ <span class="hljs-attr">payload:</span> 
+   <span class="hljs-attr">petOrder:</span>
+     <span class="hljs-attr">petId:</span> <span class="hljs-string">$inputs.pet_id</span>
+     <span class="hljs-attr">couponCode:</span> <span class="hljs-string">$inputs.coupon_code</span>
+     <span class="hljs-attr">quantity:</span> <span class="hljs-string">$inputs.quantity</span>
+     <span class="hljs-attr">status:</span> <span class="hljs-string">placed</span>
+     <span class="hljs-attr">complete:</span> <span class="hljs-literal">false</span>
+</code></pre>
+<p><strong>Complete Runtime Expression</strong></p>
+<pre class="nohighlight"><code> <span class="hljs-attr">contentType:</span> <span class="hljs-string">application/json</span>
+ <span class="hljs-attr">payload:</span> <span class="hljs-string">$inputs.petOrderRequest</span>
+</code></pre>
+<p><strong>XML Templated Example</strong></p>
+<pre class="nohighlight"><code> <span class="hljs-attr">contentType:</span> <span class="hljs-string">application/xml</span>
+ <span class="hljs-attr">payload:</span> <span class="hljs-string">|
+   &lt;petOrder&gt;
+     &lt;petId&gt;{$inputs.pet_id}&lt;/petId&gt;
+     &lt;couponCode&gt;{$inputs.coupon_code}&lt;/couponCode&gt;
+     &lt;quantity&gt;{$inputs.quantity}&lt;/quantity&gt;
+     &lt;status&gt;placed&lt;/status&gt;
+     &lt;complete&gt;false&lt;/complete&gt;
+   &lt;/petOrder&gt;
+</span></code></pre>
+<p><strong>Form Data Example</strong></p>
+<pre class="nohighlight"><code> <span class="hljs-attr">contentType:</span> <span class="hljs-string">application/x-www-form-urlencoded</span>
+ <span class="hljs-attr">payload:</span> 
+   <span class="hljs-attr">client_id:</span> <span class="hljs-string">$inputs.clientId</span>
+   <span class="hljs-attr">grant_type:</span> <span class="hljs-string">$inputs.grantType</span>
+   <span class="hljs-attr">redirect_uri:</span> <span class="hljs-string">$inputs.redirectUri</span>
+   <span class="hljs-attr">client_secret:</span> <span class="hljs-string">$inputs.clientSecret</span>
+   <span class="hljs-attr">code:</span> <span class="hljs-string">$steps.browser-authorize.outputs.code</span>
+   <span class="hljs-attr">scope:</span> <span class="hljs-string">$inputs.scope</span>  
+</code></pre>
+<p><strong>Form Data String Example</strong></p>
+<pre class="nohighlight"><code> <span class="hljs-attr">contentType:</span> <span class="hljs-string">application/x-www-form-urlencoded</span>
+ <span class="hljs-attr">payload:</span> <span class="hljs-string">&quot;client_id={$inputs.clientId}&amp;grant_type={$inputs.grantType}&amp;redirect_uri={$inputs.redirectUri}&amp;client_secret={$inputs.clientSecret}&amp;code{$steps.browser-authorize.outputs.code}&amp;scope=$inputs.scope}&quot;</span>
+</code></pre>
+<h4>Payload Replacement Object</h4>
+<p>Describes a location within a payload (e.g., a request body) and a value to set within the location.</p>
+<h5>Fixed Fields</h5>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th style="text-align:center">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="payloadReplacementTarget"> </a>target</td>
+<td style="text-align:center"><code>string</code></td>
+<td><strong>REQUIRED</strong>. A <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> or <a href="https://www.w3.org/TR/xpath-31/#id-expressions">XPath Expression</a> which MUST be resolved against the request body. Used to identify the location to inject the <code>value</code>.</td>
+</tr>
+<tr>
+<td><a id="payloadReplacementValue"> </a> value</td>
+<td style="text-align:center">Any | {expression}</td>
+<td><strong>REQUIRED</strong>. The value set within the target location. The value can be a constant or a <a href="#runtime-expressions">Runtime Expression</a> to be evaluated and passed to the referenced operation or workflow.</td>
+</tr>
+</tbody>
+</table>
+<p>This object MAY be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
+<h5>Payload Replacement Object Example</h5>
+<p><strong>Runtime Expression Example</strong></p>
+<pre class="nohighlight"><code>
+    <span class="hljs-attr">target:</span> <span class="hljs-string">/petId</span>
+    <span class="hljs-attr">value:</span> <span class="hljs-string">$inputs.pet_id</span>
+</code></pre>
+<p><strong>Literal Example</strong></p>
+<pre class="nohighlight"><code>
+    <span class="hljs-attr">target:</span> <span class="hljs-string">/quantity</span>
+    <span class="hljs-attr">value:</span> <span class="hljs-number">10</span>
+</code></pre>
+<h3>Runtime Expressions</h3>
+<p>A runtime expression allows values to be defined based on information that will be available within an HTTP message, an event message, and within objects serialized from the Arazzo document such as <a href="#workflow-object">workflows</a> or <a href="#step-object">steps</a>.</p>
+<p>The runtime expression is defined by the following <a href="https://tools.ietf.org/html/rfc5234">ABNF</a> syntax:</p>
+<pre class="nohighlight"><code>
+      expression <span class="hljs-operator">=</span> ( <span class="hljs-string">&quot;$url&quot;</span> / <span class="hljs-string">&quot;$method&quot;</span> / <span class="hljs-string">&quot;$statusCode&quot;</span> / <span class="hljs-string">&quot;$request.&quot;</span> source / <span class="hljs-string">&quot;$response.&quot;</span> source / <span class="hljs-string">&quot;$message.&quot;</span> source / <span class="hljs-string">&quot;$inputs.&quot;</span> name / <span class="hljs-string">&quot;$outputs.&quot;</span> name / <span class="hljs-string">&quot;$steps.&quot;</span> name / <span class="hljs-string">&quot;$workflows.&quot;</span> name / <span class="hljs-string">&quot;$sourceDescriptions.&quot;</span> name / <span class="hljs-string">&quot;$components.&quot;</span> name / <span class="hljs-string">&quot;$components.parameters.&quot;</span> parameter-name)
+      parameter-name <span class="hljs-operator">=</span> name <span class="hljs-comment">; Reuses &#x27;name&#x27; rule for parameter names</span>
+      source <span class="hljs-operator">=</span> ( header-reference / query-reference / path-reference / body-reference )
+      header-reference <span class="hljs-operator">=</span> <span class="hljs-string">&quot;header.&quot;</span> token
+      query-reference <span class="hljs-operator">=</span> <span class="hljs-string">&quot;query.&quot;</span> name
+      path-reference <span class="hljs-operator">=</span> <span class="hljs-string">&quot;path.&quot;</span> name
+      body-reference <span class="hljs-operator">=</span> <span class="hljs-string">&quot;body&quot;</span> [<span class="hljs-string">&quot;#&quot;</span> json-pointer ]
+      json-pointer    <span class="hljs-operator">=</span> *( <span class="hljs-string">&quot;/&quot;</span> reference-token )
+      reference-token <span class="hljs-operator">=</span> *( unescaped / escaped )
+      unescaped       <span class="hljs-operator">=</span> <span class="hljs-symbol">%x00-2E</span> / <span class="hljs-symbol">%x30-7D</span> / <span class="hljs-symbol">%x7F-10FFFF</span>
+         <span class="hljs-comment">; %x2F (&#x27;/&#x27;) and %x7E (&#x27;~&#x27;) are excluded from &#x27;unescaped&#x27;</span>
+      escaped         <span class="hljs-operator">=</span> <span class="hljs-string">&quot;~&quot;</span> ( <span class="hljs-string">&quot;0&quot;</span> / <span class="hljs-string">&quot;1&quot;</span> )
+        <span class="hljs-comment">; representing &#x27;~&#x27; and &#x27;/&#x27;, respectively</span>
+      name <span class="hljs-operator">=</span> *( <span class="hljs-keyword">CHAR</span> )
+      token <span class="hljs-operator">=</span> <span class="hljs-number">1</span>*tchar
+      tchar <span class="hljs-operator">=</span> <span class="hljs-string">&quot;!&quot;</span> / <span class="hljs-string">&quot;#&quot;</span> / <span class="hljs-string">&quot;$&quot;</span> / <span class="hljs-string">&quot;%&quot;</span> / <span class="hljs-string">&quot;&amp;&quot;</span> / <span class="hljs-string">&quot;&#x27;&quot;</span> / <span class="hljs-string">&quot;*&quot;</span> / <span class="hljs-string">&quot;+&quot;</span> / <span class="hljs-string">&quot;-&quot;</span> / <span class="hljs-string">&quot;.&quot;</span> /
+        <span class="hljs-string">&quot;^&quot;</span> / <span class="hljs-string">&quot;_&quot;</span> / <span class="hljs-string">&quot;`&quot;</span> / <span class="hljs-string">&quot;|&quot;</span> / <span class="hljs-string">&quot;~&quot;</span> / <span class="hljs-keyword">DIGIT</span> / <span class="hljs-keyword">ALPHA</span>
+</code></pre>
+<h5>Examples</h5>
+<table>
+<thead>
+<tr>
+<th>Source Location</th>
+<th style="text-align:left">example expression</th>
+<th style="text-align:left">notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP Method</td>
+<td style="text-align:left"><code>$method</code></td>
+<td style="text-align:left">The allowable values for the <code>$method</code> will be those for the HTTP operation.</td>
+</tr>
+<tr>
+<td>Requested media type</td>
+<td style="text-align:left"><code>$request.header.accept</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>Request parameter</td>
+<td style="text-align:left"><code>$request.path.id</code></td>
+<td style="text-align:left">Request parameters MUST be declared in the <code>parameters</code> section of the parent operation or they cannot be evaluated. This includes request headers.</td>
+</tr>
+<tr>
+<td>Request body property</td>
+<td style="text-align:left"><code>$request.body#/user/uuid</code></td>
+<td style="text-align:left">In operations which accept payloads, references may be made to portions of the <code>requestBody</code> or the entire body.</td>
+</tr>
+<tr>
+<td>Request URL</td>
+<td style="text-align:left"><code>$url</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>Response value</td>
+<td style="text-align:left"><code>$response.body#/status</code></td>
+<td style="text-align:left">In operations which return payloads, references may be made to portions of the response body or the entire body.</td>
+</tr>
+<tr>
+<td>Response header</td>
+<td style="text-align:left"><code>$response.header.Server</code></td>
+<td style="text-align:left">Single header values only are available</td>
+</tr>
+<tr>
+<td>workflow input</td>
+<td style="text-align:left"><code>$inputs.username</code> or <code>$workflows.foo.inputs.username</code></td>
+<td style="text-align:left">Single input values only are available</td>
+</tr>
+<tr>
+<td>Step output value</td>
+<td style="text-align:left"><code>$steps.someStep.pets</code></td>
+<td style="text-align:left">In situations where the output named property return payloads, references may be made to portions of the response body or the entire body.</td>
+</tr>
+<tr>
+<td>Workflow output value</td>
+<td style="text-align:left"><code>$outputs.bar</code> or <code>$workflows.foo.outputs.bar</code></td>
+<td style="text-align:left">Single input values only are available</td>
+</tr>
+<tr>
+<td>Components parameter</td>
+<td style="text-align:left"><code>$components.parameters.foo</code></td>
+<td style="text-align:left">Accesses a foo parameter defined within the Components Object.</td>
+</tr>
+</tbody>
+</table>
+<p>Runtime expressions preserve the type of the referenced value.
+Expressions can be embedded into string values by surrounding the expression with <code>{}</code> curly braces.</p>
+<h3>Specification Extensions</h3>
+<p>While the Arazzo Specification tries to accommodate most use cases, additional data can be added to extend the specification at certain points.</p>
+<p>The extension properties are implemented as patterned fields that are always prefixed by <code>&quot;x-&quot;</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Field Pattern</th>
+<th style="text-align:center">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="arazzoExtensions"> </a>^x-</td>
+<td style="text-align:center">Any</td>
+<td>Allows extensions to the Arazzo Specification. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. Field names beginning <code>x-oai-</code>, <code>x-oas-</code>, and <code>x-arazzo</code> are reserved for uses defined by the <a href="https://www.openapis.org/">OpenAPI Initiative</a>. The value MAY be <code>null</code>, a primitive, an array or an object.</td>
+</tr>
+</tbody>
+</table>
+<p>The extensions may or may not be supported by the available tooling, but those may be extended as well to add requested support (if tools are internal or open-sourced).</p>
+<h2>Security Considerations</h2>
+<p>The Arazzo Specification does not enforce a security mechanism. Security is left to the implementer, though TLS, specifically HTTPS may be recommended for exchanging sensitive workflows.</p>
+<p>Arazzo Descriptions can be JSON or YAML values. As such, all security considerations defined in <a href="https://www.rfc-editor.org/info/rfc8259">RFC 8259</a> and within YAML version <a href="https://yaml.org/spec/1.2/spec.html">1.2</a> apply.</p>
+<p>Arazzo Descriptions are frequently written by untrusted third parties, to be deployed on public Internet servers. Processing an Arazzo Description can cause both safe and unsafe operations to be performed on arbitrary network resources. It is the responsibility of the description consumer to ensure that the operations performed are not harmful.</p>
+<h2>IANA Considerations</h2>
+<p>The proposed MIME media types for the Arazzo Specification are described below.</p>
+<h3>application/vnd.oai.workflows</h3>
+<p>The default (or general) MIME type for Arazzo documents (e.g. workflows) is defined as follows:</p>
+<p>  Media type name: application</p>
+<p>  Media subtype name: vnd.oai.workflows</p>
+<p>  Required parameters: N/A</p>
+<p>  Optional parameters: version (e.g. version=1.0.0 to indicate that the type of workflow conforms to version 1.0.0 of the Arazzo Specification).</p>
+<p>  Encoding considerations: Encoding considerations are identical to those specified for the <code>application/json</code> and <code>application/yaml</code> media types, respectively.</p>
+<p>  Security considerations: See <a href="#security-considerations">security considerations</a> above.</p>
+<p>  Interoperability considerations: N/A</p>
+<p><strong>Note:</strong> When using the <code>application/vnd.oai.workflows</code> media type the consumer should be prepared to receive YAML formatted content</p>
+<h3>application/vnd.oai.workflows+json</h3>
+<p>The proposed MIME media type for Arazzo documents (e.g. workflows) that require a JSON-specific media type is defined as follows:</p>
+<p>  Media type name: application</p>
+<p>  Media subtype name: vnd.oai.workflows+json</p>
+<p>  Required parameters: N/A</p>
+<p>  Optional parameters: version (e.g. version=1.0.0 to indicate that the type of Arazzo document conforms to version 1.0.0 of the Arazzo Specification).</p>
+<p>  Encoding considerations: Encoding considerations are identical to those specified for the <code>application/json</code> media type.</p>
+<p>  Security considerations: See <a href="#security-considerations">security considerations</a> above.</p>
+<p>  Interoperability considerations: N/A</p>
+<h3>application/vnd.oai.workflows+yaml</h3>
+<p>The proposed MIME media type for Arazzo documents (e.g. workflows) that require a YAML-specific media type is defined as follows:</p>
+<p>  Media type name: application</p>
+<p>  Media subtype name: vnd.oai.workflows+yaml</p>
+<p>  Required parameters: N/A</p>
+<p>  Optional parameters: version (e.g. version=1.0.0 to indicate that the type of Arazzo document conforms to version 1.0.0 of the Arazzo Specification).</p>
+<p>  Encoding considerations: Encoding considerations are identical to those specified for the <code>application/yaml</code> media type.</p>
+<p>  Security considerations: See <a href="#security-considerations">security considerations</a> above.</p>
+<p>  Interoperability considerations: N/A</p>
+<h2>Appendix A: Revision History</h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Date</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0.0</td>
+<td>2024-05-29</td>
+<td>First release of the Arazzo Specification</td>
+</tr>
+</tbody>
+</table>
+

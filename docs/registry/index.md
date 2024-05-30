@@ -13,7 +13,7 @@ has_toc: false
 
 ## Contributing
 
-Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls) against the `gh-pages` branch and add a new Markdown file to a folder in the `registries/_{registryName}`. The name of the file is considered the registration entry, ignoring the file extension. Alternatively you can open an [Issue](https://github.com/OAI/OpenAPI-Specification/issues) to discuss a registry value.
+Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls) against the `main` branch and add a new Markdown file to a folder in the `docs/registries/_{registryName}`. The name of the file is considered the registration entry, ignoring the file extension. Alternatively you can open an [Issue](https://github.com/OAI/OpenAPI-Specification/issues) to discuss a registry value.
 
 ### Contents
 

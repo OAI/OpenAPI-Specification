@@ -1,7 +1,7 @@
 # theme: just-the-docs
 remote_theme: just-the-docs/just-the-docs
 color_scheme: oai
-title: OpenAPI Initiative Registry
+title: OpenAPI Initiative Publications
 description: Extensible data value repository
 show_downloads: true
 collections_dir: /registries

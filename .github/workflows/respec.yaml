@@ -44,7 +44,7 @@ jobs:
         branch: update-respec-version
         base: main
         delete-branch: true
-        path: deploy
+        path: docs/deploy
         labels: Housekeeping
         reviewers: webron,darrelmiller
         title: Update ReSpec versions

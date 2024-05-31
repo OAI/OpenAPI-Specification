@@ -10,8 +10,12 @@ name: schema-test
 
 # run this on push to any branch and creation of pull-requests
 on: 
-  push: {}
-  pull_request: {}
+  push:
+    paths-ignore:
+      - 'docs/**'
+  pull_request:
+    paths-ignore:
+      - 'docs/**'
   workflow_dispatch: {}
 
 jobs:

@@ -5,7 +5,7 @@ name: respec
 
 #
 # This workflow updates the respec 'pretty' rendered versions of the spec 
-# on the main branch when the corresponding markdown files change.
+# on the gh-pages branch when the corresponding markdown files change.
 #
 
 # run this on push to main
@@ -13,8 +13,6 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - '/docs/**'
   workflow_dispatch: {}
 
 jobs:
@@ -33,6 +31,11 @@ jobs:
     
     - name: Install dependencies
       run: npm ci
+
+    - uses: actions/checkout@v4 # checkout gh-pages branch
+      with:
+        ref: main
+        path: docs/deploy
 
     - name: run main script
       run: scripts/md2html/build.sh

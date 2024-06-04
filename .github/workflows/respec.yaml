@@ -44,7 +44,6 @@ jobs:
         branch: update-respec-version
         base: main
         delete-branch: true
-        path: docs
         labels: Housekeeping
         reviewers: TSC
         title: Update ReSpec versions

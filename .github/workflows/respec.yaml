@@ -34,11 +34,6 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - uses: actions/checkout@v4
-      with:
-        ref: main
-        path: docs/deploy
-
     - name: run main script
       run: scripts/md2html/build.sh
 
@@ -49,7 +44,7 @@ jobs:
         branch: update-respec-version
         base: main
         delete-branch: true
-        path: docs/deploy
+        path: docs
         labels: Housekeeping
         reviewers: TSC
         title: Update ReSpec versions

@@ -51,7 +51,7 @@ jobs:
         delete-branch: true
         path: docs/deploy
         labels: Housekeeping
-        reviewers: webron,darrelmiller
+        reviewers: TSC
         title: Update ReSpec versions
         commit-message: Update ReSpec versions
         signoff: true

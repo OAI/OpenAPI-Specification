@@ -228,7 +228,7 @@ The metadata MAY be used by the clients if needed.</p>
 </code></pre>
 </section></section><section><h3>Source Description Object</h3>
 <p>Describes a source description (such as an OpenAPI description) that will be referenced by one or more workflows described within an Arazzo Description.</p>
-<p>An object storing a map between named description keys and location URLs to the source descriptions (such as an OpenAPI description) this Arazzo Description SHALL apply to. Each source location <code>string</code> MUST be in the form of a URI-reference as defined by <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-4.1">RFC3986 section 4.1</a>.</p>
+<p>An object storing a map between named description keys and location URLs to the source descriptions (such as an OpenAPI description) this Arazzo Description SHALL apply to. Each source location <code>string</code> MUST be in the form of a URI-reference as defined by [[!RFC3986]].</p>
 <section><h4>Fixed Fields</h4>
 <table>
 <thead>
@@ -247,7 +247,7 @@ The metadata MAY be used by the clients if needed.</p>
 <tr>
 <td><a id="sourceURL"> </a>url</td>
 <td style="text-align:center"><code>string</code></td>
-<td><strong>REQUIRED</strong>. A URL to a source description to be used by a workflow. If a relative reference is used, it MUST be in the form of a URI-reference as defined by <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-4.2">RFC3986 section 4.2</a>.</td>
+<td><strong>REQUIRED</strong>. A URL to a source description to be used by a workflow. If a relative reference is used, it MUST be in the form of a URI-reference as defined by [[!RFC3986]].</td>
 </tr>
 <tr>
 <td><a id="sourceType"> </a>type</td>
@@ -363,7 +363,7 @@ The metadata MAY be used by the clients if needed.</p>
     <span class="hljs-attr">tokenExpires:</span> <span class="hljs-string">$steps.loginStep.outputs.tokenExpires</span>
 </code></pre>
 </section></section><section><h3>Step Object</h3>
-<p>Describes a single workflow step which MAY be a call to an API operation (<a href="https://spec.openapis.org/oas/latest.html#operation-object">OpenAPI Operation Object</a> or another <a href="#workflow-object">Workflow Object</a>.</p>
+<p>Describes a single workflow step which MAY be a call to an API operation (<a href="https://spec.openapis.org/oas/latest.html#operation-object">OpenAPI Operation Object</a> or another <a href="#workflow-object">Workflow Object</a>).</p>
 <section><h4>Fixed Fields</h4>
 <table>
 <thead>
@@ -594,7 +594,7 @@ The metadata MAY be used by the clients if needed.</p>
     <span class="hljs-comment"># assertions to determine if this success action should be executed</span>
     <span class="hljs-bullet">-</span> <span class="hljs-attr">context:</span> <span class="hljs-string">$response.body</span>
       <span class="hljs-attr">condition:</span> <span class="hljs-string">$[?count(@.pets)</span> <span class="hljs-string">&gt;</span> <span class="hljs-number">0</span><span class="hljs-string">]</span>
-      <span class="hljs-attr">type:</span> <span class="hljs-string">JSONPath</span>
+      <span class="hljs-attr">type:</span> <span class="hljs-string">jsonpath</span>
 </code></pre>
 </section></section><section><h3>Failure Action Object</h3>
 <p>A single failure action which describes an action to take upon failure of a workflow step. There are three possible values for the <code>type</code> field.</p>
@@ -636,7 +636,7 @@ The metadata MAY be used by the clients if needed.</p>
 <tr>
 <td><a id="failureRetryAfter"> </a> retryAfter</td>
 <td style="text-align:center"><code>number</code></td>
-<td>A non-negative decimal indicating the seconds to delay after the step failure before another attempt SHALL be made. <strong>Note:</strong> if an HTTP <a href="https://www.rfc-editor.org/rfc/rfc9110.html#name-retry-after">Retry-After</a> response header was returned to a step from a targeted operation, then it SHOULD overrule this particular field value. This field only applies when the <code>type</code> field value is <code>&quot;retry&quot;</code> or <code>&quot;function&quot;</code>.</td>
+<td>A non-negative decimal indicating the seconds to delay after the step failure before another attempt SHALL be made. <strong>Note:</strong> if an HTTP <a href="https://tools.ietf.org/html/rfc9110.html#name-retry-after">Retry-After</a> response header was returned to a step from a targeted operation, then it SHOULD overrule this particular field value. This field only applies when the <code>type</code> field value is <code>&quot;retry&quot;</code> or <code>&quot;function&quot;</code>.</td>
 </tr>
 <tr>
 <td><a id="failureRetryLimit"> </a> retryLimit</td>
@@ -788,6 +788,11 @@ my.org.User
 </thead>
 <tbody>
 <tr>
+<td><a id="reusableObjectReference"> </a>reference</td>
+<td style="text-align:center"><code>{expression}</code></td>
+<td><strong>REQUIRED</strong>. A <a href="#runtime-expressions">runtime expression</a> used to reference the desired object.</td>
+</tr>
+<tr>
 <td><a id="reusableObjectValue"> </a>value</td>
 <td style="text-align:center"><code>string</code></td>
 <td>Sets a value of the referenced parameter. This is only applicable for parameter object references.</td>
@@ -820,7 +825,7 @@ my.org.User
 <ul>
 <li>simple - where basic literals, operators, and loose comparisons are used in combination with <a href="#runtime-expressions">Runtime Expressions</a>.</li>
 <li>regex - where a regex pattern is applied on the supplied context. The context is defined by a <a href="#runtime-expressions">Runtime Expression</a>.</li>
-<li>jsonpath - where a JSON Path expression is applied. The root node context is defined by a <a href="#runtime-expressions">Runtime Expression</a>.</li>
+<li>jsonpath - where a JSONPath expression is applied. The root node context is defined by a <a href="#runtime-expressions">Runtime Expression</a>.</li>
 <li>xpath - where an XPath expression is applied. The root node context is defined by a <a href="#runtime-expressions">Runtime Expression</a>.</li>
 </ul>
 <section><h4>Literals</h4>
@@ -929,12 +934,12 @@ my.org.User
 <tr>
 <td><a id="criterionCondition"> </a>condition</td>
 <td style="text-align:center"><code>string</code></td>
-<td><strong>REQUIRED</strong>. The condition to apply. Conditions can be simple (e.g. <code>$statusCode == 200</code> which applies a operator on a value obtained from a runtime expression), or a regex, or a JSONPath expression. For regex and <a href="https://datatracker.ietf.org/doc/draft-ietf-jsonpath-base/21/">JSONPath</a>, the <code>type</code> and <code>context</code> MUST be specified.</td>
+<td><strong>REQUIRED</strong>. The condition to apply. Conditions can be simple (e.g. <code>$statusCode == 200</code> which applies an operator on a value obtained from a runtime expression), or a regex, or a JSONPath expression. For regex or JSONPath, the <code>type</code> and <code>context</code> MUST be specified.</td>
 </tr>
 <tr>
 <td><a id="criterionType"> </a>type</td>
 <td style="text-align:center"><code>string</code> | <a href="#criterion-expression-type-object">Criterion Expression Type Object</a></td>
-<td>The type of condition to be applied. If specified, the options allowed are <code>simple</code>, <code>regex</code>, <code>jsonpath</code> or <code>xpath</code>. If omitted, then the condition is assumed to be <code>simple</code>, which at most combines literals, operators and <a href="#runtime-expressions">Runtime Expressions</a>. If <code>jsonpath</code>, then the expression MUST conform to <a href="https://www.rfc-editor.org/rfc/rfc9535.html">JSON Path</a>. If <code>xpath</code> the expression MUST conform to <a href="https://www.w3.org/TR/xpath-31/#d2e24229">XML Path Language 3.1</a>. Should other variants of JSON Path or XPath be required, then a <a href="#criterion-expression-type-object">Criterion Expression Type Object</a> MUST be specified.</td>
+<td>The type of condition to be applied. If specified, the options allowed are <code>simple</code>, <code>regex</code>, <code>jsonpath</code> or <code>xpath</code>. If omitted, then the condition is assumed to be <code>simple</code>, which at most combines literals, operators and <a href="#runtime-expressions">Runtime Expressions</a>. If <code>jsonpath</code>, then the expression MUST conform to <a href="https://tools.ietf.org/html/rfc9535">JSONPath</a>. If <code>xpath</code> the expression MUST conform to <a href="https://www.w3.org/TR/xpath-31/#d2e24229">XML Path Language 3.1</a>. Should other variants of JSONPath or XPath be required, then a <a href="#criterion-expression-type-object">Criterion Expression Type Object</a> MUST be specified.</td>
 </tr>
 </tbody>
 </table>
@@ -959,10 +964,10 @@ my.org.User
 </section></section><section><h3>Criterion Expression Type Object</h3>
 <p>An object used to describe the type and version of an expression used within a <a href="#criterion-object">Criterion Object</a>. If this object is not defined, then the following defaults apply:</p>
 <ul>
-<li>JSON Path as described by <a href="https://www.rfc-editor.org/rfc/rfc9535.html">[!RFC9535]</a></li>
+<li>JSONPath as described by [[!RFC9535]]</li>
 <li>XPath as described by <a href="https://www.w3.org/TR/xpath-31">XML Path Language 3.1</a></li>
 </ul>
-<p>Defining this object gives the ability to utilize tooling compatible with older versions of either JSON Path or XPath.</p>
+<p>Defining this object gives the ability to utilize tooling compatible with older versions of either JSONPath or XPath.</p>
 <h5>Fixed Fields</h5>
 <table>
 <thead>
@@ -981,13 +986,13 @@ my.org.User
 <tr>
 <td><a id="criterionExpressionVersion"> </a>version</td>
 <td style="text-align:center"><code>string</code></td>
-<td><strong>REQUIRED</strong>. A short hand string representing the version of the expression type being used. The allowed values for JSON Path are <code>draft-goessner-dispatch-jsonpath-00</code>. The allowed values for XPath are <code>xpath-30</code>, <code>xpath-20</code>, or <code>xpath-10</code>.</td>
+<td><strong>REQUIRED</strong>. A short hand string representing the version of the expression type being used. The allowed values for JSONPath are <code>draft-goessner-dispatch-jsonpath-00</code>. The allowed values for XPath are <code>xpath-30</code>, <code>xpath-20</code>, or <code>xpath-10</code>.</td>
 </tr>
 </tbody>
 </table>
 <p>This object MAY be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 <section><h4>Criterion Expression Type Example</h4>
-<p><strong>JSON Path Example</strong></p>
+<p><strong>JSONPath Example</strong></p>
 <pre class="nohighlight"><code>
   <span class="hljs-attr">type:</span> <span class="hljs-string">jsonpath</span>
   <span class="hljs-attr">version:</span> <span class="hljs-string">draft-goessner-dispatch-jsonpath-00</span>
@@ -1019,9 +1024,13 @@ my.org.User
 <td style="text-align:center">Any</td>
 <td>A value representing the request body payload. The value can be a literal value or can contain <a href="#runtime-expressions">Runtime Expressions</a> which MUST be evaluated prior to calling the referenced operation. To represent examples of media types that cannot be naturally represented in JSON or YAML, use a string value to contain the example, escaping where necessary.</td>
 </tr>
+<tr>
+<td><a id="requestBodyReplacements"> </a>replacements</td>
+<td style="text-align:center">[<a href="#payload-replacement-object">Payload Replacement Object</a>]</td>
+<td>A list of locations and values to set within a payload.</td>
+</tr>
 </tbody>
 </table>
-<p><a id="requestBodyReplacements"> </a>replacements | [<a href="#payload-replacement-object">Payload Replacement Object</a>] | A list of locations and values to set within a payload.</p>
 <p>This object MAY be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 </section><section><h4>RequestBody Object Example</h4>
 <p><strong>JSON Templated Example</strong></p>
@@ -1225,7 +1234,7 @@ Expressions can be embedded into string values by surrounding the expression wit
 <p>The extensions may or may not be supported by the available tooling, but those may be extended as well to add requested support (if tools are internal or open-sourced).</p>
 <h2>Security Considerations</h2>
 <p>The Arazzo Specification does not enforce a security mechanism. Security is left to the implementer, though TLS, specifically HTTPS may be recommended for exchanging sensitive workflows.</p>
-<p>Arazzo Descriptions can be JSON or YAML values. As such, all security considerations defined in <a href="https://www.rfc-editor.org/info/rfc8259">RFC 8259</a> and within YAML version <a href="https://yaml.org/spec/1.2/spec.html">1.2</a> apply.</p>
+<p>Arazzo Descriptions can be JSON or YAML values. As such, all security considerations defined in <a href="https://tools.ietf.org/html/rfc8259">RFC8259</a> and within YAML version <a href="https://yaml.org/spec/1.2/spec.html">1.2</a> apply.</p>
 <p>Arazzo Descriptions are frequently written by untrusted third parties, to be deployed on public Internet servers. Processing an Arazzo Description can cause both safe and unsafe operations to be performed on arbitrary network resources. It is the responsibility of the description consumer to ensure that the operations performed are not harmful.</p>
 <h2>IANA Considerations</h2>
 <p>The proposed MIME media types for the Arazzo Specification are described below.</p>

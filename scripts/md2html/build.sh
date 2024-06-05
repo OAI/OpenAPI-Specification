@@ -30,9 +30,6 @@ cp history/MAINTAINERS_v3.0.2.md history/MAINTAINERS_v3.0.3.md
 cp history/MAINTAINERS_v3.0.2.md history/MAINTAINERS_v3.1.0.md
 # add lines for 3.0.4, 3.1.1, ...
 
-cp -p js/* ../../docs/js 2> /dev/null
-cp -p markdown/* ../../docs/ 2> /dev/null
-
 latest=`git describe --abbrev=0 --tags`
 latestCopied=none
 for filename in ../../versions/[23456789].*.md ; do

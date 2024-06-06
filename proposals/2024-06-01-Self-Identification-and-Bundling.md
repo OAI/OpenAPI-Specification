@@ -56,7 +56,7 @@ Building on the JSON Schema bundling model will ensure that, as much as possible
 
 These challenges can be solved by combining two already-existing concepts:
 
-1. A simplified analog of JSON Schema's `$id` that appears in exactly one place: the `self` field in root OpenAPI Objects / Arazzo Objects
+1. A simplified analog of JSON Schema's `$id` that appears in exactly one place: a new `self` field in root OpenAPI Objects / Arazzo Objects
 2. Existing YAML and JSON streaming formats:
     * YAML native streams [RFC 9512 §3.2](https://www.rfc-editor.org/rfc/rfc9512.html#name-yaml-streams) `application/yaml`
     * JSON Text Sequences [RFC 7464](https://www.rfc-editor.org/rfc/rfc7464) `application/json-seq`
@@ -69,7 +69,7 @@ As [OAS 3.1.1 clarifies](https://github.com/OAI/OpenAPI-Specification/pull/3758)
 
 The various streaming formats do not state how to resolve links among the parts, as noted in [RFC 9512 YAML Media Type §3.2](https://www.rfc-editor.org/rfc/rfc9512.html#name-yaml-streams), which makes an explicit analogy to `application/json-seq` for this behavior.  
 
-A `self` field that is a relative URI-reference would be resolved against the document location just as all Reference Object and similar URIs are resolved in OAS 3.1.  A relative reference within a stream would resolve against the URL of the entire stream; however it is probably better to either RECOMMEND or require (MUST) resolving `self` to an absolute-URI when bundling into a stream for maximum predictability.
+A `self` field that is a relative URI-reference would be resolved against the document location just as all Reference Object and similar URIs are resolved in OAS 3.1.  A relative reference within a stream would resolve against the URL of the entire stream; however it is probably better to either RECOMMEND or require (MUST) resolving `self` to an absolute URI when bundling into a stream for maximum predictability.
 
 ## Detailed design
 
@@ -85,7 +85,7 @@ This is written for the structure of the OAS, but it should be clear how it woul
 
 \#\#\# Bundling Documents as YAML or JSON Streams
 
-Multiple OpenAPI Description documents MAY be bundled in a YAML stream ([RFC 9512 §3.2](https://www.rfc-editor.org/rfc/rfc9512.html#name-yaml-streams)) or a JSON streaming format such as JSON Text Sequences [RFC 7464](https://www.rfc-editor.org/rfc/rfc7464), [JSON Lines](https://jsonlines.org/), or [NDJSON](https://github.com/ndjson/ndjson-spec).  Documents bundled in this way MUST set their own URI using the `self` field in the [OpenAPI Object](#oasObject).  If a document in the stream has `self` set to a relative URI-reference, it MUST be resolved relative to the location of the entire stream.  However, it is strongly RECOMMENDED to set `self` to an absolute-URI for use within multi-document streams.
+Multiple OpenAPI Description documents MAY be bundled in a YAML stream ([RFC 9512 §3.2](https://www.rfc-editor.org/rfc/rfc9512.html#name-yaml-streams)) or a JSON streaming format such as JSON Text Sequences [RFC 7464](https://www.rfc-editor.org/rfc/rfc7464), [JSON Lines](https://jsonlines.org/), or [NDJSON](https://github.com/ndjson/ndjson-spec).  Documents bundled in this way MUST set their own URI using the `self` field in the [OpenAPI Object](#oasObject).  If a document in the stream has `self` set to a relative URI-reference, it MUST be resolved relative to the location of the entire stream.  However, it is strongly RECOMMENDED to set `self` to an absolute URI for use within multi-document streams.
 
 The first document in the stream MUST be treated as the entry document.
 
@@ -103,7 +103,7 @@ self | `URI-reference` (without a fragment) | Sets the URI of this document, whi
 
 ## Backwards compatibility
 
-OAS 3.2 and Arazzo 1.1 documents that do not use the `self` field will be have exactly the same as OAS 3.1 and Arazzo 1.0 documents.  The change in minor version is sufficient to manage the compatibility issues, as no software that only supports up to 3.1/1.0 should attempt to parse 3.2/1.1 documents.
+OAS 3.2 and Arazzo 1.1 documents that do not use the `self` field will behave exactly the same as OAS 3.1 and Arazzo 1.0 documents.  The change in minor version is sufficient to manage the compatibility issues, as no software that only supports up to 3.1/1.0 should attempt to parse 3.2/1.1 documents.
 
 ## Alternatives considered
 

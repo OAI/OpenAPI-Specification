@@ -3,15 +3,31 @@
 # OVERVIEW
 # --------
 #
-#   This script updates the schema IDs in the following YAML files:
+#   For the version 3.1 and higher:
 #
-#     schemas/v{major}.{minor}/schema.yaml
-#     schemas/v{major}.{minor}/schema-base.yaml
+#     This script updates the schema IDs in the following YAML files:
 #
-#   and generates the following JSON files from the updated YAML files:
+#       schemas/v{major}.{minor}/schema.yaml
+#       schemas/v{major}.{minor}/schema-base.yaml
 #
-#     schemas/v{major}.{minor}/schema.json
-#     schemas/v{major}.{minor}/schema-base.json
+#     and generates the following JSON files from the updated YAML files:
+#
+#       schemas/v{major}.{minor}/schema.json
+#       schemas/v{major}.{minor}/schema-base.json
+#
+#   For the version 3.0:
+#
+#     This script updates the schema ID in the following YAML file:
+#
+#       schemas/v{major}.{minor}/schema.yaml
+#
+#     and generates the following JSON file from the updated YAML file:
+#
+#       schemas/v{major}.{minor}/schema.json
+#
+#   For versions older than 3.0:
+#
+#     This script does not support versions older than 3.0.
 #
 # USAGE
 # -----
@@ -36,8 +52,8 @@
 #      -h
 #          shows this help.
 #
-# EXAMPLE
-# -------
+# EXAMPLE 1 (3.1 or higher)
+# -------------------------
 #
 #   ./scripts/update-schema-id.sh -v 3.1
 #
@@ -55,12 +71,27 @@
 #
 #     ./scripts/yaml2json/yaml2json.js schemas/v3.1/schema-base.yaml
 #
+# EXAMPLE 2 (3.0)
+# ---------------
+#
+#   ./scripts/update-schema-id.sh -v 3.0
+#
+#   If the above command line is executed on June 9, 2024, the following
+#   external commands are invoked by the script.
+#
+#     ex -s -c '/^id:/s/^.*$/id: https:\/\/spec.openapis.org\/oas\/3.0\/schema\/2024-06-09/' \
+#           -c wq schemas/v3.0/schema.yaml
+#
+#     ./scripts/yaml2json/yaml2json.js schemas/v3.0/schema.yaml
+#
 
 
 #------------------------------------------------------------
 # Global Variables
 #------------------------------------------------------------
 __var_version=
+__var_major=
+__var_minor=
 __var_date=`date -I -u`
 __var_dry_run=off
 __var_quiet=off
@@ -80,11 +111,14 @@ __main()
     # Generate schemas/v{major}.{minor}/schema.json from the updated YAML file.
     __update_schema_json
 
-    # Update schemas/v{major}.{minor}/schema-base.yaml
-    __update_schema_base_yaml
+    # If the version is 3.1 or higher.
+    if [ ${__var_major} -gt 3 ] || [ ${__var_minor} -ge 1 ]; then
+        # Update schemas/v{major}.{minor}/schema-base.yaml
+        __update_schema_base_yaml
 
-    # Generate schemas/v{major}.{minor}/schema-base.json from the updated YAML file.
-    __update_schema_base_json
+        # Generate schemas/v{major}.{minor}/schema-base.json from the updated YAML file.
+        __update_schema_base_json
+    fi
 }
 
 
@@ -151,6 +185,7 @@ OPTIONS:
     -v VERSION
         specifies the target version in the 'major.minor' format.
         For example, '-v 3.1'. This option is mandatory.
+        Versions older than 3.0 are not supported.
 
     -d DATE
         specifies the release date in the 'YYYY-MM-DD' format.
@@ -195,6 +230,15 @@ __validate_version()
     # If the argument of the -v option does not match the expected format.
     if ! expr "${version}" : '[0-9][0-9]*\.[0-9][0-9]*$' >/dev/null; then
         __error_exit "The format of the version specified by the -v option is invalid."
+    fi
+
+    # Extract the major number and the minor number.
+    __var_major=`echo ${version} | cut -f 1 -d .`
+    __var_minor=`echo ${version} | cut -f 2 -d .`
+
+    # If the major number is less than 3.
+    if [ ${__var_major} -lt 3 ]; then
+        __error_exit "This script does not support versions older than 3.0."
     fi
 }
 
@@ -242,8 +286,14 @@ __update_schema_yaml()
     file="schemas/v${__var_version}/schema.yaml"
     id="https:\\/\\/spec.openapis.org\\/oas\\/${__var_version}\\/schema\\/${__var_date}"
 
-    # Prepare a command line to update the $id in the file.
-    command=(ex -s -c '/^$id:/s/^.*$/$id: '\'''${id}''\''/' -c wq ${file})
+    # If the version is 3.0.
+    if [ ${__var_major} -eq 3 ] && [ ${__var_minor} -eq 0 ]; then
+        # Prepare a command line to update the id in the file.
+        command=(ex -s -c '/^id:/s/^.*$/id: '${id}'/' -c wq ${file})
+    else
+        # Prepare a command line to update the $id in the file.
+        command=(ex -s -c '/^$id:/s/^.*$/$id: '\'''${id}''\''/' -c wq ${file})
+    fi
 
     # Execute the command line.
     __execute_command "${command[@]}"

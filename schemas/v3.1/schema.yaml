@@ -474,22 +474,34 @@ $defs:
     type: object
     additionalProperties:
       $ref: '#/$defs/media-type'
+    patternProperties:
+      '^\*\/\*$|^application/x-www-form-urlencoded$|^multipart\/.+$':
+        $ref: '#/$defs/media-type-with-encoding'
     propertyNames:
       format: media-range
 
-  media-type:
+  media-type-common:
     $comment: https://spec.openapis.org/oas/v3.1.0#media-type-object
     type: object
     properties:
       schema:
         $dynamicRef: '#meta'
-      encoding:
-        type: object
-        additionalProperties:
-          $ref: '#/$defs/encoding'
     allOf:
       - $ref: '#/$defs/specification-extensions'
       - $ref: '#/$defs/examples'
+
+  media-type:
+    $comment: https://spec.openapis.org/oas/v3.1.0#media-type-object
+    $ref: '#/$defs/media-type-common'
+    unevaluatedProperties: false
+
+  media-type-with-encoding:
+    $comment: https://spec.openapis.org/oas/v3.1.0#media-type-object
+    $ref: '#/$defs/media-type-common'
+    type: object
+    properties:
+      encoding:
+        $ref: '#/$defs/encoding'
     unevaluatedProperties: false
 
   encoding:

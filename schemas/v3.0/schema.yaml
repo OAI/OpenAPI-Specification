@@ -784,7 +784,7 @@ definitions:
         additionalProperties:
           $ref: '#/definitions/MediaType'
         patternProperties:
-          '\*\/\*|^application/x-www-form-urlencoded$|^multipart\/.+$':
+          '^\*\/\*$|^application/x-www-form-urlencoded$|^multipart\/.+$':
             $ref: '#/definitions/MediaTypeWithEncoding'
       required:
         type: boolean

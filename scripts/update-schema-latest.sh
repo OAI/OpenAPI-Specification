@@ -3,25 +3,45 @@
 # OVERVIEW
 # --------
 #
-#   This script does the following.
+#   For the version 3.1 and higher:
 #
-#     1. Switch to the 'gh-pages' branch.
+#     This script does the following.
 #
-#     2. Copy "schemas/v{major}.{minor}/schema.json" in the 'main' branch to
-#        "oas/{major}.{minor}/schema/{YYYY-MM-DD}" in the 'gh-pages' branch.
-#        The value of {YYYY-MM-DD} is extracted from the '$id' property in
-#        the schema.json file.
+#       1. Switch to the 'gh-pages' branch.
 #
-#     3. Create a symbolic link "latest" under "oas/{major}.{minor}/schema"
-#        that points to the "{YYYY-MM-DD}" file.
+#       2. Copy "schemas/v{major}.{minor}/schema.json" in the 'main' branch to
+#          "oas/{major}.{minor}/schema/{YYYY-MM-DD}" in the 'gh-pages' branch.
+#          The value of {YYYY-MM-DD} is extracted from the '$id' property in
+#          the schema.json file.
 #
-#     4. Copy "schemas/v{major}.{minor}/schema-base.json" in the 'main' branch to
-#        "oas/{major}.{minor}/schema-base/{YYYY-MM-DD}" in the 'gh-pages' branch.
-#        The value of {YYYY-MM-DD} is extracted from the '$id' property in
-#        the schema-base.json file.
+#       3. Create a symbolic link "latest" under "oas/{major}.{minor}/schema"
+#          that points to the "{YYYY-MM-DD}" file.
 #
-#     5. Create a symbolic link "latest" under "oas/{major}.{minor}/schema-base"
-#        that points to the "{YYYY-MM-DD}" file.
+#       4. Copy "schemas/v{major}.{minor}/schema-base.json" in the 'main' branch to
+#          "oas/{major}.{minor}/schema-base/{YYYY-MM-DD}" in the 'gh-pages' branch.
+#          The value of {YYYY-MM-DD} is extracted from the '$id' property in
+#          the schema-base.json file.
+#
+#       5. Create a symbolic link "latest" under "oas/{major}.{minor}/schema-base"
+#          that points to the "{YYYY-MM-DD}" file.
+#
+#   For the version 3.0:
+#
+#     This script does the following.
+#
+#       1. Switch to the 'gh-pages' branch.
+#
+#       2. Copy "schemas/v{major}.{minor}/schema.json" in the 'main' branch to
+#          "oas/{major}.{minor}/schema/{YYYY-MM-DD}" in the 'gh-pages' branch.
+#          The value of {YYYY-MM-DD} is extracted from the 'id' property in
+#          the schema.json file.
+#
+#       3. Create a symbolic link "latest" under "oas/{major}.{minor}/schema"
+#          that points to the "{YYYY-MM-DD}" file.
+#
+#   For versions older than 3.0:
+#
+#     This script does not support versions older than 3.0.
 #
 # USAGE
 # -----
@@ -31,6 +51,7 @@
 #      -v VERSION
 #          specifies the target version in the 'major.minor' format.
 #          For example, '-v 3.1'. This option is mandatory.
+#          Versions older than 3.0 are not supported.
 #
 #      -n
 #          turns on the dry-run mode that shows commands to execute but does not
@@ -42,8 +63,8 @@
 #      -h
 #          shows this help.
 #
-# EXAMPLE
-# -------
+# EXAMPLE 1 (3.1 or higher)
+# -------------------------
 #
 #   ./scripts/update-schema-latest.sh -v 3.1
 #
@@ -61,6 +82,21 @@
 #
 #     (cd oas/3.1/schema-base && ln -sf 2022-10-07 latest)
 #
+# EXAMPLE 2 (3.0)
+# ---------------
+#
+#   ./scripts/update-schema-latest.sh -v 3.0
+#
+#   If the above command line is executed, the following external commands
+#   are invoked by the script. This example assumes that the value of the
+#   'id' property in the schema files ends with '2021-09-28'.
+#
+#     git checkout gh-pages
+#
+#     git show main:schemas/v3.0/schema.json > oas/3.0/schema/2021-09-28
+#
+#     (cd oas/3.0/schema && ln -sf 2021-09-28 latest)
+#
 # NOTE
 # ----
 #
@@ -75,6 +111,8 @@
 # Global Variables
 #------------------------------------------------------------
 __var_version=
+__var_major=
+__var_minor=
 __var_dry_run=off
 __var_quiet=off
 
@@ -97,12 +135,15 @@ __main()
     #    make it point to YYYY-MM-DD.
     __update_schema
 
-    # 4. Copy main:schemas/v{major}.{minor}/schema-base.json to
-    #    oas/{major}.{minor}/schema-base/YYYY-MM-DD.
-    #
-    # 5. Update oas/{major}.{minor}/schema-base/latest (symlink) to
-    #    make it point to YYYY-MM-DD.
-    __update_schema_base
+    # If the version is 3.1 or higher.
+    if [ ${__var_major} -gt 3 ] || [ ${__var_minor} -ge 1 ]; then
+        # 4. Copy main:schemas/v{major}.{minor}/schema-base.json to
+        #    oas/{major}.{minor}/schema-base/YYYY-MM-DD.
+        #
+        # 5. Update oas/{major}.{minor}/schema-base/latest (symlink) to
+        #    make it point to YYYY-MM-DD.
+        __update_schema_base
+    fi
 }
 
 
@@ -163,6 +204,7 @@ OPTIONS:
     -v VERSION
         specifies the target version in the 'major.minor' format.
         For example, '-v 3.1'. This option is mandatory.
+        Versions older than 3.0 are not supported.
 
     -n
         turns on the dry-run mode that shows commands to execute but does not
@@ -203,6 +245,15 @@ __validate_version()
     # If the argument of the -v option does not match the expected format.
     if ! expr "${version}" : '[0-9][0-9]*\.[0-9][0-9]*$' >/dev/null; then
         __error_exit "The format of the version specified by the -v option is invalid."
+    fi
+
+    # Extract the major number and the minor number.
+    __var_major=`echo ${version} | cut -f 1 -d .`
+    __var_minor=`echo ${version} | cut -f 2 -d .`
+
+    # If the major number is less than 3.
+    if [ ${__var_major} -lt 3 ]; then
+        __error_exit "This script does not support versions older than 3.0."
     fi
 }
 
@@ -269,8 +320,14 @@ __update()
     # The source file in the 'main' branch.
     src_file="schemas/v${__var_version}/${file_base}.json"
 
-    # Extract the 'YYYY-MM-DD' part of the "$id" property.
-    date=`git show main:${src_file} | jq -rj '."$id"|split("/")|last'`
+    # If the version is 3.0.
+    if [ ${__var_major} -eq 3 ] && [ ${__var_minor} -eq 0 ]; then
+        # Extract the 'YYYY-MM-DD' part of the "id" property.
+        date=`git show main:${src_file} | jq -rj '."id"|split("/")|last'`
+    else
+        # Extract the 'YYYY-MM-DD' part of the "$id" property.
+        date=`git show main:${src_file} | jq -rj '."$id"|split("/")|last'`
+    fi
 
     # The destination directory in the 'gh-pages' branch.
     dst_dir="oas/${__var_version}/${file_base}"

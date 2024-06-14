@@ -10,16 +10,11 @@ name: validate-markdown
 #
 
 # run this on push to any branch and creation of pull-requests
-on:
-  push:
-    paths-ignore:
-      - 'docs/**'
-  pull_request:
-    paths-ignore:
-      - 'docs/**'
+on: [push, pull_request]
 
 jobs:
   mdv:
+
     runs-on: ubuntu-latest
 
     steps:

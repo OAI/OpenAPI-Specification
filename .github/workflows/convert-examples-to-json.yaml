@@ -15,8 +15,6 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - 'docs/**'
 
 jobs:
   yaml2json:

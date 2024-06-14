@@ -5,7 +5,7 @@ name: respec
 
 #
 # This workflow updates the respec 'pretty' rendered versions of the spec 
-# on the main branch when the corresponding markdown files change.
+# on the gh-pages branch when the corresponding markdown files change.
 #
 
 # run this on push to main
@@ -13,8 +13,6 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - 'docs/**'
   workflow_dispatch: {}
 
 jobs:
@@ -34,6 +32,11 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
+    - uses: actions/checkout@v4 # checkout gh-pages branch
+      with:
+        ref: gh-pages
+        path: deploy
+
     - name: run main script
       run: scripts/md2html/build.sh
 
@@ -42,10 +45,11 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: update-respec-version
-        base: main
+        base: gh-pages
         delete-branch: true
+        path: deploy
         labels: Housekeeping
-        reviewers: TSC
+        reviewers: webron,darrelmiller
         title: Update ReSpec versions
         commit-message: Update ReSpec versions
         signoff: true

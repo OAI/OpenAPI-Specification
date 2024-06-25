@@ -21,7 +21,7 @@ Focusing on the [Formats Registry](https://spec.openapis.org/registry/format/) e
 * [Slack](https://communityinviter.com/apps/open-api/openapi) channel: #sig-formats
 * Work Items: [Open Issues](https://github.com/OAI/OpenAPI-Specification/issues?q=is%3Aissue+is%3Aopen+label%3Aformat-registry), [Open PRs](https://github.com/OAI/OpenAPI-Specification/pulls?q=is%3Apr+is%3Aopen+label%3Aformat-registry)
 
-## Inudstry Standards
+## Industry Standards
 
 Focusing on how industry standards groups make use of OpenAPI specifications.
 

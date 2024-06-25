@@ -1,0 +1,8 @@
+---
+title: Registries API
+parent: API
+---
+[
+{% for collection in site.collections %}"{{ collection.slug }}"{% unless forloop.last %},{% endunless %}
+{% endfor %}
+]

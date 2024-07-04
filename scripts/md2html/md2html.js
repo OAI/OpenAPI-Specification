@@ -50,21 +50,42 @@ const md = require('markdown-it')({
 function preface(title,options) {
     const respec = {
         specStatus: "base",
+        latestVersion: "https://spec.openapis.org/oas/latest.html",
         editors: maintainers,
         formerEditors: emeritus,
         publishDate: options.publishDate,
         subtitle: 'Version '+options.subtitle,
-        processVersion: 2017,
         edDraftURI: "https://github.com/OAI/OpenAPI-Specification/",
-        github: {
-            repoURL: "https://github.com/OAI/OpenAPI-Specification/",
-            branch: "master"
-        },
         shortName: "OAS",
-        noTOC: false,
         lint: false,
-        additionalCopyrightHolders: "the Linux Foundation",
-        includePermalinks: true
+        logos:[{
+            src: "https://raw.githubusercontent.com/OAI/OpenAPI-Style-Guide/master/graphics/bitmap/OpenAPI_Logo_Pantone.png",
+            alt: "OpenAPI Initiative",
+            height: 48,
+            url: "https://openapis.org/"}],
+        otherLinks: [
+            {
+                key: "Participate",
+                data: [
+                    {
+                        value: "GitHub OAI/OpenAPI-Specification",
+                        href: "https://github.com/OAI/OpenAPI-Specification/",
+                    },
+                    {
+                        value: "File a bug",
+                        href: "https://github.com/OAI/OpenAPI-Specification/issues",
+                    },
+                    {
+                        value: "Commit history",
+                        href: `https://github.com/OAI/OpenAPI-Specification/commits/main/versions/${options.subtitle}.md`,
+                    },
+                    {
+                        value: "Pull requests",
+                        href: "https://github.com/OAI/OpenAPI-Specification/pulls",
+                    },
+                ],
+            },
+        ]
     };
 
     let preface = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>${md.utils.escapeHtml(title)}</title>`;
@@ -84,6 +105,7 @@ function preface(title,options) {
         preface += '<style>';
         preface += '#respec-ui { visibility: hidden; }';
         preface += 'h1,h2,h3 { color: #629b34; }';
+        preface += '.dt-published { color: #629b34; } .dt-published::before { content: "Published "; }';
         preface += 'a[href] { color: #45512c; }'; // third OAI colour is #8ad000
         preface += 'body:not(.toc-inline) #toc h2 { color: #45512c; }';
         preface += 'table { display: block; width: 100%; overflow: auto; }';
@@ -95,10 +117,11 @@ function preface(title,options) {
         preface += fs.readFileSync(path.resolve(__dirname,'gist.css'),'utf8').split('\n').join(' ');
         preface += '</style>';
         preface += `<h1 id="title">${title.split('|')[0]}</h1>`;
+        preface += `<p class="copyright">Copyright © ${options.publishDate.getFullYear()} the Linux Foundation</p>`;
         preface += `<section id="abstract"><h2>${abstract}</h2>`;
         preface += 'The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.';
         preface += '</section>';
-        preface += '<section class="notoc" id="sotd">';
+        preface += '<section class="override" id="sotd">';
         preface += '<h2>Status of This Document</h2>';
         preface += 'The source-of-truth for the specification is the GitHub markdown file referenced above.';
         preface += '</section>';

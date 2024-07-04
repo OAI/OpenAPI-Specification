@@ -74,7 +74,7 @@ function preface(title,options) {
     preface += '<link rel="canonical" href="https://spec.openapis.org/oas/latest.html" />';
 
     if (options.respec) {
-        preface += '<script src="../js/respec-oai.js" class="remove"></script>';
+        preface += '<script src="../js/respec-w3c.js" class="remove"></script>';
         preface += `<script class="remove">var respecConfig = ${JSON.stringify(respec)};</script>`;
         try {
           preface += fs.readFileSync('./analytics/google.html','utf8');
@@ -157,7 +157,7 @@ if (argv.respec) {
     argv.publishDate = getPublishDate(s);
 }
 
-let lines = s.split('\r').join().split('\n');
+let lines = s.split(/\r?\n/);
 
 let prevHeading = 0;
 let lastIndent = 0;

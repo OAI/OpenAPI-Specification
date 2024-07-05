@@ -264,7 +264,7 @@ for (let l in lines) {
 
     if (line.indexOf('"></a>')>=0) {
         line = line.replace(' name=',' id=');
-        line = line.replace('"></a>','"> </a>');
+        line = line.replace('"></a>','">&ZeroWidthSpace;</a>');
     }
 
     line = line.split('\\|').join('&#124;'); // was &brvbar

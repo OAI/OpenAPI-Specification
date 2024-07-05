@@ -280,7 +280,7 @@ for (let l in lines) {
         if (line.indexOf('[RFC')>=0) {
             line = line.replace(/\[RFC ?([0-9]{1,5})\]/g,function(match,group1){
                 console.warn('Fixing RFC reference',match,group1);
-                return '[[!RFC'+group1+']]';
+                return '[[RFC'+group1+']]';
             });
         }
 
@@ -317,6 +317,10 @@ for (let l in lines) {
         if (Math.abs(delta)>1) console.warn(delta,line);
         let prefix = '';
         let newSection = '<section>';
+        if (line.includes('## Version ')) {
+            // our conformance section is headlined with 'Version x.y.z'
+            newSection = '<section class="override" id="conformance">';
+        }
         if (line.includes('Appendix')) {
             newSection = '<section class="appendix">';
         }

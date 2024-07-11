@@ -120,7 +120,7 @@ function preface(title,options) {
         preface += 'code { color: #c83500 } th code { color: inherit }';
         preface += 'cite { font-weight: bold; text-decoration: underline;}';
         //TODO: end-of-extract
-        preface += fs.readFileSync(path.resolve(__dirname,'gist.css'),'utf8').split('\n').join(' ');
+        // preface += fs.readFileSync(path.resolve(__dirname,'gist.css'),'utf8').split('\n').join(' ');
         preface += '</style>';
         preface += `<h1 id="title">${title.split('|')[0]}</h1>`;
         preface += `<p class="copyright">Copyright © ${options.publishDate.getFullYear()} the Linux Foundation</p>`;

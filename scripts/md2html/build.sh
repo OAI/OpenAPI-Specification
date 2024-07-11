@@ -33,25 +33,25 @@ cp history/MAINTAINERS_v3.0.2.md history/MAINTAINERS_v3.0.3.md
 cp history/MAINTAINERS_v3.0.2.md history/MAINTAINERS_v3.1.0.md
 # add lines for 3.0.4, 3.1.1, ...
 
-#TODO: remove if static html variant is used
 cp -p ../../node_modules/respec/builds/respec-w3c.* ../../deploy/js/
 
 latest=`git describe --abbrev=0 --tags`
 latestCopied=none
 for filename in ../../versions/[23456789].*.md ; do
   version=$(basename "$filename" .md)
+  tempfile=../../deploy/oas/v$version-tmp.html
   echo -e "\n=== v$version ==="
-  node md2html.js --respec --maintainers ./history/MAINTAINERS_v$version.md ${filename} > ../../deploy/oas/v$version.html
-  #TODO: produce static file as v$version.html without -static infix
-  npx respec --use-local --src ../../deploy/oas/v$version.html --out ../../deploy/oas/v$version-static.html
+  node md2html.js --respec --maintainers ./history/MAINTAINERS_v$version.md ${filename} > $tempfile
+  npx respec --use-local --src $tempfile --out ../../deploy/oas/v$version.html
+  rm $tempfile
   if [ $version = $latest ]; then
     if [[ ${version} != *"rc"* ]];then
       # version is not a Release Candidate
       cp -p ../../deploy/oas/v$version.html ../../deploy/oas/latest.html
-      cp -p ../../deploy/oas/v$version-static.html ../../deploy/oas/latest-static.html #TODO: remove
       latestCopied=v$version
     fi
   fi
 done
 echo Latest tag is $latest, copied $latestCopied to latest.html
 
+rm ../../deploy/js/respec-w3c.*

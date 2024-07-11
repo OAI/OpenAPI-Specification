@@ -262,9 +262,9 @@ for (let l in lines) {
         lastIndent = indent;
     }
 
-    if (line.indexOf('"></a>')>=0) {
+    if (line.indexOf('<a name="')>=0) {
         line = line.replace(' name=',' id=');
-        line = line.replace('"></a>','">&ZeroWidthSpace;</a>');
+        line = line.replace('"></a>','" class="logo"></a>');
     }
 
     line = line.split('\\|').join('&#124;'); // was &brvbar

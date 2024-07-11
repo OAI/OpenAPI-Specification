@@ -39,7 +39,7 @@ latest=`git describe --abbrev=0 --tags`
 latestCopied=none
 for filename in ../../versions/[23456789].*.md ; do
   version=$(basename "$filename" .md)
-  echo v$version
+  echo -e "\n=== v$version ==="
   node md2html.js --respec --maintainers ./history/MAINTAINERS_v$version.md ${filename} > ../../deploy/oas/v$version.html
   if [ $version = $latest ]; then
     if [[ ${version} != *"rc"* ]];then

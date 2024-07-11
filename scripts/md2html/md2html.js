@@ -106,8 +106,9 @@ function preface(title,options) {
         preface += '<style>';
         //TODO: extract to oai.css
         preface += '#respec-ui { visibility: hidden; }';
-        preface += 'h1,h2,h3 { color: #629b34; }';
+        preface += '#title { color: #629b34; } #subtitle { color: #629b34; }';
         preface += '.dt-published { color: #629b34; } .dt-published::before { content: "Published "; }';
+        preface += 'h1,h2,h3,h4 { color: #45512c; }';
         preface += 'a[href] { color: #45512c; }'; // third OAI colour is #8ad000
         preface += 'body:not(.toc-inline) #toc h2 { color: #45512c; }';
         preface += 'table { display: block; width: 100%; overflow: auto; }';

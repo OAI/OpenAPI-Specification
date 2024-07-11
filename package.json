@@ -31,7 +31,7 @@
   "devDependencies": {
     "@hyperjump/json-schema": "^1.9.3",
     "mdv": "^1.3.4",
-    "vitest": "^2.0.1",
+    "vitest": "^2.0.2",
     "yaml": "^2.4.5"
   },
   "keywords": [

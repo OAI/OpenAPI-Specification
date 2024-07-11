@@ -37,7 +37,7 @@ const md = require('markdown-it')({
   highlight: function (str, lang) {
       if (lang && hljs.getLanguage(lang)) { // && !argv.respec) {
           try {
-              return '<pre class="nohighlight"><code>' +
+              return '<pre class="nohighlight" tabindex="0"><code>' +
                   hljs.highlight(str, { language: lang }).value +
                   '</code></pre>';
           } catch (__) { }
@@ -104,6 +104,7 @@ function preface(title,options) {
         catch (ex) {}
         preface += '</head><body>';
         preface += '<style>';
+        //TODO: extract to oai.css
         preface += '#respec-ui { visibility: hidden; }';
         preface += 'h1,h2,h3 { color: #629b34; }';
         preface += '.dt-published { color: #629b34; } .dt-published::before { content: "Published "; }';
@@ -116,6 +117,8 @@ function preface(title,options) {
         preface += 'table tr:nth-child(2n) { background-color: #f6f8fa; }';
         preface += 'pre { background-color: #f6f8fa !important; }';
         preface += 'code { color: #c83500 } th code { color: inherit }';
+        preface += 'cite { font-weight: bold; text-decoration: underline;}';
+        //TODO: end-of-extract
         preface += fs.readFileSync(path.resolve(__dirname,'gist.css'),'utf8').split('\n').join(' ');
         preface += '</style>';
         preface += `<h1 id="title">${title.split('|')[0]}</h1>`;

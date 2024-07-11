@@ -42,12 +42,12 @@ for filename in ../../versions/[23456789].*.md ; do
   tempfile=../../deploy/oas/v$version-tmp.html
   echo -e "\n=== v$version ==="
   node md2html.js --respec --maintainers ./history/MAINTAINERS_v$version.md ${filename} > $tempfile
-  npx respec --use-local --src $tempfile --out ../../deploy/oas/v$version.html
+  npx respec --use-local --src $tempfile --out ../../deploy/oas/v$version-a11y.html
   rm $tempfile
   if [ $version = $latest ]; then
     if [[ ${version} != *"rc"* ]];then
       # version is not a Release Candidate
-      cp -p ../../deploy/oas/v$version.html ../../deploy/oas/latest.html
+      cp -p ../../deploy/oas/v$version-a11y.html ../../deploy/oas/latest-a11y.html
       latestCopied=v$version
     fi
   fi

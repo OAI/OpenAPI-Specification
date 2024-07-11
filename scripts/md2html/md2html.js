@@ -57,6 +57,7 @@ function preface(title,options) {
         subtitle: 'Version '+options.subtitle,
         edDraftURI: "https://github.com/OAI/OpenAPI-Specification/",
         shortName: "OAS",
+        historyURI: null, // prevent ReSpec from fetching a W3C history based on the shortName
         lint: false,
         logos:[{
             src: "https://raw.githubusercontent.com/OAI/OpenAPI-Style-Guide/master/graphics/bitmap/OpenAPI_Logo_Pantone.png",

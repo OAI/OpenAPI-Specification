@@ -265,7 +265,11 @@ for (let l in lines) {
     }
 
     if (line.indexOf('<a name="')>=0) {
-        line = line.replace(' name=',' id=');
+        if (line.indexOf('<a name="parameterAllowEmptyValue"/>')>=0) 
+            // fix syntax error in 2.0.md
+            line = line.replace('<a name="parameterAllowEmptyValue"/>','<a id="parameterAllowEmptyValue"></a>');
+        else
+            line = line.replace('<a name=','<a id=');
         line = line.replace('"></a>','" class="logo"></a>');
     }
 

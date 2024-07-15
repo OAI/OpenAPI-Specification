@@ -283,8 +283,17 @@ for (let l in lines) {
             line = line.replace('https://xml2rfc.ietf.org/public/rfc/html/rfc','https://tools.ietf.org/html/rfc');
             line = line.replace('.html','');
         }
-        line = line.replace(/\]\]\(https:\/\/tools.ietf.org\/html\/rfc[0-9]{1,5}\/?(\#.*?)?\)/g,function(match,group1){
-            //return (group1 ? group1 : '')+']]';
+
+        //handle url fragments in RFC links and construct section titles links as well as RFC links
+        line = line.replace(/\]\]\(https:\/\/tools.ietf.org\/html\/rfc([0-9]{1,5})(\/?\#.*?)?\)/g, function(match, rfcNumber, fragment) {
+            if (fragment) {
+                // Extract section title from the fragment
+                let sectionTitle = fragment.replace('#', '').replace(/-/g, ' ');
+                sectionTitle = sectionTitle.charAt(0).toUpperCase() + sectionTitle.slice(1); // Capitalize the first letter
+                return `]] [${sectionTitle}](https://tools.ietf.org/html/rfc${rfcNumber}${fragment})`;
+            } else {
+                return ']]';
+            }
             return ']]';
         });
     }

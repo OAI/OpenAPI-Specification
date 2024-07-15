@@ -105,11 +105,12 @@ function preface(title,options) {
         preface += '<style>';
         //TODO: extract to oai.css
         preface += '#respec-ui { visibility: hidden; }';
-        preface += '#title { color: #629b34; } #subtitle { color: #629b34; }';
-        preface += '.dt-published { color: #629b34; } .dt-published::before { content: "Published "; }';
+        preface += '#title { color: #629b34; } #subtitle { color: #45512c; }';
+        preface += '.dt-published { color: #45512c; } .dt-published::before { content: "Published "; }';
         preface += 'h1,h2,h3,h4,h5,h6 { color: #45512c; font-weight: normal; font-style: normal; }';
         preface += 'a[href] { color: #45512c; }'; // third OAI colour is #8ad000
         preface += 'body:not(.toc-inline) #toc h2 { color: #45512c; }';
+        // preface += '.toc > li li li li li { font-size: 90%;}';
         preface += 'table { display: block; width: 100%; overflow: auto; }';
         preface += 'table th { font-weight: 600; }';
         preface += 'table th, table td { padding: 6px 13px; border: 1px solid #dfe2e5; }';
@@ -213,7 +214,7 @@ for (let l in lines) {
 
     if (line.startsWith('```')) {
         inCodeBlock = !inCodeBlock;
-        line += '\n'; // fixes formatting of first line of syntax-highlighted blocks
+        // line += '\n'; // fixes formatting of first line of syntax-highlighted blocks - actually breaks it
     }
 
     if (!inCodeBlock && line.startsWith('#')) {

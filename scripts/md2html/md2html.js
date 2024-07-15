@@ -23,7 +23,7 @@ let argv = require('yargs')
     .string('maintainers')
     .alias('m','maintainers')
     .describe('maintainers','path to MAINTAINERS.md')
-    .require(1)
+    .demandCommand(1)
     .argv;
 const abstract = 'What is the OpenAPI Specification?';
 let maintainers = [];

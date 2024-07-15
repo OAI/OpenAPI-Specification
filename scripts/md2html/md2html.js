@@ -107,7 +107,7 @@ function preface(title,options) {
         preface += '#respec-ui { visibility: hidden; }';
         preface += '#title { color: #629b34; } #subtitle { color: #629b34; }';
         preface += '.dt-published { color: #629b34; } .dt-published::before { content: "Published "; }';
-        preface += 'h1,h2,h3,h4 { color: #45512c; }';
+        preface += 'h1,h2,h3,h4,h5,h6 { color: #45512c; font-weight: normal; font-style: normal; }';
         preface += 'a[href] { color: #45512c; }'; // third OAI colour is #8ad000
         preface += 'body:not(.toc-inline) #toc h2 { color: #45512c; }';
         preface += 'table { display: block; width: 100%; overflow: auto; }';
@@ -118,6 +118,7 @@ function preface(title,options) {
         preface += 'pre { background-color: #f6f8fa !important; }';
         preface += 'code { color: #c83500 } th code { color: inherit }';
         preface += 'cite { font-weight: bold; text-decoration: underline;}';
+        preface += '.hljs-literal { color: #0076c0; } .hljs-name { color: #986801; } .hljs-attribute,.hljs-symbol,.hljs-string { color: #428030; }';
         //TODO: end-of-extract
         // preface += fs.readFileSync(path.resolve(__dirname,'gist.css'),'utf8').split('\n').join(' ');
         preface += '</style>';

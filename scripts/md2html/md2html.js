@@ -11,7 +11,6 @@ complete control over formatting and syntax highlighting */
 const fs = require('fs');
 const path = require('path');
 const url = require('url');
-const util = require('util');
 
 const hljs = require('highlight.js');
 const cheerio = require('cheerio');
@@ -196,7 +195,6 @@ let indents = [0];
 // process the markdown
 for (let l in lines) {
     let line = lines[l];
-    let linkTarget;
 
     if (line.startsWith('## Table of Contents')) inTOC = true;
     if (line.startsWith('<!-- /TOC')) inTOC = false;
@@ -238,20 +236,9 @@ for (let l in lines) {
             newIndent++;
         }
 
-        if (line.indexOf('<a name=')>=0) {
-            let comp = line.split('</a>');
-            let title = comp[1];
-            if (inDefs) title = '<dfn>'+title+'</dfn>';
-            let link = comp[0].split('<a ')[1].replace('name=','id=');
-            const anchor = link.split("'").join('"').split('"')[1];
-            line = '#'.repeat(newIndent)+' <span>'+title+'</span>';
-            linkTarget = '<a id="'+anchor+'"></a>';
-        }
-        else {
-            let title = line.split('# ')[1];
-            if (inDefs) title = '<dfn>'+title+'</dfn>';
-            line = ('#'.repeat(newIndent)+' '+title);
-        }
+        let title = line.split('# ')[1];
+        if (inDefs) title = '<dfn>'+title+'</dfn>';
+        line = ('#'.repeat(newIndent)+' '+title);
 
         if (delta>0) indents.push(originalIndent);
         if (delta<0) {
@@ -267,10 +254,11 @@ for (let l in lines) {
     if (line.indexOf('<a name="')>=0) {
         if (line.indexOf('<a name="parameterAllowEmptyValue"/>')>=0) 
             // fix syntax error in 2.0.md
-            line = line.replace('<a name="parameterAllowEmptyValue"/>','<a id="parameterAllowEmptyValue"></a>');
-        else
-            line = line.replace('<a name=','<a id=');
-        line = line.replace('"></a>','" class="logo"></a>');
+            line = line.replace('<a name="parameterAllowEmptyValue"/>','<span id="parameterAllowEmptyValue"></span>');
+        else {
+            line = line.replace('<a name=','<span id=');
+            line = line.replace('</a>','</span>');
+        }
     }
 
     line = line.split('\\|').join('&#124;'); // was &brvbar
@@ -347,7 +335,7 @@ for (let l in lines) {
         line = prefix+md.render(line);
     }
 
-    lines[l] = (linkTarget ? linkTarget : '') + line;
+    lines[l] = line;
 }
 
 s = preface(`OpenAPI Specification v${argv.subtitle} | Introduction, Definitions, & More`,argv)+'\n\n'+lines.join('\n');

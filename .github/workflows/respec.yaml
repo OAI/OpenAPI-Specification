@@ -49,9 +49,9 @@ jobs:
         delete-branch: true
         path: deploy
         labels: Housekeeping
-        reviewers: webron,darrelmiller
-        title: Update ReSpec versions
-        commit-message: Update ReSpec versions
+        reviewers: webron,darrelmiller,OAI/tsc
+        title: Update ReSpec-rendered specification versions
+        commit-message: Update ReSpec-rendered specification versions
         signoff: true
         body: |
           This pull request is automatically triggered by GitHub action `respec`.

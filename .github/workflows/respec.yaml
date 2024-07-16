@@ -49,7 +49,7 @@ jobs:
         delete-branch: true
         path: deploy
         labels: Housekeeping
-        reviewers: webron,darrelmiller,OAI/tsc
+        reviewers: webron,darrelmiller
         title: Update ReSpec-rendered specification versions
         commit-message: Update ReSpec-rendered specification versions
         signoff: true

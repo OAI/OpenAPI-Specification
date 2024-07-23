@@ -47,7 +47,7 @@ for filename in ../../versions/[23456789].*.md ; do
   if [ $version = $latest ]; then
     if [[ ${version} != *"rc"* ]];then
       # version is not a Release Candidate
-      cp -p ../../deploy/oas/v$version-a11y.html ../../deploy/oas/latest.html
+      cp -p ../../deploy/oas/v$version.html ../../deploy/oas/latest.html
       latestCopied=v$version
     fi
   fi

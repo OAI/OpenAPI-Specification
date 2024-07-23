@@ -50,8 +50,8 @@ jobs:
         path: deploy
         labels: Housekeeping
         reviewers: webron,darrelmiller
-        title: Update ReSpec versions
-        commit-message: Update ReSpec versions
+        title: Update ReSpec-rendered specification versions
+        commit-message: Update ReSpec-rendered specification versions
         signoff: true
         body: |
           This pull request is automatically triggered by GitHub action `respec`.

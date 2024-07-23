@@ -13,6 +13,7 @@
   },
   "license": "Apache-2.0",
   "scripts": {
+    "build": "bash ./scripts/md2html/build.sh",
     "test": "vitest --watch=false"
   },
   "readmeFilename": "README.md",
@@ -24,6 +25,7 @@
     "cheerio": "^1.0.0-rc.5",
     "highlight.js": "^11.10.0",
     "markdown-it": "^14.1.0",
+    "respec": "35.1.1",
     "yargs": "^17.7.2"
   },
   "devDependencies": {

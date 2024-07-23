@@ -33,14 +33,17 @@ cp history/MAINTAINERS_v3.0.2.md history/MAINTAINERS_v3.0.3.md
 cp history/MAINTAINERS_v3.0.2.md history/MAINTAINERS_v3.1.0.md
 # add lines for 3.0.4, 3.1.1, ...
 
-cp -p js/* ../../deploy/js 2> /dev/null
-cp -p markdown/* ../../deploy/ 2> /dev/null
+cp -p ../../node_modules/respec/builds/respec-w3c.* ../../deploy/js/
 
 latest=`git describe --abbrev=0 --tags`
 latestCopied=none
 for filename in ../../versions/[23456789].*.md ; do
   version=$(basename "$filename" .md)
-  node md2html.js --respec --maintainers ./history/MAINTAINERS_v$version.md ${filename} > ../../deploy/oas/v$version.html
+  tempfile=../../deploy/oas/v$version-tmp.html
+  echo -e "\n=== v$version ==="
+  node md2html.js --respec --maintainers ./history/MAINTAINERS_v$version.md ${filename} > $tempfile
+  npx respec --use-local --src $tempfile --out ../../deploy/oas/v$version.html
+  rm $tempfile
   if [ $version = $latest ]; then
     if [[ ${version} != *"rc"* ]];then
       # version is not a Release Candidate
@@ -51,3 +54,4 @@ for filename in ../../versions/[23456789].*.md ; do
 done
 echo Latest tag is $latest, copied $latestCopied to latest.html
 
+rm ../../deploy/js/respec-w3c.*

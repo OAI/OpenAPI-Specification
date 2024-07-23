@@ -25,6 +25,10 @@
   color: #df5000;
 }
 
+.hljs-number {
+  color: #008080;
+}
+
 .hljs-keyword,
 .hljs-selector-tag,
 .hljs-type {

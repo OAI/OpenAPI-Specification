@@ -11,7 +11,6 @@ complete control over formatting and syntax highlighting */
 const fs = require('fs');
 const path = require('path');
 const url = require('url');
-const util = require('util');
 
 const hljs = require('highlight.js');
 const cheerio = require('cheerio');
@@ -24,7 +23,7 @@ let argv = require('yargs')
     .string('maintainers')
     .alias('m','maintainers')
     .describe('maintainers','path to MAINTAINERS.md')
-    .require(1)
+    .demandCommand(1)
     .argv;
 const abstract = 'What is the OpenAPI Specification?';
 let maintainers = [];
@@ -50,21 +49,43 @@ const md = require('markdown-it')({
 function preface(title,options) {
     const respec = {
         specStatus: "base",
+        latestVersion: "https://spec.openapis.org/oas/latest.html",
         editors: maintainers,
         formerEditors: emeritus,
         publishDate: options.publishDate,
         subtitle: 'Version '+options.subtitle,
-        processVersion: 2017,
         edDraftURI: "https://github.com/OAI/OpenAPI-Specification/",
-        github: {
-            repoURL: "https://github.com/OAI/OpenAPI-Specification/",
-            branch: "master"
-        },
         shortName: "OAS",
-        noTOC: false,
+        historyURI: null, // prevent ReSpec from fetching a W3C history based on the shortName
         lint: false,
-        additionalCopyrightHolders: "the Linux Foundation",
-        includePermalinks: true
+        logos:[{
+            src: "https://raw.githubusercontent.com/OAI/OpenAPI-Style-Guide/master/graphics/bitmap/OpenAPI_Logo_Pantone.png",
+            alt: "OpenAPI Initiative",
+            height: 48,
+            url: "https://openapis.org/"}],
+        otherLinks: [
+            {
+                key: "Participate",
+                data: [
+                    {
+                        value: "GitHub OAI/OpenAPI-Specification",
+                        href: "https://github.com/OAI/OpenAPI-Specification/",
+                    },
+                    {
+                        value: "File a bug",
+                        href: "https://github.com/OAI/OpenAPI-Specification/issues",
+                    },
+                    {
+                        value: "Commit history",
+                        href: `https://github.com/OAI/OpenAPI-Specification/commits/main/versions/${options.subtitle}.md`,
+                    },
+                    {
+                        value: "Pull requests",
+                        href: "https://github.com/OAI/OpenAPI-Specification/pulls",
+                    },
+                ],
+            },
+        ]
     };
 
     let preface = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>${md.utils.escapeHtml(title)}</title>`;
@@ -74,7 +95,7 @@ function preface(title,options) {
     preface += '<link rel="canonical" href="https://spec.openapis.org/oas/latest.html" />';
 
     if (options.respec) {
-        preface += '<script src="../js/respec-oai.js" class="remove"></script>';
+        preface += '<script src="../js/respec-w3c.js" class="remove"></script>';
         preface += `<script class="remove">var respecConfig = ${JSON.stringify(respec)};</script>`;
         try {
           preface += fs.readFileSync('./analytics/google.html','utf8');
@@ -84,6 +105,7 @@ function preface(title,options) {
         preface += '<style>';
         preface += '#respec-ui { visibility: hidden; }';
         preface += 'h1,h2,h3 { color: #629b34; }';
+        preface += '.dt-published { color: #629b34; } .dt-published::before { content: "Published "; }';
         preface += 'a[href] { color: #45512c; }'; // third OAI colour is #8ad000
         preface += 'body:not(.toc-inline) #toc h2 { color: #45512c; }';
         preface += 'table { display: block; width: 100%; overflow: auto; }';
@@ -92,13 +114,15 @@ function preface(title,options) {
         preface += 'table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }';
         preface += 'table tr:nth-child(2n) { background-color: #f6f8fa; }';
         preface += 'pre { background-color: #f6f8fa !important; }';
+        preface += 'code { color: #c83500 } th code { color: inherit }';
         preface += fs.readFileSync(path.resolve(__dirname,'gist.css'),'utf8').split('\n').join(' ');
         preface += '</style>';
         preface += `<h1 id="title">${title.split('|')[0]}</h1>`;
-        preface += `<section id="abstract"><h2>${abstract}</h2>`;
+        preface += `<p class="copyright">Copyright © ${options.publishDate.getFullYear()} the Linux Foundation</p>`;
+        preface += `<section class="notoc" id="abstract"><h2>${abstract}</h2>`;
         preface += 'The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.';
         preface += '</section>';
-        preface += '<section class="notoc" id="sotd">';
+        preface += '<section class="override" id="sotd" data-max-toc="0">';
         preface += '<h2>Status of This Document</h2>';
         preface += 'The source-of-truth for the specification is the GitHub markdown file referenced above.';
         preface += '</section>';
@@ -157,7 +181,7 @@ if (argv.respec) {
     argv.publishDate = getPublishDate(s);
 }
 
-let lines = s.split('\r').join().split('\n');
+let lines = s.split(/\r?\n/);
 
 let prevHeading = 0;
 let lastIndent = 0;
@@ -171,7 +195,6 @@ let indents = [0];
 // process the markdown
 for (let l in lines) {
     let line = lines[l];
-    let linkTarget;
 
     if (line.startsWith('## Table of Contents')) inTOC = true;
     if (line.startsWith('<!-- /TOC')) inTOC = false;
@@ -213,20 +236,9 @@ for (let l in lines) {
             newIndent++;
         }
 
-        if (line.indexOf('<a name=')>=0) {
-            let comp = line.split('</a>');
-            let title = comp[1];
-            if (inDefs) title = '<dfn>'+title+'</dfn>';
-            let link = comp[0].split('<a ')[1].replace('name=','id=');
-            const anchor = link.split("'").join('"').split('"')[1];
-            line = '#'.repeat(newIndent)+' <span>'+title+'</span>';
-            linkTarget = '<a id="'+anchor+'"></a>';
-        }
-        else {
-            let title = line.split('# ')[1];
-            if (inDefs) title = '<dfn>'+title+'</dfn>';
-            line = ('#'.repeat(newIndent)+' '+title);
-        }
+        let title = line.split('# ')[1];
+        if (inDefs) title = '<dfn>'+title+'</dfn>';
+        line = ('#'.repeat(newIndent)+' '+title);
 
         if (delta>0) indents.push(originalIndent);
         if (delta<0) {
@@ -239,9 +251,14 @@ for (let l in lines) {
         lastIndent = indent;
     }
 
-    if (line.indexOf('"></a>')>=0) {
-        line = line.replace(' name=',' id=');
-        line = line.replace('"></a>','"> </a>');
+    if (line.indexOf('<a name="')>=0) {
+        if (line.indexOf('<a name="parameterAllowEmptyValue"/>')>=0) 
+            // fix syntax error in 2.0.md
+            line = line.replace('<a name="parameterAllowEmptyValue"/>','<span id="parameterAllowEmptyValue"></span>');
+        else {
+            line = line.replace('<a name=','<span id=');
+            line = line.replace('</a>','</span>');
+        }
     }
 
     line = line.split('\\|').join('&#124;'); // was &brvbar
@@ -257,7 +274,7 @@ for (let l in lines) {
         if (line.indexOf('[RFC')>=0) {
             line = line.replace(/\[RFC ?([0-9]{1,5})\]/g,function(match,group1){
                 console.warn('Fixing RFC reference',match,group1);
-                return '[[!RFC'+group1+']]';
+                return '[[RFC'+group1+']]';
             });
         }
 
@@ -294,6 +311,10 @@ for (let l in lines) {
         if (Math.abs(delta)>1) console.warn(delta,line);
         let prefix = '';
         let newSection = '<section>';
+        if (line.includes('## Version ')) {
+            // our conformance section is headlined with 'Version x.y.z'
+            newSection = '<section class="override" id="conformance">';
+        }
         if (line.includes('Appendix')) {
             newSection = '<section class="appendix">';
         }
@@ -314,7 +335,7 @@ for (let l in lines) {
         line = prefix+md.render(line);
     }
 
-    lines[l] = (linkTarget ? linkTarget : '') + line;
+    lines[l] = line;
 }
 
 s = preface(`OpenAPI Specification v${argv.subtitle} | Introduction, Definitions, & More`,argv)+'\n\n'+lines.join('\n');

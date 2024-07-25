@@ -266,33 +266,50 @@ for (let l in lines) {
     if (!inCodeBlock) {
 
         // minor fixups to get RFC links to work properly
-        if (line.indexOf('RFC [')>=0) {
-            line = line.replace('RFC [','[RFC');
-        }
+        line = line.replace('RFC [','[RFC');
         line = line.replace('[Authorization header as defined in ','Authorization header as defined in [');
+        line = line.replace('[JSON Pointer]','JSON Pointer [RFC6901]'); // only in 2.0.md
+
+        //TODO: more "hidden" RFC references in older specs, for example
+        // [media type range](https://tools.ietf.org/html/rfc7231#appendix-D)
+        // [ABNF](https://tools.ietf.org/html/rfc5234)
+
+        //TODO: unconventional references to RFCs in 3.0.4 and 3.1.1, for example
+        // [RFC3986 §5.1.2 – 5.1.4](https://tools.ietf.org/html/rfc3986#section-5.1.2)
+        // RFC6570 [mentions](https://www.rfc-editor.org/rfc/rfc6570.html#section-2.4.2)
+        // [are not](https://datatracker.ietf.org/doc/html/rfc3986#appendix-A)
+        // [special behavior](https://www.rfc-editor.org/rfc/rfc1866#section-8.2.1)
+        // [RFC6570 considers to be _undefined_](https://datatracker.ietf.org/doc/html/rfc6570#section-2.3)
 
         if (line.indexOf('[RFC')>=0) {
-            line = line.replace(/\[RFC ?([0-9]{1,5})\]/g,function(match,group1){
-                console.warn('Fixing RFC reference',match,group1);
+            // also detect [RFC4648 §3.2] etc. in 3.0.4.md and 3.1.1.md
+            line = line.replace(/\[RFC ?([0-9]{1,5})( §[0-9 .-]+)?\]/g,function(match,group1){
+                // console.warn('Fixing RFC reference',match,group1);
                 return '[[RFC'+group1+']]';
             });
         }
 
-        line = line.replace('http://tools.ietf.org','https://tools.ietf.org');
-        if (line.indexOf('xml2rfc.ietf.org')>0) {
-            line = line.replace('https://xml2rfc.ietf.org/public/rfc/html/rfc','https://tools.ietf.org/html/rfc');
-            line = line.replace('.html','');
-        }
-        line = line.replace(/\]\]\(https:\/\/tools.ietf.org\/html\/rfc[0-9]{1,5}\/?(\#.*?)?\)/g,function(match,group1){
-            //return (group1 ? group1 : '')+']]';
-            return ']]';
+        //TODO: non-link mentions of RFCs in 3.0.4 and 3.1.1, for example
+        // RFC3986's definition of [reserved](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2)
+
+        // harmonize RFC URLs
+        line = line.replace('http://www.ietf.org/rfc/rfc2119.txt','https://tools.ietf.org/html/rfc2119'); // only in 2.0.md
+        line = line.replace(/https:\/\/www.rfc-editor.org\/rfc\/rfc([0-9]{1,5})(\.html)?/g,'https://tools.ietf.org/html/rfc$1');
+        line = line.replaceAll('https://datatracker.ietf.org/doc/html/rfc','https://tools.ietf.org/html/rfc');
+        line = line.replaceAll('http://tools.ietf.org','https://tools.ietf.org');
+
+        // handle url fragments in RFC links and construct section titles links as well as RFC links
+        line = line.replace(/\]\]\(https:\/\/tools.ietf.org\/html\/rfc([0-9]{1,5})\/?(\#[^)]*)?\)/g, function(match, rfcNumber, fragment) {
+            if (fragment) {
+                // Extract section title from the fragment
+                let sectionTitle = fragment.replace('#', '').replace(/-/g, ' ');
+                sectionTitle = sectionTitle.charAt(0).toUpperCase() + sectionTitle.slice(1); // Capitalize the first letter
+                return `]] [${sectionTitle}](https://datatracker.ietf.org/doc/html/rfc${rfcNumber}${fragment})`;
+            } else {
+                return ']]';
+            }
         });
     }
-
-    // minor fixup to get bibliography link to work
-    //if (line.indexOf('[ABNF]')>=0) {
-    //    line = line.replace('[ABNF]','[Augmented Backus-Naur Form]');
-    //}
 
     if (!inCodeBlock && line.indexOf('](../') >= 0) {
         const regExp = /\((\.\.[^)]+)\)/g;
@@ -306,9 +323,10 @@ for (let l in lines) {
         let heading = 0;
         while (line[heading] === '#') heading++;
         let delta = heading-prevHeading;
+        if (delta>1) console.warn(delta,line);
         if (delta>0) delta = 1;
         //if (delta<0) delta = -1;
-        if (Math.abs(delta)>1) console.warn(delta,line);
+        // if (Math.abs(delta)>1) console.warn(delta,line);
         let prefix = '';
         let newSection = '<section>';
         if (line.includes('## Version ')) {

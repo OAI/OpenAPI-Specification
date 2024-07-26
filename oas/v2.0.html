@@ -165,7 +165,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "publishISODate": "2014-09-08T00:00:00.000Z",
   "generatedSubtitle": "08 September 2014"
 }</script>
-<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/base.css"></head><body class="h-entry"><div class="head">
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/base.css"></head><body class="h-entry toc-inline"><div class="head">
     <p class="logos"><a class="logo" href="https://openapis.org/"><img crossorigin="" alt="OpenAPI Initiative" height="48" src="https://raw.githubusercontent.com/OAI/OpenAPI-Style-Guide/master/graphics/bitmap/OpenAPI_Logo_Pantone.png">
   </a></p>
     <h1 id="title" class="title">OpenAPI Specification v2.0 </h1> <h2 id="subtitle" class="subtitle">Version 2.0</h2>
@@ -218,7 +218,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
 <section id="openapi-specification"><div class="header-wrapper"><h2 id="x1-openapi-specification"><bdi class="secno">1. </bdi>OpenAPI Specification</h2><a class="self-link" href="#openapi-specification" aria-label="Permalink for Section 1."></a></div>
 </section><section id="fka-swagger-restful-api-documentation-specification"><div class="header-wrapper"><h2 id="x2-fka-swagger-restful-api-documentation-specification"><bdi class="secno">2. </bdi>(fka Swagger RESTful API Documentation Specification)</h2><a class="self-link" href="#fka-swagger-restful-api-documentation-specification" aria-label="Permalink for Section 2."></a></div>
 <section class="override" id="conformance"><div class="header-wrapper"><h3 id="x2-1-version-2-0"><bdi class="secno">2.1 </bdi>Version 2.0</h3><a class="self-link" href="#conformance" aria-label="Permalink for Section 2.1"></a></div>
-<p>The key words “<em class="rfc2119">MUST</em>”, “<em class="rfc2119">MUST NOT</em>”, “<em class="rfc2119">REQUIRED</em>”, “<em class="rfc2119">SHALL</em>”, “<em class="rfc2119">SHALL NOT</em>”, “<em class="rfc2119">SHOULD</em>”, “<em class="rfc2119">SHOULD NOT</em>”, “<em class="rfc2119">RECOMMENDED</em>”, “<em class="rfc2119">MAY</em>”, and “<em class="rfc2119">OPTIONAL</em>” in this document are to be interpreted as described in <a href="http://www.ietf.org/rfc/rfc2119.txt">[RFC2119]</a>.</p>
+<p>The key words “<em class="rfc2119">MUST</em>”, “<em class="rfc2119">MUST NOT</em>”, “<em class="rfc2119">REQUIRED</em>”, “<em class="rfc2119">SHALL</em>”, “<em class="rfc2119">SHALL NOT</em>”, “<em class="rfc2119">SHOULD</em>”, “<em class="rfc2119">SHOULD NOT</em>”, “<em class="rfc2119">RECOMMENDED</em>”, “<em class="rfc2119">MAY</em>”, and “<em class="rfc2119">OPTIONAL</em>” in this document are to be interpreted as described in [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">RFC2119</a></cite>].</p>
 <p>The Swagger specification is licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0.html">The Apache License, Version 2.0</a>.</p>
 </section></section><section id="introductions"><div class="header-wrapper"><h2 id="x3-introductions"><bdi class="secno">3. </bdi>Introductions</h2><a class="self-link" href="#introductions" aria-label="Permalink for Section 3."></a></div>
 <p>Swagger™  is a project used to describe and document RESTful APIs.</p>
@@ -274,7 +274,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   application/vnd.github.v3.patch
 </code></pre>
 </section><section id="http-status-codes"><div class="header-wrapper"><h3 id="x5-3-http-status-codes"><bdi class="secno">5.3 </bdi><dfn id="dfn-http-status-codes" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">HTTP Status Codes</dfn></h3><a class="self-link" href="#http-status-codes" aria-label="Permalink for Section 5.3"></a></div>
-<p>The HTTP Status Codes are used to indicate the status of the executed operation. The available status codes are described by [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc7231" title="Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content">RFC7231</a></cite>] and in the <a href="http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">IANA Status Code Registry</a>.</p>
+<p>The HTTP Status Codes are used to indicate the status of the executed operation. The available status codes are described by [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc7231" title="Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content">RFC7231</a></cite>] <a href="https://datatracker.ietf.org/doc/html/rfc7231#section-6">Section 6</a> and in the <a href="http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">IANA Status Code Registry</a>.</p>
 </section></section><section id="specification"><div class="header-wrapper"><h2 id="x6-specification"><bdi class="secno">6. </bdi>Specification</h2><a class="self-link" href="#specification" aria-label="Permalink for Section 6."></a></div>
 <section id="format"><div class="header-wrapper"><h3 id="x6-1-format"><bdi class="secno">6.1 </bdi>Format</h3><a class="self-link" href="#format" aria-label="Permalink for Section 6.1"></a></div>
 <p>The files describing the RESTful API in accordance with the Swagger specification are represented as JSON objects and conform to the JSON standards. YAML, being a superset of JSON, can be used as well to
@@ -357,13 +357,13 @@ represent a Swagger specification file.</p>
 <td>date</td>
 <td><code>string</code></td>
 <td><code>date</code></td>
-<td>As defined by <code>full-date</code> - <a href="https://datatracker.ietf.org/doc/html/rfc3339#section-5.6">[RFC3339]</a></td>
+<td>As defined by <code>full-date</code> - [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3339" title="Date and Time on the Internet: Timestamps">RFC3339</a></cite>] <a href="https://datatracker.ietf.org/doc/html/rfc3339#section-5.6">Section 5.6</a></td>
 </tr>
 <tr>
 <td>dateTime</td>
 <td><code>string</code></td>
 <td><code>date-time</code></td>
-<td>As defined by <code>date-time</code> - <a href="https://datatracker.ietf.org/doc/html/rfc3339#section-5.6">[RFC3339]</a></td>
+<td>As defined by <code>date-time</code> - [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3339" title="Date and Time on the Internet: Timestamps">RFC3339</a></cite>] <a href="https://datatracker.ietf.org/doc/html/rfc3339#section-5.6">Section 5.6</a></td>
 </tr>
 <tr>
 <td>password</td>
@@ -2076,7 +2076,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </code></pre>
 </section></section><section id="reference-object"><div class="header-wrapper"><h4 id="x6-4-17-reference-object"><bdi class="secno">6.4.17 </bdi>Reference Object</h4><a class="self-link" href="#reference-object" aria-label="Permalink for Section 6.4.17"></a></div>
 <p>A simple object to allow referencing other definitions in the specification. It can be used to reference parameters and responses that are defined at the top level for reuse.</p>
-<p>The Reference Object is a <a href="https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-02">JSON Reference</a> that uses a <a href="http://tools.ietf.org/html/rfc6901">JSON Pointer</a> as its value. For this specification, only <a href="https://tools.ietf.org/html/draft-zyp-json-schema-04#section-7.2.3">canonical dereferencing</a> is supported.</p>
+<p>The Reference Object is a <a href="https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-02">JSON Reference</a> that uses a JSON Pointer [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc6901" title="JavaScript Object Notation (JSON) Pointer">RFC6901</a></cite>] as its value. For this specification, only <a href="https://tools.ietf.org/html/draft-zyp-json-schema-04#section-7.2.3">canonical dereferencing</a> is supported.</p>
 <section id="fixed-fields-11"><div class="header-wrapper"><h5 id="x6-4-17-1-fixed-fields"><bdi class="secno">6.4.17.1 </bdi>Fixed Fields</h5><a class="self-link" href="#fixed-fields-11" aria-label="Permalink for Section 6.4.17.1"></a></div>
 <table>
 <thead>
@@ -3309,8 +3309,14 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 
 </section></section><section id="references" class="appendix"><div class="header-wrapper"><h2 id="a-references"><bdi class="secno">A. </bdi>References</h2><a class="self-link" href="#references" aria-label="Permalink for Appendix A."></a></div><section id="normative-references"><div class="header-wrapper"><h3 id="a-1-normative-references"><bdi class="secno">A.1 </bdi>Normative references</h3><a class="self-link" href="#normative-references" aria-label="Permalink for Appendix A.1"></a></div>
     
-    <dl class="bibliography"><dt id="bib-rfc6838">[RFC6838]</dt><dd>
+    <dl class="bibliography"><dt id="bib-rfc2119">[RFC2119]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>
+    </dd><dt id="bib-rfc3339">[RFC3339]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc3339"><cite>Date and Time on the Internet: Timestamps</cite></a>. G. Klyne; C. Newman.  IETF. July 2002. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc3339">https://www.rfc-editor.org/rfc/rfc3339</a>
+    </dd><dt id="bib-rfc6838">[RFC6838]</dt><dd>
       <a href="https://www.rfc-editor.org/rfc/rfc6838"><cite>Media Type Specifications and Registration Procedures</cite></a>. N. Freed; J. Klensin; T. Hansen.  IETF. January 2013. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc6838">https://www.rfc-editor.org/rfc/rfc6838</a>
+    </dd><dt id="bib-rfc6901">[RFC6901]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc6901"><cite>JavaScript Object Notation (JSON) Pointer</cite></a>. P. Bryan, Ed.; K. Zyp; M. Nottingham, Ed..  IETF. April 2013. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc6901">https://www.rfc-editor.org/rfc/rfc6901</a>
     </dd><dt id="bib-rfc7231">[RFC7231]</dt><dd>
       <a href="https://httpwg.org/specs/rfc7231.html"><cite>Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</cite></a>. R. Fielding, Ed.; J. Reschke, Ed..  IETF. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7231.html">https://httpwg.org/specs/rfc7231.html</a>
     </dd></dl>

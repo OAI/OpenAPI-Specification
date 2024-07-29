@@ -98,26 +98,6 @@ function preface(title,options) {
                 publisher: "OpenAPI Initiative"
             },
             //TODO: remove localBiblio once Specref PRs https://github.com/tobie/specref/pulls/ralfhandl are merged
-          CommonMark: {
-            title: "CommonMark Spec",
-            href: "https://spec.commonmark.org/",
-          },
-          "CommonMark-0.27": {
-            title: "CommonMark Spec Version 0.27",
-            href: "https://spec.commonmark.org/0.27/",
-            date: "2016-11-18",
-                authors: [ "John MacFarlane" ]
-            },
-            "IANA-HTTP-AUTHSCHEMES": {
-                href: "https://www.iana.org/assignments/http-authschemes/",
-                title: "Hypertext Transfer Protocol (HTTP) Authentication Scheme Registry",
-                publisher: "IANA"
-            },
-            "IANA-HTTP-STATUS-CODES": {
-                href: "https://www.iana.org/assignments/http-status-codes/",
-                title: "Hypertext Transfer Protocol (HTTP) Status Code Registry",
-                publisher: "IANA"
-            },
             "JSON-Schema-Validation-04": {
                 authors: [ "Kris Zyp", "Francis Galiegue", "Gary Court" ],
                 href: "https://datatracker.ietf.org/doc/html/draft-fge-json-schema-validation-00",

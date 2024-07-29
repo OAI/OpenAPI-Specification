@@ -130,22 +130,6 @@ function preface(title,options) {
                 title: "JSON Schema Validation: A Vocabulary for Structural Validation of JSON. Draft 2020-12",
                 date: "8 December 2020"
             },
-            "OpenID Connect Core": {
-                authors: ["N. Sakimura", "J. Bradley", "M. Jones", "B. de Medeiros", "C. Mortimore"],
-                title: "OpenID Connect Core 1.0 incorporating errata set 2",
-                href: "https://openid.net/specs/openid-connect-core-1_0.html",
-                publisher: "OpenID Foundation",
-                status: "Final",
-                date: "15 December 2023"
-            },
-            "OpenID Connect Discovery": {
-                authors: ["N. Sakimura", "J. Bradley", "M. Jones", "E. Jay"],
-                title: "OpenID Connect Discovery 1.0 incorporating errata set 2",
-                href: "https://openid.net/specs/openid-connect-discovery-1_0.html",
-                publisher: "OpenID Foundation",
-                status: "Final",
-                date: "15 December 2023"
-            },
             "SPDX": {
                 href: "https://spdx.org/licenses/",
                 title: "SPDX License List",

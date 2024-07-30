@@ -87,6 +87,7 @@ function preface(title,options) {
             },
         ],
         localBiblio: {
+            //TODO: remove localBiblio once Specref PRs https://github.com/tobie/specref/pulls/ralfhandl are merged
             "OpenAPI-Learn": {
                 title: "OpenAPI - Getting started, and the specification explained",
                 href: "https://learn.openapis.org/",
@@ -97,7 +98,6 @@ function preface(title,options) {
                 href: "https://spec.openapis.org/registry/index.html",
                 publisher: "OpenAPI Initiative"
             },
-            //TODO: remove localBiblio once Specref PRs https://github.com/tobie/specref/pulls/ralfhandl are merged
             "JSON-Schema-Validation-04": {
                 authors: [ "Kris Zyp", "Francis Galiegue", "Gary Court" ],
                 href: "https://datatracker.ietf.org/doc/html/draft-fge-json-schema-validation-00",
@@ -129,27 +129,6 @@ function preface(title,options) {
                 status: "Internet-Draft",
                 title: "JSON Schema Validation: A Vocabulary for Structural Validation of JSON. Draft 2020-12",
                 date: "8 December 2020"
-            },
-            "OpenID Connect Core": {
-                authors: ["N. Sakimura", "J. Bradley", "M. Jones", "B. de Medeiros", "C. Mortimore"],
-                title: "OpenID Connect Core 1.0 incorporating errata set 2",
-                href: "https://openid.net/specs/openid-connect-core-1_0.html",
-                publisher: "OpenID Foundation",
-                status: "Final",
-                date: "15 December 2023"
-            },
-            "OpenID Connect Discovery": {
-                authors: ["N. Sakimura", "J. Bradley", "M. Jones", "E. Jay"],
-                title: "OpenID Connect Discovery 1.0 incorporating errata set 2",
-                href: "https://openid.net/specs/openid-connect-discovery-1_0.html",
-                publisher: "OpenID Foundation",
-                status: "Final",
-                date: "15 December 2023"
-            },
-            "SPDX": {
-                href: "https://spdx.org/licenses/",
-                title: "SPDX License List",
-                publisher: "Linux Foundation"
             }
         }
     };
@@ -280,7 +259,6 @@ for (let l in lines) {
 
     if (line.startsWith('```')) {
         inCodeBlock = !inCodeBlock;
-        // line += '\n'; // fixes formatting of first line of syntax-highlighted blocks - actually breaks it
     }
 
     if (!inCodeBlock && line.startsWith('#')) {
@@ -382,7 +360,7 @@ for (let l in lines) {
         line = line.replace('[JSON Schema Specification Draft 2020-12](https://tools.ietf.org/html/draft-bhutton-json-schema-00)','[[JSON-Schema-2020-12|JSON Schema Specification Draft 2020-12]]');
         line = line.replace('[JSON Schema Core](https://tools.ietf.org/html/draft-bhutton-json-schema-00)','[[JSON-Schema-2020-12|JSON Schema Core]]');
         line = line.replace('[JSON Schema Validation](https://tools.ietf.org/html/draft-bhutton-json-schema-validation-00)','[[JSON-Schema-Validation-2020-12|JSON Schema Validation]]');
-        line = line.replace('[SPDX](https://spdx.org/licenses/)','[[SPDX]]');
+        line = line.replace('[SPDX](https://spdx.org/licenses/) license','[[SPDX-Licenses]]');
         line = line.replace('[XML namespaces](https://www.w3.org/TR/xml-names11/)','[[xml-names11|XML namespaces]]');
         line = line.replace('JSON standards. YAML,','[[RFC7159|JSON]] standards. [[YAML|YAML]],'); // 2.0.md only
         line = line.replace('JSON or YAML format.','[[RFC7159|JSON]] or [[YAML|YAML]] format.');

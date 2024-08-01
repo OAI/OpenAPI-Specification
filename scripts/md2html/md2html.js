@@ -85,7 +85,57 @@ function preface(title,options) {
                     },
                 ],
             },
-        ]
+        ],
+        localBiblio: {
+            "OpenAPI-Learn": {
+                title: "OpenAPI - Getting started, and the specification explained",
+                href: "https://learn.openapis.org/",
+                publisher: "OpenAPI Initiative"
+            },
+            "OpenAPI-Registry": {
+                title: "OpenAPI Initiative Registry",
+                href: "https://spec.openapis.org/registry/index.html",
+                publisher: "OpenAPI Initiative"
+            },
+            //TODO: remove localBiblio once Specref PRs https://github.com/tobie/specref/pulls/ralfhandl are merged
+            "JSON-Schema-Validation-04": {
+                authors: [ "Kris Zyp", "Francis Galiegue", "Gary Court" ],
+                href: "https://datatracker.ietf.org/doc/html/draft-fge-json-schema-validation-00",
+                publisher: "Internet Engineering Task Force (IETF)",
+                status: "Internet-Draft",
+                title: "JSON Schema: interactive and non interactive validation. Draft 4",
+                date: "1 February 2013"
+            },
+            "JSON-Schema-05": {
+                authors: [ "Austin Wright" ],
+                href: "https://datatracker.ietf.org/doc/html/draft-wright-json-schema-00",
+                publisher: "Internet Engineering Task Force (IETF)",
+                status: "Internet-Draft",
+                title: "JSON Schema: A Media Type for Describing JSON Documents. Draft 5",
+                date: "13 October 2016"
+            },
+            "JSON-Schema-Validation-05": {
+                authors: [ "Austin Wright", "G. Luff" ],
+                href: "https://datatracker.ietf.org/doc/html/draft-wright-json-schema-validation-00",
+                publisher: "Internet Engineering Task Force (IETF)",
+                status: "Internet-Draft",
+                title: "JSON Schema Validation: A Vocabulary for Structural Validation of JSON. Draft 5",
+                date: "13 October 2016"
+            },
+            "JSON-Schema-Validation-2020-12": {
+                authors: [ "Austin Wright", "Henry Andrews", "Ben Hutton" ],
+                href: "https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00",
+                publisher: "Internet Engineering Task Force (IETF)",
+                status: "Internet-Draft",
+                title: "JSON Schema Validation: A Vocabulary for Structural Validation of JSON. Draft 2020-12",
+                date: "8 December 2020"
+            },
+            "SPDX": {
+                href: "https://spdx.org/licenses/",
+                title: "SPDX License List",
+                publisher: "Linux Foundation"
+          }
+        }
     };
 
     let preface = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>${md.utils.escapeHtml(title)}</title>`;
@@ -115,6 +165,7 @@ function preface(title,options) {
         preface += 'table tr:nth-child(2n) { background-color: #f6f8fa; }';
         preface += 'pre { background-color: #f6f8fa !important; }';
         preface += 'code { color: #c83500 } th code { color: inherit }';
+        preface += 'a.bibref { text-decoration: underline;}';
         preface += fs.readFileSync(path.resolve(__dirname,'gist.css'),'utf8').split('\n').join(' ');
         preface += '</style>';
         preface += `<h1 id="title">${title.split('|')[0]}</h1>`;
@@ -269,46 +320,52 @@ for (let l in lines) {
         line = line.replace('RFC [','[RFC');
         line = line.replace('[Authorization header as defined in ','Authorization header as defined in [');
         line = line.replace('[JSON Pointer]','JSON Pointer [RFC6901]'); // only in 2.0.md
+        line = line.replace('[media type range](https://tools.ietf.org/html/rfc7231#appendix-D) ','media type range, see [RFC7231](https://tools.ietf.org/html/rfc7231#appendix-D), ');
 
-        //TODO: more "hidden" RFC references in older specs, for example
-        // [media type range](https://tools.ietf.org/html/rfc7231#appendix-D)
-        // [ABNF](https://tools.ietf.org/html/rfc5234)
-
-        //TODO: unconventional references to RFCs in 3.0.4 and 3.1.1, for example
-        // [RFC3986 §5.1.2 – 5.1.4](https://tools.ietf.org/html/rfc3986#section-5.1.2)
-        // RFC6570 [mentions](https://www.rfc-editor.org/rfc/rfc6570.html#section-2.4.2)
-        // [are not](https://datatracker.ietf.org/doc/html/rfc3986#appendix-A)
-        // [special behavior](https://www.rfc-editor.org/rfc/rfc1866#section-8.2.1)
-        // [RFC6570 considers to be _undefined_](https://datatracker.ietf.org/doc/html/rfc6570#section-2.3)
-
-        if (line.indexOf('[RFC')>=0) {
-            // also detect [RFC4648 §3.2] etc. in 3.0.4.md and 3.1.1.md
-            line = line.replace(/\[RFC ?([0-9]{1,5})( §[0-9 .-]+)?\]/g,function(match,group1){
-                // console.warn('Fixing RFC reference',match,group1);
-                return '[[RFC'+group1+']]';
-            });
-        }
-
-        //TODO: non-link mentions of RFCs in 3.0.4 and 3.1.1, for example
-        // RFC3986's definition of [reserved](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2)
+        line = line.replace(/\[RFC ?([0-9]{1,5})\]\(/g,'[[RFC$1]](');
 
         // harmonize RFC URLs
-        line = line.replace('http://www.ietf.org/rfc/rfc2119.txt','https://tools.ietf.org/html/rfc2119'); // only in 2.0.md
+        //TODO: harmonize to https://www.rfc-editor.org/rfc/rfc*
+        line = line.replaceAll('](http://','](https://');
+        line = line.replace('https://www.ietf.org/rfc/rfc2119.txt','https://tools.ietf.org/html/rfc2119'); // only in 2.0.md
         line = line.replace(/https:\/\/www.rfc-editor.org\/rfc\/rfc([0-9]{1,5})(\.html)?/g,'https://tools.ietf.org/html/rfc$1');
-        line = line.replaceAll('https://datatracker.ietf.org/doc/html/rfc','https://tools.ietf.org/html/rfc');
-        line = line.replaceAll('http://tools.ietf.org','https://tools.ietf.org');
+        line = line.replaceAll('https://datatracker.ietf.org/doc/html/','https://tools.ietf.org/html/');
 
-        // handle url fragments in RFC links and construct section titles links as well as RFC links
+        // handle url fragments in RFC links and construct section links as well as RFC links
         line = line.replace(/\]\]\(https:\/\/tools.ietf.org\/html\/rfc([0-9]{1,5})\/?(\#[^)]*)?\)/g, function(match, rfcNumber, fragment) {
             if (fragment) {
                 // Extract section title from the fragment
                 let sectionTitle = fragment.replace('#', '').replace(/-/g, ' ');
                 sectionTitle = sectionTitle.charAt(0).toUpperCase() + sectionTitle.slice(1); // Capitalize the first letter
+                //TODO: section links to https://www.rfc-editor.org/rfc/rfc* for newer RFCs (>= 8700)
                 return `]] [${sectionTitle}](https://datatracker.ietf.org/doc/html/rfc${rfcNumber}${fragment})`;
             } else {
                 return ']]';
             }
         });
+
+        // non-RFC references
+        line = line.replace('[ABNF](https://tools.ietf.org/html/rfc5234)','[[ABNF]]');
+        line = line.replace('[CommonMark 0.27](https://spec.commonmark.org/0.27/)','[[CommonMark-0.27]]');
+        line = line.replace('[CommonMark syntax](https://spec.commonmark.org/)','[[CommonMark]] syntax');
+        line = line.replace('CommonMark markdown formatting','[[CommonMark]] markdown formatting');
+        line = line.replace('consult http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4)','consult [[HTML401]] [Section 17.13.4](http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4)');
+        line = line.replace('[IANA Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)','[[IANA-HTTP-STATUS-CODES|IANA Status Code Registry]]');
+        line = line.replace('[IANA Authentication Scheme registry](https://www.iana.org/assignments/http-authschemes/http-authschemes.xhtml)','[[IANA-HTTP-AUTHSCHEMES]]');
+        line = line.replace('[JSON Schema Specification Draft 4](https://json-schema.org/)','[[JSON-Schema-04|JSON Schema Specification Draft 4]]');
+        line = line.replace('[JSON Schema Core](https://tools.ietf.org/html/draft-zyp-json-schema-04)','[[JSON-Schema-04|JSON Schema Core]]');
+        line = line.replace('[JSON Schema Validation](https://tools.ietf.org/html/draft-fge-json-schema-validation-00)','[[JSON-Schema-Validation-04|JSON Schema Validation]]');
+        line = line.replace('[JSON Schema Specification Wright Draft 00](https://json-schema.org/)','[[JSON-Schema-05|JSON Schema Specification Wright Draft 00]]');
+        line = line.replace('[JSON Schema Core](https://tools.ietf.org/html/draft-wright-json-schema-00)','[[JSON-Schema-05|JSON Schema Core]]');
+        line = line.replace('[JSON Schema Validation](https://tools.ietf.org/html/draft-wright-json-schema-validation-00)','[[JSON-Schema-Validation-05|JSON Schema Validation]]');
+        line = line.replace('[JSON Schema Specification Draft 2020-12](https://tools.ietf.org/html/draft-bhutton-json-schema-00)','[[JSON-Schema-2020-12|JSON Schema Specification Draft 2020-12]]');
+        line = line.replace('[JSON Schema Core](https://tools.ietf.org/html/draft-bhutton-json-schema-00)','[[JSON-Schema-2020-12|JSON Schema Core]]');
+        line = line.replace('[JSON Schema Validation](https://tools.ietf.org/html/draft-bhutton-json-schema-validation-00)','[[JSON-Schema-Validation-2020-12|JSON Schema Validation]]');
+        line = line.replace('[SPDX](https://spdx.org/licenses/)','[[SPDX]]');
+        line = line.replace('[XML namespaces](https://www.w3.org/TR/xml-names11/)','[[xml-names11|XML namespaces]]');
+        line = line.replace('JSON standards. YAML,','[[RFC7159|JSON]] standards. [[YAML|YAML]],'); // 2.0.md only
+        line = line.replace('JSON or YAML format.','[[RFC7159|JSON]] or [[YAML|YAML]] format.');
+        line = line.replace(/YAML version \[1\.2\]\(https:\/\/(www\.)?yaml\.org\/spec\/1\.2\/spec\.html\)/,'[[YAML|YAML version 1.2]]');
     }
 
     if (!inCodeBlock && line.indexOf('](../') >= 0) {
@@ -325,8 +382,6 @@ for (let l in lines) {
         let delta = heading-prevHeading;
         if (delta>1) console.warn(delta,line);
         if (delta>0) delta = 1;
-        //if (delta<0) delta = -1;
-        // if (Math.abs(delta)>1) console.warn(delta,line);
         let prefix = '';
         let newSection = '<section>';
         if (line.includes('## Version ')) {
@@ -358,8 +413,6 @@ for (let l in lines) {
 
 s = preface(`OpenAPI Specification v${argv.subtitle} | Introduction, Definitions, & More`,argv)+'\n\n'+lines.join('\n');
 let out = md.render(s);
-out = out.replace(/\[([RGB])\]/g,function(match,group1){
-    console.warn('Fixing',match,group1);
-    return '&#91;'+group1+'&#93;';
-});
+out = out.replace(/\[([RGB])\]/g,'&#91;$1&#93;');
+out = out.replace('[[IANA-HTTP-AUTHSCHEMES]]','[[IANA-HTTP-AUTHSCHEMES|IANA Authentication Scheme registry]]');
 console.log(out);

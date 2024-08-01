@@ -56,6 +56,6 @@ jobs:
         body: |
           This pull request is automatically triggered by GitHub action `respec`.
 
-          The versions/v*.md files have changed, so the HTML files are automatically being regenerated.
+          The `versions/*.md` files have changed, so the HTML files are automatically being regenerated.
 
 

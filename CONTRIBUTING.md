@@ -1,6 +1,6 @@
 # Contributing to the OpenAPI Specification
 
-***Work in progress!***
+***Work in progress!**  Each section links to issues that are relevant to fill out the rest of this document.*
 
 We are currently working on [defining and documenting our new processes](https://github.com/orgs/OAI/projects/5).  Information in this document is up-to-date.  Older _(and sometimes now inaccurate)_ documentation can be found in [DEVELOPMENT.md](DEVELOPMENT.md), which will be removed when everything is updated and documented here.
 
@@ -38,7 +38,7 @@ Schemas are only changed _after_ the specification is changed.  Changes are made
 ## Release Process and Scope
 
 * Issue #3528: [3.x.y patch release approach](https://github.com/OAI/OpenAPI-Specification/issues/3528)
-* Issue #3529: [3.x minor release approach](https://github.com/OAI/OpenAPI-Specification/issues/3528)
+* Issue #3529: [3.x minor release approach](https://github.com/OAI/OpenAPI-Specification/issues/3529)
 * Issue #3715: [Define and document our schema publishing process](https://github.com/OAI/OpenAPI-Specification/issues/3715)
 * Issue #3785: [Style guide / release checklist for the specification](https://github.com/OAI/OpenAPI-Specification/issues/3785)
 
@@ -68,12 +68,12 @@ Bigger changes require a more formal process.
 
 4. If the suggested change has good support, you will be asked to create a formal proposal.
    Use the [template in the proposals directory](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals), copy it to a new file, and complete it.
-   Once you the document is ready, open a pull request.
+   Once you the document is ready, open a pull request on the main branch.
 
 5. The proposal will be more closely reviewed and commented on or amended until it is either rejected or accepted.
-   At that point, the proposal is merged to the `main` branch and a final pull request is opened to add the feature to the appropriate version of the specification.
+   At that point, the proposal is merged into the `main` branch and a pull request is opened to add the feature to the appropriate `dev` version of the specification.
 
-Questions are welcome on the process and at any time. Use the discussions feature or find us in Slack.
+Questions are welcome on the process at any time. Use the discussions feature or find us in Slack.
 
 ## Working in GitHub
 
@@ -95,7 +95,7 @@ The OpenAPI Initiative uses GitHub Projects to manage work _outside_ of the spec
 
 ### Discussions
 
-We are beginning (as of mid-2024) to use GitHub [discussions](https://github.com/OAI/Arazzo-Specification/discussions?discussions_q=is%3Aopen) for open-ended topics such as major enhancements.  
+We are beginning (as of mid-2024) to use GitHub [discussions](https://github.com/OAI/OpenAPI-Specification/discussions?discussions_q=is%3Aopen) for open-ended topics such as major enhancements.  
 
 * Issue #3518: [Define criteria for filing/closing issues vs discussions](https://github.com/OAI/OpenAPI-Specification/issues/3518)
 
@@ -111,13 +111,13 @@ In an effort to keep the list of issues up to date and easier to navigate throug
 
 This process makes use of the following labels:
 
-* Needs author feedback: the issue has been replied to by the triage team and is awaiting a follow up from the issue's author. This label needs to be added manually by people doing triage/experts whenever they reply. It's removed automatically by the workflow.
-* No recent activity: the issue hasn't received a reply from its author within the last 10 days since `Needs author feedback` was added and will be closed within 28 days if the author doesn't follow up. This label is added/removed automatically by the workflow.
-* Needs attention: The issue's author has replied since the `Needs author feedback` label was set and the triage team will reply as soon as possible. This label needs to be removed manually by people doing triage/experts whenever they reply. It's added automatically by the workflow.
+* `Needs author feedback`: the issue has been replied to by the triage team and is awaiting a follow up from the issue's author. This label needs to be added manually by people doing triage/experts whenever they reply. It's removed automatically by the workflow.
+* `No recent activity`: the issue hasn't received a reply from its author within the last 10 days since `Needs author feedback` was added and will be closed within 28 days if the author doesn't follow up. This label is added/removed automatically by the workflow.
+* `Needs attention`: The issue's author has replied since the `Needs author feedback` label was set and the triage team will reply as soon as possible. This label needs to be removed manually by people doing triage/experts whenever they reply. It's added automatically by the workflow.
 
 ### Automated TDC agenda issues Process
 
-An issue is opened every week, 7 days in advance, for the Technical Direction Committee (TDC), it provides the information to connect the meeting, and serves as a placeholder to build the agenda for the meeting. Anyone is welcome to attend the meeting, or to add items to the agenda as long as they plan on attending to present the item. These issues are also automatically pinned for visibility and labeled with "Housekeeping".
+An issue is opened every week, 7 days in advance, for the Technical Developer Committee (TDC), it provides the information to connect the meeting, and serves as a placeholder to build the agenda for the meeting. Anyone is welcome to attend the meeting, or to add items to the agenda as long as they plan on attending to present the item. These issues are also automatically pinned for visibility and labeled with "Housekeeping".
 
 Ten (10) days after the meeting date is passed (date in the title of the issue), it gets closed and unpinned automatically.
 

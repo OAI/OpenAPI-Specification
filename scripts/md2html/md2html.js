@@ -97,38 +97,6 @@ function preface(title,options) {
                 title: "OpenAPI Initiative Registry",
                 href: "https://spec.openapis.org/registry/index.html",
                 publisher: "OpenAPI Initiative"
-            },
-            "JSON-Schema-Validation-04": {
-                authors: [ "Kris Zyp", "Francis Galiegue", "Gary Court" ],
-                href: "https://datatracker.ietf.org/doc/html/draft-fge-json-schema-validation-00",
-                publisher: "Internet Engineering Task Force (IETF)",
-                status: "Internet-Draft",
-                title: "JSON Schema: interactive and non interactive validation. Draft 4",
-                date: "1 February 2013"
-            },
-            "JSON-Schema-05": {
-                authors: [ "Austin Wright" ],
-                href: "https://datatracker.ietf.org/doc/html/draft-wright-json-schema-00",
-                publisher: "Internet Engineering Task Force (IETF)",
-                status: "Internet-Draft",
-                title: "JSON Schema: A Media Type for Describing JSON Documents. Draft 5",
-                date: "13 October 2016"
-            },
-            "JSON-Schema-Validation-05": {
-                authors: [ "Austin Wright", "G. Luff" ],
-                href: "https://datatracker.ietf.org/doc/html/draft-wright-json-schema-validation-00",
-                publisher: "Internet Engineering Task Force (IETF)",
-                status: "Internet-Draft",
-                title: "JSON Schema Validation: A Vocabulary for Structural Validation of JSON. Draft 5",
-                date: "13 October 2016"
-            },
-            "JSON-Schema-Validation-2020-12": {
-                authors: [ "Austin Wright", "Henry Andrews", "Ben Hutton" ],
-                href: "https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00",
-                publisher: "Internet Engineering Task Force (IETF)",
-                status: "Internet-Draft",
-                title: "JSON Schema Validation: A Vocabulary for Structural Validation of JSON. Draft 2020-12",
-                date: "8 December 2020"
             }
         }
     };

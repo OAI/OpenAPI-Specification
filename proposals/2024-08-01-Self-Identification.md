@@ -5,7 +5,7 @@
 |Tag |Value |
 |---- | ---------------- |
 |Proposal |[2024-08-01 Self-Identification](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/{2024-08-01-Self-Identification-and-Bundling.md})|
-|Relevant Specification(s)|OAS, Arazzo|
+|Relevant Specification(s)|OpenAPI Specification (OAS), Arazzo Specification|
 |Authors|[Henry Andrews](https://github.com/handrews)|
 |Review Manager | TBD |
 |Status |Proposal|
@@ -27,10 +27,10 @@ OpenAPI 3.1 references are treated as identifiers rather than locators.  This be
 
 One of the main motivations for separating identity (URIs/IRIs) and location (URLs) is to have stable, persistent identifiers regardless of the resource's location.  Such identifiers are typically assigned within the resource.  There are two varieties:
 
-* Setting the complete resource's absolute URI, which is also used as the resource's base URI per [RFC3986§5.1.1](https://www.rfc-editor.org/rfc/rfc3986.html#section-5.1.1) (example: [the Schema Object's `$id`](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#name-the-id-keyword))
+* Setting the complete resource's absolute URI, which is also used as the resource's base URI per [RFC3986 §5.1.1](https://www.rfc-editor.org/rfc/rfc3986.html#section-5.1.1) (example: [the Schema Object's `$id`](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#name-the-id-keyword))
 * Setting a ["plain name" URI fragment](https://www.w3.org/TR/2012/WD-fragid-best-practices-20121025/#dfn-plain-name-fragid) that does not rely on the JSON/YAML structure of the document (example: [the Schema Object's `$anchor`](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#name-defining-location-independe), and technically also `$dynamicAnchor` although this proposal will not mention `$dynamicAnchor` further as its additional complexities are not relevant here).
 
-As suggested by the above examples, in 3.1 only the Schema Object can set stable, location-independent identifiers.  OpenAPI Description documents as a whole cannot do so, nor can other Objects within the document.
+As suggested by the above examples, in OAS 3.1 only the Schema Object can set stable, location-independent identifiers.  OpenAPI Description documents as a whole cannot do so, nor can other Objects within the document.
 
 Note also that due to the recursive structure of schemas, resolving the Schema Object's `$id` keyword can be complex, as each can itself be a relative URI-reference that is resolved against the `$id` in parent schemas.  There is no clear use case for such complexity within other parts of an OpenAPI Description.
 
@@ -57,13 +57,13 @@ Many of these use cases can be worked around, but only by restricting deployment
 
 Self-identification of resources with identity independent of location is common in the JSON Schema world.  This demonstrates that implementation is not just feasible but well-proven, particularly given that JSON Schema's `$id` is more complex to support than this proposal.
 
-The JSON Schema package used by the OASComply project includes a [schema catalog](https://jschon.readthedocs.io/en/latest/tutorial/catalog.html) with [configurable file and network sources](https://jschon.readthedocs.io/en/latest/examples/file_based_schemas.html) to manage the the URI-to-URL mapping (local files can be considered `file:` URLs).
+The JSON Schema package used by the [OASComply](https://github.com/OAI/oascomply) project includes a [schema catalog](https://jschon.readthedocs.io/en/latest/tutorial/catalog.html) with [configurable file and network sources](https://jschon.readthedocs.io/en/latest/examples/file_based_schemas.html) to manage the the URI-to-URL mapping (local files can be considered `file:` URLs).
 
 Self-identification is common in other formats as well.  Notably, the Atom format pioneered the use of [web links with `rel="self"`](https://www.rfc-editor.org/rfc/rfc4287.html#section-4.2.7.2) for this purpose.
 
 ## Proposed solution
 
-The proposal is a simplified analog of JSON Schema's `$id` that appears in exactly one place: a new `self` field in the root OpenAPI Object (OAS) and Arazzo Object (Arazzo/Workflows).  When referencing a document that has a `self` field the `self` field SHOULD be used in reference values so that reference values remain the same even if the document is moved.
+The proposal is a simplified analog of JSON Schema's `$id` that appears in exactly one place: a new `self` field in the root OpenAPI Object (OAS) and Arazzo Object (Arazzo).  When referencing a document that has a `self` field, the `self` field SHOULD be used in reference values so that reference values remain the same even if the document is moved.
 
 Placing the `self` field only in the OpenAPI Object or Arazzo Object makes it align with the existing bootstrapping process for parsing:
 
@@ -75,9 +75,9 @@ Placing the `self` field only in the OpenAPI Object or Arazzo Object makes it al
 
 As [OAS 3.1.1 clarifies](https://github.com/OAI/OpenAPI-Specification/pull/3758), it is already mandatory to separate location and identity for Schema Object support.
 
-Currently, associating a URI other than the current URL with a document to meet this requirement has to be done externally.  Many tools effectively by allowing the retrieval URL to be set manually, without verifying that the document actually lives at the given URL.
+Currently, associating a URI other than the current URL with a document to meet this requirement has to be done externally.  Many tools effectively support this by allowing the retrieval URL to be set manually, without verifying that the document actually lives at the given URL.  However, this relies on users to make use of a non-standard implementation feature rather than offering well-defined behavior based on the document author's intent.
 
-With the new `self` field, tools need to be configured to know where to look to find the document if `self` value does not match its location.  The JSON Schema implementation linked under "Prior Art" above demonstrates several ways to accomplish this.
+With the new `self` field, tools need to be configured to know how to locate documents whose `self` values do not match their locations.  The JSON Schema implementation linked under [Prior Art](#prior-art) above demonstrates several ways to accomplish this.
 
 ## Detailed design
 
@@ -103,7 +103,7 @@ OAS 3.2 and Arazzo 1.1 documents that do not use the `self` field will behave ex
 
 While including `self` in every Object would produce the same complexity as JSON Schema's nested `$id`, we could just adopt an equivalent of JSON Schema's `$anchor` keyword, which (like HTML/XML's `id` attribute) creates a plain name fragment that is not tied to the location of the Object in the JSON/YAML structure.
 
-Handling this would require scanning all Objects for the keyword prior to declaring that a reference target with a plain name fragment cannot be resolved.  This would likely be done on document load, but could be deferred and done incrementally as-needed when unknown fragments are encountered.
+Handling a fragment declaration keyword would require scanning all Objects for the keyword prior to declaring that a reference target with a plain name fragment cannot be resolved.  This would likely be done on document load, but could be deferred and done incrementally as-needed when unknown fragments are encountered.
 
 Support for `$anchor` in JSON Schema demonstrates that this is feasible, and the mental model is familiar to most from HTML.  But it would be a bit more work to support.
 

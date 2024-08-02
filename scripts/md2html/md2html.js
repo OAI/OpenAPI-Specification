@@ -111,8 +111,8 @@ function preface(title,options) {
         preface += '#title { color: #578000; } #subtitle { color: #578000; }';
         preface += '.dt-published { color: #578000; } .dt-published::before { content: "Published "; }';
         preface += 'h1,h2,h3,h4,h5,h6 { color: #578000; font-weight: normal; font-style: normal; }';
-        preface += 'a[href] { color: #578000; }';
-        // preface += 'body:not(.toc-inline) #toc h2 { color: #578000; }';
+        preface += 'a[href] { color: #45512c; }';
+        preface += 'body:not(.toc-inline) #toc h2 { color: #45512c; }';
         // preface += '.toc > li li li li li { font-size: 90%;}';
         preface += 'table { display: block; width: 100%; overflow: auto; }';
         preface += 'table th { font-weight: 600; }';

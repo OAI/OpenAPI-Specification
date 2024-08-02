@@ -341,9 +341,14 @@ for (let l in lines) {
         if (delta>0) delta = 1;
         let prefix = '';
         let newSection = '<section>';
-        if (line.includes('## Version ')) {
+        const m = line.match(/# Version ([0-9.]+)$/);
+        if (m) {
             // our conformance section is headlined with 'Version x.y.z'
             newSection = '<section class="override" id="conformance">';
+            // adjust the heading to be at level 2
+            line = '#' + m[0];
+            delta = 1;
+            heading = 2;
         }
         if (line.includes('Appendix')) {
             newSection = '<section class="appendix">';

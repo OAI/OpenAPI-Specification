@@ -117,7 +117,7 @@ This process makes use of the following labels:
 
 ### Automated TDC agenda issues Process
 
-An issue is opened every week, 7 days in advance, for the Technical Developer Committee (TDC), it provides the information to connect the meeting, and serves as a placeholder to build the agenda for the meeting. Anyone is welcome to attend the meeting, or to add items to the agenda as long as they plan on attending to present the item. These issues are also automatically pinned for visibility and labeled with "Housekeeping".
+An issue is opened every week, 7 days in advance, for the Technical Developer Community (TDC), it provides the information to connect the meeting, and serves as a placeholder to build the agenda for the meeting. Anyone is welcome to attend the meeting, or to add items to the agenda as long as they plan on attending to present the item. These issues are also automatically pinned for visibility and labeled with "Housekeeping".
 
 Ten (10) days after the meeting date is passed (date in the title of the issue), it gets closed and unpinned automatically.
 

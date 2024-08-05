@@ -175,10 +175,74 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       ]
     }
   ],
+  "localBiblio": {
+    "OpenAPI-Learn": {
+      "title": "OpenAPI - Getting started, and the specification explained",
+      "href": "https://learn.openapis.org/",
+      "publisher": "OpenAPI Initiative"
+    },
+    "OpenAPI-Registry": {
+      "title": "OpenAPI Initiative Registry",
+      "href": "https://spec.openapis.org/registry/index.html",
+      "publisher": "OpenAPI Initiative"
+    },
+    "JSON-Schema-Validation-04": {
+      "authors": [
+        "Kris Zyp",
+        "Francis Galiegue",
+        "Gary Court"
+      ],
+      "href": "https://datatracker.ietf.org/doc/html/draft-fge-json-schema-validation-00",
+      "publisher": "Internet Engineering Task Force (IETF)",
+      "status": "Internet-Draft",
+      "title": "JSON Schema: interactive and non interactive validation. Draft 4",
+      "date": "1 February 2013"
+    },
+    "JSON-Schema-05": {
+      "authors": [
+        "Austin Wright"
+      ],
+      "href": "https://datatracker.ietf.org/doc/html/draft-wright-json-schema-00",
+      "publisher": "Internet Engineering Task Force (IETF)",
+      "status": "Internet-Draft",
+      "title": "JSON Schema: A Media Type for Describing JSON Documents. Draft 5",
+      "date": "13 October 2016",
+      "id": "json-schema-05"
+    },
+    "JSON-Schema-Validation-05": {
+      "authors": [
+        "Austin Wright",
+        "G. Luff"
+      ],
+      "href": "https://datatracker.ietf.org/doc/html/draft-wright-json-schema-validation-00",
+      "publisher": "Internet Engineering Task Force (IETF)",
+      "status": "Internet-Draft",
+      "title": "JSON Schema Validation: A Vocabulary for Structural Validation of JSON. Draft 5",
+      "date": "13 October 2016",
+      "id": "json-schema-validation-05"
+    },
+    "JSON-Schema-Validation-2020-12": {
+      "authors": [
+        "Austin Wright",
+        "Henry Andrews",
+        "Ben Hutton"
+      ],
+      "href": "https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00",
+      "publisher": "Internet Engineering Task Force (IETF)",
+      "status": "Internet-Draft",
+      "title": "JSON Schema Validation: A Vocabulary for Structural Validation of JSON. Draft 2020-12",
+      "date": "8 December 2020"
+    },
+    "SPDX": {
+      "href": "https://spdx.org/licenses/",
+      "title": "SPDX License List",
+      "publisher": "Linux Foundation"
+    }
+  },
   "publishISODate": "2018-10-08T00:00:00.000Z",
   "generatedSubtitle": "08 October 2018"
 }</script>
-<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/base.css"></head><body class="h-entry"><div class="head">
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/base.css"></head><body class="h-entry toc-inline"><div class="head">
     <p class="logos"><a class="logo" href="https://openapis.org/"><img crossorigin="" alt="OpenAPI Initiative" height="48" src="https://raw.githubusercontent.com/OAI/OpenAPI-Style-Guide/master/graphics/bitmap/OpenAPI_Logo_Pantone.png">
   </a></p>
     <h1 id="title" class="title">OpenAPI Specification v3.0.2 </h1> <h2 id="subtitle" class="subtitle">Version 3.0.2</h2>
@@ -236,7 +300,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <p class="copyright">Copyright © 2018 the Linux Foundation</p>
     <hr title="Separator for header">
   </div><style>
-#respec-ui { visibility: hidden; }h1,h2,h3 { color: #629b34; }.dt-published { color: #629b34; } .dt-published::before { content: "Published "; }a[href] { color: #45512c; }body:not(.toc-inline) #toc h2 { color: #45512c; }table { display: block; width: 100%; overflow: auto; }table th { font-weight: 600; }table th, table td { padding: 6px 13px; border: 1px solid #dfe2e5; }table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }table tr:nth-child(2n) { background-color: #f6f8fa; }pre { background-color: #f6f8fa !important; }code { color: #c83500 } th code { color: inherit }/**  * GitHub Gist Theme  * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro  */  .hljs {   display: block;   background: white;   padding: 0.5em;   color: #333333;   overflow-x: auto; }  .hljs-comment, .hljs-meta {   color: #969896; }  .hljs-string, .hljs-variable, .hljs-template-variable, .hljs-strong, .hljs-emphasis, .hljs-quote {   color: #df5000; }  .hljs-number {   color: #008080; }  .hljs-keyword, .hljs-selector-tag, .hljs-type {   color: #a71d5d; }  .hljs-literal, .hljs-symbol, .hljs-bullet, .hljs-attribute {   color: #0086b3; }  .hljs-section, .hljs-name {   color: #63a35c; }  .hljs-tag {   color: #333333; }  .hljs-title, .hljs-attr, .hljs-selector-id, .hljs-selector-class, .hljs-selector-attr, .hljs-selector-pseudo {   color: #795da3; }  .hljs-addition {   color: #55a532;   background-color: #eaffea; }  .hljs-deletion {   color: #bd2c00;   background-color: #ffecec; }  .hljs-link {   text-decoration: underline; } 
+#respec-ui { visibility: hidden; }h1,h2,h3 { color: #629b34; }.dt-published { color: #629b34; } .dt-published::before { content: "Published "; }a[href] { color: #45512c; }body:not(.toc-inline) #toc h2 { color: #45512c; }table { display: block; width: 100%; overflow: auto; }table th { font-weight: 600; }table th, table td { padding: 6px 13px; border: 1px solid #dfe2e5; }table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }table tr:nth-child(2n) { background-color: #f6f8fa; }pre { background-color: #f6f8fa !important; }code { color: #c83500 } th code { color: inherit }a.bibref { text-decoration: underline;}/**  * GitHub Gist Theme  * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro  */  .hljs {   display: block;   background: white;   padding: 0.5em;   color: #333333;   overflow-x: auto; }  .hljs-comment, .hljs-meta {   color: #969896; }  .hljs-string, .hljs-variable, .hljs-template-variable, .hljs-strong, .hljs-emphasis, .hljs-quote {   color: #df5000; }  .hljs-number {   color: #008080; }  .hljs-keyword, .hljs-selector-tag, .hljs-type {   color: #a71d5d; }  .hljs-literal, .hljs-symbol, .hljs-bullet, .hljs-attribute {   color: #0086b3; }  .hljs-section, .hljs-name {   color: #63a35c; }  .hljs-tag {   color: #333333; }  .hljs-title, .hljs-attr, .hljs-selector-id, .hljs-selector-class, .hljs-selector-attr, .hljs-selector-pseudo {   color: #795da3; }  .hljs-addition {   color: #55a532;   background-color: #eaffea; }  .hljs-deletion {   color: #bd2c00;   background-color: #ffecec; }  .hljs-link {   text-decoration: underline; } 
 </style><section class="notoc introductory" id="abstract"><h2>What is the OpenAPI Specification?</h2>The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.</section><section class="override introductory notoc" id="sotd" data-max-toc="0"><h2>Status of This Document</h2>The source-of-truth for the specification is the GitHub markdown file referenced above.</section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#openapi-specification"><bdi class="secno">1. </bdi>OpenAPI Specification</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">1.1 </bdi>Version 3.0.2</a></li></ol></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#definitions"><bdi class="secno">3. </bdi><span>Definitions</span></a><ol class="toc"><li class="tocline"><a class="tocxref" href="#openapi-document"><bdi class="secno">3.1 </bdi><span>OpenAPI Document</span></a></li><li class="tocline"><a class="tocxref" href="#path-templating"><bdi class="secno">3.2 </bdi><span>Path Templating</span></a></li><li class="tocline"><a class="tocxref" href="#media-types"><bdi class="secno">3.3 </bdi><span>Media Types</span></a></li><li class="tocline"><a class="tocxref" href="#http-status-codes"><bdi class="secno">3.4 </bdi><span>HTTP Status Codes</span></a></li></ol></li><li class="tocline"><a class="tocxref" href="#specification"><bdi class="secno">4. </bdi>Specification</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#versions"><bdi class="secno">4.1 </bdi>Versions</a></li><li class="tocline"><a class="tocxref" href="#format"><bdi class="secno">4.2 </bdi>Format</a></li><li class="tocline"><a class="tocxref" href="#document-structure"><bdi class="secno">4.3 </bdi>Document Structure</a></li><li class="tocline"><a class="tocxref" href="#data-types"><bdi class="secno">4.4 </bdi>Data Types</a></li><li class="tocline"><a class="tocxref" href="#rich-text-formatting"><bdi class="secno">4.5 </bdi>Rich Text Formatting</a></li><li class="tocline"><a class="tocxref" href="#relative-references-in-urls"><bdi class="secno">4.6 </bdi>Relative References in URLs</a></li><li class="tocline"><a class="tocxref" href="#schema"><bdi class="secno">4.7 </bdi>Schema</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#openapi-object"><bdi class="secno">4.7.1 </bdi>OpenAPI Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields"><bdi class="secno">4.7.1.1 </bdi>Fixed Fields</a></li></ol></li><li class="tocline"><a class="tocxref" href="#info-object"><bdi class="secno">4.7.2 </bdi>Info Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-0"><bdi class="secno">4.7.2.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#info-object-example"><bdi class="secno">4.7.2.2 </bdi>Info Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#contact-object"><bdi class="secno">4.7.3 </bdi>Contact Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-1"><bdi class="secno">4.7.3.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#contact-object-example"><bdi class="secno">4.7.3.2 </bdi>Contact Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#license-object"><bdi class="secno">4.7.4 </bdi>License Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-2"><bdi class="secno">4.7.4.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#license-object-example"><bdi class="secno">4.7.4.2 </bdi>License Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#server-object"><bdi class="secno">4.7.5 </bdi>Server Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-3"><bdi class="secno">4.7.5.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#server-object-example"><bdi class="secno">4.7.5.2 </bdi>Server Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#server-variable-object"><bdi class="secno">4.7.6 </bdi>Server Variable Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-4"><bdi class="secno">4.7.6.1 </bdi>Fixed Fields</a></li></ol></li><li class="tocline"><a class="tocxref" href="#components-object"><bdi class="secno">4.7.7 </bdi>Components Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-5"><bdi class="secno">4.7.7.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#components-object-example"><bdi class="secno">4.7.7.2 </bdi>Components Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#paths-object"><bdi class="secno">4.7.8 </bdi>Paths Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields"><bdi class="secno">4.7.8.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#path-templating-matching"><bdi class="secno">4.7.8.2 </bdi>Path Templating Matching</a></li><li class="tocline"><a class="tocxref" href="#paths-object-example"><bdi class="secno">4.7.8.3 </bdi>Paths Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#path-item-object"><bdi class="secno">4.7.9 </bdi>Path Item Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-6"><bdi class="secno">4.7.9.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#path-item-object-example"><bdi class="secno">4.7.9.2 </bdi>Path Item Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#operation-object"><bdi class="secno">4.7.10 </bdi>Operation Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-7"><bdi class="secno">4.7.10.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#operation-object-example"><bdi class="secno">4.7.10.2 </bdi>Operation Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#external-documentation-object"><bdi class="secno">4.7.11 </bdi>External Documentation Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-8"><bdi class="secno">4.7.11.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#external-documentation-object-example"><bdi class="secno">4.7.11.2 </bdi>External Documentation Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#parameter-object"><bdi class="secno">4.7.12 </bdi>Parameter Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#parameter-locations"><bdi class="secno">4.7.12.1 </bdi>Parameter Locations</a></li><li class="tocline"><a class="tocxref" href="#fixed-fields-9"><bdi class="secno">4.7.12.2 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#style-values"><bdi class="secno">4.7.12.3 </bdi>Style Values</a></li><li class="tocline"><a class="tocxref" href="#style-examples"><bdi class="secno">4.7.12.4 </bdi>Style Examples</a></li><li class="tocline"><a class="tocxref" href="#parameter-object-examples"><bdi class="secno">4.7.12.5 </bdi>Parameter Object Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#request-body-object"><bdi class="secno">4.7.13 </bdi>Request Body Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-10"><bdi class="secno">4.7.13.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#request-body-examples"><bdi class="secno">4.7.13.2 </bdi>Request Body Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#media-type-object"><bdi class="secno">4.7.14 </bdi>Media Type Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-11"><bdi class="secno">4.7.14.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#media-type-examples"><bdi class="secno">4.7.14.2 </bdi>Media Type Examples</a></li><li class="tocline"><a class="tocxref" href="#considerations-for-file-uploads"><bdi class="secno">4.7.14.3 </bdi>Considerations for File Uploads</a></li><li class="tocline"><a class="tocxref" href="#support-for-x-www-form-urlencoded-request-bodies"><bdi class="secno">4.7.14.4 </bdi>Support for x-www-form-urlencoded Request Bodies</a></li><li class="tocline"><a class="tocxref" href="#special-considerations-for-multipart-content"><bdi class="secno">4.7.14.5 </bdi>Special Considerations for <code>multipart</code> Content</a></li></ol></li><li class="tocline"><a class="tocxref" href="#encoding-object"><bdi class="secno">4.7.15 </bdi>Encoding Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-12"><bdi class="secno">4.7.15.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#encoding-object-example"><bdi class="secno">4.7.15.2 </bdi>Encoding Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#responses-object"><bdi class="secno">4.7.16 </bdi>Responses Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-13"><bdi class="secno">4.7.16.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-fields-0"><bdi class="secno">4.7.16.2 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#responses-object-example"><bdi class="secno">4.7.16.3 </bdi>Responses Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#response-object"><bdi class="secno">4.7.17 </bdi>Response Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-14"><bdi class="secno">4.7.17.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#response-object-examples"><bdi class="secno">4.7.17.2 </bdi>Response Object Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#callback-object"><bdi class="secno">4.7.18 </bdi>Callback Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-1"><bdi class="secno">4.7.18.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#key-expression"><bdi class="secno">4.7.18.2 </bdi>Key Expression</a></li><li class="tocline"><a class="tocxref" href="#callback-object-example"><bdi class="secno">4.7.18.3 </bdi>Callback Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#example-object"><bdi class="secno">4.7.19 </bdi>Example Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-15"><bdi class="secno">4.7.19.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#example-object-examples"><bdi class="secno">4.7.19.2 </bdi>Example Object Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#link-object"><bdi class="secno">4.7.20 </bdi>Link Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-16"><bdi class="secno">4.7.20.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#examples"><bdi class="secno">4.7.20.2 </bdi>Examples</a></li><li class="tocline"><a class="tocxref" href="#operationref-examples"><bdi class="secno">4.7.20.3 </bdi>OperationRef Examples</a></li><li class="tocline"><a class="tocxref" href="#runtime-expressions"><bdi class="secno">4.7.20.4 </bdi>Runtime Expressions</a></li><li class="tocline"><a class="tocxref" href="#examples-0"><bdi class="secno">4.7.20.5 </bdi>Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#header-object"><bdi class="secno">4.7.21 </bdi>Header Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#header-object-example"><bdi class="secno">4.7.21.1 </bdi>Header Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#tag-object"><bdi class="secno">4.7.22 </bdi>Tag Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-17"><bdi class="secno">4.7.22.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#tag-object-example"><bdi class="secno">4.7.22.2 </bdi>Tag Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#reference-object"><bdi class="secno">4.7.23 </bdi>Reference Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-18"><bdi class="secno">4.7.23.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#reference-object-example"><bdi class="secno">4.7.23.2 </bdi>Reference Object Example</a></li><li class="tocline"><a class="tocxref" href="#relative-schema-document-example"><bdi class="secno">4.7.23.3 </bdi>Relative Schema Document Example</a></li><li class="tocline"><a class="tocxref" href="#relative-documents-with-embedded-schema-example"><bdi class="secno">4.7.23.4 </bdi>Relative Documents With Embedded Schema Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#schema-object"><bdi class="secno">4.7.24 </bdi>Schema Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#properties"><bdi class="secno">4.7.24.1 </bdi>Properties</a></li><li class="tocline"><a class="tocxref" href="#fixed-fields-19"><bdi class="secno">4.7.24.2 </bdi>Fixed Fields</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#composition-and-inheritance-polymorphism"><bdi class="secno">4.7.24.2.1 </bdi>Composition and Inheritance (Polymorphism)</a></li><li class="tocline"><a class="tocxref" href="#xml-modeling"><bdi class="secno">4.7.24.2.2 </bdi>XML Modeling</a></li></ol></li><li class="tocline"><a class="tocxref" href="#schema-object-examples"><bdi class="secno">4.7.24.3 </bdi>Schema Object Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#primitive-sample"><bdi class="secno">4.7.24.3.1 </bdi>Primitive Sample</a></li><li class="tocline"><a class="tocxref" href="#simple-model"><bdi class="secno">4.7.24.3.2 </bdi>Simple Model</a></li><li class="tocline"><a class="tocxref" href="#model-with-map-dictionary-properties"><bdi class="secno">4.7.24.3.3 </bdi>Model with Map/Dictionary Properties</a></li><li class="tocline"><a class="tocxref" href="#model-with-example"><bdi class="secno">4.7.24.3.4 </bdi>Model with Example</a></li><li class="tocline"><a class="tocxref" href="#models-with-composition"><bdi class="secno">4.7.24.3.5 </bdi>Models with Composition</a></li><li class="tocline"><a class="tocxref" href="#models-with-polymorphism-support"><bdi class="secno">4.7.24.3.6 </bdi>Models with Polymorphism Support</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#discriminator-object"><bdi class="secno">4.7.25 </bdi>Discriminator Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-20"><bdi class="secno">4.7.25.1 </bdi>Fixed Fields</a></li></ol></li><li class="tocline"><a class="tocxref" href="#xml-object"><bdi class="secno">4.7.26 </bdi>XML Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-21"><bdi class="secno">4.7.26.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#xml-object-examples"><bdi class="secno">4.7.26.2 </bdi>XML Object Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#no-xml-element"><bdi class="secno">4.7.26.2.1 </bdi>No XML Element</a></li><li class="tocline"><a class="tocxref" href="#xml-name-replacement"><bdi class="secno">4.7.26.2.2 </bdi>XML Name Replacement</a></li><li class="tocline"><a class="tocxref" href="#xml-attribute-prefix-and-namespace"><bdi class="secno">4.7.26.2.3 </bdi>XML Attribute, Prefix and Namespace</a></li><li class="tocline"><a class="tocxref" href="#xml-arrays"><bdi class="secno">4.7.26.2.4 </bdi>XML Arrays</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#security-scheme-object"><bdi class="secno">4.7.27 </bdi>Security Scheme Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-22"><bdi class="secno">4.7.27.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#security-scheme-object-example"><bdi class="secno">4.7.27.2 </bdi>Security Scheme Object Example</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#basic-authentication-sample"><bdi class="secno">4.7.27.2.1 </bdi>Basic Authentication Sample</a></li><li class="tocline"><a class="tocxref" href="#api-key-sample"><bdi class="secno">4.7.27.2.2 </bdi>API Key Sample</a></li><li class="tocline"><a class="tocxref" href="#jwt-bearer-sample"><bdi class="secno">4.7.27.2.3 </bdi>JWT Bearer Sample</a></li><li class="tocline"><a class="tocxref" href="#implicit-oauth2-sample"><bdi class="secno">4.7.27.2.4 </bdi>Implicit OAuth2 Sample</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#oauth-flows-object"><bdi class="secno">4.7.28 </bdi>OAuth Flows Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-23"><bdi class="secno">4.7.28.1 </bdi>Fixed Fields</a></li></ol></li><li class="tocline"><a class="tocxref" href="#oauth-flow-object"><bdi class="secno">4.7.29 </bdi>OAuth Flow Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-24"><bdi class="secno">4.7.29.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#oauth-flow-object-examples"><bdi class="secno">4.7.29.2 </bdi>OAuth Flow Object Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#security-requirement-object"><bdi class="secno">4.7.30 </bdi>Security Requirement Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-2"><bdi class="secno">4.7.30.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#security-requirement-object-examples"><bdi class="secno">4.7.30.2 </bdi>Security Requirement Object Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#non-oauth2-security-requirement"><bdi class="secno">4.7.30.2.1 </bdi>Non-OAuth2 Security Requirement</a></li><li class="tocline"><a class="tocxref" href="#oauth2-security-requirement"><bdi class="secno">4.7.30.2.2 </bdi>OAuth2 Security Requirement</a></li></ol></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#specification-extensions"><bdi class="secno">4.8 </bdi>Specification Extensions</a></li><li class="tocline"><a class="tocxref" href="#security-filtering"><bdi class="secno">4.9 </bdi>Security Filtering</a></li></ol></li><li class="tocline"><a class="tocxref" href="#appendix-a-revision-history"><bdi class="secno">A. </bdi>Appendix A: Revision History</a></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">B. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">B.1 </bdi>Normative references</a></li></ol></li></ol></nav>
 <section id="openapi-specification"><div class="header-wrapper"><h2 id="x1-openapi-specification"><bdi class="secno">1. </bdi>OpenAPI Specification</h2><a class="self-link" href="#openapi-specification" aria-label="Permalink for Section 1."></a></div>
 <section class="override" id="conformance"><div class="header-wrapper"><h3 id="x1-1-version-3-0-2"><bdi class="secno">1.1 </bdi>Version 3.0.2</h3><a class="self-link" href="#conformance" aria-label="Permalink for Section 1.1"></a></div>
@@ -269,7 +333,7 @@ The media type definitions <em class="rfc2119">SHOULD</em> be in compliance with
 </code></pre>
 </section><section id="http-status-codes"><div class="header-wrapper"><h3 id="x3-4-http-status-codes"><bdi class="secno">3.4 </bdi><dfn id="dfn-http-status-codes" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">HTTP Status Codes</dfn></h3><a class="self-link" href="#http-status-codes" aria-label="Permalink for Section 3.4"></a></div>
 <p>The HTTP Status Codes are used to indicate the status of the executed operation.
-The available status codes are defined by [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc7231" title="Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content">RFC7231</a></cite>] <a href="https://datatracker.ietf.org/doc/html/rfc7231#section-6">Section 6</a> and registered status codes are listed in the <a href="https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">IANA Status Code Registry</a>.</p>
+The available status codes are defined by [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc7231" title="Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content">RFC7231</a></cite>] <a href="https://datatracker.ietf.org/doc/html/rfc7231#section-6">Section 6</a> and registered status codes are listed in the <cite><a class="bibref" data-link-type="biblio" href="#bib-iana-http-status-codes" title="Hypertext Transfer Protocol (HTTP) Status Code Registry">IANA Status Code Registry</a></cite>.</p>
 </section></section><section id="specification"><div class="header-wrapper"><h2 id="x4-specification"><bdi class="secno">4. </bdi>Specification</h2><a class="self-link" href="#specification" aria-label="Permalink for Section 4."></a></div>
 <section id="versions"><div class="header-wrapper"><h3 id="x4-1-versions"><bdi class="secno">4.1 </bdi>Versions</h3><a class="self-link" href="#versions" aria-label="Permalink for Section 4.1"></a></div>
 <p>The OpenAPI Specification is versioned using <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning 2.0.0</a> (semver) and follows the semver specification.</p>
@@ -277,7 +341,7 @@ The available status codes are defined by [<cite><a class="bibref" data-link-typ
 <p>Subsequent minor version releases of the OpenAPI Specification (incrementing the <code>minor</code> version number) <em class="rfc2119">SHOULD NOT</em> interfere with tooling developed to a lower minor version and same major version.  Thus a hypothetical <code>3.1.0</code> specification <em class="rfc2119">SHOULD</em> be usable with tooling designed for <code>3.0.0</code>.</p>
 <p>An OpenAPI document compatible with OAS 3.*.* contains a required <a href="#oasVersion"><code>openapi</code></a> field which designates the semantic version of the OAS that it uses. (OAS 2.0 documents contain a top-level version field named <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#swaggerObject"><code>swagger</code></a> and value <code>"2.0"</code>.)</p>
 </section><section id="format"><div class="header-wrapper"><h3 id="x4-2-format"><bdi class="secno">4.2 </bdi>Format</h3><a class="self-link" href="#format" aria-label="Permalink for Section 4.2"></a></div>
-<p>An OpenAPI document that conforms to the OpenAPI Specification is itself a JSON object, which may be represented either in JSON or YAML format.</p>
+<p>An OpenAPI document that conforms to the OpenAPI Specification is itself a JSON object, which may be represented either in <cite><a class="bibref" data-link-type="biblio" href="#bib-rfc7159" title="The JavaScript Object Notation (JSON) Data Interchange Format">JSON</a></cite> or <cite><a class="bibref" data-link-type="biblio" href="#bib-yaml" title="YAML Ain’t Markup Language (YAML™) Version 1.2">YAML</a></cite> format.</p>
 <p>For example, if a field has an array value, the JSON array representation will be used:</p>
 <pre class="nohighlight"><code>
 <span class="hljs-punctuation">{</span>
@@ -288,14 +352,14 @@ The available status codes are defined by [<cite><a class="bibref" data-link-typ
 This includes all fields that are used as keys in a map, except where explicitly noted that keys are <strong>case insensitive</strong>.</p>
 <p>The schema exposes two types of fields: Fixed fields, which have a declared name, and Patterned fields, which declare a regex pattern for the field name.</p>
 <p>Patterned fields <em class="rfc2119">MUST</em> have unique names within the containing object.</p>
-<p>In order to preserve the ability to round-trip between YAML and JSON formats, YAML version <a href="http://www.yaml.org/spec/1.2/spec.html">1.2</a> is <em class="rfc2119">RECOMMENDED</em> along with some additional constraints:</p>
+<p>In order to preserve the ability to round-trip between YAML and JSON formats, <cite><a class="bibref" data-link-type="biblio" href="#bib-yaml" title="YAML Ain’t Markup Language (YAML™) Version 1.2">YAML version 1.2</a></cite> is <em class="rfc2119">RECOMMENDED</em> along with some additional constraints:</p>
 <ul>
-<li>Tags <em class="rfc2119">MUST</em> be limited to those allowed by the <a href="http://www.yaml.org/spec/1.2/spec.html#id2803231">JSON Schema ruleset</a>.</li>
-<li>Keys used in YAML maps <em class="rfc2119">MUST</em> be limited to a scalar string, as defined by the <a href="http://yaml.org/spec/1.2/spec.html#id2802346">YAML Failsafe schema ruleset</a>.</li>
+<li>Tags <em class="rfc2119">MUST</em> be limited to those allowed by the <a href="https://www.yaml.org/spec/1.2/spec.html#id2803231">JSON Schema ruleset</a>.</li>
+<li>Keys used in YAML maps <em class="rfc2119">MUST</em> be limited to a scalar string, as defined by the <a href="https://yaml.org/spec/1.2/spec.html#id2802346">YAML Failsafe schema ruleset</a>.</li>
 </ul>
 <p><strong>Note:</strong> While APIs may be defined by OpenAPI documents in either YAML or JSON format, the API request and response bodies and other content are not required to be JSON or YAML.</p>
 </section><section id="document-structure"><div class="header-wrapper"><h3 id="x4-3-document-structure"><bdi class="secno">4.3 </bdi>Document Structure</h3><a class="self-link" href="#document-structure" aria-label="Permalink for Section 4.3"></a></div>
-<p>An OpenAPI document <em class="rfc2119">MAY</em> be made up of a single document or be divided into multiple, connected parts at the discretion of the user. In the latter case, <code>$ref</code> fields <em class="rfc2119">MUST</em> be used in the specification to reference those parts as follows from the <a href="http://json-schema.org">JSON Schema</a> definitions.</p>
+<p>An OpenAPI document <em class="rfc2119">MAY</em> be made up of a single document or be divided into multiple, connected parts at the discretion of the user. In the latter case, <code>$ref</code> fields <em class="rfc2119">MUST</em> be used in the specification to reference those parts as follows from the <a href="https://json-schema.org">JSON Schema</a> definitions.</p>
 <p>It is <em class="rfc2119">RECOMMENDED</em> that the root OpenAPI document be named: <code>openapi.json</code> or <code>openapi.yaml</code>.</p>
 </section><section id="data-types"><div class="header-wrapper"><h3 id="x4-4-data-types"><bdi class="secno">4.4 </bdi>Data Types</h3><a class="self-link" href="#data-types" aria-label="Permalink for Section 4.4"></a></div>
 <p>Primitive data types in the OAS are based on the types supported by the <a href="https://tools.ietf.org/html/draft-wright-json-schema-00#section-4.2">JSON Schema Specification Wright Draft 00</a>.
@@ -375,8 +439,8 @@ Types that are not accompanied by a <code>format</code> property follow the type
 </tbody>
 </table>
 </section><section id="rich-text-formatting"><div class="header-wrapper"><h3 id="x4-5-rich-text-formatting"><bdi class="secno">4.5 </bdi>Rich Text Formatting</h3><a class="self-link" href="#rich-text-formatting" aria-label="Permalink for Section 4.5"></a></div>
-<p>Throughout the specification <code>description</code> fields are noted as supporting CommonMark markdown formatting.
-Where OpenAPI tooling renders rich text it <em class="rfc2119">MUST</em> support, at a minimum, markdown syntax as described by <a href="http://spec.commonmark.org/0.27/">CommonMark 0.27</a>. Tooling <em class="rfc2119">MAY</em> choose to ignore some CommonMark features to address security concerns.</p>
+<p>Throughout the specification <code>description</code> fields are noted as supporting [<cite><a class="bibref" data-link-type="biblio" href="#bib-commonmark" title="CommonMark Spec">CommonMark</a></cite>] markdown formatting.
+Where OpenAPI tooling renders rich text it <em class="rfc2119">MUST</em> support, at a minimum, markdown syntax as described by [<cite><a class="bibref" data-link-type="biblio" href="#bib-commonmark-0.27" title="CommonMark Spec, Version 0.27">CommonMark-0.27</a></cite>]. Tooling <em class="rfc2119">MAY</em> choose to ignore some CommonMark features to address security concerns.</p>
 </section><section id="relative-references-in-urls"><div class="header-wrapper"><h3 id="x4-6-relative-references-in-urls"><bdi class="secno">4.6 </bdi>Relative References in URLs</h3><a class="self-link" href="#relative-references-in-urls" aria-label="Permalink for Section 4.6"></a></div>
 <p>Unless specified otherwise, all properties that are URLs <em class="rfc2119">MAY</em> be relative references as defined by [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3986" title="Uniform Resource Identifier (URI): Generic Syntax">RFC3986</a></cite>] <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-4.2">Section 4.2</a>.
 Relative references are resolved using the URLs defined in the <a href="#server-object"><code>Server Object</code></a> as a Base URI.</p>
@@ -459,7 +523,7 @@ The metadata <em class="rfc2119">MAY</em> be used by the clients if needed, and 
 <tr>
 <td><span id="infoDescription"></span>description</td>
 <td style="text-align:center"><code>string</code></td>
-<td>A short description of the application. <a href="http://spec.commonmark.org/">CommonMark syntax</a> <em class="rfc2119">MAY</em> be used for rich text representation.</td>
+<td>A short description of the application. [<cite><a class="bibref" data-link-type="biblio" href="#bib-commonmark" title="CommonMark Spec">CommonMark</a></cite>] syntax <em class="rfc2119">MAY</em> be used for rich text representation.</td>
 </tr>
 <tr>
 <td><span id="infoTermsOfService"></span>termsOfService</td>
@@ -614,7 +678,7 @@ The metadata <em class="rfc2119">MAY</em> be used by the clients if needed, and 
 <tr>
 <td><span id="serverDescription"></span>description</td>
 <td style="text-align:center"><code>string</code></td>
-<td>An optional string describing the host designated by the URL. <a href="http://spec.commonmark.org/">CommonMark syntax</a> <em class="rfc2119">MAY</em> be used for rich text representation.</td>
+<td>An optional string describing the host designated by the URL. [<cite><a class="bibref" data-link-type="biblio" href="#bib-commonmark" title="CommonMark Spec">CommonMark</a></cite>] syntax <em class="rfc2119">MAY</em> be used for rich text representation.</td>
 </tr>
 <tr>
 <td><span id="serverVariables"></span>variables</td>
@@ -734,7 +798,7 @@ The metadata <em class="rfc2119">MAY</em> be used by the clients if needed, and 
 <tr>
 <td><span id="serverVariableDescription"></span>description</td>
 <td style="text-align:center"><code>string</code></td>
-<td>An optional description for the server variable. <a href="http://spec.commonmark.org/">CommonMark syntax</a> <em class="rfc2119">MAY</em> be used for rich text representation.</td>
+<td>An optional description for the server variable. [<cite><a class="bibref" data-link-type="biblio" href="#bib-commonmark" title="CommonMark Spec">CommonMark</a></cite>] syntax <em class="rfc2119">MAY</em> be used for rich text representation.</td>
 </tr>
 </tbody>
 </table>
@@ -1083,7 +1147,7 @@ The path itself is still exposed to the documentation viewer but they will not k
 <tr>
 <td><span id="pathItemDescription"></span>description</td>
 <td style="text-align:center"><code>string</code></td>
-<td>An optional, string description, intended to apply to all operations in this path. <a href="http://spec.commonmark.org/">CommonMark syntax</a> <em class="rfc2119">MAY</em> be used for rich text representation.</td>
+<td>An optional, string description, intended to apply to all operations in this path. [<cite><a class="bibref" data-link-type="biblio" href="#bib-commonmark" title="CommonMark Spec">CommonMark</a></cite>] syntax <em class="rfc2119">MAY</em> be used for rich text representation.</td>
 </tr>
 <tr>
 <td><span id="pathItemGet"></span>get</td>
@@ -1244,7 +1308,7 @@ The path itself is still exposed to the documentation viewer but they will not k
 <tr>
 <td><span id="operationDescription"></span>description</td>
 <td style="text-align:center"><code>string</code></td>
-<td>A verbose explanation of the operation behavior. <a href="http://spec.commonmark.org/">CommonMark syntax</a> <em class="rfc2119">MAY</em> be used for rich text representation.</td>
+<td>A verbose explanation of the operation behavior. [<cite><a class="bibref" data-link-type="biblio" href="#bib-commonmark" title="CommonMark Spec">CommonMark</a></cite>] syntax <em class="rfc2119">MAY</em> be used for rich text representation.</td>
 </tr>
 <tr>
 <td><span id="operationExternalDocs"></span>externalDocs</td>
@@ -1415,7 +1479,7 @@ The path itself is still exposed to the documentation viewer but they will not k
 <tr>
 <td><span id="externalDocDescription"></span>description</td>
 <td style="text-align:center"><code>string</code></td>
-<td>A short description of the target documentation. <a href="http://spec.commonmark.org/">CommonMark syntax</a> <em class="rfc2119">MAY</em> be used for rich text representation.</td>
+<td>A short description of the target documentation. [<cite><a class="bibref" data-link-type="biblio" href="#bib-commonmark" title="CommonMark Spec">CommonMark</a></cite>] syntax <em class="rfc2119">MAY</em> be used for rich text representation.</td>
 </tr>
 <tr>
 <td><span id="externalDocUrl"></span>url</td>
@@ -1470,7 +1534,7 @@ The path itself is still exposed to the documentation viewer but they will not k
 <tr>
 <td><span id="parameterDescription"></span>description</td>
 <td style="text-align:center"><code>string</code></td>
-<td>A brief description of the parameter. This could contain examples of use.  <a href="http://spec.commonmark.org/">CommonMark syntax</a> <em class="rfc2119">MAY</em> be used for rich text representation.</td>
+<td>A brief description of the parameter. This could contain examples of use.  [<cite><a class="bibref" data-link-type="biblio" href="#bib-commonmark" title="CommonMark Spec">CommonMark</a></cite>] syntax <em class="rfc2119">MAY</em> be used for rich text representation.</td>
 </tr>
 <tr>
 <td><span id="parameterRequired"></span>required</td>
@@ -1877,12 +1941,12 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 <tr>
 <td><span id="requestBodyDescription"></span>description</td>
 <td style="text-align:center"><code>string</code></td>
-<td>A brief description of the request body. This could contain examples of use.  <a href="http://spec.commonmark.org/">CommonMark syntax</a> <em class="rfc2119">MAY</em> be used for rich text representation.</td>
+<td>A brief description of the request body. This could contain examples of use.  [<cite><a class="bibref" data-link-type="biblio" href="#bib-commonmark" title="CommonMark Spec">CommonMark</a></cite>] syntax <em class="rfc2119">MAY</em> be used for rich text representation.</td>
 </tr>
 <tr>
 <td><span id="requestBodyContent"></span>content</td>
 <td style="text-align:center">Map[<code>string</code>, <a href="#media-type-object">Media Type Object</a>]</td>
-<td><strong><em class="rfc2119">REQUIRED</em></strong>. The content of the request body. The key is a media type or <a href="https://tools.ietf.org/html/rfc7231#appendix-D">media type range</a> and the value describes it.  For requests that match multiple keys, only the most specific key is applicable. e.g. text/plain overrides text/*</td>
+<td><strong><em class="rfc2119">REQUIRED</em></strong>. The content of the request body. The key is a media type or media type range, see [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc7231" title="Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content">RFC7231</a></cite>] <a href="https://datatracker.ietf.org/doc/html/rfc7231#appendix-D">Appendix D</a>, and the value describes it.  For requests that match multiple keys, only the most specific key is applicable. e.g. text/plain overrides text/*</td>
 </tr>
 <tr>
 <td><span id="requestBodyRequired"></span>required</td>
@@ -2381,7 +2445,7 @@ that are not covered individually by the specification.</p>
 <tr>
 <td><span id="responseDescription"></span>description</td>
 <td style="text-align:center"><code>string</code></td>
-<td><strong><em class="rfc2119">REQUIRED</em></strong>. A short description of the response. <a href="http://spec.commonmark.org/">CommonMark syntax</a> <em class="rfc2119">MAY</em> be used for rich text representation.</td>
+<td><strong><em class="rfc2119">REQUIRED</em></strong>. A short description of the response. [<cite><a class="bibref" data-link-type="biblio" href="#bib-commonmark" title="CommonMark Spec">CommonMark</a></cite>] syntax <em class="rfc2119">MAY</em> be used for rich text representation.</td>
 </tr>
 <tr>
 <td><span id="responseHeaders"></span>headers</td>
@@ -2391,7 +2455,7 @@ that are not covered individually by the specification.</p>
 <tr>
 <td><span id="responseContent"></span>content</td>
 <td style="text-align:center">Map[<code>string</code>, <a href="#media-type-object">Media Type Object</a>]</td>
-<td>A map containing descriptions of potential response payloads. The key is a media type or <a href="https://tools.ietf.org/html/rfc7231#appendix-D">media type range</a> and the value describes it.  For responses that match multiple keys, only the most specific key is applicable. e.g. text/plain overrides text/*</td>
+<td>A map containing descriptions of potential response payloads. The key is a media type or media type range, see [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc7231" title="Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content">RFC7231</a></cite>] <a href="https://datatracker.ietf.org/doc/html/rfc7231#appendix-D">Appendix D</a>, and the value describes it.  For responses that match multiple keys, only the most specific key is applicable. e.g. text/plain overrides text/*</td>
 </tr>
 <tr>
 <td><span id="responseLinks"></span>links</td>
@@ -2635,7 +2699,7 @@ This includes accessing any part of a body that a JSON Pointer [<cite><a class="
 <tr>
 <td><span id="exampleDescription"></span>description</td>
 <td style="text-align:center"><code>string</code></td>
-<td>Long description for the example. <a href="http://spec.commonmark.org/">CommonMark syntax</a> <em class="rfc2119">MAY</em> be used for rich text representation.</td>
+<td>Long description for the example. [<cite><a class="bibref" data-link-type="biblio" href="#bib-commonmark" title="CommonMark Spec">CommonMark</a></cite>] syntax <em class="rfc2119">MAY</em> be used for rich text representation.</td>
 </tr>
 <tr>
 <td><span id="exampleValue"></span>value</td>
@@ -2752,7 +2816,7 @@ The presence of a link does not guarantee the caller’s ability to successfully
 <tr>
 <td><span id="linkDescription"></span>description</td>
 <td style="text-align:center"><code>string</code></td>
-<td>A description of the link. <a href="http://spec.commonmark.org/">CommonMark syntax</a> <em class="rfc2119">MAY</em> be used for rich text representation.</td>
+<td>A description of the link. [<cite><a class="bibref" data-link-type="biblio" href="#bib-commonmark" title="CommonMark Spec">CommonMark</a></cite>] syntax <em class="rfc2119">MAY</em> be used for rich text representation.</td>
 </tr>
 <tr>
 <td><span id="linkServer"></span>server</td>
@@ -2851,7 +2915,7 @@ using JSON references.</p>
 </section><section id="runtime-expressions"><div class="header-wrapper"><h5 id="x4-7-20-4-runtime-expressions"><bdi class="secno">4.7.20.4 </bdi>Runtime Expressions</h5><a class="self-link" href="#runtime-expressions" aria-label="Permalink for Section 4.7.20.4"></a></div>
 <p>Runtime expressions allow defining values based on information that will only be available within the HTTP message in an actual API call.
 This mechanism is used by <a href="#link-object">Link Objects</a> and <a href="#callback-object">Callback Objects</a>.</p>
-<p>The runtime expression is defined by the following <a href="https://tools.ietf.org/html/rfc5234">ABNF</a> syntax</p>
+<p>The runtime expression is defined by the following [<cite><a class="bibref" data-link-type="biblio" href="#bib-abnf" title="Augmented BNF for Syntax Specifications: ABNF">ABNF</a></cite>] syntax</p>
 <pre class="highlight "><code aria-busy="false" class="hljs javascript">
       expression = ( <span class="hljs-string">"$url"</span> | <span class="hljs-string">"$method"</span> | <span class="hljs-string">"$statusCode"</span> | <span class="hljs-string">"$request."</span> source | <span class="hljs-string">"$response."</span> source )
       source = ( header-reference | query-reference | path-reference | body-reference ) 
@@ -2958,7 +3022,7 @@ It is not mandatory to have a Tag Object per tag defined in the Operation Object
 <tr>
 <td><span id="tagDescription"></span>description</td>
 <td style="text-align:center"><code>string</code></td>
-<td>A short description for the tag. <a href="http://spec.commonmark.org/">CommonMark syntax</a> <em class="rfc2119">MAY</em> be used for rich text representation.</td>
+<td>A short description for the tag. [<cite><a class="bibref" data-link-type="biblio" href="#bib-commonmark" title="CommonMark Spec">CommonMark</a></cite>] syntax <em class="rfc2119">MAY</em> be used for rich text representation.</td>
 </tr>
 <tr>
 <td><span id="tagExternalDocs"></span>externalDocs</td>
@@ -3031,8 +3095,8 @@ It is not mandatory to have a Tag Object per tag defined in the Operation Object
 </section></section><section id="schema-object"><div class="header-wrapper"><h4 id="x4-7-24-schema-object"><bdi class="secno">4.7.24 </bdi>Schema Object</h4><a class="self-link" href="#schema-object" aria-label="Permalink for Section 4.7.24"></a></div>
 <p>The Schema Object allows the definition of input and output data types.
 These types can be objects, but also primitives and arrays.
-This object is an extended subset of the <a href="http://json-schema.org/">JSON Schema Specification Wright Draft 00</a>.</p>
-<p>For more information about the properties, see <a href="https://tools.ietf.org/html/draft-wright-json-schema-00">JSON Schema Core</a> and <a href="https://tools.ietf.org/html/draft-wright-json-schema-validation-00">JSON Schema Validation</a>.
+This object is an extended subset of the <cite><a class="bibref" data-link-type="biblio" href="#bib-json-schema-05" title="JSON Schema: A Media Type for Describing JSON Documents. Draft 5">JSON Schema Specification Wright Draft 00</a></cite>.</p>
+<p>For more information about the properties, see <cite><a class="bibref" data-link-type="biblio" href="#bib-json-schema-05" title="JSON Schema: A Media Type for Describing JSON Documents. Draft 5">JSON Schema Core</a></cite> and <cite><a class="bibref" data-link-type="biblio" href="#bib-json-schema-validation-05" title="JSON Schema Validation: A Vocabulary for Structural Validation of JSON. Draft 5">JSON Schema Validation</a></cite>.
 Unless stated otherwise, the property definitions follow the JSON Schema.</p>
 <section id="properties"><div class="header-wrapper"><h5 id="x4-7-24-1-properties"><bdi class="secno">4.7.24.1 </bdi>Properties</h5><a class="self-link" href="#properties" aria-label="Permalink for Section 4.7.24.1"></a></div>
 <p>The following properties are taken directly from the JSON Schema definition and follow the same specifications:</p>
@@ -3064,7 +3128,7 @@ Unless stated otherwise, the property definitions follow the JSON Schema.</p>
 <li>items - Value <em class="rfc2119">MUST</em> be an object and not an array. Inline or referenced schema <em class="rfc2119">MUST</em> be of a <a href="#schema-object">Schema Object</a> and not a standard JSON Schema. <code>items</code> <em class="rfc2119">MUST</em> be present if the <code>type</code> is <code>array</code>.</li>
 <li>properties - Property definitions <em class="rfc2119">MUST</em> be a <a href="#schema-object">Schema Object</a> and not a standard JSON Schema (inline or referenced).</li>
 <li>additionalProperties - Value can be boolean or object. Inline or referenced schema <em class="rfc2119">MUST</em> be of a <a href="#schema-object">Schema Object</a> and not a standard JSON Schema. Consistent with JSON Schema, <code>additionalProperties</code> defaults to <code>true</code>.</li>
-<li>description - <a href="http://spec.commonmark.org/">CommonMark syntax</a> <em class="rfc2119">MAY</em> be used for rich text representation.</li>
+<li>description - [<cite><a class="bibref" data-link-type="biblio" href="#bib-commonmark" title="CommonMark Spec">CommonMark</a></cite>] syntax <em class="rfc2119">MAY</em> be used for rich text representation.</li>
 <li>format - See <a href="#dataTypeFormat">Data Type Formats</a> for further details. While relying on JSON Schema’s defined formats, the OAS offers a few additional predefined formats.</li>
 <li>default - The default value represents what would be assumed by the consumer of the input as the value of the schema if one is not provided. Unlike JSON Schema, the value <em class="rfc2119">MUST</em> conform to the defined type for the Schema Object defined at the same level. For example, if <code>type</code> is <code>string</code>, then <code>default</code> can be <code>"foo"</code> but cannot be <code>1</code>.</li>
 </ul>
@@ -3924,7 +3988,7 @@ Supported schemes are HTTP authentication, an API key (either as a header, a coo
 <td><span id="securitySchemeDescription"></span>description</td>
 <td style="text-align:center"><code>string</code></td>
 <td>Any</td>
-<td>A short description for security scheme. <a href="http://spec.commonmark.org/">CommonMark syntax</a> <em class="rfc2119">MAY</em> be used for rich text representation.</td>
+<td>A short description for security scheme. [<cite><a class="bibref" data-link-type="biblio" href="#bib-commonmark" title="CommonMark Spec">CommonMark</a></cite>] syntax <em class="rfc2119">MAY</em> be used for rich text representation.</td>
 </tr>
 <tr>
 <td><span id="securitySchemeName"></span>name</td>
@@ -4286,7 +4350,19 @@ While not part of the specification itself, certain libraries <em class="rfc2119
 
 </section><section id="references" class="appendix"><div class="header-wrapper"><h2 id="b-references"><bdi class="secno">B. </bdi>References</h2><a class="self-link" href="#references" aria-label="Permalink for Appendix B."></a></div><section id="normative-references"><div class="header-wrapper"><h3 id="b-1-normative-references"><bdi class="secno">B.1 </bdi>Normative references</h3><a class="self-link" href="#normative-references" aria-label="Permalink for Appendix B.1"></a></div>
     
-    <dl class="bibliography"><dt id="bib-rfc1866">[RFC1866]</dt><dd>
+    <dl class="bibliography"><dt id="bib-abnf">[ABNF]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc5234"><cite>Augmented BNF for Syntax Specifications: ABNF</cite></a>. D. Crocker, Ed.; P. Overell.  IETF. January 2008. Internet Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc5234">https://www.rfc-editor.org/rfc/rfc5234</a>
+    </dd><dt id="bib-commonmark">[CommonMark]</dt><dd>
+      <a href="https://spec.commonmark.org/"><cite>CommonMark Spec</cite></a>. URL: <a href="https://spec.commonmark.org/">https://spec.commonmark.org/</a>
+    </dd><dt id="bib-commonmark-0.27">[CommonMark-0.27]</dt><dd>
+      <a href="https://spec.commonmark.org/0.27/"><cite>CommonMark Spec, Version 0.27</cite></a>. John MacFarlane. 18 November 2016. URL: <a href="https://spec.commonmark.org/0.27/">https://spec.commonmark.org/0.27/</a>
+    </dd><dt id="bib-iana-http-status-codes">[IANA-HTTP-STATUS-CODES]</dt><dd>
+      <a href="https://www.iana.org/assignments/http-status-codes/"><cite>Hypertext Transfer Protocol (HTTP) Status Code Registry</cite></a>.  IANA. URL: <a href="https://www.iana.org/assignments/http-status-codes/">https://www.iana.org/assignments/http-status-codes/</a>
+    </dd><dt id="bib-json-schema-05">[JSON-Schema-05]</dt><dd>
+      <a href="https://datatracker.ietf.org/doc/html/draft-wright-json-schema-00"><cite>JSON Schema: A Media Type for Describing JSON Documents. Draft 5</cite></a>. Austin Wright.  Internet Engineering Task Force (IETF). 13 October 2016. Internet-Draft. URL: <a href="https://datatracker.ietf.org/doc/html/draft-wright-json-schema-00">https://datatracker.ietf.org/doc/html/draft-wright-json-schema-00</a>
+    </dd><dt id="bib-json-schema-validation-05">[JSON-Schema-Validation-05]</dt><dd>
+      <a href="https://datatracker.ietf.org/doc/html/draft-wright-json-schema-validation-00"><cite>JSON Schema Validation: A Vocabulary for Structural Validation of JSON. Draft 5</cite></a>. Austin Wright; G. Luff.  Internet Engineering Task Force (IETF). 13 October 2016. Internet-Draft. URL: <a href="https://datatracker.ietf.org/doc/html/draft-wright-json-schema-validation-00">https://datatracker.ietf.org/doc/html/draft-wright-json-schema-validation-00</a>
+    </dd><dt id="bib-rfc1866">[RFC1866]</dt><dd>
       <a href="https://www.rfc-editor.org/rfc/rfc1866"><cite>Hypertext Markup Language - 2.0</cite></a>. T. Berners-Lee; D. Connolly.  IETF. November 1995. Historic. URL: <a href="https://www.rfc-editor.org/rfc/rfc1866">https://www.rfc-editor.org/rfc/rfc1866</a>
     </dd><dt id="bib-rfc2119">[RFC2119]</dt><dd>
       <a href="https://www.rfc-editor.org/rfc/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>
@@ -4302,6 +4378,8 @@ While not part of the specification itself, certain libraries <em class="rfc2119
       <a href="https://www.rfc-editor.org/rfc/rfc6838"><cite>Media Type Specifications and Registration Procedures</cite></a>. N. Freed; J. Klensin; T. Hansen.  IETF. January 2013. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc6838">https://www.rfc-editor.org/rfc/rfc6838</a>
     </dd><dt id="bib-rfc6901">[RFC6901]</dt><dd>
       <a href="https://www.rfc-editor.org/rfc/rfc6901"><cite>JavaScript Object Notation (JSON) Pointer</cite></a>. P. Bryan, Ed.; K. Zyp; M. Nottingham, Ed..  IETF. April 2013. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc6901">https://www.rfc-editor.org/rfc/rfc6901</a>
+    </dd><dt id="bib-rfc7159">[RFC7159]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc7159"><cite>The JavaScript Object Notation (JSON) Data Interchange Format</cite></a>. T. Bray, Ed..  IETF. March 2014. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc7159">https://www.rfc-editor.org/rfc/rfc7159</a>
     </dd><dt id="bib-rfc7230">[RFC7230]</dt><dd>
       <a href="https://httpwg.org/specs/rfc7230.html"><cite>Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing</cite></a>. R. Fielding, Ed.; J. Reschke, Ed..  IETF. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7230.html">https://httpwg.org/specs/rfc7230.html</a>
     </dd><dt id="bib-rfc7231">[RFC7231]</dt><dd>
@@ -4310,6 +4388,8 @@ While not part of the specification itself, certain libraries <em class="rfc2119
       <a href="https://httpwg.org/specs/rfc7235.html"><cite>Hypertext Transfer Protocol (HTTP/1.1): Authentication</cite></a>. R. Fielding, Ed.; J. Reschke, Ed..  IETF. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7235.html">https://httpwg.org/specs/rfc7235.html</a>
     </dd><dt id="bib-rfc8174">[RFC8174]</dt><dd>
       <a href="https://www.rfc-editor.org/rfc/rfc8174"><cite>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite></a>. B. Leiba.  IETF. May 2017. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>
+    </dd><dt id="bib-yaml">[YAML]</dt><dd>
+      <a href="http://yaml.org/spec/1.2/spec.html"><cite>YAML Ain’t Markup Language (YAML™) Version 1.2</cite></a>. Oren Ben-Kiki; Clark Evans; Ingy döt Net. 1 October 2009. URL: <a href="http://yaml.org/spec/1.2/spec.html">http://yaml.org/spec/1.2/spec.html</a>
     </dd></dl>
   </section></section><p role="navigation" id="back-to-top">
     <a href="#title"><abbr title="Back to Top">↑</abbr></a>

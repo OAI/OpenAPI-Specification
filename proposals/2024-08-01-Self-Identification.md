@@ -57,7 +57,7 @@ Many of these use cases can be worked around, but only by restricting deployment
 
 Self-identification of resources with identity independent of location is common in the JSON Schema world.  This demonstrates that implementation is not just feasible but well-proven, particularly given that JSON Schema's `$id` is more complex to support than this proposal.
 
-The JSON Schema package used by the [OASComply](https://github.com/OAI/oascomply) project includes a [schema catalog](https://jschon.readthedocs.io/en/latest/tutorial/catalog.html) with [configurable file and network sources](https://jschon.readthedocs.io/en/latest/examples/file_based_schemas.html) to manage the the URI-to-URL mapping (local files can be considered `file:` URLs).
+The JSON Schema package used by the [OASComply](https://github.com/OAI/oascomply) project includes a [schema catalog](https://jschon.readthedocs.io/en/latest/tutorial/catalog.html) with [configurable file and network sources](https://jschon.readthedocs.io/en/latest/examples/file_based_schemas.html) to manage the URI-to-URL mapping (local files can be considered `file:` URLs).
 
 Self-identification is common in other formats as well.  Notably, the Atom format pioneered the use of [web links with `rel="self"`](https://www.rfc-editor.org/rfc/rfc4287.html#section-4.2.7.2) for this purpose.
 

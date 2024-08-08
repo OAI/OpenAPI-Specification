@@ -5,8 +5,8 @@ complete control over formatting and syntax highlighting */
 'use strict';
 
 /**
-@author Mike Ralphson <mike.ralphson@gmail.com>
-**/
+ * @author Mike Ralphson <mike.ralphson@gmail.com>
+ **/
 
 const fs = require('fs');
 const path = require('path');
@@ -34,7 +34,7 @@ const md = require('markdown-it')({
   linkify: true,
   typographer: true,
   highlight: function (str, lang) {
-      if (lang && hljs.getLanguage(lang)) { // && !argv.respec) {
+      if (lang && hljs.getLanguage(lang)) {
           try {
               return '<pre class="nohighlight"><code>' +
                   hljs.highlight(str, { language: lang }).value +
@@ -201,59 +201,22 @@ let indents = [0];
 for (let l in lines) {
     let line = lines[l];
 
+    // remove TOC from older spec versions, respec will generate a new one
     if (line.startsWith('## Table of Contents')) inTOC = true;
     if (line.startsWith('<!-- /TOC')) inTOC = false;
     if (inTOC) line = '';
 
+    // special formatting for Definitions section
     if (line.startsWith('## Definitions')) {
         inDefs = true;
         bsFix = false;
     }
     else if (line.startsWith('## ')) inDefs = false;
 
+    // recognize code blocks
     if (line.startsWith('```')) {
         inCodeBlock = !inCodeBlock;
         line += '\n'; // fixes formatting of first line of syntax-highlighted blocks
-    }
-
-    if (!inCodeBlock && line.startsWith('#')) {
-        let indent = 0;
-        while (line[indent] === '#') indent++;
-        let originalIndent = indent;
-
-        let prevIndent = indents[indents.length-1]; // peek
-        let delta = indent-prevIndent;
-
-        if (!argv.respec) {
-            if (delta===0) indent = lastIndent
-            else if (delta<0) indent = lastIndent-1
-            else if (delta>0) indent = lastIndent+1;
-        }
-
-        if (indent < 0) {
-            indent = 1;
-        }
-        if (argv.respec && (indent > 1)) {
-            indent--;
-        }
-        let newIndent = indent;
-        if (!argv.respec && (indent <= 2) && bsFix) {
-            newIndent++;
-        }
-
-        let title = line.split('# ')[1];
-        if (inDefs) title = '<dfn>'+title+'</dfn>';
-        line = ('#'.repeat(newIndent)+' '+title);
-
-        if (delta>0) indents.push(originalIndent);
-        if (delta<0) {
-            let d = Math.abs(delta);
-            while (d>0) {
-                indents.pop();
-                d--;
-            }
-        }
-        lastIndent = indent;
     }
 
     if (line.indexOf('<a name="')>=0) {
@@ -261,8 +224,8 @@ for (let l in lines) {
             // fix syntax error in 2.0.md
             line = line.replace('<a name="parameterAllowEmptyValue"/>','<span id="parameterAllowEmptyValue"></span>');
         else {
-            line = line.replace('<a name=','<span id=');
-            line = line.replace('</a>','</span>');
+            // replace deprecated <a name="..."></a> with <span id="..."></span>
+            line = line.replace(/<a name="([^"]+)"><\/a>/g,'<span id="$1"></span>');
         }
     }
 
@@ -323,6 +286,8 @@ for (let l in lines) {
         line = line.replace(/YAML version \[1\.2\]\(https:\/\/(www\.)?yaml\.org\/spec\/1\.2\/spec\.html\)/,'[[YAML|YAML version 1.2]]');
     }
 
+    // fix relative links (to examples)
+    //TODO: adjust when moving examples to a different repo
     if (!inCodeBlock && line.indexOf('](../') >= 0) {
         const regExp = /\((\.\.[^)]+)\)/g;
         line = line.replace(regExp,function(match,group1){
@@ -331,6 +296,50 @@ for (let l in lines) {
         });
     }
 
+    // fix indentation of headings
+    // - make sure that each heading is at most one level deeper than the previous heading
+    // - reduce heading level by one if we're in respec mode except for h1
+    if (!inCodeBlock && line.startsWith('#')) {
+        let indent = 0;
+        while (line[indent] === '#') indent++;
+        let originalIndent = indent;
+
+        let prevIndent = indents[indents.length-1]; // peek
+        let delta = indent-prevIndent;
+
+        if (!argv.respec) {
+            if (delta===0) indent = lastIndent
+            else if (delta<0) indent = lastIndent-1
+            else if (delta>0) indent = lastIndent+1;
+        }
+
+        if (indent < 0) {
+            indent = 1;
+        }
+        if (argv.respec && (indent > 1)) {
+            indent--;
+        }
+        let newIndent = indent;
+        if (!argv.respec && (indent <= 2) && bsFix) {
+            newIndent++;
+        }
+
+        let title = line.split('# ')[1];
+        if (inDefs) title = '<dfn>'+title+'</dfn>';
+        line = ('#'.repeat(newIndent)+' '+title);
+
+        if (delta>0) indents.push(originalIndent);
+        if (delta<0) {
+            let d = Math.abs(delta);
+            while (d>0) {
+                indents.pop();
+                d--;
+            }
+        }
+        lastIndent = indent;
+    }
+
+    // wrap section text in <section>...</section> tags for respec
     if (!inCodeBlock && argv.respec && line.startsWith('#')) {
         let heading = 0;
         while (line[heading] === '#') heading++;
@@ -342,8 +351,10 @@ for (let l in lines) {
         const m = line.match(/# Version ([0-9.]+)$/);
         if (m) {
             // our conformance section is headlined with 'Version x.y.z'
+            // and respec needs a conformance section in a "formal" specification
             newSection = '<section class="override" id="conformance">';
-            // adjust the heading to be at level 2
+            // adjust the heading to be at level 2 because respec insists on h2 here
+            // Note: older specs had this at h4, newer specs at h2, and all heading levels have been reduced by 1 in the preceding block
             line = '#' + m[0];
             delta = 1;
             heading = 2;
@@ -353,7 +364,7 @@ for (let l in lines) {
         }
 
         // heading level delta is either 0 or is +1/-1, or we're in respec mode
-        /* respec insists on <section>...</section> breaks around headings */
+        // respec insists on <section>...</section> breaks around headings
 
         if (delta === 0) {
             prefix = '</section>'+newSection;

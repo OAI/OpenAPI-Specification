@@ -42,7 +42,7 @@ const md = require('markdown-it')({
           } catch (__) { }
       }
 
-      return '<pre class="highlight '+lang+'"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+      return '<pre class="highlight '+lang+'" tabindex="0"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
     }
 });
 

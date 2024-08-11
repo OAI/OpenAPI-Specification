@@ -16,10 +16,6 @@ const hljs = require('highlight.js');
 const cheerio = require('cheerio');
 
 let argv = require('yargs')
-    .boolean('respec')
-    .alias('r','respec')
-    .describe('respec','Output in respec format')
-    .default('respec',true)
     .string('maintainers')
     .alias('m','maintainers')
     .describe('maintainers','path to MAINTAINERS.md')
@@ -179,9 +175,7 @@ if (argv.maintainers) {
 
 let s = fs.readFileSync(argv._[0],'utf8');
 
-if (argv.respec) {
-    argv.publishDate = getPublishDate(s);
-}
+argv.publishDate = getPublishDate(s);
 
 let lines = s.split(/\r?\n/);
 
@@ -303,7 +297,7 @@ for (let l in lines) {
         let prevIndent = indents[indents.length-1]; // peek
         let delta = indent-prevIndent;
 
-        if (argv.respec && (indent > 1)) {
+        if (indent > 1) {
             indent--;
         }
         let newIndent = indent;
@@ -324,7 +318,7 @@ for (let l in lines) {
     }
 
     // wrap section text in <section>...</section> tags for respec
-    if (!inCodeBlock && argv.respec && line.startsWith('#')) {
+    if (!inCodeBlock && line.startsWith('#')) {
         let heading = 0;
         while (line[heading] === '#') heading++;
         let delta = heading-prevHeading;

@@ -14,6 +14,19 @@ Text for first section
 
 Text for first subsection
 
+```json
+{
+  "foo": true
+}
+```
+
+```text
+text/plain
+```
+
+```
+no language
+```
 
 Version | Date
 --------|-----------

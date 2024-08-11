@@ -2,6 +2,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { exec } from "node:child_process";
 import { resolve } from "node:path";
 import { describe, test, expect } from "vitest";
+import assert from "node:assert";
 
 const folder = "./tests/md2html/fixtures/";
 describe("v3.0 - Validate examples", async () => {
@@ -12,9 +13,9 @@ describe("v3.0 - Validate examples", async () => {
         const expected = readFileSync(
           folder + entry.name.replace(".md", ".html"),
           "utf8",
-        ).split(/\r\n|\n/).join("\n");
+        ).split(/\r\n|\n/);
         const output = await md2html([entry.name], folder);
-        expect(output.stdout).to.equal(expected);
+        assert.deepStrictEqual(output.stdout.split("\n"), expected);
       });
     });
 });

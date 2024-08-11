@@ -14,7 +14,7 @@ describe("v3.0 - Validate examples", async () => {
           folder + entry.name.replace(".md", ".html"),
           "utf8",
         );
-        const output = await md2html([entry.name], folder);
+        const output = await md2html(["--maintainers",entry.name.replace(".md", ".maintainers"),entry.name], folder);
         expect(output.stdout).to.equal(expected);
       });
     });

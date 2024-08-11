@@ -97,44 +97,41 @@ function preface(title,options) {
     preface += '<meta name="description" content="The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs.">';
     preface += '<link rel="canonical" href="https://spec.openapis.org/oas/latest.html" />';
 
-    if (options.respec) {
-        preface += '<script src="../js/respec-w3c.js" class="remove"></script>';
-        preface += `<script class="remove">var respecConfig = ${JSON.stringify(respec)};</script>`;
-        try {
-          preface += fs.readFileSync('./analytics/google.html','utf8');
-        }
-        catch (ex) {}
-        preface += '</head><body>';
-        preface += '<style>';
-        preface += '#respec-ui { visibility: hidden; }';
-        preface += '#title { color: #578000; } #subtitle { color: #578000; }';
-        preface += '.dt-published { color: #578000; } .dt-published::before { content: "Published "; }';
-        preface += 'h1,h2,h3,h4,h5,h6 { color: #578000; font-weight: normal; font-style: normal; }';
-        preface += 'a[href] { color: #45512c; }';
-        preface += 'body:not(.toc-inline) #toc h2 { color: #45512c; }';
-        preface += 'table { display: block; width: 100%; overflow: auto; }';
-        preface += 'table th { font-weight: 600; }';
-        preface += 'table th, table td { padding: 6px 13px; border: 1px solid #dfe2e5; }';
-        preface += 'table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }';
-        preface += 'table tr:nth-child(2n) { background-color: #f6f8fa; }';
-        preface += 'pre { background-color: #f6f8fa !important; }';
-        preface += 'code { color: #c83500 } th code { color: inherit }';
-        preface += 'a.bibref { text-decoration: underline;}';
-        preface += fs.readFileSync(path.resolve(__dirname,'gist.css'),'utf8').split(/\r?\n/).join(' ');
-        preface += '</style>';
-        preface += `<h1 id="title">${title.split('|')[0]}</h1>`;
-        preface += `<p class="copyright">Copyright © ${options.publishDate.getFullYear()} the Linux Foundation</p>`;
-        preface += `<section class="notoc" id="abstract"><h2>${abstract}</h2>`;
-        preface += 'The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.';
-        preface += '</section>';
-        preface += '<section class="override" id="sotd" data-max-toc="0">';
-        preface += '<h2>Status of This Document</h2>';
-        preface += 'The source-of-truth for the specification is the GitHub markdown file referenced above.';
-        preface += '</section>';
+    // ReSpec
+    preface += '<script src="../js/respec-w3c.js" class="remove"></script>';
+    preface += `<script class="remove">var respecConfig = ${JSON.stringify(respec)};</script>`;
+    try {
+        preface += fs.readFileSync('./analytics/google.html','utf8');
     }
-    else {
-        preface += '</head><body>';
-    }
+    catch (ex) {}
+    preface += '</head><body>';
+    preface += '<style>';
+    preface += '#respec-ui { visibility: hidden; }';
+    preface += '#title { color: #578000; } #subtitle { color: #578000; }';
+    preface += '.dt-published { color: #578000; } .dt-published::before { content: "Published "; }';
+    preface += 'h1,h2,h3,h4,h5,h6 { color: #578000; font-weight: normal; font-style: normal; }';
+    preface += 'a[href] { color: #45512c; }';
+    preface += 'body:not(.toc-inline) #toc h2 { color: #45512c; }';
+    preface += 'table { display: block; width: 100%; overflow: auto; }';
+    preface += 'table th { font-weight: 600; }';
+    preface += 'table th, table td { padding: 6px 13px; border: 1px solid #dfe2e5; }';
+    preface += 'table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }';
+    preface += 'table tr:nth-child(2n) { background-color: #f6f8fa; }';
+    preface += 'pre { background-color: #f6f8fa !important; }';
+    preface += 'code { color: #c83500 } th code { color: inherit }';
+    preface += 'a.bibref { text-decoration: underline;}';
+    preface += fs.readFileSync(path.resolve(__dirname,'gist.css'),'utf8').split(/\r?\n/).join(' ');
+    preface += '</style>';
+    preface += `<h1 id="title">${title.split('|')[0]}</h1>`;
+    preface += `<p class="copyright">Copyright © ${options.publishDate.getFullYear()} the Linux Foundation</p>`;
+    preface += `<section class="notoc" id="abstract"><h2>${abstract}</h2>`;
+    preface += 'The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.';
+    preface += '</section>';
+    preface += '<section class="override" id="sotd" data-max-toc="0">';
+    preface += '<h2>Status of This Document</h2>';
+    preface += 'The source-of-truth for the specification is the GitHub markdown file referenced above.';
+    preface += '</section>';
+
     return preface;
 }
 
@@ -306,22 +303,10 @@ for (let l in lines) {
         let prevIndent = indents[indents.length-1]; // peek
         let delta = indent-prevIndent;
 
-        if (!argv.respec) {
-            if (delta===0) indent = lastIndent
-            else if (delta<0) indent = lastIndent-1
-            else if (delta>0) indent = lastIndent+1;
-        }
-
-        if (indent < 0) {
-            indent = 1;
-        }
         if (argv.respec && (indent > 1)) {
             indent--;
         }
         let newIndent = indent;
-        if (!argv.respec && (indent <= 2) && bsFix) {
-            newIndent++;
-        }
 
         let title = line.split('# ')[1];
         if (inDefs) title = '<dfn>'+title+'</dfn>';

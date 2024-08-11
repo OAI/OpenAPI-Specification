@@ -12,7 +12,7 @@ describe("v3.0 - Validate examples", async () => {
         const expected = readFileSync(
           folder + entry.name.replace(".md", ".html"),
           "utf8",
-        );
+        ).split(/\r\n|\n/).join("\n");
         const output = await md2html([entry.name], folder);
         expect(output.stdout).to.equal(expected);
       });

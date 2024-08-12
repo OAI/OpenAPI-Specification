@@ -30,16 +30,14 @@ const md = require('markdown-it')({
   linkify: true,
   typographer: true,
   highlight: function (str, lang) {
-      if (lang && hljs.getLanguage(lang)) {
-          try {
-              return '<pre class="nohighlight" tabindex="0"><code>' +
-                  hljs.highlight(str, { language: lang }).value +
-                  '</code></pre>';
-          } catch (__) { }
-      }
-
-      return '<pre class="highlight '+lang+'" tabindex="0"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+    if (lang && hljs.getLanguage(lang)) {
+    return '<pre class="nohighlight" tabindex="0"><code>' +
+      hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
+      '</code></pre>';
     }
+
+    return '<pre class="highlight '+lang+'" tabindex="0"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+  }
 });
 
 function preface(title,options) {

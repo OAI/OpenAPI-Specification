@@ -36,6 +36,10 @@ Text for first subsection
 }
 ```
 
+```yaml
+foo: true
+```
+
 ```text
 text/plain
 ```

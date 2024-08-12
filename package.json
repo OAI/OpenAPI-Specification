@@ -22,7 +22,7 @@
     "schemas/*"
   ],
   "dependencies": {
-    "cheerio": "^1.0.0-rc.5",
+    "cheerio": "^1.0.0",
     "highlight.js": "^11.10.0",
     "markdown-it": "^14.1.0",
     "respec": "35.1.1",

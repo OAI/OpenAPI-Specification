@@ -10,7 +10,7 @@ layout: none
     <atom:link href="{{ "/rss/feed.xml" | prepend: site.baseurl | prepend: site.url }}" rel="self" type="application/rss+xml" />
     {% for reg in site.collections %}
     {% assign name = reg.label %}
-    {% for value in site.[name] %}
+    {% for value in reg.posts %}
       <item>
         <title>{{ value.slug | xml_escape }}</title>
         <description>{{ value.description | xml_escape }}</description>

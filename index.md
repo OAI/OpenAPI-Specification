@@ -18,3 +18,13 @@ This site contains the OpenAPI Initiative Registry and content for the HTML vers
 | :--------------| :------------------ | :------- |
 | `OpenAPI Specification` | [View](https://github.com/OAI/OpenAPI-Specification)|[View](oas/latest.html)|
 | `Arazzo Specification` | [View](https://github.com/OAI/Arazzo-Specification) | [View](arazzo/latest.html)|
+
+### OpenAPI Specification Versions
+
+{% for file in site.static_files %}
+{% assign segments = file.path | split: "/" %}
+{% assign firstchar = file.basename | slice: 0 %}
+{% if segments[1] == "oas" and file.extname == ".html" and firstchar == "v" %}
+* [{{ file.basename }}]({{file.path}})
+{% endif %}
+{% endfor %}

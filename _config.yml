@@ -4,6 +4,7 @@ color_scheme: oai
 title: OpenAPI Initiative Registry
 description: Extensible data value repository
 show_downloads: true
+excerpt_separator: ""
 collections_dir: /registries
 collections:
   posts:

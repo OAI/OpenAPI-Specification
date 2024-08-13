@@ -44,6 +44,7 @@ function preface(title,options) {
     const respec = {
         specStatus: "base",
         latestVersion: "https://spec.openapis.org/oas/latest.html",
+        thisVersion: `https://spec.openapis.org/oas/v${options.subtitle}.html`,
         canonicalURI: `https://spec.openapis.org/oas/v${options.subtitle}.html`,
         editors: maintainers,
         formerEditors: emeritus,
@@ -124,7 +125,7 @@ function preface(title,options) {
     preface += '</section>';
     preface += '<section class="override" id="sotd" data-max-toc="0">';
     preface += '<h2>Status of This Document</h2>';
-    preface += 'The source-of-truth for the specification is the GitHub markdown file referenced above.';
+    preface += 'The source-of-truth for this specification is the HTML file referenced above as <em>This version</em>.';
     preface += '</section>';
 
     return preface;

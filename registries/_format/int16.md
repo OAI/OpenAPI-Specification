@@ -2,7 +2,7 @@
 owner: DarrelMiller
 issue: 
 description: signed 16-bit integer
-base_type: number
+base_type: [number, integer]
 layout: default
 ---
 

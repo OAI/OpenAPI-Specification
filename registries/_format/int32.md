@@ -2,7 +2,7 @@
 owner: DarrelMiller
 issue: 
 description: signed 32-bit integer
-base_type: number
+base_type: [number, integer]
 layout: default
 source: https://spec.openapis.org/oas/latest.html#data-types
 source_label: OAS

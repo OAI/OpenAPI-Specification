@@ -16,7 +16,8 @@ This site contains the OpenAPI Initiative Registry and content for the HTML vers
 
 ### Arazzo Specification Versions
 
-{% for file in site.static_files %}
+{% assign html_files = site.static_files | where: "extname", ".html" | sort: "basename" | reverse %}
+{% for file in html_files %}
 {% assign segments = file.path | split: "/" %}
 {% assign firstchar = file.basename | slice: 0 %}
 {% if segments[1] == "arazzo" and file.extname == ".html" and firstchar == "v" %}
@@ -26,10 +27,11 @@ This site contains the OpenAPI Initiative Registry and content for the HTML vers
 
 ### OpenAPI Specification Versions
 
-{% for file in site.static_files %}
+{% assign html_files = site.static_files | where: "extname", ".html" | sort: "basename" | reverse %}
+{% for file in html_files %}
 {% assign segments = file.path | split: "/" %}
 {% assign firstchar = file.basename | slice: 0 %}
-{% if segments[1] == "oas" and file.extname == ".html" and firstchar == "v" %}
+{% if segments[1] == "oas" and firstchar == "v" %}
 * [{{ file.basename }}]({{ site.baseurl }}{{ file.path }})
 {% endif %}
 {% endfor %}

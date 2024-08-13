@@ -44,6 +44,7 @@ function preface(title,options) {
     const respec = {
         specStatus: "base",
         latestVersion: "https://spec.openapis.org/oas/latest.html",
+        canonicalURI: `https://spec.openapis.org/oas/v${options.subtitle}.html`,
         editors: maintainers,
         formerEditors: emeritus,
         publishDate: options.publishDate,

@@ -16,9 +16,9 @@ layout: none
       <title>{{ value.slug | xml_escape }}</title>
       <description>{{ value.description | xml_escape }}</description>
       <category>{{ reg.label }}</category>
+      <pubDate>{% if value.date %}{{ value.date | date: "%a, %d %b %Y %H:%M:%S %z" }}{% else %}{{ 'now' | date: "%a, %d %b %Y %H:%M:%S %z" }}{% endif %}</pubDate>
       <link>{{ value.url }}</link>
       <guid isPermaLink="true">{{ value.url }}</guid>
-      <pubDate>{% if value.date %}{{ value.date | date: "%a, %d %b %Y %H:%M:%S %z" }}{% else %}{{ 'now' | date: "%a, %d %b %Y %H:%M:%S %z" }}{% endif %}</pubDate>
     </item>
         {% endfor %}
       {% endif %}

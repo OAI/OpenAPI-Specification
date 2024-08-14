@@ -179,12 +179,9 @@ argv.publishDate = getPublishDate(s);
 let lines = s.split(/\r?\n/);
 
 let prevHeading = 0;
-let lastIndent = 0;
 let inTOC = false;
 let inDefs = false;
 let inCodeBlock = false;
-let bsFix = true;
-
 let indents = [0];
 
 // process the markdown
@@ -199,7 +196,6 @@ for (let l in lines) {
     // special formatting for Definitions section
     if (line.startsWith('## Definitions')) {
         inDefs = true;
-        bsFix = false;
     }
     else if (line.startsWith('## ')) inDefs = false;
 
@@ -212,6 +208,7 @@ for (let l in lines) {
         // fix syntax error in 2.0.md
         line = line.replace('<a name="parameterAllowEmptyValue"/>','<span id="parameterAllowEmptyValue"></span>');
     }
+
     // replace deprecated <a name="..."></a> with <span id="..."></span>
     line = line.replace(/<a name="([^"]+)"><\/a>/g,'<span id="$1"></span>');
 
@@ -310,7 +307,6 @@ for (let l in lines) {
                 d--;
             }
         }
-        lastIndent = indent;
     }
 
     // wrap section text in <section>...</section> tags for respec

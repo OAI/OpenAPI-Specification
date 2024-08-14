@@ -91,7 +91,6 @@ function preface(title,options) {
 
     // SEO
     preface += '<meta name="description" content="The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs.">';
-    preface += '<link rel="canonical" href="https://spec.openapis.org/oas/latest.html" />';
 
     // ReSpec
     preface += '<script src="../js/respec-w3c.js" class="remove"></script>';
@@ -209,15 +208,12 @@ for (let l in lines) {
         inCodeBlock = !inCodeBlock;
     }
 
-    if (line.indexOf('<a name="')>=0) {
-        if (line.indexOf('<a name="parameterAllowEmptyValue"/>')>=0) 
-            // fix syntax error in 2.0.md
-            line = line.replace('<a name="parameterAllowEmptyValue"/>','<span id="parameterAllowEmptyValue"></span>');
-        else {
-            // replace deprecated <a name="..."></a> with <span id="..."></span>
-            line = line.replace(/<a name="([^"]+)"><\/a>/g,'<span id="$1"></span>');
-        }
+    if (line.indexOf('<a name="parameterAllowEmptyValue"/>')>=0) {
+        // fix syntax error in 2.0.md
+        line = line.replace('<a name="parameterAllowEmptyValue"/>','<span id="parameterAllowEmptyValue"></span>');
     }
+    // replace deprecated <a name="..."></a> with <span id="..."></span>
+    line = line.replace(/<a name="([^"]+)"><\/a>/g,'<span id="$1"></span>');
 
     line = line.split('\\|').join('&#124;'); // was &brvbar
 

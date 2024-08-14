@@ -272,13 +272,14 @@ for (let l in lines) {
     // fix relative links (to examples)
     if (!inCodeBlock && line.indexOf('](../examples/') >= 0) {
         line = line.replace(/\(\.\.\/examples\/([^)]+)\)/g,function(match,group1){
+            console.warn("example link",group1);
             //TODO: group1 = group1.replace('.yaml','.html');
             return `(https://learn.openapis.org/examples/${group1})`;
           })
     } else if (!inCodeBlock && line.indexOf('](../') >= 0) {
         const regExp = /\((\.\.[^)]+)\)/g;
         line = line.replace(regExp,function(match,group1){
-          console.warn('Fixing relative link',group1,line);
+          console.warn('relative link',group1);
           return '('+url.resolve('https://github.com/OAI/OpenAPI-Specification/tree/main/versions/foo',group1)+')';
         });
     }

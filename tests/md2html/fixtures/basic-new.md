@@ -20,7 +20,9 @@ Definition of Foo.
 
 Text for second section
 
-[Relative link](../examples/foo.yaml)
+[Relative link to example](../examples/foo.yaml)
+
+[Relative link to something else](../something/else)
 
 ### Heading 3
 

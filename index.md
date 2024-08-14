@@ -16,41 +16,13 @@ This site contains the OpenAPI Initiative Registry and content for the HTML vers
 
 ### Versions
 
-<!-- TODO: make include  and call with parameter "arazzo" -->
-{% assign html_files = site.static_files | where: "extname", ".html" | sort: "basename" | reverse %}
-{% assign last_version = "" %}
-{%- for file in html_files -%}
-{%- assign segments = file.path | split: "/" -%}
-{%- assign firstchar = file.basename | slice: 0 -%}
-{%- if segments[1] == "arazzo" and firstchar == "v" -%}
-{%- assign minor_version = file.basename | slice: 1, 3 -%}
-{%- if minor_version != last_version -%}
-{% assign last_version = minor_version %}
-* **[{{ file.basename }}]({{ site.baseurl }}{{ file.path }})**
-{%- else -%}
-, [{{ file.basename }}]({{ site.baseurl }}{{ file.path }})
-{%- endif -%}{%- endif -%}
-{%- endfor- %}
+{% include specification-version-list.md specification="arazzo" %}
 
 ## OpenAPI Specification
 
 ### Versions
 
-<!-- TODO: make include  and call with parameter "oas" -->
-{% assign html_files = site.static_files | where: "extname", ".html" | sort: "basename" | reverse %}
-{% assign last_version = "" %}
-{%- for file in html_files -%}
-{%- assign segments = file.path | split: "/" -%}
-{%- assign firstchar = file.basename | slice: 0 -%}
-{%- if segments[1] == "oas" and firstchar == "v" -%}
-{%- assign minor_version = file.basename | slice: 1, 3 -%}
-{%- if minor_version != last_version -%}
-{% assign last_version = minor_version %}
-* **[{{ file.basename }}]({{ site.baseurl }}{{ file.path }})**
-{%- else -%}
-, [{{ file.basename }}]({{ site.baseurl }}{{ file.path }})
-{%- endif -%}{%- endif -%}
-{%- endfor- %}
+{% include specification-version-list.md specification="oas" %}
 
 ### Non-Normative JSON Schemas
 

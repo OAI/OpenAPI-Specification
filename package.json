@@ -14,7 +14,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "build": "bash ./scripts/md2html/build.sh",
-    "test": "vitest --watch=false"
+    "test": "c8 vitest --watch=false"
   },
   "readmeFilename": "README.md",
   "files": [
@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@hyperjump/json-schema": "^1.9.6",
+    "c8": "^10.1.2",
     "mdv": "^1.3.4",
     "vitest": "^2.0.5",
     "yaml": "^2.5.0"

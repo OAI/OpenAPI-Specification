@@ -8,16 +8,38 @@ This is the conformance section
 
 ## Heading 2
 
-Text for first section
+Text for <a name="first-anchor"></a>first section
+
+## Definitions
+
+### Foo
+
+Definition of Foo.
+
+## Another Heading 2
+
+Text for second section
+
+[Relative link to example](../examples/foo.yaml)
+
+[Relative link to something else](../something/else)
 
 ### Heading 3
 
 Text for first subsection
 
+[RFC3986](https://datatracker.ietf.org/doc/html/rfc3986)
+
+[RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-4)
+
 ```json
 {
   "foo": true
 }
+```
+
+```yaml
+foo: true
 ```
 
 ```text
@@ -27,6 +49,8 @@ text/plain
 ```
 no language
 ```
+
+## Appendix A: Revision History
 
 Version | Date
 --------|-----------

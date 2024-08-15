@@ -2,13 +2,21 @@
 
 Text for first chapter
 
-### Version 30.0.1
+#### Version 30.0.1
 
 This is the conformance section
+
+## Table of Contents
+
+Will be removed
+
+<!-- /TOC -->
 
 ## Heading 2
 
 Text for first section
+
+<a name="parameterAllowEmptyValue"/>Broken anchor
 
 ### Heading 3
 

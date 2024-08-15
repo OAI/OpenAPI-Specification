@@ -12,9 +12,31 @@ This site contains the OpenAPI Initiative Registry and content for the HTML vers
 
 * Proceed to [Registry](./registry/index.html)
 
-## OpenAPI Initiative Specifications
+## Arazzo Specification
 
-| Specification  | Markdown Repository | HTML Version  |
-| :--------------| :------------------ | :------- |
-| `OpenAPI Specification` | [View](https://github.com/OAI/OpenAPI-Specification)|[View](oas/latest.html)|
-| `Arazzo Specification` | [View](https://github.com/OAI/Arazzo-Specification) | [View](arazzo/latest.html)|
+### Versions
+
+{% include specification-version-list.md specification="arazzo" %}
+
+## OpenAPI Specification
+
+### Versions
+
+{% include specification-version-list.md specification="oas" %}
+
+### Non-Normative JSON Schemas
+
+{% assign schema_files = site.static_files | where: "extname", "" | sort: "path" | reverse %}
+{% assign last_version = "" %}
+{%- for file in schema_files -%}
+{%- assign segments = file.path | split: "/" -%}
+{%- if segments[1] == "oas" and file.basename contains "lat" -%}
+{%- if segments[2] != last_version -%}
+{%- assign last_version = segments[2] %}
+* **v{{ last_version }}**
+{%- assign separator = ": " -%}
+{%- endif -%}
+{{ separator }}[{{ segments[3] }}]({{ file.path }})
+{%- assign separator = ", " -%}
+{%- endif -%}
+{%- endfor -%}

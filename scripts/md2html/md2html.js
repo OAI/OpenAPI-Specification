@@ -36,13 +36,13 @@ const md = require('markdown-it')({
   highlight: function (str, lang) {
       if (lang && hljs.getLanguage(lang)) {
           try {
-              return '<pre class="nohighlight"><code>' +
+              return '<pre class="nohighlight" tabindex="0"><code>' +
                   hljs.highlight(str, { language: lang }).value +
                   '</code></pre>';
           } catch (__) { }
       }
 
-      return '<pre class="highlight '+lang+'"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+      return '<pre class="highlight '+lang+'" tabindex="0"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
     }
 });
 
@@ -216,7 +216,6 @@ for (let l in lines) {
     // recognize code blocks
     if (line.startsWith('```')) {
         inCodeBlock = !inCodeBlock;
-        line += '\n'; // fixes formatting of first line of syntax-highlighted blocks
     }
 
     if (line.indexOf('<a name="')>=0) {

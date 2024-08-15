@@ -14,7 +14,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "build": "bash ./scripts/md2html/build.sh",
-    "test": "c8 vitest --watch=false"
+    "test": "c8 --100 vitest --watch=false"
   },
   "readmeFilename": "README.md",
   "files": [

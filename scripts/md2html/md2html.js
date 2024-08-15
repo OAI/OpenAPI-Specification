@@ -209,7 +209,7 @@ for (let l in lines) {
         line = line.replace('<a name="parameterAllowEmptyValue"/>','<span id="parameterAllowEmptyValue"></span>');
     }
 
-    // replace deprecated <a name="..."></a> with <span id="..."></span>
+    // replace deprecated <a name="..."></a> with <span id="..."></span> - needed for older specs
     line = line.replace(/<a name="([^"]+)"><\/a>/g,'<span id="$1"></span>');
 
     line = line.split('\\|').join('&#124;'); // was &brvbar

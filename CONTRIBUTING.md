@@ -41,7 +41,7 @@ Contributions to this repository should follow the style guide as described in t
 
 ### Markdown
 
-Markdown files in this project should follow the style enforced by the [markdownlint tool][],
+Markdown files in this project should follow the style enforced by the [markdownlint tool](https://www.npmjs.com/package/markdownlint),
 as configured by the `.markdownlint.json` file in the root of the project.
 
 The following additional rules should be followed but currently are not enforced by tooling:
@@ -51,11 +51,18 @@ The following additional rules should be followed but currently are not enforced
 3. "example" instead of "sample" - this spec is not about statistics
 4. Use "OpenAPI Object" instead of "root"
 5. Fixed fields are monospaced
-6. Field values are monospaced in JSON notation: true, false, null, "header", ...
-7. A combination of fixed field name with example value uses JS notation: in: "header", combining rules 5 and 6
-8. An exception to 5-7 is colloquial use, for example "values of type array or object" - "type" is not monospaced, so the monospaced values aren't enclosed in double quotes.
+6. Field values are monospaced in JSON notation: `true`, `false`, `null`, `"header"` (with double-quotes around string values), ...
+7. A combination of fixed field name with example value uses JS notation: `in: "header"`, combining rules 5 and 6
+8. An exception to 5-7 is colloquial use, for example "values of type `array` or `object`" - "type" is not monospaced, so the monospaced values aren't enclosed in double quotes.
 9. "attribute" is only used in the XML context and means "XML attribute"
 10. Use Oxford commas, avoid Shatner commas
+
+### Use of "keyword", "field", "property", and "attribute"
+
+* JSON Schema keywords -> "keyword"
+* OpenAPI fixed fields -> "field"
+* property of a "plain" JSON object that is not an OpenAPI-defined Foo Object -> "property"
+* "attribute" is only used in the XML context and means "XML attribute"
 
 ## Release Process and Scope
 

@@ -35,6 +35,28 @@ Schemas are only changed _after_ the specification is changed.  Changes are made
 
 * Issue #3576: [What is our authoritative spec URL and how do people find it?](https://github.com/OAI/OpenAPI-Specification/issues/3576)
 
+## Style Guide
+
+Contributions to this repository should follow the style guide as described in this section.
+
+### Markdown
+
+Markdown files in this project should follow the style enforced by the [markdownlint tool][],
+as configured by the `.markdownlint.json` file in the root of the project.
+
+The following additional rules should be followed but currently are not enforced by tooling:
+
+1. The first mention of a normative reference or an OAS-defined Object in a (sub)*section is a link, additional mentions are not
+2. OAS-defined Foo Bar Objects are written in this style, and are not monospaced
+3. "example" instead of "sample" - this spec is not about statistics
+4. Use "OpenAPI Object" instead of "root"
+5. Fixed fields are monospaced
+6. Field values are monospaced in JSON notation: true, false, null, "header", ...
+7. A combination of fixed field name with example value uses JS notation: in: "header", combining rules 5 and 6
+8. An exception to 5-7 is colloquial use, for example "values of type array or object" - "type" is not monospaced, so the monospaced values aren't enclosed in double quotes.
+9. "attribute" is only used in the XML context and means "XML attribute"
+10. Use Oxford commas, avoid Shatner commas
+
 ## Release Process and Scope
 
 * Issue #3528: [3.x.y patch release approach](https://github.com/OAI/OpenAPI-Specification/issues/3528)
@@ -95,7 +117,7 @@ The OpenAPI Initiative uses GitHub Projects to manage work _outside_ of the spec
 
 ### Discussions
 
-We are beginning (as of mid-2024) to use GitHub [discussions](https://github.com/OAI/OpenAPI-Specification/discussions?discussions_q=is%3Aopen) for open-ended topics such as major enhancements.  
+We are beginning (as of mid-2024) to use GitHub [discussions](https://github.com/OAI/OpenAPI-Specification/discussions?discussions_q=is%3Aopen) for open-ended topics such as major enhancements.
 
 * Issue #3518: [Define criteria for filing/closing issues vs discussions](https://github.com/OAI/OpenAPI-Specification/issues/3518)
 

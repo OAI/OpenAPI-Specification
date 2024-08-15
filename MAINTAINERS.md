@@ -1,10 +1,12 @@
-## Active Editors
+# OpenAPI Specification Editors
+
+## Active
 * Darrel Miller [@darrelmiller](https://github.com/darrelmiller)
 * Jeremy Whitlock [@whitlockjc](https://github.com/whitlockjc)
 * Marsh Gardiner [@earth2marsh](https://github.com/earth2marsh)
 * Ron Ratovsky [@webron](https://github.com/webron)
 
-## Trainee Editors
+## Trainee
 * Henry Andrews [@handrews](https://github.com/handrews)
 * Lorna Mitchell [@lornajane](https://github.com/lornajane)
 * Mike Kistler [@mikekistler](https://github.com/mikekistler)

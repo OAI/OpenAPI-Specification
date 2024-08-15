@@ -1,6 +1,5 @@
 # OpenAPI Initiative Technical Steering Committee Members
 
-
 ## Active
 * Darrel Miller [@darrelmiller](https://github.com/darrelmiller)
 * Jeremy Whitlock [@whitlockjc](https://github.com/whitlockjc)

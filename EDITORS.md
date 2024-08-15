@@ -1,16 +1,14 @@
-# OpenAPI Initiative Technical Steering Committee Members
-
+# OpenAPI Specification Editors
 
 ## Active
 * Darrel Miller [@darrelmiller](https://github.com/darrelmiller)
+* Henry Andrews [@handrews](https://github.com/handrews)
 * Jeremy Whitlock [@whitlockjc](https://github.com/whitlockjc)
-* Marsh Gardiner [@earth2marsh](https://github.com/earth2marsh)
-* Ron Ratovsky [@webron](https://github.com/webron)
-
-## Provisional
 * Lorna Mitchell [@lornajane](https://github.com/lornajane)
-* Mike Kistler [@mikekistler](https://github.com/mikekistler)
+* Marsh Gardiner [@earth2marsh](https://github.com/earth2marsh)
 * Miguel Quintero [@miqui](https://github.com/miqui)
+* Mike Kistler [@mikekistler](https://github.com/mikekistler)
+* Ron Ratovsky [@webron](https://github.com/webron)
 * Ralf Handl [@ralfhandl](https://github.com/ralfhandl)
 
 ## Emeritus

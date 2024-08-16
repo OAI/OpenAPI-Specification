@@ -32,7 +32,7 @@ git show 3140640:MAINTAINERS.md > history/MAINTAINERS_v3.0.2.md
 cp history/MAINTAINERS_v3.0.2.md history/MAINTAINERS_v3.0.3.md
 cp history/MAINTAINERS_v3.0.2.md history/MAINTAINERS_v3.1.0.md
 #TODO: adjust commit for 3.0.4, 3.1.1
-git show 93b8b62:EDITORS.md > history/MAINTAINERS_v3.0.4.md
+git show c3b88ed:EDITORS.md > history/MAINTAINERS_v3.0.4.md
 cp history/MAINTAINERS_v3.0.4.md history/MAINTAINERS_v3.1.1.md
 # add lines for 3.2.0, ...
 

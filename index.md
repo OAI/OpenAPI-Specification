@@ -30,13 +30,13 @@ This site contains the OpenAPI Initiative Registry and content for the HTML vers
 {% assign last_version = "" %}
 {%- for file in schema_files -%}
 {%- assign segments = file.path | split: "/" -%}
-{%- if segments[1] == "oas" and file.basename contains "lat" -%}
+{%- if segments[1] == "oas" and file.basename contains "latest" -%}
 {%- if segments[2] != last_version -%}
 {%- assign last_version = segments[2] %}
 * **v{{ last_version }}**
 {%- assign separator = ": " -%}
 {%- endif -%}
-{{ separator }}[{{ segments[3] }}]({{ site.baseurl }}{{ file.path }})
+{{ separator }}[{{ segments[3] }}]({{ site.baseurl }}{{ file.path }}.json) ([download]({{ site.baseurl }}{{ file.path }}))
 {%- assign separator = ", " -%}
 {%- endif -%}
 {%- endfor -%}

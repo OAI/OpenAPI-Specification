@@ -8,8 +8,8 @@
 * Marsh Gardiner [@earth2marsh](https://github.com/earth2marsh)
 * Miguel Quintero [@miqui](https://github.com/miqui)
 * Mike Kistler [@mikekistler](https://github.com/mikekistler)
-* Ron Ratovsky [@webron](https://github.com/webron)
 * Ralf Handl [@ralfhandl](https://github.com/ralfhandl)
+* Ron Ratovsky [@webron](https://github.com/webron)
 
 ## Emeritus
 * Mike Ralphson [@MikeRalphson](https://github.com/MikeRalphson)

@@ -44,7 +44,7 @@ for filename in ../../versions/[23456789].*.md ; do
   version=$(basename "$filename" .md)
   tempfile=../../deploy/oas/v$version-tmp.html
   echo -e "\n=== v$version ==="
-  node md2html.js --respec --maintainers ./history/MAINTAINERS_v$version.md ${filename} > $tempfile
+  node md2html.js --maintainers ./history/MAINTAINERS_v$version.md ${filename} > $tempfile
   npx respec --use-local --src $tempfile --out ../../deploy/oas/v$version.html
   rm $tempfile
   if [ $version = $latest ]; then

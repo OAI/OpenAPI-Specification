@@ -5,8 +5,8 @@ complete control over formatting and syntax highlighting */
 'use strict';
 
 /**
-@author Mike Ralphson <mike.ralphson@gmail.com>
-**/
+ * @author Mike Ralphson <mike.ralphson@gmail.com>
+ **/
 
 const fs = require('fs');
 const path = require('path');
@@ -16,10 +16,6 @@ const hljs = require('highlight.js');
 const cheerio = require('cheerio');
 
 let argv = require('yargs')
-    .boolean('respec')
-    .alias('r','respec')
-    .describe('respec','Output in respec format')
-    .default('respec',true)
     .string('maintainers')
     .alias('m','maintainers')
     .describe('maintainers','path to MAINTAINERS.md')
@@ -34,22 +30,22 @@ const md = require('markdown-it')({
   linkify: true,
   typographer: true,
   highlight: function (str, lang) {
-      if (lang && hljs.getLanguage(lang)) { // && !argv.respec) {
-          try {
-              return '<pre class="nohighlight"><code>' +
-                  hljs.highlight(str, { language: lang }).value +
-                  '</code></pre>';
-          } catch (__) { }
-      }
-
-      return '<pre class="highlight '+lang+'"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+    if (lang && hljs.getLanguage(lang)) {
+    return '<pre class="nohighlight" tabindex="0"><code>' +
+      hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
+      '</code></pre>';
     }
+
+    return '<pre class="highlight '+lang+'" tabindex="0"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+  }
 });
 
 function preface(title,options) {
     const respec = {
         specStatus: "base",
         latestVersion: "https://spec.openapis.org/oas/latest.html",
+        thisVersion: `https://spec.openapis.org/oas/v${options.subtitle}.html`,
+        canonicalURI: `https://spec.openapis.org/oas/v${options.subtitle}.html`,
         editors: maintainers,
         formerEditors: emeritus,
         publishDate: options.publishDate,
@@ -86,101 +82,51 @@ function preface(title,options) {
                 ],
             },
         ],
-        localBiblio: {
-            "OpenAPI-Learn": {
-                title: "OpenAPI - Getting started, and the specification explained",
-                href: "https://learn.openapis.org/",
-                publisher: "OpenAPI Initiative"
-            },
-            "OpenAPI-Registry": {
-                title: "OpenAPI Initiative Registry",
-                href: "https://spec.openapis.org/registry/index.html",
-                publisher: "OpenAPI Initiative"
-            },
-            //TODO: remove localBiblio once Specref PRs https://github.com/tobie/specref/pulls/ralfhandl are merged
-            "JSON-Schema-Validation-04": {
-                authors: [ "Kris Zyp", "Francis Galiegue", "Gary Court" ],
-                href: "https://datatracker.ietf.org/doc/html/draft-fge-json-schema-validation-00",
-                publisher: "Internet Engineering Task Force (IETF)",
-                status: "Internet-Draft",
-                title: "JSON Schema: interactive and non interactive validation. Draft 4",
-                date: "1 February 2013"
-            },
-            "JSON-Schema-05": {
-                authors: [ "Austin Wright" ],
-                href: "https://datatracker.ietf.org/doc/html/draft-wright-json-schema-00",
-                publisher: "Internet Engineering Task Force (IETF)",
-                status: "Internet-Draft",
-                title: "JSON Schema: A Media Type for Describing JSON Documents. Draft 5",
-                date: "13 October 2016"
-            },
-            "JSON-Schema-Validation-05": {
-                authors: [ "Austin Wright", "G. Luff" ],
-                href: "https://datatracker.ietf.org/doc/html/draft-wright-json-schema-validation-00",
-                publisher: "Internet Engineering Task Force (IETF)",
-                status: "Internet-Draft",
-                title: "JSON Schema Validation: A Vocabulary for Structural Validation of JSON. Draft 5",
-                date: "13 October 2016"
-            },
-            "JSON-Schema-Validation-2020-12": {
-                authors: [ "Austin Wright", "Henry Andrews", "Ben Hutton" ],
-                href: "https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00",
-                publisher: "Internet Engineering Task Force (IETF)",
-                status: "Internet-Draft",
-                title: "JSON Schema Validation: A Vocabulary for Structural Validation of JSON. Draft 2020-12",
-                date: "8 December 2020"
-            },
-            "SPDX": {
-                href: "https://spdx.org/licenses/",
-                title: "SPDX License List",
-                publisher: "Linux Foundation"
-          }
-        }
+        // localBiblio: {
+        //     // add local bibliography entries here, add them to https://www.specref.org/, and remove them here once published
+        // }
     };
 
     let preface = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>${md.utils.escapeHtml(title)}</title>`;
 
     // SEO
     preface += '<meta name="description" content="The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs.">';
-    preface += '<link rel="canonical" href="https://spec.openapis.org/oas/latest.html" />';
 
-    if (options.respec) {
-        preface += '<script src="../js/respec-w3c.js" class="remove"></script>';
-        preface += `<script class="remove">var respecConfig = ${JSON.stringify(respec)};</script>`;
-        try {
-          preface += fs.readFileSync('./analytics/google.html','utf8');
-        }
-        catch (ex) {}
-        preface += '</head><body>';
-        preface += '<style>';
-        preface += '#respec-ui { visibility: hidden; }';
-        preface += 'h1,h2,h3 { color: #629b34; }';
-        preface += '.dt-published { color: #629b34; } .dt-published::before { content: "Published "; }';
-        preface += 'a[href] { color: #45512c; }'; // third OAI colour is #8ad000
-        preface += 'body:not(.toc-inline) #toc h2 { color: #45512c; }';
-        preface += 'table { display: block; width: 100%; overflow: auto; }';
-        preface += 'table th { font-weight: 600; }';
-        preface += 'table th, table td { padding: 6px 13px; border: 1px solid #dfe2e5; }';
-        preface += 'table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }';
-        preface += 'table tr:nth-child(2n) { background-color: #f6f8fa; }';
-        preface += 'pre { background-color: #f6f8fa !important; }';
-        preface += 'code { color: #c83500 } th code { color: inherit }';
-        preface += 'a.bibref { text-decoration: underline;}';
-        preface += fs.readFileSync(path.resolve(__dirname,'gist.css'),'utf8').split('\n').join(' ');
-        preface += '</style>';
-        preface += `<h1 id="title">${title.split('|')[0]}</h1>`;
-        preface += `<p class="copyright">Copyright © ${options.publishDate.getFullYear()} the Linux Foundation</p>`;
-        preface += `<section class="notoc" id="abstract"><h2>${abstract}</h2>`;
-        preface += 'The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.';
-        preface += '</section>';
-        preface += '<section class="override" id="sotd" data-max-toc="0">';
-        preface += '<h2>Status of This Document</h2>';
-        preface += 'The source-of-truth for the specification is the GitHub markdown file referenced above.';
-        preface += '</section>';
+    // ReSpec
+    preface += '<script src="../js/respec-w3c.js" class="remove"></script>';
+    preface += `<script class="remove">var respecConfig = ${JSON.stringify(respec)};</script>`;
+    try {
+        preface += fs.readFileSync('./analytics/google.html','utf8');
     }
-    else {
-        preface += '</head><body>';
-    }
+    catch (ex) {}
+    preface += '</head><body>';
+    preface += '<style>';
+    preface += '#respec-ui { visibility: hidden; }';
+    preface += '#title { color: #578000; } #subtitle { color: #578000; }';
+    preface += '.dt-published { color: #578000; } .dt-published::before { content: "Published "; }';
+    preface += 'h1,h2,h3,h4,h5,h6 { color: #578000; font-weight: normal; font-style: normal; }';
+    preface += 'a[href] { color: #45512c; }';
+    preface += 'body:not(.toc-inline) #toc h2 { color: #45512c; }';
+    preface += 'table { display: block; width: 100%; overflow: auto; }';
+    preface += 'table th { font-weight: 600; }';
+    preface += 'table th, table td { padding: 6px 13px; border: 1px solid #dfe2e5; }';
+    preface += 'table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }';
+    preface += 'table tr:nth-child(2n) { background-color: #f6f8fa; }';
+    preface += 'pre { background-color: #f6f8fa !important; }';
+    preface += 'code { color: #c83500 } th code { color: inherit }';
+    preface += 'a.bibref { text-decoration: underline;}';
+    preface += fs.readFileSync(path.resolve(__dirname,'gist.css'),'utf8').split(/\r?\n/).join(' ');
+    preface += '</style>';
+    preface += `<h1 id="title">${title.split('|')[0]}</h1>`;
+    preface += `<p class="copyright">Copyright © ${options.publishDate.getFullYear()} the Linux Foundation</p>`;
+    preface += `<section class="notoc" id="abstract"><h2>${abstract}</h2>`;
+    preface += 'The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.';
+    preface += '</section>';
+    preface += '<section class="override" id="sotd" data-max-toc="0">';
+    preface += '<h2>Status of This Document</h2>';
+    preface += 'The source-of-truth for this specification is the HTML file referenced above as <em>This version</em>.';
+    preface += '</section>';
+
     return preface;
 }
 
@@ -228,89 +174,43 @@ if (argv.maintainers) {
 
 let s = fs.readFileSync(argv._[0],'utf8');
 
-if (argv.respec) {
-    argv.publishDate = getPublishDate(s);
-}
+argv.publishDate = getPublishDate(s);
 
 let lines = s.split(/\r?\n/);
 
 let prevHeading = 0;
-let lastIndent = 0;
 let inTOC = false;
 let inDefs = false;
 let inCodeBlock = false;
-let bsFix = true;
-
 let indents = [0];
 
 // process the markdown
 for (let l in lines) {
     let line = lines[l];
 
+    // remove TOC from older spec versions, respec will generate a new one
     if (line.startsWith('## Table of Contents')) inTOC = true;
     if (line.startsWith('<!-- /TOC')) inTOC = false;
     if (inTOC) line = '';
 
+    // special formatting for Definitions section
     if (line.startsWith('## Definitions')) {
         inDefs = true;
-        bsFix = false;
     }
     else if (line.startsWith('## ')) inDefs = false;
 
+    // recognize code blocks
     if (line.startsWith('```')) {
         inCodeBlock = !inCodeBlock;
-        line += '\n'; // fixes formatting of first line of syntax-highlighted blocks
     }
 
-    if (!inCodeBlock && line.startsWith('#')) {
-        let indent = 0;
-        while (line[indent] === '#') indent++;
-        let originalIndent = indent;
-
-        let prevIndent = indents[indents.length-1]; // peek
-        let delta = indent-prevIndent;
-
-        if (!argv.respec) {
-            if (delta===0) indent = lastIndent
-            else if (delta<0) indent = lastIndent-1
-            else if (delta>0) indent = lastIndent+1;
-        }
-
-        if (indent < 0) {
-            indent = 1;
-        }
-        if (argv.respec && (indent > 1)) {
-            indent--;
-        }
-        let newIndent = indent;
-        if (!argv.respec && (indent <= 2) && bsFix) {
-            newIndent++;
-        }
-
-        let title = line.split('# ')[1];
-        if (inDefs) title = '<dfn>'+title+'</dfn>';
-        line = ('#'.repeat(newIndent)+' '+title);
-
-        if (delta>0) indents.push(originalIndent);
-        if (delta<0) {
-            let d = Math.abs(delta);
-            while (d>0) {
-                indents.pop();
-                d--;
-            }
-        }
-        lastIndent = indent;
+    if (line.indexOf('<a name="parameterAllowEmptyValue"/>')>=0) {
+        // fix syntax error in 2.0.md
+        line = line.replace('<a name="parameterAllowEmptyValue"/>','<span id="parameterAllowEmptyValue"></span>');
     }
 
-    if (line.indexOf('<a name="')>=0) {
-        if (line.indexOf('<a name="parameterAllowEmptyValue"/>')>=0) 
-            // fix syntax error in 2.0.md
-            line = line.replace('<a name="parameterAllowEmptyValue"/>','<span id="parameterAllowEmptyValue"></span>');
-        else {
-            line = line.replace('<a name=','<span id=');
-            line = line.replace('</a>','</span>');
-        }
-    }
+    // replace deprecated <a name="..."></a> with <span id="..."></span>
+    line = line.replace(/<a name="([^"]+)"><\/a>/g,'<span id="$1"></span>');
 
     line = line.split('\\|').join('&#124;'); // was &brvbar
 
@@ -352,6 +252,7 @@ for (let l in lines) {
         line = line.replace('consult http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4)','consult [[HTML401]] [Section 17.13.4](http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4)');
         line = line.replace('[IANA Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)','[[IANA-HTTP-STATUS-CODES|IANA Status Code Registry]]');
         line = line.replace('[IANA Authentication Scheme registry](https://www.iana.org/assignments/http-authschemes/http-authschemes.xhtml)','[[IANA-HTTP-AUTHSCHEMES]]');
+        line = line.replace('[JSON Reference](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03)','[[JSON-Reference|JSON Reference]]');
         line = line.replace('[JSON Schema Specification Draft 4](https://json-schema.org/)','[[JSON-Schema-04|JSON Schema Specification Draft 4]]');
         line = line.replace('[JSON Schema Core](https://tools.ietf.org/html/draft-zyp-json-schema-04)','[[JSON-Schema-04|JSON Schema Core]]');
         line = line.replace('[JSON Schema Validation](https://tools.ietf.org/html/draft-fge-json-schema-validation-00)','[[JSON-Schema-Validation-04|JSON Schema Validation]]');
@@ -361,22 +262,60 @@ for (let l in lines) {
         line = line.replace('[JSON Schema Specification Draft 2020-12](https://tools.ietf.org/html/draft-bhutton-json-schema-00)','[[JSON-Schema-2020-12|JSON Schema Specification Draft 2020-12]]');
         line = line.replace('[JSON Schema Core](https://tools.ietf.org/html/draft-bhutton-json-schema-00)','[[JSON-Schema-2020-12|JSON Schema Core]]');
         line = line.replace('[JSON Schema Validation](https://tools.ietf.org/html/draft-bhutton-json-schema-validation-00)','[[JSON-Schema-Validation-2020-12|JSON Schema Validation]]');
-        line = line.replace('[SPDX](https://spdx.org/licenses/)','[[SPDX]]');
+        line = line.replace('[SPDX](https://spdx.org/licenses/) license','[[SPDX-Licenses]]');
         line = line.replace('[XML namespaces](https://www.w3.org/TR/xml-names11/)','[[xml-names11|XML namespaces]]');
         line = line.replace('JSON standards. YAML,','[[RFC7159|JSON]] standards. [[YAML|YAML]],'); // 2.0.md only
         line = line.replace('JSON or YAML format.','[[RFC7159|JSON]] or [[YAML|YAML]] format.');
         line = line.replace(/YAML version \[1\.2\]\(https:\/\/(www\.)?yaml\.org\/spec\/1\.2\/spec\.html\)/,'[[YAML|YAML version 1.2]]');
     }
 
-    if (!inCodeBlock && line.indexOf('](../') >= 0) {
+    // fix relative links (to examples)
+    if (!inCodeBlock && line.indexOf('](../examples/') >= 0) {
+        line = line.replace(/\(\.\.\/examples\/([^)]+)\)/g,function(match,group1){
+            console.warn("example link",group1);
+            //TODO: group1 = group1.replace('.yaml','.html');
+            return `(https://learn.openapis.org/examples/${group1})`;
+          })
+    } else if (!inCodeBlock && line.indexOf('](../') >= 0) {
         const regExp = /\((\.\.[^)]+)\)/g;
         line = line.replace(regExp,function(match,group1){
-          console.warn('Fixing relative link',group1,line);
-          return '('+url.resolve('https://github.com/OAI/OpenAPI-Specification/tree/master/versions/foo',group1)+')';
+          console.warn('relative link',group1);
+          return '('+url.resolve('https://github.com/OAI/OpenAPI-Specification/tree/main/versions/foo',group1)+')';
         });
     }
 
-    if (!inCodeBlock && argv.respec && line.startsWith('#')) {
+    // fix indentation of headings
+    // - make sure that each heading is at most one level deeper than the previous heading
+    // - reduce heading level by one if we're in respec mode except for h1
+    if (!inCodeBlock && line.startsWith('#')) {
+        let indent = 0;
+        while (line[indent] === '#') indent++;
+        let originalIndent = indent;
+
+        let prevIndent = indents[indents.length-1]; // peek
+        let delta = indent-prevIndent;
+
+        if (indent > 1) {
+            indent--;
+        }
+        let newIndent = indent;
+
+        let title = line.split('# ')[1];
+        if (inDefs) title = '<dfn>'+title+'</dfn>';
+        line = ('#'.repeat(newIndent)+' '+title);
+
+        if (delta>0) indents.push(originalIndent);
+        if (delta<0) {
+            let d = Math.abs(delta);
+            while (d>0) {
+                indents.pop();
+                d--;
+            }
+        }
+    }
+
+    // wrap section text in <section>...</section> tags for respec
+    if (!inCodeBlock && line.startsWith('#')) {
         let heading = 0;
         while (line[heading] === '#') heading++;
         let delta = heading-prevHeading;
@@ -384,16 +323,23 @@ for (let l in lines) {
         if (delta>0) delta = 1;
         let prefix = '';
         let newSection = '<section>';
-        if (line.includes('## Version ')) {
+        const m = line.match(/# Version ([0-9.]+)$/);
+        if (m) {
             // our conformance section is headlined with 'Version x.y.z'
+            // and respec needs a conformance section in a "formal" specification
             newSection = '<section class="override" id="conformance">';
+            // adjust the heading to be at level 2 because respec insists on h2 here
+            // Note: older specs had this at h4, newer specs at h2, and all heading levels have been reduced by 1 in the preceding block
+            line = '#' + m[0];
+            delta = 1;
+            heading = 2;
         }
         if (line.includes('Appendix')) {
             newSection = '<section class="appendix">';
         }
 
         // heading level delta is either 0 or is +1/-1, or we're in respec mode
-        /* respec insists on <section>...</section> breaks around headings */
+        // respec insists on <section>...</section> breaks around headings
 
         if (delta === 0) {
             prefix = '</section>'+newSection;

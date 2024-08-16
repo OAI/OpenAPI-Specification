@@ -54,7 +54,8 @@ The following additional rules should be followed but currently are not enforced
 6. Field values are monospaced in JSON notation: `true`, `false`, `null`, `"header"` (with double-quotes around string values), ...
 7. A combination of fixed field name with example value uses JS notation: `in: "header"`, combining rules 5 and 6
 8. An exception to 5-7 is colloquial use, for example "values of type `array` or `object`" - "type" is not monospaced, so the monospaced values aren't enclosed in double quotes.
-9. Use Oxford commas, avoid Shatner commas
+9. Use Oxford commas, avoid Shatner commas.
+10. Use `<span id="thing"></span>` for link anchors. The `<a name="thing"></a>` format has been deprecated.
 
 ### Use of "keyword", "field", "property", and "attribute"
 

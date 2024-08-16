@@ -271,12 +271,14 @@ for (let l in lines) {
 
     // fix relative links (to examples)
     if (!inCodeBlock && line.indexOf('](../examples/') >= 0) {
+        // links to examples go to learn site, links to yaml files go to wrapper html
         line = line.replace(/\(\.\.\/examples\/([^)]+)\)/g,function(match,group1){
             console.warn("example link",group1);
-            //TODO: group1 = group1.replace('.yaml','.html');
+            group1 = group1.replace('.yaml','.html');
             return `(https://learn.openapis.org/examples/${group1})`;
           })
     } else if (!inCodeBlock && line.indexOf('](../') >= 0) {
+        // links to other sibling files go to github
         const regExp = /\((\.\.[^)]+)\)/g;
         line = line.replace(regExp,function(match,group1){
           console.warn('relative link',group1);

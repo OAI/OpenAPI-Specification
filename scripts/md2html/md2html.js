@@ -120,7 +120,7 @@ function preface(title,options) {
     preface += `<h1 id="title">${title.split('|')[0]}</h1>`;
     preface += `<p class="copyright">Copyright © ${options.publishDate.getFullYear()} the Linux Foundation</p>`;
     preface += `<section class="notoc" id="abstract"><h2>${abstract}</h2>`;
-    preface += 'The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.';
+    preface += options.intro.join('\n');
     preface += '</section>';
     preface += '<section class="override" id="sotd" data-max-toc="0">';
     preface += '<h2>Status of This Document</h2>';
@@ -183,10 +183,20 @@ let inTOC = false;
 let inDefs = false;
 let inCodeBlock = false;
 let indents = [0];
+let inIntro = false;
+argv.intro = [];
 
 // process the markdown
 for (let l in lines) {
     let line = lines[l];
+
+    // extract Introduction section for abstract
+    if (line.startsWith('## Introduction')) { inIntro = true; line = ''; }
+    else if (line.startsWith('#')) inIntro = false; 
+    else if (inIntro) {
+        argv.intro.push(line);
+        line = '';
+    }
 
     // remove TOC from older spec versions, respec will generate a new one
     if (line.startsWith('## Table of Contents')) inTOC = true;

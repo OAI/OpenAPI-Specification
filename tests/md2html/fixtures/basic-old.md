@@ -6,6 +6,10 @@ Text for first chapter
 
 This is the conformance section
 
+## Introductions
+
+Intro headline only needs to start with `## Introduction`.
+
 ## Table of Contents
 
 Will be removed

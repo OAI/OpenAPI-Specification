@@ -6,6 +6,13 @@ Text for first chapter
 
 This is the conformance section
 
+## Introduction
+
+The contents of the Introduction section will become the abstract.
+It may contain of multiple lines.
+
+It may have multiple paragraphs.
+
 ## Heading 2
 
 Text for <a name="first-anchor"></a>first section

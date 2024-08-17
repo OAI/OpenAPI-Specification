@@ -190,6 +190,9 @@ argv.intro = [];
 for (let l in lines) {
     let line = lines[l];
 
+    // fix version 2.0
+    if (line.startsWith('## (fka')) line = line.substring(3);
+
     // extract Introduction section for abstract
     if (line.startsWith('## Introduction')) { inIntro = true; line = ''; }
     else if (line.startsWith('#')) inIntro = false; 

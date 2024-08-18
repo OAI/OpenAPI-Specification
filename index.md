@@ -36,7 +36,7 @@ This site contains the OpenAPI Initiative Registry and content for the HTML vers
 * **v{{ last_version }}**
 {%- assign separator = ": " -%}
 {%- endif -%}
-{{ separator }}[{{ segments[3] }}]({{ file.path }})
+{{ separator }}[{{ segments[3] }}]({{ site.baseurl }}{{ file.path }})
 {%- assign separator = ", " -%}
 {%- endif -%}
 {%- endfor -%}

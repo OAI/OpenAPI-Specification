@@ -24,7 +24,6 @@ dfn{cursor:pointer}
 </style>
 <title>OpenAPI Specification v2.0</title>
 <meta name="description" content="The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs.">
-<link rel="canonical" href="https://spec.openapis.org/oas/latest.html">
 <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
 <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-JR4K3ZJLPH&amp;l=dataLayer&amp;cx=c"></script>
 <style id="respec-mainstyle">
@@ -82,6 +81,7 @@ dd{margin-left:0}
 </script>
 
 <meta name="color-scheme" content="light">
+<link rel="canonical" href="https://spec.openapis.org/oas/v2.0.html">
 <style>
 .hljs{--base:#fafafa;--mono-1:#383a42;--mono-2:#686b77;--mono-3:#717277;--hue-1:#0b76c5;--hue-2:#336ae3;--hue-3:#a626a4;--hue-4:#42803c;--hue-5:#ca4706;--hue-5-2:#c91243;--hue-6:#986801;--hue-6-2:#9a6a01}
 @media (prefers-color-scheme:dark){
@@ -110,6 +110,8 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
 <script id="initialUserConfig" type="application/json">{
   "specStatus": "base",
   "latestVersion": "https://spec.openapis.org/oas/latest.html",
+  "thisVersion": "https://spec.openapis.org/oas/v2.0.html",
+  "canonicalURI": "https://spec.openapis.org/oas/v2.0.html",
   "editors": [
     {
       "name": "Jeremy Whitlock "
@@ -162,73 +164,10 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       ]
     }
   ],
-  "localBiblio": {
-    "OpenAPI-Learn": {
-      "title": "OpenAPI - Getting started, and the specification explained",
-      "href": "https://learn.openapis.org/",
-      "publisher": "OpenAPI Initiative"
-    },
-    "OpenAPI-Registry": {
-      "title": "OpenAPI Initiative Registry",
-      "href": "https://spec.openapis.org/registry/index.html",
-      "publisher": "OpenAPI Initiative"
-    },
-    "JSON-Schema-Validation-04": {
-      "authors": [
-        "Kris Zyp",
-        "Francis Galiegue",
-        "Gary Court"
-      ],
-      "href": "https://datatracker.ietf.org/doc/html/draft-fge-json-schema-validation-00",
-      "publisher": "Internet Engineering Task Force (IETF)",
-      "status": "Internet-Draft",
-      "title": "JSON Schema: interactive and non interactive validation. Draft 4",
-      "date": "1 February 2013",
-      "id": "json-schema-validation-04"
-    },
-    "JSON-Schema-05": {
-      "authors": [
-        "Austin Wright"
-      ],
-      "href": "https://datatracker.ietf.org/doc/html/draft-wright-json-schema-00",
-      "publisher": "Internet Engineering Task Force (IETF)",
-      "status": "Internet-Draft",
-      "title": "JSON Schema: A Media Type for Describing JSON Documents. Draft 5",
-      "date": "13 October 2016"
-    },
-    "JSON-Schema-Validation-05": {
-      "authors": [
-        "Austin Wright",
-        "G. Luff"
-      ],
-      "href": "https://datatracker.ietf.org/doc/html/draft-wright-json-schema-validation-00",
-      "publisher": "Internet Engineering Task Force (IETF)",
-      "status": "Internet-Draft",
-      "title": "JSON Schema Validation: A Vocabulary for Structural Validation of JSON. Draft 5",
-      "date": "13 October 2016"
-    },
-    "JSON-Schema-Validation-2020-12": {
-      "authors": [
-        "Austin Wright",
-        "Henry Andrews",
-        "Ben Hutton"
-      ],
-      "href": "https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00",
-      "publisher": "Internet Engineering Task Force (IETF)",
-      "status": "Internet-Draft",
-      "title": "JSON Schema Validation: A Vocabulary for Structural Validation of JSON. Draft 2020-12",
-      "date": "8 December 2020"
-    },
-    "SPDX": {
-      "href": "https://spdx.org/licenses/",
-      "title": "SPDX License List",
-      "publisher": "Linux Foundation"
-    }
-  },
   "publishISODate": "2014-09-08T00:00:00.000Z",
   "generatedSubtitle": "08 September 2014"
 }</script>
-<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/base.css"></head><body class="h-entry"><div class="head">
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/base.css"></head><body class="h-entry toc-inline"><div class="head">
     <p class="logos"><a class="logo" href="https://openapis.org/"><img crossorigin="" alt="OpenAPI Initiative" height="48" src="https://raw.githubusercontent.com/OAI/OpenAPI-Style-Guide/master/graphics/bitmap/OpenAPI_Logo_Pantone.png">
   </a></p>
     <h1 id="title" class="title">OpenAPI Specification v2.0 </h1> <h2 id="subtitle" class="subtitle">Version 2.0</h2>
@@ -236,7 +175,9 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <details open="">
       <summary>More details about this document</summary>
       <dl>
-        
+        <dt>This version:</dt><dd>
+                <a class="u-url" href="https://spec.openapis.org/oas/v2.0.html">https://spec.openapis.org/oas/v2.0.html</a>
+              </dd>
         <dt>Latest published version:</dt><dd>
                 <a href="https://spec.openapis.org/oas/latest.html">https://spec.openapis.org/oas/latest.html</a>
               </dd>
@@ -276,8 +217,8 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <p class="copyright">Copyright © 2014 the Linux Foundation</p>
     <hr title="Separator for header">
   </div><style>
-#respec-ui { visibility: hidden; }h1,h2,h3 { color: #629b34; }.dt-published { color: #629b34; } .dt-published::before { content: "Published "; }a[href] { color: #45512c; }body:not(.toc-inline) #toc h2 { color: #45512c; }table { display: block; width: 100%; overflow: auto; }table th { font-weight: 600; }table th, table td { padding: 6px 13px; border: 1px solid #dfe2e5; }table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }table tr:nth-child(2n) { background-color: #f6f8fa; }pre { background-color: #f6f8fa !important; }code { color: #c83500 } th code { color: inherit }a.bibref { text-decoration: underline;}/**  * GitHub Gist Theme  * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro  */  .hljs {   display: block;   background: white;   padding: 0.5em;   color: #333333;   overflow-x: auto; }  .hljs-comment, .hljs-meta {   color: #969896; }  .hljs-string, .hljs-variable, .hljs-template-variable, .hljs-strong, .hljs-emphasis, .hljs-quote {   color: #df5000; }  .hljs-number {   color: #008080; }  .hljs-keyword, .hljs-selector-tag, .hljs-type {   color: #a71d5d; }  .hljs-literal, .hljs-symbol, .hljs-bullet, .hljs-attribute {   color: #0086b3; }  .hljs-section, .hljs-name {   color: #63a35c; }  .hljs-tag {   color: #333333; }  .hljs-title, .hljs-attr, .hljs-selector-id, .hljs-selector-class, .hljs-selector-attr, .hljs-selector-pseudo {   color: #795da3; }  .hljs-addition {   color: #55a532;   background-color: #eaffea; }  .hljs-deletion {   color: #bd2c00;   background-color: #ffecec; }  .hljs-link {   text-decoration: underline; } 
-</style><section class="notoc introductory" id="abstract"><h2>What is the OpenAPI Specification?</h2>The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.</section><section class="override introductory notoc" id="sotd" data-max-toc="0"><h2>Status of This Document</h2>The source-of-truth for the specification is the GitHub markdown file referenced above.</section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#openapi-specification"><bdi class="secno">1. </bdi>OpenAPI Specification</a></li><li class="tocline"><a class="tocxref" href="#fka-swagger-restful-api-documentation-specification"><bdi class="secno">2. </bdi>(fka Swagger RESTful API Documentation Specification)</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">2.1 </bdi>Version 2.0</a></li></ol></li><li class="tocline"><a class="tocxref" href="#introductions"><bdi class="secno">3. </bdi>Introductions</a></li><li class="tocline"><a class="tocxref" href="#revision-history"><bdi class="secno">4. </bdi>Revision History</a></li><li class="tocline"><a class="tocxref" href="#definitions"><bdi class="secno">5. </bdi><span>Definitions</span></a><ol class="toc"><li class="tocline"><a class="tocxref" href="#path-templating"><bdi class="secno">5.1 </bdi><span>Path Templating</span></a></li><li class="tocline"><a class="tocxref" href="#mime-types"><bdi class="secno">5.2 </bdi><span>Mime Types</span></a></li><li class="tocline"><a class="tocxref" href="#http-status-codes"><bdi class="secno">5.3 </bdi><span>HTTP Status Codes</span></a></li></ol></li><li class="tocline"><a class="tocxref" href="#specification"><bdi class="secno">6. </bdi>Specification</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#format"><bdi class="secno">6.1 </bdi>Format</a></li><li class="tocline"><a class="tocxref" href="#file-structure"><bdi class="secno">6.2 </bdi>File Structure</a></li><li class="tocline"><a class="tocxref" href="#data-types"><bdi class="secno">6.3 </bdi>Data Types</a></li><li class="tocline"><a class="tocxref" href="#schema"><bdi class="secno">6.4 </bdi>Schema</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#swagger-object"><bdi class="secno">6.4.1 </bdi>Swagger Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields"><bdi class="secno">6.4.1.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects"><bdi class="secno">6.4.1.2 </bdi>Patterned Objects</a></li></ol></li><li class="tocline"><a class="tocxref" href="#info-object"><bdi class="secno">6.4.2 </bdi>Info Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-0"><bdi class="secno">6.4.2.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects-0"><bdi class="secno">6.4.2.2 </bdi>Patterned Objects</a></li><li class="tocline"><a class="tocxref" href="#info-object-example"><bdi class="secno">6.4.2.3 </bdi>Info Object Example:</a></li></ol></li><li class="tocline"><a class="tocxref" href="#contact-object"><bdi class="secno">6.4.3 </bdi>Contact Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-1"><bdi class="secno">6.4.3.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects-1"><bdi class="secno">6.4.3.2 </bdi>Patterned Objects</a></li><li class="tocline"><a class="tocxref" href="#contact-object-example"><bdi class="secno">6.4.3.3 </bdi>Contact Object Example:</a></li></ol></li><li class="tocline"><a class="tocxref" href="#license-object"><bdi class="secno">6.4.4 </bdi>License Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-2"><bdi class="secno">6.4.4.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects-2"><bdi class="secno">6.4.4.2 </bdi>Patterned Objects</a></li><li class="tocline"><a class="tocxref" href="#license-object-example"><bdi class="secno">6.4.4.3 </bdi>License Object Example:</a></li></ol></li><li class="tocline"><a class="tocxref" href="#paths-object"><bdi class="secno">6.4.5 </bdi>Paths Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields"><bdi class="secno">6.4.5.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#paths-object-example"><bdi class="secno">6.4.5.2 </bdi>Paths Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#path-item-object"><bdi class="secno">6.4.6 </bdi>Path Item Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-3"><bdi class="secno">6.4.6.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-fields-0"><bdi class="secno">6.4.6.2 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#path-item-object-example"><bdi class="secno">6.4.6.3 </bdi>Path Item Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#operation-object"><bdi class="secno">6.4.7 </bdi>Operation Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-4"><bdi class="secno">6.4.7.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects-3"><bdi class="secno">6.4.7.2 </bdi>Patterned Objects</a></li><li class="tocline"><a class="tocxref" href="#operation-object-example"><bdi class="secno">6.4.7.3 </bdi>Operation Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#external-documentation-object"><bdi class="secno">6.4.8 </bdi>External Documentation Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-5"><bdi class="secno">6.4.8.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects-4"><bdi class="secno">6.4.8.2 </bdi>Patterned Objects</a></li><li class="tocline"><a class="tocxref" href="#external-documentation-object-example"><bdi class="secno">6.4.8.3 </bdi>External Documentation Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#parameter-object"><bdi class="secno">6.4.9 </bdi>Parameter Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-6"><bdi class="secno">6.4.9.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-fields-1"><bdi class="secno">6.4.9.2 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#parameter-object-examples"><bdi class="secno">6.4.9.3 </bdi>Parameter Object Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#body-parameters"><bdi class="secno">6.4.9.3.1 </bdi>Body Parameters</a></li><li class="tocline"><a class="tocxref" href="#other-parameters"><bdi class="secno">6.4.9.3.2 </bdi>Other Parameters</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#items-object"><bdi class="secno">6.4.10 </bdi>Items Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-7"><bdi class="secno">6.4.10.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects-5"><bdi class="secno">6.4.10.2 </bdi>Patterned Objects</a></li><li class="tocline"><a class="tocxref" href="#items-object-examples"><bdi class="secno">6.4.10.3 </bdi>Items Object Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#responses-object"><bdi class="secno">6.4.11 </bdi>Responses Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-8"><bdi class="secno">6.4.11.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-fields-2"><bdi class="secno">6.4.11.2 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#responses-object-example"><bdi class="secno">6.4.11.3 </bdi>Responses Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#response-object"><bdi class="secno">6.4.12 </bdi>Response Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-9"><bdi class="secno">6.4.12.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects-6"><bdi class="secno">6.4.12.2 </bdi>Patterned Objects</a></li><li class="tocline"><a class="tocxref" href="#response-object-examples"><bdi class="secno">6.4.12.3 </bdi>Response Object Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#headers-object"><bdi class="secno">6.4.13 </bdi>Headers Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-3"><bdi class="secno">6.4.13.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#headers-object-example"><bdi class="secno">6.4.13.2 </bdi>Headers Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#example-object"><bdi class="secno">6.4.14 </bdi>Example Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-4"><bdi class="secno">6.4.14.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#example-object-example"><bdi class="secno">6.4.14.2 </bdi>Example Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#header-object"><bdi class="secno">6.4.15 </bdi>Header Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-objects-7"><bdi class="secno">6.4.15.1 </bdi>Patterned Objects</a></li><li class="tocline"><a class="tocxref" href="#header-object-example"><bdi class="secno">6.4.15.2 </bdi>Header Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#tag-object"><bdi class="secno">6.4.16 </bdi>Tag Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-10"><bdi class="secno">6.4.16.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-fields-5"><bdi class="secno">6.4.16.2 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#tag-object-example"><bdi class="secno">6.4.16.3 </bdi>Tag Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#reference-object"><bdi class="secno">6.4.17 </bdi>Reference Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-11"><bdi class="secno">6.4.17.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#reference-object-example"><bdi class="secno">6.4.17.2 </bdi>Reference Object Example</a></li><li class="tocline"><a class="tocxref" href="#relative-schema-file-example"><bdi class="secno">6.4.17.3 </bdi>Relative Schema File Example</a></li><li class="tocline"><a class="tocxref" href="#relative-files-with-embedded-schema-example"><bdi class="secno">6.4.17.4 </bdi>Relative Files With Embedded Schema Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#schema-object"><bdi class="secno">6.4.18 </bdi>Schema Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-12"><bdi class="secno">6.4.18.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects-8"><bdi class="secno">6.4.18.2 </bdi>Patterned Objects</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#composition-and-inheritance-polymorphism"><bdi class="secno">6.4.18.2.1 </bdi>Composition and Inheritance (Polymorphism)</a></li><li class="tocline"><a class="tocxref" href="#xml-modeling"><bdi class="secno">6.4.18.2.2 </bdi>XML Modeling</a></li></ol></li><li class="tocline"><a class="tocxref" href="#schema-object-examples"><bdi class="secno">6.4.18.3 </bdi>Schema Object Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#primitive-sample"><bdi class="secno">6.4.18.3.1 </bdi>Primitive Sample</a></li><li class="tocline"><a class="tocxref" href="#simple-model"><bdi class="secno">6.4.18.3.2 </bdi>Simple Model</a></li><li class="tocline"><a class="tocxref" href="#model-with-map-dictionary-properties"><bdi class="secno">6.4.18.3.3 </bdi>Model with Map/Dictionary Properties</a></li><li class="tocline"><a class="tocxref" href="#model-with-example"><bdi class="secno">6.4.18.3.4 </bdi>Model with Example</a></li><li class="tocline"><a class="tocxref" href="#models-with-composition"><bdi class="secno">6.4.18.3.5 </bdi>Models with Composition</a></li><li class="tocline"><a class="tocxref" href="#models-with-polymorphism-support"><bdi class="secno">6.4.18.3.6 </bdi>Models with Polymorphism Support</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#xml-object"><bdi class="secno">6.4.19 </bdi>XML Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-13"><bdi class="secno">6.4.19.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects-9"><bdi class="secno">6.4.19.2 </bdi>Patterned Objects</a></li><li class="tocline"><a class="tocxref" href="#xml-object-examples"><bdi class="secno">6.4.19.3 </bdi>XML Object Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#no-xml-element"><bdi class="secno">6.4.19.3.1 </bdi>No XML Element</a></li><li class="tocline"><a class="tocxref" href="#xml-name-replacement"><bdi class="secno">6.4.19.3.2 </bdi>XML Name Replacement</a></li><li class="tocline"><a class="tocxref" href="#xml-attribute-prefix-and-namespace"><bdi class="secno">6.4.19.3.3 </bdi>XML Attribute, Prefix and Namespace</a></li><li class="tocline"><a class="tocxref" href="#xml-arrays"><bdi class="secno">6.4.19.3.4 </bdi>XML Arrays</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#definitions-object"><bdi class="secno">6.4.20 </bdi>Definitions Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-6"><bdi class="secno">6.4.20.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#definitions-object-example"><bdi class="secno">6.4.20.2 </bdi>Definitions Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#parameters-definitions-object"><bdi class="secno">6.4.21 </bdi>Parameters Definitions Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-7"><bdi class="secno">6.4.21.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#parameters-definition-object-example"><bdi class="secno">6.4.21.2 </bdi>Parameters Definition Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#responses-definitions-object"><bdi class="secno">6.4.22 </bdi>Responses Definitions Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-8"><bdi class="secno">6.4.22.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#responses-definitions-object-example"><bdi class="secno">6.4.22.2 </bdi>Responses Definitions Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#security-definitions-object"><bdi class="secno">6.4.23 </bdi>Security Definitions Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-9"><bdi class="secno">6.4.23.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#security-definitions-object-example"><bdi class="secno">6.4.23.2 </bdi>Security Definitions Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#security-scheme-object"><bdi class="secno">6.4.24 </bdi>Security Scheme Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-14"><bdi class="secno">6.4.24.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-fields-10"><bdi class="secno">6.4.24.2 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#security-scheme-object-example"><bdi class="secno">6.4.24.3 </bdi>Security Scheme Object Example</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#basic-authentication-sample"><bdi class="secno">6.4.24.3.1 </bdi>Basic Authentication Sample</a></li><li class="tocline"><a class="tocxref" href="#api-key-sample"><bdi class="secno">6.4.24.3.2 </bdi>API Key Sample</a></li><li class="tocline"><a class="tocxref" href="#implicit-oauth2-sample"><bdi class="secno">6.4.24.3.3 </bdi>Implicit OAuth2 Sample</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#scopes-object"><bdi class="secno">6.4.25 </bdi>Scopes Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-11"><bdi class="secno">6.4.25.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects-10"><bdi class="secno">6.4.25.2 </bdi>Patterned Objects</a></li><li class="tocline"><a class="tocxref" href="#scopes-object-example"><bdi class="secno">6.4.25.3 </bdi>Scopes Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#security-requirement-object"><bdi class="secno">6.4.26 </bdi>Security Requirement Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-12"><bdi class="secno">6.4.26.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#security-requirement-object-examples"><bdi class="secno">6.4.26.2 </bdi>Security Requirement Object Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#non-oauth2-security-requirement"><bdi class="secno">6.4.26.2.1 </bdi>Non-OAuth2 Security Requirement</a></li><li class="tocline"><a class="tocxref" href="#oauth2-security-requirement"><bdi class="secno">6.4.26.2.2 </bdi>OAuth2 Security Requirement</a></li></ol></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#specification-extensions"><bdi class="secno">6.5 </bdi>Specification Extensions</a></li><li class="tocline"><a class="tocxref" href="#security-filtering"><bdi class="secno">6.6 </bdi>Security Filtering</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">A. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">A.1 </bdi>Normative references</a></li></ol></li></ol></nav>
+#respec-ui { visibility: hidden; }#title { color: #578000; } #subtitle { color: #578000; }.dt-published { color: #578000; } .dt-published::before { content: "Published "; }h1,h2,h3,h4,h5,h6 { color: #578000; font-weight: normal; font-style: normal; }a[href] { color: #45512c; }body:not(.toc-inline) #toc h2 { color: #45512c; }table { display: block; width: 100%; overflow: auto; }table th { font-weight: 600; }table th, table td { padding: 6px 13px; border: 1px solid #dfe2e5; }table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }table tr:nth-child(2n) { background-color: #f6f8fa; }pre { background-color: #f6f8fa !important; }code { color: #c83500 } th code { color: inherit }a.bibref { text-decoration: underline;}/**  * GitHub Gist Theme  * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro  */  .hljs {   display: block;   background: white;   padding: 0.5em;   color: #333333;   overflow-x: auto; }  .hljs-comment, .hljs-meta {   color: #727070; }  .hljs-string, .hljs-variable, .hljs-template-variable, .hljs-strong, .hljs-emphasis, .hljs-quote {   color: #c74700; }  .hljs-number {   color: #005e5e; }  .hljs-keyword, .hljs-selector-tag, .hljs-type {   color: #a71d5d; }  .hljs-literal, .hljs-symbol, .hljs-bullet, .hljs-attribute {   color: #007aa2; }  .hljs-section, .hljs-name {   color: #4b7c46; }  .hljs-tag {   color: #333333; }  .hljs-title, .hljs-attr, .hljs-selector-id, .hljs-selector-class, .hljs-selector-attr, .hljs-selector-pseudo {   color: #795da3; }  .hljs-addition {   color: #55a532;   background-color: #eaffea; }  .hljs-deletion {   color: #bd2c00;   background-color: #ffecec; }  .hljs-link {   text-decoration: underline; } 
+</style><section class="notoc introductory" id="abstract"><h2>What is the OpenAPI Specification?</h2>The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.</section><section class="override introductory notoc" id="sotd" data-max-toc="0"><h2>Status of This Document</h2>The source-of-truth for this specification is the HTML file referenced above as <em>This version</em>.</section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#openapi-specification"><bdi class="secno">1. </bdi>OpenAPI Specification</a></li><li class="tocline"><a class="tocxref" href="#fka-swagger-restful-api-documentation-specification"><bdi class="secno">2. </bdi>(fka Swagger RESTful API Documentation Specification)</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">2.1 </bdi>Version 2.0</a></li></ol></li><li class="tocline"><a class="tocxref" href="#introductions"><bdi class="secno">3. </bdi>Introductions</a></li><li class="tocline"><a class="tocxref" href="#revision-history"><bdi class="secno">4. </bdi>Revision History</a></li><li class="tocline"><a class="tocxref" href="#definitions"><bdi class="secno">5. </bdi><span>Definitions</span></a><ol class="toc"><li class="tocline"><a class="tocxref" href="#path-templating"><bdi class="secno">5.1 </bdi><span>Path Templating</span></a></li><li class="tocline"><a class="tocxref" href="#mime-types"><bdi class="secno">5.2 </bdi><span>Mime Types</span></a></li><li class="tocline"><a class="tocxref" href="#http-status-codes"><bdi class="secno">5.3 </bdi><span>HTTP Status Codes</span></a></li></ol></li><li class="tocline"><a class="tocxref" href="#specification"><bdi class="secno">6. </bdi>Specification</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#format"><bdi class="secno">6.1 </bdi>Format</a></li><li class="tocline"><a class="tocxref" href="#file-structure"><bdi class="secno">6.2 </bdi>File Structure</a></li><li class="tocline"><a class="tocxref" href="#data-types"><bdi class="secno">6.3 </bdi>Data Types</a></li><li class="tocline"><a class="tocxref" href="#schema"><bdi class="secno">6.4 </bdi>Schema</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#swagger-object"><bdi class="secno">6.4.1 </bdi>Swagger Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields"><bdi class="secno">6.4.1.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects"><bdi class="secno">6.4.1.2 </bdi>Patterned Objects</a></li></ol></li><li class="tocline"><a class="tocxref" href="#info-object"><bdi class="secno">6.4.2 </bdi>Info Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-0"><bdi class="secno">6.4.2.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects-0"><bdi class="secno">6.4.2.2 </bdi>Patterned Objects</a></li><li class="tocline"><a class="tocxref" href="#info-object-example"><bdi class="secno">6.4.2.3 </bdi>Info Object Example:</a></li></ol></li><li class="tocline"><a class="tocxref" href="#contact-object"><bdi class="secno">6.4.3 </bdi>Contact Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-1"><bdi class="secno">6.4.3.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects-1"><bdi class="secno">6.4.3.2 </bdi>Patterned Objects</a></li><li class="tocline"><a class="tocxref" href="#contact-object-example"><bdi class="secno">6.4.3.3 </bdi>Contact Object Example:</a></li></ol></li><li class="tocline"><a class="tocxref" href="#license-object"><bdi class="secno">6.4.4 </bdi>License Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-2"><bdi class="secno">6.4.4.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects-2"><bdi class="secno">6.4.4.2 </bdi>Patterned Objects</a></li><li class="tocline"><a class="tocxref" href="#license-object-example"><bdi class="secno">6.4.4.3 </bdi>License Object Example:</a></li></ol></li><li class="tocline"><a class="tocxref" href="#paths-object"><bdi class="secno">6.4.5 </bdi>Paths Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields"><bdi class="secno">6.4.5.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#paths-object-example"><bdi class="secno">6.4.5.2 </bdi>Paths Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#path-item-object"><bdi class="secno">6.4.6 </bdi>Path Item Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-3"><bdi class="secno">6.4.6.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-fields-0"><bdi class="secno">6.4.6.2 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#path-item-object-example"><bdi class="secno">6.4.6.3 </bdi>Path Item Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#operation-object"><bdi class="secno">6.4.7 </bdi>Operation Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-4"><bdi class="secno">6.4.7.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects-3"><bdi class="secno">6.4.7.2 </bdi>Patterned Objects</a></li><li class="tocline"><a class="tocxref" href="#operation-object-example"><bdi class="secno">6.4.7.3 </bdi>Operation Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#external-documentation-object"><bdi class="secno">6.4.8 </bdi>External Documentation Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-5"><bdi class="secno">6.4.8.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects-4"><bdi class="secno">6.4.8.2 </bdi>Patterned Objects</a></li><li class="tocline"><a class="tocxref" href="#external-documentation-object-example"><bdi class="secno">6.4.8.3 </bdi>External Documentation Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#parameter-object"><bdi class="secno">6.4.9 </bdi>Parameter Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-6"><bdi class="secno">6.4.9.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-fields-1"><bdi class="secno">6.4.9.2 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#parameter-object-examples"><bdi class="secno">6.4.9.3 </bdi>Parameter Object Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#body-parameters"><bdi class="secno">6.4.9.3.1 </bdi>Body Parameters</a></li><li class="tocline"><a class="tocxref" href="#other-parameters"><bdi class="secno">6.4.9.3.2 </bdi>Other Parameters</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#items-object"><bdi class="secno">6.4.10 </bdi>Items Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-7"><bdi class="secno">6.4.10.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects-5"><bdi class="secno">6.4.10.2 </bdi>Patterned Objects</a></li><li class="tocline"><a class="tocxref" href="#items-object-examples"><bdi class="secno">6.4.10.3 </bdi>Items Object Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#responses-object"><bdi class="secno">6.4.11 </bdi>Responses Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-8"><bdi class="secno">6.4.11.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-fields-2"><bdi class="secno">6.4.11.2 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#responses-object-example"><bdi class="secno">6.4.11.3 </bdi>Responses Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#response-object"><bdi class="secno">6.4.12 </bdi>Response Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-9"><bdi class="secno">6.4.12.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects-6"><bdi class="secno">6.4.12.2 </bdi>Patterned Objects</a></li><li class="tocline"><a class="tocxref" href="#response-object-examples"><bdi class="secno">6.4.12.3 </bdi>Response Object Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#headers-object"><bdi class="secno">6.4.13 </bdi>Headers Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-3"><bdi class="secno">6.4.13.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#headers-object-example"><bdi class="secno">6.4.13.2 </bdi>Headers Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#example-object"><bdi class="secno">6.4.14 </bdi>Example Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-4"><bdi class="secno">6.4.14.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#example-object-example"><bdi class="secno">6.4.14.2 </bdi>Example Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#header-object"><bdi class="secno">6.4.15 </bdi>Header Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-objects-7"><bdi class="secno">6.4.15.1 </bdi>Patterned Objects</a></li><li class="tocline"><a class="tocxref" href="#header-object-example"><bdi class="secno">6.4.15.2 </bdi>Header Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#tag-object"><bdi class="secno">6.4.16 </bdi>Tag Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-10"><bdi class="secno">6.4.16.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-fields-5"><bdi class="secno">6.4.16.2 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#tag-object-example"><bdi class="secno">6.4.16.3 </bdi>Tag Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#reference-object"><bdi class="secno">6.4.17 </bdi>Reference Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-11"><bdi class="secno">6.4.17.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#reference-object-example"><bdi class="secno">6.4.17.2 </bdi>Reference Object Example</a></li><li class="tocline"><a class="tocxref" href="#relative-schema-file-example"><bdi class="secno">6.4.17.3 </bdi>Relative Schema File Example</a></li><li class="tocline"><a class="tocxref" href="#relative-files-with-embedded-schema-example"><bdi class="secno">6.4.17.4 </bdi>Relative Files With Embedded Schema Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#schema-object"><bdi class="secno">6.4.18 </bdi>Schema Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-12"><bdi class="secno">6.4.18.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects-8"><bdi class="secno">6.4.18.2 </bdi>Patterned Objects</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#composition-and-inheritance-polymorphism"><bdi class="secno">6.4.18.2.1 </bdi>Composition and Inheritance (Polymorphism)</a></li><li class="tocline"><a class="tocxref" href="#xml-modeling"><bdi class="secno">6.4.18.2.2 </bdi>XML Modeling</a></li></ol></li><li class="tocline"><a class="tocxref" href="#schema-object-examples"><bdi class="secno">6.4.18.3 </bdi>Schema Object Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#primitive-sample"><bdi class="secno">6.4.18.3.1 </bdi>Primitive Sample</a></li><li class="tocline"><a class="tocxref" href="#simple-model"><bdi class="secno">6.4.18.3.2 </bdi>Simple Model</a></li><li class="tocline"><a class="tocxref" href="#model-with-map-dictionary-properties"><bdi class="secno">6.4.18.3.3 </bdi>Model with Map/Dictionary Properties</a></li><li class="tocline"><a class="tocxref" href="#model-with-example"><bdi class="secno">6.4.18.3.4 </bdi>Model with Example</a></li><li class="tocline"><a class="tocxref" href="#models-with-composition"><bdi class="secno">6.4.18.3.5 </bdi>Models with Composition</a></li><li class="tocline"><a class="tocxref" href="#models-with-polymorphism-support"><bdi class="secno">6.4.18.3.6 </bdi>Models with Polymorphism Support</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#xml-object"><bdi class="secno">6.4.19 </bdi>XML Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-13"><bdi class="secno">6.4.19.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects-9"><bdi class="secno">6.4.19.2 </bdi>Patterned Objects</a></li><li class="tocline"><a class="tocxref" href="#xml-object-examples"><bdi class="secno">6.4.19.3 </bdi>XML Object Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#no-xml-element"><bdi class="secno">6.4.19.3.1 </bdi>No XML Element</a></li><li class="tocline"><a class="tocxref" href="#xml-name-replacement"><bdi class="secno">6.4.19.3.2 </bdi>XML Name Replacement</a></li><li class="tocline"><a class="tocxref" href="#xml-attribute-prefix-and-namespace"><bdi class="secno">6.4.19.3.3 </bdi>XML Attribute, Prefix and Namespace</a></li><li class="tocline"><a class="tocxref" href="#xml-arrays"><bdi class="secno">6.4.19.3.4 </bdi>XML Arrays</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#definitions-object"><bdi class="secno">6.4.20 </bdi>Definitions Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-6"><bdi class="secno">6.4.20.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#definitions-object-example"><bdi class="secno">6.4.20.2 </bdi>Definitions Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#parameters-definitions-object"><bdi class="secno">6.4.21 </bdi>Parameters Definitions Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-7"><bdi class="secno">6.4.21.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#parameters-definition-object-example"><bdi class="secno">6.4.21.2 </bdi>Parameters Definition Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#responses-definitions-object"><bdi class="secno">6.4.22 </bdi>Responses Definitions Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-8"><bdi class="secno">6.4.22.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#responses-definitions-object-example"><bdi class="secno">6.4.22.2 </bdi>Responses Definitions Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#security-definitions-object"><bdi class="secno">6.4.23 </bdi>Security Definitions Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-9"><bdi class="secno">6.4.23.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#security-definitions-object-example"><bdi class="secno">6.4.23.2 </bdi>Security Definitions Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#security-scheme-object"><bdi class="secno">6.4.24 </bdi>Security Scheme Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-14"><bdi class="secno">6.4.24.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-fields-10"><bdi class="secno">6.4.24.2 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#security-scheme-object-example"><bdi class="secno">6.4.24.3 </bdi>Security Scheme Object Example</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#basic-authentication-sample"><bdi class="secno">6.4.24.3.1 </bdi>Basic Authentication Sample</a></li><li class="tocline"><a class="tocxref" href="#api-key-sample"><bdi class="secno">6.4.24.3.2 </bdi>API Key Sample</a></li><li class="tocline"><a class="tocxref" href="#implicit-oauth2-sample"><bdi class="secno">6.4.24.3.3 </bdi>Implicit OAuth2 Sample</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#scopes-object"><bdi class="secno">6.4.25 </bdi>Scopes Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-11"><bdi class="secno">6.4.25.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-objects-10"><bdi class="secno">6.4.25.2 </bdi>Patterned Objects</a></li><li class="tocline"><a class="tocxref" href="#scopes-object-example"><bdi class="secno">6.4.25.3 </bdi>Scopes Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#security-requirement-object"><bdi class="secno">6.4.26 </bdi>Security Requirement Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-12"><bdi class="secno">6.4.26.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#security-requirement-object-examples"><bdi class="secno">6.4.26.2 </bdi>Security Requirement Object Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#non-oauth2-security-requirement"><bdi class="secno">6.4.26.2.1 </bdi>Non-OAuth2 Security Requirement</a></li><li class="tocline"><a class="tocxref" href="#oauth2-security-requirement"><bdi class="secno">6.4.26.2.2 </bdi>OAuth2 Security Requirement</a></li></ol></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#specification-extensions"><bdi class="secno">6.5 </bdi>Specification Extensions</a></li><li class="tocline"><a class="tocxref" href="#security-filtering"><bdi class="secno">6.6 </bdi>Security Filtering</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">A. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">A.1 </bdi>Normative references</a></li></ol></li></ol></nav>
 <section id="openapi-specification"><div class="header-wrapper"><h2 id="x1-openapi-specification"><bdi class="secno">1. </bdi>OpenAPI Specification</h2><a class="self-link" href="#openapi-specification" aria-label="Permalink for Section 1."></a></div>
 </section><section id="fka-swagger-restful-api-documentation-specification"><div class="header-wrapper"><h2 id="x2-fka-swagger-restful-api-documentation-specification"><bdi class="secno">2. </bdi>(fka Swagger RESTful API Documentation Specification)</h2><a class="self-link" href="#fka-swagger-restful-api-documentation-specification" aria-label="Permalink for Section 2."></a></div>
 <section class="override" id="conformance"><div class="header-wrapper"><h3 id="x2-1-version-2-0"><bdi class="secno">2.1 </bdi>Version 2.0</h3><a class="self-link" href="#conformance" aria-label="Permalink for Section 2.1"></a></div>
@@ -324,8 +265,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
 </section><section id="mime-types"><div class="header-wrapper"><h3 id="x5-2-mime-types"><bdi class="secno">5.2 </bdi><dfn id="dfn-mime-types" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">Mime Types</dfn></h3><a class="self-link" href="#mime-types" aria-label="Permalink for Section 5.2"></a></div>
 <p>Mime type definitions are spread across several resources. The mime type definitions should be in compliance with [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc6838" title="Media Type Specifications and Registration Procedures">RFC6838</a></cite>].</p>
 <p>Some examples of possible mime type definitions:</p>
-<pre class="highlight "><code aria-busy="false" class="hljs">
-  text/plain; charset=utf-8
+<pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs">  text/plain; charset=utf-8
   application/json
   application/vnd.github+json
   application/vnd.github.v3+json
@@ -343,8 +283,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
 <p>The files describing the RESTful API in accordance with the Swagger specification are represented as JSON objects and conform to the <cite><a class="bibref" data-link-type="biblio" href="#bib-rfc7159" title="The JavaScript Object Notation (JSON) Data Interchange Format">JSON</a></cite> standards. <cite><a class="bibref" data-link-type="biblio" href="#bib-yaml" title="YAML Ain’t Markup Language (YAML™) Version 1.2">YAML</a></cite>, being a superset of JSON, can be used as well to
 represent a Swagger specification file.</p>
 <p>For example, if a field is said to have an array value, the JSON array representation will be used:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
    <span class="hljs-string">"field"</span> : [...]
 }
 </code></pre>
@@ -605,8 +544,7 @@ represent a Swagger specification file.</p>
 </tbody>
 </table>
 </section><section id="info-object-example"><div class="header-wrapper"><h5 id="x6-4-2-3-info-object-example"><bdi class="secno">6.4.2.3 </bdi>Info Object Example:</h5><a class="self-link" href="#info-object-example" aria-label="Permalink for Section 6.4.2.3"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"title"</span>: <span class="hljs-string">"Swagger Sample App"</span>,
   <span class="hljs-string">"description"</span>: <span class="hljs-string">"This is a sample server Petstore server."</span>,
   <span class="hljs-string">"termsOfService"</span>: <span class="hljs-string">"http://swagger.io/terms/"</span>,
@@ -622,8 +560,7 @@ represent a Swagger specification file.</p>
   <span class="hljs-string">"version"</span>: <span class="hljs-string">"1.0.1"</span>
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">title:</span> <span class="hljs-string">Swagger</span> <span class="hljs-string">Sample</span> <span class="hljs-string">App</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">title:</span> <span class="hljs-string">Swagger</span> <span class="hljs-string">Sample</span> <span class="hljs-string">App</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">This</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">sample</span> <span class="hljs-string">server</span> <span class="hljs-string">Petstore</span> <span class="hljs-string">server.</span>
 <span class="hljs-attr">termsOfService:</span> <span class="hljs-string">http://swagger.io/terms/</span>
 <span class="hljs-attr">contact:</span>
@@ -682,15 +619,13 @@ represent a Swagger specification file.</p>
 </tbody>
 </table>
 </section><section id="contact-object-example"><div class="header-wrapper"><h5 id="x6-4-3-3-contact-object-example"><bdi class="secno">6.4.3.3 </bdi>Contact Object Example:</h5><a class="self-link" href="#contact-object-example" aria-label="Permalink for Section 6.4.3.3"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"name"</span>: <span class="hljs-string">"API Support"</span>,
   <span class="hljs-string">"url"</span>: <span class="hljs-string">"http://www.swagger.io/support"</span>,
   <span class="hljs-string">"email"</span>: <span class="hljs-string">"support@swagger.io"</span>
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">name:</span> <span class="hljs-string">API</span> <span class="hljs-string">Support</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">name:</span> <span class="hljs-string">API</span> <span class="hljs-string">Support</span>
 <span class="hljs-attr">url:</span> <span class="hljs-string">http://www.swagger.io/support</span>
 <span class="hljs-attr">email:</span> <span class="hljs-string">support@swagger.io</span>
 </code></pre>
@@ -736,14 +671,12 @@ represent a Swagger specification file.</p>
 </tbody>
 </table>
 </section><section id="license-object-example"><div class="header-wrapper"><h5 id="x6-4-4-3-license-object-example"><bdi class="secno">6.4.4.3 </bdi>License Object Example:</h5><a class="self-link" href="#license-object-example" aria-label="Permalink for Section 6.4.4.3"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"name"</span>: <span class="hljs-string">"Apache 2.0"</span>,
   <span class="hljs-string">"url"</span>: <span class="hljs-string">"http://www.apache.org/licenses/LICENSE-2.0.html"</span>
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">name:</span> <span class="hljs-string">Apache</span> <span class="hljs-number">2.0</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">name:</span> <span class="hljs-string">Apache</span> <span class="hljs-number">2.0</span>
 <span class="hljs-attr">url:</span> <span class="hljs-string">http://www.apache.org/licenses/LICENSE-2.0.html</span>
 </code></pre>
 </section></section><section id="paths-object"><div class="header-wrapper"><h4 id="x6-4-5-paths-object"><bdi class="secno">6.4.5 </bdi>Paths Object</h4><a class="self-link" href="#paths-object" aria-label="Permalink for Section 6.4.5"></a></div>
@@ -772,8 +705,7 @@ The Paths may be empty, due to <a href="#security-filtering">ACL constraints</a>
 </tbody>
 </table>
 </section><section id="paths-object-example"><div class="header-wrapper"><h5 id="x6-4-5-2-paths-object-example"><bdi class="secno">6.4.5.2 </bdi>Paths Object Example</h5><a class="self-link" href="#paths-object-example" aria-label="Permalink for Section 6.4.5.2"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"/pets"</span>: {
     <span class="hljs-string">"get"</span>: {
       <span class="hljs-string">"description"</span>: <span class="hljs-string">"Returns all pets from the system that the user has access to"</span>,
@@ -795,8 +727,7 @@ The Paths may be empty, due to <a href="#security-filtering">ACL constraints</a>
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-string">/pets:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-string">/pets:</span>
   <span class="hljs-attr">get:</span>
     <span class="hljs-attr">description:</span> <span class="hljs-string">Returns</span> <span class="hljs-string">all</span> <span class="hljs-string">pets</span> <span class="hljs-string">from</span> <span class="hljs-string">the</span> <span class="hljs-string">system</span> <span class="hljs-string">that</span> <span class="hljs-string">the</span> <span class="hljs-string">user</span> <span class="hljs-string">has</span> <span class="hljs-string">access</span> <span class="hljs-string">to</span>
     <span class="hljs-attr">produces:</span>
@@ -887,8 +818,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </tbody>
 </table>
 </section><section id="path-item-object-example"><div class="header-wrapper"><h5 id="x6-4-6-3-path-item-object-example"><bdi class="secno">6.4.6.3 </bdi>Path Item Object Example</h5><a class="self-link" href="#path-item-object-example" aria-label="Permalink for Section 6.4.6.3"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"get"</span>: {
     <span class="hljs-string">"description"</span>: <span class="hljs-string">"Returns pets based on ID"</span>,
     <span class="hljs-string">"summary"</span>: <span class="hljs-string">"Find pets by ID"</span>,
@@ -930,8 +860,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   ]
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">get:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">get:</span>
   <span class="hljs-attr">description:</span> <span class="hljs-string">Returns</span> <span class="hljs-string">pets</span> <span class="hljs-string">based</span> <span class="hljs-string">on</span> <span class="hljs-string">ID</span>
   <span class="hljs-attr">summary:</span> <span class="hljs-string">Find</span> <span class="hljs-string">pets</span> <span class="hljs-string">by</span> <span class="hljs-string">ID</span>
   <span class="hljs-attr">operationId:</span> <span class="hljs-string">getPetsById</span>
@@ -1051,8 +980,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </tbody>
 </table>
 </section><section id="operation-object-example"><div class="header-wrapper"><h5 id="x6-4-7-3-operation-object-example"><bdi class="secno">6.4.7.3 </bdi>Operation Object Example</h5><a class="self-link" href="#operation-object-example" aria-label="Permalink for Section 6.4.7.3"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"tags"</span>: [
     <span class="hljs-string">"pet"</span>
   ],
@@ -1107,8 +1035,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   ]
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">tags:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">tags:</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">pet</span>
 <span class="hljs-attr">summary:</span> <span class="hljs-string">Updates</span> <span class="hljs-string">a</span> <span class="hljs-string">pet</span> <span class="hljs-string">in</span> <span class="hljs-string">the</span> <span class="hljs-string">store</span> <span class="hljs-string">with</span> <span class="hljs-string">form</span> <span class="hljs-string">data</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">""</span>
@@ -1186,14 +1113,12 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </tbody>
 </table>
 </section><section id="external-documentation-object-example"><div class="header-wrapper"><h5 id="x6-4-8-3-external-documentation-object-example"><bdi class="secno">6.4.8.3 </bdi>External Documentation Object Example</h5><a class="self-link" href="#external-documentation-object-example" aria-label="Permalink for Section 6.4.8.3"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"description"</span>: <span class="hljs-string">"Find more info here"</span>,
   <span class="hljs-string">"url"</span>: <span class="hljs-string">"https://swagger.io"</span>
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">description:</span> <span class="hljs-string">Find</span> <span class="hljs-string">more</span> <span class="hljs-string">info</span> <span class="hljs-string">here</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">description:</span> <span class="hljs-string">Find</span> <span class="hljs-string">more</span> <span class="hljs-string">info</span> <span class="hljs-string">here</span>
 <span class="hljs-attr">url:</span> <span class="hljs-string">https://swagger.io</span>
 </code></pre>
 </section></section><section id="parameter-object"><div class="header-wrapper"><h4 id="x6-4-9-parameter-object"><bdi class="secno">6.4.9 </bdi>Parameter Object</h4><a class="self-link" href="#parameter-object" aria-label="Permalink for Section 6.4.9"></a></div>
@@ -1383,8 +1308,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </section><section id="parameter-object-examples"><div class="header-wrapper"><h5 id="x6-4-9-3-parameter-object-examples"><bdi class="secno">6.4.9.3 </bdi>Parameter Object Examples</h5><a class="self-link" href="#parameter-object-examples" aria-label="Permalink for Section 6.4.9.3"></a></div>
 <section id="body-parameters"><div class="header-wrapper"><h6 id="x6-4-9-3-1-body-parameters"><bdi class="secno">6.4.9.3.1 </bdi>Body Parameters</h6><a class="self-link" href="#body-parameters" aria-label="Permalink for Section 6.4.9.3.1"></a></div>
 <p>A body parameter with a referenced schema definition (normally for a model definition):</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"name"</span>: <span class="hljs-string">"user"</span>,
   <span class="hljs-string">"in"</span>: <span class="hljs-string">"body"</span>,
   <span class="hljs-string">"description"</span>: <span class="hljs-string">"user to add to the system"</span>,
@@ -1394,8 +1318,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">name:</span> <span class="hljs-string">user</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">name:</span> <span class="hljs-string">user</span>
 <span class="hljs-attr">in:</span> <span class="hljs-string">body</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">user</span> <span class="hljs-string">to</span> <span class="hljs-string">add</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">system</span>
 <span class="hljs-attr">required:</span> <span class="hljs-literal">true</span>
@@ -1403,8 +1326,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/definitions/User'</span>
 </code></pre>
 <p>A body parameter that is an array of string values:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"name"</span>: <span class="hljs-string">"user"</span>,
   <span class="hljs-string">"in"</span>: <span class="hljs-string">"body"</span>,
   <span class="hljs-string">"description"</span>: <span class="hljs-string">"user to add to the system"</span>,
@@ -1417,8 +1339,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">name:</span> <span class="hljs-string">user</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">name:</span> <span class="hljs-string">user</span>
 <span class="hljs-attr">in:</span> <span class="hljs-string">body</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">user</span> <span class="hljs-string">to</span> <span class="hljs-string">add</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">system</span>
 <span class="hljs-attr">required:</span> <span class="hljs-literal">true</span>
@@ -1429,8 +1350,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </code></pre>
 </section><section id="other-parameters"><div class="header-wrapper"><h6 id="x6-4-9-3-2-other-parameters"><bdi class="secno">6.4.9.3.2 </bdi>Other Parameters</h6><a class="self-link" href="#other-parameters" aria-label="Permalink for Section 6.4.9.3.2"></a></div>
 <p>A header parameter with an array of 64 bit integer numbers:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"name"</span>: <span class="hljs-string">"token"</span>,
   <span class="hljs-string">"in"</span>: <span class="hljs-string">"header"</span>,
   <span class="hljs-string">"description"</span>: <span class="hljs-string">"token to be passed as a header"</span>,
@@ -1443,8 +1363,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   <span class="hljs-string">"collectionFormat"</span>: <span class="hljs-string">"csv"</span>
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">name:</span> <span class="hljs-string">token</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">name:</span> <span class="hljs-string">token</span>
 <span class="hljs-attr">in:</span> <span class="hljs-string">header</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">token</span> <span class="hljs-string">to</span> <span class="hljs-string">be</span> <span class="hljs-string">passed</span> <span class="hljs-string">as</span> <span class="hljs-string">a</span> <span class="hljs-string">header</span>
 <span class="hljs-attr">required:</span> <span class="hljs-literal">true</span>
@@ -1455,8 +1374,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 <span class="hljs-attr">collectionFormat:</span> <span class="hljs-string">csv</span>
 </code></pre>
 <p>A path parameter of a string value:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"name"</span>: <span class="hljs-string">"username"</span>,
   <span class="hljs-string">"in"</span>: <span class="hljs-string">"path"</span>,
   <span class="hljs-string">"description"</span>: <span class="hljs-string">"username to fetch"</span>,
@@ -1464,16 +1382,14 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">name:</span> <span class="hljs-string">username</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">name:</span> <span class="hljs-string">username</span>
 <span class="hljs-attr">in:</span> <span class="hljs-string">path</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">username</span> <span class="hljs-string">to</span> <span class="hljs-string">fetch</span>
 <span class="hljs-attr">required:</span> <span class="hljs-literal">true</span>
 <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 </code></pre>
 <p>An optional query parameter of a string value, allowing multiple values by repeating the query parameter:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"name"</span>: <span class="hljs-string">"id"</span>,
   <span class="hljs-string">"in"</span>: <span class="hljs-string">"query"</span>,
   <span class="hljs-string">"description"</span>: <span class="hljs-string">"ID of the object to fetch"</span>,
@@ -1485,8 +1401,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   <span class="hljs-string">"collectionFormat"</span>: <span class="hljs-string">"multi"</span>
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">name:</span> <span class="hljs-string">id</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">name:</span> <span class="hljs-string">id</span>
 <span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">ID</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">object</span> <span class="hljs-string">to</span> <span class="hljs-string">fetch</span>
 <span class="hljs-attr">required:</span> <span class="hljs-literal">false</span>
@@ -1496,8 +1411,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 <span class="hljs-attr">collectionFormat:</span> <span class="hljs-string">multi</span>
 </code></pre>
 <p>A form data with file type for a file upload:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"name"</span>: <span class="hljs-string">"avatar"</span>,
   <span class="hljs-string">"in"</span>: <span class="hljs-string">"formData"</span>,
   <span class="hljs-string">"description"</span>: <span class="hljs-string">"The avatar of the user"</span>,
@@ -1505,8 +1419,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"file"</span>
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">name:</span> <span class="hljs-string">avatar</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">name:</span> <span class="hljs-string">avatar</span>
 <span class="hljs-attr">in:</span> <span class="hljs-string">formData</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">The</span> <span class="hljs-string">avatar</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">user</span>
 <span class="hljs-attr">required:</span> <span class="hljs-literal">true</span>
@@ -1630,19 +1543,16 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </table>
 </section><section id="items-object-examples"><div class="header-wrapper"><h5 id="x6-4-10-3-items-object-examples"><bdi class="secno">6.4.10.3 </bdi>Items Object Examples</h5><a class="self-link" href="#items-object-examples" aria-label="Permalink for Section 6.4.10.3"></a></div>
 <p>Items must be of type  string and have the minimum length of  2 characters:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>,
     <span class="hljs-string">"minLength"</span>: <span class="hljs-number">2</span>
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 <span class="hljs-attr">minLength:</span> <span class="hljs-number">2</span>
 </code></pre>
 <p>An array of arrays, the internal array being of type integer, numbers must be between 0 and 63 (inclusive):</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"array"</span>,
     <span class="hljs-string">"items"</span>: {
         <span class="hljs-string">"type"</span>: <span class="hljs-string">"integer"</span>,
@@ -1651,8 +1561,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
     }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">type:</span> <span class="hljs-string">array</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">type:</span> <span class="hljs-string">array</span>
 <span class="hljs-attr">items:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">integer</span>
   <span class="hljs-attr">minimum:</span> <span class="hljs-number">0</span>
@@ -1703,8 +1612,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </table>
 </section><section id="responses-object-example"><div class="header-wrapper"><h5 id="x6-4-11-3-responses-object-example"><bdi class="secno">6.4.11.3 </bdi>Responses Object Example</h5><a class="self-link" href="#responses-object-example" aria-label="Permalink for Section 6.4.11.3"></a></div>
 <p>A 200 response for successful operation and a default response for others (implying an error):</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"200"</span>: {
     <span class="hljs-string">"description"</span>: <span class="hljs-string">"a pet to be returned"</span>,
     <span class="hljs-string">"schema"</span>: {
@@ -1719,8 +1627,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">'200':</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">'200':</span>
   <span class="hljs-attr">description:</span> <span class="hljs-string">a</span> <span class="hljs-string">pet</span> <span class="hljs-string">to</span> <span class="hljs-string">be</span> <span class="hljs-string">returned</span>
   <span class="hljs-attr">schema:</span>
     <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/definitions/Pet'</span>
@@ -1782,8 +1689,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </table>
 </section><section id="response-object-examples"><div class="header-wrapper"><h5 id="x6-4-12-3-response-object-examples"><bdi class="secno">6.4.12.3 </bdi>Response Object Examples</h5><a class="self-link" href="#response-object-examples" aria-label="Permalink for Section 6.4.12.3"></a></div>
 <p>Response of an array of a complex type:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"description"</span>: <span class="hljs-string">"A complex object array response"</span>,
   <span class="hljs-string">"schema"</span>: {
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"array"</span>,
@@ -1793,30 +1699,26 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">description:</span> <span class="hljs-string">A</span> <span class="hljs-string">complex</span> <span class="hljs-string">object</span> <span class="hljs-string">array</span> <span class="hljs-string">response</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">description:</span> <span class="hljs-string">A</span> <span class="hljs-string">complex</span> <span class="hljs-string">object</span> <span class="hljs-string">array</span> <span class="hljs-string">response</span>
 <span class="hljs-attr">schema:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">array</span>
   <span class="hljs-attr">items:</span>
     <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/definitions/VeryComplexType'</span>
 </code></pre>
 <p>Response with a string type:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"description"</span>: <span class="hljs-string">"A simple string response"</span>,
   <span class="hljs-string">"schema"</span>: {
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">description:</span> <span class="hljs-string">A</span> <span class="hljs-string">simple</span> <span class="hljs-string">string</span> <span class="hljs-string">response</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">description:</span> <span class="hljs-string">A</span> <span class="hljs-string">simple</span> <span class="hljs-string">string</span> <span class="hljs-string">response</span>
 <span class="hljs-attr">schema:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 </code></pre>
 <p>Response with headers:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"description"</span>: <span class="hljs-string">"A simple string response"</span>,
   <span class="hljs-string">"schema"</span>: {
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>
@@ -1837,8 +1739,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">description:</span> <span class="hljs-string">A</span> <span class="hljs-string">simple</span> <span class="hljs-string">string</span> <span class="hljs-string">response</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">description:</span> <span class="hljs-string">A</span> <span class="hljs-string">simple</span> <span class="hljs-string">string</span> <span class="hljs-string">response</span>
 <span class="hljs-attr">schema:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 <span class="hljs-attr">headers:</span>
@@ -1853,13 +1754,11 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
     <span class="hljs-attr">type:</span> <span class="hljs-string">integer</span>
 </code></pre>
 <p>Response with no return value:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"description"</span>: <span class="hljs-string">"object created"</span>
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">description:</span> <span class="hljs-string">object</span> <span class="hljs-string">created</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">description:</span> <span class="hljs-string">object</span> <span class="hljs-string">created</span>
 </code></pre>
 </section></section><section id="headers-object"><div class="header-wrapper"><h4 id="x6-4-13-headers-object"><bdi class="secno">6.4.13 </bdi>Headers Object</h4><a class="self-link" href="#headers-object" aria-label="Permalink for Section 6.4.13"></a></div>
 <p>Lists the headers that can be sent as part of a response.</p>
@@ -1882,8 +1781,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </table>
 </section><section id="headers-object-example"><div class="header-wrapper"><h5 id="x6-4-13-2-headers-object-example"><bdi class="secno">6.4.13.2 </bdi>Headers Object Example</h5><a class="self-link" href="#headers-object-example" aria-label="Permalink for Section 6.4.13.2"></a></div>
 <p>Rate-limit headers:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
     <span class="hljs-string">"X-Rate-Limit-Limit"</span>: {
         <span class="hljs-string">"description"</span>: <span class="hljs-string">"The number of allowed requests in the current period"</span>,
         <span class="hljs-string">"type"</span>: <span class="hljs-string">"integer"</span>
@@ -1898,8 +1796,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
     }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">X-Rate-Limit-Limit:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">X-Rate-Limit-Limit:</span>
   <span class="hljs-attr">description:</span> <span class="hljs-string">The</span> <span class="hljs-string">number</span> <span class="hljs-string">of</span> <span class="hljs-string">allowed</span> <span class="hljs-string">requests</span> <span class="hljs-string">in</span> <span class="hljs-string">the</span> <span class="hljs-string">current</span> <span class="hljs-string">period</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">integer</span>
 <span class="hljs-attr">X-Rate-Limit-Remaining:</span>
@@ -1930,8 +1827,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </table>
 </section><section id="example-object-example"><div class="header-wrapper"><h5 id="x6-4-14-2-example-object-example"><bdi class="secno">6.4.14.2 </bdi>Example Object Example</h5><a class="self-link" href="#example-object-example" aria-label="Permalink for Section 6.4.14.2"></a></div>
 <p>Example response for application/json mimetype of a Pet data type:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"application/json"</span>: {
     <span class="hljs-string">"name"</span>: <span class="hljs-string">"Puma"</span>,
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"Dog"</span>,
@@ -1941,8 +1837,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">application/json:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">application/json:</span>
   <span class="hljs-attr">name:</span> <span class="hljs-string">Puma</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">Dog</span>
   <span class="hljs-attr">color:</span> <span class="hljs-string">Black</span>
@@ -2070,14 +1965,12 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </table>
 </section><section id="header-object-example"><div class="header-wrapper"><h5 id="x6-4-15-2-header-object-example"><bdi class="secno">6.4.15.2 </bdi>Header Object Example</h5><a class="self-link" href="#header-object-example" aria-label="Permalink for Section 6.4.15.2"></a></div>
 <p>A simple header with of an integer type:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"description"</span>: <span class="hljs-string">"The number of allowed requests in the current period"</span>,
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"integer"</span>
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">description:</span> <span class="hljs-string">The</span> <span class="hljs-string">number</span> <span class="hljs-string">of</span> <span class="hljs-string">allowed</span> <span class="hljs-string">requests</span> <span class="hljs-string">in</span> <span class="hljs-string">the</span> <span class="hljs-string">current</span> <span class="hljs-string">period</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">description:</span> <span class="hljs-string">The</span> <span class="hljs-string">number</span> <span class="hljs-string">of</span> <span class="hljs-string">allowed</span> <span class="hljs-string">requests</span> <span class="hljs-string">in</span> <span class="hljs-string">the</span> <span class="hljs-string">current</span> <span class="hljs-string">period</span>
 <span class="hljs-attr">type:</span> <span class="hljs-string">integer</span>
 </code></pre>
 </section></section><section id="tag-object"><div class="header-wrapper"><h4 id="x6-4-16-tag-object"><bdi class="secno">6.4.16 </bdi>Tag Object</h4><a class="self-link" href="#tag-object" aria-label="Permalink for Section 6.4.16"></a></div>
@@ -2127,14 +2020,12 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </tbody>
 </table>
 </section><section id="tag-object-example"><div class="header-wrapper"><h5 id="x6-4-16-3-tag-object-example"><bdi class="secno">6.4.16.3 </bdi>Tag Object Example</h5><a class="self-link" href="#tag-object-example" aria-label="Permalink for Section 6.4.16.3"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
 	<span class="hljs-string">"name"</span>: <span class="hljs-string">"pet"</span>,
 	<span class="hljs-string">"description"</span>: <span class="hljs-string">"Pets operations"</span>
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">name:</span> <span class="hljs-string">pet</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">name:</span> <span class="hljs-string">pet</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">Pets</span> <span class="hljs-string">operations</span>
 </code></pre>
 </section></section><section id="reference-object"><div class="header-wrapper"><h4 id="x6-4-17-reference-object"><bdi class="secno">6.4.17 </bdi>Reference Object</h4><a class="self-link" href="#reference-object" aria-label="Permalink for Section 6.4.17"></a></div>
@@ -2158,38 +2049,32 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </tbody>
 </table>
 </section><section id="reference-object-example"><div class="header-wrapper"><h5 id="x6-4-17-2-reference-object-example"><bdi class="secno">6.4.17.2 </bdi>Reference Object Example</h5><a class="self-link" href="#reference-object-example" aria-label="Permalink for Section 6.4.17.2"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
 	<span class="hljs-string">"$ref"</span>: <span class="hljs-string">"#/definitions/Pet"</span>
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-string">$ref:</span> <span class="hljs-string">'#/definitions/Pet'</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-string">$ref:</span> <span class="hljs-string">'#/definitions/Pet'</span>
 </code></pre>
 </section><section id="relative-schema-file-example"><div class="header-wrapper"><h5 id="x6-4-17-3-relative-schema-file-example"><bdi class="secno">6.4.17.3 </bdi>Relative Schema File Example</h5><a class="self-link" href="#relative-schema-file-example" aria-label="Permalink for Section 6.4.17.3"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"$ref"</span>: <span class="hljs-string">"Pet.json"</span>
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-string">$ref:</span> <span class="hljs-string">'Pet.yaml'</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-string">$ref:</span> <span class="hljs-string">'Pet.yaml'</span>
 </code></pre>
 </section><section id="relative-files-with-embedded-schema-example"><div class="header-wrapper"><h5 id="x6-4-17-4-relative-files-with-embedded-schema-example"><bdi class="secno">6.4.17.4 </bdi>Relative Files With Embedded Schema Example</h5><a class="self-link" href="#relative-files-with-embedded-schema-example" aria-label="Permalink for Section 6.4.17.4"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"$ref"</span>: <span class="hljs-string">"definitions.json#/Pet"</span>
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-string">$ref:</span> <span class="hljs-string">'definitions.yaml#/Pet'</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-string">$ref:</span> <span class="hljs-string">'definitions.yaml#/Pet'</span>
 </code></pre>
 </section></section><section id="schema-object"><div class="header-wrapper"><h4 id="x6-4-18-schema-object"><bdi class="secno">6.4.18 </bdi>Schema Object</h4><a class="self-link" href="#schema-object" aria-label="Permalink for Section 6.4.18"></a></div>
 <p>The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays. This object is based on the <cite><a class="bibref" data-link-type="biblio" href="#bib-json-schema-04" title="JSON Schema: core definitions and terminology. Draft 4">JSON Schema Specification Draft 4</a></cite> and uses a predefined subset of it. On top of this subset, there are extensions provided by this specification to allow for more complete documentation.</p>
 <p>Further information about the properties can be found in <cite><a class="bibref" data-link-type="biblio" href="#bib-json-schema-04" title="JSON Schema: core definitions and terminology. Draft 4">JSON Schema Core</a></cite> and <cite><a class="bibref" data-link-type="biblio" href="#bib-json-schema-validation-04" title="JSON Schema: interactive and non interactive validation. Draft 4">JSON Schema Validation</a></cite>. Unless stated otherwise, the property definitions follow the JSON Schema specification as referenced here.</p>
 <p>The following properties are taken directly from the JSON Schema definition and follow the same specifications:</p>
 <ul>
-<li>$ref - As a <a href="https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03">JSON Reference</a></li>
+<li>$ref - As a <cite><a class="bibref" data-link-type="biblio" href="#bib-json-reference" title="JSON Reference">JSON Reference</a></cite></li>
 <li>format (See <a href="#dataTypeFormat">Data Type Formats</a> for further details)</li>
 <li>title</li>
 <li>description (<a href="https://guides.github.com/features/mastering-markdown/#GitHub-flavored-markdown">GFM syntax</a> can be used for rich text representation)</li>
@@ -2281,19 +2166,16 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </section></section><section id="schema-object-examples"><div class="header-wrapper"><h5 id="x6-4-18-3-schema-object-examples"><bdi class="secno">6.4.18.3 </bdi>Schema Object Examples</h5><a class="self-link" href="#schema-object-examples" aria-label="Permalink for Section 6.4.18.3"></a></div>
 <section id="primitive-sample"><div class="header-wrapper"><h6 id="x6-4-18-3-1-primitive-sample"><bdi class="secno">6.4.18.3.1 </bdi>Primitive Sample</h6><a class="self-link" href="#primitive-sample" aria-label="Permalink for Section 6.4.18.3.1"></a></div>
 <p>Unlike previous versions of Swagger, Schema definitions can be used to describe primitive and arrays as well.</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>,
     <span class="hljs-string">"format"</span>: <span class="hljs-string">"email"</span>
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 <span class="hljs-attr">format:</span> <span class="hljs-string">email</span>
 </code></pre>
 </section><section id="simple-model"><div class="header-wrapper"><h6 id="x6-4-18-3-2-simple-model"><bdi class="secno">6.4.18.3.2 </bdi>Simple Model</h6><a class="self-link" href="#simple-model" aria-label="Permalink for Section 6.4.18.3.2"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"object"</span>,
   <span class="hljs-string">"required"</span>: [
     <span class="hljs-string">"name"</span>
@@ -2313,8 +2195,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
 <span class="hljs-attr">required:</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">name</span>
 <span class="hljs-attr">properties:</span>
@@ -2329,36 +2210,31 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </code></pre>
 </section><section id="model-with-map-dictionary-properties"><div class="header-wrapper"><h6 id="x6-4-18-3-3-model-with-map-dictionary-properties"><bdi class="secno">6.4.18.3.3 </bdi>Model with Map/Dictionary Properties</h6><a class="self-link" href="#model-with-map-dictionary-properties" aria-label="Permalink for Section 6.4.18.3.3"></a></div>
 <p>For a simple string to string mapping:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"object"</span>,
   <span class="hljs-string">"additionalProperties"</span>: {
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
 <span class="hljs-attr">additionalProperties:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 </code></pre>
 <p>For a string to model mapping:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"object"</span>,
   <span class="hljs-string">"additionalProperties"</span>: {
     <span class="hljs-string">"$ref"</span>: <span class="hljs-string">"#/definitions/ComplexModel"</span>
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
 <span class="hljs-attr">additionalProperties:</span>
   <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/definitions/ComplexModel'</span>
 </code></pre>
 </section><section id="model-with-example"><div class="header-wrapper"><h6 id="x6-4-18-3-4-model-with-example"><bdi class="secno">6.4.18.3.4 </bdi>Model with Example</h6><a class="self-link" href="#model-with-example" aria-label="Permalink for Section 6.4.18.3.4"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"object"</span>,
   <span class="hljs-string">"properties"</span>: {
     <span class="hljs-string">"id"</span>: {
@@ -2378,8 +2254,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
 <span class="hljs-attr">properties:</span>
   <span class="hljs-attr">id:</span>
     <span class="hljs-attr">type:</span> <span class="hljs-string">integer</span>
@@ -2393,8 +2268,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   <span class="hljs-attr">id:</span> <span class="hljs-number">1</span>
 </code></pre>
 </section><section id="models-with-composition"><div class="header-wrapper"><h6 id="x6-4-18-3-5-models-with-composition"><bdi class="secno">6.4.18.3.5 </bdi>Models with Composition</h6><a class="self-link" href="#models-with-composition" aria-label="Permalink for Section 6.4.18.3.5"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"definitions"</span>: {
     <span class="hljs-string">"ErrorModel"</span>: {
       <span class="hljs-string">"type"</span>: <span class="hljs-string">"object"</span>,
@@ -2434,8 +2308,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">definitions:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">definitions:</span>
   <span class="hljs-attr">ErrorModel:</span>
     <span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
     <span class="hljs-attr">required:</span>
@@ -2459,8 +2332,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
           <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 </code></pre>
 </section><section id="models-with-polymorphism-support"><div class="header-wrapper"><h6 id="x6-4-18-3-6-models-with-polymorphism-support"><bdi class="secno">6.4.18.3.6 </bdi>Models with Polymorphism Support</h6><a class="self-link" href="#models-with-polymorphism-support" aria-label="Permalink for Section 6.4.18.3.6"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"definitions"</span>: {
     <span class="hljs-string">"Pet"</span>: {
       <span class="hljs-string">"type"</span>: <span class="hljs-string">"object"</span>,
@@ -2531,8 +2403,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">definitions:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">definitions:</span>
   <span class="hljs-attr">Pet:</span>
     <span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
     <span class="hljs-attr">discriminator:</span> <span class="hljs-string">petType</span>
@@ -2637,23 +2508,19 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 <p>The examples of the XML object definitions are included inside a property definition of a <a href="#schema-object">Schema Object</a> with a sample of the XML representation of it.</p>
 <section id="no-xml-element"><div class="header-wrapper"><h6 id="x6-4-19-3-1-no-xml-element"><bdi class="secno">6.4.19.3.1 </bdi>No XML Element</h6><a class="self-link" href="#no-xml-element" aria-label="Permalink for Section 6.4.19.3.1"></a></div>
 <p>Basic string property:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
     <span class="hljs-string">"animals"</span>: {
         <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>
     }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">animals:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">animals:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
 </code></pre>
 <p>Basic string array property (<a href="#xmlWrapped"><code>wrapped</code></a> is <code>false</code> by default):</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
     <span class="hljs-string">"animals"</span>: {
         <span class="hljs-string">"type"</span>: <span class="hljs-string">"array"</span>,
         <span class="hljs-string">"items"</span>: {
@@ -2662,20 +2529,17 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
     }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">animals:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">animals:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">array</span>
   <span class="hljs-attr">items:</span>
     <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
 </code></pre>
 </section><section id="xml-name-replacement"><div class="header-wrapper"><h6 id="x6-4-19-3-2-xml-name-replacement"><bdi class="secno">6.4.19.3.2 </bdi>XML Name Replacement</h6><a class="self-link" href="#xml-name-replacement" aria-label="Permalink for Section 6.4.19.3.2"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"animals"</span>: {
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>,
     <span class="hljs-string">"xml"</span>: {
@@ -2684,19 +2548,16 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">animals:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">animals:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
   <span class="hljs-attr">xml:</span>
     <span class="hljs-attr">name:</span> <span class="hljs-string">animal</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
 </code></pre>
 </section><section id="xml-attribute-prefix-and-namespace"><div class="header-wrapper"><h6 id="x6-4-19-3-3-xml-attribute-prefix-and-namespace"><bdi class="secno">6.4.19.3.3 </bdi>XML Attribute, Prefix and Namespace</h6><a class="self-link" href="#xml-attribute-prefix-and-namespace" aria-label="Permalink for Section 6.4.19.3.3"></a></div>
 <p>In this example, a full model definition is shown.</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"Person"</span>: {
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"object"</span>,
     <span class="hljs-string">"properties"</span>: {
@@ -2718,8 +2579,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">Person:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">Person:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
   <span class="hljs-attr">properties:</span>
     <span class="hljs-attr">id:</span>
@@ -2733,15 +2593,13 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
         <span class="hljs-attr">namespace:</span> <span class="hljs-string">http://swagger.io/schema/sample</span>
         <span class="hljs-attr">prefix:</span> <span class="hljs-string">sample</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-tag">&lt;<span class="hljs-name">Person</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"123"</span>&gt;</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-tag">&lt;<span class="hljs-name">Person</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"123"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">sample:name</span> <span class="hljs-attr">xmlns:sample</span>=<span class="hljs-string">"http://swagger.io/schema/sample"</span>&gt;</span>example<span class="hljs-tag">&lt;/<span class="hljs-name">sample:name</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">Person</span>&gt;</span>
 </code></pre>
 </section><section id="xml-arrays"><div class="header-wrapper"><h6 id="x6-4-19-3-4-xml-arrays"><bdi class="secno">6.4.19.3.4 </bdi>XML Arrays</h6><a class="self-link" href="#xml-arrays" aria-label="Permalink for Section 6.4.19.3.4"></a></div>
 <p>Changing the element names:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"animals"</span>: {
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"array"</span>,
     <span class="hljs-string">"items"</span>: {
@@ -2753,21 +2611,18 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">animals:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">animals:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">array</span>
   <span class="hljs-attr">items:</span>
     <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
     <span class="hljs-attr">xml:</span>
       <span class="hljs-attr">name:</span> <span class="hljs-string">animal</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
 </code></pre>
 <p>The external <code>name</code> property has no effect on the XML:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"animals"</span>: {
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"array"</span>,
     <span class="hljs-string">"items"</span>: {
@@ -2782,8 +2637,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">animals:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">animals:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">array</span>
   <span class="hljs-attr">items:</span>
     <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
@@ -2792,13 +2646,11 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   <span class="hljs-attr">xml:</span>
     <span class="hljs-attr">name:</span> <span class="hljs-string">aliens</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
 </code></pre>
 <p>Even when the array is wrapped, if no name is explicitly defined, the same name will be used both internally and externally:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"animals"</span>: {
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"array"</span>,
     <span class="hljs-string">"items"</span>: {
@@ -2810,23 +2662,20 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">animals:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">animals:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">array</span>
   <span class="hljs-attr">items:</span>
     <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
   <span class="hljs-attr">xml:</span>
     <span class="hljs-attr">wrapped:</span> <span class="hljs-literal">true</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
 </code></pre>
 <p>To overcome the above example, the following definition can be used:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"animals"</span>: {
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"array"</span>,
     <span class="hljs-string">"items"</span>: {
@@ -2841,8 +2690,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">animals:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">animals:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">array</span>
   <span class="hljs-attr">items:</span>
     <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
@@ -2851,15 +2699,13 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   <span class="hljs-attr">xml:</span>
     <span class="hljs-attr">wrapped:</span> <span class="hljs-literal">true</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
 </code></pre>
 <p>Affecting both internal and external names:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"animals"</span>: {
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"array"</span>,
     <span class="hljs-string">"items"</span>: {
@@ -2875,8 +2721,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">animals:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">animals:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">array</span>
   <span class="hljs-attr">items:</span>
     <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
@@ -2886,15 +2731,13 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
     <span class="hljs-attr">name:</span> <span class="hljs-string">aliens</span>
     <span class="hljs-attr">wrapped:</span> <span class="hljs-literal">true</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-tag">&lt;<span class="hljs-name">aliens</span>&gt;</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-tag">&lt;<span class="hljs-name">aliens</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>&gt;</span>
 </code></pre>
 <p>If we change the external element but not the internal ones:</p>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"animals"</span>: {
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"array"</span>,
     <span class="hljs-string">"items"</span>: {
@@ -2907,8 +2750,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">animals:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">animals:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">array</span>
   <span class="hljs-attr">items:</span>
     <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
@@ -2916,8 +2758,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
     <span class="hljs-attr">name:</span> <span class="hljs-string">aliens</span>
     <span class="hljs-attr">wrapped:</span> <span class="hljs-literal">true</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-tag">&lt;<span class="hljs-name">aliens</span>&gt;</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-tag">&lt;<span class="hljs-name">aliens</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">aliens</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">aliens</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>&gt;</span>
@@ -2942,8 +2783,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </tbody>
 </table>
 </section><section id="definitions-object-example"><div class="header-wrapper"><h5 id="x6-4-20-2-definitions-object-example"><bdi class="secno">6.4.20.2 </bdi>Definitions Object Example</h5><a class="self-link" href="#definitions-object-example" aria-label="Permalink for Section 6.4.20.2"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"Category"</span>: {
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"object"</span>,
     <span class="hljs-string">"properties"</span>: {
@@ -2970,8 +2810,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">Category:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">Category:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
   <span class="hljs-attr">properties:</span>
     <span class="hljs-attr">id:</span>
@@ -3009,8 +2848,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </tbody>
 </table>
 </section><section id="parameters-definition-object-example"><div class="header-wrapper"><h5 id="x6-4-21-2-parameters-definition-object-example"><bdi class="secno">6.4.21.2 </bdi>Parameters Definition Object Example</h5><a class="self-link" href="#parameters-definition-object-example" aria-label="Permalink for Section 6.4.21.2"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"skipParam"</span>: {
     <span class="hljs-string">"name"</span>: <span class="hljs-string">"skip"</span>,
     <span class="hljs-string">"in"</span>: <span class="hljs-string">"query"</span>,
@@ -3029,8 +2867,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">skipParam:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">skipParam:</span>
   <span class="hljs-attr">name:</span> <span class="hljs-string">skip</span>
   <span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
   <span class="hljs-attr">description:</span> <span class="hljs-string">number</span> <span class="hljs-string">of</span> <span class="hljs-string">items</span> <span class="hljs-string">to</span> <span class="hljs-string">skip</span>
@@ -3066,8 +2903,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </tbody>
 </table>
 </section><section id="responses-definitions-object-example"><div class="header-wrapper"><h5 id="x6-4-22-2-responses-definitions-object-example"><bdi class="secno">6.4.22.2 </bdi>Responses Definitions Object Example</h5><a class="self-link" href="#responses-definitions-object-example" aria-label="Permalink for Section 6.4.22.2"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"NotFound"</span>: {
     <span class="hljs-string">"description"</span>: <span class="hljs-string">"Entity not found."</span>
   },
@@ -3082,8 +2918,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">NotFound:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">NotFound:</span>
   <span class="hljs-attr">description:</span> <span class="hljs-string">Entity</span> <span class="hljs-string">not</span> <span class="hljs-string">found.</span>
 <span class="hljs-attr">IllegalInput:</span>
   <span class="hljs-attr">description:</span> <span class="hljs-string">Illegal</span> <span class="hljs-string">input</span> <span class="hljs-string">for</span> <span class="hljs-string">operation.</span>
@@ -3112,8 +2947,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </tbody>
 </table>
 </section><section id="security-definitions-object-example"><div class="header-wrapper"><h5 id="x6-4-23-2-security-definitions-object-example"><bdi class="secno">6.4.23.2 </bdi>Security Definitions Object Example</h5><a class="self-link" href="#security-definitions-object-example" aria-label="Permalink for Section 6.4.23.2"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"api_key"</span>: {
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"apiKey"</span>,
     <span class="hljs-string">"name"</span>: <span class="hljs-string">"api_key"</span>,
@@ -3130,8 +2964,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">api_key:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">api_key:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">apiKey</span>
   <span class="hljs-attr">name:</span> <span class="hljs-string">api_key</span>
   <span class="hljs-attr">in:</span> <span class="hljs-string">header</span>
@@ -3225,30 +3058,25 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </table>
 </section><section id="security-scheme-object-example"><div class="header-wrapper"><h5 id="x6-4-24-3-security-scheme-object-example"><bdi class="secno">6.4.24.3 </bdi>Security Scheme Object Example</h5><a class="self-link" href="#security-scheme-object-example" aria-label="Permalink for Section 6.4.24.3"></a></div>
 <section id="basic-authentication-sample"><div class="header-wrapper"><h6 id="x6-4-24-3-1-basic-authentication-sample"><bdi class="secno">6.4.24.3.1 </bdi>Basic Authentication Sample</h6><a class="self-link" href="#basic-authentication-sample" aria-label="Permalink for Section 6.4.24.3.1"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"basic"</span>
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">type:</span> <span class="hljs-string">basic</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">type:</span> <span class="hljs-string">basic</span>
 </code></pre>
 </section><section id="api-key-sample"><div class="header-wrapper"><h6 id="x6-4-24-3-2-api-key-sample"><bdi class="secno">6.4.24.3.2 </bdi>API Key Sample</h6><a class="self-link" href="#api-key-sample" aria-label="Permalink for Section 6.4.24.3.2"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"apiKey"</span>,
   <span class="hljs-string">"name"</span>: <span class="hljs-string">"api_key"</span>,
   <span class="hljs-string">"in"</span>: <span class="hljs-string">"header"</span>
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">type:</span> <span class="hljs-string">apiKey</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">type:</span> <span class="hljs-string">apiKey</span>
 <span class="hljs-attr">name:</span> <span class="hljs-string">api_key</span>
 <span class="hljs-attr">in:</span> <span class="hljs-string">header</span>
 </code></pre>
 </section><section id="implicit-oauth2-sample"><div class="header-wrapper"><h6 id="x6-4-24-3-3-implicit-oauth2-sample"><bdi class="secno">6.4.24.3.3 </bdi>Implicit OAuth2 Sample</h6><a class="self-link" href="#implicit-oauth2-sample" aria-label="Permalink for Section 6.4.24.3.3"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"type"</span>: <span class="hljs-string">"oauth2"</span>,
   <span class="hljs-string">"authorizationUrl"</span>: <span class="hljs-string">"http://swagger.io/api/oauth/dialog"</span>,
   <span class="hljs-string">"flow"</span>: <span class="hljs-string">"implicit"</span>,
@@ -3258,8 +3086,7 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
   }
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">type:</span> <span class="hljs-string">oauth2</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">type:</span> <span class="hljs-string">oauth2</span>
 <span class="hljs-attr">authorizationUrl:</span> <span class="hljs-string">http://swagger.io/api/oauth/dialog</span>
 <span class="hljs-attr">flow:</span> <span class="hljs-string">implicit</span>
 <span class="hljs-attr">scopes:</span>
@@ -3303,14 +3130,12 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </tbody>
 </table>
 </section><section id="scopes-object-example"><div class="header-wrapper"><h5 id="x6-4-25-3-scopes-object-example"><bdi class="secno">6.4.25.3 </bdi>Scopes Object Example</h5><a class="self-link" href="#scopes-object-example" aria-label="Permalink for Section 6.4.25.3"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"write:pets"</span>: <span class="hljs-string">"modify pets in your account"</span>,
   <span class="hljs-string">"read:pets"</span>: <span class="hljs-string">"read your pets"</span>
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">write:pets:</span> <span class="hljs-string">modify</span> <span class="hljs-string">pets</span> <span class="hljs-string">in</span> <span class="hljs-string">your</span> <span class="hljs-string">account</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">write:pets:</span> <span class="hljs-string">modify</span> <span class="hljs-string">pets</span> <span class="hljs-string">in</span> <span class="hljs-string">your</span> <span class="hljs-string">account</span>
 <span class="hljs-attr">read:pets:</span> <span class="hljs-string">read</span> <span class="hljs-string">your</span> <span class="hljs-string">pets</span>
 </code></pre>
 </section></section><section id="security-requirement-object"><div class="header-wrapper"><h4 id="x6-4-26-security-requirement-object"><bdi class="secno">6.4.26 </bdi>Security Requirement Object</h4><a class="self-link" href="#security-requirement-object" aria-label="Permalink for Section 6.4.26"></a></div>
@@ -3335,25 +3160,21 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
 </table>
 </section><section id="security-requirement-object-examples"><div class="header-wrapper"><h5 id="x6-4-26-2-security-requirement-object-examples"><bdi class="secno">6.4.26.2 </bdi>Security Requirement Object Examples</h5><a class="self-link" href="#security-requirement-object-examples" aria-label="Permalink for Section 6.4.26.2"></a></div>
 <section id="non-oauth2-security-requirement"><div class="header-wrapper"><h6 id="x6-4-26-2-1-non-oauth2-security-requirement"><bdi class="secno">6.4.26.2.1 </bdi>Non-OAuth2 Security Requirement</h6><a class="self-link" href="#non-oauth2-security-requirement" aria-label="Permalink for Section 6.4.26.2.1"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"api_key"</span>: []
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">api_key:</span> []
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">api_key:</span> []
 </code></pre>
 </section><section id="oauth2-security-requirement"><div class="header-wrapper"><h6 id="x6-4-26-2-2-oauth2-security-requirement"><bdi class="secno">6.4.26.2.2 </bdi>OAuth2 Security Requirement</h6><a class="self-link" href="#oauth2-security-requirement" aria-label="Permalink for Section 6.4.26.2.2"></a></div>
-<pre class="nohighlight"><code>
-{
+<pre class="nohighlight" tabindex="0"><code>{
   <span class="hljs-string">"petstore_auth"</span>: [
     <span class="hljs-string">"write:pets"</span>,
     <span class="hljs-string">"read:pets"</span>
   ]
 }
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">petstore_auth:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">petstore_auth:</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">write:pets</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">read:pets</span>
 </code></pre>
@@ -3376,6 +3197,8 @@ A Path Item may be empty, due to <a href="#security-filtering">ACL constraints</
       <a href="https://www.w3.org/TR/html401/"><cite>HTML 4.01 Specification</cite></a>. Dave Raggett; Arnaud Le Hors; Ian Jacobs.  W3C. 27 March 2018. W3C Recommendation. URL: <a href="https://www.w3.org/TR/html401/">https://www.w3.org/TR/html401/</a>
     </dd><dt id="bib-iana-http-status-codes">[IANA-HTTP-STATUS-CODES]</dt><dd>
       <a href="https://www.iana.org/assignments/http-status-codes/"><cite>Hypertext Transfer Protocol (HTTP) Status Code Registry</cite></a>.  IANA. URL: <a href="https://www.iana.org/assignments/http-status-codes/">https://www.iana.org/assignments/http-status-codes/</a>
+    </dd><dt id="bib-json-reference">[JSON-Reference]</dt><dd>
+      <a href="https://datatracker.ietf.org/doc/html/draft-pbryan-zyp-json-ref-03"><cite>JSON Reference</cite></a>. Paul Bryan; Kris Zyp.  Internet Engineering Task Force (IETF). 16 September 2012. Internet-Draft. URL: <a href="https://datatracker.ietf.org/doc/html/draft-pbryan-zyp-json-ref-03">https://datatracker.ietf.org/doc/html/draft-pbryan-zyp-json-ref-03</a>
     </dd><dt id="bib-json-schema-04">[JSON-Schema-04]</dt><dd>
       <a href="https://datatracker.ietf.org/doc/html/draft-zyp-json-schema-04"><cite>JSON Schema: core definitions and terminology. Draft 4</cite></a>. Kris Zyp; Francis Galiegue; Gary Court.  Internet Engineering Task Force (IETF). 31 January 2013. Internet-Draft. URL: <a href="https://datatracker.ietf.org/doc/html/draft-zyp-json-schema-04">https://datatracker.ietf.org/doc/html/draft-zyp-json-schema-04</a>
     </dd><dt id="bib-json-schema-validation-04">[JSON-Schema-Validation-04]</dt><dd>

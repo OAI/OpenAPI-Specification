@@ -24,7 +24,6 @@ dfn{cursor:pointer}
 </style>
 <title>OpenAPI Specification v3.1.0</title>
 <meta name="description" content="The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs.">
-<link rel="canonical" href="https://spec.openapis.org/oas/latest.html">
 <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
 <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-JR4K3ZJLPH&amp;l=dataLayer&amp;cx=c"></script>
 <style id="respec-mainstyle">
@@ -82,6 +81,7 @@ dd{margin-left:0}
 </script>
 
 <meta name="color-scheme" content="light">
+<link rel="canonical" href="https://spec.openapis.org/oas/v3.1.0.html">
 <style>
 .hljs{--base:#fafafa;--mono-1:#383a42;--mono-2:#686b77;--mono-3:#717277;--hue-1:#0b76c5;--hue-2:#336ae3;--hue-3:#a626a4;--hue-4:#42803c;--hue-5:#ca4706;--hue-5-2:#c91243;--hue-6:#986801;--hue-6-2:#9a6a01}
 @media (prefers-color-scheme:dark){
@@ -110,6 +110,8 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
 <script id="initialUserConfig" type="application/json">{
   "specStatus": "base",
   "latestVersion": "https://spec.openapis.org/oas/latest.html",
+  "thisVersion": "https://spec.openapis.org/oas/v3.1.0.html",
+  "canonicalURI": "https://spec.openapis.org/oas/v3.1.0.html",
   "editors": [
     {
       "name": "Darrel Miller "
@@ -175,74 +177,10 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       ]
     }
   ],
-  "localBiblio": {
-    "OpenAPI-Learn": {
-      "title": "OpenAPI - Getting started, and the specification explained",
-      "href": "https://learn.openapis.org/",
-      "publisher": "OpenAPI Initiative"
-    },
-    "OpenAPI-Registry": {
-      "title": "OpenAPI Initiative Registry",
-      "href": "https://spec.openapis.org/registry/index.html",
-      "publisher": "OpenAPI Initiative"
-    },
-    "JSON-Schema-Validation-04": {
-      "authors": [
-        "Kris Zyp",
-        "Francis Galiegue",
-        "Gary Court"
-      ],
-      "href": "https://datatracker.ietf.org/doc/html/draft-fge-json-schema-validation-00",
-      "publisher": "Internet Engineering Task Force (IETF)",
-      "status": "Internet-Draft",
-      "title": "JSON Schema: interactive and non interactive validation. Draft 4",
-      "date": "1 February 2013"
-    },
-    "JSON-Schema-05": {
-      "authors": [
-        "Austin Wright"
-      ],
-      "href": "https://datatracker.ietf.org/doc/html/draft-wright-json-schema-00",
-      "publisher": "Internet Engineering Task Force (IETF)",
-      "status": "Internet-Draft",
-      "title": "JSON Schema: A Media Type for Describing JSON Documents. Draft 5",
-      "date": "13 October 2016"
-    },
-    "JSON-Schema-Validation-05": {
-      "authors": [
-        "Austin Wright",
-        "G. Luff"
-      ],
-      "href": "https://datatracker.ietf.org/doc/html/draft-wright-json-schema-validation-00",
-      "publisher": "Internet Engineering Task Force (IETF)",
-      "status": "Internet-Draft",
-      "title": "JSON Schema Validation: A Vocabulary for Structural Validation of JSON. Draft 5",
-      "date": "13 October 2016"
-    },
-    "JSON-Schema-Validation-2020-12": {
-      "authors": [
-        "Austin Wright",
-        "Henry Andrews",
-        "Ben Hutton"
-      ],
-      "href": "https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00",
-      "publisher": "Internet Engineering Task Force (IETF)",
-      "status": "Internet-Draft",
-      "title": "JSON Schema Validation: A Vocabulary for Structural Validation of JSON. Draft 2020-12",
-      "date": "8 December 2020",
-      "id": "json-schema-validation-2020-12"
-    },
-    "SPDX": {
-      "href": "https://spdx.org/licenses/",
-      "title": "SPDX License List",
-      "publisher": "Linux Foundation",
-      "id": "spdx"
-    }
-  },
   "publishISODate": "2021-02-15T00:00:00.000Z",
   "generatedSubtitle": "15 February 2021"
 }</script>
-<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/base.css"></head><body class="h-entry"><div class="head">
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/base.css"></head><body class="h-entry toc-inline"><div class="head">
     <p class="logos"><a class="logo" href="https://openapis.org/"><img crossorigin="" alt="OpenAPI Initiative" height="48" src="https://raw.githubusercontent.com/OAI/OpenAPI-Style-Guide/master/graphics/bitmap/OpenAPI_Logo_Pantone.png">
   </a></p>
     <h1 id="title" class="title">OpenAPI Specification v3.1.0 </h1> <h2 id="subtitle" class="subtitle">Version 3.1.0</h2>
@@ -250,7 +188,9 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <details open="">
       <summary>More details about this document</summary>
       <dl>
-        
+        <dt>This version:</dt><dd>
+                <a class="u-url" href="https://spec.openapis.org/oas/v3.1.0.html">https://spec.openapis.org/oas/v3.1.0.html</a>
+              </dd>
         <dt>Latest published version:</dt><dd>
                 <a href="https://spec.openapis.org/oas/latest.html">https://spec.openapis.org/oas/latest.html</a>
               </dd>
@@ -300,8 +240,8 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <p class="copyright">Copyright © 2021 the Linux Foundation</p>
     <hr title="Separator for header">
   </div><style>
-#respec-ui { visibility: hidden; }h1,h2,h3 { color: #629b34; }.dt-published { color: #629b34; } .dt-published::before { content: "Published "; }a[href] { color: #45512c; }body:not(.toc-inline) #toc h2 { color: #45512c; }table { display: block; width: 100%; overflow: auto; }table th { font-weight: 600; }table th, table td { padding: 6px 13px; border: 1px solid #dfe2e5; }table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }table tr:nth-child(2n) { background-color: #f6f8fa; }pre { background-color: #f6f8fa !important; }code { color: #c83500 } th code { color: inherit }a.bibref { text-decoration: underline;}/**  * GitHub Gist Theme  * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro  */  .hljs {   display: block;   background: white;   padding: 0.5em;   color: #333333;   overflow-x: auto; }  .hljs-comment, .hljs-meta {   color: #969896; }  .hljs-string, .hljs-variable, .hljs-template-variable, .hljs-strong, .hljs-emphasis, .hljs-quote {   color: #df5000; }  .hljs-number {   color: #008080; }  .hljs-keyword, .hljs-selector-tag, .hljs-type {   color: #a71d5d; }  .hljs-literal, .hljs-symbol, .hljs-bullet, .hljs-attribute {   color: #0086b3; }  .hljs-section, .hljs-name {   color: #63a35c; }  .hljs-tag {   color: #333333; }  .hljs-title, .hljs-attr, .hljs-selector-id, .hljs-selector-class, .hljs-selector-attr, .hljs-selector-pseudo {   color: #795da3; }  .hljs-addition {   color: #55a532;   background-color: #eaffea; }  .hljs-deletion {   color: #bd2c00;   background-color: #ffecec; }  .hljs-link {   text-decoration: underline; } 
-</style><section class="notoc introductory" id="abstract"><h2>What is the OpenAPI Specification?</h2>The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.</section><section class="override introductory notoc" id="sotd" data-max-toc="0"><h2>Status of This Document</h2>The source-of-truth for the specification is the GitHub markdown file referenced above.</section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#openapi-specification"><bdi class="secno">1. </bdi>OpenAPI Specification</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">1.1 </bdi>Version 3.1.0</a></li></ol></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#definitions"><bdi class="secno">3. </bdi><span>Definitions</span></a><ol class="toc"><li class="tocline"><a class="tocxref" href="#openapi-document"><bdi class="secno">3.1 </bdi><span>OpenAPI Document</span></a></li><li class="tocline"><a class="tocxref" href="#path-templating"><bdi class="secno">3.2 </bdi><span>Path Templating</span></a></li><li class="tocline"><a class="tocxref" href="#media-types"><bdi class="secno">3.3 </bdi><span>Media Types</span></a></li><li class="tocline"><a class="tocxref" href="#http-status-codes"><bdi class="secno">3.4 </bdi><span>HTTP Status Codes</span></a></li></ol></li><li class="tocline"><a class="tocxref" href="#specification"><bdi class="secno">4. </bdi>Specification</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#versions"><bdi class="secno">4.1 </bdi>Versions</a></li><li class="tocline"><a class="tocxref" href="#format"><bdi class="secno">4.2 </bdi>Format</a></li><li class="tocline"><a class="tocxref" href="#document-structure"><bdi class="secno">4.3 </bdi>Document Structure</a></li><li class="tocline"><a class="tocxref" href="#data-types"><bdi class="secno">4.4 </bdi>Data Types</a></li><li class="tocline"><a class="tocxref" href="#rich-text-formatting"><bdi class="secno">4.5 </bdi>Rich Text Formatting</a></li><li class="tocline"><a class="tocxref" href="#relative-references-in-uris"><bdi class="secno">4.6 </bdi>Relative References in URIs</a></li><li class="tocline"><a class="tocxref" href="#relative-references-in-urls"><bdi class="secno">4.7 </bdi>Relative References in URLs</a></li><li class="tocline"><a class="tocxref" href="#schema"><bdi class="secno">4.8 </bdi>Schema</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#openapi-object"><bdi class="secno">4.8.1 </bdi>OpenAPI Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields"><bdi class="secno">4.8.1.1 </bdi>Fixed Fields</a></li></ol></li><li class="tocline"><a class="tocxref" href="#info-object"><bdi class="secno">4.8.2 </bdi>Info Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-0"><bdi class="secno">4.8.2.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#info-object-example"><bdi class="secno">4.8.2.2 </bdi>Info Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#contact-object"><bdi class="secno">4.8.3 </bdi>Contact Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-1"><bdi class="secno">4.8.3.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#contact-object-example"><bdi class="secno">4.8.3.2 </bdi>Contact Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#license-object"><bdi class="secno">4.8.4 </bdi>License Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-2"><bdi class="secno">4.8.4.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#license-object-example"><bdi class="secno">4.8.4.2 </bdi>License Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#server-object"><bdi class="secno">4.8.5 </bdi>Server Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-3"><bdi class="secno">4.8.5.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#server-object-example"><bdi class="secno">4.8.5.2 </bdi>Server Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#server-variable-object"><bdi class="secno">4.8.6 </bdi>Server Variable Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-4"><bdi class="secno">4.8.6.1 </bdi>Fixed Fields</a></li></ol></li><li class="tocline"><a class="tocxref" href="#components-object"><bdi class="secno">4.8.7 </bdi>Components Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-5"><bdi class="secno">4.8.7.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#components-object-example"><bdi class="secno">4.8.7.2 </bdi>Components Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#paths-object"><bdi class="secno">4.8.8 </bdi>Paths Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields"><bdi class="secno">4.8.8.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#path-templating-matching"><bdi class="secno">4.8.8.2 </bdi>Path Templating Matching</a></li><li class="tocline"><a class="tocxref" href="#paths-object-example"><bdi class="secno">4.8.8.3 </bdi>Paths Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#path-item-object"><bdi class="secno">4.8.9 </bdi>Path Item Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-6"><bdi class="secno">4.8.9.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#path-item-object-example"><bdi class="secno">4.8.9.2 </bdi>Path Item Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#operation-object"><bdi class="secno">4.8.10 </bdi>Operation Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-7"><bdi class="secno">4.8.10.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#operation-object-example"><bdi class="secno">4.8.10.2 </bdi>Operation Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#external-documentation-object"><bdi class="secno">4.8.11 </bdi>External Documentation Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-8"><bdi class="secno">4.8.11.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#external-documentation-object-example"><bdi class="secno">4.8.11.2 </bdi>External Documentation Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#parameter-object"><bdi class="secno">4.8.12 </bdi>Parameter Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#parameter-locations"><bdi class="secno">4.8.12.1 </bdi>Parameter Locations</a></li><li class="tocline"><a class="tocxref" href="#fixed-fields-9"><bdi class="secno">4.8.12.2 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#style-values"><bdi class="secno">4.8.12.3 </bdi>Style Values</a></li><li class="tocline"><a class="tocxref" href="#style-examples"><bdi class="secno">4.8.12.4 </bdi>Style Examples</a></li><li class="tocline"><a class="tocxref" href="#parameter-object-examples"><bdi class="secno">4.8.12.5 </bdi>Parameter Object Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#request-body-object"><bdi class="secno">4.8.13 </bdi>Request Body Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-10"><bdi class="secno">4.8.13.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#request-body-examples"><bdi class="secno">4.8.13.2 </bdi>Request Body Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#media-type-object"><bdi class="secno">4.8.14 </bdi>Media Type Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-11"><bdi class="secno">4.8.14.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#media-type-examples"><bdi class="secno">4.8.14.2 </bdi>Media Type Examples</a></li><li class="tocline"><a class="tocxref" href="#considerations-for-file-uploads"><bdi class="secno">4.8.14.3 </bdi>Considerations for File Uploads</a></li><li class="tocline"><a class="tocxref" href="#support-for-x-www-form-urlencoded-request-bodies"><bdi class="secno">4.8.14.4 </bdi>Support for x-www-form-urlencoded Request Bodies</a></li><li class="tocline"><a class="tocxref" href="#special-considerations-for-multipart-content"><bdi class="secno">4.8.14.5 </bdi>Special Considerations for <code>multipart</code> Content</a></li></ol></li><li class="tocline"><a class="tocxref" href="#encoding-object"><bdi class="secno">4.8.15 </bdi>Encoding Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-12"><bdi class="secno">4.8.15.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#encoding-object-example"><bdi class="secno">4.8.15.2 </bdi>Encoding Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#responses-object"><bdi class="secno">4.8.16 </bdi>Responses Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-13"><bdi class="secno">4.8.16.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-fields-0"><bdi class="secno">4.8.16.2 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#responses-object-example"><bdi class="secno">4.8.16.3 </bdi>Responses Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#response-object"><bdi class="secno">4.8.17 </bdi>Response Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-14"><bdi class="secno">4.8.17.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#response-object-examples"><bdi class="secno">4.8.17.2 </bdi>Response Object Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#callback-object"><bdi class="secno">4.8.18 </bdi>Callback Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-1"><bdi class="secno">4.8.18.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#key-expression"><bdi class="secno">4.8.18.2 </bdi>Key Expression</a></li><li class="tocline"><a class="tocxref" href="#callback-object-examples"><bdi class="secno">4.8.18.3 </bdi>Callback Object Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#example-object"><bdi class="secno">4.8.19 </bdi>Example Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-15"><bdi class="secno">4.8.19.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#example-object-examples"><bdi class="secno">4.8.19.2 </bdi>Example Object Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#link-object"><bdi class="secno">4.8.20 </bdi>Link Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-16"><bdi class="secno">4.8.20.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#examples"><bdi class="secno">4.8.20.2 </bdi>Examples</a></li><li class="tocline"><a class="tocxref" href="#operationref-examples"><bdi class="secno">4.8.20.3 </bdi>OperationRef Examples</a></li><li class="tocline"><a class="tocxref" href="#runtime-expressions"><bdi class="secno">4.8.20.4 </bdi>Runtime Expressions</a></li><li class="tocline"><a class="tocxref" href="#examples-0"><bdi class="secno">4.8.20.5 </bdi>Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#header-object"><bdi class="secno">4.8.21 </bdi>Header Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#header-object-example"><bdi class="secno">4.8.21.1 </bdi>Header Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#tag-object"><bdi class="secno">4.8.22 </bdi>Tag Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-17"><bdi class="secno">4.8.22.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#tag-object-example"><bdi class="secno">4.8.22.2 </bdi>Tag Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#reference-object"><bdi class="secno">4.8.23 </bdi>Reference Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-18"><bdi class="secno">4.8.23.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#reference-object-example"><bdi class="secno">4.8.23.2 </bdi>Reference Object Example</a></li><li class="tocline"><a class="tocxref" href="#relative-schema-document-example"><bdi class="secno">4.8.23.3 </bdi>Relative Schema Document Example</a></li><li class="tocline"><a class="tocxref" href="#relative-documents-with-embedded-schema-example"><bdi class="secno">4.8.23.4 </bdi>Relative Documents With Embedded Schema Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#schema-object"><bdi class="secno">4.8.24 </bdi>Schema Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#properties"><bdi class="secno">4.8.24.1 </bdi>Properties</a></li><li class="tocline"><a class="tocxref" href="#fixed-fields-19"><bdi class="secno">4.8.24.2 </bdi>Fixed Fields</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#composition-and-inheritance-polymorphism"><bdi class="secno">4.8.24.2.1 </bdi>Composition and Inheritance (Polymorphism)</a></li><li class="tocline"><a class="tocxref" href="#xml-modeling"><bdi class="secno">4.8.24.2.2 </bdi>XML Modeling</a></li><li class="tocline"><a class="tocxref" href="#specifying-schema-dialects"><bdi class="secno">4.8.24.2.3 </bdi>Specifying Schema Dialects</a></li></ol></li><li class="tocline"><a class="tocxref" href="#schema-object-examples"><bdi class="secno">4.8.24.3 </bdi>Schema Object Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#primitive-sample"><bdi class="secno">4.8.24.3.1 </bdi>Primitive Sample</a></li><li class="tocline"><a class="tocxref" href="#simple-model"><bdi class="secno">4.8.24.3.2 </bdi>Simple Model</a></li><li class="tocline"><a class="tocxref" href="#model-with-map-dictionary-properties"><bdi class="secno">4.8.24.3.3 </bdi>Model with Map/Dictionary Properties</a></li><li class="tocline"><a class="tocxref" href="#model-with-example"><bdi class="secno">4.8.24.3.4 </bdi>Model with Example</a></li><li class="tocline"><a class="tocxref" href="#models-with-composition"><bdi class="secno">4.8.24.3.5 </bdi>Models with Composition</a></li><li class="tocline"><a class="tocxref" href="#models-with-polymorphism-support"><bdi class="secno">4.8.24.3.6 </bdi>Models with Polymorphism Support</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#discriminator-object"><bdi class="secno">4.8.25 </bdi>Discriminator Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-20"><bdi class="secno">4.8.25.1 </bdi>Fixed Fields</a></li></ol></li><li class="tocline"><a class="tocxref" href="#xml-object"><bdi class="secno">4.8.26 </bdi>XML Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-21"><bdi class="secno">4.8.26.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#xml-object-examples"><bdi class="secno">4.8.26.2 </bdi>XML Object Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#no-xml-element"><bdi class="secno">4.8.26.2.1 </bdi>No XML Element</a></li><li class="tocline"><a class="tocxref" href="#xml-name-replacement"><bdi class="secno">4.8.26.2.2 </bdi>XML Name Replacement</a></li><li class="tocline"><a class="tocxref" href="#xml-attribute-prefix-and-namespace"><bdi class="secno">4.8.26.2.3 </bdi>XML Attribute, Prefix and Namespace</a></li><li class="tocline"><a class="tocxref" href="#xml-arrays"><bdi class="secno">4.8.26.2.4 </bdi>XML Arrays</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#security-scheme-object"><bdi class="secno">4.8.27 </bdi>Security Scheme Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-22"><bdi class="secno">4.8.27.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#security-scheme-object-example"><bdi class="secno">4.8.27.2 </bdi>Security Scheme Object Example</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#basic-authentication-sample"><bdi class="secno">4.8.27.2.1 </bdi>Basic Authentication Sample</a></li><li class="tocline"><a class="tocxref" href="#api-key-sample"><bdi class="secno">4.8.27.2.2 </bdi>API Key Sample</a></li><li class="tocline"><a class="tocxref" href="#jwt-bearer-sample"><bdi class="secno">4.8.27.2.3 </bdi>JWT Bearer Sample</a></li><li class="tocline"><a class="tocxref" href="#implicit-oauth2-sample"><bdi class="secno">4.8.27.2.4 </bdi>Implicit OAuth2 Sample</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#oauth-flows-object"><bdi class="secno">4.8.28 </bdi>OAuth Flows Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-23"><bdi class="secno">4.8.28.1 </bdi>Fixed Fields</a></li></ol></li><li class="tocline"><a class="tocxref" href="#oauth-flow-object"><bdi class="secno">4.8.29 </bdi>OAuth Flow Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-24"><bdi class="secno">4.8.29.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#oauth-flow-object-examples"><bdi class="secno">4.8.29.2 </bdi>OAuth Flow Object Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#security-requirement-object"><bdi class="secno">4.8.30 </bdi>Security Requirement Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-2"><bdi class="secno">4.8.30.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#security-requirement-object-examples"><bdi class="secno">4.8.30.2 </bdi>Security Requirement Object Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#non-oauth2-security-requirement"><bdi class="secno">4.8.30.2.1 </bdi>Non-OAuth2 Security Requirement</a></li><li class="tocline"><a class="tocxref" href="#oauth2-security-requirement"><bdi class="secno">4.8.30.2.2 </bdi>OAuth2 Security Requirement</a></li><li class="tocline"><a class="tocxref" href="#optional-oauth2-security"><bdi class="secno">4.8.30.2.3 </bdi>Optional OAuth2 Security</a></li></ol></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#specification-extensions"><bdi class="secno">4.9 </bdi>Specification Extensions</a></li><li class="tocline"><a class="tocxref" href="#security-filtering"><bdi class="secno">4.10 </bdi>Security Filtering</a></li></ol></li><li class="tocline"><a class="tocxref" href="#appendix-a-revision-history"><bdi class="secno">A. </bdi>Appendix A: Revision History</a></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">B. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">B.1 </bdi>Normative references</a></li></ol></li></ol></nav>
+#respec-ui { visibility: hidden; }#title { color: #578000; } #subtitle { color: #578000; }.dt-published { color: #578000; } .dt-published::before { content: "Published "; }h1,h2,h3,h4,h5,h6 { color: #578000; font-weight: normal; font-style: normal; }a[href] { color: #45512c; }body:not(.toc-inline) #toc h2 { color: #45512c; }table { display: block; width: 100%; overflow: auto; }table th { font-weight: 600; }table th, table td { padding: 6px 13px; border: 1px solid #dfe2e5; }table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }table tr:nth-child(2n) { background-color: #f6f8fa; }pre { background-color: #f6f8fa !important; }code { color: #c83500 } th code { color: inherit }a.bibref { text-decoration: underline;}/**  * GitHub Gist Theme  * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro  */  .hljs {   display: block;   background: white;   padding: 0.5em;   color: #333333;   overflow-x: auto; }  .hljs-comment, .hljs-meta {   color: #727070; }  .hljs-string, .hljs-variable, .hljs-template-variable, .hljs-strong, .hljs-emphasis, .hljs-quote {   color: #c74700; }  .hljs-number {   color: #005e5e; }  .hljs-keyword, .hljs-selector-tag, .hljs-type {   color: #a71d5d; }  .hljs-literal, .hljs-symbol, .hljs-bullet, .hljs-attribute {   color: #007aa2; }  .hljs-section, .hljs-name {   color: #4b7c46; }  .hljs-tag {   color: #333333; }  .hljs-title, .hljs-attr, .hljs-selector-id, .hljs-selector-class, .hljs-selector-attr, .hljs-selector-pseudo {   color: #795da3; }  .hljs-addition {   color: #55a532;   background-color: #eaffea; }  .hljs-deletion {   color: #bd2c00;   background-color: #ffecec; }  .hljs-link {   text-decoration: underline; } 
+</style><section class="notoc introductory" id="abstract"><h2>What is the OpenAPI Specification?</h2>The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.</section><section class="override introductory notoc" id="sotd" data-max-toc="0"><h2>Status of This Document</h2>The source-of-truth for this specification is the HTML file referenced above as <em>This version</em>.</section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#openapi-specification"><bdi class="secno">1. </bdi>OpenAPI Specification</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">1.1 </bdi>Version 3.1.0</a></li></ol></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#definitions"><bdi class="secno">3. </bdi><span>Definitions</span></a><ol class="toc"><li class="tocline"><a class="tocxref" href="#openapi-document"><bdi class="secno">3.1 </bdi><span>OpenAPI Document</span></a></li><li class="tocline"><a class="tocxref" href="#path-templating"><bdi class="secno">3.2 </bdi><span>Path Templating</span></a></li><li class="tocline"><a class="tocxref" href="#media-types"><bdi class="secno">3.3 </bdi><span>Media Types</span></a></li><li class="tocline"><a class="tocxref" href="#http-status-codes"><bdi class="secno">3.4 </bdi><span>HTTP Status Codes</span></a></li></ol></li><li class="tocline"><a class="tocxref" href="#specification"><bdi class="secno">4. </bdi>Specification</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#versions"><bdi class="secno">4.1 </bdi>Versions</a></li><li class="tocline"><a class="tocxref" href="#format"><bdi class="secno">4.2 </bdi>Format</a></li><li class="tocline"><a class="tocxref" href="#document-structure"><bdi class="secno">4.3 </bdi>Document Structure</a></li><li class="tocline"><a class="tocxref" href="#data-types"><bdi class="secno">4.4 </bdi>Data Types</a></li><li class="tocline"><a class="tocxref" href="#rich-text-formatting"><bdi class="secno">4.5 </bdi>Rich Text Formatting</a></li><li class="tocline"><a class="tocxref" href="#relative-references-in-uris"><bdi class="secno">4.6 </bdi>Relative References in URIs</a></li><li class="tocline"><a class="tocxref" href="#relative-references-in-urls"><bdi class="secno">4.7 </bdi>Relative References in URLs</a></li><li class="tocline"><a class="tocxref" href="#schema"><bdi class="secno">4.8 </bdi>Schema</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#openapi-object"><bdi class="secno">4.8.1 </bdi>OpenAPI Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields"><bdi class="secno">4.8.1.1 </bdi>Fixed Fields</a></li></ol></li><li class="tocline"><a class="tocxref" href="#info-object"><bdi class="secno">4.8.2 </bdi>Info Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-0"><bdi class="secno">4.8.2.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#info-object-example"><bdi class="secno">4.8.2.2 </bdi>Info Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#contact-object"><bdi class="secno">4.8.3 </bdi>Contact Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-1"><bdi class="secno">4.8.3.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#contact-object-example"><bdi class="secno">4.8.3.2 </bdi>Contact Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#license-object"><bdi class="secno">4.8.4 </bdi>License Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-2"><bdi class="secno">4.8.4.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#license-object-example"><bdi class="secno">4.8.4.2 </bdi>License Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#server-object"><bdi class="secno">4.8.5 </bdi>Server Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-3"><bdi class="secno">4.8.5.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#server-object-example"><bdi class="secno">4.8.5.2 </bdi>Server Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#server-variable-object"><bdi class="secno">4.8.6 </bdi>Server Variable Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-4"><bdi class="secno">4.8.6.1 </bdi>Fixed Fields</a></li></ol></li><li class="tocline"><a class="tocxref" href="#components-object"><bdi class="secno">4.8.7 </bdi>Components Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-5"><bdi class="secno">4.8.7.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#components-object-example"><bdi class="secno">4.8.7.2 </bdi>Components Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#paths-object"><bdi class="secno">4.8.8 </bdi>Paths Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields"><bdi class="secno">4.8.8.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#path-templating-matching"><bdi class="secno">4.8.8.2 </bdi>Path Templating Matching</a></li><li class="tocline"><a class="tocxref" href="#paths-object-example"><bdi class="secno">4.8.8.3 </bdi>Paths Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#path-item-object"><bdi class="secno">4.8.9 </bdi>Path Item Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-6"><bdi class="secno">4.8.9.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#path-item-object-example"><bdi class="secno">4.8.9.2 </bdi>Path Item Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#operation-object"><bdi class="secno">4.8.10 </bdi>Operation Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-7"><bdi class="secno">4.8.10.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#operation-object-example"><bdi class="secno">4.8.10.2 </bdi>Operation Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#external-documentation-object"><bdi class="secno">4.8.11 </bdi>External Documentation Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-8"><bdi class="secno">4.8.11.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#external-documentation-object-example"><bdi class="secno">4.8.11.2 </bdi>External Documentation Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#parameter-object"><bdi class="secno">4.8.12 </bdi>Parameter Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#parameter-locations"><bdi class="secno">4.8.12.1 </bdi>Parameter Locations</a></li><li class="tocline"><a class="tocxref" href="#fixed-fields-9"><bdi class="secno">4.8.12.2 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#style-values"><bdi class="secno">4.8.12.3 </bdi>Style Values</a></li><li class="tocline"><a class="tocxref" href="#style-examples"><bdi class="secno">4.8.12.4 </bdi>Style Examples</a></li><li class="tocline"><a class="tocxref" href="#parameter-object-examples"><bdi class="secno">4.8.12.5 </bdi>Parameter Object Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#request-body-object"><bdi class="secno">4.8.13 </bdi>Request Body Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-10"><bdi class="secno">4.8.13.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#request-body-examples"><bdi class="secno">4.8.13.2 </bdi>Request Body Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#media-type-object"><bdi class="secno">4.8.14 </bdi>Media Type Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-11"><bdi class="secno">4.8.14.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#media-type-examples"><bdi class="secno">4.8.14.2 </bdi>Media Type Examples</a></li><li class="tocline"><a class="tocxref" href="#considerations-for-file-uploads"><bdi class="secno">4.8.14.3 </bdi>Considerations for File Uploads</a></li><li class="tocline"><a class="tocxref" href="#support-for-x-www-form-urlencoded-request-bodies"><bdi class="secno">4.8.14.4 </bdi>Support for x-www-form-urlencoded Request Bodies</a></li><li class="tocline"><a class="tocxref" href="#special-considerations-for-multipart-content"><bdi class="secno">4.8.14.5 </bdi>Special Considerations for <code>multipart</code> Content</a></li></ol></li><li class="tocline"><a class="tocxref" href="#encoding-object"><bdi class="secno">4.8.15 </bdi>Encoding Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-12"><bdi class="secno">4.8.15.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#encoding-object-example"><bdi class="secno">4.8.15.2 </bdi>Encoding Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#responses-object"><bdi class="secno">4.8.16 </bdi>Responses Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-13"><bdi class="secno">4.8.16.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#patterned-fields-0"><bdi class="secno">4.8.16.2 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#responses-object-example"><bdi class="secno">4.8.16.3 </bdi>Responses Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#response-object"><bdi class="secno">4.8.17 </bdi>Response Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-14"><bdi class="secno">4.8.17.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#response-object-examples"><bdi class="secno">4.8.17.2 </bdi>Response Object Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#callback-object"><bdi class="secno">4.8.18 </bdi>Callback Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-1"><bdi class="secno">4.8.18.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#key-expression"><bdi class="secno">4.8.18.2 </bdi>Key Expression</a></li><li class="tocline"><a class="tocxref" href="#callback-object-examples"><bdi class="secno">4.8.18.3 </bdi>Callback Object Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#example-object"><bdi class="secno">4.8.19 </bdi>Example Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-15"><bdi class="secno">4.8.19.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#example-object-examples"><bdi class="secno">4.8.19.2 </bdi>Example Object Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#link-object"><bdi class="secno">4.8.20 </bdi>Link Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-16"><bdi class="secno">4.8.20.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#examples"><bdi class="secno">4.8.20.2 </bdi>Examples</a></li><li class="tocline"><a class="tocxref" href="#operationref-examples"><bdi class="secno">4.8.20.3 </bdi>OperationRef Examples</a></li><li class="tocline"><a class="tocxref" href="#runtime-expressions"><bdi class="secno">4.8.20.4 </bdi>Runtime Expressions</a></li><li class="tocline"><a class="tocxref" href="#examples-0"><bdi class="secno">4.8.20.5 </bdi>Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#header-object"><bdi class="secno">4.8.21 </bdi>Header Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#header-object-example"><bdi class="secno">4.8.21.1 </bdi>Header Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#tag-object"><bdi class="secno">4.8.22 </bdi>Tag Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-17"><bdi class="secno">4.8.22.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#tag-object-example"><bdi class="secno">4.8.22.2 </bdi>Tag Object Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#reference-object"><bdi class="secno">4.8.23 </bdi>Reference Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-18"><bdi class="secno">4.8.23.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#reference-object-example"><bdi class="secno">4.8.23.2 </bdi>Reference Object Example</a></li><li class="tocline"><a class="tocxref" href="#relative-schema-document-example"><bdi class="secno">4.8.23.3 </bdi>Relative Schema Document Example</a></li><li class="tocline"><a class="tocxref" href="#relative-documents-with-embedded-schema-example"><bdi class="secno">4.8.23.4 </bdi>Relative Documents With Embedded Schema Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#schema-object"><bdi class="secno">4.8.24 </bdi>Schema Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#properties"><bdi class="secno">4.8.24.1 </bdi>Properties</a></li><li class="tocline"><a class="tocxref" href="#fixed-fields-19"><bdi class="secno">4.8.24.2 </bdi>Fixed Fields</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#composition-and-inheritance-polymorphism"><bdi class="secno">4.8.24.2.1 </bdi>Composition and Inheritance (Polymorphism)</a></li><li class="tocline"><a class="tocxref" href="#xml-modeling"><bdi class="secno">4.8.24.2.2 </bdi>XML Modeling</a></li><li class="tocline"><a class="tocxref" href="#specifying-schema-dialects"><bdi class="secno">4.8.24.2.3 </bdi>Specifying Schema Dialects</a></li></ol></li><li class="tocline"><a class="tocxref" href="#schema-object-examples"><bdi class="secno">4.8.24.3 </bdi>Schema Object Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#primitive-sample"><bdi class="secno">4.8.24.3.1 </bdi>Primitive Sample</a></li><li class="tocline"><a class="tocxref" href="#simple-model"><bdi class="secno">4.8.24.3.2 </bdi>Simple Model</a></li><li class="tocline"><a class="tocxref" href="#model-with-map-dictionary-properties"><bdi class="secno">4.8.24.3.3 </bdi>Model with Map/Dictionary Properties</a></li><li class="tocline"><a class="tocxref" href="#model-with-example"><bdi class="secno">4.8.24.3.4 </bdi>Model with Example</a></li><li class="tocline"><a class="tocxref" href="#models-with-composition"><bdi class="secno">4.8.24.3.5 </bdi>Models with Composition</a></li><li class="tocline"><a class="tocxref" href="#models-with-polymorphism-support"><bdi class="secno">4.8.24.3.6 </bdi>Models with Polymorphism Support</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#discriminator-object"><bdi class="secno">4.8.25 </bdi>Discriminator Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-20"><bdi class="secno">4.8.25.1 </bdi>Fixed Fields</a></li></ol></li><li class="tocline"><a class="tocxref" href="#xml-object"><bdi class="secno">4.8.26 </bdi>XML Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-21"><bdi class="secno">4.8.26.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#xml-object-examples"><bdi class="secno">4.8.26.2 </bdi>XML Object Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#no-xml-element"><bdi class="secno">4.8.26.2.1 </bdi>No XML Element</a></li><li class="tocline"><a class="tocxref" href="#xml-name-replacement"><bdi class="secno">4.8.26.2.2 </bdi>XML Name Replacement</a></li><li class="tocline"><a class="tocxref" href="#xml-attribute-prefix-and-namespace"><bdi class="secno">4.8.26.2.3 </bdi>XML Attribute, Prefix and Namespace</a></li><li class="tocline"><a class="tocxref" href="#xml-arrays"><bdi class="secno">4.8.26.2.4 </bdi>XML Arrays</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#security-scheme-object"><bdi class="secno">4.8.27 </bdi>Security Scheme Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-22"><bdi class="secno">4.8.27.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#security-scheme-object-example"><bdi class="secno">4.8.27.2 </bdi>Security Scheme Object Example</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#basic-authentication-sample"><bdi class="secno">4.8.27.2.1 </bdi>Basic Authentication Sample</a></li><li class="tocline"><a class="tocxref" href="#api-key-sample"><bdi class="secno">4.8.27.2.2 </bdi>API Key Sample</a></li><li class="tocline"><a class="tocxref" href="#jwt-bearer-sample"><bdi class="secno">4.8.27.2.3 </bdi>JWT Bearer Sample</a></li><li class="tocline"><a class="tocxref" href="#implicit-oauth2-sample"><bdi class="secno">4.8.27.2.4 </bdi>Implicit OAuth2 Sample</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#oauth-flows-object"><bdi class="secno">4.8.28 </bdi>OAuth Flows Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-23"><bdi class="secno">4.8.28.1 </bdi>Fixed Fields</a></li></ol></li><li class="tocline"><a class="tocxref" href="#oauth-flow-object"><bdi class="secno">4.8.29 </bdi>OAuth Flow Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-24"><bdi class="secno">4.8.29.1 </bdi>Fixed Fields</a></li><li class="tocline"><a class="tocxref" href="#oauth-flow-object-examples"><bdi class="secno">4.8.29.2 </bdi>OAuth Flow Object Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#security-requirement-object"><bdi class="secno">4.8.30 </bdi>Security Requirement Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#patterned-fields-2"><bdi class="secno">4.8.30.1 </bdi>Patterned Fields</a></li><li class="tocline"><a class="tocxref" href="#security-requirement-object-examples"><bdi class="secno">4.8.30.2 </bdi>Security Requirement Object Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#non-oauth2-security-requirement"><bdi class="secno">4.8.30.2.1 </bdi>Non-OAuth2 Security Requirement</a></li><li class="tocline"><a class="tocxref" href="#oauth2-security-requirement"><bdi class="secno">4.8.30.2.2 </bdi>OAuth2 Security Requirement</a></li><li class="tocline"><a class="tocxref" href="#optional-oauth2-security"><bdi class="secno">4.8.30.2.3 </bdi>Optional OAuth2 Security</a></li></ol></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#specification-extensions"><bdi class="secno">4.9 </bdi>Specification Extensions</a></li><li class="tocline"><a class="tocxref" href="#security-filtering"><bdi class="secno">4.10 </bdi>Security Filtering</a></li></ol></li><li class="tocline"><a class="tocxref" href="#appendix-a-revision-history"><bdi class="secno">A. </bdi>Appendix A: Revision History</a></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">B. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">B.1 </bdi>Normative references</a></li></ol></li></ol></nav>
 <section id="openapi-specification"><div class="header-wrapper"><h2 id="x1-openapi-specification"><bdi class="secno">1. </bdi>OpenAPI Specification</h2><a class="self-link" href="#openapi-specification" aria-label="Permalink for Section 1."></a></div>
 <section class="override" id="conformance"><div class="header-wrapper"><h3 id="x1-1-version-3-1-0"><bdi class="secno">1.1 </bdi>Version 3.1.0</h3><a class="self-link" href="#conformance" aria-label="Permalink for Section 1.1"></a></div>
 <p>The key words “<em class="rfc2119">MUST</em>”, “<em class="rfc2119">MUST NOT</em>”, “<em class="rfc2119">REQUIRED</em>”, “<em class="rfc2119">SHALL</em>”, “<em class="rfc2119">SHALL NOT</em>”, “<em class="rfc2119">SHOULD</em>”, “<em class="rfc2119">SHOULD NOT</em>”, “<em class="rfc2119">RECOMMENDED</em>”, “<em class="rfc2119">NOT RECOMMENDED</em>”, “<em class="rfc2119">MAY</em>”, and “<em class="rfc2119">OPTIONAL</em>” in this document are to be interpreted as described in <a href="https://tools.ietf.org/html/bcp14">BCP 14</a> [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">RFC2119</a></cite>] [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8174" title="Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words">RFC8174</a></cite>] when, and only when, they appear in all capitals, as shown here.</p>
@@ -321,8 +261,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
 <p>Media type definitions are spread across several resources.
 The media type definitions <em class="rfc2119">SHOULD</em> be in compliance with [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc6838" title="Media Type Specifications and Registration Procedures">RFC6838</a></cite>].</p>
 <p>Some examples of possible media type definitions:</p>
-<pre class="highlight "><code aria-busy="false" class="hljs">
-  text/plain; charset=utf-8
+<pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs">  text/plain; charset=utf-8
   application/json
   application/vnd.github+json
   application/vnd.github.v3+json
@@ -344,8 +283,7 @@ The available status codes are defined by [<cite><a class="bibref" data-link-typ
 </section><section id="format"><div class="header-wrapper"><h3 id="x4-2-format"><bdi class="secno">4.2 </bdi>Format</h3><a class="self-link" href="#format" aria-label="Permalink for Section 4.2"></a></div>
 <p>An OpenAPI document that conforms to the OpenAPI Specification is itself a JSON object, which may be represented either in <cite><a class="bibref" data-link-type="biblio" href="#bib-rfc7159" title="The JavaScript Object Notation (JSON) Data Interchange Format">JSON</a></cite> or <cite><a class="bibref" data-link-type="biblio" href="#bib-yaml" title="YAML Ain’t Markup Language (YAML™) Version 1.2">YAML</a></cite> format.</p>
 <p>For example, if a field has an array value, the JSON array representation will be used:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">"field"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span> <span class="hljs-number">3</span> <span class="hljs-punctuation">]</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
@@ -458,7 +396,7 @@ Unless specified otherwise, relative references are resolved using the URLs defi
 <tr>
 <td><span id="oasWebhooks"></span>webhooks</td>
 <td style="text-align:center">Map[<code>string</code>, <a href="#path-item-object">Path Item Object</a> | <a href="#reference-object">Reference Object</a>] ]</td>
-<td>The incoming webhooks that <em class="rfc2119">MAY</em> be received as part of this API and that the API consumer <em class="rfc2119">MAY</em> choose to implement. Closely related to the <code>callbacks</code> feature, this section describes requests initiated other than by an API call, for example by an out of band registration. The key name is a unique string to refer to each webhook, while the (optionally referenced) Path Item Object describes a request that may be initiated by the API provider and the expected responses. An <a href="https://github.com/OAI/OpenAPI-Specification/tree/master/examples/v3.1/webhook-example.yaml">example</a> is available.</td>
+<td>The incoming webhooks that <em class="rfc2119">MAY</em> be received as part of this API and that the API consumer <em class="rfc2119">MAY</em> choose to implement. Closely related to the <code>callbacks</code> feature, this section describes requests initiated other than by an API call, for example by an out of band registration. The key name is a unique string to refer to each webhook, while the (optionally referenced) Path Item Object describes a request that may be initiated by the API provider and the expected responses. An <a href="https://learn.openapis.org/examples/v3.1/webhook-example.yaml">example</a> is available.</td>
 </tr>
 <tr>
 <td><span id="oasComponents"></span>components</td>
@@ -535,8 +473,7 @@ The metadata <em class="rfc2119">MAY</em> be used by the clients if needed, and 
 </table>
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 </section><section id="info-object-example"><div class="header-wrapper"><h5 id="x4-8-2-2-info-object-example"><bdi class="secno">4.8.2.2 </bdi>Info Object Example</h5><a class="self-link" href="#info-object-example" aria-label="Permalink for Section 4.8.2.2"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"title"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Sample Pet Store App"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"summary"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"A pet store manager."</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"description"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"This is a sample server for a pet store."</span><span class="hljs-punctuation">,</span>
@@ -553,8 +490,7 @@ The metadata <em class="rfc2119">MAY</em> be used by the clients if needed, and 
   <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"1.0.1"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">title:</span> <span class="hljs-string">Sample</span> <span class="hljs-string">Pet</span> <span class="hljs-string">Store</span> <span class="hljs-string">App</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">title:</span> <span class="hljs-string">Sample</span> <span class="hljs-string">Pet</span> <span class="hljs-string">Store</span> <span class="hljs-string">App</span>
 <span class="hljs-attr">summary:</span> <span class="hljs-string">A</span> <span class="hljs-string">pet</span> <span class="hljs-string">store</span> <span class="hljs-string">manager.</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">This</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">sample</span> <span class="hljs-string">server</span> <span class="hljs-string">for</span> <span class="hljs-string">a</span> <span class="hljs-string">pet</span> <span class="hljs-string">store.</span>
 <span class="hljs-attr">termsOfService:</span> <span class="hljs-string">https://example.com/terms/</span>
@@ -598,15 +534,13 @@ The metadata <em class="rfc2119">MAY</em> be used by the clients if needed, and 
 </table>
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 </section><section id="contact-object-example"><div class="header-wrapper"><h5 id="x4-8-3-2-contact-object-example"><bdi class="secno">4.8.3.2 </bdi>Contact Object Example</h5><a class="self-link" href="#contact-object-example" aria-label="Permalink for Section 4.8.3.2"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"API Support"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"url"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"https://www.example.com/support"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"email"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"support@example.com"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">name:</span> <span class="hljs-string">API</span> <span class="hljs-string">Support</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">name:</span> <span class="hljs-string">API</span> <span class="hljs-string">Support</span>
 <span class="hljs-attr">url:</span> <span class="hljs-string">https://www.example.com/support</span>
 <span class="hljs-attr">email:</span> <span class="hljs-string">support@example.com</span>
 </code></pre>
@@ -630,7 +564,7 @@ The metadata <em class="rfc2119">MAY</em> be used by the clients if needed, and 
 <tr>
 <td><span id="licenseIdentifier"></span>identifier</td>
 <td style="text-align:center"><code>string</code></td>
-<td>An [<cite><a class="bibref" data-link-type="biblio" href="#bib-spdx" title="SPDX License List">SPDX</a></cite>] license expression for the API. The <code>identifier</code> field is mutually exclusive of the <code>url</code> field.</td>
+<td>An [<cite><a class="bibref" data-link-type="biblio" href="#bib-spdx-licenses" title="SPDX License List">SPDX-Licenses</a></cite>] expression for the API. The <code>identifier</code> field is mutually exclusive of the <code>url</code> field.</td>
 </tr>
 <tr>
 <td><span id="licenseUrl"></span>url</td>
@@ -641,14 +575,12 @@ The metadata <em class="rfc2119">MAY</em> be used by the clients if needed, and 
 </table>
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 </section><section id="license-object-example"><div class="header-wrapper"><h5 id="x4-8-4-2-license-object-example"><bdi class="secno">4.8.4.2 </bdi>License Object Example</h5><a class="self-link" href="#license-object-example" aria-label="Permalink for Section 4.8.4.2"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Apache 2.0"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"identifier"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Apache-2.0"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">name:</span> <span class="hljs-string">Apache</span> <span class="hljs-number">2.0</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">name:</span> <span class="hljs-string">Apache</span> <span class="hljs-number">2.0</span>
 <span class="hljs-attr">identifier:</span> <span class="hljs-string">Apache-2.0</span>
 </code></pre>
 </section></section><section id="server-object"><div class="header-wrapper"><h4 id="x4-8-5-server-object"><bdi class="secno">4.8.5 </bdi>Server Object</h4><a class="self-link" href="#server-object" aria-label="Permalink for Section 4.8.5"></a></div>
@@ -683,19 +615,16 @@ The metadata <em class="rfc2119">MAY</em> be used by the clients if needed, and 
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 </section><section id="server-object-example"><div class="header-wrapper"><h5 id="x4-8-5-2-server-object-example"><bdi class="secno">4.8.5.2 </bdi>Server Object Example</h5><a class="self-link" href="#server-object-example" aria-label="Permalink for Section 4.8.5.2"></a></div>
 <p>A single server would be described as:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"url"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"https://development.gigantic-server.com/v1"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"description"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Development server"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">url:</span> <span class="hljs-string">https://development.gigantic-server.com/v1</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">url:</span> <span class="hljs-string">https://development.gigantic-server.com/v1</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">Development</span> <span class="hljs-string">server</span>
 </code></pre>
 <p>The following shows how multiple servers can be described, for example, at the OpenAPI Object’s <a href="#oasServers"><code>servers</code></a>:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"servers"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
     <span class="hljs-punctuation">{</span>
       <span class="hljs-attr">"url"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"https://development.gigantic-server.com/v1"</span><span class="hljs-punctuation">,</span>
@@ -712,8 +641,7 @@ The metadata <em class="rfc2119">MAY</em> be used by the clients if needed, and 
   <span class="hljs-punctuation">]</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">servers:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">servers:</span>
 <span class="hljs-bullet">-</span> <span class="hljs-attr">url:</span> <span class="hljs-string">https://development.gigantic-server.com/v1</span>
   <span class="hljs-attr">description:</span> <span class="hljs-string">Development</span> <span class="hljs-string">server</span>
 <span class="hljs-bullet">-</span> <span class="hljs-attr">url:</span> <span class="hljs-string">https://staging.gigantic-server.com/v1</span>
@@ -722,8 +650,7 @@ The metadata <em class="rfc2119">MAY</em> be used by the clients if needed, and 
   <span class="hljs-attr">description:</span> <span class="hljs-string">Production</span> <span class="hljs-string">server</span>
 </code></pre>
 <p>The following shows how variables can be used for a server configuration:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"servers"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
     <span class="hljs-punctuation">{</span>
       <span class="hljs-attr">"url"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"https://{username}.gigantic-server.com:{port}/{basePath}"</span><span class="hljs-punctuation">,</span>
@@ -748,8 +675,7 @@ The metadata <em class="rfc2119">MAY</em> be used by the clients if needed, and 
   <span class="hljs-punctuation">]</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">servers:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">servers:</span>
 <span class="hljs-bullet">-</span> <span class="hljs-attr">url:</span> <span class="hljs-string">https://{username}.gigantic-server.com:{port}/{basePath}</span>
   <span class="hljs-attr">description:</span> <span class="hljs-string">The</span> <span class="hljs-string">production</span> <span class="hljs-string">API</span> <span class="hljs-string">server</span>
   <span class="hljs-attr">variables:</span>
@@ -864,16 +790,14 @@ All objects defined within the components object will have no effect on the API 
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 <p>All the fixed fields declared above are objects that <em class="rfc2119">MUST</em> use keys that match the regular expression: <code>^[a-zA-Z0-9\.\-_]+$</code>.</p>
 <p>Field Name Examples:</p>
-<pre class="highlight "><code aria-busy="false" class="hljs">
-User
+<pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs">User
 User_1
 User_Name
 user-name
 my.org.User
 </code></pre>
 </section><section id="components-object-example"><div class="header-wrapper"><h5 id="x4-8-7-2-components-object-example"><bdi class="secno">4.8.7.2 </bdi>Components Object Example</h5><a class="self-link" href="#components-object-example" aria-label="Permalink for Section 4.8.7.2"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">"components"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">"components"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"schemas"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"GeneralError"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
       <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"object"</span><span class="hljs-punctuation">,</span>
@@ -973,8 +897,7 @@ my.org.User
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">components:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">components:</span>
   <span class="hljs-attr">schemas:</span>
     <span class="hljs-attr">GeneralError:</span>
       <span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
@@ -1065,23 +988,19 @@ The path is appended to the URL from the <a href="#server-object"><code>Server O
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 </section><section id="path-templating-matching"><div class="header-wrapper"><h5 id="x4-8-8-2-path-templating-matching"><bdi class="secno">4.8.8.2 </bdi>Path Templating Matching</h5><a class="self-link" href="#path-templating-matching" aria-label="Permalink for Section 4.8.8.2"></a></div>
 <p>Assuming the following paths, the concrete definition, <code>/pets/mine</code>, will be matched first if used:</p>
-<pre class="highlight "><code aria-busy="false" class="hljs">
-  /pets/{petId}
+<pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs">  /pets/{petId}
   /pets/mine
 </code></pre>
 <p>The following paths are considered identical and invalid:</p>
-<pre class="highlight "><code aria-busy="false" class="hljs">
-  /pets/{petId}
+<pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs">  /pets/{petId}
   /pets/{name}
 </code></pre>
 <p>The following may lead to ambiguous resolution:</p>
-<pre class="highlight "><code aria-busy="false" class="hljs">
-  /{entity}/me
+<pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs">  /{entity}/me
   /books/{id}
 </code></pre>
 </section><section id="paths-object-example"><div class="header-wrapper"><h5 id="x4-8-8-3-paths-object-example"><bdi class="secno">4.8.8.3 </bdi>Paths Object Example</h5><a class="self-link" href="#paths-object-example" aria-label="Permalink for Section 4.8.8.3"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"/pets"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"get"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
       <span class="hljs-attr">"description"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Returns all pets from the system that the user has access to"</span><span class="hljs-punctuation">,</span>
@@ -1104,8 +1023,7 @@ The path is appended to the URL from the <a href="#server-object"><code>Server O
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-string">/pets:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-string">/pets:</span>
   <span class="hljs-attr">get:</span>
     <span class="hljs-attr">description:</span> <span class="hljs-string">Returns</span> <span class="hljs-string">all</span> <span class="hljs-string">pets</span> <span class="hljs-string">from</span> <span class="hljs-string">the</span> <span class="hljs-string">system</span> <span class="hljs-string">that</span> <span class="hljs-string">the</span> <span class="hljs-string">user</span> <span class="hljs-string">has</span> <span class="hljs-string">access</span> <span class="hljs-string">to</span>
     <span class="hljs-attr">responses:</span>
@@ -1201,8 +1119,7 @@ The path itself is still exposed to the documentation viewer but they will not k
 </table>
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 </section><section id="path-item-object-example"><div class="header-wrapper"><h5 id="x4-8-9-2-path-item-object-example"><bdi class="secno">4.8.9.2 </bdi>Path Item Object Example</h5><a class="self-link" href="#path-item-object-example" aria-label="Permalink for Section 4.8.9.2"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"get"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"description"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Returns pets based on ID"</span><span class="hljs-punctuation">,</span>
     <span class="hljs-attr">"summary"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Find pets by ID"</span><span class="hljs-punctuation">,</span>
@@ -1250,8 +1167,7 @@ The path itself is still exposed to the documentation viewer but they will not k
   <span class="hljs-punctuation">]</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">get:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">get:</span>
   <span class="hljs-attr">description:</span> <span class="hljs-string">Returns</span> <span class="hljs-string">pets</span> <span class="hljs-string">based</span> <span class="hljs-string">on</span> <span class="hljs-string">ID</span>
   <span class="hljs-attr">summary:</span> <span class="hljs-string">Find</span> <span class="hljs-string">pets</span> <span class="hljs-string">by</span> <span class="hljs-string">ID</span>
   <span class="hljs-attr">operationId:</span> <span class="hljs-string">getPetsById</span>
@@ -1357,8 +1273,7 @@ The path itself is still exposed to the documentation viewer but they will not k
 </table>
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 </section><section id="operation-object-example"><div class="header-wrapper"><h5 id="x4-8-10-2-operation-object-example"><bdi class="secno">4.8.10.2 </bdi>Operation Object Example</h5><a class="self-link" href="#operation-object-example" aria-label="Permalink for Section 4.8.10.2"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"tags"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
     <span class="hljs-string">"pet"</span>
   <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
@@ -1421,8 +1336,7 @@ The path itself is still exposed to the documentation viewer but they will not k
   <span class="hljs-punctuation">]</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">tags:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">tags:</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">pet</span>
 <span class="hljs-attr">summary:</span> <span class="hljs-string">Updates</span> <span class="hljs-string">a</span> <span class="hljs-string">pet</span> <span class="hljs-string">in</span> <span class="hljs-string">the</span> <span class="hljs-string">store</span> <span class="hljs-string">with</span> <span class="hljs-string">form</span> <span class="hljs-string">data</span>
 <span class="hljs-attr">operationId:</span> <span class="hljs-string">updatePetWithForm</span>
@@ -1489,14 +1403,12 @@ The path itself is still exposed to the documentation viewer but they will not k
 </table>
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 </section><section id="external-documentation-object-example"><div class="header-wrapper"><h5 id="x4-8-11-2-external-documentation-object-example"><bdi class="secno">4.8.11.2 </bdi>External Documentation Object Example</h5><a class="self-link" href="#external-documentation-object-example" aria-label="Permalink for Section 4.8.11.2"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"description"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Find more info here"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"url"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"https://example.com"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">description:</span> <span class="hljs-string">Find</span> <span class="hljs-string">more</span> <span class="hljs-string">info</span> <span class="hljs-string">here</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">description:</span> <span class="hljs-string">Find</span> <span class="hljs-string">more</span> <span class="hljs-string">info</span> <span class="hljs-string">here</span>
 <span class="hljs-attr">url:</span> <span class="hljs-string">https://example.com</span>
 </code></pre>
 </section></section><section id="parameter-object"><div class="header-wrapper"><h4 id="x4-8-12-parameter-object"><bdi class="secno">4.8.12 </bdi>Parameter Object</h4><a class="self-link" href="#parameter-object" aria-label="Permalink for Section 4.8.12"></a></div>
@@ -1672,8 +1584,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 </table>
 </section><section id="style-examples"><div class="header-wrapper"><h5 id="x4-8-12-4-style-examples"><bdi class="secno">4.8.12.4 </bdi>Style Examples</h5><a class="self-link" href="#style-examples" aria-label="Permalink for Section 4.8.12.4"></a></div>
 <p>Assume a parameter named <code>color</code> has one of the following values:</p>
-<pre class="highlight "><code aria-busy="false" class="hljs css">
-   string -&gt; "blue"
+<pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs css">   string -&gt; "blue"
    array -&gt; <span class="hljs-selector-attr">[<span class="hljs-string">"blue"</span>,<span class="hljs-string">"black"</span>,<span class="hljs-string">"brown"</span>]</span>
    <span class="hljs-selector-tag">object</span> -&gt; { "R": <span class="hljs-number">100</span>, <span class="hljs-string">"G"</span>: <span class="hljs-number">200</span>, <span class="hljs-string">"B"</span>: <span class="hljs-number">150</span> }
 </code></pre>
@@ -1783,8 +1694,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 </section><section id="parameter-object-examples"><div class="header-wrapper"><h5 id="x4-8-12-5-parameter-object-examples"><bdi class="secno">4.8.12.5 </bdi>Parameter Object Examples</h5><a class="self-link" href="#parameter-object-examples" aria-label="Permalink for Section 4.8.12.5"></a></div>
 <p>A header parameter with an array of 64 bit integer numbers:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"token"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"in"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"header"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"description"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"token to be passed as a header"</span><span class="hljs-punctuation">,</span>
@@ -1799,8 +1709,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
   <span class="hljs-attr">"style"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"simple"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">name:</span> <span class="hljs-string">token</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">name:</span> <span class="hljs-string">token</span>
 <span class="hljs-attr">in:</span> <span class="hljs-string">header</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">token</span> <span class="hljs-string">to</span> <span class="hljs-string">be</span> <span class="hljs-string">passed</span> <span class="hljs-string">as</span> <span class="hljs-string">a</span> <span class="hljs-string">header</span>
 <span class="hljs-attr">required:</span> <span class="hljs-literal">true</span>
@@ -1812,8 +1721,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 <span class="hljs-attr">style:</span> <span class="hljs-string">simple</span>
 </code></pre>
 <p>A path parameter of a string value:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"username"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"in"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"path"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"description"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"username to fetch"</span><span class="hljs-punctuation">,</span>
@@ -1823,8 +1731,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">name:</span> <span class="hljs-string">username</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">name:</span> <span class="hljs-string">username</span>
 <span class="hljs-attr">in:</span> <span class="hljs-string">path</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">username</span> <span class="hljs-string">to</span> <span class="hljs-string">fetch</span>
 <span class="hljs-attr">required:</span> <span class="hljs-literal">true</span>
@@ -1832,8 +1739,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
   <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 </code></pre>
 <p>An optional query parameter of a string value, allowing multiple values by repeating the query parameter:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"id"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"in"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"query"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"description"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"ID of the object to fetch"</span><span class="hljs-punctuation">,</span>
@@ -1848,8 +1754,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
   <span class="hljs-attr">"explode"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">name:</span> <span class="hljs-string">id</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">name:</span> <span class="hljs-string">id</span>
 <span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">ID</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">object</span> <span class="hljs-string">to</span> <span class="hljs-string">fetch</span>
 <span class="hljs-attr">required:</span> <span class="hljs-literal">false</span>
@@ -1861,8 +1766,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 <span class="hljs-attr">explode:</span> <span class="hljs-literal">true</span>
 </code></pre>
 <p>A free-form query parameter, allowing undefined parameters of a specific type:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"in"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"query"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"freeForm"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"schema"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -1874,8 +1778,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
   <span class="hljs-attr">"style"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"form"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
 <span class="hljs-attr">name:</span> <span class="hljs-string">freeForm</span>
 <span class="hljs-attr">schema:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
@@ -1884,8 +1787,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 <span class="hljs-attr">style:</span> <span class="hljs-string">form</span>
 </code></pre>
 <p>A complex parameter using <code>content</code> to define serialization:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"in"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"query"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"coordinates"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"content"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -1909,8 +1811,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
 <span class="hljs-attr">name:</span> <span class="hljs-string">coordinates</span>
 <span class="hljs-attr">content:</span>
   <span class="hljs-attr">application/json:</span>
@@ -1957,8 +1858,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 </section><section id="request-body-examples"><div class="header-wrapper"><h5 id="x4-8-13-2-request-body-examples"><bdi class="secno">4.8.13.2 </bdi>Request Body Examples</h5><a class="self-link" href="#request-body-examples" aria-label="Permalink for Section 4.8.13.2"></a></div>
 <p>A request body with a referenced model definition.</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"description"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"user to add to the system"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"content"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"application/json"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -2002,8 +1902,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">description:</span> <span class="hljs-string">user</span> <span class="hljs-string">to</span> <span class="hljs-string">add</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">system</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">description:</span> <span class="hljs-string">user</span> <span class="hljs-string">to</span> <span class="hljs-string">add</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">system</span>
 <span class="hljs-attr">content:</span>
   <span class="hljs-attr">'application/json':</span>
     <span class="hljs-attr">schema:</span>
@@ -2031,8 +1930,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
         <span class="hljs-attr">externalValue:</span> <span class="hljs-string">'https://foo.bar/examples/user-example.whatever'</span>
 </code></pre>
 <p>A body parameter that is an array of string values:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"description"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"user to add to the system"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"required"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"content"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -2047,8 +1945,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">description:</span> <span class="hljs-string">user</span> <span class="hljs-string">to</span> <span class="hljs-string">add</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">system</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">description:</span> <span class="hljs-string">user</span> <span class="hljs-string">to</span> <span class="hljs-string">add</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">system</span>
 <span class="hljs-attr">required:</span> <span class="hljs-literal">true</span>
 <span class="hljs-attr">content:</span>
   <span class="hljs-attr">text/plain:</span>
@@ -2093,8 +1990,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 </table>
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 </section><section id="media-type-examples"><div class="header-wrapper"><h5 id="x4-8-14-2-media-type-examples"><bdi class="secno">4.8.14.2 </bdi>Media Type Examples</h5><a class="self-link" href="#media-type-examples" aria-label="Permalink for Section 4.8.14.2"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"application/json"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"schema"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
          <span class="hljs-attr">"$ref"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"#/components/schemas/Pet"</span>
@@ -2128,8 +2024,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">application/json:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">application/json:</span>
   <span class="hljs-attr">schema:</span>
     <span class="hljs-string">$ref:</span> <span class="hljs-string">"#/components/schemas/Pet"</span>
   <span class="hljs-attr">examples:</span>
@@ -2158,19 +2053,16 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 <p>JSON Schema also offers a <code>contentMediaType</code> keyword.  However, when the media type is already specified by the Media Type Object’s key, or by the <code>contentType</code> field of an <a href="#encoding-object">Encoding Object</a>, the <code>contentMediaType</code> keyword <em class="rfc2119">SHALL</em> be ignored if present.</p>
 <p>Examples:</p>
 <p>Content transferred in binary (octet-stream) <em class="rfc2119">MAY</em> omit <code>schema</code>:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-comment"># a PNG image as a binary file:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-comment"># a PNG image as a binary file:</span>
 <span class="hljs-attr">content:</span>
     <span class="hljs-attr">image/png:</span> {}
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-comment"># an arbitrary binary file:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-comment"># an arbitrary binary file:</span>
 <span class="hljs-attr">content:</span>
     <span class="hljs-attr">application/octet-stream:</span> {}
 </code></pre>
 <p>Binary content transferred with base64 encoding:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">content:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">content:</span>
     <span class="hljs-attr">image/png:</span>
         <span class="hljs-attr">schema:</span>
             <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
@@ -2180,14 +2072,12 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 <p>Note that the <code>Content-Type</code> remains <code>image/png</code>, describing the semantics of the payload.  The JSON Schema <code>type</code> and <code>contentEncoding</code> fields explain that the payload is transferred as text.  The JSON Schema <code>contentMediaType</code> is technically redundant, but can be used by JSON Schema tools that may not be aware of the OpenAPI context.</p>
 <p>These examples apply to either input payloads of file uploads or response payloads.</p>
 <p>A <code>requestBody</code> for submitting a file in a <code>POST</code> operation may look like the following example:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">requestBody:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">requestBody:</span>
   <span class="hljs-attr">content:</span>
     <span class="hljs-attr">application/octet-stream:</span> {}
 </code></pre>
 <p>In addition, specific media types <em class="rfc2119">MAY</em> be specified:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-comment"># multiple, specific media types may be specified:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-comment"># multiple, specific media types may be specified:</span>
 <span class="hljs-attr">requestBody:</span>
   <span class="hljs-attr">content:</span>
     <span class="hljs-comment"># a binary file of type png or jpeg</span>
@@ -2195,8 +2085,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
     <span class="hljs-attr">image/png:</span> {}
 </code></pre>
 <p>To upload multiple files, a <code>multipart</code> media type <em class="rfc2119">MUST</em> be used:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">requestBody:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">requestBody:</span>
   <span class="hljs-attr">content:</span>
     <span class="hljs-attr">multipart/form-data:</span>
       <span class="hljs-attr">schema:</span>
@@ -2210,8 +2099,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 </section><section id="support-for-x-www-form-urlencoded-request-bodies"><div class="header-wrapper"><h5 id="x4-8-14-4-support-for-x-www-form-urlencoded-request-bodies"><bdi class="secno">4.8.14.4 </bdi>Support for x-www-form-urlencoded Request Bodies</h5><a class="self-link" href="#support-for-x-www-form-urlencoded-request-bodies" aria-label="Permalink for Section 4.8.14.4"></a></div>
 <p>To submit content using form url encoding via [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc1866" title="Hypertext Markup Language - 2.0">RFC1866</a></cite>], the following
 definition may be used:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">requestBody:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">requestBody:</span>
   <span class="hljs-attr">content:</span>
     <span class="hljs-attr">application/x-www-form-urlencoded:</span>
       <span class="hljs-attr">schema:</span>
@@ -2238,8 +2126,7 @@ definition may be used:</p>
 </ul>
 <p>Per the JSON Schema specification, <code>contentMediaType</code> without <code>contentEncoding</code> present is treated as if <code>contentEncoding: identity</code> were present.  While useful for embedding text documents such as <code>text/html</code> into JSON strings, it is not useful for a <code>multipart/form-data</code> part, as it just causes the document to be treated as <code>text/plain</code> instead of its actual media type.  Use the Encoding Object without <code>contentMediaType</code> if no <code>contentEncoding</code> is required.</p>
 <p>Examples:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">requestBody:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">requestBody:</span>
   <span class="hljs-attr">content:</span>
     <span class="hljs-attr">multipart/form-data:</span>
       <span class="hljs-attr">schema:</span>
@@ -2311,8 +2198,7 @@ definition may be used:</p>
 </table>
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 </section><section id="encoding-object-example"><div class="header-wrapper"><h5 id="x4-8-15-2-encoding-object-example"><bdi class="secno">4.8.15.2 </bdi>Encoding Object Example</h5><a class="self-link" href="#encoding-object-example" aria-label="Permalink for Section 4.8.15.2"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">requestBody:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">requestBody:</span>
   <span class="hljs-attr">content:</span>
     <span class="hljs-attr">multipart/form-data:</span>
       <span class="hljs-attr">schema:</span>
@@ -2392,8 +2278,7 @@ call.</p>
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 </section><section id="responses-object-example"><div class="header-wrapper"><h5 id="x4-8-16-3-responses-object-example"><bdi class="secno">4.8.16.3 </bdi>Responses Object Example</h5><a class="self-link" href="#responses-object-example" aria-label="Permalink for Section 4.8.16.3"></a></div>
 <p>A 200 response for a successful operation and a default response for others (implying an error):</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"200"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"description"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"a pet to be returned"</span><span class="hljs-punctuation">,</span>
     <span class="hljs-attr">"content"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -2416,8 +2301,7 @@ call.</p>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">'200':</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">'200':</span>
   <span class="hljs-attr">description:</span> <span class="hljs-string">a</span> <span class="hljs-string">pet</span> <span class="hljs-string">to</span> <span class="hljs-string">be</span> <span class="hljs-string">returned</span>
   <span class="hljs-attr">content:</span>
     <span class="hljs-attr">application/json:</span>
@@ -2468,8 +2352,7 @@ call.</p>
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 </section><section id="response-object-examples"><div class="header-wrapper"><h5 id="x4-8-17-2-response-object-examples"><bdi class="secno">4.8.17.2 </bdi>Response Object Examples</h5><a class="self-link" href="#response-object-examples" aria-label="Permalink for Section 4.8.17.2"></a></div>
 <p>Response of an array of a complex type:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"description"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"A complex object array response"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"content"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"application/json"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -2483,8 +2366,7 @@ call.</p>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">description:</span> <span class="hljs-string">A</span> <span class="hljs-string">complex</span> <span class="hljs-string">object</span> <span class="hljs-string">array</span> <span class="hljs-string">response</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">description:</span> <span class="hljs-string">A</span> <span class="hljs-string">complex</span> <span class="hljs-string">object</span> <span class="hljs-string">array</span> <span class="hljs-string">response</span>
 <span class="hljs-attr">content:</span>
   <span class="hljs-attr">application/json:</span>
     <span class="hljs-attr">schema:</span>
@@ -2493,8 +2375,7 @@ call.</p>
         <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/components/schemas/VeryComplexType'</span>
 </code></pre>
 <p>Response with a string type:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"description"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"A simple string response"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"content"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"text/plain"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -2506,16 +2387,14 @@ call.</p>
 
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">description:</span> <span class="hljs-string">A</span> <span class="hljs-string">simple</span> <span class="hljs-string">string</span> <span class="hljs-string">response</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">description:</span> <span class="hljs-string">A</span> <span class="hljs-string">simple</span> <span class="hljs-string">string</span> <span class="hljs-string">response</span>
 <span class="hljs-attr">content:</span>
   <span class="hljs-attr">text/plain:</span>
     <span class="hljs-attr">schema:</span>
       <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 </code></pre>
 <p>Plain text response with headers:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"description"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"A simple string response"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"content"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"text/plain"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -2547,8 +2426,7 @@ call.</p>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">description:</span> <span class="hljs-string">A</span> <span class="hljs-string">simple</span> <span class="hljs-string">string</span> <span class="hljs-string">response</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">description:</span> <span class="hljs-string">A</span> <span class="hljs-string">simple</span> <span class="hljs-string">string</span> <span class="hljs-string">response</span>
 <span class="hljs-attr">content:</span>
   <span class="hljs-attr">text/plain:</span>
     <span class="hljs-attr">schema:</span>
@@ -2569,13 +2447,11 @@ call.</p>
       <span class="hljs-attr">type:</span> <span class="hljs-string">integer</span>
 </code></pre>
 <p>Response with no return value:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"description"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"object created"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">description:</span> <span class="hljs-string">object</span> <span class="hljs-string">created</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">description:</span> <span class="hljs-string">object</span> <span class="hljs-string">created</span>
 </code></pre>
 </section></section><section id="callback-object"><div class="header-wrapper"><h4 id="x4-8-18-callback-object"><bdi class="secno">4.8.18 </bdi>Callback Object</h4><a class="self-link" href="#callback-object" aria-label="Permalink for Section 4.8.18"></a></div>
 <p>A map of possible out-of band callbacks related to the parent operation.
@@ -2595,7 +2471,7 @@ The key value used to identify the path item object is an expression, evaluated 
 <tr>
 <td><span id="callbackExpression"></span>{expression}</td>
 <td style="text-align:center"><a href="#path-item-object">Path Item Object</a> | <a href="#reference-object">Reference Object</a></td>
-<td>A Path Item Object, or a reference to one, used to define a callback request and expected responses.  A <a href="https://github.com/OAI/OpenAPI-Specification/tree/master/examples/v3.0/callback-example.yaml">complete example</a> is available.</td>
+<td>A Path Item Object, or a reference to one, used to define a callback request and expected responses.  A <a href="https://learn.openapis.org/examples/v3.0/callback-example.yaml">complete example</a> is available.</td>
 </tr>
 </tbody>
 </table>
@@ -2606,8 +2482,7 @@ A simple example might be <code>$request.body#/url</code>.
 However, using a <a href="#runtime-expressions">runtime expression</a> the complete HTTP message can be accessed.
 This includes accessing any part of a body that a JSON Pointer [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc6901" title="JavaScript Object Notation (JSON) Pointer">RFC6901</a></cite>] can reference.</p>
 <p>For example, given the following HTTP request:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-keyword">POST</span> <span class="hljs-string">/subscribe/myevent?queryUrl=https://clientdomain.com/stillrunning</span> <span class="hljs-meta">HTTP/1.1</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-keyword">POST</span> <span class="hljs-string">/subscribe/myevent?queryUrl=https://clientdomain.com/stillrunning</span> <span class="hljs-meta">HTTP/1.1</span>
 <span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>example.org
 <span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>application/json
 <span class="hljs-attribute">Content-Length</span><span class="hljs-punctuation">: </span>187
@@ -2669,8 +2544,7 @@ This includes accessing any part of a body that a JSON Pointer [<cite><a class="
 </table>
 </section><section id="callback-object-examples"><div class="header-wrapper"><h5 id="x4-8-18-3-callback-object-examples"><bdi class="secno">4.8.18.3 </bdi>Callback Object Examples</h5><a class="self-link" href="#callback-object-examples" aria-label="Permalink for Section 4.8.18.3"></a></div>
 <p>The following example uses the user provided <code>queryUrl</code> query string parameter to define the callback URL.  This is an example of how to use a callback object to describe a WebHook callback that goes with the subscription operation to enable registering for the WebHook.</p>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">myCallback:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">myCallback:</span>
   <span class="hljs-string">'{$request.query.queryUrl}'</span><span class="hljs-string">:</span>
     <span class="hljs-attr">post:</span>
       <span class="hljs-attr">requestBody:</span>
@@ -2684,8 +2558,7 @@ This includes accessing any part of a body that a JSON Pointer [<cite><a class="
           <span class="hljs-attr">description:</span> <span class="hljs-string">callback</span> <span class="hljs-string">successfully</span> <span class="hljs-string">processed</span>
 </code></pre>
 <p>The following example shows a callback where the server is hard-coded, but the query string parameters are populated from the <code>id</code> and <code>email</code> property in the request body.</p>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">transactionCallback:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">transactionCallback:</span>
   <span class="hljs-string">'http://notificationServer.com?transactionId={$request.body#/id}&amp;email={$request.body#/email}'</span><span class="hljs-string">:</span>
     <span class="hljs-attr">post:</span>
       <span class="hljs-attr">requestBody:</span>
@@ -2737,8 +2610,7 @@ of its associated value.  Tooling implementations <em class="rfc2119">MAY</em> c
 validate compatibility automatically, and reject the example value(s) if incompatible.</p>
 </section><section id="example-object-examples"><div class="header-wrapper"><h5 id="x4-8-19-2-example-object-examples"><bdi class="secno">4.8.19.2 </bdi>Example Object Examples</h5><a class="self-link" href="#example-object-examples" aria-label="Permalink for Section 4.8.19.2"></a></div>
 <p>In a request body:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">requestBody:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">requestBody:</span>
   <span class="hljs-attr">content:</span>
     <span class="hljs-attr">'application/json':</span>
       <span class="hljs-attr">schema:</span>
@@ -2762,8 +2634,7 @@ validate compatibility automatically, and reject the example value(s) if incompa
           <span class="hljs-attr">externalValue:</span> <span class="hljs-string">'https://foo.bar/examples/address-example.txt'</span>
 </code></pre>
 <p>In a parameter:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">parameters:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">parameters:</span>
   <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">'zipCode'</span>
     <span class="hljs-attr">in:</span> <span class="hljs-string">'query'</span>
     <span class="hljs-attr">schema:</span>
@@ -2774,8 +2645,7 @@ validate compatibility automatically, and reject the example value(s) if incompa
         <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/components/examples/zip-example'</span>
 </code></pre>
 <p>In a response:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">responses:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">responses:</span>
   <span class="hljs-attr">'200':</span>
     <span class="hljs-attr">description:</span> <span class="hljs-string">your</span> <span class="hljs-string">car</span> <span class="hljs-string">appointment</span> <span class="hljs-string">has</span> <span class="hljs-string">been</span> <span class="hljs-string">booked</span>
     <span class="hljs-attr">content:</span>
@@ -2840,8 +2710,7 @@ Because of the potential for name clashes, the <code>operationRef</code> syntax 
 for OpenAPI documents with external references.</p>
 </section><section id="examples"><div class="header-wrapper"><h5 id="x4-8-20-2-examples"><bdi class="secno">4.8.20.2 </bdi>Examples</h5><a class="self-link" href="#examples" aria-label="Permalink for Section 4.8.20.2"></a></div>
 <p>Computing a link from a request operation where the <code>$request.path.id</code> is used to pass a request parameter to the linked operation.</p>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">paths:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">paths:</span>
   <span class="hljs-string">/users/{id}:</span>
     <span class="hljs-attr">parameters:</span>
     <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">id</span>
@@ -2887,8 +2756,7 @@ for OpenAPI documents with external references.</p>
 </code></pre>
 <p>When a runtime expression fails to evaluate, no parameter value is passed to the target operation.</p>
 <p>Values from the response body can be used to drive a linked operation.</p>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">links:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">links:</span>
   <span class="hljs-attr">address:</span>
     <span class="hljs-attr">operationId:</span> <span class="hljs-string">getUserAddressByUUID</span>
     <span class="hljs-attr">parameters:</span>
@@ -2901,8 +2769,7 @@ solely by the existence of a relationship.</p>
 </section><section id="operationref-examples"><div class="header-wrapper"><h5 id="x4-8-20-3-operationref-examples"><bdi class="secno">4.8.20.3 </bdi>OperationRef Examples</h5><a class="self-link" href="#operationref-examples" aria-label="Permalink for Section 4.8.20.3"></a></div>
 <p>As references to <code>operationId</code> <em class="rfc2119">MAY</em> NOT be possible (the <code>operationId</code> is an optional
 field in an <a href="#operation-object">Operation Object</a>), references <em class="rfc2119">MAY</em> also be made through a relative <code>operationRef</code>:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">links:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">links:</span>
   <span class="hljs-attr">UserRepositories:</span>
     <span class="hljs-comment"># returns array of '#/components/schemas/repository'</span>
     <span class="hljs-attr">operationRef:</span> <span class="hljs-string">'#/paths/~12.0~1repositories~1{username}/get'</span>
@@ -2910,8 +2777,7 @@ field in an <a href="#operation-object">Operation Object</a>), references <em cl
       <span class="hljs-attr">username:</span> <span class="hljs-string">$response.body#/username</span>
 </code></pre>
 <p>or an absolute <code>operationRef</code>:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">links:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">links:</span>
   <span class="hljs-attr">UserRepositories:</span>
     <span class="hljs-comment"># returns array of '#/components/schemas/repository'</span>
     <span class="hljs-attr">operationRef:</span> <span class="hljs-string">'https://na2.gigantic-server.com/#/paths/~12.0~1repositories~1{username}/get'</span>
@@ -2924,8 +2790,7 @@ using JSON references.</p>
 <p>Runtime expressions allow defining values based on information that will only be available within the HTTP message in an actual API call.
 This mechanism is used by <a href="#link-object">Link Objects</a> and <a href="#callback-object">Callback Objects</a>.</p>
 <p>The runtime expression is defined by the following [<cite><a class="bibref" data-link-type="biblio" href="#bib-abnf" title="Augmented BNF for Syntax Specifications: ABNF">ABNF</a></cite>] syntax</p>
-<pre class="nohighlight"><code>
-      expression <span class="hljs-operator">=</span> ( <span class="hljs-string">"$url"</span> / <span class="hljs-string">"$method"</span> / <span class="hljs-string">"$statusCode"</span> / <span class="hljs-string">"$request."</span> source / <span class="hljs-string">"$response."</span> source )
+<pre class="nohighlight" tabindex="0"><code>      expression <span class="hljs-operator">=</span> ( <span class="hljs-string">"$url"</span> / <span class="hljs-string">"$method"</span> / <span class="hljs-string">"$statusCode"</span> / <span class="hljs-string">"$request."</span> source / <span class="hljs-string">"$response."</span> source )
       source <span class="hljs-operator">=</span> ( header-reference / query-reference / path-reference / body-reference )
       header-reference <span class="hljs-operator">=</span> <span class="hljs-string">"header."</span> token
       query-reference <span class="hljs-operator">=</span> <span class="hljs-string">"query."</span> name 
@@ -3003,16 +2868,14 @@ Expressions can be embedded into string values by surrounding the expression wit
 </ol>
 <section id="header-object-example"><div class="header-wrapper"><h5 id="x4-8-21-1-header-object-example"><bdi class="secno">4.8.21.1 </bdi>Header Object Example</h5><a class="self-link" href="#header-object-example" aria-label="Permalink for Section 4.8.21.1"></a></div>
 <p>A simple header of type <code>integer</code>:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"description"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"The number of allowed requests in the current period"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"schema"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"integer"</span>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">description:</span> <span class="hljs-string">The</span> <span class="hljs-string">number</span> <span class="hljs-string">of</span> <span class="hljs-string">allowed</span> <span class="hljs-string">requests</span> <span class="hljs-string">in</span> <span class="hljs-string">the</span> <span class="hljs-string">current</span> <span class="hljs-string">period</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">description:</span> <span class="hljs-string">The</span> <span class="hljs-string">number</span> <span class="hljs-string">of</span> <span class="hljs-string">allowed</span> <span class="hljs-string">requests</span> <span class="hljs-string">in</span> <span class="hljs-string">the</span> <span class="hljs-string">current</span> <span class="hljs-string">period</span>
 <span class="hljs-attr">schema:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">integer</span>
 </code></pre>
@@ -3048,14 +2911,12 @@ It is not mandatory to have a Tag Object per tag defined in the Operation Object
 </table>
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 </section><section id="tag-object-example"><div class="header-wrapper"><h5 id="x4-8-22-2-tag-object-example"><bdi class="secno">4.8.22.2 </bdi>Tag Object Example</h5><a class="self-link" href="#tag-object-example" aria-label="Permalink for Section 4.8.22.2"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
 	<span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"pet"</span><span class="hljs-punctuation">,</span>
 	<span class="hljs-attr">"description"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Pets operations"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">name:</span> <span class="hljs-string">pet</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">name:</span> <span class="hljs-string">pet</span>
 <span class="hljs-attr">description:</span> <span class="hljs-string">Pets</span> <span class="hljs-string">operations</span>
 </code></pre>
 </section></section><section id="reference-object"><div class="header-wrapper"><h4 id="x4-8-23-reference-object"><bdi class="secno">4.8.23 </bdi>Reference Object</h4><a class="self-link" href="#reference-object" aria-label="Permalink for Section 4.8.23"></a></div>
@@ -3092,31 +2953,25 @@ It is not mandatory to have a Tag Object per tag defined in the Operation Object
 <p>This object cannot be extended with additional properties and any properties added <em class="rfc2119">SHALL</em> be ignored.</p>
 <p>Note that this restriction on additional properties is a difference between Reference Objects and <a href="#schema-object"><code>Schema Objects</code></a> that contain a <code>$ref</code> keyword.</p>
 </section><section id="reference-object-example"><div class="header-wrapper"><h5 id="x4-8-23-2-reference-object-example"><bdi class="secno">4.8.23.2 </bdi>Reference Object Example</h5><a class="self-link" href="#reference-object-example" aria-label="Permalink for Section 4.8.23.2"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
 	<span class="hljs-attr">"$ref"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"#/components/schemas/Pet"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-string">$ref:</span> <span class="hljs-string">'#/components/schemas/Pet'</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-string">$ref:</span> <span class="hljs-string">'#/components/schemas/Pet'</span>
 </code></pre>
 </section><section id="relative-schema-document-example"><div class="header-wrapper"><h5 id="x4-8-23-3-relative-schema-document-example"><bdi class="secno">4.8.23.3 </bdi>Relative Schema Document Example</h5><a class="self-link" href="#relative-schema-document-example" aria-label="Permalink for Section 4.8.23.3"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"$ref"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Pet.json"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-string">$ref:</span> <span class="hljs-string">Pet.yaml</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-string">$ref:</span> <span class="hljs-string">Pet.yaml</span>
 </code></pre>
 </section><section id="relative-documents-with-embedded-schema-example"><div class="header-wrapper"><h5 id="x4-8-23-4-relative-documents-with-embedded-schema-example"><bdi class="secno">4.8.23.4 </bdi>Relative Documents With Embedded Schema Example</h5><a class="self-link" href="#relative-documents-with-embedded-schema-example" aria-label="Permalink for Section 4.8.23.4"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"$ref"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"definitions.json#/Pet"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-string">$ref:</span> <span class="hljs-string">definitions.yaml#/Pet</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-string">$ref:</span> <span class="hljs-string">definitions.yaml#/Pet</span>
 </code></pre>
 </section></section><section id="schema-object"><div class="header-wrapper"><h4 id="x4-8-24-schema-object"><bdi class="secno">4.8.24 </bdi>Schema Object</h4><a class="self-link" href="#schema-object" aria-label="Permalink for Section 4.8.24"></a></div>
 <p>The Schema Object allows the definition of input and output data types.
@@ -3190,19 +3045,16 @@ The <a href="#xml-object">XML Object</a> contains additional information about t
 <p>When a Schema Object is referenced from an external resource which is not an OAS document (e.g. a bare JSON Schema resource), then the value of the <code>$schema</code> keyword for schemas within that resource <em class="rfc2119">MUST</em> follow <a href="https://tools.ietf.org/html/draft-bhutton-json-schema-00#section-8.1.1">JSON Schema rules</a>.</p>
 </section></section><section id="schema-object-examples"><div class="header-wrapper"><h5 id="x4-8-24-3-schema-object-examples"><bdi class="secno">4.8.24.3 </bdi>Schema Object Examples</h5><a class="self-link" href="#schema-object-examples" aria-label="Permalink for Section 4.8.24.3"></a></div>
 <section id="primitive-sample"><div class="header-wrapper"><h6 id="x4-8-24-3-1-primitive-sample"><bdi class="secno">4.8.24.3.1 </bdi>Primitive Sample</h6><a class="self-link" href="#primitive-sample" aria-label="Permalink for Section 4.8.24.3.1"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"string"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"format"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"email"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 <span class="hljs-attr">format:</span> <span class="hljs-string">email</span>
 </code></pre>
 </section><section id="simple-model"><div class="header-wrapper"><h6 id="x4-8-24-3-2-simple-model"><bdi class="secno">4.8.24.3.2 </bdi>Simple Model</h6><a class="self-link" href="#simple-model" aria-label="Permalink for Section 4.8.24.3.2"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"object"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"required"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
     <span class="hljs-string">"name"</span>
@@ -3222,8 +3074,7 @@ The <a href="#xml-object">XML Object</a> contains additional information about t
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
 <span class="hljs-attr">required:</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">name</span>
 <span class="hljs-attr">properties:</span>
@@ -3238,36 +3089,31 @@ The <a href="#xml-object">XML Object</a> contains additional information about t
 </code></pre>
 </section><section id="model-with-map-dictionary-properties"><div class="header-wrapper"><h6 id="x4-8-24-3-3-model-with-map-dictionary-properties"><bdi class="secno">4.8.24.3.3 </bdi>Model with Map/Dictionary Properties</h6><a class="self-link" href="#model-with-map-dictionary-properties" aria-label="Permalink for Section 4.8.24.3.3"></a></div>
 <p>For a simple string to string mapping:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"object"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"additionalProperties"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"string"</span>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
 <span class="hljs-attr">additionalProperties:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 </code></pre>
 <p>For a string to model mapping:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"object"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"additionalProperties"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"$ref"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"#/components/schemas/ComplexModel"</span>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
 <span class="hljs-attr">additionalProperties:</span>
   <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/components/schemas/ComplexModel'</span>
 </code></pre>
 </section><section id="model-with-example"><div class="header-wrapper"><h6 id="x4-8-24-3-4-model-with-example"><bdi class="secno">4.8.24.3.4 </bdi>Model with Example</h6><a class="self-link" href="#model-with-example" aria-label="Permalink for Section 4.8.24.3.4"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"object"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"properties"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -3287,8 +3133,7 @@ The <a href="#xml-object">XML Object</a> contains additional information about t
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
 <span class="hljs-attr">properties:</span>
   <span class="hljs-attr">id:</span>
     <span class="hljs-attr">type:</span> <span class="hljs-string">integer</span>
@@ -3302,8 +3147,7 @@ The <a href="#xml-object">XML Object</a> contains additional information about t
   <span class="hljs-attr">id:</span> <span class="hljs-number">1</span>
 </code></pre>
 </section><section id="models-with-composition"><div class="header-wrapper"><h6 id="x4-8-24-3-5-models-with-composition"><bdi class="secno">4.8.24.3.5 </bdi>Models with Composition</h6><a class="self-link" href="#models-with-composition" aria-label="Permalink for Section 4.8.24.3.5"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"components"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"schemas"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
       <span class="hljs-attr">"ErrorModel"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -3345,8 +3189,7 @@ The <a href="#xml-object">XML Object</a> contains additional information about t
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">components:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">components:</span>
   <span class="hljs-attr">schemas:</span>
     <span class="hljs-attr">ErrorModel:</span>
       <span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
@@ -3371,8 +3214,7 @@ The <a href="#xml-object">XML Object</a> contains additional information about t
             <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 </code></pre>
 </section><section id="models-with-polymorphism-support"><div class="header-wrapper"><h6 id="x4-8-24-3-6-models-with-polymorphism-support"><bdi class="secno">4.8.24.3.6 </bdi>Models with Polymorphism Support</h6><a class="self-link" href="#models-with-polymorphism-support" aria-label="Permalink for Section 4.8.24.3.6"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"components"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"schemas"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
       <span class="hljs-attr">"Pet"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -3447,8 +3289,7 @@ The <a href="#xml-object">XML Object</a> contains additional information about t
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">components:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">components:</span>
   <span class="hljs-attr">schemas:</span>
     <span class="hljs-attr">Pet:</span>
       <span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
@@ -3521,16 +3362,14 @@ The <a href="#xml-object">XML Object</a> contains additional information about t
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 <p>The discriminator object is legal only when using one of the composite keywords <code>oneOf</code>, <code>anyOf</code>, <code>allOf</code>.</p>
 <p>In OAS 3.0, a response payload <em class="rfc2119">MAY</em> be described to be exactly one of any number of types:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">MyResponseType:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">MyResponseType:</span>
   <span class="hljs-attr">oneOf:</span>
   <span class="hljs-bullet">-</span> <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/components/schemas/Cat'</span>
   <span class="hljs-bullet">-</span> <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/components/schemas/Dog'</span>
   <span class="hljs-bullet">-</span> <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/components/schemas/Lizard'</span>
 </code></pre>
 <p>which means the payload <em><em class="rfc2119">MUST</em></em>, by validation, match exactly one of the schemas described by <code>Cat</code>, <code>Dog</code>, or <code>Lizard</code>.  In this case, a discriminator <em class="rfc2119">MAY</em> act as a “hint” to shortcut validation and selection of the matching schema which may be a costly operation, depending on the complexity of the schema. We can then describe exactly which field tells us which schema to use:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">MyResponseType:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">MyResponseType:</span>
   <span class="hljs-attr">oneOf:</span>
   <span class="hljs-bullet">-</span> <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/components/schemas/Cat'</span>
   <span class="hljs-bullet">-</span> <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/components/schemas/Dog'</span>
@@ -3539,16 +3378,14 @@ The <a href="#xml-object">XML Object</a> contains additional information about t
     <span class="hljs-attr">propertyName:</span> <span class="hljs-string">petType</span>
 </code></pre>
 <p>The expectation now is that a property with name <code>petType</code> <em><em class="rfc2119">MUST</em></em> be present in the response payload, and the value will correspond to the name of a schema defined in the OAS document.  Thus the response payload:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">12345</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"petType"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Cat"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
 <p>Will indicate that the <code>Cat</code> schema be used in conjunction with this payload.</p>
 <p>In scenarios where the value of the discriminator field does not match the schema name or implicit mapping is not possible, an optional <code>mapping</code> definition <em class="rfc2119">MAY</em> be used:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">MyResponseType:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">MyResponseType:</span>
   <span class="hljs-attr">oneOf:</span>
   <span class="hljs-bullet">-</span> <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/components/schemas/Cat'</span>
   <span class="hljs-bullet">-</span> <span class="hljs-string">$ref:</span> <span class="hljs-string">'#/components/schemas/Dog'</span>
@@ -3564,8 +3401,7 @@ The <a href="#xml-object">XML Object</a> contains additional information about t
 <p>When used in conjunction with the <code>anyOf</code> construct, the use of the discriminator can avoid ambiguity where multiple schemas may satisfy a single payload.</p>
 <p>In both the <code>oneOf</code> and <code>anyOf</code> use cases, all possible schemas <em class="rfc2119">MUST</em> be listed explicitly.  To avoid redundancy, the discriminator <em class="rfc2119">MAY</em> be added to a parent schema definition, and all schemas comprising the parent schema in an <code>allOf</code> construct may be used as an alternate schema.</p>
 <p>For example:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">components:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">components:</span>
   <span class="hljs-attr">schemas:</span>
     <span class="hljs-attr">Pet:</span>
       <span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
@@ -3604,15 +3440,13 @@ The <a href="#xml-object">XML Object</a> contains additional information about t
             <span class="hljs-attr">type:</span> <span class="hljs-string">boolean</span>
 </code></pre>
 <p>a payload like this:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"petType"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Cat"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"misty"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
 <p>will indicate that the <code>Cat</code> schema be used.  Likewise this schema:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"petType"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"dog"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"bark"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"soft"</span>
 <span class="hljs-punctuation">}</span>
@@ -3664,23 +3498,19 @@ See examples for expected behavior.</p>
 <p>The examples of the XML object definitions are included inside a property definition of a <a href="#schema-object">Schema Object</a> with a sample of the XML representation of it.</p>
 <section id="no-xml-element"><div class="header-wrapper"><h6 id="x4-8-26-2-1-no-xml-element"><bdi class="secno">4.8.26.2.1 </bdi>No XML Element</h6><a class="self-link" href="#no-xml-element" aria-label="Permalink for Section 4.8.26.2.1"></a></div>
 <p>Basic string property:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"animals"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
         <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"string"</span>
     <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">animals:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">animals:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
 </code></pre>
 <p>Basic string array property (<a href="#xmlWrapped"><code>wrapped</code></a> is <code>false</code> by default):</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"animals"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
         <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"array"</span><span class="hljs-punctuation">,</span>
         <span class="hljs-attr">"items"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -3689,20 +3519,17 @@ See examples for expected behavior.</p>
     <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">animals:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">animals:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">array</span>
   <span class="hljs-attr">items:</span>
     <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
 </code></pre>
 </section><section id="xml-name-replacement"><div class="header-wrapper"><h6 id="x4-8-26-2-2-xml-name-replacement"><bdi class="secno">4.8.26.2.2 </bdi>XML Name Replacement</h6><a class="self-link" href="#xml-name-replacement" aria-label="Permalink for Section 4.8.26.2.2"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"animals"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"string"</span><span class="hljs-punctuation">,</span>
     <span class="hljs-attr">"xml"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -3711,19 +3538,16 @@ See examples for expected behavior.</p>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">animals:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">animals:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
   <span class="hljs-attr">xml:</span>
     <span class="hljs-attr">name:</span> <span class="hljs-string">animal</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
 </code></pre>
 </section><section id="xml-attribute-prefix-and-namespace"><div class="header-wrapper"><h6 id="x4-8-26-2-3-xml-attribute-prefix-and-namespace"><bdi class="secno">4.8.26.2.3 </bdi>XML Attribute, Prefix and Namespace</h6><a class="self-link" href="#xml-attribute-prefix-and-namespace" aria-label="Permalink for Section 4.8.26.2.3"></a></div>
 <p>In this example, a full model definition is shown.</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"Person"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"object"</span><span class="hljs-punctuation">,</span>
     <span class="hljs-attr">"properties"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -3745,8 +3569,7 @@ See examples for expected behavior.</p>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">Person:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">Person:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
   <span class="hljs-attr">properties:</span>
     <span class="hljs-attr">id:</span>
@@ -3760,15 +3583,13 @@ See examples for expected behavior.</p>
         <span class="hljs-attr">namespace:</span> <span class="hljs-string">https://example.com/schema/sample</span>
         <span class="hljs-attr">prefix:</span> <span class="hljs-string">sample</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-tag">&lt;<span class="hljs-name">Person</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"123"</span>&gt;</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-tag">&lt;<span class="hljs-name">Person</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"123"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">sample:name</span> <span class="hljs-attr">xmlns:sample</span>=<span class="hljs-string">"https://example.com/schema/sample"</span>&gt;</span>example<span class="hljs-tag">&lt;/<span class="hljs-name">sample:name</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">Person</span>&gt;</span>
 </code></pre>
 </section><section id="xml-arrays"><div class="header-wrapper"><h6 id="x4-8-26-2-4-xml-arrays"><bdi class="secno">4.8.26.2.4 </bdi>XML Arrays</h6><a class="self-link" href="#xml-arrays" aria-label="Permalink for Section 4.8.26.2.4"></a></div>
 <p>Changing the element names:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"animals"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"array"</span><span class="hljs-punctuation">,</span>
     <span class="hljs-attr">"items"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -3780,21 +3601,18 @@ See examples for expected behavior.</p>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">animals:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">animals:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">array</span>
   <span class="hljs-attr">items:</span>
     <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
     <span class="hljs-attr">xml:</span>
       <span class="hljs-attr">name:</span> <span class="hljs-string">animal</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
 </code></pre>
 <p>The external <code>name</code> property has no effect on the XML:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"animals"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"array"</span><span class="hljs-punctuation">,</span>
     <span class="hljs-attr">"items"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -3809,8 +3627,7 @@ See examples for expected behavior.</p>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">animals:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">animals:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">array</span>
   <span class="hljs-attr">items:</span>
     <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
@@ -3819,13 +3636,11 @@ See examples for expected behavior.</p>
   <span class="hljs-attr">xml:</span>
     <span class="hljs-attr">name:</span> <span class="hljs-string">aliens</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
 </code></pre>
 <p>Even when the array is wrapped, if a name is not explicitly defined, the same name will be used both internally and externally:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"animals"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"array"</span><span class="hljs-punctuation">,</span>
     <span class="hljs-attr">"items"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -3837,23 +3652,20 @@ See examples for expected behavior.</p>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">animals:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">animals:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">array</span>
   <span class="hljs-attr">items:</span>
     <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
   <span class="hljs-attr">xml:</span>
     <span class="hljs-attr">wrapped:</span> <span class="hljs-literal">true</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
 </code></pre>
 <p>To overcome the naming problem in the example above, the following definition can be used:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"animals"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"array"</span><span class="hljs-punctuation">,</span>
     <span class="hljs-attr">"items"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -3868,8 +3680,7 @@ See examples for expected behavior.</p>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">animals:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">animals:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">array</span>
   <span class="hljs-attr">items:</span>
     <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
@@ -3878,15 +3689,13 @@ See examples for expected behavior.</p>
   <span class="hljs-attr">xml:</span>
     <span class="hljs-attr">wrapped:</span> <span class="hljs-literal">true</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-tag">&lt;<span class="hljs-name">animals</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">animals</span>&gt;</span>
 </code></pre>
 <p>Affecting both internal and external names:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"animals"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"array"</span><span class="hljs-punctuation">,</span>
     <span class="hljs-attr">"items"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -3902,8 +3711,7 @@ See examples for expected behavior.</p>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">animals:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">animals:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">array</span>
   <span class="hljs-attr">items:</span>
     <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
@@ -3913,15 +3721,13 @@ See examples for expected behavior.</p>
     <span class="hljs-attr">name:</span> <span class="hljs-string">aliens</span>
     <span class="hljs-attr">wrapped:</span> <span class="hljs-literal">true</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-tag">&lt;<span class="hljs-name">aliens</span>&gt;</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-tag">&lt;<span class="hljs-name">aliens</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">animal</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">animal</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>&gt;</span>
 </code></pre>
 <p>If we change the external element but not the internal ones:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"animals"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"array"</span><span class="hljs-punctuation">,</span>
     <span class="hljs-attr">"items"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -3934,8 +3740,7 @@ See examples for expected behavior.</p>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">animals:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">animals:</span>
   <span class="hljs-attr">type:</span> <span class="hljs-string">array</span>
   <span class="hljs-attr">items:</span>
     <span class="hljs-attr">type:</span> <span class="hljs-string">string</span>
@@ -3943,8 +3748,7 @@ See examples for expected behavior.</p>
     <span class="hljs-attr">name:</span> <span class="hljs-string">aliens</span>
     <span class="hljs-attr">wrapped:</span> <span class="hljs-literal">true</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-tag">&lt;<span class="hljs-name">aliens</span>&gt;</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-tag">&lt;<span class="hljs-name">aliens</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">aliens</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">aliens</span>&gt;</span>value<span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">aliens</span>&gt;</span>
@@ -4017,45 +3821,38 @@ Please note that as of 2020, the implicit flow is about to be deprecated by <a h
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 </section><section id="security-scheme-object-example"><div class="header-wrapper"><h5 id="x4-8-27-2-security-scheme-object-example"><bdi class="secno">4.8.27.2 </bdi>Security Scheme Object Example</h5><a class="self-link" href="#security-scheme-object-example" aria-label="Permalink for Section 4.8.27.2"></a></div>
 <section id="basic-authentication-sample"><div class="header-wrapper"><h6 id="x4-8-27-2-1-basic-authentication-sample"><bdi class="secno">4.8.27.2.1 </bdi>Basic Authentication Sample</h6><a class="self-link" href="#basic-authentication-sample" aria-label="Permalink for Section 4.8.27.2.1"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"http"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"scheme"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"basic"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">type:</span> <span class="hljs-string">http</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">type:</span> <span class="hljs-string">http</span>
 <span class="hljs-attr">scheme:</span> <span class="hljs-string">basic</span>
 </code></pre>
 </section><section id="api-key-sample"><div class="header-wrapper"><h6 id="x4-8-27-2-2-api-key-sample"><bdi class="secno">4.8.27.2.2 </bdi>API Key Sample</h6><a class="self-link" href="#api-key-sample" aria-label="Permalink for Section 4.8.27.2.2"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"apiKey"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"api_key"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"in"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"header"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">type:</span> <span class="hljs-string">apiKey</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">type:</span> <span class="hljs-string">apiKey</span>
 <span class="hljs-attr">name:</span> <span class="hljs-string">api_key</span>
 <span class="hljs-attr">in:</span> <span class="hljs-string">header</span>
 </code></pre>
 </section><section id="jwt-bearer-sample"><div class="header-wrapper"><h6 id="x4-8-27-2-3-jwt-bearer-sample"><bdi class="secno">4.8.27.2.3 </bdi>JWT Bearer Sample</h6><a class="self-link" href="#jwt-bearer-sample" aria-label="Permalink for Section 4.8.27.2.3"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"http"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"scheme"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"bearer"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"bearerFormat"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"JWT"</span><span class="hljs-punctuation">,</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">type:</span> <span class="hljs-string">http</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">type:</span> <span class="hljs-string">http</span>
 <span class="hljs-attr">scheme:</span> <span class="hljs-string">bearer</span>
 <span class="hljs-attr">bearerFormat:</span> <span class="hljs-string">JWT</span>
 </code></pre>
 </section><section id="implicit-oauth2-sample"><div class="header-wrapper"><h6 id="x4-8-27-2-4-implicit-oauth2-sample"><bdi class="secno">4.8.27.2.4 </bdi>Implicit OAuth2 Sample</h6><a class="self-link" href="#implicit-oauth2-sample" aria-label="Permalink for Section 4.8.27.2.4"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"oauth2"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"flows"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"implicit"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -4068,8 +3865,7 @@ Please note that as of 2020, the implicit flow is about to be deprecated by <a h
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">type:</span> <span class="hljs-string">oauth2</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">type:</span> <span class="hljs-string">oauth2</span>
 <span class="hljs-attr">flows:</span>
   <span class="hljs-attr">implicit:</span>
     <span class="hljs-attr">authorizationUrl:</span> <span class="hljs-string">https://example.com/api/oauth/dialog</span>
@@ -4153,8 +3949,7 @@ Please note that as of 2020, the implicit flow is about to be deprecated by <a h
 </table>
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 </section><section id="oauth-flow-object-examples"><div class="header-wrapper"><h5 id="x4-8-29-2-oauth-flow-object-examples"><bdi class="secno">4.8.29.2 </bdi>OAuth Flow Object Examples</h5><a class="self-link" href="#oauth-flow-object-examples" aria-label="Permalink for Section 4.8.29.2"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"oauth2"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"flows"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"implicit"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -4175,8 +3970,7 @@ Please note that as of 2020, the implicit flow is about to be deprecated by <a h
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">type:</span> <span class="hljs-string">oauth2</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">type:</span> <span class="hljs-string">oauth2</span>
 <span class="hljs-attr">flows:</span>
   <span class="hljs-attr">implicit:</span>
     <span class="hljs-attr">authorizationUrl:</span> <span class="hljs-string">https://example.com/api/oauth/dialog</span>
@@ -4215,32 +4009,27 @@ This enables support for scenarios where multiple query parameters or HTTP heade
 </table>
 </section><section id="security-requirement-object-examples"><div class="header-wrapper"><h5 id="x4-8-30-2-security-requirement-object-examples"><bdi class="secno">4.8.30.2 </bdi>Security Requirement Object Examples</h5><a class="self-link" href="#security-requirement-object-examples" aria-label="Permalink for Section 4.8.30.2"></a></div>
 <section id="non-oauth2-security-requirement"><div class="header-wrapper"><h6 id="x4-8-30-2-1-non-oauth2-security-requirement"><bdi class="secno">4.8.30.2.1 </bdi>Non-OAuth2 Security Requirement</h6><a class="self-link" href="#non-oauth2-security-requirement" aria-label="Permalink for Section 4.8.30.2.1"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"api_key"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">api_key:</span> []
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">api_key:</span> []
 </code></pre>
 </section><section id="oauth2-security-requirement"><div class="header-wrapper"><h6 id="x4-8-30-2-2-oauth2-security-requirement"><bdi class="secno">4.8.30.2.2 </bdi>OAuth2 Security Requirement</h6><a class="self-link" href="#oauth2-security-requirement" aria-label="Permalink for Section 4.8.30.2.2"></a></div>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"petstore_auth"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
     <span class="hljs-string">"write:pets"</span><span class="hljs-punctuation">,</span>
     <span class="hljs-string">"read:pets"</span>
   <span class="hljs-punctuation">]</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">petstore_auth:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">petstore_auth:</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">write:pets</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">read:pets</span>
 </code></pre>
 </section><section id="optional-oauth2-security"><div class="header-wrapper"><h6 id="x4-8-30-2-3-optional-oauth2-security"><bdi class="secno">4.8.30.2.3 </bdi>Optional OAuth2 Security</h6><a class="self-link" href="#optional-oauth2-security" aria-label="Permalink for Section 4.8.30.2.3"></a></div>
 <p>Optional OAuth2 security as would be defined in an <a href="#openapi-object">OpenAPI Object</a> or an <a href="#operation-object">Operation Object</a>:</p>
-<pre class="nohighlight"><code>
-<span class="hljs-punctuation">{</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"security"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
     <span class="hljs-punctuation">{</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
     <span class="hljs-punctuation">{</span>
@@ -4252,8 +4041,7 @@ This enables support for scenarios where multiple query parameters or HTTP heade
   <span class="hljs-punctuation">]</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
-<pre class="nohighlight"><code>
-<span class="hljs-attr">security:</span>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">security:</span>
   <span class="hljs-bullet">-</span> {}
   <span class="hljs-bullet">-</span> <span class="hljs-attr">petstore_auth:</span>
     <span class="hljs-bullet">-</span> <span class="hljs-string">write:pets</span>
@@ -4422,7 +4210,7 @@ While not part of the specification itself, certain libraries <em class="rfc2119
       <a href="https://www.rfc-editor.org/rfc/rfc7578"><cite>Returning Values from Forms: multipart/form-data</cite></a>. L. Masinter.  IETF. July 2015. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc7578">https://www.rfc-editor.org/rfc/rfc7578</a>
     </dd><dt id="bib-rfc8174">[RFC8174]</dt><dd>
       <a href="https://www.rfc-editor.org/rfc/rfc8174"><cite>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite></a>. B. Leiba.  IETF. May 2017. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>
-    </dd><dt id="bib-spdx">[SPDX]</dt><dd>
+    </dd><dt id="bib-spdx-licenses">[SPDX-Licenses]</dt><dd>
       <a href="https://spdx.org/licenses/"><cite>SPDX License List</cite></a>.  Linux Foundation. URL: <a href="https://spdx.org/licenses/">https://spdx.org/licenses/</a>
     </dd><dt id="bib-yaml">[YAML]</dt><dd>
       <a href="http://yaml.org/spec/1.2/spec.html"><cite>YAML Ain’t Markup Language (YAML™) Version 1.2</cite></a>. Oren Ben-Kiki; Clark Evans; Ingy döt Net. 1 October 2009. URL: <a href="http://yaml.org/spec/1.2/spec.html">http://yaml.org/spec/1.2/spec.html</a>

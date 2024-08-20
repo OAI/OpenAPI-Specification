@@ -15,8 +15,6 @@ Intro headline only needs to start with `## Introduction`.
 
 Will be removed
 
-<!-- /TOC -->
-
 ## Heading 2
 
 Text for first section

@@ -13,7 +13,7 @@
 
 .hljs-comment,
 .hljs-meta {
-  color: #969896;
+  color: #727070;
 }
 
 .hljs-string,
@@ -22,11 +22,11 @@
 .hljs-strong,
 .hljs-emphasis,
 .hljs-quote {
-  color: #df5000;
+  color: #c74700;
 }
 
 .hljs-number {
-  color: #008080;
+  color: #005e5e;
 }
 
 .hljs-keyword,
@@ -39,12 +39,12 @@
 .hljs-symbol,
 .hljs-bullet,
 .hljs-attribute {
-  color: #0086b3;
+  color: #007aa2;
 }
 
 .hljs-section,
 .hljs-name {
-  color: #63a35c;
+  color: #4b7c46;
 }
 
 .hljs-tag {

@@ -190,7 +190,7 @@ for (let l in lines) {
 
     // remove TOC from older spec versions, respec will generate a new one
     if (line.startsWith('## Table of Contents')) inTOC = true;
-    if (line.startsWith('<!-- /TOC')) inTOC = false;
+    else if (line.startsWith('#')) inTOC = false;
     if (inTOC) line = '';
 
     // special formatting for Definitions section

@@ -2,7 +2,7 @@
 owner: MikeRalphson
 issue: 845
 description: unsigned 8-bit integer
-base_type: [number, integer]
+base_type: number
 layout: default
 source: https://spec.openapis.org/oas/latest.html#data-types
 source_label: OAS

@@ -2,7 +2,7 @@
 owner: mikekistler
 issue: 
 description: an integer that can be stored in an IEEE 754 double-precision number without loss of precision
-base_type: integer
+base_type: number
 layout: default
 ---
 

@@ -1,0 +1,16 @@
+# Unordered list symbol
+MD004:
+    style: asterisk
+
+# Unordered list indentation
+MD007:
+    indent: 2
+
+MD012: false # allow blank lines
+
+MD013:
+    line_length: 800
+    tables: false
+
+MD024: false # duplicate headings
+MD033: false # inline HTML

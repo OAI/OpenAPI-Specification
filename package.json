@@ -25,5 +25,8 @@
     "Swagger",
     "schema",
     "API"
-  ]
+  ],
+  "scripts": {
+    "format-markdown": "npx prettier --write --single-quote versions/3.0.4.md && npx --yes markdownlint-cli --fix --config .markdownlint.yaml versions/3.0.4.md"
+  }
 }

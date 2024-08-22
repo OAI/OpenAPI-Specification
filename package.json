@@ -26,6 +26,7 @@
   "devDependencies": {
     "@hyperjump/json-schema": "^0.17.0",
     "chai": "^4.3.1",
+    "markdownlint-cli": "^0.41.0",
     "mdv": "^1.0.7",
     "mocha": "^8.3.0",
     "yaml": "^1.8.3"
@@ -36,5 +37,8 @@
     "Swagger",
     "schema",
     "API"
-  ]
+  ],
+  "scripts": {
+    "format-markdown": "npx prettier --write --single-quote versions/3.0.4.md && npx --yes markdownlint-cli --fix --config .markdownlint.yaml versions/3.0.4.md"
+  }
 }

@@ -2,7 +2,7 @@
 
 ## {{ page.slug }} - {{ page.description }}
 
-JSON Data Type: `{{ page.base_type | join:', ' }}`.
+Instance Type: `{{ page.base_type | join:', ' }}`.
 
 {{ include.summary }}
 

@@ -21,7 +21,9 @@ Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls
 
 ## Values
 
-|Value|Description|JSON Data Type|Source|Deprecated|
+For the purpose of [JSON Schema validation](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-7.1), each format should specify the set of instance types (primitive JSON types) for which it applies. In this registry, these types are shown in the "Instance Type" column.
+
+|Value|Description|Instance Type|Source|Deprecated|
 |---|---|----|---|---|----|
 {% for value in site.format %}| <a href="./{{ value.slug }}.html">{{ value.slug }}</a> | {{ value.description }} | {{ value.base_type | join: ', ' }} | {% if value.source %}<a href="{{ value.source }}">{% if value.source_label %}{{value.source_label}}{% else %}Open{% endif %}</a>{% endif %} | {% if value.deprecated_note %}Yes{% else %}No{% endif %} |
 {% endfor %}

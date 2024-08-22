@@ -10,8 +10,6 @@ This is the conformance section
 
 Will be removed
 
-<!-- /TOC -->
-
 ## Heading 2
 
 Text for first section

@@ -23,12 +23,12 @@ jobs:
         fetch-depth: 0
     - name: use the javascript environment from main
       run: |
-        git checkout remotes/origin/main -- package.json package-lock.json
+        git checkout remotes/origin/main -- package.json package-lock.json .markdownlint.yaml
     - uses: actions/setup-node@v4 # setup Node.js
       with:
         node-version: '20.x'
     - name: Validate markdown
       run: npx --yes mdv versions/3.*.md
     - name: Lint markdown v3.2.*
-      run: npx --yes markdownlint-cli --config versions/.markdownlint.yaml versions/3.2.*.md
+      run: npx --yes markdownlint-cli --config .markdownlint.yaml versions/3.2.*.md
 

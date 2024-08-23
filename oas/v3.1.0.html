@@ -249,7 +249,6 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
 </section></section><section id="introduction"><div class="header-wrapper"><h2 id="x2-introduction"><bdi class="secno">2. </bdi>Introduction</h2><a class="self-link" href="#introduction" aria-label="Permalink for Section 2."></a></div>
 <p>The OpenAPI Specification (OAS) defines a standard, language-agnostic interface to HTTP APIs which allows both humans and computers to discover and understand the capabilities of the service without access to source code, documentation, or through network traffic inspection. When properly defined, a consumer can understand and interact with the remote service with a minimal amount of implementation logic.</p>
 <p>An OpenAPI definition can then be used by documentation generation tools to display the API, code generation tools to generate servers and clients in various programming languages, testing tools, and many other use cases.</p>
-
 </section><section id="definitions"><div class="header-wrapper"><h2 id="x3-definitions"><bdi class="secno">3. </bdi><dfn id="dfn-definitions" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">Definitions</dfn></h2><a class="self-link" href="#definitions" aria-label="Permalink for Section 3."></a></div>
 <section id="openapi-document"><div class="header-wrapper"><h3 id="x3-1-openapi-document"><bdi class="secno">3.1 </bdi><dfn id="dfn-openapi-document" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">OpenAPI Document</dfn></h3><a class="self-link" href="#openapi-document" aria-label="Permalink for Section 3.1"></a></div>
 <p>A self-contained or composite resource which defines or describes an API or elements of an API. The OpenAPI document <em class="rfc2119">MUST</em> contain at least one <a href="#paths-object">paths</a> field, a <a href="#oasComponents">components</a> field or a <a href="#oasWebhooks">webhooks</a> field. An OpenAPI document uses and conforms to the OpenAPI Specification.</p>
@@ -396,7 +395,7 @@ Unless specified otherwise, relative references are resolved using the URLs defi
 <tr>
 <td><span id="oasWebhooks"></span>webhooks</td>
 <td style="text-align:center">Map[<code>string</code>, <a href="#path-item-object">Path Item Object</a> | <a href="#reference-object">Reference Object</a>] ]</td>
-<td>The incoming webhooks that <em class="rfc2119">MAY</em> be received as part of this API and that the API consumer <em class="rfc2119">MAY</em> choose to implement. Closely related to the <code>callbacks</code> feature, this section describes requests initiated other than by an API call, for example by an out of band registration. The key name is a unique string to refer to each webhook, while the (optionally referenced) Path Item Object describes a request that may be initiated by the API provider and the expected responses. An <a href="https://learn.openapis.org/examples/v3.1/webhook-example.yaml">example</a> is available.</td>
+<td>The incoming webhooks that <em class="rfc2119">MAY</em> be received as part of this API and that the API consumer <em class="rfc2119">MAY</em> choose to implement. Closely related to the <code>callbacks</code> feature, this section describes requests initiated other than by an API call, for example by an out of band registration. The key name is a unique string to refer to each webhook, while the (optionally referenced) Path Item Object describes a request that may be initiated by the API provider and the expected responses. An <a href="https://learn.openapis.org/examples/v3.1/webhook-example.html">example</a> is available.</td>
 </tr>
 <tr>
 <td><span id="oasComponents"></span>components</td>
@@ -2471,7 +2470,7 @@ The key value used to identify the path item object is an expression, evaluated 
 <tr>
 <td><span id="callbackExpression"></span>{expression}</td>
 <td style="text-align:center"><a href="#path-item-object">Path Item Object</a> | <a href="#reference-object">Reference Object</a></td>
-<td>A Path Item Object, or a reference to one, used to define a callback request and expected responses.  A <a href="https://learn.openapis.org/examples/v3.0/callback-example.yaml">complete example</a> is available.</td>
+<td>A Path Item Object, or a reference to one, used to define a callback request and expected responses.  A <a href="https://learn.openapis.org/examples/v3.0/callback-example.html">complete example</a> is available.</td>
 </tr>
 </tbody>
 </table>

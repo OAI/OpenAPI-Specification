@@ -27,6 +27,6 @@
     "API"
   ],
   "scripts": {
-    "format-markdown": "npx prettier --write --single-quote versions/3.0.4.md && npx --yes markdownlint-cli --fix --config .markdownlint.yaml versions/3.0.4.md"
+    "format-markdown": "npx prettier --write --single-quote versions/3.0.4.md && sed -i '' -E -e 's/  +\\|/ |/g' -e 's/\\|  +/| /g' -e 's/-----+/----/g' versions/3.0.4.md && npx --yes markdownlint-cli --fix --config .markdownlint.yaml versions/3.0.4.md"
   }
 }

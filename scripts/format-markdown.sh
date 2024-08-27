@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SRCDIR="$(dirname "${BASH_SOURCE[0]}")" # check on Windows
+
 for filename in $*; do
   # mostly to format code blocks with examples, unfortunately messes up bullet lists and tables
   npx prettier --write --single-quote $filename
@@ -9,5 +11,5 @@ for filename in $*; do
   sed -E -e "s/  +\|/ |/g" -e "s/\|  +/| /g" -e "s/-----+/----/g" $filename > $filename.tmp && mv $filename.tmp $filename
 
   # repair the bullet lists and various other markdown formatting issues
-  npx --yes markdownlint-cli --fix --config .markdownlint.yaml $filename
+  npx --yes markdownlint-cli --fix --config $SRCDIR/../.markdownlint.yaml $filename
 done

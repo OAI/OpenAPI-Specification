@@ -1,0 +1,9 @@
+---
+title: JSON Schema for OpenAPI 3.1 - without schema validation
+layout: default
+parent: Schemas
+---
+
+```json
+{% include_relative latest %}
+```

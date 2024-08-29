@@ -33,6 +33,6 @@
     "API"
   ],
   "scripts": {
-    "format-markdown": "npx prettier --write --single-quote versions/3.1.1.md && npx --yes markdownlint-cli --fix --config .markdownlint.yaml versions/3.1.1.md"
+    "format-markdown": "bash ./scripts/format-markdown.sh ./versions/3.1.1.md"
   }
 }

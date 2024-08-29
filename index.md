@@ -38,10 +38,11 @@ This site contains the OpenAPI Initiative Registry and content for the HTML vers
 {%- endif -%}
 {%- if segments[3] != last_kind -%}
 {%- assign last_kind = segments[3] %}
-  * [**{{ last_kind }}**]({{ site.baseurl }}/oas/{{ last_version }}/{{ last_kind }}/latest.html)
+  * [**view latest {{ last_kind }}**]({{ site.baseurl }}/oas/{{ last_version }}/{{ last_kind }}/latest.html)  
+    download iteration
 {%- assign separator = ": " -%}
 {%- endif -%}
-{{ separator }} [{{ file.basename }}]({{ site.baseurl }}{{ file.path }})
+{{ separator }} [{{ file.basename | replace: "-", "&#8209;" }}]({{ site.baseurl }}{{ file.path }})
 {%- assign separator = ", " -%}
 {%- endif -%}
 {%- endfor %}

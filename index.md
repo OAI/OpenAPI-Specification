@@ -28,15 +28,20 @@ This site contains the OpenAPI Initiative Registry and content for the HTML vers
 
 {% assign schema_files = site.static_files | where: "extname", "" | sort: "path" | reverse %}
 {% assign last_version = "" %}
+{% assign last_kind = "" %}
 {%- for file in schema_files -%}
 {%- assign segments = file.path | split: "/" -%}
-{%- if segments[1] == "oas" and file.basename contains "lat" -%}
+{%- if segments[1] == "oas" and file.basename contains "-" -%}
 {%- if segments[2] != last_version -%}
 {%- assign last_version = segments[2] %}
 * **v{{ last_version }}**
+{%- endif -%}
+{%- if segments[3] != last_kind -%}
+{%- assign last_kind = segments[3] %}
+  * [**{{ last_kind }}**]({{ site.baseurl }}/oas/{{ last_version }}/{{ last_kind }}/latest.html)
 {%- assign separator = ": " -%}
 {%- endif -%}
-{{ separator }}[{{ segments[3] }}]({{ site.baseurl }}{{ file.path }})
+{{ separator }} [{{ file.basename }}]({{ site.baseurl }}{{ file.path }})
 {%- assign separator = ", " -%}
 {%- endif -%}
-{%- endfor -%}
+{%- endfor %}

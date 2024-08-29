@@ -15,6 +15,11 @@ This site contains the OpenAPI Initiative Registry and content for the HTML vers
 
 ## Development
 
+> [!NOTE]  
+> As of 2024-08-28 Jekyll version 4.3.2 does _not_ work with Ruby 3.3.x.
+>
+> Make sure you have Ruby 3.2.x or lower installed.
+
 Install [jekyll](https://jekyllrb.com/docs/installation/) for your platform, install the site
 ~~~sh
 bundle install

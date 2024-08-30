@@ -31,7 +31,7 @@ This site contains the OpenAPI Initiative Registry and content for the HTML vers
 {% assign last_kind = "" %}
 {%- for file in schema_files -%}
 {%- assign segments = file.path | split: "/" -%}
-{%- if segments[1] == "oas" and file.basename contains "-" -%}
+{%- if segments[1] == "oas" -%}
 {%- if segments[2] != last_version -%}
 {%- assign last_version = segments[2] %}
 * **v{{ last_version }}**

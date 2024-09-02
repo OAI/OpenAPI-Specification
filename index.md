@@ -31,17 +31,18 @@ This site contains the OpenAPI Initiative Registry and content for the HTML vers
 {% assign last_kind = "" %}
 {%- for file in schema_files -%}
 {%- assign segments = file.path | split: "/" -%}
-{%- if segments[1] == "oas" and file.basename contains "-" -%}
+{%- if segments[1] == "oas" -%}
 {%- if segments[2] != last_version -%}
 {%- assign last_version = segments[2] %}
 * **v{{ last_version }}**
 {%- endif -%}
 {%- if segments[3] != last_kind -%}
 {%- assign last_kind = segments[3] %}
-  * [**{{ last_kind }}**]({{ site.baseurl }}/oas/{{ last_version }}/{{ last_kind }}/latest.html)
+  * [**view latest {{ last_kind }}**]({{ site.baseurl }}/oas/{{ last_version }}/{{ last_kind }}/latest.html)  
+    download iteration
 {%- assign separator = ": " -%}
 {%- endif -%}
-{{ separator }} [{{ file.basename }}]({{ site.baseurl }}{{ file.path }})
+{{ separator }} [{{ file.basename | replace: "-", "&#8209;" }}]({{ site.baseurl }}{{ file.path }})
 {%- assign separator = ", " -%}
 {%- endif -%}
 {%- endfor %}

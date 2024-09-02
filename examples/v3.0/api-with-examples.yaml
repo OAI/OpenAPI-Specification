@@ -15,8 +15,9 @@ paths:
             application/json:
               examples: 
                 foo:
-                  value: {
-                    "versions": [
+                  value:
+                    {
+                      "versions": [
                         {
                             "status": "CURRENT",
                             "updated": "2011-01-21T11:33:21Z",
@@ -39,8 +40,8 @@ paths:
                                 }
                             ]
                         }
-                    ]
-                 }
+                      ]
+                    }
         '300':
           description: |-
             300 response
@@ -87,11 +88,12 @@ paths:
             application/json: 
               examples:
                 foo:
-                  value: {
-                    "version": {
-                      "status": "CURRENT",
-                      "updated": "2011-01-21T11:33:21Z",
-                      "media-types": [
+                  value:
+                    {
+                      "version": {
+                        "status": "CURRENT",
+                        "updated": "2011-01-21T11:33:21Z",
+                        "media-types": [
                           {
                               "base": "application/xml",
                               "type": "application/vnd.openstack.compute+xml;version=2"
@@ -100,9 +102,9 @@ paths:
                               "base": "application/json",
                               "type": "application/vnd.openstack.compute+json;version=2"
                           }
-                      ],
-                      "id": "v2.0",
-                      "links": [
+                        ],
+                        "id": "v2.0",
+                        "links": [
                           {
                               "href": "http://127.0.0.1:8774/v2/",
                               "rel": "self"
@@ -122,9 +124,9 @@ paths:
                             "type": "application/vnd.sun.wadl+xml",
                             "rel": "describedby"
                           }
-                      ]
+                        ]
+                      }
                     }
-                  }
         '203':
           description: |-
             203 response
@@ -132,11 +134,12 @@ paths:
             application/json: 
               examples:
                 foo:
-                  value: {
-                    "version": {
-                      "status": "CURRENT",
-                      "updated": "2011-01-21T11:33:21Z",
-                      "media-types": [
+                  value:
+                    {
+                      "version": {
+                        "status": "CURRENT",
+                        "updated": "2011-01-21T11:33:21Z",
+                        "media-types": [
                           {
                               "base": "application/xml",
                               "type": "application/vnd.openstack.compute+xml;version=2"
@@ -145,9 +148,9 @@ paths:
                               "base": "application/json",
                               "type": "application/vnd.openstack.compute+json;version=2"
                           }
-                      ],
-                      "id": "v2.0",
-                      "links": [
+                        ],
+                        "id": "v2.0",
+                        "links": [
                           {
                               "href": "http://23.253.228.211:8774/v2/",
                               "rel": "self"
@@ -162,6 +165,6 @@ paths:
                               "type": "application/vnd.sun.wadl+xml",
                               "rel": "describedby"
                           }
-                      ]
+                        ]
+                      }
                     }
-                  }

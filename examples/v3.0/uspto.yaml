@@ -115,7 +115,7 @@ paths:
         Provides search capability for the data set with the given search
         criteria.
       description: >-
-        This API is based on Solr/Lucense Search. The data is indexed using
+        This API is based on Solr/Lucene Search. The data is indexed using
         SOLR. This GET API returns the list of all the searchable field names
         that are in the Solr Index. Please see the 'fields' attribute which
         returns an array of field names. Each field or a combination of fields

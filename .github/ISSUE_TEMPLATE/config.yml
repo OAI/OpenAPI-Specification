@@ -1,0 +1,28 @@
+blank_issues_enabled: false
+
+# The local issue filing links are included in "contact_links" because
+# GitHub's regular issue template mechanism forces the local issue
+# links to be first in the list, when we want them to be last so 
+# visitors can be routed to other repos when appropriate.
+contact_links:
+  - name: Have a question about using OpenAPI?
+    url: https://communityinviter.com/apps/open-api/openapi
+    about: Ask us on our Slack!
+  - name: Have a question about OpenAPI Tooling?
+    url: https://tools.openapis.org/
+    about: Please ask your tooling vendor!
+  - name: Want to add to our list of OpenAPI Tools?
+    url: https://tools.openapis.org/
+    about: Please take a look at our tooling site's instructions!
+  - name: Want to suggest more how-to documentation and examples?
+    url: https://github.com/OAI/learn.openapis.org/issues/new
+    about: Please open an issue on our learning site!
+  - name: Want to add to the registries at spec.openapis.org/registry ?
+    url: https://github.com/OAI/OpenAPI-Specification/issues/new
+    about: Please open an issue in this repository!
+  - name: Want to report an error in the specification?
+    url: https://github.com/OAI/OpenAPI-Specification/issues/new
+    about: Please open an issue in this repository!
+  - name: Want to request a new feature in the specification?
+    url: https://github.com/OAI/OpenAPI-Specification/discussions/new?category=enhancements
+    about: Please start a discussion in this repository!

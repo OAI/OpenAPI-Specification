@@ -8,7 +8,7 @@
             "required": [ "method", "nickname", "parameters" ],
             "properties": {
                 "method": { "enum": [ "GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS" ] },
-                "summary": { "type": "string", "maxLength": 120 },
+                "summary": { "type": "string" },
                 "notes": { "type": "string" },
                 "nickname": {
                     "type": "string",

@@ -23,6 +23,7 @@ properties:
     $ref: '#/$defs/components'
   security:
     type: array
+    minItems: 1
     items:
       $ref: '#/$defs/security-requirement'
   tags:
@@ -253,6 +254,7 @@ $defs:
         type: boolean
       security:
         type: array
+        minItems: 1
         items:
           $ref: '#/$defs/security-requirement'
       servers:

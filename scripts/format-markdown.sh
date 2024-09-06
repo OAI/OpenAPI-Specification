@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SRCDIR="$(dirname "${BASH_SOURCE[0]}")" # check on Windows
+SRCDIR="$(dirname "${BASH_SOURCE[0]}")"
 
 for filename in $*; do
   # mostly to format code blocks with examples, unfortunately messes up bullet lists and tables

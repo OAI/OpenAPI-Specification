@@ -42,8 +42,5 @@
     "Swagger",
     "schema",
     "API"
-  ],
-  "scripts": {
-    "format-markdown": "bash ./scripts/format-markdown.sh ./versions/3.1.1.md"
-  }
+  ]
 }

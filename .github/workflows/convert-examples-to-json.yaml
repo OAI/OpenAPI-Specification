@@ -10,11 +10,11 @@ name: convert-examples-to-json
 # Only the YAML files should be adjusted manually.
 #
 
-# run this on push to master
+# run this on push to main
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   yaml2json:
@@ -22,10 +22,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1 # checkout repo content
+    - uses: actions/checkout@v2 # checkout repo content
+
+    - uses: actions/setup-node@v4 # setup Node.js
+      with:
+        node-version: '20.x'
 
     - name: Install dependencies
-      run: npm i
+      run: npm ci
 
     - name: convert YAML examples to JSON
       run: find examples/v3* -type f -name "*.yaml" | xargs node scripts/yaml2json/yaml2json.js
@@ -36,10 +40,9 @@ jobs:
         git --no-pager -c color.diff=always diff --staged
 
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v1
+      uses: peter-evans/create-pull-request@v5
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        branch-suffix: none
         branch: update-json-examples
         title: Update JSON example files
         commit-message: Update JSON example files

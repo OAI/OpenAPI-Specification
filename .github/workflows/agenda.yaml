@@ -1,0 +1,47 @@
+name: agenda
+
+# author: @MikeRalphson
+# issue: various
+
+#
+# This workflow creates the agenda issue each week. It runs on a cron every
+# Monday morning, raising an issue for the following Thursday.
+# It can also be run manually, in case GitHub Actions has a failure.
+#
+
+on:
+  schedule:
+    - cron: '0 16 * * 4'
+  workflow_dispatch: {}
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  agenda:
+    if: github.repository == 'OAI/OpenAPI-Specification'
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      TITLE_PREFIX: "Open Community (TDC) Meeting, "
+      LABEL: "Housekeeping"
+      POST_MEETING_CLOSE_DURATION_IN_DAYS: 10
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4 # checkout repo content
+
+    # we want to close old agenda issues before creating a new one because there's a limit of 3 pinned items on a repo
+    - name: Close old agenda issues
+      run: gh issue list -l ${{ env.LABEL }} --author "app/github-actions" --json number,title | ConvertFrom-Json | Where-Object { $_.title -like "${{ env.TITLE_PREFIX }}*" -and ([datetime]::UtcNow - [datetime]::Parse([regex]::Replace($_.title.Replace("${{ env.TITLE_PREFIX }}", ""), "\([^)]+\)", ""))) -ge [timespan]::FromDays([int]::Parse("${{ env.POST_MEETING_CLOSE_DURATION_IN_DAYS }}"))} | ForEach-Object { gh issue close $_.number && gh issue unpin $_.number }
+      shell: pwsh
+
+    - name: Create agenda issue
+      run: |
+        $nextThursday = @(@(1..8) | % {$(Get-Date).AddDays($_)} | ? {$_.DayOfWeek -ieq "Thursday"})[0].ToString("dddd dd MMMM yyyy", [CultureInfo]::InvariantCulture)
+        $result = gh issue create -l ${{ env.LABEL }} -t "${{ env.TITLE_PREFIX }}$nextThursday" -F .github/templates/agenda.md
+        gh issue pin $result
+      shell: pwsh
+
+

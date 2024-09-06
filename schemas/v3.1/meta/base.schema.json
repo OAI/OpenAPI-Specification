@@ -1,11 +1,15 @@
 {
     "$id": "https://spec.openapis.org/oas/3.1/meta/base",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
+
+    "title": "OAS Base vocabulary",
+    "description": "A JSON Schema Vocabulary used in the OpenAPI Schema Dialect",
+
     "$vocabulary": {
         "https://spec.openapis.org/oas/3.1/vocab/base": true
     },
+
     "$dynamicAnchor": "meta",
-    "title": "OAS Base vocabulary",
 
     "type": ["object", "boolean"],
     "properties": {
@@ -14,12 +18,14 @@
         "externalDocs": { "$ref": "#/$defs/external-docs" },
         "xml": { "$ref": "#/$defs/xml" }
     },
+
     "$defs": {
         "extensible": {
             "patternProperties": {
                 "^x-": true
             }
         },
+
         "discriminator": {
             "$ref": "#/$defs/extensible",
             "type": "object",
@@ -37,6 +43,7 @@
             "required": ["propertyName"],
             "unevaluatedProperties": false
         },
+
         "external-docs": {
             "$ref": "#/$defs/extensible",
             "type": "object",
@@ -52,6 +59,7 @@
             "required": ["url"],
             "unevaluatedProperties": false
         },
+
         "xml": {
             "$ref": "#/$defs/extensible",
             "type": "object",

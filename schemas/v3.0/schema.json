@@ -1,7 +1,7 @@
 {
-  "id": "https://spec.openapis.org/oas/3.0/schema/2019-04-02",
+  "id": "https://spec.openapis.org/oas/3.0/schema/2021-09-28",
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "description": "Validation schema for OpenAPI Specification 3.0.X.",
+  "description": "The description of OpenAPI v3.0.x documents, as defined by https://spec.openapis.org/oas/v3.0.3",
   "type": "object",
   "required": [
     "openapi",
@@ -1358,9 +1358,8 @@
           "description": "Bearer",
           "properties": {
             "scheme": {
-              "enum": [
-                "bearer"
-              ]
+              "type": "string",
+              "pattern": "^[Bb][Ee][Aa][Rr][Ee][Rr]$"
             }
           }
         },
@@ -1374,9 +1373,8 @@
           "properties": {
             "scheme": {
               "not": {
-                "enum": [
-                  "bearer"
-                ]
+                "type": "string",
+                "pattern": "^[Bb][Ee][Aa][Rr][Ee][Rr]$"
               }
             }
           }
@@ -1489,7 +1487,8 @@
     "PasswordOAuthFlow": {
       "type": "object",
       "required": [
-        "tokenUrl"
+        "tokenUrl",
+        "scopes"
       ],
       "properties": {
         "tokenUrl": {
@@ -1516,7 +1515,8 @@
     "ClientCredentialsFlow": {
       "type": "object",
       "required": [
-        "tokenUrl"
+        "tokenUrl",
+        "scopes"
       ],
       "properties": {
         "tokenUrl": {
@@ -1544,7 +1544,8 @@
       "type": "object",
       "required": [
         "authorizationUrl",
-        "tokenUrl"
+        "tokenUrl",
+        "scopes"
       ],
       "properties": {
         "authorizationUrl": {
@@ -1628,7 +1629,14 @@
         "headers": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/Header"
+            "oneOf": [
+              {
+                "$ref": "#/definitions/Header"
+              },
+              {
+                "$ref": "#/definitions/Reference"
+              }
+            ]
           }
         },
         "style": {
@@ -1646,6 +1654,10 @@
         "allowReserved": {
           "type": "boolean",
           "default": false
+        }
+      },
+      "patternProperties": {
+        "^x-": {
         }
       },
       "additionalProperties": false

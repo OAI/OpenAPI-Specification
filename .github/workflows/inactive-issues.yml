@@ -1,0 +1,36 @@
+on:
+  issues:
+    types: labeled
+  workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
+
+permissions:
+  issues: write
+  contents: read
+
+name: Label and close issues with no recent activity
+
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  NEEDS_ATTENTION_LABEL: "Needs attention"
+  NEEDS_AUTHOR_FEEDBACK_LABEL: "Needs author feedback"
+  NO_RECENT_ACTIVITY_LABEL: "No recent activity"
+  NO_RECENT_ACTIVITY_DURATION_IN_DAYS: 7
+  NO_RECENT_ACTIVITY_DURATION_CLOSE_IN_DAYS: 28
+  ORG_NAME: ${{ github.repository_owner }}
+  REPO_NAME: ${{ github.event.repository.name }}
+  NO_RECENT_ACTIVITY_COMMENT: "This issue has been labeled with `No recent activity` because there has been no recent activity. It will be closed if no further activity occurs within 28 days. Please re-open this issue or open a new one after this delay if you need to."
+
+
+jobs:
+  run:
+    if: github.repository == 'OAI/OpenAPI-Specification'
+    runs-on: ubuntu-latest
+    name: Label issues with no recent activity
+    steps:
+      - uses: actions/checkout@v4
+      - run: scripts/label-no-recent.ps1
+        shell: pwsh
+      - run: scripts/close-no-recent.ps1
+        shell: pwsh

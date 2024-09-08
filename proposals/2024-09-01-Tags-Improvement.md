@@ -10,7 +10,7 @@
 |Review Manager | TBD |
 |Status |Proposal|
 |Implementations | |
-|Issues | [1367](https://github.com/OAI/OpenAPI-Specification/issues/1367), [{Iss}](https://github.com/OAI/OpenAPI-Specification/issues/{Iss}), |
+|Issues | [1367](https://github.com/OAI/OpenAPI-Specification/issues/1367), [2843](https://github.com/OAI/OpenAPI-Specification/issues/2843), |
 |Previous Revisions | None, but see [Moonwalk discussion](https://github.com/OAI/sig-moonwalk/discussions/67)
 
 ## Change Log

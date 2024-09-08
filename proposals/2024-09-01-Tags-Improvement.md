@@ -33,7 +33,7 @@ On a personal note, I work for a tool vendor and was proposing these changes int
 
 ### Supporting evidence
 
-There are several examples "in the wild" of where a better tags implementation would have helped. Here is a selection of publicly-accessible examples here to illustrate some of the problems this proposal could help with:
+There are several examples "in the wild" of where a better tags implementation would have helped. Here is a selection of publicly-accessible examples to illustrate some of the problems this proposal could help with:
 
 - Grouping of tags is a very common use case, almost everyone uses some sort of extra hierarchy to group the tags themselves, which makes sense as our APIs are only getting more complex, something like [`x-tagGroups`](https://redocly.com/docs/api-reference-docs/specification-extensions/x-tag-groups/) is a good example - and there's a [very active open issue on OpenAPI specification itself](https://github.com/OAI/OpenAPI-Specification/issues/1367)
 - Various tag-alike additions exist, sometimes called "badges" or similar; I'd include extensions such as [`x-internal`](https://redocly.com/docs/cli/guides/hide-apis/#step-1-add-x-internal-to-the-api-description) as a tag-alike since they could be tags if more than one tag (or tag type) could be applied.
@@ -102,17 +102,23 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 
 ```json
 {
-	"name": "account-updates",
-    "summary": "Account Updates",
-	"description": "Account update operations",
-    "type": "nav"
+  "name": "account-updates",
+  "summary": "Account Updates",
+  "description": "Account update operations",
+  "kind": "nav"
 },
 {
-	"name": "partner",
-    "summary": "Partner",
-	"description": "Operations available to the partners network",
-    "parent": "external",
-    "type": "audience"
+  "name": "partner",
+  "summary": "Partner",
+  "description": "Operations available to the partners network",
+  "parent": "external",
+  "kind": "audience"
+},
+{
+  "name": "external",
+  "summary": "External",
+  "description": "Operations available to external consumers",
+  "kind": "audience"
 }
 ```
 
@@ -120,13 +126,18 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 - name: account-updates
   summary: Account Updates
   description: Account update operations
-  type: nav
+  kind: nav
 
 - name: partner
   summary: Partner
   description: Operations available to the partners network
   parent: external
-  type: audience
+  kind: audience
+
+- name: external
+  summary: External
+  description: Operations available to external consumers
+  kind: audience
 ```
 
 ---

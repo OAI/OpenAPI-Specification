@@ -1,0 +1,11 @@
+# Global Repo Owners
+* @oai/openapi-maintainers @oai/tsc
+
+# Specification Versions
+/versions/ @oai/tsc
+
+# Protect specific top level files
+/MAINTAINERS.md @oai/tsc
+/TOB.md @oai/tsc
+/GOVERNANCE.md @oai/tsc
+/LICENSE @oai/tsc

@@ -12,18 +12,29 @@
     "url": "https://github.com/OAI/OpenAPI-Specification.git"
   },
   "license": "Apache-2.0",
+  "scripts": {
+    "build": "bash ./scripts/md2html/build.sh",
+    "test": "c8 --100 vitest --watch=false"
+  },
   "readmeFilename": "README.md",
   "files": [
     "README.md",
     "schemas/*"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.5",
+    "highlight.js": "^11.10.0",
+    "markdown-it": "^14.1.0",
+    "respec": "35.1.1",
+    "yargs": "^17.7.2"
+  },
   "devDependencies": {
-    "@hyperjump/json-schema": "^0.17.0",
-    "chai": "^4.3.1",
-    "mdv": "^1.0.7",
-    "mocha": "^8.3.0",
-    "yaml": "^1.8.3"
+    "@hyperjump/json-schema": "^1.9.8",
+    "c8": "^10.1.2",
+    "markdownlint-cli": "^0.41.0",
+    "mdv": "^1.3.4",
+    "vitest": "^2.0.5",
+    "yaml": "^2.5.1"
   },
   "keywords": [
     "OpenAPI",
@@ -31,8 +42,5 @@
     "Swagger",
     "schema",
     "API"
-  ],
-  "scripts": {
-    "format-markdown": "bash ./scripts/format-markdown.sh ./versions/3.1.1.md"
-  }
+  ]
 }

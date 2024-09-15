@@ -78,7 +78,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Release Process
 
-A release requires a vote on the release notes by TSC members within the voting period. Major or minor release voting periods will be announced by the Liaison in the Slack channel and noted on the calendar at least 6 days in advance. During this time, TSC members who have not yet voted must note their approval on the GitHub pull request for the release notes. Patch releases happen at the first TSC meeting of a calendar month. The Liaison is responsible for coordinating the actual merge to main with marketing support, if any.
+A release requires a vote on the release notes by TSC members within the voting period. Major or minor release voting periods will be announced in the Slack channel and noted on the calendar at least 6 days in advance. During this time, TSC members who have not yet voted must note their approval on the GitHub pull request for the release notes. TSC members are responsible for coordinating the actual merge to main with marketing support, if any.
 
 * Patch-level releases require majority approval by TSC members. (Max voting period 3 days)
 

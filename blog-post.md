@@ -1,4 +1,4 @@
-OpenAPI Initiative is pleased to announce a patch release of the 3.0 and 3.1 OpenAPI specifications.
+The OpenAPI Initiative is pleased to announce a patch release of the 3.0 and 3.1 OpenAPI specifications.
 In patch releases, no changes are made to the way that APIs are described, but the specification wording itself contains many updates, expansions, and clarifications where previous the points may have been unclear or not covered.
 Think of this release as the "Words Mean Things" edition.
 
@@ -18,7 +18,7 @@ The highlights include a lot of new content to expand on existing content and re
 The sections regarding parameters, encoding and schemas have had significant updates and expansion to cover more cases.
 You will also find some security clarifications and a whole new "Security Considerations" section has been added.
 
-Look out for additional apendices with some great additional explanations that support the additions to the main body of the specification.
+Look out for additional appendices with some great explanations that support the additions to the main body of the specification.
 We added a great collection of new content sections and appendix entries about handling data including data types, serialization and encoding.
 In 3.1, there is more information about parsing documents and resolving references since the adoption of JSON Schema.
 
@@ -26,7 +26,7 @@ The updates also strayed into distinctly "meta" areas, so we've also got:
 
 - examples of using the `example(s)` fields
 - reference to a schema to represent the OpenAPI schema
-- we have clearly defined when something was undefined
+- we have clearly defined when something was undefined or implementation dependent
 
 ## Beyond the specification
 

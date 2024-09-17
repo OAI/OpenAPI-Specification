@@ -1,11 +1,11 @@
 # Release Notes
 
 While the 3.1.1 release makes no mechanical changes to the OpenAPI 3.1.0 specification, it does introduce a number of notable improvements, including:
-- clarity and expanded explanations including several new appendices with supplementary details
+- Expands and clarifies a number of explanations, including several new appendices with supplementary details
 - Focuses on technical specifics by moving examples and additional documentation now published at https://learn.openapis.org
 - Declares that the HTML specifications at https://spec.openapis.org are now the authoritative versions (formerly it was the Markdown source on GitHub)
 
-OpenAPI description writers should mark their OpenAPI descriptions with the version of OpenAPI specification they used to write their specification, updating where possible.
+OpenAPI description writers should mark their OpenAPI descriptions with the version of the OpenAPI specification they used to write their specification, updating where possible.
 
 Tooling maintainers should expect minimal work to support 3.1.1/3.0.4; however, we recommend checking the list of changes below.
 

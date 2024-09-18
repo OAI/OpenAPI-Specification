@@ -22,10 +22,7 @@ Improved language regarding schemas, explaining the difference between the OpenA
 
 ## References
 
-Additional guidance for resolving references and parsing documents was added.
-
-Resolving component names, tags, and operationIds are clarified.
-
+Additional guidance for resolving references and parsing documents was added, resolving component names, tags, and operationIds are clarified.
 [3.1.1]The adoption of JSON Schema in 3.1.x changed the parsing and referencing, and a new section was added to cover the changes in more depth than in 3.1.0.
 
 [3.1.1]Improved explanation of URLs and URIs, and made clear which to use for each URL/URI field.

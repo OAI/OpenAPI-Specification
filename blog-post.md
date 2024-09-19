@@ -1,12 +1,13 @@
 The OpenAPI Initiative is pleased to announce a patch release of the 3.0 and 3.1 OpenAPI specifications.
 In patch releases, no changes are made to the way that APIs are described, but the specification wording itself contains many updates, expansions, and clarifications where previously the points may have been unclear or not covered.
+Tooling that supports 3.1.0 is expected to work without problems on 3.1.1 since the patch releases don't contain structure changes.
+
 Think of this release as the "Words Mean Things" edition.
 
 ## Released versions
 
 3.1.1 is the newest and recommended version of the OpenAPI Specification.
 If you are starting a new project today, or have the option to upgrade, this is your target version.
-Tooling that supports 3.1.0 is expected to work without problems on 3.1.1 since the patch releases don't contain structure changes.
 
 3.0.4 is an additional release on the 3.0 branch to incorporate the improved wording to the 3.0 branch of the specification where the changes applied there.
 It is expected that 3.0.4 will be the final release in the 3.0.x line.

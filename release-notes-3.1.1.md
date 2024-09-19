@@ -2,8 +2,8 @@
 
 While the 3.1.1 release makes no changes to requirements of the OpenAPI 3.1.0 specification, it does introduce a number of notable improvements, including:
 - Expands and clarifies a number of explanations, including several new appendices with supplementary details
-- Focuses on technical specifics by moving examples and additional documentation now published at https://learn.openapis.org
-- Declares that the HTML specifications at https://spec.openapis.org are now the authoritative versions (formerly it was the Markdown source on GitHub)
+- Focuses on technical specifics by moving examples and additional documentation now published at [learn.openapis.org](https://learn.openapis.org)
+- Declares that the HTML specifications at [spec.openapis.org](https://spec.openapis.org) are now the authoritative versions (formerly it was the Markdown source on GitHub)
 
 OpenAPI Description writers should mark their OpenAPI Descriptions with the version of the OpenAPI specification they used to write their specification, updating where possible.
 
@@ -41,6 +41,7 @@ Added a note that a `security` array that is empty or missing does not indicate 
 Updated references to other standards where newer versions are available, and added more explanation for OpenIDConnect.
 
 Added a "Security Concerns" section containing advice for implementers and users of OpenAPI.
+
 ## Request Data
 
 Extensive refactoring of the parameters section

@@ -31,9 +31,9 @@ The updates also strayed into distinctly "meta" areas, so we've also got:
 
 ## Beyond the specification
 
-In addition to the main specifications that you can always find at https://spec.openapis.org, there are a number of other resources that you may find helpful:
+In addition to the main specifications that you can always find at [spec.openapis.org](https://spec.openapis.org), there are a number of other resources that you may find helpful:
 
-- OpenAPI's documentation and examples is available at https://learn.openapis.org.
+- OpenAPI's documentation and examples is available at [learn.openapis.org](https://learn.openapis.org).
   This site holds all the examples used in the main OpenAPI specification, and much more additional information besides.
 - A [non-authoritative JSON Schema representation of the OpenAPI specification](https://spec.openapis.org/#non-normative-json-schemas) is available.
   This representation should not require changes between 3.1.0 and 3.1.1 since patch releases don't change the structure.

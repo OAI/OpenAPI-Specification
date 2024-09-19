@@ -1,11 +1,11 @@
 # Release Notes
 
-While the 3.1.1 release makes no mechanical changes to the OpenAPI 3.1.0 specification, it does introduce a number of notable improvements, including:
+While the 3.1.1 release makes no changes to requirements of the OpenAPI 3.1.0 specification, it does introduce a number of notable improvements, including:
 - Expands and clarifies a number of explanations, including several new appendices with supplementary details
 - Focuses on technical specifics by moving examples and additional documentation now published at https://learn.openapis.org
 - Declares that the HTML specifications at https://spec.openapis.org are now the authoritative versions (formerly it was the Markdown source on GitHub)
 
-OpenAPI description writers should mark their OpenAPI descriptions with the version of the OpenAPI specification they used to write their specification, updating where possible.
+OpenAPI Description writers should mark their OpenAPI Descriptions with the version of the OpenAPI specification they used to write their specification, updating where possible.
 
 Tooling maintainers should expect minimal work to support 3.1.1/3.0.4; however, we recommend checking the list of changes below.
 
@@ -14,7 +14,7 @@ Tooling maintainers should expect minimal work to support 3.1.1/3.0.4; however, 
 Introduce consistent language around OpenAPI Document/Description/Definition:
 - OpenAPI Description means the OpenAPI description of an API, whether it is in one or many files.
 - A document means a single file.
-- An "entry document" is where the OpenAPI description for an API starts; it may reference other documents.
+- An "entry document" is where the OpenAPI Description for an API starts; it may reference other documents.
 
 Improved language regarding schemas, explaining the difference between the OpenAPI schema, the schemas used within the OpenAPI schema, and the use of a non-authoritative JSON Schema to supplement the written spec.
 

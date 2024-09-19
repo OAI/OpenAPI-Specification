@@ -1,10 +1,10 @@
 The OpenAPI Initiative is pleased to announce a patch release of the 3.0 and 3.1 OpenAPI specifications.
-In patch releases, no changes are made to the way that APIs are described, but the specification wording itself contains many updates, expansions, and clarifications where previous the points may have been unclear or not covered.
+In patch releases, no changes are made to the way that APIs are described, but the specification wording itself contains many updates, expansions, and clarifications where previously the points may have been unclear or not covered.
 Think of this release as the "Words Mean Things" edition.
 
 ## Released versions
 
-3.1.1 is the newest and recommended version of OpenAPI.
+3.1.1 is the newest and recommended version of the OpenAPI Specification.
 If you are starting a new project today, or have the option to upgrade, this is your target version.
 Tooling that supports 3.1.0 is expected to work without problems on 3.1.1 since the patch releases don't contain structure changes.
 
@@ -13,19 +13,19 @@ It is expected that 3.0.4 will be the final release in the 3.0.x line.
 
 ## Summary of changes
 
-The releases include as many explanations, clarifications and expanded sections as we could manage, driven mostly by the questions and comments we get from the users and tools creators of OpenAPI.
+The releases include as many explanations, clarifications and expanded sections as we could manage, driven mostly by the questions and comments we get from the users and tools creators of the OpenAPI Specification.
 The highlights include a lot of new content to expand on existing content and reduce ambiguity.
 The sections regarding parameters, encoding and schemas have had significant updates and expansion to cover more cases.
 You will also find some security clarifications and a whole new "Security Considerations" section has been added.
 
 Look out for additional appendices with some great explanations that support the additions to the main body of the specification.
 We added a great collection of new content sections and appendix entries about handling data including data types, serialization and encoding.
-In 3.1, there is more information about parsing documents and resolving references since the adoption of JSON Schema.
+In 3.1, there is more information about parsing documents and resolving references since the adoption of full JSON Schema compatibility.
 
 The updates also strayed into distinctly "meta" areas, so we've also got:
 
 - examples of using the `example(s)` fields
-- reference to a schema to represent the OpenAPI schema
+- reference to a JSON Schema to represent the OpenAPI Specification schema
 - we have clearly defined when something was undefined or implementation dependent
 
 ## Beyond the specification
@@ -37,6 +37,8 @@ In addition to the main specifications that you can always find at https://spec.
 - A [non-authoritative JSON Schema representation of the OpenAPI specification](https://spec.openapis.org/#non-normative-json-schemas) is available.
   This representation should not require changes between 3.1.0 and 3.1.1 since patch releases don't change the structure.
 - The [formats registry](https://spec.openapis.org/registry/format/index.html) and the [extensions registry](https://spec.openapis.org/registry/extension/index.html) list some common patterns in specification use.
+
+All of these resources are now linked from the relevant parts of the OpenAPI Specification.
 
 We also updated the tooling that publishes the specification, changed the GitHub repository structure, cleaned up and reformatted all the Markdown content, and improved our workflow automation.
 Which doesn't affect the specification but does make it a nicer place to be and hopefully makes the next release easier too.

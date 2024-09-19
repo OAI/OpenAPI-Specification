@@ -174,7 +174,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "publishISODate": "2017-12-06T00:00:00.000Z",
   "generatedSubtitle": "06 December 2017"
 }</script>
-<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/base.css"></head><body class="h-entry toc-inline"><div class="head">
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/base.css"></head><body class="h-entry"><div class="head">
     <p class="logos"><a class="logo" href="https://openapis.org/"><img crossorigin="" alt="OpenAPI Initiative" height="48" src="https://raw.githubusercontent.com/OAI/OpenAPI-Style-Guide/master/graphics/bitmap/OpenAPI_Logo_Pantone.png">
   </a></p>
     <h1 id="title" class="title">OpenAPI Specification v3.0.1 </h1> <h2 id="subtitle" class="subtitle">Version 3.0.1</h2>
@@ -1567,7 +1567,7 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 <p>Assume a parameter named <code>color</code> has one of the following values:</p>
 <pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs css">   string -&gt; "blue"
    array -&gt; <span class="hljs-selector-attr">[<span class="hljs-string">"blue"</span>,<span class="hljs-string">"black"</span>,<span class="hljs-string">"brown"</span>]</span>
-   <span class="hljs-selector-tag">object</span> -&gt; { "R": <span class="hljs-number">100</span>, <span class="hljs-string">"G"</span>: <span class="hljs-number">200</span>, <span class="hljs-string">"B"</span>: <span class="hljs-number">150</span> }
+   <span class="hljs-selector-tag">object</span> -&gt; { "<span class="hljs-attribute">R</span>": <span class="hljs-number">100</span>, <span class="hljs-string">"G"</span>: <span class="hljs-number">200</span>, <span class="hljs-string">"B"</span>: <span class="hljs-number">150</span> }
 </code></pre>
 <p>The following table shows examples of rendering differences for each value.</p>
 <table>
@@ -2770,10 +2770,10 @@ This mechanism is used by <a href="#link-object">Link Objects</a> and <a href="#
       query-reference = <span class="hljs-string">"query."</span> name 
       path-reference = <span class="hljs-string">"path."</span> name
       body-reference = <span class="hljs-string">"body"</span> [<span class="hljs-string">"#"</span> fragment]
-      fragment = a <span class="hljs-built_in">JSON</span> Pointer [RFC <span class="hljs-number">6901</span>](https:<span class="hljs-comment">//tools.ietf.org/html/rfc6901) </span>
+      fragment = a <span class="hljs-title class_">JSON</span> <span class="hljs-title class_">Pointer</span> [<span class="hljs-variable constant_">RFC</span> <span class="hljs-number">6901</span>](<span class="hljs-attr">https</span>:<span class="hljs-comment">//tools.ietf.org/html/rfc6901) </span>
       name = *( char )
-      char = <span class="hljs-keyword">as</span> per RFC [<span class="hljs-number">7159</span>](https:<span class="hljs-comment">//tools.ietf.org/html/rfc7159#section-7)</span>
-      token = <span class="hljs-keyword">as</span> per RFC [<span class="hljs-number">7230</span>](https:<span class="hljs-comment">//tools.ietf.org/html/rfc7230#section-3.2.6)</span>
+      char = <span class="hljs-keyword">as</span> per <span class="hljs-variable constant_">RFC</span> [<span class="hljs-number">7159</span>](<span class="hljs-attr">https</span>:<span class="hljs-comment">//tools.ietf.org/html/rfc7159#section-7)</span>
+      token = <span class="hljs-keyword">as</span> per <span class="hljs-variable constant_">RFC</span> [<span class="hljs-number">7230</span>](<span class="hljs-attr">https</span>:<span class="hljs-comment">//tools.ietf.org/html/rfc7230#section-3.2.6)</span>
 </code></pre>
 <p>The <code>name</code> identifier is case-sensitive, whereas <code>token</code> is not.</p>
 <p>The table below provides examples of runtime expressions and examples of their use in a value:</p>
@@ -3375,10 +3375,10 @@ The <a href="#xml-object">XML Object</a> contains additional information about t
     propertyName: pet_type
 </code></pre>
 <p>The expectation now is that a property with name <code>pet_type</code> <em><em class="rfc2119">MUST</em></em> be present in the response payload, and the value will correspond to the name of a schema defined in the OAS document.  Thus the response payload:</p>
-<pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs json">{
-  <span class="hljs-attr">"id"</span>: <span class="hljs-number">12345</span>,
-  <span class="hljs-attr">"pet_type"</span>: <span class="hljs-string">"Cat"</span>
-}
+<pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">12345</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"pet_type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Cat"</span>
+<span class="hljs-punctuation">}</span>
 </code></pre>
 <p>Will indicate that the <code>Cat</code> schema be used in conjunction with this payload.</p>
 <p>In scenarios where the value of the discriminator field does not match the schema name or implicit mapping is not possible, an optional <code>mapping</code> definition <em class="rfc2119">MAY</em> be used:</p>
@@ -3437,16 +3437,16 @@ The <a href="#xml-object">XML Object</a> contains additional information about t
             type: boolean
 </code></pre>
 <p>a payload like this:</p>
-<pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs json">{
-  <span class="hljs-attr">"pet_type"</span>: <span class="hljs-string">"Cat"</span>,
-  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"misty"</span>
-}
+<pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"pet_type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Cat"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"misty"</span>
+<span class="hljs-punctuation">}</span>
 </code></pre>
 <p>will indicate that the <code>Cat</code> schema be used.  Likewise this schema:</p>
-<pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs json">{
-  <span class="hljs-attr">"pet_type"</span>: <span class="hljs-string">"cachorro"</span>,
-  <span class="hljs-attr">"bark"</span>: <span class="hljs-string">"soft"</span>
-}
+<pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"pet_type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"cachorro"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"bark"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"soft"</span>
+<span class="hljs-punctuation">}</span>
 </code></pre>
 <p>will map to <code>Dog</code> because of the definition in the <code>mappings</code> element.</p>
 </section></section><section id="xml-object"><div class="header-wrapper"><h4 id="x4-7-26-xml-object"><bdi class="secno">4.7.26 </bdi>XML Object</h4><a class="self-link" href="#xml-object" aria-label="Permalink for Section 4.7.26"></a></div>

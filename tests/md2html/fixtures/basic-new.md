@@ -50,6 +50,10 @@ text/plain
 no language
 ```
 
+```unknown
+unknown language
+```
+
 ## Appendix A: Revision History
 
 Version | Date

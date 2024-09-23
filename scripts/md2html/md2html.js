@@ -36,7 +36,7 @@ const md = require('markdown-it')({
       '</code></pre>';
     }
 
-    return '<pre class="highlight '+lang+'" tabindex="0"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+    return '<pre class="nohighlight" tabindex="0"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
   }
 });
 

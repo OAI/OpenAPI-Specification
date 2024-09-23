@@ -36,6 +36,7 @@ const md = require('markdown-it')({
       '</code></pre>';
     }
 
+    if (lang) console.warn('highlight.js does not support language',lang);
     return '<pre class="nohighlight" tabindex="0"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
   }
 });

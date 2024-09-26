@@ -50,6 +50,18 @@ text/plain
 no language
 ```
 
+```unknown
+unknown language
+```
+
+```uri
+https://foo.com/bar?baz=qux&fred=waldo#fragment
+```
+
+```uritemplate
+https://foo.com/bar{?baz*,qux}
+```
+
 ## Appendix A: Revision History
 
 Version | Date

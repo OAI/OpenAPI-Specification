@@ -1,0 +1,40 @@
+#!/usr/bin/env perl
+# vim: set ts=8 sts=2 sw=2 tw=100 et :
+
+# given a filename base, compare the .yaml and .json versions of the file for differences.
+# to run:
+#   apt-get libjson-schema-modern-perl # (or equivalent on your distribution)
+#   scripts/compare schemas/v3.0/schema
+#   scripts/compare schemas/v3.1/schema
+#   scripts/compare schemas/v3.1/schema-base
+
+# Author: Karen Etheridge - karen@etheridge.ca, ether@cpan.org
+# see also https://github.com/karenetheridge/JSON-Schema-Modern
+
+use 5.020;
+use warnings;
+use Path::Tiny;
+use YAML::PP;
+use JSON::Schema::Modern ();
+use JSON::Schema::Modern::Utilities 0.591 'is_equal';
+
+my $base = shift; # the filename, without .yaml or .json extension
+
+my $yaml_decoder = YAML::PP->new(boolean => 'JSON::PP');
+my $json_decoder = JSON::Schema::Modern::_JSON_BACKEND()->new->utf8(1);
+
+my $yaml_path = path($base.'.yaml');
+my $json_path = path($base.'.json');
+
+my $yaml_data = $yaml_decoder->load_string($yaml_path->slurp_raw);
+my $json_data = $json_decoder->decode($json_path->slurp_raw);
+
+if (not is_equal($yaml_data, $json_data, my $state = {})) {
+  say "$yaml_path and $json_path are not identical.";
+  say "first difference is at $state->{path}: $state->{error}";
+  exit 1;
+}
+else {
+  say "files are identical.";
+  exit 0;
+}

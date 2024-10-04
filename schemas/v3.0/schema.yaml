@@ -43,6 +43,7 @@ definitions:
       '^\$ref$':
         type: string
         format: uri-reference
+
   Info:
     type: object
     required:
@@ -65,7 +66,6 @@ definitions:
     patternProperties:
       '^x-': {}
     additionalProperties: false
-
 
   Contact:
     type: object
@@ -592,7 +592,6 @@ definitions:
       '^x-': {}
     minProperties: 1
     additionalProperties: false
-
 
   SecurityRequirement:
     type: object

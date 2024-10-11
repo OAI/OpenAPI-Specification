@@ -42,7 +42,9 @@ This site contains the OpenAPI Initiative Registry and content for the HTML vers
     download iteration
 {%- assign separator = ": " -%}
 {%- endif -%}
+{%- if file.basename != "latest" -%}
 {{ separator }} [{{ file.basename | replace: "-", "&#8209;" }}]({{ site.baseurl }}{{ file.path }})
 {%- assign separator = ", " -%}
+{%- endif -%}
 {%- endif -%}
 {%- endfor %}

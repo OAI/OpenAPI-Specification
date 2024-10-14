@@ -38,7 +38,7 @@ This site contains the OpenAPI Initiative Registry and content for the HTML vers
 {%- endif -%}
 {%- if segments[3] != last_kind -%}
 {%- assign last_kind = segments[3] %}
-  * [**view latest {{ last_kind }}**]({{ site.baseurl }}/oas/{{ last_version }}/{{ last_kind }}/latest.html)  
+  * view [**{{ last_kind }}/{{ segments[4] }}**]({{ site.baseurl }}/oas/{{ last_version }}/{{ last_kind }}/{{ segments[4] }}.html)  
     download iteration
 {%- assign separator = ": " -%}
 {%- endif -%}

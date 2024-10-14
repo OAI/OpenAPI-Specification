@@ -83,24 +83,6 @@ dd{margin-left:0}
 <meta name="color-scheme" content="light">
 <link rel="canonical" href="https://spec.openapis.org/oas/v3.0.2.html">
 <style>
-.hljs{--base:#fafafa;--mono-1:#383a42;--mono-2:#686b77;--mono-3:#717277;--hue-1:#0b76c5;--hue-2:#336ae3;--hue-3:#a626a4;--hue-4:#42803c;--hue-5:#ca4706;--hue-5-2:#c91243;--hue-6:#986801;--hue-6-2:#9a6a01}
-@media (prefers-color-scheme:dark){
-.hljs{--base:#282c34;--mono-1:#abb2bf;--mono-2:#818896;--mono-3:#5c6370;--hue-1:#56b6c2;--hue-2:#61aeee;--hue-3:#c678dd;--hue-4:#98c379;--hue-5:#e06c75;--hue-5-2:#be5046;--hue-6:#d19a66;--hue-6-2:#e6c07b}
-}
-.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;color:var(--mono-1,#383a42);background:#fafafa;background:var(--base,#fafafa)}
-.hljs-comment,.hljs-quote{color:#717277;color:var(--mono-3,#717277);font-style:italic}
-.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4;color:var(--hue-3,#a626a4)}
-.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#ca4706;color:var(--hue-5,#ca4706);font-weight:700}
-.hljs-literal{color:#0b76c5;color:var(--hue-1,#0b76c5)}
-.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#42803c;color:var(--hue-4,#42803c)}
-.hljs-built_in,.hljs-class .hljs-title{color:#9a6a01;color:var(--hue-6-2,#9a6a01)}
-.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801;color:var(--hue-6,#986801)}
-.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#336ae3;color:var(--hue-2,#336ae3)}
-.hljs-emphasis{font-style:italic}
-.hljs-strong{font-weight:700}
-.hljs-link{text-decoration:underline}
-</style>
-<style>
 var{position:relative;cursor:pointer}
 var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}
 var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#222}
@@ -258,7 +240,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
 <p>Media type definitions are spread across several resources.
 The media type definitions <em class="rfc2119">SHOULD</em> be in compliance with [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc6838" title="Media Type Specifications and Registration Procedures">RFC6838</a></cite>].</p>
 <p>Some examples of possible media type definitions:</p>
-<pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs">  text/plain; charset=utf-8
+<pre class="nohighlight" tabindex="0"><code>  text/plain; charset=utf-8
   application/json
   application/vnd.github+json
   application/vnd.github.v3+json
@@ -791,7 +773,7 @@ All objects defined within the components object will have no effect on the API 
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 <p>All the fixed fields declared above are objects that <em class="rfc2119">MUST</em> use keys that match the regular expression: <code>^[a-zA-Z0-9\.\-_]+$</code>.</p>
 <p>Field Name Examples:</p>
-<pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs">User
+<pre class="nohighlight" tabindex="0"><code>User
 User_1
 User_Name
 user-name
@@ -989,15 +971,15 @@ The path is appended to the URL from the <a href="#server-object"><code>Server O
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 </section><section id="path-templating-matching"><div class="header-wrapper"><h5 id="x4-7-8-2-path-templating-matching"><bdi class="secno">4.7.8.2 </bdi>Path Templating Matching</h5><a class="self-link" href="#path-templating-matching" aria-label="Permalink for Section 4.7.8.2"></a></div>
 <p>Assuming the following paths, the concrete definition, <code>/pets/mine</code>, will be matched first if used:</p>
-<pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs">  /pets/{petId}
+<pre class="nohighlight" tabindex="0"><code>  /pets/{petId}
   /pets/mine
 </code></pre>
 <p>The following paths are considered identical and invalid:</p>
-<pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs">  /pets/{petId}
+<pre class="nohighlight" tabindex="0"><code>  /pets/{petId}
   /pets/{name}
 </code></pre>
 <p>The following may lead to ambiguous resolution:</p>
-<pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs">  /{entity}/me
+<pre class="nohighlight" tabindex="0"><code>  /{entity}/me
   /books/{id}
 </code></pre>
 </section><section id="paths-object-example"><div class="header-wrapper"><h5 id="x4-7-8-3-paths-object-example"><bdi class="secno">4.7.8.3 </bdi>Paths Object Example</h5><a class="self-link" href="#paths-object-example" aria-label="Permalink for Section 4.7.8.3"></a></div>
@@ -1584,9 +1566,9 @@ When <code>example</code> or <code>examples</code> are provided in conjunction w
 </table>
 </section><section id="style-examples"><div class="header-wrapper"><h5 id="x4-7-12-4-style-examples"><bdi class="secno">4.7.12.4 </bdi>Style Examples</h5><a class="self-link" href="#style-examples" aria-label="Permalink for Section 4.7.12.4"></a></div>
 <p>Assume a parameter named <code>color</code> has one of the following values:</p>
-<pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs css">   string -&gt; "blue"
-   array -&gt; <span class="hljs-selector-attr">[<span class="hljs-string">"blue"</span>,<span class="hljs-string">"black"</span>,<span class="hljs-string">"brown"</span>]</span>
-   <span class="hljs-selector-tag">object</span> -&gt; { "R": <span class="hljs-number">100</span>, <span class="hljs-string">"G"</span>: <span class="hljs-number">200</span>, <span class="hljs-string">"B"</span>: <span class="hljs-number">150</span> }
+<pre class="nohighlight" tabindex="0"><code>   string -&gt; "blue"
+   array -&gt; ["blue","black","brown"]
+   object -&gt; { "R": 100, "G": 200, "B": 150 }
 </code></pre>
 <p>The following table shows examples of rendering differences for each value.</p>
 <table>
@@ -2484,17 +2466,17 @@ This includes accessing any part of a body that a JSON Pointer [<cite><a class="
 <span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>application/json
 <span class="hljs-attribute">Content-Length</span><span class="hljs-punctuation">: </span>187
 
-<span class="language-avrasm">{
-  <span class="hljs-string">"failedUrl"</span> : <span class="hljs-string">"http://clientdomain.com/failed"</span>,
-  <span class="hljs-string">"successUrls"</span> : [
-    <span class="hljs-string">"http://clientdomain.com/fast"</span>,
-    <span class="hljs-string">"http://clientdomain.com/medium"</span>,
-    <span class="hljs-string">"http://clientdomain.com/slow"</span>
+<span class="language-uri">{
+  "failedUrl" : "http://<span class="hljs-attr">clientdomain.com</span>/<span class="hljs-attr">failed",</span>
+  "successUrls" : [
+    "http://<span class="hljs-attr">clientdomain.com</span>/<span class="hljs-attr">fast",</span>
+    "http://<span class="hljs-attr">clientdomain.com</span>/<span class="hljs-attr">medium",</span>
+    "http://<span class="hljs-attr">clientdomain.com</span>/<span class="hljs-attr">slow"</span>
   ]
 }
 
-<span class="hljs-number">201</span> Created
-<span class="hljs-symbol">Location:</span> http://example<span class="hljs-meta">.org</span>/subscription/<span class="hljs-number">1</span>
+201 Created
+Location: http://<span class="hljs-attr">example.org</span>/<span class="hljs-attr">subscription</span>/<span class="hljs-attr">1</span>
 </span></code></pre>
 <p>The following examples show how the various expressions evaluate, assuming the callback operation has a path parameter named <code>eventType</code> and a query parameter named <code>queryUrl</code>.</p>
 <table>
@@ -2782,16 +2764,16 @@ using JSON references.</p>
 <p>Runtime expressions allow defining values based on information that will only be available within the HTTP message in an actual API call.
 This mechanism is used by <a href="#link-object">Link Objects</a> and <a href="#callback-object">Callback Objects</a>.</p>
 <p>The runtime expression is defined by the following [<cite><a class="bibref" data-link-type="biblio" href="#bib-abnf" title="Augmented BNF for Syntax Specifications: ABNF">ABNF</a></cite>] syntax</p>
-<pre class="highlight " tabindex="0"><code aria-busy="false" class="hljs javascript">      expression = ( <span class="hljs-string">"$url"</span> | <span class="hljs-string">"$method"</span> | <span class="hljs-string">"$statusCode"</span> | <span class="hljs-string">"$request."</span> source | <span class="hljs-string">"$response."</span> source )
+<pre class="nohighlight" tabindex="0"><code>      expression = ( "$url" | "$method" | "$statusCode" | "$request." source | "$response." source )
       source = ( header-reference | query-reference | path-reference | body-reference ) 
-      header-reference = <span class="hljs-string">"header."</span> token
-      query-reference = <span class="hljs-string">"query."</span> name 
-      path-reference = <span class="hljs-string">"path."</span> name
-      body-reference = <span class="hljs-string">"body"</span> [<span class="hljs-string">"#"</span> fragment]
-      fragment = a <span class="hljs-built_in">JSON</span> Pointer [RFC <span class="hljs-number">6901</span>](https:<span class="hljs-comment">//tools.ietf.org/html/rfc6901) </span>
+      header-reference = "header." token
+      query-reference = "query." name 
+      path-reference = "path." name
+      body-reference = "body" ["#" fragment]
+      fragment = a JSON Pointer [RFC 6901](https://tools.ietf.org/html/rfc6901) 
       name = *( char )
-      char = <span class="hljs-keyword">as</span> per RFC [<span class="hljs-number">7159</span>](https:<span class="hljs-comment">//tools.ietf.org/html/rfc7159#section-7)</span>
-      token = <span class="hljs-keyword">as</span> per RFC [<span class="hljs-number">7230</span>](https:<span class="hljs-comment">//tools.ietf.org/html/rfc7230#section-3.2.6)</span>
+      char = as per RFC [7159](https://tools.ietf.org/html/rfc7159#section-7)
+      token = as per RFC [7230](https://tools.ietf.org/html/rfc7230#section-3.2.6)
 </code></pre>
 <p>The <code>name</code> identifier is case-sensitive, whereas <code>token</code> is not.</p>
 <p>The table below provides examples of runtime expressions and examples of their use in a value:</p>

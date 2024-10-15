@@ -13,7 +13,6 @@ name: schema-test
 # run this on push to any branch and creation of pull-requests
 on: 
   push: {}
-  pull_request: {}
   workflow_dispatch: {}
 
 jobs:

@@ -42,3 +42,13 @@ jobs:
     - name: Run tests
       run: npm run test
 
+    - name: Check in changed JSON files
+      run: |
+        git config user.name ${GITHUB_ACTOR}
+        git config user.email ${PUSHER_EMAIL}
+        git add schemas/**/*.json
+        git diff-index --quiet HEAD schemas/**/*.json || git commit -m "converted JSON metaschemas"
+        git push
+      env:
+        CI: true
+        PUSHER_EMAIL: ${{ github.event.pusher.email }}

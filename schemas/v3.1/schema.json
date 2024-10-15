@@ -33,7 +33,7 @@
     "webhooks": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "#/$defs/path-item-or-reference"
+        "$ref": "#/$defs/path-item"
       }
     },
     "components": {
@@ -167,8 +167,7 @@
       "type": "object",
       "properties": {
         "url": {
-          "type": "string",
-          "format": "uri-reference"
+          "type": "string"
         },
         "description": {
           "type": "string"
@@ -271,7 +270,7 @@
         "pathItems": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/$defs/path-item-or-reference"
+            "$ref": "#/$defs/path-item"
           }
         }
       },
@@ -301,6 +300,10 @@
       "$comment": "https://spec.openapis.org/oas/v3.1.0#path-item-object",
       "type": "object",
       "properties": {
+        "$ref": {
+          "type": "string",
+          "format": "uri-reference"
+        },
         "summary": {
           "type": "string"
         },
@@ -346,20 +349,6 @@
       },
       "$ref": "#/$defs/specification-extensions",
       "unevaluatedProperties": false
-    },
-    "path-item-or-reference": {
-      "if": {
-        "type": "object",
-        "required": [
-          "$ref"
-        ]
-      },
-      "then": {
-        "$ref": "#/$defs/reference"
-      },
-      "else": {
-        "$ref": "#/$defs/path-item"
-      }
     },
     "operation": {
       "$comment": "https://spec.openapis.org/oas/v3.1.0#operation-object",
@@ -790,8 +779,10 @@
           "^[1-5](?:[0-9]{2}|XX)$": false
         }
       },
-      "then" : {
-        "required": [ "default" ]
+      "then": {
+        "required": [
+          "default"
+        ]
       }
     },
     "response": {
@@ -842,7 +833,7 @@
       "type": "object",
       "$ref": "#/$defs/specification-extensions",
       "additionalProperties": {
-        "$ref": "#/$defs/path-item-or-reference"
+        "$ref": "#/$defs/path-item"
       }
     },
     "callbacks-or-reference": {

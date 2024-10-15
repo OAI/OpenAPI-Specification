@@ -46,8 +46,7 @@
     }
   },
   "patternProperties": {
-    "^x-": {
-    }
+    "^x-": {}
   },
   "additionalProperties": false,
   "definitions": {
@@ -91,8 +90,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -112,8 +110,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -132,8 +129,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -157,8 +153,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -182,8 +177,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -327,8 +321,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -402,8 +395,7 @@
         },
         "enum": {
           "type": "array",
-          "items": {
-          },
+          "items": {},
           "minItems": 1,
           "uniqueItems": false
         },
@@ -510,8 +502,7 @@
         "format": {
           "type": "string"
         },
-        "default": {
-        },
+        "default": {},
         "nullable": {
           "type": "boolean",
           "default": false
@@ -527,8 +518,7 @@
           "type": "boolean",
           "default": false
         },
-        "example": {
-        },
+        "example": {},
         "externalDocs": {
           "$ref": "#/definitions/ExternalDocumentation"
         },
@@ -541,8 +531,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -586,8 +575,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -634,8 +622,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -652,8 +639,7 @@
             }
           ]
         },
-        "example": {
-        },
+        "example": {},
         "examples": {
           "type": "object",
           "additionalProperties": {
@@ -675,8 +661,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false,
       "allOf": [
@@ -694,16 +679,14 @@
         "description": {
           "type": "string"
         },
-        "value": {
-        },
+        "value": {},
         "externalValue": {
           "type": "string",
           "format": "uri-reference"
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -757,8 +740,7 @@
           "minProperties": 1,
           "maxProperties": 1
         },
-        "example": {
-        },
+        "example": {},
         "examples": {
           "type": "object",
           "additionalProperties": {
@@ -774,8 +756,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false,
       "allOf": [
@@ -793,8 +774,7 @@
         "^\\/": {
           "$ref": "#/definitions/PathItem"
         },
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -809,6 +789,30 @@
         },
         "description": {
           "type": "string"
+        },
+        "get": {
+          "$ref": "#/definitions/Operation"
+        },
+        "put": {
+          "$ref": "#/definitions/Operation"
+        },
+        "post": {
+          "$ref": "#/definitions/Operation"
+        },
+        "delete": {
+          "$ref": "#/definitions/Operation"
+        },
+        "options": {
+          "$ref": "#/definitions/Operation"
+        },
+        "head": {
+          "$ref": "#/definitions/Operation"
+        },
+        "patch": {
+          "$ref": "#/definitions/Operation"
+        },
+        "trace": {
+          "$ref": "#/definitions/Operation"
         },
         "servers": {
           "type": "array",
@@ -832,11 +836,7 @@
         }
       },
       "patternProperties": {
-        "^(get|put|post|delete|options|head|patch|trace)$": {
-          "$ref": "#/definitions/Operation"
-        },
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -922,8 +922,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -952,8 +951,7 @@
             }
           ]
         },
-        "^x-": {
-        }
+        "^x-": {}
       },
       "minProperties": 1,
       "additionalProperties": false
@@ -984,8 +982,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -1004,8 +1001,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -1129,8 +1125,7 @@
           "minProperties": 1,
           "maxProperties": 1
         },
-        "example": {
-        },
+        "example": {},
         "examples": {
           "type": "object",
           "additionalProperties": {
@@ -1146,8 +1141,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false,
       "required": [
@@ -1160,93 +1154,99 @@
         },
         {
           "$ref": "#/definitions/SchemaXORContent"
+        }
+      ],
+      "oneOf": [
+        {
+          "$ref": "#/definitions/PathParameter"
         },
         {
-          "$ref": "#/definitions/ParameterLocation"
+          "$ref": "#/definitions/QueryParameter"
+        },
+        {
+          "$ref": "#/definitions/HeaderParameter"
+        },
+        {
+          "$ref": "#/definitions/CookieParameter"
         }
       ]
     },
-    "ParameterLocation": {
-      "description": "Parameter location",
-      "oneOf": [
-        {
-          "description": "Parameter in path",
-          "required": [
-            "required"
+    "PathParameter": {
+      "description": "Parameter in path",
+      "required": [
+        "required"
+      ],
+      "properties": {
+        "in": {
+          "enum": [
+            "path"
+          ]
+        },
+        "style": {
+          "enum": [
+            "matrix",
+            "label",
+            "simple"
           ],
-          "properties": {
-            "in": {
-              "enum": [
-                "path"
-              ]
-            },
-            "style": {
-              "enum": [
-                "matrix",
-                "label",
-                "simple"
-              ],
-              "default": "simple"
-            },
-            "required": {
-              "enum": [
-                true
-              ]
-            }
-          }
+          "default": "simple"
         },
-        {
-          "description": "Parameter in query",
-          "properties": {
-            "in": {
-              "enum": [
-                "query"
-              ]
-            },
-            "style": {
-              "enum": [
-                "form",
-                "spaceDelimited",
-                "pipeDelimited",
-                "deepObject"
-              ],
-              "default": "form"
-            }
-          }
-        },
-        {
-          "description": "Parameter in header",
-          "properties": {
-            "in": {
-              "enum": [
-                "header"
-              ]
-            },
-            "style": {
-              "enum": [
-                "simple"
-              ],
-              "default": "simple"
-            }
-          }
-        },
-        {
-          "description": "Parameter in cookie",
-          "properties": {
-            "in": {
-              "enum": [
-                "cookie"
-              ]
-            },
-            "style": {
-              "enum": [
-                "form"
-              ],
-              "default": "form"
-            }
-          }
+        "required": {
+          "enum": [
+            true
+          ]
         }
-      ]
+      }
+    },
+    "QueryParameter": {
+      "description": "Parameter in query",
+      "properties": {
+        "in": {
+          "enum": [
+            "query"
+          ]
+        },
+        "style": {
+          "enum": [
+            "form",
+            "spaceDelimited",
+            "pipeDelimited",
+            "deepObject"
+          ],
+          "default": "form"
+        }
+      }
+    },
+    "HeaderParameter": {
+      "description": "Parameter in header",
+      "properties": {
+        "in": {
+          "enum": [
+            "header"
+          ]
+        },
+        "style": {
+          "enum": [
+            "simple"
+          ],
+          "default": "simple"
+        }
+      }
+    },
+    "CookieParameter": {
+      "description": "Parameter in cookie",
+      "properties": {
+        "in": {
+          "enum": [
+            "cookie"
+          ]
+        },
+        "style": {
+          "enum": [
+            "form"
+          ],
+          "default": "form"
+        }
+      }
     },
     "RequestBody": {
       "type": "object",
@@ -1269,8 +1269,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -1320,8 +1319,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -1349,8 +1347,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false,
       "oneOf": [
@@ -1402,8 +1399,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -1429,8 +1425,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -1451,8 +1446,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -1479,8 +1473,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -1507,8 +1500,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -1535,8 +1527,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -1568,8 +1559,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     },
@@ -1585,11 +1575,9 @@
         },
         "parameters": {
           "type": "object",
-          "additionalProperties": {
-          }
+          "additionalProperties": {}
         },
-        "requestBody": {
-        },
+        "requestBody": {},
         "description": {
           "type": "string"
         },
@@ -1598,8 +1586,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false,
       "not": {
@@ -1616,8 +1603,7 @@
         "$ref": "#/definitions/PathItem"
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       }
     },
     "Encoding": {
@@ -1657,8 +1643,7 @@
         }
       },
       "patternProperties": {
-        "^x-": {
-        }
+        "^x-": {}
       },
       "additionalProperties": false
     }

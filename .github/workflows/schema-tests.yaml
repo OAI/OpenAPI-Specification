@@ -6,8 +6,7 @@ name: schema-test
 #
 # This workflow
 # - converts the YAML metaschemas to JSON
-# - runs the npm test script to validate passing and failing
-#   testcases for the metaschemas
+# - runs the npm test script to validate passing and failing testcases for the metaschemas
 # - checks in changed JSON files
 #
 

@@ -1,10 +1,24 @@
 #!/usr/bin/env node
 
 import { readFile } from "node:fs/promises";
-import yaml from "yaml";
+import YAML from "yaml";
 import { setMetaSchemaOutputFormat, validate } from "@hyperjump/json-schema/openapi-3-1";
 import { BASIC } from "@hyperjump/json-schema/experimental";
 
+import contentTypeParser from "content-type";
+import { addMediaTypePlugin } from "@hyperjump/browser";
+import { buildSchemaDocument } from "@hyperjump/json-schema/experimental";
+
+addMediaTypePlugin("application/schema+yaml", {
+    parse: async (response) => {
+      const contentType = contentTypeParser.parse(response.headers.get("content-type") ?? "");
+      const contextDialectId = contentType.parameters.schema ?? contentType.parameters.profile;
+  
+      const foo = YAML.parse(await response.text());
+      return buildSchemaDocument(foo, response.url, contextDialectId);
+    },
+    fileMatcher: (path) => path.endsWith(".yaml")
+  });
 
 const defaultOutputFormat = BASIC;
 
@@ -29,10 +43,10 @@ const outputFormat = args.format || defaultOutputFormat;
 setMetaSchemaOutputFormat(outputFormat);
 
 // Compile / meta-validate
-const validateOpenApi = await validate(`./schemas/v3.1/${schemaType}.json`);
+const validateOpenApi = await validate(`./schemas/v3.1/${schemaType}.yaml`);
 
 // Validate instance
 const instanceYaml = await readFile(`${process.argv[process.argv.length - 1]}`, "utf8");
-const instance = yaml.parse(instanceYaml);
+const instance = YAML.parse(instanceYaml);
 const results = validateOpenApi(instance, outputFormat);
 console.log(JSON.stringify(results, null, "  "));

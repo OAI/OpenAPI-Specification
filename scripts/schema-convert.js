@@ -6,12 +6,16 @@ const fs = require('fs');
 const yaml = require('yaml');
 
 function convert(filename,date) {
-    console.log(filename);
     const s = fs.readFileSync(filename,'utf8');
     let obj;
     try {
         obj = yaml.parse(s, {prettyErrors: true});
-        //TODO: replace last segment in $id, id, and $ref with date
+        // replace last segment of id, $id, and $ref value with date
+        for (const p of ["id","$id","$ref"]) {
+            if (obj[p]) {
+                obj[p] = obj[p].replace(/\/[^\/]+$/,'/'+date);
+            }
+        }
         console.log(JSON.stringify(obj,null,2));
     }
     catch (ex) {

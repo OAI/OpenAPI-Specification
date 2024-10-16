@@ -6,14 +6,16 @@
 
 for filename in schemas/v3*/schema.yaml ; do
   version=$(basename $(dirname "$filename"))
-  mkdir -p deploy/oas/$version
-
   lastCommitDate=$(git log -1 --format="%ad" --date=format:"%Y%m%d" "$filename")
 
-  echo $filename $lastCommitDate $version
-  #TODO:
-  # - generate JSON file "deploy/oas/$version/schema/$lastCommitDate" from schema.yaml
-  # node scripts/schema-convert.js $filename $lastCommitDate > deploy/oas/$version/schema/$lastCommitDate.json
-  # - if schema-base.yaml exists, generate JSON file "deploy/oas/$version/schema-base/$lastCommitDate" from schema-base.yaml
-  # node scripts/schema-convert.js ... $lastCommitDate > deploy/oas/$version/schema-base/$lastCommitDate.json
+  echo "$filename $lastCommitDate"
+  mkdir -p deploy/oas/$version/schema
+  node scripts/schema-convert.js "$filename" $lastCommitDate > deploy/oas/$version/schema/$lastCommitDate.json
+
+  filenameBase=$(dirname "$filename")/schema-base.yaml
+  if [ -f "$filenameBase" ]; then
+    echo "$filenameBase $lastCommitDate"
+    mkdir -p deploy/oas/$version/schema-base
+    node scripts/schema-convert.js "$filenameBase" $lastCommitDate > deploy/oas/$version/schema-base/$lastCommitDate.json
+  fi
 done

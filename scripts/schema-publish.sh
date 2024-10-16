@@ -13,5 +13,7 @@ for filename in schemas/v3*/schema.yaml ; do
   echo $filename $lastCommitDate $version
   #TODO:
   # - generate JSON file "deploy/oas/$version/schema/$lastCommitDate" from schema.yaml
+  # node scripts/schema-convert.js $filename $lastCommitDate > deploy/oas/$version/schema/$lastCommitDate.json
   # - if schema-base.yaml exists, generate JSON file "deploy/oas/$version/schema-base/$lastCommitDate" from schema-base.yaml
+  # node scripts/schema-convert.js ... $lastCommitDate > deploy/oas/$version/schema-base/$lastCommitDate.json
 done

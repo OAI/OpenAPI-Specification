@@ -33,8 +33,8 @@
     "c8": "^10.1.2",
     "markdownlint-cli": "^0.42.0",
     "mdv": "^1.3.4",
-    "vitest": "^2.1.2",
-    "yaml": "^2.5.1"
+    "vitest": "^2.1.3",
+    "yaml": "^2.6.0"
   },
   "keywords": [
     "OpenAPI",

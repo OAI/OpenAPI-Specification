@@ -7,12 +7,12 @@ name: schema-test
 # This workflow
 # - converts the YAML metaschemas to JSON
 # - runs the npm test script to validate passing and failing testcases for the metaschemas
-# - checks in changed JSON files
 #
 
 # run this on push to any branch and creation of pull-requests
 on: 
   push: {}
+  pull_request: {}
   workflow_dispatch: {}
 
 jobs:
@@ -39,14 +39,3 @@ jobs:
 
     - name: Run tests
       run: npm run test
-
-    - name: Check in changed JSON files
-      run: |
-        git config user.name ${GITHUB_ACTOR}
-        git config user.email ${PUSHER_EMAIL}
-        git add schemas/**/*.json
-        git diff-index --quiet HEAD schemas/**/*.json || git commit -m "converted JSON metaschemas"
-        git push
-      env:
-        CI: true
-        PUSHER_EMAIL: ${{ github.event.pusher.email }}

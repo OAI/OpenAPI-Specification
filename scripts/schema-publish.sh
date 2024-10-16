@@ -11,13 +11,15 @@ for filename in schemas/v3*/schema.yaml ; do
   echo "$filename $lastCommitDate"
   mkdir -p deploy/oas/$version/schema
   node scripts/schema-convert.js "$filename" $lastCommitDate > deploy/oas/$version/schema/$lastCommitDate
-  mv deploy/oas/$version/schema/*.md deploy/oas/$version/schema/$lastCommitDate.md
+  # mv deploy/oas/$version/schema/*.md deploy/oas/$version/schema/$lastCommitDate.md
+  ls deploy/oas/$version/schema/*
 
   filenameBase=$(dirname "$filename")/schema-base.yaml
   if [ -f "$filenameBase" ]; then
     echo "$filenameBase $lastCommitDate"
     mkdir -p deploy/oas/$version/schema-base
     node scripts/schema-convert.js "$filenameBase" $lastCommitDate > deploy/oas/$version/schema-base/$lastCommitDate
-    mv deploy/oas/$version/schema-base/*.md deploy/oas/$version/schema-base/$lastCommitDate.md
+    # mv deploy/oas/$version/schema-base/*.md deploy/oas/$version/schema-base/$lastCommitDate.md
+    ls deploy/oas/$version/schema-base/*
   fi
 done

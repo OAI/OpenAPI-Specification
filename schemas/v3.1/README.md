@@ -18,17 +18,16 @@ that all schemas use the default OAS base vocabulary.
 
 ## Contributing
 
-To submit improvements to the schema, modify the `schema.yaml` file only.
+To submit improvements to the schema, modify the `schema.yaml` and add test cases for your changes.
 
 The TSC will then:
 - Run tests on the updated schema
 - Update the iteration version
-- Convert the `schema.yaml` to `schema.json`
 - Publish the new version
 
 ## Tests
 
-The test suite is part of this package.
+The [test suite](../../tests/v3.1) is part of this package.
 
 ```bash
 npm install

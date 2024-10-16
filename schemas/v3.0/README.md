@@ -11,17 +11,18 @@ ensure compliance.
 The iteration version of the JSON Schema can be found in the `id` field.
 For example, the value of `id: https://spec.openapis.org/oas/3.0/schema/2019-04-02` means this iteration was created on April 2nd, 2019.
 
-To submit improvements to the schema, modify the `schema.yaml` file only.
+## Contributing
+
+To submit improvements to the schema, modify the `schema.yaml` and add test cases for your changes.
 
 The TSC will then:
 - Run tests on the updated schema
 - Update the iteration version
-- Convert the `schema.yaml` to `schema.json`
 - Publish the new version
 
 ## Tests
 
-The test suite is part of this package.
+The [test suite](../../tests/v3.0) is part of this package.
 
 ```bash
 npm install

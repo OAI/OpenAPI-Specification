@@ -33,3 +33,9 @@ The [test suite](../../tests/v3.1) is part of this package.
 npm install
 npm test
 ```
+
+You can also validate a document individually.
+
+```bash
+node scripts/validate.mjs path/to/document/to/validate.yaml
+```

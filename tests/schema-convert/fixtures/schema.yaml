@@ -1,0 +1,5 @@
+id: https://spec.openapis.org/oas/3.0/schema/20241017
+$id: https://spec.openapis.org/oas/3.0/schema/some-iteration
+$ref: path/to/somewhere/replace-last-segment
+other:
+  foo: bar

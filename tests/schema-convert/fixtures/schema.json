@@ -1,0 +1,8 @@
+{
+  "id": "https://spec.openapis.org/oas/3.0/schema/87654321",
+  "$id": "https://spec.openapis.org/oas/3.0/schema/87654321",
+  "$ref": "path/to/somewhere/87654321",
+  "other": {
+    "foo": "bar"
+  }
+}

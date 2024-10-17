@@ -7,7 +7,7 @@
 for filename in schemas/v3*/schema.yaml ; do
   vVersion=$(basename $(dirname "$filename"))
   version=${vVersion:1}
-  lastCommitDate=$(git log -1 --format="%ad" --date=format:"%Y%m%d" "$filename")
+  lastCommitDate=$(git log -1 --format="%ad" --date=short "$filename")
 
   echo "$filename $lastCommitDate"
   mkdir -p deploy/oas/$version/schema

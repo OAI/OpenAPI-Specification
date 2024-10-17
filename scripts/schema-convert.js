@@ -24,7 +24,7 @@ function convert(filename,date) {
 }
 
 if (process.argv.length<4) {
-    console.warn('Usage: convert-schema.js file.yaml YYYYMMDD');
+    console.warn('Usage: convert-schema.js file.yaml YYYY-MM-DD');
 }
 else {
   convert(process.argv[2], process.argv[3]);

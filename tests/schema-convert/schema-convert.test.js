@@ -11,7 +11,7 @@ describe("Convert Schemas", async () => {
     const output = await convert(
       [
         "schema.yaml",
-        "87654321",
+        "8765-43-21",
       ],
       folder,
     );
@@ -36,7 +36,7 @@ describe("Convert Schemas", async () => {
       ],
       folder,
     );
-    expect(output.stderr).to.equal("Usage: convert-schema.js file.yaml YYYYMMDD\n");
+    expect(output.stderr).to.equal("Usage: convert-schema.js file.yaml YYYY-MM-DD\n");
   });
 });
 

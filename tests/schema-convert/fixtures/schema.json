@@ -1,7 +1,7 @@
 {
-  "id": "https://spec.openapis.org/oas/3.0/schema/87654321",
-  "$id": "https://spec.openapis.org/oas/3.0/schema/87654321",
-  "$ref": "path/to/somewhere/87654321",
+  "id": "https://spec.openapis.org/oas/3.0/schema/8765-43-21",
+  "$id": "https://spec.openapis.org/oas/3.0/schema/8765-43-21",
+  "$ref": "path/to/somewhere/8765-43-21",
   "other": {
     "foo": "bar"
   }

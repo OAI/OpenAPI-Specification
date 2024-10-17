@@ -13,7 +13,6 @@ on:
   push:
     branches:
       - main
-      - publish-schemas
   workflow_dispatch: {}
 
 jobs:

@@ -46,3 +46,9 @@ This site contains the OpenAPI Initiative Registry and content for the HTML vers
 {%- assign separator = ", " -%}
 {%- endif -%}
 {%- endfor %}
+
+## Overlay Specification
+
+### Versions
+
+{% include specification-version-list.md specification="overlay" %}

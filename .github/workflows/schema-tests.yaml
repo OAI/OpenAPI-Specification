@@ -4,9 +4,9 @@ name: schema-test
 # Issue: https://github.com/OAI/OpenAPI-Specification/pull/2489
 
 #
-# This workflow runs the npm test script to validate passing and failing
-# testcases for the metaschemas
-#
+# This workflow
+# - converts the YAML metaschemas to JSON
+# - runs the npm test script to validate passing and failing testcases for the metaschemas
 
 # run this on push to any branch and creation of pull-requests
 on: 
@@ -32,6 +32,9 @@ jobs:
       run: |
         git checkout remotes/origin/main -- package.json package-lock.json
         npm ci
+
+    - name: convert YAML metaschemas to JSON
+      run: find schemas/v3* -type f -name "*.yaml" | xargs node scripts/yaml2json/yaml2json.js
 
     - name: Run tests
       run: npm run test

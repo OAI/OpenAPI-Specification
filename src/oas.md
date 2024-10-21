@@ -1,6 +1,6 @@
 # OpenAPI Specification
 
-## Version 3.1.1
+## Version 3.2.0
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14) [RFC2119](https://tools.ietf.org/html/rfc2119) [RFC8174](https://tools.ietf.org/html/rfc8174) when, and only when, they appear in all capitals, as shown here.
 
@@ -265,7 +265,7 @@ The `maxLength` keyword MAY be used to set an expected upper bound on the length
 
 The following table shows how to migrate from OAS 3.0 binary data descriptions, continuing to use `image/png` as the example binary media type:
 
-| OAS < 3.1 | OAS 3.1 | Comments |
+| OAS < 3.1 | OAS >= 3.1 | Comments |
 | ---- | ---- | ---- |
 | <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">format: binary</code> | <code style="white-space:nowrap">contentMediaType: image/png</code> | if redundant, can be omitted, often resulting in an empty [Schema Object](#schema-object) |
 | <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">format: byte</code> | <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">contentMediaType: image/png</code><br /><code style="white-space:nowrap">contentEncoding: base64</code> | note that `base64url` can be used to avoid re-encoding the base64 string to be URL-safe |
@@ -4116,6 +4116,7 @@ Certain fields allow the use of Markdown which can contain HTML including script
 
 | Version | Date | Notes |
 | ---- | ---- | ---- |
+| 3.2.0 | TBD | Release of the OpenAPI Specification 3.2.0 |
 | 3.1.1 | 2024-10-24 | Patch release of the OpenAPI Specification 3.1.1 |
 | 3.1.0 | 2021-02-15 | Release of the OpenAPI Specification 3.1.0 |
 | 3.1.0-rc1 | 2020-10-08 | rc1 of the 3.1 specification |

@@ -1,5 +1,4 @@
-OpenAPI 3.1.X JSON Schema
----
+# OpenAPI 3.1.X JSON Schema
 
 This directory contains the YAML sources for generating the JSON Schemas for validating OpenAPI definitions of versions 3.1.X, which are published on [https://spec.openapis.org](https://spec.openapis.org).
 
@@ -25,7 +24,9 @@ An additional schema that validates the Schema Object with the OAS 3.1 dialect b
 The published schemas on the spec site have an _iteration date_ in their `id`s.
 This allows the schemas for a release line (in this case 3.0) to be updated independent of the spec patch release cycle.
 
-The iteration version of the JSON Schema can be found in the `$id` field. For example, the value of `$id: https://spec.openapis.org/oas/3.1/schema/2021-03-02`
+The iteration version of the JSON Schema can be found in the `$id` field.
+For example, the value of `$id: https://spec.openapis.org/oas/3.1/schema/2021-03-02` means this iteration was created on March 2nd, 2021.
+
 The special URL with `latest` in place of the date is intended to provide an HTTP redirect to the most recent dated schema.
 
 ## Improving the schemas
@@ -37,3 +38,17 @@ Validating requirements that are optional, or field usage that has undefined or 
 Schemas to perform additional optional validation are [under consideration](https://github.com/OAI/OpenAPI-Specification/issues/4141).
 
 Improvements can be submitted by opening a PR against the `main` branch.
+
+Modify the `*schema*.yaml` files and add test cases for your changes.
+
+The TSC will then:
+- Run tests on the updated schema
+- Update the iteration version
+- Publish the new version
+
+The [test suite](../../tests/v3.1) is part of this package.
+
+```bash
+npm install
+npm test
+```

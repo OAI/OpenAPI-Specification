@@ -14,7 +14,7 @@ This allows the schemas for a release line (in this case 3.0) to be updated inde
 The iteration version of the JSON Schema can be found in the `id` field.
 For example, the value of `id: https://spec.openapis.org/oas/3.0/schema/2019-04-02` means this iteration was created on April 2nd, 2019.
 
-The special URL with `latest` in place of the date is intended to provide an HTTP redirect to the most recent dated schema.
+We are [working on](https://github.com/OAI/OpenAPI-Specification/issues/4152) how to best provide programmatic access for determining the latest date for each schema.
 
 ## Improving the schema
 

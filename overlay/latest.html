@@ -1,0 +1,777 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="generator" content="ReSpec 35.1.1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<style>
+dfn{cursor:pointer}
+.dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font-family:"Helvetica Neue",sans-serif;font-size:small;background:#fff;background:var(--indextable-hover-bg,#fff);color:#000;color:var(--text,#000);box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);box-shadow:0 1em 3em -.4em var(--tocsidebar-shadow,rgba(0,0,0,.3)),0 0 1px 1px var(--tocsidebar-shadow,rgba(0,0,0,.05));border-radius:2px}
+.dfn-panel:not(.docked)>.caret{position:absolute;top:-9px}
+.dfn-panel:not(.docked)>.caret::after,.dfn-panel:not(.docked)>.caret::before{content:"";position:absolute;border:10px solid transparent;border-top:0;border-bottom:10px solid #fff;border-bottom-color:var(--indextable-hover-bg,#fff);top:0}
+.dfn-panel:not(.docked)>.caret::before{border-bottom:9px solid #a2a9b1;border-bottom-color:var(--indextable-hover-bg,#a2a9b1)}
+.dfn-panel *{margin:0}
+.dfn-panel b{display:block;color:#000;color:var(--text,#000);margin-top:.25em}
+.dfn-panel ul a[href]{color:#333;color:var(--text,#333)}
+.dfn-panel>div{display:flex}
+.dfn-panel a.self-link{font-weight:700;margin-right:auto}
+.dfn-panel .marker{padding:.1em;margin-left:.5em;border-radius:.2em;text-align:center;white-space:nowrap;font-size:90%;color:#040b1c}
+.dfn-panel .marker.dfn-exported{background:#d1edfd;box-shadow:0 0 0 .125em #1ca5f940}
+.dfn-panel .marker.idl-block{background:#8ccbf2;box-shadow:0 0 0 .125em #0670b161}
+.dfn-panel a:not(:hover){text-decoration:none!important;border-bottom:none!important}
+.dfn-panel a[href]:hover{border-bottom-width:1px}
+.dfn-panel ul{padding:0}
+.dfn-panel li{margin-left:1em}
+.dfn-panel.docked{position:fixed;left:.5em;top:unset;bottom:2em;margin:0 auto;max-width:calc(100vw - .75em * 2 - .5em - .2em * 2);max-height:30vh;overflow:auto}
+</style>
+<title>Overlay Specification v1.0.0</title>
+<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-JR4K3ZJLPH&amp;l=dataLayer&amp;cx=c"></script>
+<style id="respec-mainstyle">
+@keyframes pop{
+0%{transform:scale(1,1)}
+25%{transform:scale(1.25,1.25);opacity:.75}
+100%{transform:scale(1,1)}
+}
+a.internalDFN{color:inherit;border-bottom:1px solid #99c;text-decoration:none}
+a.externalDFN{color:inherit;border-bottom:1px dotted #ccc;text-decoration:none}
+a.bibref{text-decoration:none}
+.respec-offending-element:target{animation:pop .25s ease-in-out 0s 1}
+.respec-offending-element,a[href].respec-offending-element{text-decoration:red wavy underline}
+@supports not (text-decoration:red wavy underline){
+.respec-offending-element:not(pre){display:inline-block}
+.respec-offending-element{background:url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x}
+}
+#references :target{background:#eaf3ff;animation:pop .4s ease-in-out 0s 1}
+cite .bibref{font-style:normal}
+a[href].orcid{padding-left:4px;padding-right:4px}
+a[href].orcid>svg{margin-bottom:-2px}
+ol.tof,ul.tof{list-style:none outside none}
+.caption{margin-top:.5em;font-style:italic}
+#issue-summary>ul{column-count:2}
+#issue-summary li{list-style:none;display:inline-block}
+details.respec-tests-details{margin-left:1em;display:inline-block;vertical-align:top}
+details.respec-tests-details>*{padding-right:2em}
+details.respec-tests-details[open]{z-index:999999;position:absolute;border:thin solid #cad3e2;border-radius:.3em;background-color:#fff;padding-bottom:.5em}
+details.respec-tests-details[open]>summary{border-bottom:thin solid #cad3e2;padding-left:1em;margin-bottom:1em;line-height:2em}
+details.respec-tests-details>ul{width:100%;margin-top:-.3em}
+details.respec-tests-details>li{padding-left:1em}
+.self-link:hover{opacity:1;text-decoration:none;background-color:transparent}
+aside.example .marker>a.self-link{color:inherit}
+.header-wrapper{display:flex;align-items:baseline}
+:is(h2,h3,h4,h5,h6):not(#toc>h2,#abstract>h2,#sotd>h2,.head>h2){position:relative;left:-.5em}
+:is(h2,h3,h4,h5,h6):not(#toch2)+a.self-link{color:inherit;order:-1;position:relative;left:-1.1em;font-size:1rem;opacity:.5}
+:is(h2,h3,h4,h5,h6)+a.self-link::before{content:"§";text-decoration:none;color:var(--heading-text)}
+:is(h2,h3)+a.self-link{top:-.2em}
+:is(h4,h5,h6)+a.self-link::before{color:#000}
+@media (max-width:767px){
+dd{margin-left:0}
+}
+@media print{
+.removeOnSave{display:none}
+}
+</style>
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-831873-42"></script>
+
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+ gtag('config', 'UA-831873-42');
+</script>
+
+<meta name="color-scheme" content="light">
+<meta name="description" content="The Overlay Specification defines a document format for information that augments an existing [OpenAPI] description yet remains separate from the OpenAPI description’s source document(s).">
+<link rel="canonical" href="https://spec.openapis.org/overlay/v1.0.0.html">
+<style>
+var{position:relative;cursor:pointer}
+var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}
+var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#222}
+var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#222;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}
+var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
+</style>
+<script id="initialUserConfig" type="application/json">{
+  "specStatus": "base",
+  "latestVersion": "https://spec.openapis.org/overlay/latest.html",
+  "thisVersion": "https://spec.openapis.org/overlay/v1.0.0.html",
+  "canonicalURI": "https://spec.openapis.org/overlay/v1.0.0.html",
+  "editors": [
+    {
+      "name": "Darrel Miller "
+    },
+    {
+      "name": "Greg Dennis "
+    },
+    {
+      "name": "Kevin Swiber "
+    },
+    {
+      "name": "Lorna Mitchell "
+    },
+    {
+      "name": "Mike Kistler "
+    },
+    {
+      "name": "Mike Ralphson "
+    },
+    {
+      "name": "Ron Ratovsky "
+    }
+  ],
+  "formerEditors": [],
+  "publishDate": "2024-10-17T00:00:00.000Z",
+  "subtitle": "Version 1.0.0",
+  "edDraftURI": "https://github.com/OAI/Overlay-Specification/",
+  "shortName": "OAI Overlay",
+  "historyURI": null,
+  "lint": false,
+  "logos": [
+    {
+      "src": "https://raw.githubusercontent.com/OAI/OpenAPI-Style-Guide/master/graphics/bitmap/OpenAPI_Logo_Pantone.png",
+      "alt": "OpenAPI Initiative",
+      "height": 48,
+      "url": "https://openapis.org/"
+    }
+  ],
+  "otherLinks": [
+    {
+      "key": "Participate",
+      "data": [
+        {
+          "value": "GitHub OAI/Overlay-Specification",
+          "href": "https://github.com/OAI/Overlay-Specification/"
+        },
+        {
+          "value": "File a bug",
+          "href": "https://github.com/OAI/Overlay-Specification/issues"
+        },
+        {
+          "value": "Commit history",
+          "href": "https://github.com/OAI/Overlay-Specification/commits/main/versions/1.0.0.md"
+        },
+        {
+          "value": "Pull requests",
+          "href": "https://github.com/OAI/Overlay-Specification/pulls"
+        }
+      ]
+    }
+  ],
+  "publishISODate": "2024-10-17T00:00:00.000Z",
+  "generatedSubtitle": "17 October 2024"
+}</script>
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/base.css"></head><body class="h-entry"><div class="head">
+    <p class="logos"><a class="logo" href="https://openapis.org/"><img crossorigin="" alt="OpenAPI Initiative" height="48" src="https://raw.githubusercontent.com/OAI/OpenAPI-Style-Guide/master/graphics/bitmap/OpenAPI_Logo_Pantone.png">
+  </a></p>
+    <h1 id="title" class="title">Overlay Specification v1.0.0 </h1> <h2 id="subtitle" class="subtitle">Version 1.0.0</h2>
+    <p id="w3c-state"> <time class="dt-published" datetime="2024-10-17">17 October 2024</time></p>
+    <details open="">
+      <summary>More details about this document</summary>
+      <dl>
+        <dt>This version:</dt><dd>
+                <a class="u-url" href="https://spec.openapis.org/overlay/v1.0.0.html">https://spec.openapis.org/overlay/v1.0.0.html</a>
+              </dd>
+        <dt>Latest published version:</dt><dd>
+                <a href="https://spec.openapis.org/overlay/latest.html">https://spec.openapis.org/overlay/latest.html</a>
+              </dd>
+        <dt>Latest editor's draft:</dt><dd><a href="https://github.com/OAI/Overlay-Specification/">https://github.com/OAI/Overlay-Specification/</a></dd>
+        
+        
+        
+        
+        
+        
+        <dt>Editors:</dt><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Darrel Miller </span>
+  </dd><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Greg Dennis </span>
+  </dd><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Kevin Swiber </span>
+  </dd><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Lorna Mitchell </span>
+  </dd><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Mike Kistler </span>
+  </dd><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Mike Ralphson </span>
+  </dd><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Ron Ratovsky </span>
+  </dd>
+        
+        
+        
+        
+        <dt>Participate</dt><dd>
+    <a href="https://github.com/OAI/Overlay-Specification/">GitHub OAI/Overlay-Specification</a>
+  </dd><dd>
+    <a href="https://github.com/OAI/Overlay-Specification/issues">File a bug</a>
+  </dd><dd>
+    <a href="https://github.com/OAI/Overlay-Specification/commits/main/versions/1.0.0.md">Commit history</a>
+  </dd><dd>
+    <a href="https://github.com/OAI/Overlay-Specification/pulls">Pull requests</a>
+  </dd>
+      </dl>
+    </details>
+    
+    
+    <p class="copyright">Copyright © 2024 the Linux Foundation</p>
+    <hr title="Separator for header">
+  </div><style>
+#respec-ui { visibility: hidden; }#title { color: #578000; } #subtitle { color: #578000; }.dt-published { color: #578000; } .dt-published::before { content: "Published "; }h1,h2,h3,h4,h5,h6 { color: #578000; font-weight: normal; font-style: normal; }a[href] { color: #45512c; }body:not(.toc-inline) #toc h2 { color: #45512c; }table { display: block; width: 100%; overflow: auto; }table th { font-weight: 600; }table th, table td { padding: 6px 13px; border: 1px solid #dfe2e5; }table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }table tr:nth-child(2n) { background-color: #f6f8fa; }pre { background-color: #f6f8fa !important; }code { color: #c83500 } th code { color: inherit }a.bibref { text-decoration: underline;}/**  * GitHub Gist Theme  * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro  */  .hljs {   display: block;   background: white;   padding: 0.5em;   color: #333333;   overflow-x: auto; }  .hljs-comment, .hljs-meta {   color: #727070; }  .hljs-string, .hljs-variable, .hljs-template-variable, .hljs-strong, .hljs-emphasis, .hljs-quote {   color: #c74700; }  .hljs-number {   color: #005e5e; }  .hljs-keyword, .hljs-selector-tag, .hljs-type {   color: #a71d5d; }  .hljs-literal, .hljs-symbol, .hljs-bullet, .hljs-attribute {   color: #007aa2; }  .hljs-section, .hljs-name {   color: #4b7c46; }  .hljs-tag {   color: #333333; }  .hljs-title, .hljs-attr, .hljs-selector-id, .hljs-selector-class, .hljs-selector-attr, .hljs-selector-pseudo {   color: #795da3; }  .hljs-addition {   color: #55a532;   background-color: #eaffea; }  .hljs-deletion {   color: #bd2c00;   background-color: #ffecec; }  .hljs-link {   text-decoration: underline; } 
+</style><section class="notoc introductory" id="abstract"><h2>What is the Overlay Specification?</h2>
+<p>The Overlay Specification defines a document format for information that augments an existing [<cite><a class="bibref" data-link-type="biblio" href="#bib-openapi" title="OpenAPI Specification">OpenAPI</a></cite>] description yet remains separate from the OpenAPI description’s source document(s).</p>
+</section><section class="override introductory notoc" id="sotd" data-max-toc="0"><h2>Status of This Document</h2>The source-of-truth for this specification is the HTML file referenced above as <em>This version</em>.</section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#overlay-specification"><bdi class="secno">1. </bdi>Overlay Specification</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">1.1 </bdi>Version 1.0.0</a></li></ol></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#definitions"><bdi class="secno">3. </bdi><span>Definitions</span></a><ol class="toc"><li class="tocline"><a class="tocxref" href="#overlay"><bdi class="secno">3.1 </bdi><span>Overlay</span></a></li></ol></li><li class="tocline"><a class="tocxref" href="#specification"><bdi class="secno">4. </bdi>Specification</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#versions"><bdi class="secno">4.1 </bdi>Versions</a></li><li class="tocline"><a class="tocxref" href="#format"><bdi class="secno">4.2 </bdi>Format</a></li><li class="tocline"><a class="tocxref" href="#relative-references-in-uris"><bdi class="secno">4.3 </bdi>Relative References in URIs</a></li><li class="tocline"><a class="tocxref" href="#schema"><bdi class="secno">4.4 </bdi>Schema</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#overlay-object"><bdi class="secno">4.4.1 </bdi>Overlay Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields"><bdi class="secno">4.4.1.1 </bdi>Fixed Fields</a></li></ol></li><li class="tocline"><a class="tocxref" href="#info-object"><bdi class="secno">4.4.2 </bdi>Info Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-0"><bdi class="secno">4.4.2.1 </bdi>Fixed Fields</a></li></ol></li><li class="tocline"><a class="tocxref" href="#action-object"><bdi class="secno">4.4.3 </bdi>Action Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-1"><bdi class="secno">4.4.3.1 </bdi>Fixed Fields</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#examples"><bdi class="secno">4.5 </bdi>Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#structured-overlay-example"><bdi class="secno">4.5.1 </bdi>Structured Overlay Example</a></li><li class="tocline"><a class="tocxref" href="#targeted-overlay-example"><bdi class="secno">4.5.2 </bdi>Targeted Overlay Example</a></li><li class="tocline"><a class="tocxref" href="#wildcard-overlay-example"><bdi class="secno">4.5.3 </bdi>Wildcard Overlay Example</a></li><li class="tocline"><a class="tocxref" href="#array-modification-example"><bdi class="secno">4.5.4 </bdi>Array Modification Example</a></li><li class="tocline"><a class="tocxref" href="#traits-example"><bdi class="secno">4.5.5 </bdi>Traits Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#specification-extensions"><bdi class="secno">4.6 </bdi>Specification Extensions</a></li></ol></li><li class="tocline"><a class="tocxref" href="#appendix-a-revision-history"><bdi class="secno">A. </bdi>Appendix A: Revision History</a></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">B. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">B.1 </bdi>Normative references</a></li></ol></li></ol></nav>
+<section id="overlay-specification"><div class="header-wrapper"><h2 id="x1-overlay-specification"><bdi class="secno">1. </bdi>Overlay Specification</h2><a class="self-link" href="#overlay-specification" aria-label="Permalink for Section 1."></a></div>
+<section class="override" id="conformance"><div class="header-wrapper"><h3 id="x1-1-version-1-0-0"><bdi class="secno">1.1 </bdi>Version 1.0.0</h3><a class="self-link" href="#conformance" aria-label="Permalink for Section 1.1"></a></div>
+<p>The key words “<em class="rfc2119">MUST</em>”, “<em class="rfc2119">MUST NOT</em>”, “<em class="rfc2119">REQUIRED</em>”, “<em class="rfc2119">SHALL</em>”, “<em class="rfc2119">SHALL NOT</em>”, “<em class="rfc2119">SHOULD</em>”, “<em class="rfc2119">SHOULD NOT</em>”, “<em class="rfc2119">RECOMMENDED</em>”, “<em class="rfc2119">NOT RECOMMENDED</em>”, “<em class="rfc2119">MAY</em>”, and “<em class="rfc2119">OPTIONAL</em>” in this document are to be interpreted as described in <a href="https://tools.ietf.org/html/bcp14">BCP 14</a> [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">RFC2119</a></cite>] [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8174" title="Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words">RFC8174</a></cite>] when, and only when, they appear in all capitals, as shown here.</p>
+<p>This document is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0.html">The Apache License, Version 2.0</a>.</p>
+</section></section><section id="introduction"><div class="header-wrapper"><h2 id="x2-introduction"><bdi class="secno">2. </bdi>Introduction</h2><a class="self-link" href="#introduction" aria-label="Permalink for Section 2."></a></div>
+<p>The Overlay Specification is a companion to the [<cite><a class="bibref" data-link-type="biblio" href="#bib-openapi" title="OpenAPI Specification">OpenAPI</a></cite>] Specification.
+An Overlay describes a set of changes to be applied or “overlaid” onto an existing OpenAPI description.</p>
+<p>The main purpose of the Overlay Specification is to provide a way to repeatably apply transformations to one or many OpenAPI descriptions. Use cases include updating descriptions, adding metadata to be consumed by another tool, or removing certain elements from an API description before sharing it with partners. An Overlay may be specific to a single OpenAPI description or be designed to apply the same transform to any OpenAPI description.</p>
+</section><section id="definitions"><div class="header-wrapper"><h2 id="x3-definitions"><bdi class="secno">3. </bdi><dfn id="dfn-definitions" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">Definitions</dfn></h2><a class="self-link" href="#definitions" aria-label="Permalink for Section 3."></a></div>
+<section id="overlay"><div class="header-wrapper"><h3 id="x3-1-overlay"><bdi class="secno">3.1 </bdi><dfn id="dfn-overlay" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">Overlay</dfn></h3><a class="self-link" href="#overlay" aria-label="Permalink for Section 3.1"></a></div>
+<p>An Overlay is a JSON or YAML structure containing an ordered list of <a href="#overlay-actions">Action Objects</a> that are to be applied to the target document. Each <a href="#action-object">Action Object</a> has a <code>target</code> property and a modifier type (<code>update</code> or <code>remove</code>). The <code>target</code> property is a <cite><a class="bibref" data-link-type="biblio" href="#bib-rfc9535" title="JSONPath: Query Expressions for JSON">JSONPath</a></cite> query expression that identifies the elements of the target document to be updated and the modifier determines the change.</p>
+</section></section><section id="specification"><div class="header-wrapper"><h2 id="x4-specification"><bdi class="secno">4. </bdi>Specification</h2><a class="self-link" href="#specification" aria-label="Permalink for Section 4."></a></div>
+<section id="versions"><div class="header-wrapper"><h3 id="x4-1-versions"><bdi class="secno">4.1 </bdi>Versions</h3><a class="self-link" href="#versions" aria-label="Permalink for Section 4.1"></a></div>
+<p>The Overlay Specification is versioned using a <code>major</code>.<code>minor</code>.<code>patch</code> versioning scheme. The <code>major</code>.<code>minor</code> portion of the version string (for example 1.0) <em class="rfc2119">SHALL</em> designate the Overlay feature set. <code>patch</code> versions address errors in, or provide clarifications to, this document, not the feature set. The patch version <em class="rfc2119">SHOULD NOT</em> be considered by tooling, making no distinction between 1.0.0 and 1.0.1 for example.</p>
+<p><strong>Note:</strong> Version 1.0.0 of the Overlay Specification was released after spending some time in draft and being implemented by a few early-adopting tool providers. Check with your tool provider for the details of what is supported in each tool.</p>
+</section><section id="format"><div class="header-wrapper"><h3 id="x4-2-format"><bdi class="secno">4.2 </bdi>Format</h3><a class="self-link" href="#format" aria-label="Permalink for Section 4.2"></a></div>
+<p>An Overlay document that conforms to the Overlay Specification is itself a JSON object, which may be represented either in <cite><a class="bibref" data-link-type="biblio" href="#bib-rfc7159" title="The JavaScript Object Notation (JSON) Data Interchange Format">JSON</a></cite> or <cite><a class="bibref" data-link-type="biblio" href="#bib-yaml" title="YAML Ain’t Markup Language (YAML™) Version 1.2">YAML</a></cite> format.</p>
+<p>All field names in the specification are <strong>case sensitive</strong>.
+This includes all fields that are used as keys in a map, except where explicitly noted that keys are <strong>case insensitive</strong>.</p>
+<p>In order to preserve the ability to round-trip between YAML and JSON formats, <cite><a class="bibref" data-link-type="biblio" href="#bib-yaml" title="YAML Ain’t Markup Language (YAML™) Version 1.2">YAML version 1.2</a></cite> is <em class="rfc2119">RECOMMENDED</em> along with some additional constraints:</p>
+<ul>
+<li>Tags <em class="rfc2119">MUST</em> be limited to those allowed by the <a href="https://yaml.org/spec/1.2/spec.html#id2803231">JSON Schema ruleset</a>.</li>
+<li>Keys used in YAML maps <em class="rfc2119">MUST</em> be limited to a scalar string, as defined by the <a href="https://yaml.org/spec/1.2/spec.html#id2802346">YAML Failsafe schema ruleset</a>.</li>
+</ul>
+</section><section id="relative-references-in-uris"><div class="header-wrapper"><h3 id="x4-3-relative-references-in-uris"><bdi class="secno">4.3 </bdi>Relative References in URIs</h3><a class="self-link" href="#relative-references-in-uris" aria-label="Permalink for Section 4.3"></a></div>
+<p>Unless specified otherwise, all fields that are URI references <em class="rfc2119">MAY</em> be relative references as defined by [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3986" title="Uniform Resource Identifier (URI): Generic Syntax">RFC3986</a></cite>] <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-4.2">Section 4.2</a>.</p>
+</section><section id="schema"><div class="header-wrapper"><h3 id="x4-4-schema"><bdi class="secno">4.4 </bdi>Schema</h3><a class="self-link" href="#schema" aria-label="Permalink for Section 4.4"></a></div>
+<p>In the following description, if a field is not explicitly <strong><em class="rfc2119">REQUIRED</em></strong> or described with a <em class="rfc2119">MUST</em> or <em class="rfc2119">SHALL</em>, it can be considered <em class="rfc2119">OPTIONAL</em>.</p>
+<section id="overlay-object"><div class="header-wrapper"><h4 id="x4-4-1-overlay-object"><bdi class="secno">4.4.1 </bdi>Overlay Object</h4><a class="self-link" href="#overlay-object" aria-label="Permalink for Section 4.4.1"></a></div>
+<p>This is the root object of the <a href="#overlay">Overlay</a>.</p>
+<section id="fixed-fields"><div class="header-wrapper"><h5 id="x4-4-1-1-fixed-fields"><bdi class="secno">4.4.1.1 </bdi>Fixed Fields</h5><a class="self-link" href="#fixed-fields" aria-label="Permalink for Section 4.4.1.1"></a></div>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th style="text-align:center">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span id="overlay-version"></span>overlay</td>
+<td style="text-align:center"><code>string</code></td>
+<td><strong><em class="rfc2119">REQUIRED</em></strong>. This string <em class="rfc2119">MUST</em> be the <a href="#versions">version number</a> of the Overlay Specification that the Overlay document uses. The <code>overlay</code> field <em class="rfc2119">SHOULD</em> be used by tooling to interpret the Overlay document.</td>
+</tr>
+<tr>
+<td><span id="overlay-info"></span>info</td>
+<td style="text-align:center"><a href="#info-object">Info Object</a></td>
+<td><strong><em class="rfc2119">REQUIRED</em></strong>. Provides metadata about the Overlay. The metadata <em class="rfc2119">MAY</em> be used by tooling as required.</td>
+</tr>
+<tr>
+<td><span id="overlay-extends"></span>extends</td>
+<td style="text-align:center"><code>string</code></td>
+<td>URI reference that identifies the target document (such as an [<cite><a class="bibref" data-link-type="biblio" href="#bib-openapi" title="OpenAPI Specification">OpenAPI</a></cite>] document) this overlay applies to.</td>
+</tr>
+<tr>
+<td><span id="overlay-actions"></span>actions</td>
+<td style="text-align:center">[<a href="#action-object">Action Object</a>]</td>
+<td><strong><em class="rfc2119">REQUIRED</em></strong> An ordered list of actions to be applied to the target document. The array <em class="rfc2119">MUST</em> contain at least one value.</td>
+</tr>
+</tbody>
+</table>
+<p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
+<p>The list of actions <em class="rfc2119">MUST</em> be applied in sequential order to ensure a consistent outcome. Actions are applied to the result of the previous action. This enables objects to be deleted in one action and then re-created in a subsequent action, for example.</p>
+<p>The <code>extends</code> property can be used to indicate that the Overlay was designed to update a specific [<cite><a class="bibref" data-link-type="biblio" href="#bib-openapi" title="OpenAPI Specification">OpenAPI</a></cite>] document. Where no <code>extends</code> is provided it is the responsibility of tooling to apply the Overlay document to the appropriate OpenAPI document(s).</p>
+<p>In the following example the <code>extends</code> property specifies that the overlay is designed to update the OpenAPI Tic Tac Toe example document, identified by an absolute URI.</p>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">overlay:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+<span class="hljs-attr">info:</span>
+  <span class="hljs-attr">title:</span> <span class="hljs-string">Overlay</span> <span class="hljs-string">for</span> <span class="hljs-string">the</span> <span class="hljs-string">Tic</span> <span class="hljs-string">Tac</span> <span class="hljs-string">Toe</span> <span class="hljs-string">API</span> <span class="hljs-string">document</span>
+  <span class="hljs-attr">version:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+<span class="hljs-attr">extends:</span> <span class="hljs-string">'https://raw.githubusercontent.com/OAI/learn.openapis.org/refs/heads/main/examples/v3.1/tictactoe.yaml'</span>
+<span class="hljs-string">...</span>
+</code></pre>
+<p>The <code>extends</code> property can also specify a relative URI reference.</p>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">overlay:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+<span class="hljs-attr">info:</span>
+  <span class="hljs-attr">title:</span> <span class="hljs-string">Overlay</span> <span class="hljs-string">for</span> <span class="hljs-string">the</span> <span class="hljs-string">Tic</span> <span class="hljs-string">Tac</span> <span class="hljs-string">Toe</span> <span class="hljs-string">API</span> <span class="hljs-string">document</span>
+  <span class="hljs-attr">version:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+<span class="hljs-attr">extends:</span> <span class="hljs-string">'./tictactoe.yaml'</span>
+</code></pre>
+</section></section><section id="info-object"><div class="header-wrapper"><h4 id="x4-4-2-info-object"><bdi class="secno">4.4.2 </bdi>Info Object</h4><a class="self-link" href="#info-object" aria-label="Permalink for Section 4.4.2"></a></div>
+<p>The object provides metadata about the Overlay.
+The metadata <em class="rfc2119">MAY</em> be used by the clients if needed.</p>
+<section id="fixed-fields-0"><div class="header-wrapper"><h5 id="x4-4-2-1-fixed-fields"><bdi class="secno">4.4.2.1 </bdi>Fixed Fields</h5><a class="self-link" href="#fixed-fields-0" aria-label="Permalink for Section 4.4.2.1"></a></div>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th style="text-align:center">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span id="info-title"></span>title</td>
+<td style="text-align:center"><code>string</code></td>
+<td><strong><em class="rfc2119">REQUIRED</em></strong>. A human readable description of the purpose of the overlay.</td>
+</tr>
+<tr>
+<td><span id="info-version"></span>version</td>
+<td style="text-align:center"><code>string</code></td>
+<td><strong><em class="rfc2119">REQUIRED</em></strong>. A version identifer for indicating changes to the Overlay document.</td>
+</tr>
+</tbody>
+</table>
+<p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
+</section></section><section id="action-object"><div class="header-wrapper"><h4 id="x4-4-3-action-object"><bdi class="secno">4.4.3 </bdi>Action Object</h4><a class="self-link" href="#action-object" aria-label="Permalink for Section 4.4.3"></a></div>
+<p>This object represents one or more changes to be applied to the target document at the location defined by the target JSONPath expression.</p>
+<section id="fixed-fields-1"><div class="header-wrapper"><h5 id="x4-4-3-1-fixed-fields"><bdi class="secno">4.4.3.1 </bdi>Fixed Fields</h5><a class="self-link" href="#fixed-fields-1" aria-label="Permalink for Section 4.4.3.1"></a></div>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th style="text-align:center">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span id="action-target"></span>target</td>
+<td style="text-align:center"><code>string</code></td>
+<td><strong><em class="rfc2119">REQUIRED</em></strong> A JSONPath expression selecting nodes in the target document.</td>
+</tr>
+<tr>
+<td><span id="action-description"></span>description</td>
+<td style="text-align:center"><code>string</code></td>
+<td>A description of the action. [<cite><a class="bibref" data-link-type="biblio" href="#bib-commonmark" title="CommonMark Spec">CommonMark</a></cite>] syntax <em class="rfc2119">MAY</em> be used for rich text representation.</td>
+</tr>
+<tr>
+<td><span id="action-update"></span>update</td>
+<td style="text-align:center">Any</td>
+<td>If the <code>target</code> selects an object node, the value of this field <em class="rfc2119">MUST</em> be an object with the properties and values to merge with the selected node. If the <code>target</code> selects an array, the value of this field <em class="rfc2119">MUST</em> be an entry to append to the array. This field has no impact if the <code>remove</code> field of this action object is <code>true</code>.</td>
+</tr>
+<tr>
+<td><span id="action-remove"></span>remove</td>
+<td style="text-align:center"><code>boolean</code></td>
+<td>A boolean value that indicates that the target object or array <em class="rfc2119">MUST</em> be removed from the the map or array it is contained in. The default value is <code>false</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>The result of the <code>target</code> JSONPath expression <em class="rfc2119">MUST</em> be zero or more objects or arrays (not primitive types or <code>null</code> values).</p>
+<p>To update a primitive property value such as a string, the <code>target</code> expression should select the <em>containing</em> object in the target document and <code>update</code> should contain an object with the property and its new primitive value.</p>
+<p>Primitive-valued items of an array cannot be replaced or removed individually, only the complete array can be replaced.</p>
+<p>The properties of the <code>update</code> object <em class="rfc2119">MUST</em> be compatible with the target object referenced by the JSONPath key. When the Overlay document is applied, the properties in the <code>update</code> object are recursively merged with the properties in the target object with the same names; new properties are added to the target object.</p>
+<p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
+</section></section></section><section id="examples"><div class="header-wrapper"><h3 id="x4-5-examples"><bdi class="secno">4.5 </bdi>Examples</h3><a class="self-link" href="#examples" aria-label="Permalink for Section 4.5"></a></div>
+<section id="structured-overlay-example"><div class="header-wrapper"><h4 id="x4-5-1-structured-overlay-example"><bdi class="secno">4.5.1 </bdi>Structured Overlay Example</h4><a class="self-link" href="#structured-overlay-example" aria-label="Permalink for Section 4.5.1"></a></div>
+<p>When updating properties throughout the target document it may be more efficient to create a single <code>Action Object</code> that mirrors the structure of the target document. e.g.</p>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">overlay:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+<span class="hljs-attr">info:</span>
+  <span class="hljs-attr">title:</span> <span class="hljs-string">Structured</span> <span class="hljs-string">Overlay</span>
+  <span class="hljs-attr">version:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+<span class="hljs-attr">actions:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">target:</span> <span class="hljs-string">'$'</span> <span class="hljs-comment"># Root of document</span>
+    <span class="hljs-attr">update:</span>
+      <span class="hljs-attr">info:</span>
+        <span class="hljs-attr">x-overlay-applied:</span> <span class="hljs-string">structured-overlay</span>
+      <span class="hljs-attr">paths:</span>
+        <span class="hljs-string">'/'</span><span class="hljs-string">:</span>
+          <span class="hljs-attr">summary:</span> <span class="hljs-string">'The root resource'</span>
+          <span class="hljs-attr">get:</span>
+            <span class="hljs-attr">summary:</span> <span class="hljs-string">'Retrieve the root resource'</span>
+            <span class="hljs-attr">x-rate-limit:</span> <span class="hljs-number">100</span>
+        <span class="hljs-string">'/pets'</span><span class="hljs-string">:</span>
+          <span class="hljs-attr">get:</span>
+            <span class="hljs-attr">summary:</span> <span class="hljs-string">'Retrieve a list of pets'</span>
+            <span class="hljs-attr">x-rate-limit:</span> <span class="hljs-number">100</span>
+      <span class="hljs-attr">components:</span>
+      <span class="hljs-attr">tags:</span>
+</code></pre>
+</section><section id="targeted-overlay-example"><div class="header-wrapper"><h4 id="x4-5-2-targeted-overlay-example"><bdi class="secno">4.5.2 </bdi>Targeted Overlay Example</h4><a class="self-link" href="#targeted-overlay-example" aria-label="Permalink for Section 4.5.2"></a></div>
+<p>Alternatively, where only a small number of updates need to be applied to a large document, each <a href="#action-object">Action Object</a> <em class="rfc2119">MAY</em> be more targeted.</p>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">overlay:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+<span class="hljs-attr">info:</span>
+  <span class="hljs-attr">title:</span> <span class="hljs-string">Targeted</span> <span class="hljs-string">Overlay</span>
+  <span class="hljs-attr">version:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+<span class="hljs-attr">actions:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">target:</span> <span class="hljs-string">$.paths['/foo'].get</span>
+    <span class="hljs-attr">update:</span>
+      <span class="hljs-attr">description:</span> <span class="hljs-string">This</span> <span class="hljs-string">is</span> <span class="hljs-string">the</span> <span class="hljs-string">new</span> <span class="hljs-string">description</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">target:</span> <span class="hljs-string">$.paths['/bar'].get</span>
+    <span class="hljs-attr">update:</span>
+      <span class="hljs-attr">description:</span> <span class="hljs-string">This</span> <span class="hljs-string">is</span> <span class="hljs-string">the</span> <span class="hljs-string">updated</span> <span class="hljs-string">description</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">target:</span> <span class="hljs-string">$.paths['/bar']</span>
+    <span class="hljs-attr">update:</span>
+      <span class="hljs-attr">post:</span>
+        <span class="hljs-attr">description:</span> <span class="hljs-string">This</span> <span class="hljs-string">is</span> <span class="hljs-string">an</span> <span class="hljs-string">updated</span> <span class="hljs-string">description</span> <span class="hljs-string">of</span> <span class="hljs-string">a</span> <span class="hljs-string">child</span> <span class="hljs-string">object</span>
+        <span class="hljs-attr">x-safe:</span> <span class="hljs-literal">false</span>
+</code></pre>
+</section><section id="wildcard-overlay-example"><div class="header-wrapper"><h4 id="x4-5-3-wildcard-overlay-example"><bdi class="secno">4.5.3 </bdi>Wildcard Overlay Example</h4><a class="self-link" href="#wildcard-overlay-example" aria-label="Permalink for Section 4.5.3"></a></div>
+<p>One significant advantage of using the JSONPath syntax is that it allows referencing multiple nodes in the target document. This would allow a single update object to be applied to multiple target objects using wildcards and other multi-value selectors.</p>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">overlay:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+<span class="hljs-attr">info:</span>
+  <span class="hljs-attr">title:</span> <span class="hljs-string">Update</span> <span class="hljs-string">many</span> <span class="hljs-string">objects</span> <span class="hljs-string">at</span> <span class="hljs-string">once</span>
+  <span class="hljs-attr">version:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+<span class="hljs-attr">actions:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">target:</span> <span class="hljs-string">$.paths.*.get</span>
+    <span class="hljs-attr">update:</span>
+      <span class="hljs-attr">x-safe:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">target:</span> <span class="hljs-string">$.paths.*.get.parameters[?@.name=='filter'</span> <span class="hljs-string">&amp;&amp;</span> <span class="hljs-string">@.in=='query']</span>
+    <span class="hljs-attr">update:</span>
+      <span class="hljs-attr">schema:</span>
+        <span class="hljs-string">$ref:</span> <span class="hljs-string">'/components/schemas/filterSchema'</span>
+</code></pre>
+</section><section id="array-modification-example"><div class="header-wrapper"><h4 id="x4-5-4-array-modification-example"><bdi class="secno">4.5.4 </bdi>Array Modification Example</h4><a class="self-link" href="#array-modification-example" aria-label="Permalink for Section 4.5.4"></a></div>
+<p>Array elements <em class="rfc2119">MAY</em> be deleted using the <code>remove</code> property. Use of array indexes to remove array items should be avoided where possible as indexes will change when items are removed.</p>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">overlay:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+<span class="hljs-attr">info:</span>
+  <span class="hljs-attr">title:</span> <span class="hljs-string">Add</span> <span class="hljs-string">an</span> <span class="hljs-string">array</span> <span class="hljs-string">element</span>
+  <span class="hljs-attr">version:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+<span class="hljs-attr">actions:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">target:</span> <span class="hljs-string">$.paths.*.get.parameters</span>
+    <span class="hljs-attr">update:</span>
+      <span class="hljs-attr">name:</span> <span class="hljs-string">newParam</span>
+      <span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
+</code></pre>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">overlay:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+<span class="hljs-attr">info:</span>
+  <span class="hljs-attr">title:</span> <span class="hljs-string">Remove</span> <span class="hljs-string">a</span> <span class="hljs-string">array</span> <span class="hljs-string">element</span>
+  <span class="hljs-attr">version:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+<span class="hljs-attr">actions:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">target:</span> <span class="hljs-string">$.paths.*.get.parameters[?@.name</span> <span class="hljs-string">==</span> <span class="hljs-string">'dummy'</span><span class="hljs-string">]</span>
+    <span class="hljs-attr">remove:</span> <span class="hljs-literal">true</span>
+</code></pre>
+</section><section id="traits-example"><div class="header-wrapper"><h4 id="x4-5-5-traits-example"><bdi class="secno">4.5.5 </bdi>Traits Example</h4><a class="self-link" href="#traits-example" aria-label="Permalink for Section 4.5.5"></a></div>
+<p>By annotating a target document (such as an [<cite><a class="bibref" data-link-type="biblio" href="#bib-openapi" title="OpenAPI Specification">OpenAPI</a></cite>] document) using <a href="#specification-extensions">Specification Extensions</a> such as <code>x-oai-traits</code>, the author of the target document <em class="rfc2119">MAY</em> identify where overlay updates should be applied.</p>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">openapi:</span> <span class="hljs-number">3.1</span><span class="hljs-number">.0</span>
+<span class="hljs-attr">info:</span>
+  <span class="hljs-attr">title:</span> <span class="hljs-string">API</span> <span class="hljs-string">with</span> <span class="hljs-string">a</span> <span class="hljs-string">paged</span> <span class="hljs-string">collection</span>
+  <span class="hljs-attr">version:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+<span class="hljs-attr">paths:</span>
+  <span class="hljs-string">/items:</span>
+    <span class="hljs-attr">get:</span>
+      <span class="hljs-attr">x-oai-traits:</span> [<span class="hljs-string">'paged'</span>]
+      <span class="hljs-attr">responses:</span>
+        <span class="hljs-attr">200:</span>
+          <span class="hljs-attr">description:</span> <span class="hljs-string">OK</span>
+</code></pre>
+<p>With the above OpenAPI document, the following Overlay document will apply the necessary updates to describe how paging is implemented, where that trait has been applied.</p>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">overlay:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+<span class="hljs-attr">info:</span>
+  <span class="hljs-attr">title:</span> <span class="hljs-string">Apply</span> <span class="hljs-string">Traits</span>
+  <span class="hljs-attr">version:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+<span class="hljs-attr">actions:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">target:</span> <span class="hljs-string">$.paths.*.get[?@.x-oai-traits.paged]</span>
+    <span class="hljs-attr">update:</span>
+      <span class="hljs-attr">parameters:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">top</span>
+          <span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
+          <span class="hljs-comment"># ...</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">skip</span>
+          <span class="hljs-attr">in:</span> <span class="hljs-string">query</span>
+          <span class="hljs-comment"># ...</span>
+</code></pre>
+<p>This approach allows inversion of control as to where the Overlay updates apply to the target document itself.</p>
+</section></section><section id="specification-extensions"><div class="header-wrapper"><h3 id="x4-6-specification-extensions"><bdi class="secno">4.6 </bdi>Specification Extensions</h3><a class="self-link" href="#specification-extensions" aria-label="Permalink for Section 4.6"></a></div>
+<p>While the Overlay Specification tries to accommodate most use cases, additional data can be added to extend the specification at certain points.</p>
+<p>The extension properties are implemented as patterned fields that are always prefixed by <code>"x-"</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Field Pattern</th>
+<th style="text-align:center">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span id="overlay-extensions"></span>^x-</td>
+<td style="text-align:center">Any</td>
+<td>Allows extensions to the Overlay Specification. The field name <em class="rfc2119">MUST</em> begin with <code>x-</code>, for example, <code>x-internal-id</code>. Field names beginning <code>x-oai-</code> and <code>x-oas-</code> are reserved for uses defined by the <a href="https://www.openapis.org/">OpenAPI Initiative</a>. The value <em class="rfc2119">MAY</em> be <code>null</code>, a primitive, an array or an object.</td>
+</tr>
+</tbody>
+</table>
+<p>The extensions may or may not be supported by the available tooling, but those may be extended as well to add requested support (if tools are internal or open-sourced).</p>
+</section></section><section class="appendix" id="appendix-a-revision-history"><div class="header-wrapper"><h2 id="a-appendix-a-revision-history"><bdi class="secno">A. </bdi>Appendix A: Revision History</h2><a class="self-link" href="#appendix-a-revision-history" aria-label="Permalink for Appendix A."></a></div>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Date</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0.0</td>
+<td>2024-10-17</td>
+<td>First release of the Overlay Specification</td>
+</tr>
+</tbody>
+</table>
+
+</section><section id="references" class="appendix"><div class="header-wrapper"><h2 id="b-references"><bdi class="secno">B. </bdi>References</h2><a class="self-link" href="#references" aria-label="Permalink for Appendix B."></a></div><section id="normative-references"><div class="header-wrapper"><h3 id="b-1-normative-references"><bdi class="secno">B.1 </bdi>Normative references</h3><a class="self-link" href="#normative-references" aria-label="Permalink for Appendix B.1"></a></div>
+    
+    <dl class="bibliography"><dt id="bib-commonmark">[CommonMark]</dt><dd>
+      <a href="https://spec.commonmark.org/"><cite>CommonMark Spec</cite></a>. URL: <a href="https://spec.commonmark.org/">https://spec.commonmark.org/</a>
+    </dd><dt id="bib-openapi">[OpenAPI]</dt><dd>
+      <a href="https://www.openapis.org/"><cite>OpenAPI Specification</cite></a>. Darrell Miller; Jason Harmon; Jeremy Whitlock; Marsh Gardiner; Mike Ralphson; Ron Ratovsky; Tony Tam; Uri Sarid.  OpenAPI Initiative. URL: <a href="https://www.openapis.org/">https://www.openapis.org/</a>
+    </dd><dt id="bib-rfc2119">[RFC2119]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>
+    </dd><dt id="bib-rfc3986">[RFC3986]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc3986"><cite>Uniform Resource Identifier (URI): Generic Syntax</cite></a>. T. Berners-Lee; R. Fielding; L. Masinter.  IETF. January 2005. Internet Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc3986">https://www.rfc-editor.org/rfc/rfc3986</a>
+    </dd><dt id="bib-rfc7159">[RFC7159]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc7159"><cite>The JavaScript Object Notation (JSON) Data Interchange Format</cite></a>. T. Bray, Ed..  IETF. March 2014. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc7159">https://www.rfc-editor.org/rfc/rfc7159</a>
+    </dd><dt id="bib-rfc8174">[RFC8174]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc8174"><cite>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite></a>. B. Leiba.  IETF. May 2017. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>
+    </dd><dt id="bib-rfc9535">[RFC9535]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc9535"><cite>JSONPath: Query Expressions for JSON</cite></a>. S. Gössner, Ed.; G. Normington, Ed.; C. Bormann, Ed..  IETF. February 2024. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc9535">https://www.rfc-editor.org/rfc/rfc9535</a>
+    </dd><dt id="bib-yaml">[YAML]</dt><dd>
+      <a href="http://yaml.org/spec/1.2/spec.html"><cite>YAML Ain’t Markup Language (YAML™) Version 1.2</cite></a>. Oren Ben-Kiki; Clark Evans; Ingy döt Net. 1 October 2009. URL: <a href="http://yaml.org/spec/1.2/spec.html">http://yaml.org/spec/1.2/spec.html</a>
+    </dd></dl>
+  </section></section><p role="navigation" id="back-to-top">
+    <a href="#title"><abbr title="Back to Top">↑</abbr></a>
+  </p><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-definitions" aria-label="Links in this document to definition: Definitions">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-definitions" aria-label="Permalink for definition: Definitions. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+      <li>Not referenced in this document.</li>
+    </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-overlay" aria-label="Links in this document to definition: Overlay">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-overlay" aria-label="Permalink for definition: Overlay. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+      <li>Not referenced in this document.</li>
+    </ul>
+    </div><script id="respec-dfn-panel">(() => {
+// @ts-check
+if (document.respec) {
+  document.respec.ready.then(setupPanel);
+} else {
+  setupPanel();
+}
+
+function setupPanel() {
+  const listener = panelListener();
+  document.body.addEventListener("keydown", listener);
+  document.body.addEventListener("click", listener);
+}
+
+function panelListener() {
+  /** @type {HTMLElement} */
+  let panel = null;
+  return event => {
+    const { target, type } = event;
+
+    if (!(target instanceof HTMLElement)) return;
+
+    // For keys, we only care about Enter key to activate the panel
+    // otherwise it's activated via a click.
+    if (type === "keydown" && event.key !== "Enter") return;
+
+    const action = deriveAction(event);
+
+    switch (action) {
+      case "show": {
+        hidePanel(panel);
+        /** @type {HTMLElement} */
+        const dfn = target.closest("dfn, .index-term");
+        panel = document.getElementById(`dfn-panel-for-${dfn.id}`);
+        const coords = deriveCoordinates(event);
+        displayPanel(dfn, panel, coords);
+        break;
+      }
+      case "dock": {
+        panel.style.left = null;
+        panel.style.top = null;
+        panel.classList.add("docked");
+        break;
+      }
+      case "hide": {
+        hidePanel(panel);
+        panel = null;
+        break;
+      }
+    }
+  };
+}
+
+/**
+ * @param {MouseEvent|KeyboardEvent} event
+ */
+function deriveCoordinates(event) {
+  const target = /** @type HTMLElement */ (event.target);
+
+  // We prevent synthetic AT clicks from putting
+  // the dialog in a weird place. The AT events sometimes
+  // lack coordinates, so they have clientX/Y = 0
+  const rect = target.getBoundingClientRect();
+  if (
+    event instanceof MouseEvent &&
+    event.clientX >= rect.left &&
+    event.clientY >= rect.top
+  ) {
+    // The event probably happened inside the bounding rect...
+    return { x: event.clientX, y: event.clientY };
+  }
+
+  // Offset to the middle of the element
+  const x = rect.x + rect.width / 2;
+  // Placed at the bottom of the element
+  const y = rect.y + rect.height;
+  return { x, y };
+}
+
+/**
+ * @param {Event} event
+ */
+function deriveAction(event) {
+  const target = /** @type {HTMLElement} */ (event.target);
+  const hitALink = !!target.closest("a");
+  if (target.closest("dfn:not([data-cite]), .index-term")) {
+    return hitALink ? "none" : "show";
+  }
+  if (target.closest(".dfn-panel")) {
+    if (hitALink) {
+      return target.classList.contains("self-link") ? "hide" : "dock";
+    }
+    const panel = target.closest(".dfn-panel");
+    return panel.classList.contains("docked") ? "hide" : "none";
+  }
+  if (document.querySelector(".dfn-panel:not([hidden])")) {
+    return "hide";
+  }
+  return "none";
+}
+
+/**
+ * @param {HTMLElement} dfn
+ * @param {HTMLElement} panel
+ * @param {{ x: number, y: number }} clickPosition
+ */
+function displayPanel(dfn, panel, { x, y }) {
+  panel.hidden = false;
+  // distance (px) between edge of panel and the pointing triangle (caret)
+  const MARGIN = 20;
+
+  const dfnRects = dfn.getClientRects();
+  // Find the `top` offset when the `dfn` can be spread across multiple lines
+  let closestTop = 0;
+  let minDiff = Infinity;
+  for (const rect of dfnRects) {
+    const { top, bottom } = rect;
+    const diffFromClickY = Math.abs((top + bottom) / 2 - y);
+    if (diffFromClickY < minDiff) {
+      minDiff = diffFromClickY;
+      closestTop = top;
+    }
+  }
+
+  const top = window.scrollY + closestTop + dfnRects[0].height;
+  const left = x - MARGIN;
+  panel.style.left = `${left}px`;
+  panel.style.top = `${top}px`;
+
+  // Find if the panel is flowing out of the window
+  const panelRect = panel.getBoundingClientRect();
+  const SCREEN_WIDTH = Math.min(window.innerWidth, window.screen.width);
+  if (panelRect.right > SCREEN_WIDTH) {
+    const newLeft = Math.max(MARGIN, x + MARGIN - panelRect.width);
+    const newCaretOffset = left - newLeft;
+    panel.style.left = `${newLeft}px`;
+    /** @type {HTMLElement} */
+    const caret = panel.querySelector(".caret");
+    caret.style.left = `${newCaretOffset}px`;
+  }
+
+  // As it's a dialog, we trap focus.
+  // TODO: when <dialog> becomes a implemented, we should really
+  // use that.
+  trapFocus(panel, dfn);
+}
+
+/**
+ * @param {HTMLElement} panel
+ * @param {HTMLElement} dfn
+ * @returns
+ */
+function trapFocus(panel, dfn) {
+  /** @type NodeListOf<HTMLAnchorElement> elements */
+  const anchors = panel.querySelectorAll("a[href]");
+  // No need to trap focus
+  if (!anchors.length) return;
+
+  // Move focus to first anchor element
+  const first = anchors.item(0);
+  first.focus();
+
+  const trapListener = createTrapListener(anchors, panel, dfn);
+  panel.addEventListener("keydown", trapListener);
+
+  // Hiding the panel releases the trap
+  const mo = new MutationObserver(records => {
+    const [record] = records;
+    const target = /** @type HTMLElement */ (record.target);
+    if (target.hidden) {
+      panel.removeEventListener("keydown", trapListener);
+      mo.disconnect();
+    }
+  });
+  mo.observe(panel, { attributes: true, attributeFilter: ["hidden"] });
+}
+
+/**
+ *
+ * @param {NodeListOf<HTMLAnchorElement>} anchors
+ * @param {HTMLElement} panel
+ * @param {HTMLElement} dfn
+ * @returns
+ */
+function createTrapListener(anchors, panel, dfn) {
+  const lastIndex = anchors.length - 1;
+  let currentIndex = 0;
+  return event => {
+    switch (event.key) {
+      // Hitting "Tab" traps us in a nice loop around elements.
+      case "Tab": {
+        event.preventDefault();
+        currentIndex += event.shiftKey ? -1 : +1;
+        if (currentIndex < 0) {
+          currentIndex = lastIndex;
+        } else if (currentIndex > lastIndex) {
+          currentIndex = 0;
+        }
+        anchors.item(currentIndex).focus();
+        break;
+      }
+
+      // Hitting "Enter" on an anchor releases the trap.
+      case "Enter":
+        hidePanel(panel);
+        break;
+
+      // Hitting "Escape" returns focus to dfn.
+      case "Escape":
+        hidePanel(panel);
+        dfn.focus();
+        return;
+    }
+  };
+}
+
+/** @param {HTMLElement} panel */
+function hidePanel(panel) {
+  if (!panel) return;
+  panel.hidden = true;
+  panel.classList.remove("docked");
+}
+})()</script><script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script></body></html>

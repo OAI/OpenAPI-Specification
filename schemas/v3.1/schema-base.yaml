@@ -10,11 +10,11 @@ properties:
 
 $defs:
   dialect:
-    const: 'https://spec.openapis.org/oas/3.1/dialect/base/WORK-IN-PROGRESS'
+    const: 'https://spec.openapis.org/oas/3.1/dialect/WORK-IN-PROGRESS'
 
   schema:
     $dynamicAnchor: meta
-    $ref: 'https://spec.openapis.org/oas/3.1/dialect/base/WORK-IN-PROGRESS'
+    $ref: 'https://spec.openapis.org/oas/3.1/dialect/WORK-IN-PROGRESS'
     properties:
       $schema:
         $ref: '#/$defs/dialect'

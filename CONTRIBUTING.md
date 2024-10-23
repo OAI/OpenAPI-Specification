@@ -39,6 +39,26 @@ For information on the branch and release strategy for OAS 3.0.4 and 3.1.1 and e
 
 ### Branch diagram (3.1.2, 3.2.0, and later)
 
+Initial steps:
+
+* `dev` branches from `main` at the 3.1.1 release commit
+* Each `X.Y-dev` branches from `dev`
+
+Upon release:
+
+* Each `X.Y.Z-rel` branches from the corresponding `X.Y-dev`
+* After renaming `src/oad.md`, `X.Y.Z-rel`  merges to `main`
+* Publishing to the [spec site](https://spec.openapis.org) is triggered by the merge to `main`
+
+Initiating the next minor release after releasing `X.Y.0`:
+
+* The same `X.Y-dev` commit that is the base of `X.Y.0-rel` is merged back to `dev` to keep `src/oas.md` on `dev` in sync with the last minor release
+* This `X.Y.0` commit on `dev` is the base of `X.Y+1-dev`
+
+Other notes:
+
+* Patch releases are _not_ merged to `dev`
+
 ```mermaid
 gitGraph TB:
   commit id:"merge 3.1.1.md to main" tag:"3.1.1"

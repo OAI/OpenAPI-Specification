@@ -14,26 +14,93 @@ If in doubt about a policy, please [ask on our Slack](https://communityinviter.c
 
 No changes, ***no matter how trivial***, are ever made to the contents of published specifications.  The only potential changes to those documents are updates to link URLs _if and only if_ the targeted document is moved by a 3rd party.  Other changes to link URLs are not allowed.
 
-### Current branches and documents open to change
+### Changing the schemas
+
+Schemas are only changed _after_ the specification is changed.
+Changes are made to the YAML versions on the `main` branch.
+The JSON versions are generated when publised to the spec site, at which time the `WORK-IN-PROGRESS` URI placeholders are replaced with the publication date.
+
+### Authoritative source of truth
+
+The [spec site](https://spec.openapis.org) is the source of truth.
+
+This changed in 2024, as the markdown files on `main` do not include certain credits and citations.
+
+## Development and publication process
+
+As of October 2024 (post-OAS 3.0.4 and 3.1.1), the OAS is developed in the `src/oas.md` file on minor release `X.Y-dev` branches that are derived from the baseline `dev` branch.
+
+All work **MUST be done on a fork**, using a branch from the _earliest relevant and [active](#active-branches)_ `X.Y-dev` branch, and then submitted as a PR to that `X.Y-dev` branch.
+For example, if a change in November 2024 apples to both 3.1 and 3.2, the PR would go to the `v3.1-dev` branch, which will be merged up to `v3.2-dev` before the next 3.2 release.
+
+Releases are published to the [spec site](https://spec.opanapis.org) by creating an `X.Y.Z-rel` branch where `src/oas.md` is renamed to the appropriate `versions/X.Y.Z.md` file and them merged to `main`.  The HTML versions of the OAS are automatically generated from the `versions` directory on `main`.  This renaming on the `X.Y.Z-rel` branch preserves the commit history for the published file on `main` when using `git log --follow` (as is the case for all older published files).
+
+For information on the branch and release strategy for OAS 3.0.4 and 3.1.1 and earlier, see the comments in [issue #3677](https://github.com/OAI/OpenAPI-Specification/issues/3677).
+
+### Branch diagram (3.1.2, 3.2.0, and later)
+
+```mermaid
+gitGraph TB:
+  commit id:"merge 3.1.1.md to main" tag:"3.1.1"
+  branch dev order:1
+  commit id:"rename 3.1.1.md to src/oas.md"
+  branch v3.1-dev order:2
+  commit id:"update version in src/oas.md to 3.1.2"
+  checkout dev
+  branch v3.2-dev order:5
+  commit id:"update version in src/oas.md to 3.2.0"
+  commit id:"some 3.2.0 work"
+  checkout v3.1-dev
+  commit id:"a 3.1.x fix"
+  branch v3.1.2-rel order:3
+  commit id:"rename src/oas.md to versions/3.1.2.md"
+  checkout main
+  merge v3.1.2-rel tag:"3.1.2"
+  checkout v3.2-dev
+  commit id:"more 3.2.0 work"
+  checkout v3.1-dev
+  commit id:"update version in src/oas.md to 3.1.3"
+  commit id:"another 3.1.x fix"
+  checkout v3.2-dev
+  commit id:"still more 3.2.0 work"
+  merge v3.1-dev id:"merge 3.1.x fixes before releasing"
+  checkout v3.1-dev
+  branch v3.1.3-rel order:4
+  commit id:"rename src/oas.md to versions/3.1.3.md"
+  checkout v3.2-dev
+  branch v3.2.0-rel order:6
+  commit id:"rename src/oas.md to versions/3.2.0.md"
+  checkout main
+  merge v3.1.3-rel tag:"3.1.3"
+  merge v3.2.0-rel tag:"3.2.0"
+  checkout dev
+  merge v3.2-dev id:"update dev with minor release"
+  branch v3.3-dev order:7
+  checkout v3.1-dev
+  commit id:"update version in src/oas.md to 3.1.4"
+  checkout v3.2-dev
+  commit id:"update version in src/oas.md to 3.2.1"
+  checkout v3.3-dev
+  commit id:"update version in src/oas.md to 3.3.0"
+```
+
+### Schema development
+
+Development of schemas [currently occurs on `main`](#changing-the-schemas), but the process is [being re-evaluated and is likely to change](https://github.com/OAI/OpenAPI-Specification/issues/3715).
+
+#### Active branches
 
 The first PR for a change should be against the oldest release line to which it applies.  Changes can then be forward-ported as appropriate.
 
-The current (31 July 2024) active releases are:
+The specification under development is `src/oas.md`, which _only_ exists on development branches, not on `main`.
 
-| Version | Branch | File | Notes |
-| ------- | ------ | ---- | ----- |
-| 3.0.4 | `v3.0.4-dev` | `versions/3.0.4.md` | Soon to be published |
-| 3.1.1 | `v3.1.1-dev` | `versions/3.1.1.md` | Soon to be published |
-| 3.2.0 | `v3.2.0-dev` | `versions/3.2.0.md` | Planned for late 2024 |
-| 4.0.0 | [OAI/sig-moonwalk](https://github.com/OAI/sig-moonwalk) | [discussions only](https://github.com/OAI/sig-moonwalk/discussions) | TBD, some proposals to be backported and published in 3.2.0 |
+The current (20 October 2024) active specification releases are:
 
-### Changing the schemas
-
-Schemas are only changed _after_ the specification is changed.  Changes are made on the `main` branch, and should be made to the YAML version _only_.  The JSON version will be generated automatically.
-
-## Authoritative source of truth
-
-* Issue #3576: [What is our authoritative spec URL and how do people find it?](https://github.com/OAI/OpenAPI-Specification/issues/3576)
+| Version | Branch | Notes |
+| ------- | ------ | ----- |
+| 3.1.2 | `v3.1-dev` | active patch release line |
+| 3.2.0 | `v3.2-dev` | minor release in development |
+| 4.0.0 | [OAI/sig-moonwalk](https://github.com/OAI/sig-moonwalk) | [discussions only](https://github.com/OAI/sig-moonwalk/discussions) |
 
 ## Style Guide
 

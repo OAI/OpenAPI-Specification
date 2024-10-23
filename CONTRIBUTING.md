@@ -18,7 +18,7 @@ No changes, ***no matter how trivial***, are ever made to the contents of publis
 
 Schemas are only changed _after_ the specification is changed.
 Changes are made to the YAML versions on the `main` branch.
-The JSON versions are generated when publised to the spec site, at which time the `WORK-IN-PROGRESS` URI placeholders are replaced with the publication date.
+The JSON versions are generated when published to the [spec site](https://spec.openapis.org/), at which time the `WORK-IN-PROGRESS` URI placeholders are replaced with the publication date.
 
 ### Authoritative source of truth
 

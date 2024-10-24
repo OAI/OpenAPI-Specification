@@ -31,4 +31,5 @@ jobs:
       run: npx --yes mdv versions/3.*.md
     - name: Lint markdown v3.0.4
       run: npx --yes markdownlint-cli --config .markdownlint.yaml versions/3.0.4.md
-
+    - name: Lint markdown v3.1.1
+      run: npx --yes markdownlint-cli --config .markdownlint.yaml versions/3.1.1.md

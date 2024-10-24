@@ -1,7 +1,7 @@
-$id: 'https://spec.openapis.org/oas/3.1/schema/2022-10-07'
+$id: 'https://spec.openapis.org/oas/3.1/schema/WORK-IN-PROGRESS'
 $schema: 'https://json-schema.org/draft/2020-12/schema'
 
-description: The description of OpenAPI v3.1.x documents without schema validation, as defined by https://spec.openapis.org/oas/v3.1.0
+description: The description of OpenAPI v3.1.x Documents without Schema Object validation
 
 type: object
 properties:
@@ -13,7 +13,7 @@ properties:
   jsonSchemaDialect:
     type: string
     format: uri
-    default: 'https://spec.openapis.org/oas/3.1/dialect/base'
+    default: 'https://spec.openapis.org/oas/3.1/dialect/WORK-IN-PROGRESS'
   servers:
     type: array
     items:

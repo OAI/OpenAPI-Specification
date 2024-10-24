@@ -47,7 +47,7 @@ Initial steps:
 Upon release:
 
 * Each `X.Y.Z-rel` branches from the corresponding `X.Y-dev`
-* After renaming `src/oad.md`, `X.Y.Z-rel`  merges to `main`
+* After renaming `src/oas.md`, `X.Y.Z-rel`  merges to `main`
 * Publishing to the [spec site](https://spec.openapis.org) is triggered by the merge to `main`
 
 Initiating the next minor release after releasing `X.Y.0`:

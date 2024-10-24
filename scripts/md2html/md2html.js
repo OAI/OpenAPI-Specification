@@ -13,6 +13,41 @@ const path = require('path');
 const url = require('url');
 
 const hljs = require('highlight.js');
+hljs.registerLanguage('uritemplate', function() {
+    return {
+      case_insensitive: true,
+      contains: [
+          {
+              scope: "attr", 
+              match: /(?<=[{,])[^,}\n\r]+/,
+          }
+      ],
+    }
+  });
+hljs.registerLanguage('uri', function() {
+    return {
+      case_insensitive: true,
+      classNameAliases: {
+          pathsegment: "attr",
+          option: "attr",
+          value: "literal"
+      },
+      contains: [
+          {
+              scope: "pathsegment", 
+              match: /(?<=[/])[^/?#\n\r]+/,
+          },
+          {
+              scope: "option", 
+              match: /(?<=[?&#])[^=?&#\n\r]+/,
+          },
+          {
+              scope: "value",
+              match: /(?<=\=)[^?&#\n\r]+/,
+          }
+      ],
+    }
+  });
 const cheerio = require('cheerio');
 
 let argv = require('yargs')
@@ -36,7 +71,8 @@ const md = require('markdown-it')({
       '</code></pre>';
     }
 
-    return '<pre class="highlight '+lang+'" tabindex="0"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+    if (lang) console.warn('highlight.js does not support language',lang);
+    return '<pre class="nohighlight" tabindex="0"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
   }
 });
 

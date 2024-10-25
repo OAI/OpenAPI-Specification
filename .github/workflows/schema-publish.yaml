@@ -4,8 +4,7 @@ name: schema-publish
 # issue: https://github.com/OAI/OpenAPI-Specification/issues/3715
 
 #
-# This workflow updates the respec 'pretty' rendered versions of the spec 
-# on the gh-pages branch when the corresponding markdown files change.
+# This workflow copies the 3.x schemas to the gh-pages branch
 #
 
 # run this on push to main

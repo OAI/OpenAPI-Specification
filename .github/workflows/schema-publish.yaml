@@ -13,7 +13,6 @@ on:
   push:
     branches:
       - main
-      - main-schema-publish # remove after testing
   workflow_dispatch: {}
 
 jobs:

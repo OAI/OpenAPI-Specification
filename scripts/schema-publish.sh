@@ -12,7 +12,7 @@ for schemaDir in schemas/v3* ; do
   schemas=(meta.yaml dialect.yaml schema.yaml schema-base.yaml)
 
   # find the latest commit date for each schema
-  maxDate="-"
+  maxDate=""
   declare -A datesHash
   for schema in "${schemas[@]}"; do
     if [ -f  "$schemaDir/$schema" ]; then
@@ -22,35 +22,29 @@ for schemaDir in schemas/v3* ; do
       fi
       datesHash["$schema"]=$maxDate
       echo $schema changed at $lastCommitDate
-    else
-      datesHash["$schema"]="-"
     fi
   done
 
   # construct sed command
   sedCmd=()
-  for schema in "${schemas[@]}"; do
-    if [ -f  "$schemaDir/$schema" ]; then
-      base=$(basename "$schema" .yaml)
-      sedCmd+=("-e s/$base\/WORK-IN-PROGRESS/$base\/${datesHash[$schema]}/g")
-    fi
+  for schema in "${!datesHash[@]}"; do
+    base=$(basename "$schema" .yaml)
+    sedCmd+=("-e s/$base\/WORK-IN-PROGRESS/$base\/${datesHash[$schema]}/g")
   done
 
   # create the date-stamped schemas
-  for schema in "${schemas[@]}"; do
-    if [ -f  "$schemaDir/$schema" ]; then
-      base=$(basename "$schema" .yaml)
-      target=deploy/oas/$version/$base/${datesHash[$schema]}
+  for schema in "${!datesHash[@]}"; do
+    base=$(basename "$schema" .yaml)
+    target=deploy/oas/$version/$base/${datesHash[$schema]}
 
-      mkdir -p "deploy/oas/$version/$base"
+    mkdir -p "deploy/oas/$version/$base"
 
-      sed ${sedCmd[@]} $schemaDir/$schema > $target.yaml
-      node scripts/yaml2json/yaml2json.js $target.yaml
-      rm $target.yaml
-      mv $target.json $target
+    sed ${sedCmd[@]} $schemaDir/$schema > $target.yaml
+    node scripts/yaml2json/yaml2json.js $target.yaml
+    rm $target.yaml
+    mv $target.json $target
 
-      mv deploy/oas/$version/$base/*.md $target.md
-    fi
+    mv deploy/oas/$version/$base/*.md $target.md
   done
 
   echo ""

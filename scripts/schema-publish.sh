@@ -9,19 +9,22 @@ for schemaDir in schemas/v3* ; do
   version=${vVersion:1}
   echo $version
 
+  # list of schemas to process, dependent schemas come first
   schemas=(meta.yaml dialect.yaml schema.yaml schema-base.yaml)
 
-  # find the latest commit date for each schema
+  # find the newest commit date for each schema
   maxDate=""
   declare -A datesHash
   for schema in "${schemas[@]}"; do
     if [ -f  "$schemaDir/$schema" ]; then
-      lastCommitDate=$(git log -1 --format="%ad" --date=short "$schemaDir/$schema")
-      if [ "$lastCommitDate" \> "$maxDate" ]; then
-        maxDate=$lastCommitDate
+      newestCommitDate=$(git log -1 --format="%ad" --date=short "$schemaDir/$schema")
+
+      # the newest date across a schema and all its dependencies is its date stamp
+      if [ "$newestCommitDate" \> "$maxDate" ]; then
+        maxDate=$newestCommitDate
       fi
       datesHash["$schema"]=$maxDate
-      echo $schema changed at $lastCommitDate
+      echo $schema changed at $newestCommitDate
     fi
   done
 

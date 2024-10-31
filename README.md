@@ -15,13 +15,9 @@ The OpenAPI Specification does not require rewriting existing APIs. It does not 
 
 This GitHub project is the starting point for OpenAPI. Here you will find the information you need about the OpenAPI Specification, simple examples of what it looks like, and some general information regarding the project.
 
-## Current Version - 3.1.0
+## Versions
 
-The current version of the OpenAPI specification is [OpenAPI Specification 3.1.0](versions/3.1.0.md).
-
-### Previous Versions
-
-This repository also contains all [previous versions](versions).
+This repository contains [the Markdown sources](versions) for [all published OpenAPI Specification versions](https://spec.openapis.org/). For release notes and release candidate versions, refer to the [releases page](releases).
 
 Each folder in this repository, such as [examples](examples) and [schemas](schemas), should contain folders pertaining to the current and previous versions of the specification.
 
@@ -45,7 +41,7 @@ The TSC holds weekly web conferences to review open pull requests and discuss op
 
 The OpenAPI Initiative encourages participation from individuals and companies alike. If you want to participate in the evolution of the OpenAPI Specification, consider taking the following actions:
 
-* Review the [current specification](https://spec.openapis.org) on the official specification site, which is the source of truth as it includes the full credits and citations.
+* Review the specification [markdown sources](versions) and [authoritative _source-of-truth_ HTML renderings](https://spec.openapis.org/), including full credits and citations.
 * Review the [contributing](CONTRIBUTING.md) process so you understand how the spec is evolving.
 * Check the [discussions](https://github.com/OAI/OpenAPI-Specification/discussions), [issues](https://github.com/OAI/OpenAPI-Specification/issues) and [pull requests](https://github.com/OAI/OpenAPI-Specification/pulls) to see if someone has already documented your idea or feedback on the specification. You can follow an existing conversation by subscribing to the existing issue or PR.
 * Subscribe to an open issue a day (or a week) in your inbox via [CodeTriage.com](https://www.codetriage.com/oai/openapi-specification).

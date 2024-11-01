@@ -98,8 +98,9 @@ const allKeywords = keywordLocations(compiled.ast);
 const notCovered = allKeywords.filter((location) => !visitedLocations.has(location));
 console.log("NOT Covered:", notCovered.length, "of", allKeywords.length,);
 
-const firstNotCovered = notCovered.slice(0, 20);
-if (notCovered.length > 20) firstNotCovered.push("...");  
+const maxNotCovered = 10;
+const firstNotCovered = notCovered.slice(0, maxNotCovered);
+if (notCovered.length > maxNotCovered) firstNotCovered.push("...");  
 console.log(firstNotCovered);
 
 console.log("Covered:", visitedLocations.size, "of", allKeywords.length, "(" + Math.floor(visitedLocations.size / allKeywords.length * 100) + "%)");

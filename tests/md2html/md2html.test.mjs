@@ -5,7 +5,7 @@ import { describe, test, expect } from "vitest";
 import assert from "node:assert";
 
 const folder = "./tests/md2html/fixtures/";
-describe("v3.0 - Validate examples", async () => {
+describe("md2html", async () => {
   readdirSync(folder, { withFileTypes: true })
     .filter((entry) => entry.isFile() && /\.md$/.test(entry.name))
     .forEach((entry) => {

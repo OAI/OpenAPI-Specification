@@ -3,6 +3,7 @@ import YAML from "yaml";
 import { join } from "node:path";
 import { argv } from "node:process";
 import "@hyperjump/json-schema/draft-2020-12";
+import "@hyperjump/json-schema/draft-04";
 import { compile, getSchema, interpret, Validation } from "@hyperjump/json-schema/experimental";
 import * as Instance from "@hyperjump/json-schema/instance/experimental";
 

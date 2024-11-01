@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { argv } from "node:process";
 import "@hyperjump/json-schema/draft-2020-12";
 import "@hyperjump/json-schema/draft-04";
-import { compile, getSchema, interpret, Validation } from "@hyperjump/json-schema/experimental";
+import { compile, getSchema, interpret, Validation, BASIC } from "@hyperjump/json-schema/experimental";
 import * as Instance from "@hyperjump/json-schema/instance/experimental";
 
 /**
@@ -45,7 +45,9 @@ const runTests = async (testDirectory) => {
   for await (const test of tests(testDirectory)) {
     const instance = Instance.fromJs(test);
 
-    interpret(compiled, instance);
+    const result = interpret(compiled, instance, BASIC);
+    //TODO: now result has errors array if valid is false
+    // if (!result.valid) console.log(result)
   }
 };
 

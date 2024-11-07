@@ -57,9 +57,31 @@ Initiating the next minor release after releasing `X.Y.0`:
 
 Other notes:
 
-* Patch releases are _not_ merged to `dev`
+* Patch releases are _only_ merged to `dev` if they are part of the most recent release line (currently 3.1, which will shift to 3.2 once 3.2.0 is released).
+* When releasing from multiple lines, release from the oldest line first.
+
+_Release lines are grouped by color, although the colors of `dev` and `main` are not significant as these diagrams are limited to only 8 colors._
 
 ```mermaid
+---
+config:
+  themeVariables:
+    git0: "#5588bb"
+    git1: "#cc8899"
+    git2: "#eedd88"
+    git3: "#ccbb66"
+    git4: "#aa9944"
+    git5: "#887722"
+    git6: "#99ccff"
+    git7: "#77aadd"
+    gitBranchLabel1: "#000000"
+    gitBranchLabel2: "#000000"
+    gitBranchLabel3: "#000000"
+    gitBranchLabel4: "#000000"
+    gitBranchLabel5: "#ffffff"
+    gitBranchLabel6: "#000000"
+    gitBranchLabel7: "#000000"
+---
 gitGraph TB:
   commit id:"merge 3.1.1.md to main" tag:"3.1.1"
   branch dev order:1
@@ -67,13 +89,18 @@ gitGraph TB:
   branch v3.1-dev order:2
   commit id:"update version in src/oas.md to 3.1.2"
   checkout dev
-  branch v3.2-dev order:5
+  branch v3.2-dev order:6
   commit id:"update version in src/oas.md to 3.2.0"
   commit id:"some 3.2.0 work"
   checkout v3.1-dev
   commit id:"a 3.1.x fix"
+  checkout v3.2-dev
+  merge v3.1-dev id:"merge 3.1.2 fixes"
+  checkout v3.1-dev
   branch v3.1.2-rel order:3
   commit id:"rename src/oas.md to versions/3.1.2.md"
+  checkout dev
+  merge v3.1-dev id:"update dev with active line patch release"
   checkout main
   merge v3.1.2-rel tag:"3.1.2"
   checkout v3.2-dev
@@ -83,25 +110,50 @@ gitGraph TB:
   commit id:"another 3.1.x fix"
   checkout v3.2-dev
   commit id:"still more 3.2.0 work"
-  merge v3.1-dev id:"merge 3.1.x fixes before releasing"
+  merge v3.1-dev id:"merge 3.1.3 fixes before releasing"
+  checkout dev
+  merge v3.1-dev id:"update dev with last pre-minor release patch release"
+  merge v3.2-dev id:"update dev with minor release"
   checkout v3.1-dev
   branch v3.1.3-rel order:4
   commit id:"rename src/oas.md to versions/3.1.3.md"
   checkout v3.2-dev
-  branch v3.2.0-rel order:6
+  branch v3.2.0-rel order:7
   commit id:"rename src/oas.md to versions/3.2.0.md"
   checkout main
   merge v3.1.3-rel tag:"3.1.3"
   merge v3.2.0-rel tag:"3.2.0"
   checkout dev
-  merge v3.2-dev id:"update dev with minor release"
-  branch v3.3-dev order:7
+  branch v3.3-dev order:9
   checkout v3.1-dev
   commit id:"update version in src/oas.md to 3.1.4"
   checkout v3.2-dev
   commit id:"update version in src/oas.md to 3.2.1"
   checkout v3.3-dev
   commit id:"update version in src/oas.md to 3.3.0"
+
+  checkout v3.1-dev
+  commit id:"a 3.1.4 fix"
+  checkout v3.2-dev
+  commit id:"a 3.2.1 fix"
+  merge v3.1-dev id:"merge 3.1.4 fixes before releasing"
+  checkout v3.3-dev
+  merge v3.2-dev id:"merge 3.1.4 / 3.2.1 fixes"
+  checkout dev
+  merge v3.2-dev id:"merge patch from active release line"
+  checkout v3.1-dev
+  branch v3.1.4-rel order:5
+  commit id:"rename src/oas.md to versions/3.1.4.md"
+  checkout v3.2-dev
+  branch v3.2.1-rel order:8
+  commit id:"rename src/oas.md to versions/3.2.1.md"
+  checkout main
+  merge v3.1.4-rel tag:"3.1.4"
+  merge v3.2.1-rel tag:"3.2.1"
+  checkout v3.2-dev
+  commit id:"update version in src/oas.md to 3.2.2"
+  checkout v3.3-dev
+  commit id:"3.3 work"
 ```
 
 ### Schema development

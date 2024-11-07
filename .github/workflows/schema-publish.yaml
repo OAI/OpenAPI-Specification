@@ -48,7 +48,7 @@ jobs:
         delete-branch: true
         path: deploy
         labels: Housekeeping,Schema
-        team-reviewers: OAI/tsc #TODO: check if this works, or if it needs a special access token
+        reviewers: darrelmiller,webron,earth2marsh,webron,lornajane,mikekistler,miqui,ralfhandl,handrews,karenetheridge
         title: Publish OpenAPI Metaschema Iterations
         commit-message: New OpenAPI metaschema iterations
         signoff: true

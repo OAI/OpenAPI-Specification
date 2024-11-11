@@ -20,49 +20,45 @@ The [spec site](https://spec.openapis.org) is the source of truth.
 
 This changed in 2024, as the markdown files on `main` do not include certain credits and citations.
 
-## Development and publication process
+## Development process
 
-As of October 2024 (post-OAS 3.0.4 and 3.1.1), the OAS is developed in the `src/oas.md` file on minor release `X.Y-dev` branches that are derived from the baseline `dev` branch.
+As of October 2024 (post-OAS 3.0.4 and 3.1.1), the OAS is developed in the `src/oas.md` file on minor release `vX.Y-dev` branches that are derived from the baseline `dev` branch.
 
 Schema changes are made on the same branch, but can be released independently.  When making a specification change for a new minor or major release that has a schema impact, including the schema change in the PR is preferred.  Patch releases cannot contain changes that _require_ a schema update.
 
 ### Using forks
 
-All work **MUST be done on a fork**, using a branch from the _earliest relevant and [active](#active-branches)_ `X.Y-dev` branch, and then submitted as a PR to that `X.Y-dev` branch.
+All work **MUST be done on a fork**, using a branch from the _earliest relevant and [active](#active-branches)_ `vX.Y-dev` branch, and then submitted as a PR to that `vX.Y-dev` branch.
 For example, if a change in November 2024 apples to both 3.1 and 3.2, the PR would go to the `v3.1-dev` branch, which will be merged up to `v3.2-dev` before the next 3.2 release.
 
-### Publishing
+## Publishing
 
-The specification and schemas are published to the [spec site](https://spec.openapis.org) by creating an `X.Y.Z-rel` branch where `src/oas.md` is renamed to the appropriate `versions/X.Y.Z.md` file and them merged to `main`.  The HTML versions of the OAS are automatically generated from the `versions` directory on `main`.  This renaming on the `X.Y.Z-rel` branch preserves the commit history for the published file on `main` when using `git log --follow` (as is the case for all older published files).
+The specification and schemas are published to the [spec site](https://spec.openapis.org) by creating an `vX.Y.Z-rel` branch where `src/oas.md` is renamed to the appropriate `versions/X.Y.Z.md` file and them merged to `main`.  The HTML versions of the OAS are automatically generated from the `versions` directory on `main`.  This renaming on the `vX.Y.Z-rel` branch preserves the commit history for the published file on `main` when using `git log --follow` (as is the case for all older published files).
 
-The publishing process for schemas is still under discussion (see issues [#3715](https://github.com/OAI/OpenAPI-Specification/issues/3715) and [#3716](https://github.com/OAI/OpenAPI-Specification/issues/3716)), with the current proposal being to release them directly from the `X.Y-dev` branch without merging to `main`, as the schemas in source control have placeholder identifiers and are not intended to be used as-is.
+The publishing process for schemas is still under discussion (see issues [#3715](https://github.com/OAI/OpenAPI-Specification/issues/3715) and [#3716](https://github.com/OAI/OpenAPI-Specification/issues/3716)), with the current proposal being to release them directly from the `vX.Y-dev` branch without merging to `main`, as the schemas in source control have placeholder identifiers and are not intended to be used as-is.
 
 ### Historical branch strategy
 
 For information on the branch and release strategy for OAS 3.0.4 and 3.1.1 and earlier, see the comments in [issue #3677](https://github.com/OAI/OpenAPI-Specification/issues/3677).
 
-### Branch diagram (3.1.2, 3.2.0, and later)
-
-Initial steps:
-
-* `dev` branches from `main` at the 3.1.1 release commit
-* Each `X.Y-dev` branches from `dev`
+### Branching and merging (3.1.2, 3.2.0, and later)
 
 Upon release:
 
-* Each `X.Y.Z-rel` branches from the corresponding `X.Y-dev`
-* After renaming `src/oas.md`, `X.Y.Z-rel`  merges to `main`
+* Pre-release steps:
+    * The most recent _published_ patch release from the previoius line is merged up to `vX.Y-dev`, if relevant
+    * If doing simultaneous releases on multiple lines, do them from the oldest to newest line
+    * If the release is the most recent on the current line, merge `vX.Y-dev` to `dev`
+    * For example, if releasing 3.1.3 and 3.2.0:
+        * release 3.1.3 first, including merging `v3.1-dev` to `dev` as 3.1 is current at that moment
+        * release 3.2.0 second, also merging `v3.2-dev` to `dev` as 3.2 becomes current at that point
+        * any subsequent 3.1.4 would **_not_** trigger a merge of `v3.1-dev` to `dev`, as 3.1 would no longer be current
+* Release branching and merging:
+    * branch `vX.Y.Z-rel` from `vX.Y-dev` (same commit that was merged to `dev` if relevant)
+    * After renaming `src/oas.md` to `versions/X.Y.Z.md`, merge `vX.Y.Z-rel` to `main`
 * Publishing to the [spec site](https://spec.openapis.org) is triggered by the merge to `main`
-
-Initiating the next minor release after releasing `X.Y.0`:
-
-* The same `X.Y-dev` commit that is the base of `X.Y.0-rel` is merged back to `dev` to keep `src/oas.md` on `dev` in sync with the last minor release
-* This `X.Y.0` commit on `dev` is the base of `X.Y+1-dev`
-
-Other notes:
-
-* Patch releases are _only_ merged to `dev` if they are part of the most recent release line (currently 3.1, which will shift to 3.2 once 3.2.0 is released).
-* When releasing from multiple lines, release from the oldest line first.
+* Post-release steps:
+    * If this was a major or minor release (Z == 0), branch `vX.Y+1-dev` from `dev`, from the commit where `vX.Y-dev` was merged to `dev`
 
 _Release lines are grouped by color, although the colors of `dev` and `main` are not significant as these diagrams are limited to only 8 colors._
 

@@ -33,7 +33,7 @@ For example, if a change in November 2024 apples to both 3.1 and 3.2, the PR wou
 
 ### Publishing
 
-The specification and schemas are published to the [spec site](https://spec.opanapis.org) by creating an `X.Y.Z-rel` branch where `src/oas.md` is renamed to the appropriate `versions/X.Y.Z.md` file and them merged to `main`.  The HTML versions of the OAS are automatically generated from the `versions` directory on `main`.  This renaming on the `X.Y.Z-rel` branch preserves the commit history for the published file on `main` when using `git log --follow` (as is the case for all older published files).
+The specification and schemas are published to the [spec site](https://spec.openapis.org) by creating an `X.Y.Z-rel` branch where `src/oas.md` is renamed to the appropriate `versions/X.Y.Z.md` file and them merged to `main`.  The HTML versions of the OAS are automatically generated from the `versions` directory on `main`.  This renaming on the `X.Y.Z-rel` branch preserves the commit history for the published file on `main` when using `git log --follow` (as is the case for all older published files).
 
 The publishing process for schemas is still under discussion (see issues [#3715](https://github.com/OAI/OpenAPI-Specification/issues/3715) and [#3716](https://github.com/OAI/OpenAPI-Specification/issues/3716)), with the current proposal being to release them directly from the `X.Y-dev` branch without merging to `main`, as the schemas in source control have placeholder identifiers and are not intended to be used as-is.
 

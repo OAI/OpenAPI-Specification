@@ -27,7 +27,7 @@ addMediaTypePlugin("application/schema+yaml", {
   fileMatcher: (path) => path.endsWith(".yaml")
 });
 
-/** @type (testDirectory: string) => AsyncGenerator<Json> */
+/** @type (testDirectory: string) => AsyncGenerator<[string,Json]> */
 const tests = async function* (testDirectory) {
   for (const file of await readdir(testDirectory, { recursive: true, withFileTypes: true })) {
     if (!file.isFile() || !file.name.endsWith(".yaml")) {
@@ -36,18 +36,21 @@ const tests = async function* (testDirectory) {
 
     const testPath = join(file.parentPath, file.name);
     const testJson = await readFile(testPath, "utf8");
-    yield YAML.parse(testJson);
+
+    yield [testPath, YAML.parse(testJson)];
   }
 };
 
 /** @type (testDirectory: string) => Promise<void> */
 const runTests = async (testDirectory) => {
-  for await (const test of tests(testDirectory)) {
+  for await (const [name, test] of tests(testDirectory)) {
     const instance = Instance.fromJs(test);
 
     const result = interpret(compiled, instance, BASIC);
-    //TODO: now result has errors array if valid is false
-    // if (!result.valid) console.log(result)
+
+    if (!result.valid) {
+      console.log("Failed:", name, result.errors);
+    }
   }
 };
 
@@ -100,7 +103,7 @@ const allKeywords = keywordLocations(compiled.ast);
 const notCovered = allKeywords.filter((location) => !visitedLocations.has(location));
 console.log("NOT Covered:", notCovered.length, "of", allKeywords.length,);
 
-const maxNotCovered = 10;
+const maxNotCovered = 20;
 const firstNotCovered = notCovered.slice(0, maxNotCovered);
 if (notCovered.length > maxNotCovered) firstNotCovered.push("...");  
 console.log(firstNotCovered);

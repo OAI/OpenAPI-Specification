@@ -1,11 +1,10 @@
-name: respec
+name: schema-publish
 
-# author: @MikeRalphson
-# issue: https://github.com/OAI/OpenAPI-Specification/issues/1564
+# author: @ralfhandl
+# issue: https://github.com/OAI/OpenAPI-Specification/issues/3715
 
 #
-# This workflow updates the respec 'pretty' rendered versions of the spec 
-# on the gh-pages branch when the corresponding markdown files change.
+# This workflow copies the 3.x schemas to the gh-pages branch
 #
 
 # run this on push to main
@@ -16,7 +15,7 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  respec:
+  publish:
 
     runs-on: ubuntu-latest
 
@@ -28,7 +27,7 @@ jobs:
     - uses: actions/setup-node@v4 # setup Node.js
       with:
         node-version: '20.x'
-    
+
     - name: Install dependencies
       run: npm ci
 
@@ -38,24 +37,21 @@ jobs:
         path: deploy
 
     - name: run main script
-      run: scripts/md2html/build.sh
+      run: scripts/schema-publish.sh
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v6
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        branch: update-respec-version
+        branch: publish-schema-iteration
         base: gh-pages
         delete-branch: true
         path: deploy
-        labels: Housekeeping
+        labels: Housekeeping,Schema
         reviewers: darrelmiller,webron,earth2marsh,webron,lornajane,mikekistler,miqui,ralfhandl,handrews,karenetheridge
-        title: Update ReSpec-rendered specification versions
-        commit-message: Update ReSpec-rendered specification versions
+        title: Publish OpenAPI Metaschema Iterations
+        commit-message: New OpenAPI metaschema iterations
         signoff: true
         body: |
-          This pull request is automatically triggered by GitHub action `respec`.
-
-          The `versions/*.md` files have changed, so the HTML files are automatically being regenerated.
-
-
+          This pull request is automatically triggered by GitHub action `schema-publish`.
+          The `schemas/**/*.yaml` files have changed and JSON files are automatically generated.

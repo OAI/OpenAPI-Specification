@@ -6,7 +6,7 @@ const fs = require('fs');
 const yaml = require('yaml');
 
 function convert(filename) {
-    console.log(filename);
+    // console.log(filename);
     const s = fs.readFileSync(filename,'utf8');
     let obj;
     try {

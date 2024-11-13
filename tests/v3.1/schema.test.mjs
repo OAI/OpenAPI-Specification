@@ -26,7 +26,7 @@ const parseYamlFromFile = (filePath) => {
 
 setMetaSchemaOutputFormat(BASIC);
 
-const validateOpenApi = await validate("./schemas/v3.1/schema.yaml");
+const validateOpenApi = await validate("./src/schemas/validation/schema.yaml");
 
 describe("v3.1", () => {
   describe("Pass", () => {

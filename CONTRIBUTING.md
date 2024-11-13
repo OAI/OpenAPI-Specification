@@ -26,6 +26,13 @@ As of October 2024 (post-OAS 3.0.4 and 3.1.1), the OAS is developed in the `src/
 
 Schema changes are made on the same branch, but can be released independently.  When making a specification change for a new minor or major release that has a schema impact, including the schema change in the PR is preferred.  Patch releases cannot contain changes that _require_ a schema update.
 
+### Branch roles
+
+* `main` is used to publish finished work and hold the authoritative versions of general documentation such as this document, which can be merged out to other branches as needed.  The `src` tree is ***not*** present on `main`.
+* `dev` is the primary branch for working with the `src` tree, which is kept up-to-date with the most recent release on the most recent minor (X.Y) release line, and serves as the base for each new minor release line.  Development infrastructure that is not needed on `main` is maintained here, and can be merged out to other non-`main` branches as needed.
+* `vX.Y-dev` is the minor release line development branch for X.Y, including both the initial X.Y.0 minor version and all subsequent X.Y.Z patch versions.  All PRs are made to oldest active `vX.Y-dev` branch to which the change is relevant, and then merged forward as shown in the diagram further down in this document.
+* `vX.Y.Z-rel` is the release branch for an X.Y.Z release (including when Z == 0).  It exists primarily for `git mv`-ing `src/oas.md` to the appropriate `versions/X.Y.Z.md` location before merging back to `main`, and can also be used for any emergency post-release fixes that come up, such as when a 3rd party changes URLs in a way that breaks published links.
+
 ### Using forks
 
 All work **MUST be done on a fork**, using a branch from the _earliest relevant and [active](#active-branches)_ `vX.Y-dev` branch, and then submitted as a PR to that `vX.Y-dev` branch.

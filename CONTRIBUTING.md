@@ -40,7 +40,7 @@ For example, if a change in November 2024 apples to both 3.1 and 3.2, the PR wou
 
 ## Publishing
 
-The specification and schemas are published to the [spec site](https://spec.openapis.org) by creating an `vX.Y.Z-rel` branch where `src/oas.md` is renamed to the appropriate `versions/X.Y.Z.md` file and them merged to `main`.  The HTML versions of the OAS are automatically generated from the `versions` directory on `main`.  This renaming on the `vX.Y.Z-rel` branch preserves the commit history for the published file on `main` when using `git log --follow` (as is the case for all older published files).
+The specification and schemas are published to the [spec site](https://spec.openapis.org) by creating an `vX.Y.Z-rel` branch where `src/oas.md` is renamed to the appropriate `versions/X.Y.Z.md` file and then merged to `main`.  The HTML versions of the OAS are automatically generated from the `versions` directory on `main`.  This renaming on the `vX.Y.Z-rel` branch preserves the commit history for the published file on `main` when using `git log --follow` (as is the case for all older published files).
 
 The publishing process for schemas is still under discussion (see issues [#3715](https://github.com/OAI/OpenAPI-Specification/issues/3715) and [#3716](https://github.com/OAI/OpenAPI-Specification/issues/3716)), with the current proposal being to release them directly from the `vX.Y-dev` branch without merging to `main`, as the schemas in source control have placeholder identifiers and are not intended to be used as-is.
 
@@ -216,10 +216,34 @@ Plus some suggestions, rather than rules:
 
 ## Release Process and Scope
 
-* Issue #3528: [3.x.y patch release approach](https://github.com/OAI/OpenAPI-Specification/issues/3528)
-* Issue #3529: [3.x minor release approach](https://github.com/OAI/OpenAPI-Specification/issues/3529)
-* Issue #3715: [Define and document our schema publishing process](https://github.com/OAI/OpenAPI-Specification/issues/3715)
-* Issue #3785: [Style guide / release checklist for the specification](https://github.com/OAI/OpenAPI-Specification/issues/3785)
+This section relates to the 3.x versions only.
+
+### Minor Releases
+
+Our roadmap for 3.x releases is community-driven, meaning the specification is open for proposed additions by anyone (see [Proposals for Specification Changes](#proposals-for-specification-changes)), in addition to the issues already on the project backlog.
+
+Changes in minor releases (such as 3.2, 3.3) meet the following criteria:
+
+* Are **backwards-compatible** and be reasonably easy to implement in tooling that already supports the previous minor version.
+  For example, new optional fields can be added.
+* Drive quality-of-life improvements to support how OpenAPI is used by practitioners, so that OpenAPI evolves to continue to meet user needs.
+  For example, adding fields to support changes in other standards, or adopting common `x-*` extension fields into the specification.
+* Bring the future closer by making changes that are in line with future 3.x releases and the planned OpenAPI 4.x (Moonwalk) specification as the details of that become available.
+* Make the specification document clearer or easier to understand.
+
+A minor release is due when there are some meaningful features (including one or a small number of headline features).
+
+### Patch Releases
+
+Patch releases reflect a constant quest for improving the active minor versions of OpenAPI.
+Since we do not edit specification documents after publication, even the smallest change has to be in a new release.
+
+Changes in patch releases meet the following criteria:
+
+* Editorial changes such as spelling or formatting fixes, including link updates.
+* Clarifications or additions that do not change the meaning of the specification.
+
+Patch releases are created as often as there are changes to the specification worth releasing.
 
 ## Branching and Versioning
 

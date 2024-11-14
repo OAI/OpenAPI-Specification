@@ -60,7 +60,7 @@ for filename in $(ls -1 ../../versions/[23456789].*.md | sort -r) ; do
   fi
 
   if [ ${minorVersion} != ${lastMinor} ] && [ ${minorVersion} != 2.0 ]; then
-    ln -sf ../../deploy/oas/v$version.html ../../deploy/oas/v$minorVersion-latest.html
+    ln -sf ../../deploy/oas/v$version.html ../../deploy/oas/v$minorVersion.html
     lastMinor=$minorVersion
   fi
 done

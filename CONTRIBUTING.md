@@ -14,52 +14,81 @@ If in doubt about a policy, please [ask on our Slack](https://communityinviter.c
 
 No changes, ***no matter how trivial***, are ever made to the contents of published specifications.  The only potential changes to those documents are updates to link URLs _if and only if_ the targeted document is moved by a 3rd party.  Other changes to link URLs are not allowed.
 
-### Changing the schemas
-
-Schemas are only changed _after_ the specification is changed.
-Changes are made to the YAML versions on the `main` branch.
-The JSON versions are generated when published to the [spec site](https://spec.openapis.org/), at which time the `WORK-IN-PROGRESS` URI placeholders are replaced with the publication date.
-
 ### Authoritative source of truth
 
 The [spec site](https://spec.openapis.org) is the source of truth.
 
 This changed in 2024, as the markdown files on `main` do not include certain credits and citations.
 
-## Development and publication process
+## Development process
 
-As of October 2024 (post-OAS 3.0.4 and 3.1.1), the OAS is developed in the `src/oas.md` file on minor release `X.Y-dev` branches that are derived from the baseline `dev` branch.
+As of October 2024 (post-OAS 3.0.4 and 3.1.1), the OAS is developed in the `src/oas.md` file on minor release `vX.Y-dev` branches that are derived from the baseline `dev` branch.
 
-All work **MUST be done on a fork**, using a branch from the _earliest relevant and [active](#active-branches)_ `X.Y-dev` branch, and then submitted as a PR to that `X.Y-dev` branch.
+Schema changes are made on the same branch, but can be released independently.  When making a specification change for a new minor or major release that has a schema impact, including the schema change in the PR is preferred.  Patch releases cannot contain changes that _require_ a schema update.
+
+### Branch roles
+
+* `main` is used to publish finished work and hold the authoritative versions of general documentation such as this document, which can be merged out to other branches as needed.  The `src` tree is ***not*** present on `main`.
+* `dev` is the primary branch for working with the `src` tree, which is kept up-to-date with the most recent release on the most recent minor (X.Y) release line, and serves as the base for each new minor release line.  Development infrastructure that is not needed on `main` is maintained here, and can be merged out to other non-`main` branches as needed.
+* `vX.Y-dev` is the minor release line development branch for X.Y, including both the initial X.Y.0 minor version and all subsequent X.Y.Z patch versions.  All PRs are made to oldest active `vX.Y-dev` branch to which the change is relevant, and then merged forward as shown in the diagram further down in this document.
+* `vX.Y.Z-rel` is the release branch for an X.Y.Z release (including when Z == 0).  It exists primarily for `git mv`-ing `src/oas.md` to the appropriate `versions/X.Y.Z.md` location before merging back to `main`, and can also be used for any emergency post-release fixes that come up, such as when a 3rd party changes URLs in a way that breaks published links.
+
+### Using forks
+
+All work **MUST be done on a fork**, using a branch from the _earliest relevant and [active](#active-branches)_ `vX.Y-dev` branch, and then submitted as a PR to that `vX.Y-dev` branch.
 For example, if a change in November 2024 apples to both 3.1 and 3.2, the PR would go to the `v3.1-dev` branch, which will be merged up to `v3.2-dev` before the next 3.2 release.
 
-Releases are published to the [spec site](https://spec.openapis.org) by creating an `X.Y.Z-rel` branch where `src/oas.md` is renamed to the appropriate `versions/X.Y.Z.md` file and them merged to `main`.  The HTML versions of the OAS are automatically generated from the `versions` directory on `main`.  This renaming on the `X.Y.Z-rel` branch preserves the commit history for the published file on `main` when using `git log --follow` (as is the case for all older published files).
+## Publishing
+
+The specification and schemas are published to the [spec site](https://spec.openapis.org) by creating an `vX.Y.Z-rel` branch where `src/oas.md` is renamed to the appropriate `versions/X.Y.Z.md` file and then merged to `main`.  The HTML versions of the OAS are automatically generated from the `versions` directory on `main`.  This renaming on the `vX.Y.Z-rel` branch preserves the commit history for the published file on `main` when using `git log --follow` (as is the case for all older published files).
+
+The publishing process for schemas is still under discussion (see issues [#3715](https://github.com/OAI/OpenAPI-Specification/issues/3715) and [#3716](https://github.com/OAI/OpenAPI-Specification/issues/3716)), with the current proposal being to release them directly from the `vX.Y-dev` branch without merging to `main`, as the schemas in source control have placeholder identifiers and are not intended to be used as-is.
+
+### Historical branch strategy
 
 For information on the branch and release strategy for OAS 3.0.4 and 3.1.1 and earlier, see the comments in [issue #3677](https://github.com/OAI/OpenAPI-Specification/issues/3677).
 
-### Branch diagram (3.1.2, 3.2.0, and later)
-
-Initial steps:
-
-* `dev` branches from `main` at the 3.1.1 release commit
-* Each `X.Y-dev` branches from `dev`
+### Branching and merging (3.1.2, 3.2.0, and later)
 
 Upon release:
 
-* Each `X.Y.Z-rel` branches from the corresponding `X.Y-dev`
-* After renaming `src/oas.md`, `X.Y.Z-rel`  merges to `main`
+* Pre-release steps:
+    * The most recent _published_ patch release from the previoius line is merged up to `vX.Y-dev`, if relevant
+    * If doing simultaneous releases on multiple lines, do them from the oldest to newest line
+    * If the release is the most recent on the current line, merge `vX.Y-dev` to `dev`
+    * For example, if releasing 3.1.3 and 3.2.0:
+        * release 3.1.3 first, including merging `v3.1-dev` to `dev` as 3.1 is current at that moment
+        * release 3.2.0 second, also merging `v3.2-dev` to `dev` as 3.2 becomes current at that point
+        * any subsequent 3.1.4 would **_not_** trigger a merge of `v3.1-dev` to `dev`, as 3.1 would no longer be current
+* Release branching and merging:
+    * branch `vX.Y.Z-rel` from `vX.Y-dev` (same commit that was merged to `dev` if relevant)
+    * After renaming `src/oas.md` to `versions/X.Y.Z.md`, merge `vX.Y.Z-rel` to `main`
 * Publishing to the [spec site](https://spec.openapis.org) is triggered by the merge to `main`
+* Post-release steps:
+    * If this was a major or minor release (Z == 0), branch `vX.Y+1-dev` from `dev`, from the commit where `vX.Y-dev` was merged to `dev`
 
-Initiating the next minor release after releasing `X.Y.0`:
-
-* The same `X.Y-dev` commit that is the base of `X.Y.0-rel` is merged back to `dev` to keep `src/oas.md` on `dev` in sync with the last minor release
-* This `X.Y.0` commit on `dev` is the base of `X.Y+1-dev`
-
-Other notes:
-
-* Patch releases are _not_ merged to `dev`
+_Release lines are grouped by color, although the colors of `dev` and `main` are not significant as these diagrams are limited to only 8 colors._
 
 ```mermaid
+---
+config:
+  themeVariables:
+    git0: "#5588bb"
+    git1: "#cc8899"
+    git2: "#eedd88"
+    git3: "#ccbb66"
+    git4: "#aa9944"
+    git5: "#887722"
+    git6: "#99ccff"
+    git7: "#77aadd"
+    gitBranchLabel1: "#000000"
+    gitBranchLabel2: "#000000"
+    gitBranchLabel3: "#000000"
+    gitBranchLabel4: "#000000"
+    gitBranchLabel5: "#ffffff"
+    gitBranchLabel6: "#000000"
+    gitBranchLabel7: "#000000"
+---
 gitGraph TB:
   commit id:"merge 3.1.1.md to main" tag:"3.1.1"
   branch dev order:1
@@ -67,13 +96,18 @@ gitGraph TB:
   branch v3.1-dev order:2
   commit id:"update version in src/oas.md to 3.1.2"
   checkout dev
-  branch v3.2-dev order:5
+  branch v3.2-dev order:6
   commit id:"update version in src/oas.md to 3.2.0"
   commit id:"some 3.2.0 work"
   checkout v3.1-dev
   commit id:"a 3.1.x fix"
+  checkout v3.2-dev
+  merge v3.1-dev id:"merge 3.1.2 fixes"
+  checkout v3.1-dev
   branch v3.1.2-rel order:3
   commit id:"rename src/oas.md to versions/3.1.2.md"
+  checkout dev
+  merge v3.1-dev id:"update dev with active line patch release"
   checkout main
   merge v3.1.2-rel tag:"3.1.2"
   checkout v3.2-dev
@@ -83,30 +117,51 @@ gitGraph TB:
   commit id:"another 3.1.x fix"
   checkout v3.2-dev
   commit id:"still more 3.2.0 work"
-  merge v3.1-dev id:"merge 3.1.x fixes before releasing"
+  merge v3.1-dev id:"merge 3.1.3 fixes before releasing"
+  checkout dev
+  merge v3.1-dev id:"update dev with last pre-minor release patch release"
+  merge v3.2-dev id:"update dev with minor release"
   checkout v3.1-dev
   branch v3.1.3-rel order:4
   commit id:"rename src/oas.md to versions/3.1.3.md"
   checkout v3.2-dev
-  branch v3.2.0-rel order:6
+  branch v3.2.0-rel order:7
   commit id:"rename src/oas.md to versions/3.2.0.md"
   checkout main
   merge v3.1.3-rel tag:"3.1.3"
   merge v3.2.0-rel tag:"3.2.0"
   checkout dev
-  merge v3.2-dev id:"update dev with minor release"
-  branch v3.3-dev order:7
+  branch v3.3-dev order:9
   checkout v3.1-dev
   commit id:"update version in src/oas.md to 3.1.4"
   checkout v3.2-dev
   commit id:"update version in src/oas.md to 3.2.1"
   checkout v3.3-dev
   commit id:"update version in src/oas.md to 3.3.0"
+
+  checkout v3.1-dev
+  commit id:"a 3.1.4 fix"
+  checkout v3.2-dev
+  commit id:"a 3.2.1 fix"
+  merge v3.1-dev id:"merge 3.1.4 fixes before releasing"
+  checkout v3.3-dev
+  merge v3.2-dev id:"merge 3.1.4 / 3.2.1 fixes"
+  checkout dev
+  merge v3.2-dev id:"merge patch from active release line"
+  checkout v3.1-dev
+  branch v3.1.4-rel order:5
+  commit id:"rename src/oas.md to versions/3.1.4.md"
+  checkout v3.2-dev
+  branch v3.2.1-rel order:8
+  commit id:"rename src/oas.md to versions/3.2.1.md"
+  checkout main
+  merge v3.1.4-rel tag:"3.1.4"
+  merge v3.2.1-rel tag:"3.2.1"
+  checkout v3.2-dev
+  commit id:"update version in src/oas.md to 3.2.2"
+  checkout v3.3-dev
+  commit id:"3.3 work"
 ```
-
-### Schema development
-
-Development of schemas [currently occurs on `main`](#changing-the-schemas), but the process is [being re-evaluated and is likely to change](https://github.com/OAI/OpenAPI-Specification/issues/3715).
 
 #### Active branches
 
@@ -129,20 +184,28 @@ Contributions to this repository should follow the style guide as described in t
 ### Markdown
 
 Markdown files in this project should follow the style enforced by the [markdownlint tool](https://www.npmjs.com/package/markdownlint),
-as configured by the `.markdownlint.json` file in the root of the project.
+as configured by the `.markdownlint.yaml` file in the root of the project.
+The `markdownlint` tool can also fix formatting, which can save time with tables in particular.
 
 The following additional rules should be followed but currently are not enforced by tooling:
 
-1. The first mention of a normative reference or an OAS-defined Object in a (sub)*section is a link, additional mentions are not
-2. OAS-defined Foo Bar Objects are written in this style, and are not monospaced
-3. "example" instead of "sample" - this spec is not about statistics
-4. Use "OpenAPI Object" instead of "root"
-5. Fixed fields are monospaced
-6. Field values are monospaced in JSON notation: `true`, `false`, `null`, `"header"` (with double-quotes around string values), ...
-7. A combination of fixed field name with example value uses JS notation: `in: "header"`, combining rules 5 and 6
+1. The first mention of a normative reference or an OAS-defined Object in a (sub)*section is a link, additional mentions are not.
+2. OAS-defined Objects such as Schema Objects are written in this style, and are not monospaced.
+3. Use "example" instead of "sample" - this spec is not about statistics.
+4. Use "OpenAPI Object" instead of "root".
+5. Fixed fields are monospaced.
+6. Field values are monospaced in JSON notation: `true`, `false`, `null`, `"header"` (with double-quotes around string values).
+7. A combination of fixed field name with example value uses JS notation: `in: "header"`, combining rules 5 and 6.
 8. An exception to 5-7 is colloquial use, for example "values of type `array` or `object`" - "type" is not monospaced, so the monospaced values aren't enclosed in double quotes.
 9. Use Oxford commas, avoid Shatner commas.
 10. Use `<span id="thing"></span>` for link anchors. The `<a name="thing"></a>` format has been deprecated.
+11. Headings use [title case](https://en.wikipedia.org/wiki/Title_case) and are followed by a blank line.
+
+Plus some suggestions, rather than rules:
+
+* Use one sentence per line in paragraphs and bullet points, to make diffs and edits easier to compare and understand.
+  A blank line is needed to cause a paragraph break in Markdown.
+* In examples, use realistic values rather than foo/bar.
 
 ### Use of "keyword", "field", "property", and "attribute"
 

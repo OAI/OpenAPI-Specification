@@ -168,7 +168,7 @@ Changes in minor releases (such as 3.2, 3.3) meet the following criteria:
 * Bring the future closer by making changes that are in line with future 3.x releases and the planned OpenAPI 4.x (Moonwalk) specification as the details of that become available.
 * Make the specification document clearer or easier to understand.
 
-A minor release is due when there are some meaningful features (including one or a small nummber of headline features).
+A minor release is due when there are some meaningful features (including one or a small number of headline features).
 
 ### Patch Releases
 
@@ -177,7 +177,7 @@ Since we do not edit specification documents after publication, even the smalles
 
 Changes in patch releases meet the following criteria:
 
-* Minor updates such as spelling or formatting fixes, including link updates.
+* Editorial changes such as spelling or formatting fixes, including link updates.
 * Clarifications or additions that do not change the meaning of the specification.
 
 Patch releases are created as often as there are changes to the specification worth releasing.

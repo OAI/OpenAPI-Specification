@@ -49,8 +49,8 @@ jobs:
         path: deploy
         labels: Housekeeping,Schema
         reviewers: darrelmiller,webron,earth2marsh,webron,lornajane,mikekistler,miqui,ralfhandl,handrews,karenetheridge
-        title: Publish OpenAPI Metaschema Iterations
-        commit-message: New OpenAPI metaschema iterations
+        title: Publish OpenAPI Schema Iterations
+        commit-message: New OpenAPI schema iterations
         signoff: true
         body: |
           This pull request is automatically triggered by GitHub action `schema-publish`.

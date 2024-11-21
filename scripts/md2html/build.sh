@@ -40,19 +40,28 @@ cp -p ../../node_modules/respec/builds/respec-w3c.* ../../deploy/js/
 
 latest=`git describe --abbrev=0 --tags`
 latestCopied=none
-for filename in ../../versions/[23456789].*.md ; do
+lastMinor="-"
+for filename in $(ls -1 ../../versions/[23456789].*.md | sort -r) ; do
   version=$(basename "$filename" .md)
+  minorVersion=${version:0:3}
   tempfile=../../deploy/oas/v$version-tmp.html
   echo -e "\n=== v$version ==="
+
   node md2html.js --maintainers ./history/MAINTAINERS_v$version.md ${filename} > $tempfile
   npx respec --use-local --src $tempfile --out ../../deploy/oas/v$version.html
   rm $tempfile
+
   if [ $version = $latest ]; then
     if [[ ${version} != *"rc"* ]];then
       # version is not a Release Candidate
-      cp -p ../../deploy/oas/v$version.html ../../deploy/oas/latest.html
+      ln -sf ../../deploy/oas/v$version.html ../../deploy/oas/latest.html
       latestCopied=v$version
     fi
+  fi
+
+  if [ ${minorVersion} != ${lastMinor} ] && [ ${minorVersion} != 2.0 ]; then
+    ln -sf ../../deploy/oas/v$version.html ../../deploy/oas/v$minorVersion.html
+    lastMinor=$minorVersion
   fi
 done
 echo Latest tag is $latest, copied $latestCopied to latest.html

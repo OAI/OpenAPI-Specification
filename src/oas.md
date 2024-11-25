@@ -3818,7 +3818,7 @@ Please note that as of 2020, the implicit flow is about to be deprecated by [OAu
 | <a name="security-scheme-flows"></a>flows | [OAuth Flows Object](#oauth-flows-object) | `oauth2` | **REQUIRED**. An object containing configuration information for the flow types supported. |
 | <a name="security-scheme-open-id-connect-url"></a>openIdConnectUrl | `string` | `openIdConnect` | **REQUIRED**. [Well-known URL](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig) to discover the [[OpenID-Connect-Discovery]] [provider metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). |
 | <a name="security-scheme-oauth2-metadata-url"></a>oauth2MetadataUrl | `string` | `oauth2` | URL to the oauth2 authorization server metadata [RFC8414](https://datatracker.ietf.org/doc/html/rfc8414). TLS is required. |
-| <a name="security-scheme-deprecated"></a>deprecated | `boolean` | Declares this security scheme to be deprecated. Consumers SHOULD refrain from usage of the declared scheme. Default value is `false`. |
+| <a name="security-scheme-deprecated"></a>deprecated | `boolean` | Any | Declares this security scheme to be deprecated. Consumers SHOULD refrain from usage of the declared scheme. Default value is `false`. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 

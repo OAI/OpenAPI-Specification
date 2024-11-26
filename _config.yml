@@ -59,11 +59,11 @@ plugins:
   - jekyll-remote-theme
   - jekyll-sitemap
 aux_links:
-  "Latest OpenAPI Specification":
+  "Latest OpenAPI Spec":
     - "https://spec.openapis.org/oas/latest.html"
-  "Latest Arazzo Specification":
+  "Latest Arazzo Spec":
     - "https://spec.openapis.org/arazzo/latest.html"
-  "Latest Overlay Specification":
+  "Latest Overlay Spec":
     - "https://spec.openapis.org/overlay/latest.html"
 footer_content: "\xA9 2024 OpenAPI Initiative.
  <br />This work is licensed under the <a rel=\"license\" href=\"https://www.apache.org/licenses/LICENSE-2.0\"\

@@ -1,8 +1,8 @@
 # theme: just-the-docs
 remote_theme: just-the-docs/just-the-docs
 color_scheme: oai
-title: OpenAPI Initiative Registry
-description: Extensible data value repository
+title: OpenAPI Initiative Publications
+description: Specifications, registries, and schemas
 show_downloads: true
 excerpt_separator: ""
 collections_dir: /registries
@@ -59,10 +59,12 @@ plugins:
   - jekyll-remote-theme
   - jekyll-sitemap
 aux_links:
-  "Latest OpenAPI Specification":
+  "Latest OpenAPI Spec":
     - "https://spec.openapis.org/oas/latest.html"
-  "Latest Arazzo Specification":
+  "Latest Arazzo Spec":
     - "https://spec.openapis.org/arazzo/latest.html"
+  "Latest Overlay Spec":
+    - "https://spec.openapis.org/overlay/latest.html"
 footer_content: "\xA9 2024 OpenAPI Initiative.
  <br />This work is licensed under the <a rel=\"license\" href=\"https://www.apache.org/licenses/LICENSE-2.0\"\
   >Apache 2.0 License</a>. This site is\

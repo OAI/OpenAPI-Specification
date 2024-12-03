@@ -1,0 +1,88 @@
+{
+  "$id": "https://spec.openapis.org/overlay/1.0/schema/2024-10-22",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "The description of Overlay v1.0.x documents",
+  "type": "object",
+  "properties": {
+    "overlay": {
+      "type": "string",
+      "pattern": "^1\\.0\\.\\d+$"
+    },
+    "info": {
+      "$ref": "#/$defs/info-object"
+    },
+    "extends": {
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "actions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/action-object"
+      }
+    }
+  },
+  "required": [
+    "overlay",
+    "info",
+    "actions"
+  ],
+  "$ref": "#/$defs/specification-extensions",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "info-object": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "version"
+      ],
+      "$ref": "#/$defs/specification-extensions",
+      "unevaluatedProperties": false
+    },
+    "action-object": {
+      "properties": {
+        "target": {
+          "type": "string",
+          "pattern": "^\\$"
+        },
+        "description": {
+          "type": "string"
+        },
+        "update": {
+          "type": [
+            "string",
+            "boolean",
+            "object",
+            "array",
+            "number",
+            "null"
+          ]
+        },
+        "remove": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "target"
+      ],
+      "$ref": "#/$defs/specification-extensions",
+      "unevaluatedProperties": false
+    },
+    "specification-extensions": {
+      "patternProperties": {
+        "^x-": true
+      }
+    }
+  }
+}

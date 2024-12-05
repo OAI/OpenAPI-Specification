@@ -48,15 +48,12 @@ The path templating expression is defined by the following [ABNF](https://tools.
 
 ```abnf
 ; OpenAPI Path Templating ABNF syntax
-path-template                  = path [ query-marker query ] [ fragment-marker fragment ]
+path-template                  = path [ query-marker query ]
 path                           = slash *( path-segment slash ) [ path-segment ]
 path-segment                   = 1*( path-literal / template-expression )
 query                          = *( query-literal )
 query-literal                  = 1*( unreserved / pct-encoded / sub-delims / ":" / "@" / "/" / "?" / "&" / "=" )
 query-marker                   = "?"
-fragment                       = *( fragment-literal )
-fragment-literal               = 1*( unreserved / pct-encoded / sub-delims / ":" / "@" / "/" / "?" )
-fragment-marker                = "#"
 slash                          = "/"
 path-literal                   = 1*( unreserved / pct-encoded / sub-delims / ":" / "@" )
 template-expression            = "{" template-expression-param-name "}"

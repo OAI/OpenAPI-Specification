@@ -44,6 +44,34 @@ Each template expression in the path MUST correspond to a path parameter that is
 
 The value for these path parameters MUST NOT contain any unescaped "generic syntax" characters described by [RFC3986](https://tools.ietf.org/html/rfc3986#section-3): forward slashes (`/`), question marks (`?`), or hashes (`#`).
 
+The path templating expression is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax
+
+```abnf
+; OpenAPI Path Templating ABNF syntax
+path-template                  = path [ query-marker query ] [ fragment-marker fragment ]
+path                           = slash *( path-segment slash ) [ path-segment ]
+path-segment                   = 1*( path-literal / template-expression )
+query                          = *( query-literal )
+query-literal                  = 1*( unreserved / pct-encoded / sub-delims / ":" / "@" / "/" / "?" / "&" / "=" )
+query-marker                   = "?"
+fragment                       = *( fragment-literal )
+fragment-literal               = 1*( unreserved / pct-encoded / sub-delims / ":" / "@" / "/" / "?" )
+fragment-marker                = "#"
+slash                          = "/"
+path-literal                   = 1*( unreserved / pct-encoded / sub-delims / ":" / "@" )
+template-expression            = "{" template-expression-param-name "}"
+template-expression-param-name = 1*( unreserved / pct-encoded / sub-delims / ":" / "@" )
+
+; Characters definitions (from RFC 3986)
+unreserved          = ALPHA / DIGIT / "-" / "." / "_" / "~"
+pct-encoded         = "%" HEXDIG HEXDIG
+sub-delims          = "!" / "$" / "&" / "'" / "(" / ")"
+                    / "*" / "+" / "," / ";" / "="
+ALPHA               = %x41-5A / %x61-7A   ; A-Z / a-z
+DIGIT               = %x30-39            ; 0-9
+HEXDIG              = DIGIT / "A" / "B" / "C" / "D" / "E" / "F"
+```
+
 ### Media Types
 
 Media type definitions are spread across several resources.

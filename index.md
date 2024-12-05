@@ -46,30 +46,8 @@ Note that the OAS 3.1 `schema/YYYY-MM-DD` schema does _not_ validate the Schema 
 
 See [issue #4147](https://github.com/OAI/OpenAPI-Specification/issues/4147) for discussion of other possible JSON Schema dialect options, [issue #4152](https://github.com/OAI/OpenAPI-Specification/issues/4152) for programmatic access to the latest schemas, and [issue #4141](https://github.com/OAI/OpenAPI-Specification/issues/4141) for discussions on possibly providing linting schemas that could catch likely problems that do not directly violate the specification.
 
-{% assign schema_files = site.static_files | where: "extname", "" | sort: "path" | reverse %}
-{% assign last_version = "" %}
-{% assign last_kind = "" %}
-{%- for file in schema_files -%}
-{%- assign segments = file.path | split: "/" -%}
-{%- if segments[1] == "oas" -%}
-{%- if segments[2] != last_version -%}
-{%- assign last_version = segments[2] %}
-* **v{{ last_version }}**
-{%- endif -%}
-{%- if segments[3] != last_kind -%}
-{%- if segments[4] == "base" -%}
-{%- continue -%}
-{%- endif -%}
-{%- assign last_kind = segments[3] %}
-  * view [**{{ last_kind }}/{{ segments[4] }}**]({{ site.baseurl }}/oas/{{ last_version }}/{{ last_kind }}/{{ segments[4] }}.html)  
-    download iteration
-{%- assign separator = ": " -%}
-{%- endif -%}
-{{ separator }} [{{ file.basename | replace: "-", "&#8209;" }}]({{ site.baseurl }}{{ file.path }})
-{%- assign separator = ", " -%}
-{%- endif -%}
-{%- endfor %}
+{% include schema-iteration-list.md specification="oas" %}
 
 ### Overlay Specification Schemas
 
-_TBD_
+{% include schema-iteration-list.md specification="overlay" %}

@@ -52,7 +52,7 @@ path-template                  = path [ query-marker query ]
 path                           = slash *( path-segment slash ) [ path-segment ]
 path-segment                   = 1*( path-literal / template-expression )
 query                          = *( query-literal )
-query-literal                  = 1*( unreserved / pct-encoded / sub-delims / ":" / "@" / "/" / "?" / "&" / "=" )
+query-literal                  = 1*( unreserved / pct-encoded / sub-delims / ":" / "@" / "/" / "?" )
 query-marker                   = "?"
 slash                          = "/"
 path-literal                   = 1*( unreserved / pct-encoded / sub-delims / ":" / "@" )
@@ -65,7 +65,7 @@ pct-encoded         = "%" HEXDIG HEXDIG
 sub-delims          = "!" / "$" / "&" / "'" / "(" / ")"
                     / "*" / "+" / "," / ";" / "="
 ALPHA               = %x41-5A / %x61-7A   ; A-Z / a-z
-DIGIT               = %x30-39            ; 0-9
+DIGIT               = %x30-39             ; 0-9
 HEXDIG              = DIGIT / "A" / "B" / "C" / "D" / "E" / "F"
 ```
 

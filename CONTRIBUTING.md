@@ -8,10 +8,23 @@ All participants are expected to read and follow this code.
 No changes, however trivial, are ever made to the contents of published specifications (the files in the `versions/` folder).
 Exceptions may be made when links to external URLs have been changed by a 3rd party, in order to keep our documents accurate.
 
+The specification is in the file `spec/oas.md`.
+
 The [spec site](https://spec.openapis.org) is the source of truth for the OpenAPI specification as it contains all the citations and author credits (the markdown in this repository was previously the authoritative version until 2024).
 
 The OpenAPI project is almost entirely staffed by volunteers.
-Please be patient with the people in this project, who all have other jobs and do this because they believe in it.
+Please be patient with the people in this project, who all have other jobs and are active here because we believe this project has a positive impact in the world.
+
+### Active branches
+
+The current active specification releases are:
+
+| Version | Branch | Notes |
+| ------- | ------ | ----- |
+| 3.1.2 | `v3.1-dev` | active patch release line |
+| 3.2.0 | `v3.2-dev` | minor release in development |
+| 4.0.0 | [OAI/sig-moonwalk](https://github.com/OAI/sig-moonwalk) | [discussions only](https://github.com/OAI/sig-moonwalk/discussions) |
+
 
 ## How to contribute
 
@@ -85,7 +98,37 @@ Issues may be closed when:
 When issues are closed, a comment is added about why.
 Closing issues is a reversible action, and it is always acceptable to comment and explain (politely) why an issue should not have been closed.
 
-## Development process
+### Labels
+
+We make extensive use of labels.
+The main categories are:
+
+- [Housekeeping](https://github.com/OAI/OpenAPI-Specification/labels/Housekeeping) for meetings, project logistics, etc.
+- [approved pr port](https://github.com/OAI/OpenAPI-Specification/labels/approved pr port) for pull requests that repeat a change from one version to another
+- most other tags are used to group similar or related issues into topic areas; this list is ever-changing
+
+Labels related to [issue automation](#appendix-issue-automation)
+
+- [Needs attention](https://github.com/OAI/OpenAPI-Specification/labels/Needs attention) automated tag when an issue is updated
+- [Needs author feedback](https://github.com/OAI/OpenAPI-Specification/labels/Needs author feedback) used to indicate that more information is needed from the issue creator
+- [No recent activity](https://github.com/OAI/OpenAPI-Specification/labels/No recent activity) if no information is received, the issue is marked for closure (automatic after 30 days)
+
+### Milestones
+
+We use milestones in GitHub to plan what should be included in future releases.
+Issues and pull requests should both be added to the milestone we expect they will be released in.
+Any changes that aren't ready in time for release should be moved to the next milestone or untagged.
+
+The milestones and items assigned to them are under constant review and subject to change.
+
+### Projects
+
+The OpenAPI Initiative uses GitHub Projects to manage work _outside_ of the specification development process.  There are currently two active projects:
+
+* [Contributor Guidance](https://github.com/orgs/OAI/projects/5/views/1)
+* [Automation & Infrastructure](https://github.com/orgs/OAI/projects/4/views/1)
+
+## Pull requests
 
 > [!NOTE]
 > Since the 3.0.4 and 3.1.1 releases (October 2024), the OAS is developed in the `src/oas.md` file.
@@ -96,76 +139,49 @@ Changes to the next version of the specification are welcome and can be proposed
 For large changes that will need discussion, please use the [Proposal process](#propose-a-specification-change).
 For other changes, we recommend [opening an issue](#issues) first, so that you can get some feedback and any extra input you need before spending a lot of time on something.
 
-Schema changes are made on the same branch, but can be released independently.  When making a specification change for a new minor or major release that has a schema impact, including the schema change in the PR is preferred.  Patch releases cannot contain changes that _require_ a schema update.
+Schema changes are made on the same branch, but can be released independently.
+When making a specification change for a new minor or major release that has a schema impact, including the schema change in the PR is preferred.
+Patch releases cannot contain changes that _require_ a schema update.
 
-### Branch roles
+### Use a fork
 
-* `main` is used to publish finished work and hold the authoritative versions of general documentation such as this document, which can be merged out to other branches as needed.  The `src` tree is ***not*** present on `main`.
-* `dev` is the primary branch for working with the `src` tree, which is kept up-to-date with the most recent release on the most recent minor (X.Y) release line, and serves as the base for each new minor release line.  Development infrastructure that is not needed on `main` is maintained here, and can be merged out to other non-`main` branches as needed.
-* `vX.Y-dev` is the minor release line development branch for X.Y, including both the initial X.Y.0 minor version and all subsequent X.Y.Z patch versions.  All PRs are made to oldest active `vX.Y-dev` branch to which the change is relevant, and then merged forward as shown in the diagram further down in this document.
-* `vX.Y.Z-rel` is the release branch for an X.Y.Z release (including when Z == 0).  It exists primarily for `git mv`-ing `src/oas.md` to the appropriate `versions/X.Y.Z.md` location before merging back to `main`, and can also be used for any emergency post-release fixes that come up, such as when a 3rd party changes URLs in a way that breaks published links.
+All work **MUST be done on a fork** and be submitted as a pull request.
 
-### Using forks
+### Target the earliest active `*-dev` branch
 
-All work **MUST be done on a fork**, using a branch from the _earliest relevant and [active](#active-branches)_ `vX.Y-dev` branch, and then submitted as a PR to that `vX.Y-dev` branch.
-For example, if a change in November 2024 apples to both 3.1 and 3.2, the PR would go to the `v3.1-dev` branch, which will be merged up to `v3.2-dev` before the next 3.2 release.
+Branch from and submit pull requests to the a branch from the _earliest relevant and [active](#active-branches)_ `vX.Y-dev` branch.
+For example, if a change applies to both 3.1 and 3.2, the PR would go to the `v3.1-dev` branch, which will be merged up to `v3.2-dev` before the next 3.2 release.
+All changes to the specification must conform to the [style guide](./style-guide.md).
+
+Both specification and schema changes follow this approach.
+
+For changes to repository files that affect all versions, use the `main` branch.
+This might apply to, for example, Markdown files, automation, and scripts.
+
+For all pull requests, if they should not be merged yet for any reason (they depend on something else, you would like feedback from a specific reviewer), mark them as draft and they will not be merged while in that state.
+Draft pull requests can still be reviewed while in draft state.
+
+## Reviewers
+
+> ![NOTE]
+> See also the detailed team outlines in the [roles section](#roles).
+
+All pull requests must be reviewed and approved by one member of the TSC or Maintainer teams.
+Reviews from other contributors are always welcome.
+
+Additionally, all pull requests that change the specification file `spec/oas.md` must be approved by 2 TSC members.
+
+Reviews requesting changes should have their changes addressed regardless of how many other approvers there are.
 
 ## Publishing
 
-The specification and schemas are published to the [spec site](https://spec.openapis.org) by creating an `vX.Y.Z-rel` branch where `src/oas.md` is renamed to the appropriate `versions/X.Y.Z.md` file and then merged to `main`.  The HTML versions of the OAS are automatically generated from the `versions` directory on `main`.  This renaming on the `vX.Y.Z-rel` branch preserves the commit history for the published file on `main` when using `git log --follow` (as is the case for all older published files).
+The specification are published to the [spec site](https://spec.openapis.org) by creating an `vX.Y.Z-rel` branch where `src/oas.md` is renamed to the appropriate `versions/X.Y.Z.md` file and then merged to `main`.
+The HTML versions of the OAS are automatically generated from the `versions` directory on `main`.
+This renaming on the `vX.Y.Z-rel` branch preserves the commit history for the published file on `main` when using `git log --follow` (as is the case for all older published files).
 
-The publishing process for schemas is still under discussion (see issues [#3715](https://github.com/OAI/OpenAPI-Specification/issues/3715) and [#3716](https://github.com/OAI/OpenAPI-Specification/issues/3716)), with the current proposal being to release them directly from the `vX.Y-dev` branch without merging to `main`, as the schemas in source control have placeholder identifiers and are not intended to be used as-is.
-
-#### Active branches
-
-The first PR for a change should be against the oldest release line to which it applies.  Changes can then be forward-ported as appropriate.
-
-The specification under development is `src/oas.md`, which _only_ exists on development branches, not on `main`.
-
-The current (20 October 2024) active specification releases are:
-
-| Version | Branch | Notes |
-| ------- | ------ | ----- |
-| 3.1.2 | `v3.1-dev` | active patch release line |
-| 3.2.0 | `v3.2-dev` | minor release in development |
-| 4.0.0 | [OAI/sig-moonwalk](https://github.com/OAI/sig-moonwalk) | [discussions only](https://github.com/OAI/sig-moonwalk/discussions) |
-
-## Style Guide
-
-Contributions to this repository should follow the style guide as described in this section.
-
-### Markdown
-
-Markdown files in this project should follow the style enforced by the [markdownlint tool](https://www.npmjs.com/package/markdownlint),
-as configured by the `.markdownlint.yaml` file in the root of the project.
-The `markdownlint` tool can also fix formatting, which can save time with tables in particular.
-
-The following additional rules should be followed but currently are not enforced by tooling:
-
-1. The first mention of a normative reference or an OAS-defined Object in a (sub)*section is a link, additional mentions are not.
-2. OAS-defined Objects such as Schema Objects are written in this style, and are not monospaced.
-3. Use "example" instead of "sample" - this spec is not about statistics.
-4. Use "OpenAPI Object" instead of "root".
-5. Fixed fields are monospaced.
-6. Field values are monospaced in JSON notation: `true`, `false`, `null`, `"header"` (with double-quotes around string values).
-7. A combination of fixed field name with example value uses JS notation: `in: "header"`, combining rules 5 and 6.
-8. An exception to 5-7 is colloquial use, for example "values of type `array` or `object`" - "type" is not monospaced, so the monospaced values aren't enclosed in double quotes.
-9. Use Oxford commas, avoid Shatner commas.
-10. Use `<span id="thing"></span>` for link anchors. The `<a name="thing"></a>` format has been deprecated.
-11. Headings use [title case](https://en.wikipedia.org/wiki/Title_case) and are followed by a blank line.
-
-Plus some suggestions, rather than rules:
-
-* Use one sentence per line in paragraphs and bullet points, to make diffs and edits easier to compare and understand.
-  A blank line is needed to cause a paragraph break in Markdown.
-* In examples, use realistic values rather than foo/bar.
-
-### Use of "keyword", "field", "property", and "attribute"
-
-* JSON Schema keywords -> "keyword"
-* OpenAPI fixed fields -> "field"
-* property of a "plain" JSON object that is not an OpenAPI-defined Foo Object -> "property"
-* "attribute" is only used in the XML context and means "XML attribute"
+The schemas are published [in the schema section on the spec site](https://spec.openapis.org/#openapi-specification-schemas).
+As part of the publishing process, the `WORK-IN-PROGRESS` placeholders are replaced with dates as appropriate.
+Schemas are published/updated independently from the specification releases.
 
 ## Release Process and Scope
 
@@ -198,9 +214,22 @@ Changes in patch releases meet the following criteria:
 
 Patch releases are created as often as there are changes to the specification worth releasing.
 
-## Branching and Versioning
+### Release Process
 
-* Issue #3677: [Define and document branch strategy for the spec, both development and publishing](https://github.com/OAI/OpenAPI-Specification/issues/3677)
+A release requires a vote on the specification at a particular version and the associated release notes by TSC members within the voting period.
+Major or minor release voting periods will be announced in the Slack channel and noted on the calendar at least 6 days in advance.
+During this time, TSC members who have not yet voted must note their approval by leaving a comment on the GitHub pull request proposing the release; release notes should be included with the description.
+TSC members are responsible for coordinating the information about the release to the outreach team as appropriate.
+
+* Patch-level releases require majority approval by TSC members. (Max voting period 3 days)
+
+* Minor: requires approval by 66% of TSC members. (Max voting period 7 days)
+
+* Major: requires approval by 66% of TSC members. (Max voting period 14 days)
+
+During the voting period, further changes should not be made to the specification being considered.
+
+Once the threshold of approvals is met, the release can be performed by any TSC member.
 
 ## Propose a Specification Change
 
@@ -231,41 +260,6 @@ Bigger changes require a more formal process.
 
 Questions are welcome on the process at any time. Use the discussions feature or find us in Slack.
 
-## Working in GitHub
-
-* Issue #3847: [Document milestone usage in DEVELOPMENT.md](https://github.com/OAI/OpenAPI-Specification/issues/3847)
-* Issue #3848: [Define and add new process labels and document general label usage in DEVELOPMENT.md](https://github.com/OAI/OpenAPI-Specification/issues/3848)
-
-### Roles and Permissions
-
-* Issue #3582: [TOB info needs to be updated](https://github.com/OAI/OpenAPI-Specification/issues/3482)
-* Issue #3523: [Define triage role criteria and process](https://github.com/OAI/OpenAPI-Specification/issues/3523)
-* Issue #3524: [Define the maintainer role criteria and process](https://github.com/OAI/OpenAPI-Specification/issues/3524)
-
-### Projects
-
-The OpenAPI Initiative uses GitHub Projects to manage work _outside_ of the specification development process.  There are currently two active projects:
-
-* [Contributor Guidance](https://github.com/orgs/OAI/projects/5/views/1)
-* [Automation & Infrastructure](https://github.com/orgs/OAI/projects/4/views/1)
-
-### Issues
-
-As of mid-2024, we prefer to use issues for topics that have a clear associated action.  However, many existing issues are more open-ended, as they predate GitHub's discussions features.
-
-* Issue #3518: [Define criteria for filing/closing issues vs discussions](https://github.com/OAI/OpenAPI-Specification/issues/3518)
-
-
-## Pull Requests
-
-* Issue #3581: [Who and how many people need to sign-off on a PR, exactly?](https://github.com/OAI/OpenAPI-Specification/issues/3581)
-* Issue #3802: [Define a policy using draft PRs when waiting on specific approvals](https://github.com/OAI/OpenAPI-Specification/issues/3802)
-
-## Updating the Registries
-
-* Issue #3598: [Minimum criteria for Namespace Registry](https://github.com/OAI/OpenAPI-Specification/issues/3598)
-* Issue #3899: [Expert review criteria for registries (How exactly does x-twitter work?)](https://github.com/OAI/OpenAPI-Specification/issues/3899)
-
 ## Roles
 
 The OpenAPI project has some key roles that are played by multiple people.
@@ -295,12 +289,16 @@ To get in touch with other people on the project, ask questions, or anything els
 - Start a [GitHub Discussion](https://github.com/OAI/OpenAPI-Specification/discussions/).
 - Join one of our weekly meetings by checking the [issues list for an upcoming meetings](https://github.com/OAI/OpenAPI-Specification/issues?q=is%3Aissue%20state%3Aopen%20label%3AHousekeeping).
 
-
-
-
 ### Appendix: Historical branch strategy
 
 For information on the branch and release strategy for OAS 3.0.4 and 3.1.1 and earlier, see the comments in [issue #3677](https://github.com/OAI/OpenAPI-Specification/issues/3677).
+
+### Branch roles
+
+* `main` is used to publish finished work and hold the authoritative versions of general documentation such as this document, which can be merged out to other branches as needed.  The `src` tree is ***not*** present on `main`.
+* `dev` is the primary branch for working with the `src` tree, which is kept up-to-date with the most recent release on the most recent minor (X.Y) release line, and serves as the base for each new minor release line.  Development infrastructure that is not needed on `main` is maintained here, and can be merged out to other non-`main` branches as needed.
+* `vX.Y-dev` is the minor release line development branch for X.Y, including both the initial X.Y.0 minor version and all subsequent X.Y.Z patch versions.  All PRs are made to oldest active `vX.Y-dev` branch to which the change is relevant, and then merged forward as shown in the diagram further down in this document.
+* `vX.Y.Z-rel` is the release branch for an X.Y.Z release (including when Z == 0).  It exists primarily for `git mv`-ing `src/oas.md` to the appropriate `versions/X.Y.Z.md` location before merging back to `main`, and can also be used for any emergency post-release fixes that come up, such as when a 3rd party changes URLs in a way that breaks published links.
 
 ### Branching and merging (3.1.2, 3.2.0, and later)
 

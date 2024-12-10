@@ -8,7 +8,9 @@ All participants are expected to read and follow this code.
 No changes, however trivial, are ever made to the contents of published specifications (the files in the `versions/` folder).
 Exceptions may be made when links to external URLs have been changed by a 3rd party, in order to keep our documents accurate.
 
-The specification is in the file `spec/oas.md`.
+Published versions of the specification are in the `versions/` folder.
+The under-development versions of the specification are in the file `spec/oas.md` on the appropriately-versioned branch.
+For example, work on the next patch release for 3.2 is on `v3.2-dev` in the file `spec/oas.md`.
 
 The [spec site](https://spec.openapis.org) is the source of truth for the OpenAPI specification as it contains all the citations and author credits (the markdown in this repository was previously the authoritative version until 2024).
 

@@ -68,7 +68,7 @@ Most issues should have a clear outcome; something will be fixed, improved or ot
 
 We use [discussions](#discussions) for ideas and early-stage suggestions.
 
-> ![NOTE]
+> [!NOTE]
 > For larger or more extensive changes, we have a formal [proposal process](#propose-a-specification-change) to give more structure where it's needed.
 
 The best issues give a clear and concise explanation of the problem at hand, and ideally some examples of what the problem is.
@@ -104,14 +104,14 @@ We make extensive use of labels.
 The main categories are:
 
 - [Housekeeping](https://github.com/OAI/OpenAPI-Specification/labels/Housekeeping) for meetings, project logistics, etc.
-- [approved pr port](https://github.com/OAI/OpenAPI-Specification/labels/approved pr port) for pull requests that repeat a change from one version to another
+- [approved pr port](https://github.com/OAI/OpenAPI-Specification/labels/approved%20pr%20port) for pull requests that repeat a change from one version to another
 - most other tags are used to group similar or related issues into topic areas; this list is ever-changing
 
 Labels related to [issue automation](#appendix-issue-automation)
 
-- [Needs attention](https://github.com/OAI/OpenAPI-Specification/labels/Needs attention) automated tag when an issue is updated
-- [Needs author feedback](https://github.com/OAI/OpenAPI-Specification/labels/Needs author feedback) used to indicate that more information is needed from the issue creator
-- [No recent activity](https://github.com/OAI/OpenAPI-Specification/labels/No recent activity) if no information is received, the issue is marked for closure (automatic after 30 days)
+- [Needs attention](https://github.com/OAI/OpenAPI-Specification/labels/Needs%20attention) automated tag when an issue is updated
+- [Needs author feedback](https://github.com/OAI/OpenAPI-Specification/labels/Needs%20author%20feedback) used to indicate that more information is needed from the issue creator
+- [No recent activity](https://github.com/OAI/OpenAPI-Specification/labels/No%20recent%20activity) if no information is received, the issue is marked for closure (automatic after 30 days)
 
 ### Milestones
 
@@ -163,13 +163,13 @@ Draft pull requests can still be reviewed while in draft state.
 
 ## Reviewers
 
-> ![NOTE]
+> [!NOTE]
 > See also the detailed team outlines in the [roles section](#roles).
 
 All pull requests must be reviewed and approved by one member of the TSC or Maintainer teams.
 Reviews from other contributors are always welcome.
 
-Additionally, all pull requests that change the specification file `spec/oas.md` must be approved by 2 TSC members.
+Additionally, all pull requests that change the specification file `spec/oas.md` must be approved by two TSC members.
 
 Reviews requesting changes should have their changes addressed regardless of how many other approvers there are.
 
@@ -189,7 +189,7 @@ This section relates to the 3.x versions only.
 
 ### Minor Releases
 
-Our roadmap for 3.x releases is community-driven, meaning the specification is open for proposed additions by anyone (see [Proposals for Specification Changes](#proposals-for-specification-changes)), in addition to the issues already on the project backlog.
+Our roadmap for 3.x releases is community-driven, meaning the specification is open for proposed additions by anyone (see [Propose a Specification Change](#propose-a-specification-change)), in addition to the issues already on the project backlog.
 
 Changes in minor releases (such as 3.2, 3.3) meet the following criteria:
 
@@ -289,7 +289,7 @@ To get in touch with other people on the project, ask questions, or anything els
 - Start a [GitHub Discussion](https://github.com/OAI/OpenAPI-Specification/discussions/).
 - Join one of our weekly meetings by checking the [issues list for an upcoming meetings](https://github.com/OAI/OpenAPI-Specification/issues?q=is%3Aissue%20state%3Aopen%20label%3AHousekeeping).
 
-### Appendix: Historical branch strategy
+### Appendix: Branch strategy
 
 For information on the branch and release strategy for OAS 3.0.4 and 3.1.1 and earlier, see the comments in [issue #3677](https://github.com/OAI/OpenAPI-Specification/issues/3677).
 

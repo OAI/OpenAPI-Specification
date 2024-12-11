@@ -85,7 +85,7 @@ More information is in the [Appendix: Issue automation](#appendix-issue-automati
 Everyone is encouraged to open and comment on issues in the project.
 If you want to tag/assign/close something and you don't have enough permissions, add a comment and someone will help.
 
-Issues are managed by the [Triage](#triage), [Maintainer](#maintainer) and [TSC](#tsc) teams.
+Issues are managed by the [Triage](#triage), [Maintainers](#maintainers) and [TSC](#tsc) teams.
 They may move issues to other repositories within the project as needed.
 
 In order to keep the issues list manageable and realistic for a relatively small group of volunteers, issues are proactively closed when it's not clear that they can be completed.
@@ -134,7 +134,7 @@ The OpenAPI Initiative uses GitHub Projects to manage work _outside_ of the spec
 
 > [!NOTE]
 > Since the 3.0.4 and 3.1.1 releases (October 2024), the OAS is developed in the `src/oas.md` file.
-> Check the [Branches](#branches) section for more information about the updated branching strategy.
+> Check the [Appendix: Branch Strategy](#appendix-branch-strategy) for more information about the updated branching strategy.
 
 Changes to the next version of the specification are welcome and can be proposed by anyone.
 
@@ -168,7 +168,7 @@ Draft pull requests can still be reviewed while in draft state.
 > [!NOTE]
 > See also the detailed team outlines in the [roles section](#roles).
 
-All pull requests must be reviewed and approved by one member of the TSC or Maintainer teams.
+All pull requests must be reviewed and approved by one member of the TSC or Maintainers teams.
 Reviews from other contributors are always welcome.
 
 Additionally, all pull requests that change the specification file `spec/oas.md` must be approved by two TSC members.

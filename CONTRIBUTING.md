@@ -10,7 +10,7 @@ Exceptions may be made when links to external URLs have been changed by a 3rd pa
 
 Published versions of the specification are in the `versions/` folder.
 The under-development versions of the specification are in the file `spec/oas.md` on the appropriately-versioned branch.
-For example, work on the next patch release for 3.2 is on `v3.2-dev` in the file `spec/oas.md`.
+For example, work on the next release for 3.2 is on `v3.2-dev` in the file `spec/oas.md`.
 
 The [spec site](https://spec.openapis.org) is the source of truth for the OpenAPI specification as it contains all the citations and author credits (the markdown in this repository was previously the authoritative version until 2024).
 
@@ -118,7 +118,7 @@ Labels related to [issue automation](#appendix-issue-automation)
 ### Milestones
 
 We use milestones in GitHub to plan what should be included in future releases.
-Issues and pull requests should both be added to the milestone we expect they will be released in.
+Issues and pull requests should both be added to the earliest milestone we expect they will be released in.
 Any changes that aren't ready in time for release should be moved to the next milestone or untagged.
 
 The milestones and items assigned to them are under constant review and subject to change.
@@ -291,7 +291,7 @@ To get in touch with other people on the project, ask questions, or anything els
 - Start a [GitHub Discussion](https://github.com/OAI/OpenAPI-Specification/discussions/).
 - Join one of our weekly meetings by checking the [issues list for an upcoming meetings](https://github.com/OAI/OpenAPI-Specification/issues?q=is%3Aissue%20state%3Aopen%20label%3AHousekeeping).
 
-### Appendix: Branch strategy
+## Appendix: Branch strategy
 
 For information on the branch and release strategy for OAS 3.0.4 and 3.1.1 and earlier, see the comments in [issue #3677](https://github.com/OAI/OpenAPI-Specification/issues/3677).
 
@@ -307,7 +307,7 @@ For information on the branch and release strategy for OAS 3.0.4 and 3.1.1 and e
 Upon release:
 
 * Pre-release steps:
-    * The most recent _published_ patch release from the previoius line is merged up to `vX.Y-dev`, if relevant
+    * The most recent _published_ patch release from the previous line is merged up to `vX.Y-dev`, if relevant
     * If doing simultaneous releases on multiple lines, do them from the oldest to newest line
     * If the release is the most recent on the current line, merge `vX.Y-dev` to `dev`
     * For example, if releasing 3.1.3 and 3.2.0:

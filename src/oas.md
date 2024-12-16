@@ -48,9 +48,8 @@ The path templating expression is defined by the following [ABNF](https://tools.
 
 ```abnf
 ; OpenAPI Path Templating ABNF syntax
-path-template                  = slash *( path-segment slash ) [ path-segment ]
+path-template                  = "/" *( path-segment "/" ) [ path-segment ]
 path-segment                   = 1*( path-literal / template-expression )
-slash                          = "/"
 path-literal                   = 1*pchar
 template-expression            = "{" template-expression-param-name "}"
 template-expression-param-name = 1*( %x00-79 / %x7C / %x7E-10FFFF ) ; every UTF8 character except { and }

@@ -7,5 +7,6 @@ atlassian-ide-plugin.xml
 node_modules/
 deploy/
 coverage/
+src-preview/
 history
 Gemfile.lock

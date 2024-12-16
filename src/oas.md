@@ -51,11 +51,12 @@ The path templating expression is defined by the following [ABNF](https://tools.
 path-template                  = slash *( path-segment slash ) [ path-segment ]
 path-segment                   = 1*( path-literal / template-expression )
 slash                          = "/"
-path-literal                   = 1*( unreserved / pct-encoded / sub-delims / ":" / "@" )
+path-literal                   = 1*pchar
 template-expression            = "{" template-expression-param-name "}"
 template-expression-param-name = 1*( %x00-79 / %x7C / %x7E-10FFFF ) ; every UTF8 character except { and }
 
 ; Characters definitions (from RFC 3986)
+pchar               = unreserved / pct-encoded / sub-delims / ":" / "@"
 unreserved          = ALPHA / DIGIT / "-" / "." / "_" / "~"
 pct-encoded         = "%" HEXDIG HEXDIG
 sub-delims          = "!" / "$" / "&" / "'" / "(" / ")"

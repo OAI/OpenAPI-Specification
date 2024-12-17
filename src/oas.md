@@ -58,9 +58,6 @@ unreserved          = ALPHA / DIGIT / "-" / "." / "_" / "~"
 pct-encoded         = "%" HEXDIG HEXDIG
 sub-delims          = "!" / "$" / "&" / "'" / "(" / ")"
                     / "*" / "+" / "," / ";" / "="
-ALPHA               = %x41-5A / %x61-7A   ; A-Z / a-z
-DIGIT               = %x30-39             ; 0-9
-HEXDIG              = DIGIT / "A" / "B" / "C" / "D" / "E" / "F"
 ```
 
 Here, all characters definitions are taken from [RFC 3986](https://tools.ietf.org/html/rfc3986). The path-template is directly derived from [RFC 3986, section 3.3](https://datatracker.ietf.org/doc/html/rfc3986#section-3.3).

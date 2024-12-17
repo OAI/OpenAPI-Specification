@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8">
-<meta name="generator" content="ReSpec 35.1.2">
+<meta name="generator" content="ReSpec 35.2.1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 dfn{cursor:pointer}
@@ -25,7 +25,7 @@ dfn{cursor:pointer}
 <title>OpenAPI Specification v3.1.1</title>
 <meta name="description" content="The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs.">
 <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
-<script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-JR4K3ZJLPH&amp;l=dataLayer&amp;cx=c&amp;gtm=457e4bk0za200"></script>
+<script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-JR4K3ZJLPH&amp;l=dataLayer&amp;cx=c&amp;gtm=457e4cc1za200"></script>
 <style id="respec-mainstyle">
 @keyframes pop{
 0%{transform:scale(1,1)}
@@ -1366,7 +1366,7 @@ The path itself is still exposed to the documentation viewer but they will not k
     <span class="hljs-attr">'200':</span>
       <span class="hljs-attr">description:</span> <span class="hljs-string">pet</span> <span class="hljs-string">response</span>
       <span class="hljs-attr">content:</span>
-        <span class="hljs-string">'*/*'</span><span class="hljs-string">:</span>
+        <span class="hljs-attr">'*/*':</span>
           <span class="hljs-attr">schema:</span>
             <span class="hljs-attr">type:</span> <span class="hljs-string">array</span>
             <span class="hljs-attr">items:</span>
@@ -2150,7 +2150,7 @@ Using <code>content</code> with a <code>text/plain</code> media type is <em clas
       <span class="hljs-attr">user:</span>
         <span class="hljs-attr">summary:</span> <span class="hljs-string">User</span> <span class="hljs-string">example</span> <span class="hljs-string">in</span> <span class="hljs-string">plain</span> <span class="hljs-string">text</span>
         <span class="hljs-attr">externalValue:</span> <span class="hljs-string">https://foo.bar/examples/user-example.txt</span>
-  <span class="hljs-string">'*/*'</span><span class="hljs-string">:</span>
+  <span class="hljs-attr">'*/*':</span>
     <span class="hljs-attr">examples:</span>
       <span class="hljs-attr">user:</span>
         <span class="hljs-attr">summary:</span> <span class="hljs-string">User</span> <span class="hljs-string">example</span> <span class="hljs-string">in</span> <span class="hljs-string">other</span> <span class="hljs-string">format</span>
@@ -5350,19 +5350,19 @@ This keeps it outside of the processes governed by this specification.</p>
     </dd><dt id="bib-rfc6570">[RFC6570]</dt><dd>
       <a href="https://www.rfc-editor.org/rfc/rfc6570"><cite>URI Template</cite></a>. J. Gregorio; R. Fielding; M. Hadley; M. Nottingham; D. Orchard.  IETF. March 2012. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc6570">https://www.rfc-editor.org/rfc/rfc6570</a>
     </dd><dt id="bib-rfc6749">[RFC6749]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc6749"><cite>The OAuth 2.0 Authorization Framework</cite></a>. D. Hardt, Ed..  IETF. October 2012. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc6749">https://www.rfc-editor.org/rfc/rfc6749</a>
+      <a href="https://www.rfc-editor.org/rfc/rfc6749"><cite>The OAuth 2.0 Authorization Framework</cite></a>. D. Hardt, Ed. IETF. October 2012. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc6749">https://www.rfc-editor.org/rfc/rfc6749</a>
     </dd><dt id="bib-rfc6838">[RFC6838]</dt><dd>
       <a href="https://www.rfc-editor.org/rfc/rfc6838"><cite>Media Type Specifications and Registration Procedures</cite></a>. N. Freed; J. Klensin; T. Hansen.  IETF. January 2013. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc6838">https://www.rfc-editor.org/rfc/rfc6838</a>
     </dd><dt id="bib-rfc6901">[RFC6901]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc6901"><cite>JavaScript Object Notation (JSON) Pointer</cite></a>. P. Bryan, Ed.; K. Zyp; M. Nottingham, Ed..  IETF. April 2013. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc6901">https://www.rfc-editor.org/rfc/rfc6901</a>
+      <a href="https://www.rfc-editor.org/rfc/rfc6901"><cite>JavaScript Object Notation (JSON) Pointer</cite></a>. P. Bryan, Ed.; K. Zyp; M. Nottingham, Ed. IETF. April 2013. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc6901">https://www.rfc-editor.org/rfc/rfc6901</a>
     </dd><dt id="bib-rfc7159">[RFC7159]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc7159"><cite>The JavaScript Object Notation (JSON) Data Interchange Format</cite></a>. T. Bray, Ed..  IETF. March 2014. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc7159">https://www.rfc-editor.org/rfc/rfc7159</a>
+      <a href="https://www.rfc-editor.org/rfc/rfc7159"><cite>The JavaScript Object Notation (JSON) Data Interchange Format</cite></a>. T. Bray, Ed. IETF. March 2014. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc7159">https://www.rfc-editor.org/rfc/rfc7159</a>
     </dd><dt id="bib-rfc7230">[RFC7230]</dt><dd>
-      <a href="https://httpwg.org/specs/rfc7230.html"><cite>Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing</cite></a>. R. Fielding, Ed.; J. Reschke, Ed..  IETF. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7230.html">https://httpwg.org/specs/rfc7230.html</a>
+      <a href="https://httpwg.org/specs/rfc7230.html"><cite>Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing</cite></a>. R. Fielding, Ed.; J. Reschke, Ed. IETF. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7230.html">https://httpwg.org/specs/rfc7230.html</a>
     </dd><dt id="bib-rfc7231">[RFC7231]</dt><dd>
-      <a href="https://httpwg.org/specs/rfc7231.html"><cite>Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</cite></a>. R. Fielding, Ed.; J. Reschke, Ed..  IETF. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7231.html">https://httpwg.org/specs/rfc7231.html</a>
+      <a href="https://httpwg.org/specs/rfc7231.html"><cite>Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</cite></a>. R. Fielding, Ed.; J. Reschke, Ed. IETF. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7231.html">https://httpwg.org/specs/rfc7231.html</a>
     </dd><dt id="bib-rfc7235">[RFC7235]</dt><dd>
-      <a href="https://httpwg.org/specs/rfc7235.html"><cite>Hypertext Transfer Protocol (HTTP/1.1): Authentication</cite></a>. R. Fielding, Ed.; J. Reschke, Ed..  IETF. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7235.html">https://httpwg.org/specs/rfc7235.html</a>
+      <a href="https://httpwg.org/specs/rfc7235.html"><cite>Hypertext Transfer Protocol (HTTP/1.1): Authentication</cite></a>. R. Fielding, Ed.; J. Reschke, Ed. IETF. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7235.html">https://httpwg.org/specs/rfc7235.html</a>
     </dd><dt id="bib-rfc7578">[RFC7578]</dt><dd>
       <a href="https://www.rfc-editor.org/rfc/rfc7578"><cite>Returning Values from Forms: multipart/form-data</cite></a>. L. Masinter.  IETF. July 2015. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc7578">https://www.rfc-editor.org/rfc/rfc7578</a>
     </dd><dt id="bib-rfc8174">[RFC8174]</dt><dd>

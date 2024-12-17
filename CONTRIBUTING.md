@@ -9,8 +9,8 @@ No changes, however trivial, are ever made to the contents of published specific
 Exceptions may be made when links to external URLs have been changed by a 3rd party, in order to keep our documents accurate.
 
 Published versions of the specification are in the `versions/` folder.
-The under-development versions of the specification are in the file `spec/oas.md` on the appropriately-versioned branch.
-For example, work on the next release for 3.2 is on `v3.2-dev` in the file `spec/oas.md`.
+The under-development versions of the specification are in the file `src/oas.md` on the appropriately-versioned branch.
+For example, work on the next release for 3.2 is on `v3.2-dev` in the file `src/oas.md`.
 
 The [spec site](https://spec.openapis.org) is the source of truth for the OpenAPI specification as it contains all the citations and author credits (the markdown in this repository was previously the authoritative version until 2024).
 
@@ -171,7 +171,7 @@ Draft pull requests can still be reviewed while in draft state.
 All pull requests must be reviewed and approved by one member of the TSC or Maintainers teams.
 Reviews from other contributors are always welcome.
 
-Additionally, all pull requests that change the specification file `spec/oas.md` must be approved by two TSC members.
+Additionally, all pull requests that change the specification file `src/oas.md` must be approved by two TSC members.
 
 Reviews requesting changes should have their changes addressed regardless of how many other approvers there are.
 

@@ -2598,19 +2598,19 @@ Tooling implementations MAY choose to validate compatibility automatically, and 
 
 ##### Working with Examples
 
-Example Objects can be used in both [Parameter Objects](#parameter-object) and [Media Type Objects](#media-type-object).
+Example Objects can be used in [Parameter Objects](#parameter-object), [Header Objects](#header-object) and [Media Type Objects](#media-type-object).
 In both Objects, this is done through the `examples` (plural) field.
-However, there are several other ways to provide examples: The `example` (singular) field that is mutually exclusive with `examples` in both Objects, and two keywords (the deprecated singular `example` and the current plural `examples`, which takes an array of examples) in the [Schema Object](#schema-object) that appears in the `schema` field of both Objects.
+However, there are several other ways to provide examples: The `example` (singular) field that is mutually exclusive with `examples` in all three Objects, and two keywords (the deprecated singular `example` and the current plural `examples`, which takes an array of examples) in the [Schema Object](#schema-object) that appears in the `schema` field of all three Objects.
 Each of these fields has slightly different considerations.
 
 The Schema Object's fields are used to show example values without regard to how they might be formatted as parameters or within media type representations.
 The `examples` array is part of JSON Schema and is the preferred way to include examples in the Schema Object, while `example` is retained purely for compatibility with older versions of the OpenAPI Specification.
 
-The mutually exclusive fields in the Parameter or Media Type Objects are used to show example values which SHOULD both match the schema and be formatted as they would appear as a serialized parameter or within a media type representation.
-The exact serialization and encoding is determined by various fields in the Parameter Object, or in the Media Type Object's [Encoding Object](#encoding-object).
+The mutually exclusive fields in the Parameter, Header or Media Type Objects are used to show example values which SHOULD both match the schema and be formatted as they would appear as a serialized parameter or within a media type representation.
+The exact serialization and encoding is determined by various fields in the Parameter Object, Header Object, or in the Media Type Object's [Encoding Object](#encoding-object).
 Because examples using these fields represent the final serialized form of the data, they SHALL _override_ any `example` in the corresponding Schema Object.
 
-The singular `example` field in the Parameter or Media Type Object is concise and convenient for simple examples, but does not offer any other advantages over using Example Objects under `examples`.
+The singular `example` field in the Parameter, Header or Media Type Object is concise and convenient for simple examples, but does not offer any other advantages over using Example Objects under `examples`.
 
 Some examples cannot be represented directly in JSON or YAML.
 For all three ways of providing examples, these can be shown as string values with any escaping necessary to make the string valid in the JSON or YAML format of documents that comprise the OpenAPI Description.

@@ -2223,7 +2223,7 @@ The mutually exclusive fields in the Parameter, Header, or Media Type Objects ar
 The exact serialization and encoding is determined by various fields in the Parameter Object, Header Object, or in the Media Type Object's [Encoding Object](#encoding-object).
 Because examples using these fields represent the final serialized form of the data, they SHALL _override_ any `example` in the corresponding Schema Object.
 
-The singular `example` field in the Parameter, Header or Media Type Object is concise and convenient for simple examples, but does not offer any other advantages over using Example Objects under `examples`.
+The singular `example` field in the Parameter, Header, or Media Type Object is concise and convenient for simple examples, but does not offer any other advantages over using Example Objects under `examples`.
 
 Some examples cannot be represented directly in JSON or YAML.
 For all three ways of providing examples, these can be shown as string values with any escaping necessary to make the string valid in the JSON or YAML format of documents that comprise the OpenAPI Description.

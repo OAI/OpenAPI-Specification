@@ -2211,7 +2211,7 @@ Tooling implementations MAY choose to validate compatibility automatically, and 
 
 ##### Working with Examples
 
-Example Objects can be used in [Parameter Objects](#parameter-object), [Header Objects](#header-object) and [Media Type Objects](#media-type-object).
+Example Objects can be used in [Parameter Objects](#parameter-object), [Header Objects](#header-object), and [Media Type Objects](#media-type-object).
 In both Objects, this is done through the `examples` (plural) field.
 However, there are several other ways to provide examples: The `example` (singular) field that is mutually exclusive with `examples` in all three Objects, and two keywords (the deprecated singular `example` and the current plural `examples`, which takes an array of examples) in the [Schema Object](#schema-object) that appears in the `schema` field of all three Objects.
 Each of these fields has slightly different considerations.

@@ -1,0 +1,73 @@
+#respec-ui {
+    visibility: hidden;
+}
+
+#title {
+    color: #578000;
+}
+
+#subtitle {
+    color: #578000;
+}
+
+.dt-published {
+    color: #578000;
+}
+
+.dt-published::before {
+    content: "Published ";
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #578000;
+    font-weight: normal;
+    font-style: normal;
+}
+
+a[href] {
+    color: #45512c;
+}
+
+body:not(.toc-inline) #toc h2 {
+    color: #45512c;
+}
+
+table {
+    display: block;
+    width: 100%;
+    overflow: auto;
+}
+
+table th {
+    font-weight: 600;
+}
+
+table th, table td {
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+}
+
+table tr {
+    background-color: #fff;
+    border-top: 1px solid #c6cbd1;
+}
+
+table tr:nth-child(2n) {
+    background-color: #f6f8fa;
+}
+
+pre {
+    background-color: #f6f8fa !important;
+}
+
+code {
+    color: #c83500
+}
+
+th code {
+    color: inherit
+}
+
+a.bibref {
+    text-decoration: underline;
+}

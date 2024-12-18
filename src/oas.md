@@ -2773,7 +2773,7 @@ For computing links and providing instructions to execute them, a [runtime expre
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
 A linked operation MUST be identified using either an `operationRef` or `operationId`.
-The identified or reference operation MUST be unique, and in the case of an `operationId`, it MUST be resolved within the scope of the OpenAPI Description (OAD).
+The identified or referenced operation MUST be unique, and in the case of an `operationId`, it MUST be resolved within the scope of the OpenAPI Description (OAD).
 Because of the potential for name clashes, the `operationRef` syntax is preferred for multi-document OADs.
 However, because use of an operation depends on its URL path template in the [Paths Object](#paths-object), operations from any [Path Item Object](#path-item-object) that is referenced multiple times within the OAD cannot be resolved unambiguously.
 In such ambiguous cases, the resulting behavior is implementation-defined and MAY result in an error.

@@ -581,7 +581,7 @@ ucschar        =  %xA0-D7FF / %xF900-FDCF / %xFDF0-FFEF
 iprivate       =  %xE000-F8FF / %xF0000-FFFFD / %x100000-10FFFD
 ```
 
-Here, `pct-encoded`, `uschar` and `iprivate` definitions are taken from [RFC 6570](https://www.rfc-editor.org/rfc/rfc6570).
+Here, `literals`, `pct-encoded`, `uschar` and `iprivate` definitions are taken from [RFC 6570](https://www.rfc-editor.org/rfc/rfc6570).
 
 ##### Fixed Fields
 

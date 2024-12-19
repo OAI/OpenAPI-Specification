@@ -124,3 +124,114 @@ body.darkmode .logo::before {
     background: url("https://raw.githubusercontent.com/OAI/OpenAPI-Style-Guide/refs/heads/main/graphics/bitmap/OpenAPI_Logo_Pantone.png") no-repeat center / contain;
     vertical-align: middle;
 }
+
+/** This contains the content of the https://www.w3.org/StyleSheets/TR/2021/dark.css file */
+body.darkmode {
+    --text: #ddd;
+    --bg: black;
+
+    /* Absolute URLs due to https://bugs.webkit.org/show_bug.cgi?id=230243 */
+    --unofficial-watermark: url(https://www.w3.org/StyleSheets/TR/2021/logos/UD-watermark-dark-unofficial);
+    --draft-watermark: url(https://www.w3.org/StyleSheets/TR/2021/logos/UD-watermark-dark-draft);
+
+    --logo-bg: #1a5e9a;
+    --logo-active-bg: #c00;
+    --logo-text: white;
+
+    --tocnav-normal-text: #999;
+    --tocnav-normal-bg: var(--bg);
+    --tocnav-hover-text: var(--tocnav-normal-text);
+    --tocnav-hover-bg: #080808;
+    --tocnav-active-text: #f44;
+    --tocnav-active-bg: var(--tocnav-normal-bg);
+
+    --tocsidebar-text: var(--text);
+    --tocsidebar-bg: #080808;
+    --tocsidebar-shadow: rgba(255,255,255,.1);
+    --tocsidebar-heading-text: hsla(203,20%,40%,.7);
+
+    --toclink-text: var(--text);
+    --toclink-underline: #6af;
+    --toclink-visited-text: var(--toclink-text);
+    --toclink-visited-underline: #054572;
+
+    --heading-text: #8af;
+
+    --hr-text: var(--text);
+
+    --algo-border: #456;
+
+    --del-text: #f44;
+    --del-bg: transparent;
+    --ins-text: #4a4;
+    --ins-bg: transparent;
+
+    --a-normal-text: #6af;
+    --a-normal-underline: #555;
+    --a-visited-text: var(--a-normal-text);
+    --a-visited-underline: var(--a-normal-underline);
+    --a-hover-bg: rgba(25%, 25%, 25%, .2);
+    --a-active-text: #f44;
+    --a-active-underline: var(--a-active-text);
+
+    --borderedblock-bg: rgba(255, 255, 255, .05);
+
+    --blockquote-border: silver;
+    --blockquote-bg: var(--borderedblock-bg);
+    --blockquote-text: currentcolor;
+
+    --issue-border: #e05252;
+    --issue-bg: var(--borderedblock-bg);
+    --issue-text: var(--text);
+    --issueheading-text: hsl(0deg, 70%, 70%);
+
+    --example-border: hsl(50deg, 90%, 60%);
+    --example-bg: var(--borderedblock-bg);
+    --example-text: var(--text);
+    --exampleheading-text: hsl(50deg, 70%, 70%);
+
+    --note-border: hsl(120deg, 100%, 35%);
+    --note-bg: var(--borderedblock-bg);
+    --note-text: var(--text);
+    --noteheading-text: hsl(120, 70%, 70%);
+    --notesummary-underline: silver;
+
+    --advisement-border: orange;
+    --advisement-bg: #222218;
+    --advisement-text: var(--text);
+    --advisementheading-text: #f84;
+
+    --amendment-border: #330099;
+    --amendment-bg: var(--borderedblock-bg);
+    --amendment-text: var(--text);
+    --amendmentheading-text: #a086ff;
+
+    --amendment-border: #330099;
+    --amendment-bg: #080010;
+    --amendment-text: var(--text);
+    --amendmentheading-text: #cc00ff;
+
+    --warning-border: red;
+    --warning-bg: hsla(40,100%,20%,0.95);
+    --warning-text: var(--text);
+
+    --def-border: #8ccbf2;
+    --def-bg: #080818;
+    --def-text: var(--text);
+    --defrow-border: #136;
+
+    --datacell-border: silver;
+
+    --indexinfo-text: #aaa;
+
+    --indextable-hover-text: var(--text);
+    --indextable-hover-bg: #181818;
+
+    --outdatedspec-bg: rgba(255, 255, 255, .5);
+    --outdatedspec-text: black;
+    --outdated-bg: maroon;
+    --outdated-text: white;
+    --outdated-shadow: red;
+
+    --editedrec-bg: darkorange;
+}

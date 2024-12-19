@@ -129,6 +129,7 @@ function preface(title,options) {
     preface += '<meta name="description" content="The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs.">';
 
     // ReSpec
+    preface += '<meta name="color-scheme" content="light dark">';
     preface += '<script src="../js/respec-w3c.js" class="remove"></script>';
     preface += `<script class="remove">var respecConfig = ${JSON.stringify(respec)};</script>`;
     try {

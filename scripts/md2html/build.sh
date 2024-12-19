@@ -32,17 +32,13 @@ for filename in $(ls -1 ../../versions/[23456789].*.md | sort -r) ; do
   if [ $version = $latest ]; then
     if [[ ${version} != *"rc"* ]];then
       # version is not a Release Candidate
-      pushd ../../deploy/oas
-      ln -sf v$version.html latest.html
-      popd
+      ( cd ../../deploy/oas && ln -sf v$version.html latest.html )
       latestCopied=v$version
     fi
   fi
 
   if [ ${minorVersion} != ${lastMinor} ] && [ ${minorVersion} != 2.0 ]; then
-    pushd ../../deploy/oas
-    ln -sf v$version.html v$minorVersion.html
-    popd
+    ( cd ../../deploy/oas && ln -sf v$version.html v$minorVersion.html )
     lastMinor=$minorVersion
   fi
 done

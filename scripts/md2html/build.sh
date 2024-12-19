@@ -25,35 +25,8 @@ latest=$(git describe --abbrev=0 --tags)
 latestCopied="none"
 lastMinor="-"
 
-mkdir -p history
-cat > history/MAINTAINERS_v2.0.md << EOF
-## Active
-* Jeremy Whitlock [@whitlockjc](https://github.com/whitlockjc)
-* Marsh Gardiner [@earth2marsh](https://github.com/earth2marsh)
-* Ron Ratovsky [@webron](https://github.com/webron)
-* Tony Tam [@fehguy](https://github.com/fehguy)
-EOF
-cat > history/MAINTAINERS_v3.0.0.md << EOF
-## Active
-* Jeremy Whitlock [@whitlockjc](https://github.com/whitlockjc)
-* Marsh Gardiner [@earth2marsh](https://github.com/earth2marsh)
-* Ron Ratovsky [@webron](https://github.com/webron)
-* Tony Tam [@fehguy](https://github.com/fehguy)
-
-## Emeritus
-* Jason Harmon [@jharmn](https://github.com/jharmn)
-EOF
-git show c740e95:MAINTAINERS.md > history/MAINTAINERS_v3.0.1.md
-git show 3140640:MAINTAINERS.md > history/MAINTAINERS_v3.0.2.md
-cp history/MAINTAINERS_v3.0.2.md history/MAINTAINERS_v3.0.3.md
-cp history/MAINTAINERS_v3.0.2.md history/MAINTAINERS_v3.1.0.md
-#TODO: adjust commit for 3.0.4, 3.1.1
-git show c3b88ed:EDITORS.md > history/MAINTAINERS_v3.0.4.md
-cp history/MAINTAINERS_v3.0.4.md history/MAINTAINERS_v3.1.1.md
-# add lines for 3.2.0, ...
-
 if [ -z "$1" ]; then
-  specifications=$(ls -1 versions/[23456789].*.md | sort -r)
+  specifications=$(ls -1 versions/[23456789].*.md | grep -v -e "\-editors" | sort -r)
 elif [ "$1" = "latest" ]; then
   specifications=$(ls -1 versions/$latest.md)
 elif [ "$1" = "src" ]; then
@@ -67,13 +40,14 @@ cp -p node_modules/respec/builds/respec-w3c.* $deploydir/js/
 for specification in $specifications; do
   version=$(basename $specification .md)
   minorVersion=${version:0:3}
-  destination="$deploydir/$version.html"
   tempfile="$deploydir/temp/$version.html"
 
   if [ "$1" = "src" ]; then
+    destination="$deploydir/$version.html"
     maintainers="EDITORS.md"
   else
-    maintainers="history/MAINTAINERS_v$version.md"
+    destination="$deploydir/v$version.html"
+    maintainers="$(dirname $specification)/$version-editors.md"
   fi
 
   echo === Building $version to $destination
@@ -105,4 +79,3 @@ fi
 rm $deploydir/js/respec-w3c.*
 rmdir $deploydir/js
 rmdir $deploydir/temp
-rm -r history

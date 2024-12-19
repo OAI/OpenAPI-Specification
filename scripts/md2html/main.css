@@ -72,20 +72,20 @@ a.bibref {
     text-decoration: underline;
 }
 
-    body.darkmode {
-        --toclink-underline: #6a9000;
-        --toclink-visited-underline: #fff;
-    }
+body.darkmode {
+    --toclink-underline: #6a9000;
+    --toclink-visited-underline: #fff;
+}
 
-    body.darkmode a,
-    body.darkmode .tocxref,
-    body.darkmode .u-url {
-        color: #6a9000;
-    }
+body.darkmode a,
+body.darkmode .tocxref,
+body.darkmode .u-url {
+    color: #6a9000;
+}
 
-    body.darkmode code {
-        color: #e66c33;
-    }
+body.darkmode code {
+    color: #e66c33;
+}
 
 body.darkmode:not(.toc-inline) #toc h2,
 body.darkmode h1,

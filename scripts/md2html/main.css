@@ -72,7 +72,6 @@ a.bibref {
     text-decoration: underline;
 }
 
-@media (prefers-color-scheme: dark) {
     body.darkmode {
         --toclink-underline: #6a9000;
         --toclink-visited-underline: #fff;
@@ -88,41 +87,40 @@ a.bibref {
         color: #e66c33;
     }
 
-    body.darkmode:not(.toc-inline) #toc h2,
-    body.darkmode h1,
-    body.darkmode h2,
-    body.darkmode h3,
-    body.darkmode h4,
-    body.darkmode h5,
-    body.darkmode h6,
-    body.darkmode #title,
-    body.darkmode #subtitle,
-    body.darkmode .toc-inline,
-    body.darkmode .dt-published {
-        color: #7bb01c;
-    }
+body.darkmode:not(.toc-inline) #toc h2,
+body.darkmode h1,
+body.darkmode h2,
+body.darkmode h3,
+body.darkmode h4,
+body.darkmode h5,
+body.darkmode h6,
+body.darkmode #title,
+body.darkmode #subtitle,
+body.darkmode .toc-inline,
+body.darkmode .dt-published {
+    color: #7bb01c;
+}
 
-    body.darkmode pre,
-    body.darkmode table tr:nth-child(2n),
-    body.darkmode table tr {
-        background-color: #1e1e1e !important;
-        color: #dcdcdc;
-    }
+body.darkmode pre,
+body.darkmode table tr:nth-child(2n),
+body.darkmode table tr {
+    background-color: #1e1e1e !important;
+    color: #dcdcdc;
+}
 
-    body.darkmode img {
-        background: transparent;
-    }
+body.darkmode img {
+    background: transparent;
+}
 
-    body.darkmode .logo img {
-        display: none;
-    }
+body.darkmode .logo img {
+    display: none;
+}
 
-    body.darkmode .logo::before {
-        content: "";
-        display: inline-block;
-        height: 48px;
-        width: 175px;
-        background: url("https://raw.githubusercontent.com/OAI/OpenAPI-Style-Guide/refs/heads/main/graphics/bitmap/OpenAPI_Logo_Pantone.png") no-repeat center / contain;
-        vertical-align: middle;
-    }
+body.darkmode .logo::before {
+    content: "";
+    display: inline-block;
+    height: 48px;
+    width: 175px;
+    background: url("https://raw.githubusercontent.com/OAI/OpenAPI-Style-Guide/refs/heads/main/graphics/bitmap/OpenAPI_Logo_Pantone.png") no-repeat center / contain;
+    vertical-align: middle;
 }

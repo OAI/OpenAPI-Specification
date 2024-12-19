@@ -560,19 +560,28 @@ An object representing a Server Variable for server URL template substitution.
 The server URL templating is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax.
 
 ```abnf
-server-url-template            = 1*( server-literal / template-expression )
-server-literal                 = 1*pchar
+server-url-template            = 1*( literals / template-expression )
 template-expression            = "{" template-expression-param-name "}"
 template-expression-param-name = 1*( %x00-79 / %x7C / %x7E-10FFFF ) ; every UTF8 character except { and }
+literals                       = 1*( %x21 / %x23-24 / %x26 / %x28-3B / %x3D / %x3F-5B
+                                  / %x5D / %x5F / %x61-7A / %x7E / ucschar / iprivate
+                                  / pct-encoded)
+                                      ; any Unicode character except: CTL, SP,
+                                      ;  DQUOTE, "'", "%" (aside from pct-encoded),
+                                      ;  "<", ">", "\", "^", "`", "{", "|", "}"
 
-pchar          = unreserved / pct-encoded / sub-delims / ":" / "@"
-unreserved     =  ALPHA / DIGIT / "-" / "." / "_" / "~"
+
 pct-encoded    =  "%" HEXDIG HEXDIG
-sub-delims     =  "!" / "$" / "&" / "'" / "(" / ")"
-               /  "*" / "+" / "," / ";" / "="
+ucschar        =  %xA0-D7FF / %xF900-FDCF / %xFDF0-FFEF
+               /  %x10000-1FFFD / %x20000-2FFFD / %x30000-3FFFD
+               /  %x40000-4FFFD / %x50000-5FFFD / %x60000-6FFFD
+               /  %x70000-7FFFD / %x80000-8FFFD / %x90000-9FFFD
+               /  %xA0000-AFFFD / %xB0000-BFFFD / %xC0000-CFFFD
+               /  %xD0000-DFFFD / %xE1000-EFFFD
+iprivate       =  %xE000-F8FF / %xF0000-FFFFD / %x100000-10FFFD
 ```
 
-Here, `pchar`, `unreserved`, `pct-encoded` and `sub-delims` definitions are taken from [RFC 3986](https://tools.ietf.org/html/rfc3986).
+Here, `pct-encoded`, `uschar` and `iprivate` definitions are taken from [RFC 6570](https://www.rfc-editor.org/rfc/rfc6570).
 
 ##### Fixed Fields
 

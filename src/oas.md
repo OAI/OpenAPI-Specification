@@ -564,11 +564,11 @@ server-url-template            = 1*( literals / template-expression )
 template-expression            = "{" template-expression-param-name "}"
 template-expression-param-name = 1*( %x00-79 / %x7C / %x7E-10FFFF ) ; every UTF8 character except { and }
 
-literals       = 1*( %x21 / %x23-24 / %x26 / %x28-3B / %x3D / %x3F-5B
+literals       = 1*( %x21 / %x23-24 / %x26-3B / %x3D / %x3F-5B
                / %x5D / %x5F / %x61-7A / %x7E / ucschar / iprivate
                / pct-encoded)
                     ; any Unicode character except: CTL, SP,
-                    ;  DQUOTE, "'", "%" (aside from pct-encoded),
+                    ;  DQUOTE, "%" (aside from pct-encoded),
                     ;  "<", ">", "\", "^", "`", "{", "|", "}"
 pct-encoded    =  "%" HEXDIG HEXDIG
 ucschar        =  %xA0-D7FF / %xF900-FDCF / %xFDF0-FFEF

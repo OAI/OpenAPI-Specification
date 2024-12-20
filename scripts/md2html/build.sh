@@ -48,7 +48,9 @@ for filename in $(ls -1 ../../versions/[23456789].*.md | sort -r) ; do
   echo -e "\n=== v$version ==="
 
   node md2html.js --maintainers ./history/MAINTAINERS_v$version.md ${filename} > $tempfile
-  npx respec --use-local --src $tempfile --out ../../deploy/oas/v$version.html
+  npx respec --use-local --src $tempfile --out $tempfile
+  # Dark theme css is directly inserted into the main.css
+  sed '/<link rel="stylesheet" media="(prefers-color-scheme: dark)" href="https:\/\/www.w3.org\/StyleSheets\/TR\/2021\/dark.css">/d' $tempfile > ../../deploy/oas/v$version.html
   rm $tempfile
 
   if [ $version = $latest ]; then

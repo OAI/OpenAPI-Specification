@@ -560,9 +560,9 @@ An object representing a Server Variable for server URL template substitution.
 The server URL templating is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax.
 
 ```abnf
-server-url-template            = 1*( literals / template-expression )
-template-expression            = "{" template-expression-param-name "}"
-template-expression-param-name = 1*( %x00-79 / %x7C / %x7E-10FFFF ) ; every UTF8 character except { and }
+server-url-template  = 1*( literals / server-variable )
+server-variable      = "{" server-variable-name "}"
+server-variable-name = 1*( %x00-79 / %x7C / %x7E-10FFFF ) ; every UTF8 character except { and }
 
 literals       = 1*( %x21 / %x23-24 / %x26-3B / %x3D / %x3F-5B
                / %x5D / %x5F / %x61-7A / %x7E / ucschar / iprivate

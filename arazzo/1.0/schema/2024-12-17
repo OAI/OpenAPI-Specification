@@ -1,0 +1,6 @@
+{
+  "$id": "https://spec.openapis.org/arazzo/1.0/schema/2024-12-17",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "The description of Arazzo v1.0.x documents",
+  "type": "object"
+}

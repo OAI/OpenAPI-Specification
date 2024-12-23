@@ -4,7 +4,7 @@
 
 # run this script from the root of the repo
 
-mkdir -p deploy-preview
+mkdir -p deploy-preview/temp
 mkdir -p deploy-preview/js
 
 cp -p node_modules/respec/builds/respec-w3c.* deploy-preview/js/
@@ -12,7 +12,7 @@ cp -p node_modules/respec/builds/respec-w3c.* deploy-preview/js/
 cd scripts/md2html
 
 filename=src/oas.md
-tempfile=../../deploy-preview/oas-temp.html
+tempfile=../../deploy-preview/temp/oas.html
 echo "=== ${filename} ==="
 
 node md2html.js --maintainers ../../EDITORS.md ../../${filename} > $tempfile
@@ -22,4 +22,5 @@ rm $tempfile
 echo Built deploy-preview/oas.html
 echo
 
-rm ../../deploy-preview/js/respec-w3c.*
+rm -r ../../deploy-preview/js
+rmdir ../../deploy-preview/temp

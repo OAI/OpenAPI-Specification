@@ -4506,7 +4506,7 @@ flows:
 
 Lists the required security schemes to execute this operation.
 
-The name used for each property MUST either correspond to a security scheme declared in the [Security Schemes](#security-scheme-object) under the [Components Object](#components-object), or be the URI of a Security Scheme Object.
+The name used for each property MUST either correspond to a security scheme declared in the [Security Schemes](#components-security-schemes) under the [Components Object](#components-object), or be the URI of a Security Scheme Object.
 Property names that are identical to a component name under the Components Object MUST be treated as a component name.
 To reference a Security Scheme with a single-segment relative URI reference (e.g. `foo`) that collides with a component name (e.g. `#/components/securitySchemes/foo`), use the `.` path segment (e.g. `./foo`).
 

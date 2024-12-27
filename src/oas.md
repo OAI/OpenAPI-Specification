@@ -44,6 +44,24 @@ Each template expression in the path MUST correspond to a path parameter that is
 
 The value for these path parameters MUST NOT contain any unescaped "generic syntax" characters described by [RFC3986](https://tools.ietf.org/html/rfc3986#section-3): forward slashes (`/`), question marks (`?`), or hashes (`#`).
 
+The path templating is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax
+
+```abnf
+path-template                  = "/" *( path-segment "/" ) [ path-segment ]
+path-segment                   = 1*( path-literal / template-expression )
+path-literal                   = 1*pchar
+template-expression            = "{" template-expression-param-name "}"
+template-expression-param-name = 1*( %x00-79 / %x7C / %x7E-10FFFF ) ; every UTF8 character except { and }
+
+pchar               = unreserved / pct-encoded / sub-delims / ":" / "@"
+unreserved          = ALPHA / DIGIT / "-" / "." / "_" / "~"
+pct-encoded         = "%" HEXDIG HEXDIG
+sub-delims          = "!" / "$" / "&" / "'" / "(" / ")"
+                    / "*" / "+" / "," / ";" / "="
+```
+
+Here, `pchar`, `unreserved`, `pct-encoded` and `sub-delims` definitions are taken from [RFC 3986](https://tools.ietf.org/html/rfc3986). The `path-template` is directly derived from [RFC 3986, section 3.3](https://datatracker.ietf.org/doc/html/rfc3986#section-3.3).
+
 ### Media Types
 
 Media type definitions are spread across several resources.

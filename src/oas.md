@@ -51,7 +51,7 @@ path-template                  = "/" *( path-segment "/" ) [ path-segment ]
 path-segment                   = 1*( path-literal / template-expression )
 path-literal                   = 1*pchar
 template-expression            = "{" template-expression-param-name "}"
-template-expression-param-name = 1*( %x00-79 / %x7C / %x7E-10FFFF ) ; every UTF8 character except { and }
+template-expression-param-name = 1*( %x00-7A / %x7C / %x7E-10FFFF ) ; every UTF8 character except { and }
 
 pchar               = unreserved / pct-encoded / sub-delims / ":" / "@"
 unreserved          = ALPHA / DIGIT / "-" / "." / "_" / "~"

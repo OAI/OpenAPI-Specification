@@ -38,6 +38,11 @@ collections:
     name: Extension Namespace Registry
     output: true
     permalink: /registry/:collection/:title
+  tag-kind:
+    slug: tag-kind
+    name: Tag Kind Registry
+    output: true
+    permalink: /registry/:collection/:title
 exclude:
   - Gemfile
   - Gemfile.lock

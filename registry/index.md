@@ -8,6 +8,7 @@ children:
 - title: Draft Features Registry
 - title: Format Registry
 - title: Namespace Registry
+- title: Tag Kinds Registry
 has_toc: false
 ---
 

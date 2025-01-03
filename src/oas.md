@@ -2699,43 +2699,47 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 ##### Tag Object Example
 
 ```json
-{
-  "name": "account-updates",
-  "summary": "Account Updates",
-  "description": "Account update operations",
-  "kind": "nav"
-},
-{
-  "name": "partner",
-  "summary": "Partner",
-  "description": "Operations available to the partners network",
-  "parent": "external",
-  "kind": "audience"
-},
-{
-  "name": "external",
-  "summary": "External",
-  "description": "Operations available to external consumers",
-  "kind": "audience"
-}
+"tags": [
+  {
+    "name": "account-updates",
+    "summary": "Account Updates",
+    "description": "Account update operations",
+    "kind": "nav"
+  },
+  {
+    "name": "partner",
+    "summary": "Partner",
+    "description": "Operations available to the partners network",
+    "parent": "external",
+    "kind": "audience"
+  },
+  {
+    "name": "external",
+    "summary": "External",
+    "description": "Operations available to external consumers",
+    "kind": "audience"
+  }
+]
 ```
 
 ```yaml
-- name: account-updates
-  summary: Account Updates
-  description: Account update operations
-  kind: nav
+tags:
 
-- name: partner
-  summary: Partner
-  description: Operations available to the partners network
-  parent: external
-  kind: audience
+  - name: account-updates
+    summary: Account Updates
+    description: Account update operations
+    kind: nav
 
-- name: external
-  summary: External
-  description: Operations available to external consumers
-  kind: audience
+  - name: partner
+    summary: Partner
+    description: Operations available to the partners network
+    parent: external
+    kind: audience
+
+  - name: external
+    summary: External
+    description: Operations available to external consumers
+    kind: audience
 ```
 
 #### Reference Object

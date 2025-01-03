@@ -2687,9 +2687,12 @@ It is not mandatory to have a Tag Object per tag defined in the Operation Object
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="tag-name"></a>name | `string` | **REQUIRED**. The name of the tag. |
+| <a name="tag-name"></a>name | `string` | **REQUIRED**. The name of the tag. Use this value in the `tags` array of an Operation. |
+| <a name="tag-summary"></a>summary | `string` | A short summary of the tag, used for display purposes. |
 | <a name="tag-description"></a>description | `string` | A description for the tag. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="tag-external-docs"></a>externalDocs | [External Documentation Object](#external-documentation-object) | Additional external documentation for this tag. |
+| <a name="tag-parent"></a>parent | `string` | The `name` of a tag that this tags is nested under. The named tag MUST exist in the API description, and circular references between parent and child tags MUST NOT be used. |
+| <a name="tag-kind"></a>kind | `string` | A machine-readable string to categorize what sort of tag it is. Common uses are `nav` for Navigation, `badge` for badges, `internal` for internal APIs, but any string value can be used. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
@@ -2697,14 +2700,42 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 
 ```json
 {
-  "name": "pet",
-  "description": "Pets operations"
+  "name": "account-updates",
+  "summary": "Account Updates",
+  "description": "Account update operations",
+  "kind": "nav"
+},
+{
+  "name": "partner",
+  "summary": "Partner",
+  "description": "Operations available to the partners network",
+  "parent": "external",
+  "kind": "audience"
+},
+{
+  "name": "external",
+  "summary": "External",
+  "description": "Operations available to external consumers",
+  "kind": "audience"
 }
 ```
 
 ```yaml
-name: pet
-description: Pets operations
+- name: account-updates
+  summary: Account Updates
+  description: Account update operations
+  kind: nav
+
+- name: partner
+  summary: Partner
+  description: Operations available to the partners network
+  parent: external
+  kind: audience
+
+- name: external
+  summary: External
+  description: Operations available to external consumers
+  kind: audience
 ```
 
 #### Reference Object

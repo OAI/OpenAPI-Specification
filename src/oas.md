@@ -62,6 +62,8 @@ sub-delims          = "!" / "$" / "&" / "'" / "(" / ")"
 
 Here, `pchar`, `unreserved`, `pct-encoded` and `sub-delims` definitions are taken from [RFC 3986](https://tools.ietf.org/html/rfc3986). The `path-template` is directly derived from [RFC 3986, section 3.3](https://datatracker.ietf.org/doc/html/rfc3986#section-3.3).
 
+See also [Appendix C: Using RFC6570-Based Serialization](#appendix-c-using-rfc6570-based-serialization) for additional guidance.
+
 ### Media Types
 
 Media type definitions are spread across several resources.
@@ -599,6 +601,8 @@ iprivate       =  %xE000-F8FF / %xF0000-FFFFD / %x100000-10FFFD
 ```
 
 Here, `literals`, `pct-encoded`, `ucschar` and `iprivate` definitions are taken from [RFC 6570](https://www.rfc-editor.org/rfc/rfc6570), incorporating the corrections specified in [Errata 6937](https://www.rfc-editor.org/errata/eid6937) for `literals`.
+
+See also [Appendix C: Using RFC6570-Based Serialization](#appendix-c-using-rfc6570-based-serialization) for additional guidance.
 
 ##### Fixed Fields
 

@@ -2186,18 +2186,18 @@ requestBody:
       schema:
         type: object
         properties:
+          # default for a string without `contentEncoding` is `text/plain`
           id:
-            # default for primitives without a special format is text/plain
             type: string
             format: uuid
-          profileImage:
-            # default for string with binary format is `application/octet-stream`
-            type: string
-            format: binary
+
+          # default for a schema withhout `type` is `application/octet-stream`
+          profileImage: {}
+
+          # for arrays, the Encoding Object applies to each item
+          # individually based on that item's type, which in this
+          # example is an object, so `application/json`
           addresses:
-            # for arrays, the Encoding Object applies to each item
-            # individually based on that item's type, which in this
-            # example is an object, so `application/json`
             type: array
             items:
               $ref: '#/components/schemas/Address'
@@ -2215,31 +2215,27 @@ requestBody:
       schema:
         type: object
         properties:
+          # No Encoding Object, so use default `text/plain`
           id:
-            # default is `text/plain`
             type: string
             format: uuid
+
+          # Encoding Object overrides the default `application/json`
+          # for each item in the array with `application/xml; charset=utf-8`
           addresses:
-            # default based on the `items` subschema would be
-            # `application/json`, but we want these address objects
-            # serialized as `application/xml` instead
             description: addresses in XML format
             type: array
             items:
               $ref: '#/components/schemas/Address'
-          profileImage:
-            # default is application/octet-stream, but we can declare
-            # a more specific image type or types
-            type: string
-            format: binary
+
+          # Encoding Object accepts only PNG or JPEG, and also describes
+          # a custom header for just this part in the multipart format
+          profileImage: {}
+
       encoding:
         addresses:
-          # require XML Content-Type in utf-8 encoding
-          # This is applied to each address part corresponding
-          # to each address in he array
           contentType: application/xml; charset=utf-8
         profileImage:
-          # only accept png or jpeg
           contentType: image/png, image/jpeg
           headers:
             X-Rate-Limit-Limit:

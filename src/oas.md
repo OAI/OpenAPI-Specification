@@ -1805,7 +1805,7 @@ requestBody:
             type: string
             format: uuid
 
-          # default for a schema withhout `type` is `application/octet-stream`
+          # default for a schema without `type` is `application/octet-stream`
           profileImage: {}
 
           # default for arrays is based on the type in the `items`

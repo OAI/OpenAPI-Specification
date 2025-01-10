@@ -2692,7 +2692,7 @@ It is not mandatory to have a Tag Object per tag defined in the Operation Object
 | <a name="tag-description"></a>description | `string` | A description for the tag. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="tag-external-docs"></a>externalDocs | [External Documentation Object](#external-documentation-object) | Additional external documentation for this tag. |
 | <a name="tag-parent"></a>parent | `string` | The `name` of a tag that this tags is nested under. The named tag MUST exist in the API description, and circular references between parent and child tags MUST NOT be used. |
-| <a name="tag-kind"></a>kind | `string` | A machine-readable string to categorize what sort of tag it is. Common uses are `nav` for Navigation, `badge` for badges, `internal` for internal APIs, but any string value can be used. |
+| <a name="tag-kind"></a>kind | `string` | A machine-readable string to categorize what sort of tag it is. Any string value can be used; common uses are `nav` for Navigation, `badge` for visible badges, `audience` for APIs used by different groups. A [registry of the most commonly used values](https://spec.openapis.org/registry/tag-kind/) is available. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 

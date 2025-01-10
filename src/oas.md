@@ -2191,7 +2191,7 @@ requestBody:
             type: string
             format: uuid
 
-          # default for a schema withhout `type` is `application/octet-stream`
+          # default for a schema without `type` is `application/octet-stream`
           profileImage: {}
 
           # for arrays, the Encoding Object applies to each item

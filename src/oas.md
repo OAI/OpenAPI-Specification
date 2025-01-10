@@ -582,7 +582,7 @@ All objects defined within the Components Object will have no effect on the API 
 | <a name="components-examples"></a> examples | Map[`string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Example Objects](#example-object). |
 | <a name="components-request-bodies"></a> requestBodies | Map[`string`, [Request Body Object](#request-body-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Request Body Objects](#request-body-object). |
 | <a name="components-headers"></a> headers | Map[`string`, [Header Object](#header-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Header Objects](#header-object). |
-| <a name="security-scheme-object"></a> securitySchemes | Map[`string`, [Security Scheme Object](#security-scheme-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Security Scheme Objects](#security-scheme-object). |
+| <a name="components-security-schemes"></a> securitySchemes | Map[`string`, [Security Scheme Object](#security-scheme-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Security Scheme Objects](#security-scheme-object). |
 | <a name="components-links"></a> links | Map[`string`, [Link Object](#link-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Link Objects](#link-object). |
 | <a name="components-callbacks"></a> callbacks | Map[`string`, [Callback Object](#callback-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Callback Objects](#callback-object). |
 | <a name="components-path-items"></a> pathItems | Map[`string`, [Path Item Object](#path-item-object)] | An object to hold reusable [Path Item Objects](#path-item-object). |
@@ -3983,7 +3983,7 @@ flows:
 #### Security Requirement Object
 
 Lists the required security schemes to execute this operation.
-The name used for each property MUST correspond to a security scheme declared in the [Security Schemes](#security-scheme-object) under the [Components Object](#components-object).
+The name used for each property MUST correspond to a security scheme declared in the [Security Schemes](#components-security-schemes) under the [Components Object](#components-object).
 
 A Security Requirement Object MAY refer to multiple security schemes in which case all schemes MUST be satisfied for a request to be authorized.
 This enables support for scenarios where multiple query parameters or HTTP headers are required to convey security information.
@@ -3997,7 +3997,7 @@ An empty Security Requirement Object (`{}`) indicates anonymous access is suppor
 
 | Field Pattern | Type | Description |
 | ---- | :----: | ---- |
-| <a name="security-requirements-name"></a>{name} | [`string`] | Each name MUST correspond to a security scheme which is declared in the [Security Schemes](#security-scheme-object) under the [Components Object](#components-object). If the security scheme is of type `"oauth2"` or `"openIdConnect"`, then the value is a list of scope names required for the execution, and the list MAY be empty if authorization does not require a specified scope. For other security scheme types, the array MAY contain a list of role names which are required for the execution, but are not otherwise defined or exchanged in-band. |
+| <a name="security-requirements-name"></a>{name} | [`string`] | Each name MUST correspond to a security scheme which is declared in the [Security Schemes](#components-security-schemes) under the [Components Object](#components-object). If the security scheme is of type `"oauth2"` or `"openIdConnect"`, then the value is a list of scope names required for the execution, and the list MAY be empty if authorization does not require a specified scope. For other security scheme types, the array MAY contain a list of role names which are required for the execution, but are not otherwise defined or exchanged in-band. |
 
 ##### Security Requirement Object Examples
 

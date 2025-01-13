@@ -1,0 +1,807 @@
+{
+  "$id": "https://spec.openapis.org/arazzo/1.0/schema/2024-08-01",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "The description of Arazzo v1.0.x documents",
+  "type": "object",
+  "properties": {
+    "arazzo": {
+      "description": "The version number of the Arazzo Specification",
+      "type": "string",
+      "pattern": "^1\\.0\\.\\d+(-.+)?$"
+    },
+    "info": {
+      "$ref": "#/$defs/info"
+    },
+    "sourceDescriptions": {
+      "description": "A list of source descriptions such as Arazzo or OpenAPI",
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/source-description-object"
+      }
+    },
+    "workflows": {
+      "description": "A list of workflows",
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/workflow-object"
+      }
+    },
+    "components": {
+      "$ref": "#/$defs/components-object"
+    }
+  },
+  "required": [
+    "arazzo",
+    "info",
+    "sourceDescriptions",
+    "workflows"
+  ],
+  "$ref": "#/$defs/specification-extensions",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "info": {
+      "$comment": "https://spec.openapis.org/arazzo/v1.0#info-object",
+      "description": "Provides metadata about the Arazzo description",
+      "type": "object",
+      "properties": {
+        "title": {
+          "description": "A human readable title of the Arazzo Description",
+          "type": "string"
+        },
+        "summary": {
+          "description": "A short summary of the Arazzo Description",
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of the purpose of the workflows defined. CommonMark syntax MAY be used for rich text representation",
+          "type": "string"
+        },
+        "version": {
+          "description": "The version identifier of the Arazzo document (which is distinct from the Arazzo Specification version)",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "version"
+      ],
+      "$ref": "#/$defs/specification-extensions",
+      "unevaluatedProperties": false
+    },
+    "source-description-object": {
+      "$comment": "https://spec.openapis.org/arazzo/v1.0#source-description-object",
+      "description": "Describes a source description (such as an OpenAPI description)\nthat will be referenced by one or more workflows described within\nan Arazzo description",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "A unique name for the source description",
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_\\-]+$"
+        },
+        "url": {
+          "description": "A URL to a source description to be used by a workflow",
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "type": {
+          "description": "The type of source description",
+          "enum": [
+            "arazzo",
+            "openapi"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "url"
+      ],
+      "$ref": "#/$defs/specification-extensions",
+      "unevaluatedProperties": false
+    },
+    "workflow-object": {
+      "$comment": "https://spec.openapis.org/arazzo/v1.0#workflow-object",
+      "description": "Describes the steps to be taken across one or more APIs to achieve an objective",
+      "type": "object",
+      "properties": {
+        "workflowId": {
+          "description": "Unique string to represent the workflow",
+          "$anchor": "workflowId",
+          "type": "string"
+        },
+        "summary": {
+          "description": "A summary of the purpose or objective of the workflow",
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of the workflow. CommonMark syntax MAY be used for rich text representation",
+          "type": "string"
+        },
+        "inputs": {
+          "description": "A JSON Schema 2020-12 object representing the input parameters used by this workflow",
+          "$ref": "#/$defs/schema"
+        },
+        "dependsOn": {
+          "description": "A list of workflows that MUST be completed before this workflow can be processed",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "steps": {
+          "description": "An ordered list of steps where each step represents a call to an API operation or to another workflow",
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/step-object"
+          }
+        },
+        "successActions": {
+          "description": "A list of success actions that are applicable for all steps described under this workflow",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/success-action-object"
+              },
+              {
+                "$ref": "#/$defs/reusable-object"
+              }
+            ]
+          }
+        },
+        "failureActions": {
+          "description": "A list of failure actions that are applicable for all steps described under this workflow",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/failure-action-object"
+              },
+              {
+                "$ref": "#/$defs/reusable-object"
+              }
+            ]
+          }
+        },
+        "outputs": {
+          "description": "A map between a friendly name and a dynamic output value",
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9\\.\\-_]+$": {
+              "type": "string"
+            }
+          }
+        },
+        "parameters": {
+          "description": "A list of parameters that are applicable for all steps described under this workflow",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/parameter-object"
+              },
+              {
+                "$ref": "#/$defs/reusable-object"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "workflowId",
+        "steps"
+      ],
+      "$ref": "#/$defs/specification-extensions",
+      "unevaluatedProperties": false
+    },
+    "step-object": {
+      "$comment": "https://spec.openapis.org/arazzo/v1.0#step-object'",
+      "description": "Describes a single workflow step which MAY be a call to an\nAPI operation (OpenAPI Operation Object or another Workflow Object)",
+      "type": "object",
+      "properties": {
+        "stepId": {
+          "description": "Unique string to represent the step",
+          "$anchor": "stepId",
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of the step. CommonMark syntax MAY be used for rich text representation",
+          "type": "string"
+        },
+        "operationId": {
+          "description": "The name of an existing, resolvable operation, as defined with a unique operationId and existing within one of the sourceDescriptions",
+          "type": "string"
+        },
+        "operationPath": {
+          "description": "A reference to a Source combined with a JSON Pointer to reference an operation",
+          "type": "string"
+        },
+        "workflowId": {
+          "description": "The workflowId referencing an existing workflow within the Arazzo description",
+          "$ref": "#workflowId"
+        },
+        "parameters": {
+          "description": "A list of parameters that MUST be passed to an operation or workflow as referenced by operationId, operationPath, or workflowId",
+          "type": "array",
+          "uniqueItems": true,
+          "items": true
+        },
+        "requestBody": {
+          "$ref": "#/$defs/request-body-object"
+        },
+        "successCriteria": {
+          "description": "A list of assertions to determine the success of the step",
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/criterion-object"
+          }
+        },
+        "onSuccess": {
+          "description": "An array of success action objects that specify what to do upon step success",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/success-action-object"
+              },
+              {
+                "$ref": "#/$defs/reusable-object"
+              }
+            ]
+          }
+        },
+        "onFailure": {
+          "description": "An array of failure action objects that specify what to do upon step failure",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/failure-action-object"
+              },
+              {
+                "$ref": "#/$defs/reusable-object"
+              }
+            ]
+          }
+        },
+        "outputs": {
+          "description": "A map between a friendly name and a dynamic output value defined using a runtime expression",
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9\\.\\-_]+$": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "stepId"
+      ],
+      "oneOf": [
+        {
+          "required": [
+            "operationId"
+          ]
+        },
+        {
+          "required": [
+            "operationPath"
+          ]
+        },
+        {
+          "required": [
+            "workflowId"
+          ]
+        }
+      ],
+      "allOf": [
+        {
+          "if": {
+            "oneOf": [
+              {
+                "required": [
+                  "operationPath"
+                ]
+              },
+              {
+                "required": [
+                  "operationId"
+                ]
+              }
+            ]
+          },
+          "then": {
+            "properties": {
+              "parameters": {
+                "items": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/$defs/reusable-object"
+                    },
+                    {
+                      "$ref": "#/$defs/parameter-object",
+                      "required": [
+                        "in"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "workflowId"
+            ]
+          },
+          "then": {
+            "properties": {
+              "parameters": {
+                "items": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/$defs/parameter-object"
+                    },
+                    {
+                      "$ref": "#/$defs/reusable-object"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "$ref": "#/$defs/specification-extensions",
+      "unevaluatedProperties": false
+    },
+    "request-body-object": {
+      "$comment": "https://spec.openapis.org/arazzo/v1.0#request-body-object",
+      "description": "The request body to pass to an operation as referenced by operationId or operationPath",
+      "type": "object",
+      "properties": {
+        "contentType": {
+          "description": "The Content-Type for the request content",
+          "type": "string"
+        },
+        "payload": true,
+        "replacements": {
+          "description": "A list of locations and values to set within a payload",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/payload-replacement-object"
+          }
+        }
+      },
+      "$ref": "#/$defs/specification-extensions",
+      "unevaluatedProperties": false
+    },
+    "criterion-object": {
+      "$comment": "https://spec.openapis.org/arazzo/v1.0#criterion-object",
+      "description": "An object used to specify the context, conditions, and condition types\nthat can be used to prove or satisfy assertions specified in Step Object successCriteria,\nSuccess Action Object criteria, and Failure Action Object criteria",
+      "type": "object",
+      "properties": {
+        "context": {
+          "description": "A runtime expression used to set the context for the condition to be applied on",
+          "type": "string"
+        },
+        "condition": {
+          "description": "The condition to apply",
+          "type": "string"
+        }
+      },
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "description": "The type of condition to be applied",
+              "enum": [
+                "simple",
+                "regex",
+                "jsonpath",
+                "xpath"
+              ],
+              "default": "simple"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/criterion-expression-type-object"
+        }
+      ],
+      "required": [
+        "condition"
+      ],
+      "dependentRequired": {
+        "type": [
+          "context"
+        ]
+      },
+      "$ref": "#/$defs/specification-extensions",
+      "unevaluatedProperties": false
+    },
+    "criterion-expression-type-object": {
+      "$comment": "https://spec.openapis.org/arazzo/v1.0#criterion-expression-type-object",
+      "description": "An object used to describe the type and version of an expression used within a Criterion Object",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "The type of condition to be applied",
+          "enum": [
+            "jsonpath",
+            "xpath"
+          ]
+        },
+        "version": {
+          "description": "A short hand string representing the version of the expression type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "version"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "jsonpath"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "version": {
+                "const": "draft-goessner-dispatch-jsonpath-00"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "xpath"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "version": {
+                "enum": [
+                  "xpath-10",
+                  "xpath-20",
+                  "xpath-30"
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "$ref": "#/$defs/specification-extensions"
+    },
+    "success-action-object": {
+      "$comment": "https://spec.openapis.org/arazzo/v1.0#success-action-object",
+      "description": "A single success action which describes an action to take upon success of a workflow step",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The name of the success action",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of action to take",
+          "enum": [
+            "end",
+            "goto"
+          ]
+        },
+        "workflowId": {
+          "description": "The workflowId referencing an existing workflow within the Arazzo description to transfer to upon success of the step",
+          "$ref": "#workflowId"
+        },
+        "stepId": {
+          "description": "The stepId to transfer to upon success of the step",
+          "$ref": "#stepId"
+        },
+        "criteria": {
+          "description": "A list of assertions to determine if this action SHALL be executed",
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/criterion-object"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "goto"
+              }
+            }
+          },
+          "then": {
+            "oneOf": [
+              {
+                "required": [
+                  "workflowId"
+                ]
+              },
+              {
+                "required": [
+                  "stepId"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "required": [
+        "name",
+        "type"
+      ],
+      "$ref": "#/$defs/specification-extensions",
+      "unevaluatedProperties": false
+    },
+    "failure-action-object": {
+      "$comment": "https://spec.openapis.org/arazzo/v1.0#failure-action-object",
+      "description": "A single failure action which describes an action to take upon failure of a workflow step",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The name of the failure action",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of action to take",
+          "enum": [
+            "end",
+            "goto",
+            "retry"
+          ]
+        },
+        "workflowId": {
+          "description": "The workflowId referencing an existing workflow within the Arazzo description to transfer to upon failure of the step",
+          "$ref": "#workflowId"
+        },
+        "stepId": {
+          "description": "The stepId to transfer to upon failure of the step",
+          "$ref": "#stepId"
+        },
+        "retryAfter": {
+          "description": "A non-negative decimal indicating the seconds to delay after the step failure before another attempt SHALL be made",
+          "type": "number",
+          "minimum": 0
+        },
+        "retryLimit": {
+          "description": "A non-negative integer indicating how many attempts to retry the step MAY be attempted before failing the overall step",
+          "type": "integer",
+          "minimum": 0
+        },
+        "criteria": {
+          "description": "A list of assertions to determine if this action SHALL be executed",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/criterion-object"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "goto",
+                  "retry"
+                ]
+              }
+            }
+          },
+          "then": {
+            "oneOf": [
+              {
+                "required": [
+                  "workflowId"
+                ]
+              },
+              {
+                "required": [
+                  "stepId"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "retry"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "retryAfter"
+            ]
+          }
+        }
+      ],
+      "required": [
+        "name",
+        "type"
+      ],
+      "$ref": "#/$defs/specification-extensions",
+      "unevaluatedProperties": false
+    },
+    "reusable-object": {
+      "$comment": "https://spec.openapis.org/arazzo/v1.0#reusable-object",
+      "description": "A simple object to allow referencing of objects contained within the Components Object",
+      "type": "object",
+      "properties": {
+        "reference": {
+          "description": "A runtime expression used to reference the desired object",
+          "type": "string"
+        },
+        "value": {
+          "description": "Sets a value of the referenced parameter",
+          "type": [
+            "string",
+            "boolean",
+            "object",
+            "array",
+            "number",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "reference"
+      ],
+      "unevaluatedProperties": false
+    },
+    "parameter-object": {
+      "$comment": "https://spec.openapis.org/arazzo/v1.0#parameter-object",
+      "description": "Describes a single step parameter",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The name of the parameter",
+          "type": "string"
+        },
+        "in": {
+          "description": "The named location of the parameter",
+          "enum": [
+            "path",
+            "query",
+            "header",
+            "cookie"
+          ]
+        },
+        "value": {
+          "description": "The value to pass in the parameter",
+          "type": [
+            "string",
+            "boolean",
+            "object",
+            "array",
+            "number",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "value"
+      ],
+      "$ref": "#/$defs/specification-extensions",
+      "unevaluatedProperties": false
+    },
+    "payload-replacement-object": {
+      "$comment": "https://spec.openapis.org/arazzo/v1.0#payload-replacement-object",
+      "description": "Describes a location within a payload (e.g., a request body) and a value to set within the location",
+      "type": "object",
+      "properties": {
+        "target": {
+          "description": "A JSON Pointer or XPath Expression which MUST be resolved against the request body",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value set within the target location",
+          "type": "string"
+        }
+      },
+      "required": [
+        "target",
+        "value"
+      ],
+      "unevaluatedProperties": false,
+      "$ref": "#/$defs/specification-extensions"
+    },
+    "components-object": {
+      "$comment": "https://spec.openapis.org/arazzo/v1.0#components-object",
+      "description": "Holds a set of reusable objects for different aspects of the Arazzo Specification",
+      "type": "object",
+      "properties": {
+        "inputs": {
+          "description": "An object to hold reusable JSON Schema 2020-12 schemas to be referenced from workflow inputs",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/schema"
+          }
+        },
+        "parameters": {
+          "description": "An object to hold reusable Parameter Objects",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/parameter-object"
+          }
+        },
+        "successActions": {
+          "description": "An object to hold reusable Success Actions Objects",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/success-action-object"
+          }
+        },
+        "failureActions": {
+          "description": "An object to hold reusable Failure Actions Objects",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/failure-action-object"
+          }
+        }
+      },
+      "patternProperties": {
+        "^(inputs|parameters|successActions|failureActions)$": {
+          "$comment": "Enumerating all of the property names in the regex is necessary for unevaluatedProperties to work as expected",
+          "propertyNames": {
+            "pattern": "^[a-zA-Z0-9\\.\\-_]+$"
+          }
+        }
+      },
+      "unevaluatedProperties": false,
+      "$ref": "#/$defs/specification-extensions"
+    },
+    "specification-extensions": {
+      "$comment": "https://spec.openapis.org/arazzo/v1.0#specification-extensions",
+      "description": "While the Arazzo Specification tries to accommodate most use cases, additional data can be added to extend the specification at certain points",
+      "patternProperties": {
+        "^x-": true
+      }
+    },
+    "schema": {
+      "$comment": "https://spec.openapis.org/arazzo/v1.0#schema-object",
+      "$ref": "https://json-schema.org/draft/2020-12/schema"
+    }
+  }
+}

@@ -163,6 +163,21 @@ This might apply to, for example, Markdown files, automation, and scripts.
 For all pull requests, if they should not be merged yet for any reason (they depend on something else, you would like feedback from a specific reviewer), mark them as draft and they will not be merged while in that state.
 Draft pull requests can still be reviewed while in draft state.
 
+### Preview specification HTML locally
+
+The markdown source files are converted to HTML before publishing.
+To do this locally, please
+
+1. Install [Node.js](https://nodejs.org/)
+2. Check out this repo, go to the repo root, and switch to a development branch
+3. Execute `npm install` (once, repeat after merging upstream changes)
+4. Execute `npm run build-src` after changing `src/oas.md` 
+5. Open output file `deploy-preview/oas.html` with a browser
+
+Before creating a pull request or marking a draft pull request as ready for review, please
+
+6. Execute `npm run validate-markdown` and fix any reported problems in `src/oas.md`
+
 ## Reviewers
 
 > [!NOTE]

@@ -4,6 +4,8 @@
 
 # run this script from the root of the repo
 
+npm run validate-markdown || exit -1
+
 mkdir -p deploy-preview/temp
 mkdir -p deploy-preview/js
 

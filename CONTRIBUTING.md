@@ -171,12 +171,10 @@ To do this locally, please
 1. Install [Node.js](https://nodejs.org/)
 2. Check out this repo, go to the repo root, and switch to a development branch
 3. Execute `npm install` (once, repeat after merging upstream changes)
-4. Execute `npm run build-src` after changing `src/oas.md` 
+4. Execute `npm run build-src` after changing `src/oas.md` (this first executes `npm run validate-markdown`, which can also be run separately)
 5. Open output file `deploy-preview/oas.html` with a browser
 
-Before creating a pull request or marking a draft pull request as ready for review, please
-
-6. Execute `npm run validate-markdown` and fix any reported problems in `src/oas.md`
+Please make sure the markdown validates and builds using the above steps before creating a pull request or marking a draft pull request as ready for review.
 
 ## Reviewers
 

@@ -2140,7 +2140,7 @@ requestBody:
             type: string
           icon:
             # The default content type with "contentEncoding" present
-            # is application/octet-stream, # so we need to set the correct
+            # is application/octet-stream, so we need to set the correct
             # image media type(s) in the Encoding Object.
             type: string
             contentEncoding: base64url

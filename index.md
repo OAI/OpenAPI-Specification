@@ -38,7 +38,7 @@ _Note that while schemas can catch many errors, they are not guaranteed to catch
 
 ### Arazzo Schemas
 
-_TBD_
+{% include schema-iteration-list.md specification="arazzo" %}
 
 ### OpenAPI Specification Schemas
 

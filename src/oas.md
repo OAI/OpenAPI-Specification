@@ -1746,8 +1746,9 @@ requestBody:
           name:
             type: string
           icon:
-            # The default with "contentEncoding" is application/octet-stream,
-            # so we need to set image media type(s) in the Encoding Object.
+            # The default content type with "contentEncoding" present
+            # is application/octet-stream, so we need to set the correct
+            # image media type(s) in the Encoding Object.
             type: string
             contentEncoding: base64url
   encoding:
@@ -1800,16 +1801,19 @@ requestBody:
       schema:
         type: object
         properties:
-          # default for a string without `contentEncoding` is `text/plain`
+          # default content type for a string without `contentEncoding`
+          # is `text/plain`
           id:
             type: string
             format: uuid
 
-          # default for a schema without `type` is `application/octet-stream`
+          # default content type for a schema without `type`
+          # is `application/octet-stream`
           profileImage: {}
 
-          # default for arrays is based on the type in the `items`
-          # subschema, which is an object, so `application/json`
+          # default content type for arrays is based on the type
+          # in the `items` subschema, which is an object here,
+          # so the default content type for each item is `application/json`
           addresses:
             type: array
             items:
@@ -1833,7 +1837,7 @@ requestBody:
             type: string
             format: uuid
 
-          # Encoding Object overrides the default `application/json`
+          # Encoding Object overrides the default `application/json` content type
           # for each item in the array with `application/xml; charset=utf-8`
           addresses:
             description: addresses in XML format

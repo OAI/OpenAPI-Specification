@@ -214,6 +214,11 @@ Plus some suggestions, rather than rules:
 * property of a "plain" JSON object that is not an OpenAPI-defined Foo Object -> "property"
 * "attribute" is only used in the XML context and means "XML attribute"
 
+### Field Names and Values in YAML comments
+
+Field names and entries such as content types should be in backticks, they would be fixed-width fonts if the markdown was rendered (which the comments are not).
+Values like "Dog" should be double quoted as they are a value rather than a keyword.
+
 ## Release Process and Scope
 
 This section relates to the 3.x versions only.

@@ -1,0 +1,14 @@
+openapi: 3.1.0
+
+# this example should fail as the server variable enum is empty, and so does not contain the default value
+
+info:
+  title: API
+  version: 1.0.0
+servers:
+  - url: https://example.com/{var}
+    variables:
+      var:
+        enum: []
+        default: a
+components: {}

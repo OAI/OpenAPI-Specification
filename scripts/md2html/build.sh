@@ -15,8 +15,24 @@ cp -p ../../node_modules/respec/builds/respec-w3c.* ../../deploy/js/
 latest=`git describe --abbrev=0 --tags`
 latestCopied=none
 lastMinor="-"
-for filename in $(ls -1 ../../versions/[23456789].*.md | sort -r) ; do
-  if [[ ${filename} == *-editors.md ]];then
+
+# If $1 is not provided, process all versions
+# If $1 is "latest", process the last-tagged version
+# Otherwise, process the specified version
+if [ -z "$1" ]; then
+  files=$(ls -1 ../../versions/[23456789].*.md | sort -r)
+elif [ "$1" = "latest" ]; then
+  files="../../versions/$latest.md"
+elif [ -f "../../versions/$1.md" ]; then
+  files="../../versions/$1.md"
+else
+  echo "Error: version $1.md not found"
+  exit 1
+fi
+
+for filename in $files; do
+
+  if [[ ${filename} == *-editors.md ]]; then
     continue
   fi
 
@@ -30,7 +46,7 @@ for filename in $(ls -1 ../../versions/[23456789].*.md | sort -r) ; do
   rm $tempfile
 
   if [ $version = $latest ]; then
-    if [[ ${version} != *"rc"* ]];then
+    if [[ ${version} != *"rc"* ]]; then
       # version is not a Release Candidate
       ( cd ../../deploy/oas && ln -sf v$version.html latest.html )
       latestCopied=v$version

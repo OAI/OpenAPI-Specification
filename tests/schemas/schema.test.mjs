@@ -1,12 +1,14 @@
 import { readdirSync, readFileSync } from "node:fs";
 import YAML from "yaml";
-import { validate, setMetaSchemaOutputFormat } from "@hyperjump/json-schema/openapi-3-1";
+import { validate as validate30 } from "@hyperjump/json-schema/openapi-3-0";
+import { validate as validate31, setMetaSchemaOutputFormat } from "@hyperjump/json-schema/openapi-3-1";
 import { BASIC } from "@hyperjump/json-schema/experimental";
 import { describe, test, expect } from "vitest";
 
 import contentTypeParser from "content-type";
 import { addMediaTypePlugin } from "@hyperjump/browser";
 import { buildSchemaDocument } from "@hyperjump/json-schema/experimental";
+import { validate } from "mdv";
 
 addMediaTypePlugin("application/schema+yaml", {
   parse: async (response) => {
@@ -27,12 +29,14 @@ const parseYamlFromFile = (filePath) => {
 setMetaSchemaOutputFormat(BASIC);
 
 const SCHEMAS = [
+  { schema: "./schemas/v3.0/schema.yaml", tests: "./tests/schemas/v3.0", validate: validate30 },
   { schema: "./schemas/v3.1/schema.yaml", tests: "./tests/schemas/v3.1" },
   { schema: "./src/schemas/validation/schema.yaml", tests: "./tests/schemas/vNext" }
 ];
 
 
 for (const s of SCHEMAS) {
+  const validate = s.validate || validate31;
   const validateOpenApi = await validate(s.schema);
   const folder = s.tests;
 

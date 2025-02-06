@@ -29,16 +29,16 @@ const parseYamlFromFile = (filePath) => {
 setMetaSchemaOutputFormat(BASIC);
 
 const SCHEMAS = [
-  { schema: "./schemas/v3.0/schema.yaml", tests: "./tests/schemas/v3.0", validate: validate30 },
-  { schema: "./schemas/v3.1/schema.yaml", tests: "./tests/schemas/v3.1" },
-  { schema: "./src/schemas/validation/schema.yaml", tests: "./tests/schemas/vNext" }
+  { schema: "./schemas/v3.0/schema.yaml", fixtures: "./tests/schemas/v3.0", validate: validate30 },
+  { schema: "./schemas/v3.1/schema.yaml", fixtures: "./tests/schemas/v3.1" },
+  { schema: "./src/schemas/validation/schema.yaml", fixtures: "./tests/schemas/vNext" }
 ];
 
 
 for (const s of SCHEMAS) {
   const validate = s.validate || validate31;
   const validateOpenApi = await validate(s.schema);
-  const folder = s.tests;
+  const folder = s.fixtures;
 
   describe(folder, () => {
     describe("Pass", () => {

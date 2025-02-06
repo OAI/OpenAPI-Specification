@@ -26,10 +26,10 @@ const parseYamlFromFile = (filePath) => {
 
 setMetaSchemaOutputFormat(BASIC);
 
-const validateOpenApi = await validate("./schemas/v3.1/schema.yaml");
-const folder = './tests/v3.1';
+const validateOpenApi = await validate("./src/schemas/validation/schema.yaml");
+const folder = './tests/vNext';
 
-describe("v3.1", () => {
+describe("vNext", () => {
   describe("Pass", () => {
     readdirSync(`${folder}/pass`, { withFileTypes: true })
       .filter((entry) => entry.isFile() && /\.yaml$/.test(entry.name))

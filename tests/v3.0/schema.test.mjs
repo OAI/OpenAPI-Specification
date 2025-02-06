@@ -36,7 +36,7 @@ describe("pass", async () => {
             test(entry.name, () => {
                 const instance = parseYamlFromFile(folder + entry.name);
                 const output = validateOpenApi(instance, BASIC);
-                expect(output.valid).to.equal(true);
+                expect(output).to.deep.equal({ valid: true });
             });
         });
 });

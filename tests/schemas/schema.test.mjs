@@ -31,7 +31,7 @@ setMetaSchemaOutputFormat(BASIC);
 const SCHEMAS = [
   { schema: "./schemas/v3.0/schema.yaml", fixtures: "./tests/schemas/v3.0", validate: validate30 },
   { schema: "./schemas/v3.1/schema.yaml", fixtures: "./tests/schemas/v3.1" },
-  { schema: "./src/schemas/validation/schema.yaml", fixtures: "./tests/schemas/vNext" }
+  { schema: "./src/schemas/validation/schema.yaml", fixtures: "./tests/schemas/dev" }
 ];
 
 

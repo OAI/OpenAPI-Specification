@@ -17,5 +17,5 @@ for schemaDir in schemas/v3* ; do
   echo
 done
 
-echo vNext
-node scripts/schema-test-coverage.mjs src/schemas/validation/schema.yaml tests/schemas/vNext/pass
+echo src
+node scripts/schema-test-coverage.mjs src/schemas/validation/schema.yaml tests/schemas/dev/pass

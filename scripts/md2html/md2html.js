@@ -131,10 +131,7 @@ function preface(title,options) {
     // ReSpec
     preface += '<script src="../js/respec-w3c.js" class="remove"></script>';
     preface += `<script class="remove">var respecConfig = ${JSON.stringify(respec)};</script>`;
-    try {
-        preface += fs.readFileSync('./analytics/google.html','utf8');
-    }
-    catch (ex) {}
+    preface += fs.readFileSync(path.resolve(__dirname, 'analytics/google.html'),'utf8');
     preface += '</head><body>';
     preface += '<style>';
     preface += '#respec-ui { visibility: hidden; }';

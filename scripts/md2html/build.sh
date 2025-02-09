@@ -12,18 +12,17 @@
 #
 # It contains bashisms
 
-if [ -z "$1" ]; then
-  deploydir="deploy/oas"
-else
+if [ "$1" = "src" ]; then
   deploydir="deploy-preview"
+else
+  deploydir="deploy/oas"
 fi
 
 mkdir -p $deploydir/js
 mkdir -p $deploydir/temp
+cp -p node_modules/respec/builds/respec-w3c.* $deploydir/js/
 
 latest=$(git describe --abbrev=0 --tags)
-latestCopied="none"
-lastMinor="-"
 
 if [ -z "$1" ]; then
   specifications=$(ls -1 versions/[23456789].*.md | grep -v -e "\-editors" | sort -r)
@@ -35,12 +34,11 @@ else
   specifications=$(ls -1 versions/$1.md)
 fi
 
-cp -p node_modules/respec/builds/respec-w3c.* $deploydir/js/
+latestCopied="none"
+lastMinor="-"
 
 for specification in $specifications; do
   version=$(basename $specification .md)
-  minorVersion=${version:0:3}
-  tempfile="$deploydir/temp/$version.html"
 
   if [ "$1" = "src" ]; then
     destination="$deploydir/$version.html"
@@ -49,6 +47,9 @@ for specification in $specifications; do
     destination="$deploydir/v$version.html"
     maintainers="$(dirname $specification)/$version-editors.md"
   fi
+
+  minorVersion=${version:0:3}
+  tempfile="$deploydir/temp/$version.html"
 
   echo === Building $version to $destination
 

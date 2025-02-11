@@ -3406,7 +3406,7 @@ However, the exact nature of such conversions are implementation-defined.
 
 When the discriminating property is defined as optional, the `discriminator` field must include a `default` field that specifies a schema that is expected to validate the structure of the model when the discriminating property is not present in the payload. This allows the schema to still be validated correctly even if the discriminator property is missing.
 
-The primary use case for an optional discriminating property is to allow a schema to be extended with a discriminator without breaking existing clients that do not provide the discriminator property.
+The primary use case for an optional discriminating property is to allow a schema to be extended with a discriminator without breaking existing clients that do not provide the discriminating property.
 
 Typically the schema specified in the `default` field will specify that the discriminating property is not present, e.g.
 

@@ -702,10 +702,16 @@ $defs:
     properties:
       name:
         type: string
+      summary:
+        type: string
       description:
         type: string
       externalDocs:
         $ref: '#/$defs/external-documentation'
+      parent:
+        type: string
+      kind:
+        type: string
     required:
       - name
     $ref: '#/$defs/specification-extensions'

@@ -47,13 +47,13 @@ jobs:
       uses: peter-evans/create-pull-request@v6
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        branch: vX.Y-publish-schema-iteration
+        branch: ${{ github.ref_name }}-publish-schema-iteration
         base: gh-pages
         delete-branch: true
         path: deploy
         labels: Housekeeping,Schema
         reviewers: darrelmiller,webron,earth2marsh,webron,lornajane,mikekistler,miqui,ralfhandl,handrews,karenetheridge
-        title: 'vX.Y: publish OpenAPI schema iterations'
+        title: '${{ github.ref_name }}: publish OpenAPI schema iterations'
         commit-message: New OpenAPI schema iterations
         signoff: true
         body: |

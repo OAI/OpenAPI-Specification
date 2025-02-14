@@ -12,6 +12,10 @@ on:
   push:
     branches:
       - vX.Y-dev
+    paths:
+      - 'src/schemas/validation/*.yaml'
+      - 'scripts/schema-publish.sh'
+      - '.github/workflows/schema-publish.yaml'
   workflow_dispatch: {}
 
 jobs:

@@ -2875,11 +2875,11 @@ JSON Schema also provides the `anyOf` and `oneOf` keywords, which allow defining
 As is the case with `allOf`, the schemas are validated _independently_.
 These keywords can be used to describe polymorphism, where a single field can accept multiple types of values.
 
-The OpenAPI specification extends the JSON Schema support for polymorphism by adding the [`discriminator`](#schema-discriminator) field.
-When used, the `discriminator` indicates the name of the property that hints which schema of an `anyOf` or `oneOf` is expected to validate the structure of the model.
-The discriminating property may be defined as required or optional, but when defined as an optional property the `discriminator` field must include a `defaultMapping` field that specifies which schema of the `anyOf` or `oneOf` is expected to validate the structure of the model when the discriminating property is not present.
+The OpenAPI specification extends the JSON Schema support for polymorphism by adding the [`discriminator`](#schema-discriminator) field whose value is a [Discriminator Object](#discriminator-object).
+When used, the Discriminator Object indicates the name of the property that hints which schema of an `anyOf` or `oneOf` is expected to validate the structure of the model.
+The discriminating property may be defined as required or optional, but when defined as an optional property the Discriminator Object must include a `defaultMapping` field that specifies which schema of the `anyOf` or `oneOf` is expected to validate the structure of the model when the discriminating property is not present.
 
-There are two ways to define the value of a discriminator for an inheriting instance.
+There are two ways to define the value of a discriminating property for an inheriting instance.
 
 * Use the schema name.
 * [Override the schema name](#discriminator-mapping) by overriding the property with a new value. If a new value exists, this takes precedence over the schema name.
@@ -3189,9 +3189,9 @@ components:
         - packSize
 ```
 
-###### Models with Polymorphism Support and a Discriminator field
+###### Models with Polymorphism Support and a Discriminator Object
 
-The following example extends the example of the previous section by adding a `discriminator` field to the `Pet` model. Note that the `discriminator` is only a hint to the consumer of the API, and does not change the validation outcome of the schema.
+The following example extends the example of the previous section by adding a [Discriminator Object](#discriminator-object) to the `Pet` schema. Note that the Discriminator Object is only a hint to the consumer of the API, and does not change the validation outcome of the schema.
 
 ```yaml
 components:
@@ -3362,7 +3362,7 @@ components:
 
 When request bodies or response payloads may be one of a number of different schemas, these should use the JSON Schema `anyOf` or `oneOf` keywords to describe the possible schemas (see [Composition and Inheritance](#composition-and-inheritance-polymorphism)).
 
-A polymorphic schema MAY include a `discriminator` field, which defines the name of the property that may be used as a hint for which schema of the `anyOf` or `oneOf` is expected to validate the structure of the model.
+A polymorphic schema MAY include a Discriminator Object, which defines the name of the property that may be used as a hint for which schema of the `anyOf` or `oneOf` is expected to validate the structure of the model.
 This hint can be used to aid in serialization, deserialization, and validation.
 The Discriminator Object does this by implicitly or explicitly associating the possible values of a named property with alternative schemas.
 
@@ -3372,7 +3372,7 @@ Note that `discriminator` MUST NOT change the validation outcome of the schema.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="property-name"></a>propertyName | `string` | **REQUIRED**. The name of the discriminating property in the payload that will hold the discriminating value. The discriminating property may be defined as required or optional, but when defined as optional the `discriminator` field must include a `defaultMapping` field that specifies which schema is expected to validate the structure of the model when no discriminating property is present. |
+| <a name="property-name"></a>propertyName | `string` | **REQUIRED**. The name of the discriminating property in the payload that will hold the discriminating value. The discriminating property may be defined as required or optional, but when defined as optional the Discriminator Object must include a `defaultMapping` field that specifies which schema is expected to validate the structure of the model when no discriminating property is present. |
 | <a name="discriminator-mapping"></a> mapping | Map[`string`, `string`] | An object to hold mappings between payload values and schema names or URI references. |
 | <a name="default"></a> defaultMapping | `string` | The schema name or URI reference to a schema that is expected to validate the structure of the model when the discriminating property is not present in the payload. |
 
@@ -3404,7 +3404,7 @@ However, the exact nature of such conversions are implementation-defined.
 
 ##### Optional discriminating property
 
-When the discriminating property is defined as optional, the `discriminator` field must include a `defaultMapping` field that specifies a schema that is expected to validate the structure of the model when the discriminating property is not present in the payload. This allows the schema to still be validated correctly even if the discriminator property is missing.
+When the discriminating property is defined as optional, the [Discriminator Object](#discriminator-object) must include a `defaultMapping` field that specifies a schema that is expected to validate the structure of the model when the discriminating property is not present in the payload. This allows the schema to still be validated correctly even if the discriminating property is missing.
 
 The primary use case for an optional discriminating property is to allow a schema to be extended with a discriminator without breaking existing clients that do not provide the discriminating property.
 
@@ -3433,7 +3433,7 @@ MyResponseType:
     - $ref: '#/components/schemas/Lizard'
 ```
 
-which means the payload _MUST_, by validation, match exactly one of the schemas described by `Cat`, `Dog`, or `Lizard`. Deserialization of a `oneOf` can be a costly operation, as it requires determining which schema matches the payload and thus should be used in deserialization. This problem also exists for `anyOf` schemas. A `discriminator` MAY be used as a "hint" to improve the efficiency of selection of the matching schema. The `discriminator` field cannot change the validation result of the `oneOf`, it can only help make the deserialization more efficient and provide better error messaging. We can specify the exact field that tells us which schema is expected to match the instance:
+which means the payload _MUST_, by validation, match exactly one of the schemas described by `Cat`, `Dog`, or `Lizard`. Deserialization of a `oneOf` can be a costly operation, as it requires determining which schema matches the payload and thus should be used in deserialization. This problem also exists for `anyOf` schemas. A `discriminator` MAY be used as a "hint" to improve the efficiency of selection of the matching schema. The Discriminator Object cannot change the validation result of the `oneOf`, it can only help make the deserialization more efficient and provide better error messaging. We can specify the exact field that tells us which schema is expected to match the instance:
 
 ```yaml
 MyResponseType:
@@ -3456,7 +3456,7 @@ The expectation now is that a property with name `petType` _MUST_ be present in 
 
 will indicate that the `Cat` schema is expected to match this payload.
 
-In scenarios where the value of the `discriminator` field does not match the schema name or implicit mapping is not possible, an optional `mapping` definition MAY be used:
+In scenarios where the value of the discriminating property does not match the schema name or implicit mapping is not possible, an optional `mapping` definition MAY be used:
 
 ```yaml
 MyResponseType:
@@ -3476,7 +3476,7 @@ Here the discriminating value of `dog` will map to the schema `#/components/sche
 
 When used in conjunction with the `anyOf` construct, the use of the discriminator can avoid ambiguity for serializers/deserializers where multiple schemas may satisfy a single payload.
 
-When the discriminating property is defined as optional, the `discriminator` field must include a `defaultMapping` field that specifies a schema of the `anyOf` or `oneOf` is expected to validate the structure of the model when the discriminating property is not present in the payload. This allows the schema to still be validated correctly even if the discriminator property is missing.
+When the discriminating property is defined as optional, the Discriminator Object must include a `defaultMapping` field that specifies a schema of the `anyOf` or `oneOf` is expected to validate the structure of the model when the discriminating property is not present in the payload. This allows the schema to still be validated correctly even if the discriminator property is missing.
 
 For example:
 

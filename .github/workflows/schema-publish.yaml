@@ -4,7 +4,7 @@ name: schema-publish
 # issue: https://github.com/OAI/OpenAPI-Specification/issues/3715
 
 #
-# This workflow copies the 3.x schemas to the gh-pages branch
+# This workflow creates a pull request for publishing schema iterations to the gh-pages branch
 #
 
 # run this on push to vX.Y-dev branches or manually

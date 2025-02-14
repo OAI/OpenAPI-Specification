@@ -177,13 +177,19 @@ Reviews requesting changes should have their changes addressed regardless of how
 
 ## Publishing
 
-The specification are published to the [spec site](https://spec.openapis.org) by creating an `vX.Y.Z-rel` branch where `src/oas.md` is renamed to the appropriate `versions/X.Y.Z.md` file and then merged to `main`.
-The HTML versions of the OAS are automatically generated from the `versions` directory on `main`.
+### Specification Versions
+
+The specification versions are published to the [spec site](https://spec.openapis.org) by creating an `vX.Y.Z-rel` branch where `src/oas.md` is renamed to the appropriate `versions/X.Y.Z.md` file and then merged to `main`.
 This renaming on the `vX.Y.Z-rel` branch preserves the commit history for the published file on `main` when using `git log --follow` (as is the case for all older published files).
 
-The schemas are published [in the schema section on the spec site](https://spec.openapis.org/#openapi-specification-schemas).
-As part of the publishing process, the `WORK-IN-PROGRESS` placeholders are replaced with dates as appropriate.
-Schemas are published/updated independently from the specification releases.
+The HTML renderings of the specification versions are automatically generated from the `versions` directory on `main` by the [`respec` workflow](https://github.com/OAI/OpenAPI-Specification/blob/main/.github/workflows/respec.yaml), which generates a pull request for publishing the HTML renderings to the [spec site](https://spec.openapis.org).
+
+### Schema Iterations
+
+The schema iterations are published independently from the specification releases [in the schema section on the spec site](https://spec.openapis.org/#openapi-specification-schemas).
+Schemas are updated in and directly published from the `vX.Y-dev` branches.
+
+As part of the publishing process, the YAML source files are converted to JSON, renamed to the relevant last-changed dates, and `WORK-IN-PROGRESS` placeholders are replaced with these dates as appropriate. This is done by the `schema-publish` workflow on each `vX.Y-dev` branch, which generates a pull request for publishing the new schema iterations to the [spec site](https://spec.openapis.org).
 
 ## Release Process and Scope
 

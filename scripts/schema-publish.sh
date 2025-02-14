@@ -7,7 +7,7 @@
 schemaDir="src/schemas/validation"
 branch=$(git branch --show-current)
 version=${branch:1:3}
-echo $version
+echo === Building schemas into ./deploy/oas/$version
 
 # list of schemas to process, dependent schemas come first
 schemas=(meta.yaml dialect.yaml schema.yaml schema-base.yaml)
@@ -49,3 +49,5 @@ for schema in "${!datesHash[@]}"; do
 
   mv deploy/oas/$version/$base/*.md $target.md
 done
+
+ echo === Built

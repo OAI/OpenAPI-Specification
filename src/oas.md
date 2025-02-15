@@ -3245,6 +3245,57 @@ components:
         - packSize
 ```
 
+###### Models with Polymorphism Support using allOf and a Discriminator Object
+
+It is also possible to describe polymorphic models using `allOf`. The following example uses `allOf` with a [Discriminator Object](#discriminator-object) to describe a polymorphic `Pet` model.
+
+```yaml
+components:
+  schemas:
+    Pet:
+      type: object
+      discriminator:
+        propertyName: petType
+      properties:
+        name:
+          type: string
+        petType:
+          type: string
+      required:
+        - name
+        - petType
+    Cat: # "Cat" will be used as the discriminating value
+      description: A representation of a cat
+      allOf:
+        - $ref: '#/components/schemas/Pet'
+        - type: object
+          properties:
+            huntingSkill:
+              type: string
+              description: The measured skill for hunting
+              enum:
+                - clueless
+                - lazy
+                - adventurous
+                - aggressive
+          required:
+            - huntingSkill
+    Dog: # "Dog" will be used as the discriminating value
+      description: A representation of a dog
+      allOf:
+        - $ref: '#/components/schemas/Pet'
+        - type: object
+          properties:
+            packSize:
+              type: integer
+              format: int32
+              description: the size of the pack the dog is from
+              default: 0
+              minimum: 0
+          required:
+            - packSize
+```
+
 ###### Generic Data Structure Model
 
 ```JSON

@@ -549,7 +549,7 @@ servers:
           - '443'
         default: '8443'
       basePath:
-        # open meaning there is the opportunity to use special base paths as assigned by the provider, default is `v2`
+        # open meaning there is the opportunity to use special base paths as assigned by the provider, default is "v2"
         default: v2
 ```
 
@@ -1746,8 +1746,8 @@ requestBody:
           name:
             type: string
           icon:
-            # The default content type with "contentEncoding" present
-            # is application/octet-stream, so we need to set the correct
+            # The default content type with `contentEncoding` present
+            # is "application/octet-stream", so we need to set the correct
             # image media type(s) in the Encoding Object.
             type: string
             contentEncoding: base64url
@@ -1802,18 +1802,18 @@ requestBody:
         type: object
         properties:
           # default content type for a string without `contentEncoding`
-          # is `text/plain`
+          # is "text/plain"
           id:
             type: string
             format: uuid
 
           # default content type for a schema without `type`
-          # is `application/octet-stream`
+          # is "application/octet-stream"
           profileImage: {}
 
           # default content type for arrays is based on the type
           # in the `items` subschema, which is an object here,
-          # so the default content type for each item is `application/json`
+          # so the default content type for each item is "application/json"
           addresses:
             type: array
             items:
@@ -1832,13 +1832,13 @@ requestBody:
       schema:
         type: object
         properties:
-          # No Encoding Object, so use default `text/plain`
+          # No Encoding Object, so use default "text/plain"
           id:
             type: string
             format: uuid
 
-          # Encoding Object overrides the default `application/json` content type
-          # for each item in the array with `application/xml; charset=utf-8`
+          # Encoding Object overrides the default "application/json" content type
+          # for each item in the array with "application/xml; charset=utf-8"
           addresses:
             description: addresses in XML format
             type: array
@@ -1871,7 +1871,7 @@ requestBody:
     multipart/form-data:
       schema:
         properties:
-          # The property name 'file' will be used for all files.
+          # The property name `file` will be used for all files.
           file:
             type: array
             items: {}
@@ -2425,7 +2425,7 @@ paths:
               # the target link operationId
               operationId: getUserAddress
               parameters:
-                # get the `id` field from the request path parameter named `id`
+                # use the value of the request path parameter named "id"
                 userid: $request.path.id
   # the path item of the linked operation
   /users/{userid}/address:
@@ -2453,7 +2453,7 @@ links:
   address:
     operationId: getUserAddressByUUID
     parameters:
-      # get the `uuid` field from the `uuid` field in the response body
+      # use the value of the `uuid` field in the response body
       userUuid: $response.body#/uuid
 ```
 
@@ -2469,7 +2469,6 @@ field in an [Operation Object](#operation-object)), references MAY also be made 
 ```yaml
 links:
   UserRepositories:
-    # returns array of '#/components/schemas/repository'
     operationRef: '#/paths/~12.0~1repositories~1%7Busername%7D/get'
     parameters:
       username: $response.body#/username
@@ -2480,7 +2479,6 @@ or a URI `operationRef`:
 ```yaml
 links:
   UserRepositories:
-    # returns array of '#/components/schemas/repository'
     operationRef: https://na2.gigantic-server.com/#/paths/~12.0~1repositories~1%7Busername%7D/get
     parameters:
       username: $response.body#/username
@@ -3396,7 +3394,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/Pet'
         - type: object
-          # all other properties specific to a `Cat`
+          # all other properties specific to a "Cat"
           properties:
             name:
               type: string
@@ -3404,7 +3402,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/Pet'
         - type: object
-          # all other properties specific to a `Dog`
+          # all other properties specific to a "Dog"
           properties:
             bark:
               type: string
@@ -3412,7 +3410,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/Pet'
         - type: object
-          # all other properties specific to a `Lizard`
+          # all other properties specific to a "Lizard"
           properties:
             lovesRocks:
               type: boolean

@@ -3191,7 +3191,7 @@ components:
 
 ###### Models with Polymorphism Support and a Discriminator Object
 
-The following example extends the example of the previous section by adding a [Discriminator Object](#discriminator-object) to the `Pet` schema. Note that the Discriminator Object is only a hint to the consumer of the API, and does not change the validation outcome of the schema.
+The following example extends the example of the previous section by adding a [Discriminator Object](#discriminator-object) to the `Pet` schema. Note that the Discriminator Object is only a hint to the consumer of the API and does not change the validation outcome of the schema.
 
 ```yaml
 components:

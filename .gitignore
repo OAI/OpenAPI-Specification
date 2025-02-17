@@ -1,5 +1,7 @@
 _site/
+coverage/
 deploy/
+deploy-preview/
 node_modules/
 scripts/
 package-lock.json

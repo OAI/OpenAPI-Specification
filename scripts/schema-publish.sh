@@ -50,4 +50,4 @@ for schema in "${!datesHash[@]}"; do
   mv deploy/oas/$version/$base/*.md $target.md
 done
 
- echo === Built
+echo === Built

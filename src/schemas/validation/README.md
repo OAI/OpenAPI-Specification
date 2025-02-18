@@ -18,7 +18,7 @@ We are [working on](https://github.com/OAI/OpenAPI-Specification/issues/4152) ho
 
 ## Choosing which schema to use
 
-There are two schemas to choose from for versions 3.1 and greater, both of which have an `$id` that starts with `https://spec.openapis.org/oas/3.X/` and end with the iteration date:
+There are two schemas to choose from for versions 3.1 and greater, both of which have an `$id` that starts with `https://spec.openapis.org/oas/3.X/` and ends with the iteration date:
 
 * `https://spec.openapis.org/oas/3.X/schema/{date}`, source: `schema.yaml` — A self-contained schema that _does not_ validate Schema Objects beyond `type: [object, boolean]`
 * `https://spec.openapis.org/oas/3.X/meta/{date}`, source: `meta.yaml` — The vocabulary metaschema for OAS 3.X's extensions to draft 2020-12

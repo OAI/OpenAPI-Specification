@@ -37,7 +37,7 @@ The schema only validates the mandatory aspects of the OAS.
 Validating requirements that are optional, or field usage that has undefined or ignored behavior are not within the scope of this schema.
 Schemas to perform additional optional validation are [under consideration](https://github.com/OAI/OpenAPI-Specification/issues/4141).
 
-Improvements can be submitted by opening a PR against the `main` branch.
+Improvements can be submitted by opening a PR against the `vX.Y-dev` branch of the respective specification version.
 
 Modify the `schema.yaml` file and add test cases for your changes.
 

@@ -13,4 +13,4 @@
 , [{{ file.basename }}]({{ site.baseurl }}{{ file.path }})
 {%- endif -%}
 {%- endif -%}
-{%- endfor- %}
+{%- endfor -%}

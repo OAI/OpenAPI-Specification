@@ -19,6 +19,7 @@ Please see the [Learn OpenAPI](https://learn.openapis.org) site for additional d
 ### OpenAPI Specification
 
 {% include specification-version-list.md specification="oas" %}
+* **[v2.0]({{ site.baseurl }}/oas/v2.0.html)**
 
 ### Overlay Specification
 

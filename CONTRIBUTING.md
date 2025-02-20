@@ -189,7 +189,7 @@ The HTML renderings of the specification versions are automatically generated fr
 The schema iterations are published independently from the specification releases [in the schema section on the spec site](https://spec.openapis.org/#openapi-specification-schemas).
 Schemas are updated in and directly published from the `vX.Y-dev` branches.
 
-As part of the publishing process, the YAML source files are converted to JSON, renamed to the relevant last-changed dates, and `WORK-IN-PROGRESS` placeholders are replaced with these dates as appropriate. This is done by the `schema-publish` workflow on each `vX.Y-dev` branch, which generates a pull request for publishing the new schema iterations to the [spec site](https://spec.openapis.org).
+As part of the publishing process, the YAML source files are converted to JSON, renamed to the relevant last-changed dates, and `WORK-IN-PROGRESS` placeholders are replaced with these dates as appropriate. This is usually done by the `schema-publish` workflow which detects changes on each `vX.Y-dev` branch, which generates a pull request for publishing the new schema iterations to the [spec site](https://spec.openapis.org). The workflow can also be run manually if required.
 
 ## Release Process and Scope
 

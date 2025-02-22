@@ -11,7 +11,7 @@ name: schema-publish
 on:
   push:
     branches:
-      - 'v?.?-dev'
+      - 'v[0-9].[0-9]-dev'
     paths:
       - 'src/schemas/validation/*.yaml'
       - 'scripts/schema-publish.sh'

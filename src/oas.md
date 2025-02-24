@@ -3425,7 +3425,7 @@ Note that `discriminator` MUST NOT change the validation outcome of the schema.
 | ---- | :----: | ---- |
 | <a name="property-name"></a>propertyName | `string` | **REQUIRED**. The name of the discriminating property in the payload that will hold the discriminating value. The discriminating property MAY be defined as required or optional, but when defined as optional the Discriminator Object MUST include a `defaultMapping` field that specifies which schema is expected to validate the structure of the model when the discriminating property is not present. |
 | <a name="discriminator-mapping"></a> mapping | Map[`string`, `string`] | An object to hold mappings between payload values and schema names or URI references. |
-| <a name="default"></a> defaultMapping | `string` | The schema name or URI reference to a schema that is expected to validate the structure of the model when the discriminating property is not present in the payload. |
+| <a name="default"></a> defaultMapping | `string` | The schema name or URI reference to a schema that is expected to validate the structure of the model when the discriminating property is not present in the payload or contains a value for which there is no explicit or implicit mapping. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
@@ -3455,20 +3455,24 @@ However, the exact nature of such conversions are implementation-defined.
 
 ##### Optional discriminating property
 
-When the discriminating property is defined as optional, the [Discriminator Object](#discriminator-object) MUST include a `defaultMapping` field that specifies a schema that is expected to validate the structure of the model when the discriminating property is not present in the payload. This allows the schema to still be validated correctly even if the discriminating property is missing.
+When the discriminating property is defined as optional, the [Discriminator Object](#discriminator-object) MUST include a `defaultMapping` field that specifies a schema that is expected to validate the structure of the model when the discriminating property is not present in the payload or contains a value for which there is no explicit or implicit mapping. This allows the schema to still be validated correctly even if the discriminating property is missing.
 
 The primary use case for an optional discriminating property is to allow a schema to be extended with a discriminator without breaking existing clients that do not provide the discriminating property.
 
-Typically the schema specified in the `defaultMapping` field will specify that the discriminating property is not present, e.g.
+When the discriminating property is defined as optional, it is important that each subschema that defines a value for the discriminating property also define the property as required, since this is no longer enforced by the parent schema.
+
+The `defaultMapping` schema is also expected to validate the structure of the model when the discriminating property is present but contains a value for which there is no explicit or implicit mapping. This is typically expressed in the `defaultMapping` schema by excluding any instances with mapped values of the discriminating property, e.g.
 
 ```yaml
 OtherPet:
   type: object
-  not:
-    required: ['petType']
+  properties:
+    petType:
+      not:
+        enum: ['cat', 'dog']
 ```
 
-This will prevent the default mapping schema from validating a payload that includes the discriminating property, which would cause a validation of the payload to fail when polymorphism is described using the `oneOf` JSON schema keyword.
+This prevents the `defaultMapping` schema from validating a payload that includes the discriminating property with a mapped discriminating value, which would cause a validation to fail when polymorphism is described using the `oneOf` JSON schema keyword.
 
 ##### Examples
 
@@ -3543,11 +3547,13 @@ MyResponseType:
     defaultMapping: OtherPet
 OtherPet:
   type: object
-  not:
-    required: ['petType']
+  properties:
+    petType:
+      not:
+        enum: ['Cat', 'Dog', 'Lizard']
 ```
 
-In this example, if the `petType` property is not present in the payload, the payload should validate against the `OtherPet` schema.
+In this example, if the `petType` property is not present in the payload, or if the value of `petType` is not "Cat", "Dog", or "Lizard", then the payload should validate against the `OtherPet` schema.
 
 This example shows the `allOf` usage, which avoids needing to reference all child schemas in the parent:
 

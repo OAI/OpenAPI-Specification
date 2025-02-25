@@ -21,6 +21,7 @@ The following additional rules should be followed but currently are not enforced
 9. Use [Oxford commas](https://en.wikipedia.org/wiki/Serial_comma), avoid [Shatner commas](https://www.latimes.com/archives/blogs/jacket-copy/story/2011-06-30/goodbye-oxford-comma-hello-shatner-comma).
 10. Use `<span id="thing"></span>` for link anchors. The `<a name="thing"></a>` format has been deprecated.
 11. Headings use [title case](https://en.wikipedia.org/wiki/Title_case) and are followed by a blank line.
+12. Do not add requirements in "Examples" sections, and avoid [RFC2119 key words (MUST, MAY, ...)](https://datatracker.ietf.org/doc/html/rfc2119) in these sections.
 
 Plus some suggestions, rather than rules:
 

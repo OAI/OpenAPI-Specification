@@ -54,7 +54,7 @@ for specification in $specifications; do
   echo === Building $version to $destination
 
   node scripts/md2html/md2html.js --maintainers $maintainers $specification > $tempfile
-  npx respec --use-local --src $tempfile --out $destination
+  npx respec --no-sandbox --use-local --src $tempfile --out $destination
   rm $tempfile
 
   echo === Built $destination

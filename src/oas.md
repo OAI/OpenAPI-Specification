@@ -3488,7 +3488,7 @@ MyResponseType:
     - $ref: '#/components/schemas/Lizard'
 ```
 
-which means the payload _MUST_, by validation, match exactly one of the schemas described by `Cat`, `Dog`, or `Lizard`. Deserialization of a `oneOf` can be a costly operation, as it requires determining which schema matches the payload and thus should be used in deserialization. This problem also exists for `anyOf` schemas. A `discriminator` MAY be used as a "hint" to improve the efficiency of selection of the matching schema. The [Discriminator Object](#discriminator-object) cannot change the validation result of the `oneOf`, it can only help make the deserialization more efficient and provide better error messaging. We can specify the exact field that tells us which schema is expected to match the instance:
+which means a valid payload has to match exactly one of the schemas described by `Cat`, `Dog`, or `Lizard`. Deserialization of a `oneOf` can be a costly operation, as it requires determining which schema matches the payload and thus should be used in deserialization. This problem also exists for `anyOf` schemas. A `discriminator` can be used as a "hint" to improve the efficiency of selection of the matching schema. The [Discriminator Object](#discriminator-object) cannot change the validation result of the `oneOf`, it can only help make the deserialization more efficient and provide better error messaging. We can specify the exact field that tells us which schema is expected to match the instance:
 
 ```yaml
 MyResponseType:
@@ -3511,7 +3511,7 @@ The expectation now is that a property with name `petType` _MUST_ be present in 
 
 will indicate that the `Cat` schema is expected to match this payload.
 
-In scenarios where the value of the discriminating property does not match the schema name or implicit mapping is not possible, an optional `mapping` definition MAY be used:
+In scenarios where the value of the discriminating property does not match the schema name or implicit mapping is not possible, an optional `mapping` definition can be used:
 
 ```yaml
 MyResponseType:
@@ -3531,7 +3531,7 @@ Here the discriminating value of `dog` will map to the schema `#/components/sche
 
 When used in conjunction with the `anyOf` construct, the use of the discriminator can avoid ambiguity for serializers/deserializers where multiple schemas may satisfy a single payload.
 
-When the discriminating property is defined as optional, the Discriminator Object MUST include a `defaultMapping` field that specifies a schema of the `anyOf` or `oneOf` is expected to validate the structure of the model when the discriminating property is not present in the payload. This allows the schema to still be validated correctly even if the discriminator property is missing.
+When the discriminating property is defined as optional, the Discriminator Object has to include a `defaultMapping` field that specifies a schema of the `anyOf` or `oneOf` is expected to validate the structure of the model when the discriminating property is not present in the payload. This allows the schema to still be validated correctly even if the discriminator property is missing.
 
 For example:
 

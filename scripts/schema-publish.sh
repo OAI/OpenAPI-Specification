@@ -32,12 +32,9 @@ publish_schema() {
   local target=$deploydir/$base/$date
 
   mkdir -p $deploydir/$base
-  # replace the WORK-IN-PROGRESS placeholders
-  sed -e $sedCmd $schemaDir/$schema > $target.yaml
 
-  node scripts/yaml2json/yaml2json.js "$target.yaml"
-  rm "$target.yaml"
-  mv "$target.json" "$target"
+  # replace the WORK-IN-PROGRESS placeholders
+  sed ${sedCmd[@]} $schemaDir/$schema | npx yaml --json --indent 2 --single > $target
 
   # Find the jekyll lander markdown file for this iteration.
   local jekyllLander=$(find "$deploydir/$base" -maxdepth 1 -name "*.md")

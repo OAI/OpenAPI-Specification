@@ -20,7 +20,7 @@ Meetings take place over Zoom: [https://zoom.us/j/975841675](https://zoom.us/j/9
 
 | Blur My Background | Raise Hand |
 |-|-|
-| <img width="323" alt="Screenshot of Zoom UI showing the 'Stop Video' and 'Blur My Background' control" src="https://github.com/OAI/OpenAPI-Specification/assets/7367/7e43dbbb-6529-46e6-8b04-4c1aa852d9dd"> | <img width="323" alt="Screenshot of Zoom UI showing the 'Reaction' and 'Raise Hand' control" src="https://github.com/OAI/OpenAPI-Specification/assets/7367/f991722f-4651-40aa-9bc4-7e9a2a165a6a"> |
+| <img width="323" alt="Screenshot of Zoom UI showing the 'Stop Video' and 'Blur My Background' control" src="https://github.com/OAI/OpenAPI-Specification/assets/7367/7e43dbbb-6529-46e6-8b04-4c1aa852d9dd"> | <img width="323" alt="Screenshot of Zoom UI showing the 'Reaction' and 'Raise Hand' control" src="https://github.com/user-attachments/assets/bf19ee70-59b1-410e-b893-645f26c2c96e"> |
 
 ### Agenda Structure
 

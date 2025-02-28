@@ -8,6 +8,11 @@ properties:
   openapi:
     type: string
     pattern: '^3\.2\.\d+(-.+)?$'
+  $self:
+    type: string
+    format: uri
+    $comment: MUST NOT contain a fragment
+    pattern: '^[^#]*$'
   info:
     $ref: '#/$defs/info'
   jsonSchemaDialect:

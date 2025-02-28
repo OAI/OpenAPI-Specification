@@ -8,6 +8,9 @@ properties:
   openapi:
     type: string
     pattern: '^3\.2\.\d+(-.+)?$'
+  $self:
+    type: string
+    format: uri-reference
   info:
     $ref: '#/$defs/info'
   jsonSchemaDialect:

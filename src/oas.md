@@ -195,7 +195,8 @@ In some cases, an unambiguous URI-based alternative is available, and OAD author
 | ---- | ---- | ---- |
 | [Security Requirement Object](#security-requirement-object) `{name}` | [Security Scheme Object](#security-scheme-object) name under the [Components Object](#components-object) | _n/a_ |
 | [Discriminator Object](#discriminator-object) `mapping` _(implicit, or explicit name syntax)_ | [Schema Object](#schema-object) name under the Components Object | `mapping` _(explicit URI syntax)_ |
-| [Operation Object](#operation-object) `tags` | [Tag Object](#tag-object) `name` (in the [OpenAPI Object](#openapi-object)'s `tags` array) | _n/a_ |
+| [Tag Object](#tag-object) `parent` | [Tag Object](#tag-object) `name` (in the [OpenAPI Object](#openapi-object)'s `tags` array) | `parentDocument` |
+| [Operation Object](#operation-object) `tags` | [Tag Object](#tag-object) `name` (in the [OpenAPI Object](#openapi-object)'s `tags` array) | `tagRefs` |
 | [Link Object](#link-object) `operationId` | [Path Item Object](#path-item-object) `operationId` | `operationRef` |
 
 A fifth implicit connection involves appending the templated URL paths of the [Paths Object](#paths-object) to the appropriate [Server Object](#server-object)'s `url` field.
@@ -213,9 +214,6 @@ For resolving component and tag name connections from a referenced (non-entry) d
 This allows Security Scheme Objects and Tag Objects to be defined next to the API's deployment information (the top-level array of Server Objects), and treated as an interface for referenced documents to access.
 
 The interface approach can also work for Discriminator Objects and Schema Objects, but it is also possible to keep the Discriminator Object's behavior within a single document using the relative URI-reference syntax of `mapping`.
-
-There are no URI-based alternatives for the Security Requirement Object or for the Operation Object's `tags` field.
-These limitations are expected to be addressed in a future release.
 
 See [Appendix F: Resolving Security Requirements in a Referenced Document](#appendix-f-resolving-security-requirements-in-a-referenced-document) for an example of the possible resolutions, including which one is recommended by this section.
 The behavior for Discrimator Object non-URI mappings and for the Operation Object's `tags` field operate on the same principles.
@@ -1019,6 +1017,7 @@ Describes a single API operation on a path.
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="operation-tags"></a>tags | [`string`] | A list of tags for API documentation control. Tags can be used for logical grouping of operations by resources or any other qualifier. |
+| <a name="operation-tag-refs"></a>tagRefs | Map[`string`, [`string`]] | A map of OpenAPI Document URIs to lists of tags.  Each tag is resolved within the OpenAPI Document identified by the URI under which it appears. |
 | <a name="operation-summary"></a>summary | `string` | A short summary of what the operation does. |
 | <a name="operation-description"></a>description | `string` | A verbose explanation of the operation behavior. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="operation-external-docs"></a>externalDocs | [External Documentation Object](#external-documentation-object) | Additional external documentation for this operation. |
@@ -1032,6 +1031,8 @@ Describes a single API operation on a path.
 | <a name="operation-servers"></a>servers | [[Server Object](#server-object)] | An alternative `servers` array to service this operation. If a `servers` array is specified at the [Path Item Object](#path-item-servers) or [OpenAPI Object](#oas-servers) level, it will be overridden by this value. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
+
+Note that either or both of `tags` and `tagRefs` MAY be specified.  The `tags` field is useful when the URI of the entry document is not known or may change, as long as the implementation follows the tag resolution guidance recommended under [Resolving Implicit Connections](#resolving-implicit-connections).
 
 ##### Operation Object Example
 
@@ -2696,6 +2697,7 @@ It is not mandatory to have a Tag Object per tag defined in the Operation Object
 | <a name="tag-description"></a>description | `string` | A description for the tag. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="tag-external-docs"></a>externalDocs | [External Documentation Object](#external-documentation-object) | Additional external documentation for this tag. |
 | <a name="tag-parent"></a>parent | `string` | The `name` of a tag that this tag is nested under. The named tag MUST exist in the API description, and circular references between parent and child tags MUST NOT be used. |
+| <a name="tag-parent-document"></a>parentDocument | `string` | The URI of the OpenAPI Document in which to locate the tag given in the `parent` field.  If this field is present, then `parent` MUST also be present. |
 | <a name="tag-kind"></a>kind | `string` | A machine-readable string to categorize what sort of tag it is. Any string value can be used; common uses are `nav` for Navigation, `badge` for visible badges, `audience` for APIs used by different groups. A [registry of the most commonly used values](https://spec.openapis.org/registry/tag-kind/) is available. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).

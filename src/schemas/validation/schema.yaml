@@ -255,6 +255,15 @@ $defs:
         type: array
         items:
           type: string
+      tagRefs:
+        type: object
+        propertyNames:
+          type: string
+          format: uri-reference
+        additionalProperties:
+          type: array
+          items:
+            type: string
       summary:
         type: string
       description:
@@ -710,10 +719,15 @@ $defs:
         $ref: '#/$defs/external-documentation'
       parent:
         type: string
+      parentDocument:
+        type: string
+        format: uri-reference
       kind:
         type: string
     required:
       - name
+    dependentRequired:
+      parentDocument: [parent]
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
 

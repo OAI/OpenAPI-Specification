@@ -749,6 +749,9 @@ $defs:
           - openIdConnect
       description:
         type: string
+      deprecated:
+        default: false
+        type: boolean
     required:
       - type
     allOf:
@@ -822,6 +825,9 @@ $defs:
           properties:
             flows:
               $ref: '#/$defs/oauth-flows'
+            oauth2MetadataUrl:
+              type: string
+              format: uri-reference
           required:
             - flows
 
@@ -861,6 +867,8 @@ $defs:
         $ref: '#/$defs/oauth-flows/$defs/client-credentials'
       authorizationCode:
         $ref: '#/$defs/oauth-flows/$defs/authorization-code'
+      deviceAuthorization:
+        $ref: '#/$defs/oauth-flows/$defs/device-authorization'
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
 
@@ -928,6 +936,27 @@ $defs:
           refreshUrl:
             type: string
             format: uri
+          scopes:
+            $ref: '#/$defs/map-of-strings'
+        required:
+          - authorizationUrl
+          - tokenUrl
+          - scopes
+        $ref: '#/$defs/specification-extensions'
+        unevaluatedProperties: false
+
+      device-authorization:
+        type: object
+        properties:
+          deviceAuthorizationUrl:
+            type: string
+            format: uri-reference
+          tokenUrl:
+            type: string
+            format: uri-reference
+          refreshUrl:
+            type: string
+            format: uri-reference
           scopes:
             $ref: '#/$defs/map-of-strings'
         required:

@@ -956,7 +956,7 @@ $defs:
             format: uri-reference
           refreshUrl:
             type: string
-            format: uri
+            format: uri-reference
           scopes:
             $ref: '#/$defs/map-of-strings'
         required:

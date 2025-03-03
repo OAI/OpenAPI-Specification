@@ -1,0 +1,30 @@
+name: check-restricted-files
+
+# Autor: @ralfhandl
+# Issue: https://github.com/OAI/OpenAPI-Specification/issues/3432
+
+# This workflow checks for changes of restricted files in a pull request
+
+on:
+  - pull_request
+
+jobs:
+  check-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check changed files
+        shell: bash
+        run: |
+          set +e
+
+          git diff --exit-code --name-only ${{ github.event.pull_request.head.sha }} ${{ github.event.pull_request.base.sha }} \
+              -- schemas versions
+          if [[ $? -ne 0 ]]; then
+            echo This PR contains changes to files that should not be changed on ${{ github.event.pull_request.base.ref }}
+            exit 1
+          fi

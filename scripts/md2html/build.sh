@@ -24,8 +24,10 @@ cp -p node_modules/respec/builds/respec-w3c.* $deploydir/js/
 
 latest=$(git describe --abbrev=0 --tags)
 
+allVersions=$(ls -1 versions/[23456789].*.md | grep -v -e "\-editors" | sort -r)
+
 if [ -z "$1" ]; then
-  specifications=$(ls -1 versions/[23456789].*.md | grep -v -e "\-editors" | sort -r)
+  specifications=$allVersions
 elif [ "$1" = "latest" ]; then
   specifications=$(ls -1 versions/$latest.md)
 elif [ "$1" = "src" ]; then
@@ -53,7 +55,7 @@ for specification in $specifications; do
 
   echo === Building $version to $destination
 
-  node scripts/md2html/md2html.js --maintainers $maintainers $specification > $tempfile
+  node scripts/md2html/md2html.js --maintainers $maintainers $specification "$allVersions" > $tempfile
   npx respec --no-sandbox --use-local --src $tempfile --out $destination
   rm $tempfile
 

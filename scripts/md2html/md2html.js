@@ -77,6 +77,7 @@ const md = require('markdown-it')({
 });
 
 function preface(title,options) {
+    const otherVersions = options._[1].split("\n").map(v => path.basename(v,'.md')).filter(v => v !== options.subtitle);
     const respec = {
         specStatus: "base",
         latestVersion: "https://spec.openapis.org/oas/latest.html",
@@ -96,6 +97,14 @@ function preface(title,options) {
             height: 48,
             url: "https://openapis.org/"}],
         otherLinks: [
+            {
+                key: "Other versions:",
+                data: otherVersions.map(v => {
+                    return {
+                        href: `https://spec.openapis.org/oas/v${v}.html`
+                    }
+                })
+            },
             {
                 key: "Participate",
                 data: [

@@ -1,6 +1,6 @@
 name: check-restricted-files
 
-# Autor: @ralfhandl
+# Author: @ralfhandl
 # Issue: https://github.com/OAI/OpenAPI-Specification/issues/3432
 
 # This workflow checks for changes of restricted files in a pull request

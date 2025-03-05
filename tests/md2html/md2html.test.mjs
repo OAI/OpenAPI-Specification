@@ -1,5 +1,5 @@
 import { readdirSync, readFileSync } from "node:fs";
-import { exec } from "node:child_process";
+import { execFile } from "node:child_process";
 import { resolve } from "node:path";
 import { describe, test, expect } from "vitest";
 import assert from "node:assert";
@@ -13,12 +13,13 @@ describe("md2html", async () => {
         const expected = readFileSync(
           folder + entry.name.replace(".md", ".html"),
           "utf8",
-        );
+        ); 
         const output = await md2html(
           [
             "--maintainers",
             entry.name.replace(".md", ".maintainers"),
             entry.name,
+            "path/31.0.0.md\npath/30.0.1.md\npath/30.0.0.md",
           ],
           folder,
         );
@@ -29,8 +30,9 @@ describe("md2html", async () => {
 
 function md2html(args, cwd) {
   return new Promise((res) => {
-    exec(
-      `node ${resolve("./scripts/md2html/md2html.js")} ${args.join(" ")}`,
+    execFile(
+      "node",
+      [`${resolve("./scripts/md2html/md2html.js")}`, ...args],
       { cwd },
       (error, stdout, stderr) => {
         res({

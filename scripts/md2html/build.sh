@@ -52,12 +52,16 @@ for specification in $specifications; do
 
   minorVersion=${version:0:3}
   tempfile="$deploydir/temp/$version.html"
+  tempfile2="$deploydir/temp/$version-2.html"
 
   echo === Building $version to $destination
 
   node scripts/md2html/md2html.js --maintainers $maintainers $specification "$allVersions" > $tempfile
-  npx respec --no-sandbox --use-local --src $tempfile --out $destination
-  rm $tempfile
+  npx respec --no-sandbox --use-local --src $tempfile --out $tempfile2
+  # remove unwanted Google Tag Manager and Google Analytics scripts
+  sed -e 's/<script type="text\/javascript" async="" src="https:\/\/www.google-analytics.com\/analytics.js"><\/script>//' \
+      -e 's/<script type="text\/javascript" async="" src="https:\/\/www.googletagmanager.com\/gtag\/js?id=G-[^"]*"><\/script>//' \
+      $tempfile2 > $destination
 
   echo === Built $destination
 
@@ -79,6 +83,5 @@ if [ "$latestCopied" != "none" ]; then
   echo Latest tag is $latest, copied $latestCopied to latest.html
 fi
 
-rm $deploydir/js/respec-w3c.*
-rmdir $deploydir/js
-rmdir $deploydir/temp
+rm -r $deploydir/js
+rm -r $deploydir/temp

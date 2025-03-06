@@ -1,0 +1,22 @@
+name: check-restricted-files
+
+# Author: @ralfhandl
+# Issue: https://github.com/OAI/OpenAPI-Specification/issues/3432
+
+# This workflow fails if restricted files are changed in a pull request
+
+on:
+  pull_request:
+    paths:
+      - 'schemas/**/*.yaml'
+      - 'versions/*.md'
+
+jobs:
+  check-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check changed files
+        shell: bash
+        run: |
+          echo This PR contains changes to files that should not be changed
+          exit 1

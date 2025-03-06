@@ -216,7 +216,7 @@ Plus some suggestions, rather than rules:
 
 ### Field Names and Values in YAML comments
 
-Field names and keys should be in backticks for consistency.
+Field names and entries such as content types should be in backticks, they would be fixed-width fonts if the markdown was rendered (which the comments are not).
 Values like "Dog" should be double quoted as they are a value rather than a keyword.
 
 ## Release Process and Scope

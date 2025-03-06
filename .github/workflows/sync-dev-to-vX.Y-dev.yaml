@@ -1,0 +1,45 @@
+name: sync-dev-to-vX.Y-dev
+
+# author: @ralfhandl
+
+#
+# This workflow creates PRs to update the vX.Y-dev branch with the latest changes from dev
+#
+
+# run this on push to dev
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  sync-branches:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create pull requests
+        id: pull_requests
+        shell: bash
+        run: |
+          DEV_BRANCHES=$(git branch -r --list origin/v?.?-dev)
+          for DEV_BRANCH in $DEV_BRANCHES; do
+            BASE=${DEV_BRANCH:7}
+            EXISTS=$(gh pr list --base $BASE --head $HEAD \
+              --json number --jq '.[] | .number')
+            if [ ! -z "$EXISTS" ]; then
+              echo "PR #$EXISTS already wants to merge $HEAD into $BASE"
+              continue
+            fi
+
+            gh pr create --base $BASE --head $HEAD \
+              --label "Housekeeping" \
+              --title "$BASE: update from $HEAD" \
+              --body "Merge \`$HEAD\` into \`$BASE\`."
+          done
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD: dev

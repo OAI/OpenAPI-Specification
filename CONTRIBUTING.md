@@ -190,13 +190,19 @@ Reviews requesting changes should have their changes addressed regardless of how
 
 ## Publishing
 
-The specification are published to the [spec site](https://spec.openapis.org) by creating an `vX.Y.Z-rel` branch where `src/oas.md` is renamed to the appropriate `versions/X.Y.Z.md` file and then merged to `main`.
-The HTML versions of the OAS are automatically generated from the `versions` directory on `main`.
+### Specification Versions
+
+The specification versions are published to the [spec site](https://spec.openapis.org) by creating an `vX.Y.Z-rel` branch where `src/oas.md` is renamed to the appropriate `versions/X.Y.Z.md` file and then merged to `main`.
 This renaming on the `vX.Y.Z-rel` branch preserves the commit history for the published file on `main` when using `git log --follow` (as is the case for all older published files).
 
-The schemas are published [in the schema section on the spec site](https://spec.openapis.org/#openapi-specification-schemas).
-As part of the publishing process, the `WORK-IN-PROGRESS` placeholders are replaced with dates as appropriate.
-Schemas are published/updated independently from the specification releases.
+The HTML renderings of the specification versions are automatically generated from the `versions` directory on `main` by the [`respec` workflow](https://github.com/OAI/OpenAPI-Specification/blob/main/.github/workflows/respec.yaml), which generates a pull request for publishing the HTML renderings to the [spec site](https://spec.openapis.org).
+
+### Schema Iterations
+
+The schema iterations are published independently from the specification releases [in the schema section on the spec site](https://spec.openapis.org/#openapi-specification-schemas).
+Schemas are updated in and directly published from the `vX.Y-dev` branches.
+
+As part of the publishing process, the YAML source files are converted to JSON, renamed to the relevant last-changed dates, and `WORK-IN-PROGRESS` placeholders are replaced with these dates as appropriate. This is usually done by the `schema-publish` workflow which detects changes on each `vX.Y-dev` branch, which generates a pull request for publishing the new schema iterations to the [spec site](https://spec.openapis.org). The workflow can also be run manually if required.
 
 ## Release Process and Scope
 
@@ -312,6 +318,7 @@ For information on the branch and release strategy for OAS 3.0.4 and 3.1.1 and e
 
 * `main` is used to publish finished work and hold the authoritative versions of general documentation such as this document, which can be merged out to other branches as needed.  The `src` tree is ***not*** present on `main`.
 * `dev` is the primary branch for working with the `src` tree, which is kept up-to-date with the most recent release on the most recent minor (X.Y) release line, and serves as the base for each new minor release line.  Development infrastructure that is not needed on `main` is maintained here, and can be merged out to other non-`main` branches as needed.
+  Changes on `main` are automatically included in a pull request to `dev` (see the (section on [branch sync](#branch-sync-automation)).
 * `vX.Y-dev` is the minor release line development branch for X.Y, including both the initial X.Y.0 minor version and all subsequent X.Y.Z patch versions.  All PRs are made to oldest active `vX.Y-dev` branch to which the change is relevant, and then merged forward as shown in the diagram further down in this document.
 * `vX.Y.Z-rel` is the release branch for an X.Y.Z release (including when Z == 0).  It exists primarily for `git mv`-ing `src/oas.md` to the appropriate `versions/X.Y.Z.md` location before merging back to `main`, and can also be used for any emergency post-release fixes that come up, such as when a 3rd party changes URLs in a way that breaks published links.
 
@@ -429,6 +436,15 @@ gitGraph TB:
   checkout v3.3-dev
   commit id:"3.3 work"
 ```
+
+### Branch sync automation
+
+To keep changes in sync, we have some GitHub actions that open pull requests to take changes from `main` onto the `dev` branch, and from `dev` to each active version branch.
+
+- `sync-main-to-dev` opens a pull request with all the changes from the `main` branch that aren't yet included on `dev`.
+  This needs a single approval from either maintainers or TSC and can be merged.
+  The aim is to bring build script and repository documentation changes to the other branches.
+  Published versions of the specifications and schemas will also move across branches with this approach.
 
 ## Appendix: Issue Automation
 

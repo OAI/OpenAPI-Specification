@@ -305,6 +305,7 @@ For information on the branch and release strategy for OAS 3.0.4 and 3.1.1 and e
 
 * `main` is used to publish finished work and hold the authoritative versions of general documentation such as this document, which can be merged out to other branches as needed.  The `src` tree is ***not*** present on `main`.
 * `dev` is the primary branch for working with the `src` tree, which is kept up-to-date with the most recent release on the most recent minor (X.Y) release line, and serves as the base for each new minor release line.  Development infrastructure that is not needed on `main` is maintained here, and can be merged out to other non-`main` branches as needed.
+  Changes on `main` are automatically included in a pull request to `dev` (see the (section on [branch sync](#branch-sync-automation)).
 * `vX.Y-dev` is the minor release line development branch for X.Y, including both the initial X.Y.0 minor version and all subsequent X.Y.Z patch versions.  All PRs are made to oldest active `vX.Y-dev` branch to which the change is relevant, and then merged forward as shown in the diagram further down in this document.
 * `vX.Y.Z-rel` is the release branch for an X.Y.Z release (including when Z == 0).  It exists primarily for `git mv`-ing `src/oas.md` to the appropriate `versions/X.Y.Z.md` location before merging back to `main`, and can also be used for any emergency post-release fixes that come up, such as when a 3rd party changes URLs in a way that breaks published links.
 
@@ -422,6 +423,15 @@ gitGraph TB:
   checkout v3.3-dev
   commit id:"3.3 work"
 ```
+
+### Branch sync automation
+
+To keep changes in sync, we have some GitHub actions that open pull requests to take changes from `main` onto the `dev` branch, and from `dev` to each active version branch.
+
+- `sync-main-to-dev` opens a pull request with all the changes from the `main` branch that aren't yet included on `dev`.
+  This needs a single approval from either maintainers or TSC and can be merged.
+  The aim is to bring build script and repository documentation changes to the other branches.
+  Published versions of the specifications and schemas will also move across branches with this approach.
 
 ## Appendix: Issue Automation
 

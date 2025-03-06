@@ -429,9 +429,11 @@ gitGraph TB:
 To keep changes in sync, we have some GitHub actions that open pull requests to take changes from `main` onto the `dev` branch, and from `dev` to each active version branch.
 
 - `sync-main-to-dev` opens a pull request with all the changes from the `main` branch that aren't yet included on `dev`.
-  This needs a single approval from either maintainers or TSC and can be merged.
-  The aim is to bring build script and repository documentation changes to the other branches.
-  Published versions of the specifications and schemas will also move across branches with this approach.
+- `sync-dev-to-vX.Y-dev` opens pull requests with all the changes from `dev` that aren't yet included on the corresponding `vX.Y-dev` branch.
+
+These need a single approval from either maintainers or TSC and can be merged.
+The aim is to bring build script and repository documentation changes to the other branches.
+Published versions of the specifications and schemas will also move across branches with this approach.
 
 ## Appendix: Issue Automation
 

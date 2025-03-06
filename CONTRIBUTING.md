@@ -216,8 +216,8 @@ Plus some suggestions, rather than rules:
 
 ### Field Names and Values in YAML comments
 
-Field names and keys should be in backticks.
-Values like "Dog" should be double quoted.
+Field names and keys should be in backticks for consistency.
+Values like "Dog" should be double quoted as they are a value rather than a keyword.
 
 ## Release Process and Scope
 

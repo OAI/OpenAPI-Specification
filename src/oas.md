@@ -4004,7 +4004,7 @@ Allows configuration of the supported OAuth Flows.
 | <a name="oauth-flows-password"></a>password | [OAuth Flow Object](#oauth-flow-object) | Configuration for the OAuth Resource Owner Password flow |
 | <a name="oauth-flows-client-credentials"></a>clientCredentials | [OAuth Flow Object](#oauth-flow-object) | Configuration for the OAuth Client Credentials flow. Previously called `application` in OpenAPI 2.0. |
 | <a name="oauth-flows-authorization-code"></a>authorizationCode | [OAuth Flow Object](#oauth-flow-object) | Configuration for the OAuth Authorization Code flow. Previously called `accessCode` in OpenAPI 2.0. |
-| <a name="oauth-flows-device-authorization"></a>deviceAuthorization | [OAuth Flow Object](#oauth-flow-object) | Configuration for the OAuth Device Authorization flow. |
+| <a name="oauth-flows-device-authorization"></s>deviceAuthorization| [OAuth Flow Object](#oauth-flow-object) | Configuration for the OAuth Device Authorization flow. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
@@ -4017,7 +4017,7 @@ Configuration details for a supported OAuth Flow
 | Field Name | Type | Applies To | Description |
 | ---- | :----: | ---- | ---- |
 | <a name="oauth-flow-authorization-url"></a>authorizationUrl | `string` | `oauth2` (`"implicit"`, `"authorizationCode"`) | **REQUIRED**. The authorization URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS. |
-| <a name="oauth-flow-device-authorization-url"></a>deviceAuthorizationUrl | `string` | `oauth2` (`"deviceAuthorization"`) | **REQUIRED**. The device authorization URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS. |
+| <a name="oauth-flow-device-authorization-url"></s>deviceAuthorizationUrl | `string` | `oauth2` (`"deviceAuthorization"`) | **REQUIRED**. The device authorization URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS. |
 | <a name="oauth-flow-token-url"></a>tokenUrl | `string` | `oauth2` (`"password"`, `"clientCredentials"`, `"authorizationCode"`, `"deviceAuthorization"`) | **REQUIRED**. The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS. |
 | <a name="oauth-flow-refresh-url"></a>refreshUrl | `string` | `oauth2` | The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS. |
 | <a name="oauth-flow-scopes"></a>scopes | Map[`string`, `string`] | `oauth2` | **REQUIRED**. The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty. |

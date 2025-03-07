@@ -2728,7 +2728,6 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 
 ```yaml
 tags:
-
   - name: account-updates
     summary: Account Updates
     description: Account update operations

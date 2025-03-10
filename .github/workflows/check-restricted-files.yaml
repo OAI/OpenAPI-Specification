@@ -18,5 +18,27 @@ jobs:
       - name: Check changed files
         shell: bash
         run: |
+          if [[ "${{ github.event.pull_request.head.repo.full_name }}" == "OAI/OpenAPI-Specification" ]] && \
+             [[ "${{ github.event.pull_request.base.repo.full_name }}" == "OAI/OpenAPI-Specification" ]]; then
+ 
+            if [[ "${{ github.event.pull_request.head.ref }}" == "main" ]] && \
+               [[ "${{ github.event.pull_request.base.ref }}" == "dev" ]]; then
+              echo Sync from main to dev
+              exit 0
+            fi
+
+            if [[ "${{ github.event.pull_request.head.ref }}" == "dev" ]] && \
+               [[ "${{ github.event.pull_request.base.ref }}" =~ ^v[0-9]+\.[0-9]+-dev$ ]]; then
+              echo Sync from dev to ${{ github.event.pull_request.base.ref }}
+              exit 0
+            fi
+
+            if [[ "${{ github.event.pull_request.head.ref }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-rel$ ]] && \
+               [[ "${{ github.event.pull_request.base.ref }}" == "main" ]]; then
+              echo Release from ${{ github.event.pull_request.head.ref }} to main
+              exit 0
+            fi
+          fi
+
           echo This PR contains changes to files that should not be changed
           exit 1

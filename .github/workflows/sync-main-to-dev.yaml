@@ -1,0 +1,40 @@
+name: sync-main-to-dev
+
+# author: @ralfhandl
+
+#
+# This workflow creates PRs to update the dev branch with the latest changes from main
+#
+
+# run this on push to main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create pull request
+        id: pull_request
+        shell: bash
+        run: |
+          EXISTS=$(gh pr list --base $BASE --head $HEAD \
+            --json number --jq '.[] | .number')
+          if [ ! -z "$EXISTS" ]; then
+            echo "PR #$EXISTS already wants to merge $HEAD into $BASE"
+            exit 0
+          fi
+
+          gh pr create --base $BASE --head $HEAD \
+            --label "Housekeeping" \
+            --title "$BASE: update from $HEAD" \
+            --body "Merge \`$HEAD\` into \`$BASE\`."
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD: main
+          BASE: dev

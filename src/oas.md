@@ -4071,7 +4071,7 @@ flows:
 Lists the required security schemes to execute this operation.
 
 The name used for each property MUST either correspond to a security scheme declared in the [Security Schemes](#security-scheme-object) under the [Components Object](#components-object), or be the URI of a Security Scheme Object.
-Property names that match the syntax of a component name under the Components Object MUST be treated as a component name.
+Property names that are identical to a component name under the Components Object MUST be treated as a component name.
 To reference a Security Scheme with a single-segment relative URI reference (e.g. `foo`) that collides with a component name (e.g. `#/components/securitySchemes/foo`), use the `.` path segment (e.g. `./foo`).
 
 Using a Security Scheme component name that appears to be a URI is NOT RECOMMENDED, as the precedence of component-name-matching over URI resolution, which is necessary to maintain compatibility with prior OAS versions, is counter-intuitive.  See also [Security Considerations](#security-considerations).
@@ -4088,7 +4088,7 @@ An empty Security Requirement Object (`{}`) indicates anonymous access is suppor
 
 | Field Pattern | Type | Description |
 | --- | :---: | --- |
-| <a name="securityRequirementsName"></a>{name} | [`string`] | Each name or URI MUST correspond to a security scheme as described above. If the security scheme is of type `"oauth2"` or `"openIdConnect"`, then the value is a list of scope names required for the execution, and the list MAY be empty if authorization does not require a specified scope. For other security scheme types, the array MAY contain a list of role names which are required for the execution, but are not otherwise defined or exchanged in-band. |
+| <a name="security-requirements-name"></a>{name} | [`string`] | Each name or URI MUST correspond to a security scheme as described above. If the security scheme is of type `"oauth2"` or `"openIdConnect"`, then the value is a list of scope names required for the execution, and the list MAY be empty if authorization does not require a specified scope. For other security scheme types, the array MAY contain a list of role names which are required for the execution, but are not otherwise defined or exchanged in-band. |
 
 ##### Security Requirement Object Examples
 

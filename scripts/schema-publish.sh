@@ -12,7 +12,7 @@ if [ -z "$1" ]; then
   if [[ $branch =~ ^v([0-9]+\.[0-9]+)-dev$ ]]; then
     deploydir="./deploy/oas/${BASH_REMATCH[1]}"
   else
-    echo "Unable to determine version from branch name; should be vMAJOR.MINOR.PATCH-dev"
+    echo "Unable to determine version from branch name; should be vX.Y-dev"
     exit 1
   fi
 elif [ $1 = "src" ]; then

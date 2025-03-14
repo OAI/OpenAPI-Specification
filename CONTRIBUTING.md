@@ -195,6 +195,25 @@ Reviews requesting changes should have their changes addressed regardless of how
 The specification versions are published to the [spec site](https://spec.openapis.org) by creating an `vX.Y.Z-rel` branch where `src/oas.md` is renamed to the appropriate `versions/X.Y.Z.md` file and then merged to `main`.
 This renaming on the `vX.Y.Z-rel` branch preserves the commit history for the published file on `main` when using `git log --follow` (as is the case for all older published files).
 
+The steps for creating a `vX.Y.Z-rel` branch are:
+
+1. Update `EDITORS.md` on `main`
+2. Merge `main` into `dev` and `dev` into `vX.Y-dev` via PRs
+   - Sync PRs are automatically created by workflows `sync-main-to-dev` and `sync-dev-to-vX.Y-dev`
+3. Prepare spec files in `vX.Y-dev`
+   - `npm run format-markdown`
+   - `npm run build-src`
+   - open `deploy-preview/oas.html` in browser and verify correct formatting
+   - adjust and repeat until done
+   - merge changes to `src/oas.md` back into `vX.Y-dev` via PR
+4. Create `vX.Y.Z-rel` from `vX.Y-dev` and adjust it
+   - move `src/oas.md` to `versions/X.Y.Z.md`
+   - copy `EDITORS.md` to `versions/X.Y.Z-editors.md`
+   - delete `src/schemas` 
+   - delete `tests/schema`
+5. Merge `vX.Y.Z-rel` into `main` via PR
+   - this PR should only add files `versions/X.Y.Z.md` and `versions/X.Y.Z-editors.md`
+
 The HTML renderings of the specification versions are automatically generated from the `versions` directory on `main` by the [`respec` workflow](https://github.com/OAI/OpenAPI-Specification/blob/main/.github/workflows/respec.yaml), which generates a pull request for publishing the HTML renderings to the [spec site](https://spec.openapis.org).
 
 ### Schema Iterations

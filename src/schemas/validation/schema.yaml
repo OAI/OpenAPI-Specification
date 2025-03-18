@@ -630,7 +630,7 @@ $defs:
       requestBody: true
       description:
         type: string
-      body:
+      server:
         $ref: '#/$defs/server'
     oneOf:
       - required:

@@ -336,7 +336,7 @@ For information on the branch and release strategy for OAS 3.0.4 and 3.1.1 and e
 ### Branch roles
 
 * `main` is used to publish finished work and hold the authoritative versions of general documentation such as this document, which can be merged out to other branches as needed.  The `src` tree is ***not*** present on `main`.
-* `dev` is the primary branch for working with the `src` tree, which is kept up-to-date with the most recent release on the most recent minor (X.Y) release line, and serves as the base for each new minor release line.  Development infrastructure that is not needed on `main` is maintained here, and can be merged out to other non-`main` branches as needed.
+* `dev` is the primary branch for working with the `src` tree.  Development infrastructure that is not needed on `main` is maintained here, and can be merged out to other non-`main` branches as needed.
   Changes on `main` are automatically included in a pull request to `dev` (see the (section on [branch sync](#branch-sync-automation)).
 * `vX.Y-dev` is the minor release line development branch for X.Y, including both the initial X.Y.0 minor version and all subsequent X.Y.Z patch versions.  All PRs are made to oldest active `vX.Y-dev` branch to which the change is relevant, and then merged forward as shown in the diagram further down in this document.
 * `vX.Y.Z-rel` is the release branch for an X.Y.Z release (including when Z == 0).  It exists primarily for `git mv`-ing `src/oas.md` to the appropriate `versions/X.Y.Z.md` location before merging back to `main`, and can also be used for any emergency post-release fixes that come up, such as when a 3rd party changes URLs in a way that breaks published links.
@@ -348,17 +348,15 @@ Upon release:
 * Pre-release steps:
     * The most recent _published_ patch release from the previous line is merged up to `vX.Y-dev`, if relevant
     * If doing simultaneous releases on multiple lines, do them from the oldest to newest line
-    * If the release is the most recent on the current line, merge `vX.Y-dev` to `dev`
     * For example, if releasing 3.1.3 and 3.2.0:
-        * release 3.1.3 first, including merging `v3.1-dev` to `dev` as 3.1 is current at that moment
-        * release 3.2.0 second, also merging `v3.2-dev` to `dev` as 3.2 becomes current at that point
-        * any subsequent 3.1.4 would **_not_** trigger a merge of `v3.1-dev` to `dev`, as 3.1 would no longer be current
+        * release 3.1.3 first
+        * release 3.2.0 second
 * Release branching and merging:
     * branch `vX.Y.Z-rel` from `vX.Y-dev` (same commit that was merged to `dev` if relevant)
-    * After renaming `src/oas.md` to `versions/X.Y.Z.md`, merge `vX.Y.Z-rel` to `main`
+    * After renaming `src/oas.md` to `versions/X.Y.Z.md` and [other adjustments](#specification-versions), merge `vX.Y.Z-rel` to `main`
 * Publishing to the [spec site](https://spec.openapis.org) is triggered by the merge to `main`
 * Post-release steps:
-    * If this was a major or minor release (Z == 0), branch `vX.Y+1-dev` from `dev`, from the commit where `vX.Y-dev` was merged to `dev`
+    * If this was a major or minor release (Z == 0), branch `vX.Y+1-dev` from `vX.Y-dev`
 
 _Release lines are grouped by color, although the colors of `dev` and `main` are not significant as these diagrams are limited to only 8 colors._
 
@@ -399,11 +397,16 @@ gitGraph TB:
   checkout v3.1-dev
   branch v3.1.2-rel order:3
   commit id:"rename src/oas.md to versions/3.1.2.md"
-  checkout dev
-  merge v3.1-dev id:"update dev with active line patch release"
+
   checkout main
   merge v3.1.2-rel tag:"3.1.2"
+  checkout dev
+  merge main
+  checkout v3.1-dev
+  merge dev
   checkout v3.2-dev
+  merge dev
+
   commit id:"more 3.2.0 work"
   checkout v3.1-dev
   commit id:"update version in src/oas.md to 3.1.3"
@@ -411,9 +414,7 @@ gitGraph TB:
   checkout v3.2-dev
   commit id:"still more 3.2.0 work"
   merge v3.1-dev id:"merge 3.1.3 fixes before releasing"
-  checkout dev
-  merge v3.1-dev id:"update dev with last pre-minor release patch release"
-  merge v3.2-dev id:"update dev with minor release"
+
   checkout v3.1-dev
   branch v3.1.3-rel order:4
   commit id:"rename src/oas.md to versions/3.1.3.md"
@@ -422,8 +423,23 @@ gitGraph TB:
   commit id:"rename src/oas.md to versions/3.2.0.md"
   checkout main
   merge v3.1.3-rel tag:"3.1.3"
+  checkout dev
+  merge main
+  checkout v3.1-dev
+  merge dev
+  checkout v3.2-dev
+  merge dev
+
+  checkout main
   merge v3.2.0-rel tag:"3.2.0"
   checkout dev
+  merge main
+  checkout v3.1-dev
+  merge dev
+  checkout v3.2-dev
+  merge dev
+
+  checkout v3.2-dev
   branch v3.3-dev order:9
   checkout v3.1-dev
   commit id:"update version in src/oas.md to 3.1.4"
@@ -439,8 +455,7 @@ gitGraph TB:
   merge v3.1-dev id:"merge 3.1.4 fixes before releasing"
   checkout v3.3-dev
   merge v3.2-dev id:"merge 3.1.4 / 3.2.1 fixes"
-  checkout dev
-  merge v3.2-dev id:"merge patch from active release line"
+
   checkout v3.1-dev
   branch v3.1.4-rel order:5
   commit id:"rename src/oas.md to versions/3.1.4.md"
@@ -449,7 +464,26 @@ gitGraph TB:
   commit id:"rename src/oas.md to versions/3.2.1.md"
   checkout main
   merge v3.1.4-rel tag:"3.1.4"
+  checkout dev
+  merge main
+  checkout v3.1-dev
+  merge dev
+  checkout v3.2-dev
+  merge dev
+  checkout v3.3-dev
+  merge dev
+
+  checkout main
   merge v3.2.1-rel tag:"3.2.1"
+  checkout dev
+  merge main
+  checkout v3.1-dev
+  merge dev
+  checkout v3.2-dev
+  merge dev
+  checkout v3.3-dev
+  merge dev
+
   checkout v3.2-dev
   commit id:"update version in src/oas.md to 3.2.2"
   checkout v3.3-dev

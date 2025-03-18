@@ -37,7 +37,7 @@ describe("v3.1", () => {
         test(entry.name, () => {
           const instance = parseYamlFromFile(`${fixtures}/pass/${entry.name}`);
           const output = validateOpenApi(instance, BASIC);
-          expect(output.valid).to.equal(true);
+          expect(output).to.deep.equal({ valid: true });
         });
       });
   });

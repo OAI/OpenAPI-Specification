@@ -401,12 +401,11 @@ gitGraph TB:
   checkout main
   merge v3.1.2-rel tag:"3.1.2"
   checkout dev
-  merge main
+  merge main id:"auto-sync from main"
   checkout v3.1-dev
-  merge dev
+  merge dev id:"auto-sync from dev"
   checkout v3.2-dev
-  merge dev
-
+  merge dev id:"auto-sync from dev"
   commit id:"more 3.2.0 work"
   checkout v3.1-dev
   commit id:"update version in src/oas.md to 3.1.3"

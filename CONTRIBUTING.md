@@ -403,9 +403,10 @@ gitGraph TB:
   checkout dev
   merge main id:"auto-sync from main"
   checkout v3.1-dev
-  merge dev id:"auto-sync from dev"
+  merge dev  id:"auto-sync from dev"
   checkout v3.2-dev
-  merge dev id:"auto-sync from dev"
+  merge dev  id:"auto-sync from dev "
+
   commit id:"more 3.2.0 work"
   checkout v3.1-dev
   commit id:"update version in src/oas.md to 3.1.3"
@@ -420,23 +421,24 @@ gitGraph TB:
   checkout v3.2-dev
   branch v3.2.0-rel order:7
   commit id:"rename src/oas.md to versions/3.2.0.md"
+
   checkout main
   merge v3.1.3-rel tag:"3.1.3"
   checkout dev
-  merge main
+  merge main id:" auto-sync from main"
   checkout v3.1-dev
-  merge dev
+  merge dev  id:" auto-sync from dev"
   checkout v3.2-dev
-  merge dev
+  merge dev  id:" auto-sync from dev "
 
   checkout main
   merge v3.2.0-rel tag:"3.2.0"
   checkout dev
-  merge main
+  merge main id:"  auto-sync from main"
   checkout v3.1-dev
-  merge dev
+  merge dev  id:"  auto-sync from dev"
   checkout v3.2-dev
-  merge dev
+  merge dev  id:"  auto-sync from dev "
 
   checkout v3.2-dev
   branch v3.3-dev order:9
@@ -461,27 +463,28 @@ gitGraph TB:
   checkout v3.2-dev
   branch v3.2.1-rel order:8
   commit id:"rename src/oas.md to versions/3.2.1.md"
+
   checkout main
   merge v3.1.4-rel tag:"3.1.4"
   checkout dev
-  merge main
+  merge main id:"   auto-sync from main"
   checkout v3.1-dev
-  merge dev
+  merge dev  id:"   auto-sync from dev"
   checkout v3.2-dev
-  merge dev
+  merge dev  id:"   auto-sync from dev "
   checkout v3.3-dev
-  merge dev
+  merge dev  id:"   auto-sync from dev  "
 
   checkout main
   merge v3.2.1-rel tag:"3.2.1"
   checkout dev
-  merge main
+  merge main id:"    auto-sync from main"
   checkout v3.1-dev
-  merge dev
+  merge dev  id:"    auto-sync from dev"
   checkout v3.2-dev
-  merge dev
+  merge dev  id:"    auto-sync from dev "
   checkout v3.3-dev
-  merge dev
+  merge dev  id:"    auto-sync from dev  "
 
   checkout v3.2-dev
   commit id:"update version in src/oas.md to 3.2.2"

@@ -1,119 +1,499 @@
-openapi: "3.0.0"
+openapi: 3.0.0
 info:
-  version: 1.0.0
-  title: Swagger Petstore
-  license:
-    name: MIT
+  title: OpenSolar API
+  version: "1.0.0"
+  description: >
+    API-Dokumentation für OpenSolar. Diese YAML-Datei fasst zentrale Endpunkte zusammen,
+    wie Authentifizierung, Organisations-, Projekt-, Kontakt-, System- und Webhook-Management.
 servers:
-  - url: http://petstore.swagger.io/v1
+  - url: https://api.opensolar.com/api
+    description: Production Server
+
 paths:
-  /pets:
-    get:
-      summary: List all pets
-      operationId: listPets
-      tags:
-        - pets
-      parameters:
-        - name: limit
-          in: query
-          description: How many items to return at one time (max 100)
-          required: false
-          schema:
-            type: integer
-            maximum: 100
-            format: int32
-      responses:
-        '200':
-          description: A paged array of pets
-          headers:
-            x-next:
-              description: A link to the next page of responses
-              schema:
-                type: string
-          content:
-            application/json:    
-              schema:
-                $ref: "#/components/schemas/Pets"
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
+  /auth/token-auth/:
     post:
-      summary: Create a pet
-      operationId: createPets
-      tags:
-        - pets
+      summary: Generiere einen Bearer-Token
+      description: >
+        POST-Anfrage zum Erzeugen eines Zugriffs-Tokens. Für MFA-Accounts ist zusätzlich der aktuelle 2FA-Code erforderlich.
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pet'
-        required: true
-      responses:
-        '201':
-          description: Null response
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-  /pets/{petId}:
-    get:
-      summary: Info for a specific pet
-      operationId: showPetById
-      tags:
-        - pets
-      parameters:
-        - name: petId
-          in: path
-          required: true
-          description: The id of the pet to retrieve
-          schema:
-            type: string
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: "arnie@illbeback.com"
+                password:
+                  type: string
+                  example: "gettothechopper"
+                token:
+                  type: string
+                  example: "1234"
+              required:
+                - username
+                - password
       responses:
         '200':
-          description: Expected response to a valid request
+          description: Erfolgreiche Authentifizierung, Rückgabe des Tokens
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Pet"
-        default:
-          description: unexpected error
+                type: object
+                properties:
+                  token:
+                    type: string
+                  user:
+                    type: object
+                    description: Benutzerinformationen
+        '401':
+          description: Ungültige Anmeldedaten
+
+  /orgs/{org_id}/:
+    get:
+      summary: Hole Organisationsdetails
+      parameters:
+        - in: path
+          name: org_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Organisationsdetails wurden erfolgreich abgerufen
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  projects:
+                    type: string
+                    description: URL zu den Projekten der Organisation
+
+  /orgs/{org_id}/projects/:
+    get:
+      summary: Liste alle Projekte der Organisation auf
+      parameters:
+        - in: path
+          name: org_id
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: page
+          schema:
+            type: integer
+        - in: query
+          name: limit
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Erfolgreiche Rückgabe einer Projektliste
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+    post:
+      summary: Erstelle ein neues Projekt
+      parameters:
+        - in: path
+          name: org_id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                identifier:
+                  type: string
+                  example: "123456"
+                is_residential:
+                  type: boolean
+                  example: true
+                lead_source:
+                  type: string
+                  example: "Door Knockers"
+                notes:
+                  type: string
+                  example: "Has a pool, needs LG panel."
+                lat:
+                  type: number
+                  example: 35.12364
+                lon:
+                  type: number
+                  example: 128.23216
+                address:
+                  type: string
+                  example: "123 Fake St"
+                locality:
+                  type: string
+                  example: "Fakesville"
+                state:
+                  type: string
+                  example: "NSW"
+                country_iso2:
+                  type: string
+                  example: "AU"
+                zip:
+                  type: string
+                  example: "2020"
+                number_of_phases:
+                  type: integer
+                  example: 1
+                roof_type:
+                  type: string
+                  example: "https://api.opensolar.com/api/roof_types/6/"
+                assigned_role:
+                  type: string
+                  example: "https://api.opensolar.com/api/orgs/1/roles/123/"
+                contacts_new:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      first_name:
+                        type: string
+                        example: "George"
+                      family_name:
+                        type: string
+                        example: "Costanza"
+                      email:
+                        type: string
+                        example: "gconstanza@vanderlayindustries.com"
+                      phone:
+                        type: string
+                        example: "0400000000"
+                      date_of_birth:
+                        type: string
+                        format: date
+                        example: "1990-01-01"
+                      gender:
+                        type: integer
+                        example: 2
+              required:
+                - identifier
+                - is_residential
+                - address
+      responses:
+        '201':
+          description: Projekt erfolgreich erstellt
+
+  /orgs/{org_id}/projects/{project_id}/:
+    get:
+      summary: Hole Details eines spezifischen Projekts
+      parameters:
+        - in: path
+          name: org_id
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: project_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Projektdetails erfolgreich abgerufen
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+    patch:
+      summary: Aktualisiere ein Projekt teilweise
+      parameters:
+        - in: path
+          name: org_id
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: project_id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                workflow:
+                  type: object
+                  properties:
+                    active_stage_id:
+                      type: integer
+                      example: 433194
+                    workflow_id:
+                      type: integer
+                      example: 84617
+                active_stage_id:
+                  type: integer
+                  example: 433194
+      responses:
+        '200':
+          description: Projekt erfolgreich aktualisiert
+
+  /orgs/{org_id}/contacts/:
+    get:
+      summary: Liste alle Kontakte in der Organisation auf
+      parameters:
+        - in: path
+          name: org_id
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: page
+          schema:
+            type: integer
+        - in: query
+          name: limit
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Liste von Kontakten
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Contact'
+    post:
+      summary: Erstelle einen neuen Kontakt
+      parameters:
+        - in: path
+          name: org_id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: "George"
+                family_name:
+                  type: string
+                  example: "Costanza"
+                email:
+                  type: string
+                  example: "gconstanza@vanderlayindustries.com"
+                phone:
+                  type: string
+                  example: "0400000000"
+              required:
+                - first_name
+                - family_name
+                - email
+      responses:
+        '201':
+          description: Kontakt erfolgreich erstellt
+
+  /orgs/{org_id}/systems/:
+    get:
+      summary: Liste Systeme in der Organisation auf
+      parameters:
+        - in: path
+          name: org_id
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: fieldset
+          required: true
+          schema:
+            type: string
+            example: "list"
+        - in: query
+          name: page
+          schema:
+            type: integer
+        - in: query
+          name: limit
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Liste von Systemen
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/System'
+
+  /orgs/{org_id}/webhooks/:
+    get:
+      summary: Liste alle Webhooks der Organisation auf
+      parameters:
+        - in: path
+          name: org_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Liste von Webhooks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+    post:
+      summary: Erstelle einen neuen Webhook
+      parameters:
+        - in: path
+          name: org_id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                endpoint:
+                  type: string
+                  example: "https://somesolar.com/api/"
+                headers:
+                  type: string
+                  example: "{\"Authorization\": \"Token <your-token>\"}"
+                enabled:
+                  type: boolean
+                  example: true
+                debug:
+                  type: boolean
+                  example: false
+                trigger_fields:
+                  type: array
+                  items:
+                    type: string
+                  example: ["contact.*", "event.*", "project.*"]
+                payload_fields:
+                  type: array
+                  items:
+                    type: string
+                  example: ["contact.*", "event.*", "project.*"]
+              required:
+                - endpoint
+                - enabled
+                - debug
+      responses:
+        '201':
+          description: Webhook erfolgreich erstellt
+
 components:
   schemas:
-    Pet:
+    Project:
       type: object
-      required:
-        - id
-        - name
       properties:
         id:
           type: integer
-          format: int64
+        title:
+          type: string
+        address:
+          type: string
+        locality:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        modified_date:
+          type: string
+          format: date-time
+      example:
+        id: 3763174
+        title: "6 Hopetoun Ave"
+        address: "6 Hopetoun Ave"
+        locality: "Vaucluse"
+        state: "NSW"
+        zip: "2030"
+        created_date: "2024-01-31T00:58:18.186310Z"
+        modified_date: "2024-02-12T01:18:20.475934Z"
+
+    Contact:
+      type: object
+      properties:
+        id:
+          type: integer
+        first_name:
+          type: string
+        family_name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+      example:
+        id: 1721096
+        first_name: "George"
+        family_name: "Costanza"
+        email: "gconstanza@vanderlayindustries.com"
+        phone: "0400000000"
+
+    System:
+      type: object
+      properties:
+        id:
+          type: integer
         name:
           type: string
-        tag:
+        uuid:
           type: string
-    Pets:
-      type: array
-      maxItems: 100
-      items:
-        $ref: "#/components/schemas/Pet"
-    Error:
+        kw_stc:
+          type: number
+      example:
+        id: 1253
+        name: "System 1 (6.21 kW)"
+        uuid: "E583FD88-EB6C-4311-91A9-AC719041EAA8"
+        kw_stc: 6.21
+
+    Webhook:
       type: object
-      required:
-        - code
-        - message
       properties:
-        code:
+        id:
           type: integer
-          format: int32
-        message:
+        endpoint:
           type: string
+        enabled:
+          type: boolean
+      example:
+        id: 123
+        endpoint: "https://somesolar.com/api/"
+        enabled: true
+
+security:
+  - BearerAuth: []
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

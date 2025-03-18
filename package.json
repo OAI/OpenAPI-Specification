@@ -33,7 +33,7 @@
     "c8": "^10.1.3",
     "markdownlint-cli": "^0.44.0",
     "mdv": "^1.3.4",
-    "vitest": "^3.0.8",
+    "vitest": "^3.0.9",
     "yaml": "^2.7.0"
   },
   "keywords": [

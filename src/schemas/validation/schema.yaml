@@ -121,6 +121,8 @@ $defs:
         type: string
       description:
         type: string
+      name:
+        type: [string, null]
       variables:
         type: object
         additionalProperties:

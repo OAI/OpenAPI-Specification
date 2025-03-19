@@ -122,7 +122,7 @@ $defs:
       description:
         type: string
       name:
-        type: [string, null]
+        type: string
       variables:
         type: object
         additionalProperties:

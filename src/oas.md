@@ -141,6 +141,14 @@ In order to preserve the ability to round-trip between YAML and JSON formats, YA
 
 **Note:** While APIs may be described by OpenAPI Descriptions in either YAML or JSON format, the API request and response bodies and other content are not required to be JSON or YAML.
 
+### Rich Text Formatting
+
+Throughout the specification `description` fields are noted as supporting CommonMark markdown formatting.
+Where OpenAPI tooling renders rich text it MUST support, at a minimum, markdown syntax as described by [CommonMark 0.27](https://spec.commonmark.org/0.27/). Tooling MAY choose to ignore some CommonMark or extension features to address security concerns.
+
+While the framing of CommonMark 0.27 as a minimum requirement means that tooling MAY choose to implement extensions on top of it, note that any such extensions are by definition implementation-defined and will not be interoperable.
+OpenAPI Description authors SHOULD consider how text using such extensions will be rendered by tools that offer only the minimum support.
+
 ### OpenAPI Description Structure
 
 An OpenAPI Description (OAD) MAY be made up of a single JSON or YAML document or be divided into multiple, connected parts at the discretion of the author. In the latter case, [Reference Object](#reference-object), [Path Item Object](#path-item-object) and [Schema Object](#schema-object) `$ref` fields, as well as the [Link Object](#link-object) `operationRef` field, and the URI form of the [Discriminator Object](#discriminator-object) `mapping` field, are used to identify the referenced elements.
@@ -221,82 +229,6 @@ See [Appendix F: Resolving Security Requirements in a Referenced Document](#appe
 The behavior for Discrimator Object non-URI mappings and for the Operation Object's `tags` field operate on the same principles.
 
 Note that no aspect of implicit connection resolution changes how [URIs are resolved](#relative-references-in-api-description-uris), or restricts their possible targets.
-
-### Data Types
-
-Data types in the OAS are based on the types defined by the [JSON Schema Validation Specification Draft 2020-12](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-6.1.1):
-"null", "boolean", "object", "array", "number", "string", or "integer".
-Models are defined using the [Schema Object](#schema-object), which is a superset of the JSON Schema Specification Draft 2020-12.
-
-JSON Schema keywords and `format` values operate on JSON "instances" which may be one of the six JSON data types, "null", "boolean", "object", "array", "number", or "string", with certain keywords and formats only applying to a specific type. For example, the `pattern` keyword and the `date-time` format only apply to strings, and treat any instance of the other five types as _automatically valid._ This means JSON Schema keywords and formats do **NOT** implicitly require the expected type. Use the `type` keyword to explicitly constrain the type.
-
-Note that the `type` keyword allows `"integer"` as a value for convenience, but keyword and format applicability does not recognize integers as being of a distinct JSON type from other numbers because [[RFC7159|JSON]] itself does not make that distinction. Since there is no distinct JSON integer type, JSON Schema defines integers mathematically. This means that both `1` and `1.0` are [equivalent](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-4.2.2), and are both considered to be integers.
-
-#### Data Type Format
-
-As defined by the [JSON Schema Validation specification](https://tools.ietf.org/html/draft-bhutton-json-schema-validation-00#section-7.3), data types can have an optional modifier keyword: `format`. As described in that specification, `format` is treated as a non-validating annotation by default; the ability to validate `format` varies across implementations.
-
-The OpenAPI Initiative also hosts a [Format Registry](https://spec.openapis.org/registry/format/) for formats defined by OAS users and other specifications. Support for any registered format is strictly OPTIONAL, and support for one registered format does not imply support for any others.
-
-Types that are not accompanied by a `format` keyword follow the type definition in the JSON Schema. Tools that do not recognize a specific `format` MAY default back to the `type` alone, as if the `format` is not specified.
-For the purpose of [JSON Schema validation](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-7.1), each format should specify the set of JSON data types for which it applies. In this registry, these types are shown in the "JSON Data Type" column.
-
-The formats defined by the OAS are:
-
-| `format` | JSON Data Type | Comments |
-| ---- | ---- | ---- |
-| `int32` | number | signed 32 bits |
-| `int64` | number | signed 64 bits (a.k.a long) |
-| `float` | number | |
-| `double` | number | |
-| `password` | string | A hint to obscure the value. |
-
-As noted under [Data Type](#data-types), both `type: number` and `type: integer` are considered to be numbers in the data model.
-
-#### Working with Binary Data
-
-The OAS can describe either _raw_ or _encoded_ binary data.
-
-* **raw binary** is used where unencoded binary data is allowed, such as when sending a binary payload as the entire HTTP message body, or as part of a `multipart/*` payload that allows binary parts
-* **encoded binary** is used where binary data is embedded in a text-only format such as `application/json` or `application/x-www-form-urlencoded` (either as a message body or in the URL query string).
-
-In the following table showing how to use Schema Object keywords for binary data, we use `image/png` as an example binary media type. Any binary media type, including `application/octet-stream`, is sufficient to indicate binary content.
-
-| Keyword | Raw | Encoded | Comments |
-| ---- | ---- | ---- | ---- |
-| `type` | _omit_ | `string` | raw binary is [outside of `type`](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-4.2.3) |
-| `contentMediaType` | `image/png` | `image/png` | can sometimes be omitted if redundant (see below) |
-| `contentEncoding` | _omit_ | `base64`&nbsp;or&nbsp;`base64url` | other encodings are [allowed](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-8.3) |
-
-Note that the encoding indicated by `contentEncoding`, which inflates the size of data in order to represent it as 7-bit ASCII text, is unrelated to HTTP's `Content-Encoding` header, which indicates whether and how a message body has been compressed and is applied after all content serialization described in this section has occurred. Since HTTP allows unencoded binary message bodies, there is no standardized HTTP header for indicating base64 or similar encoding of an entire message body.
-
-Using a `contentEncoding` of `base64url` ensures that URL encoding (as required in the query string and in message bodies of type `application/x-www-form-urlencoded`) does not need to further encode any part of the already-encoded binary data.
-
-The `contentMediaType` keyword is redundant if the media type is already set:
-
-* as the key for a [MediaType Object](#media-type-object)
-* in the `contentType` field of an [Encoding Object](#encoding-object)
-
-If the [Schema Object](#schema-object) will be processed by a non-OAS-aware JSON Schema implementation, it may be useful to include `contentMediaType` even if it is redundant. However, if `contentMediaType` contradicts a relevant Media Type Object or Encoding Object, then `contentMediaType` SHALL be ignored.
-
-The `maxLength` keyword MAY be used to set an expected upper bound on the length of a streaming payload. The keyword can be applied to either string data, including encoded binary data, or to unencoded binary data. For unencoded binary, the length is the number of octets.
-
-##### Migrating binary descriptions from OAS 3.0
-
-The following table shows how to migrate from OAS 3.0 binary data descriptions, continuing to use `image/png` as the example binary media type:
-
-| OAS < 3.1 | OAS >= 3.1 | Comments |
-| ---- | ---- | ---- |
-| <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">format: binary</code> | <code style="white-space:nowrap">contentMediaType: image/png</code> | if redundant, can be omitted, often resulting in an empty [Schema Object](#schema-object) |
-| <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">format: byte</code> | <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">contentMediaType: image/png</code><br /><code style="white-space:nowrap">contentEncoding: base64</code> | note that `base64url` can be used to avoid re-encoding the base64 string to be URL-safe |
-
-### Rich Text Formatting
-
-Throughout the specification `description` fields are noted as supporting CommonMark markdown formatting.
-Where OpenAPI tooling renders rich text it MUST support, at a minimum, markdown syntax as described by [CommonMark 0.27](https://spec.commonmark.org/0.27/). Tooling MAY choose to ignore some CommonMark or extension features to address security concerns.
-
-While the framing of CommonMark 0.27 as a minimum requirement means that tooling MAY choose to implement extensions on top of it, note that any such extensions are by definition implementation-defined and will not be interoperable.
-OpenAPI Description authors SHOULD consider how text using such extensions will be rendered by tools that offer only the minimum support.
 
 ### Relative References in API Description URIs
 
@@ -1616,65 +1548,6 @@ application/json:
       $ref: '#/components/examples/frog-example'
 ```
 
-##### Considerations for File Uploads
-
-In contrast to OpenAPI 2.0, `file` input/output content in OAS 3.x is described with the same semantics as any other schema type.
-
-In contrast to OAS 3.0, the `format` keyword has no effect on the content-encoding of the schema in OAS 3.1. Instead, JSON Schema's `contentEncoding` and `contentMediaType` keywords are used. See [Working With Binary Data](#working-with-binary-data) for how to model various scenarios with these keywords, and how to migrate from the previous `format` usage.
-
-Examples:
-
-Content transferred in binary (octet-stream) MAY omit `schema`:
-
-```yaml
-# a PNG image as a binary file:
-content:
-  image/png: {}
-```
-
-```yaml
-# an arbitrary binary file:
-content:
-  application/octet-stream: {}
-```
-
-```yaml
-# arbitrary JSON without constraints beyond being syntactically valid:
-content:
-  application/json: {}
-```
-
-These examples apply to either input payloads of file uploads or response payloads.
-
-A `requestBody` for submitting a file in a `POST` operation may look like the following example:
-
-```yaml
-requestBody:
-  content:
-    application/octet-stream: {}
-```
-
-In addition, specific media types MAY be specified:
-
-```yaml
-# multiple, specific media types may be specified:
-requestBody:
-  content:
-    # a binary file of type png or jpeg
-    image/jpeg: {}
-    image/png: {}
-```
-
-To upload multiple files, a `multipart` media type MUST be used as shown under [Example: Multipart Form with Multiple Files](#example-multipart-form-with-multiple-files).
-
-##### Support for x-www-form-urlencoded Request Bodies
-
-See [Encoding the `x-www-form-urlencoded` Media Type](#encoding-the-x-www-form-urlencoded-media-type) for guidance and examples, both with and without the `encoding` field.
-
-##### Special Considerations for `multipart` Content
-
-See [Encoding `multipart` Media Types](#encoding-multipart-media-types) for further guidance and examples, both with and without the `encoding` field.
-
 #### Encoding Object
 
 A single encoding definition applied to a single schema property.
@@ -1725,206 +1598,6 @@ See also [Appendix C: Using RFC6570 Implementations](#appendix-c-using-rfc6570-b
 
 Note that the presence of at least one of `style`, `explode`, or `allowReserved` with an explicit value is equivalent to using `schema` with `in: "query"` Parameter Objects.
 The absence of all three of those fields is the equivalent of using `content`, but with the media type specified in `contentType` rather than through a Media Type Object.
-
-##### Encoding the `x-www-form-urlencoded` Media Type
-
-To submit content using form url encoding via [RFC1866](https://tools.ietf.org/html/rfc1866), use the `application/x-www-form-urlencoded` media type in the [Media Type Object](#media-type-object) under the [Request Body Object](#request-body-object).
-This configuration means that the request body MUST be encoded per [RFC1866](https://tools.ietf.org/html/rfc1866) when passed to the server, after any complex objects have been serialized to a string representation.
-
-See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a detailed examination of percent-encoding concerns for form media types.
-
-###### Example: URL Encoded Form with JSON Values
-
-When there is no [`encoding`](#media-type-encoding) field, the serialization strategy is based on the Encoding Object's default values:
-
-```yaml
-requestBody:
-  content:
-    application/x-www-form-urlencoded:
-      schema:
-        type: object
-        properties:
-          id:
-            type: string
-            format: uuid
-          address:
-            # complex types are stringified to support RFC 1866
-            type: object
-            properties: {}
-```
-
-With this example, consider an `id` of `f81d4fae-7dec-11d0-a765-00a0c91e6bf6` and a US-style address (with ZIP+4) as follows:
-
-```json
-{
-  "streetAddress": "123 Example Dr.",
-  "city": "Somewhere",
-  "state": "CA",
-  "zip": "99999+1234"
-}
-```
-
-Assuming the most compact representation of the JSON value (with unnecessary whitespace removed), we would expect to see the following request body, where space characters have been replaced with `+` and `+`, `"`, `{`, and `}` have been percent-encoded to `%2B`, `%22`, `%7B`, and `%7D`, respectively:
-
-```uri
-id=f81d4fae-7dec-11d0-a765-00a0c91e6bf6&address=%7B%22streetAddress%22:%22123+Example+Dr.%22,%22city%22:%22Somewhere%22,%22state%22:%22CA%22,%22zip%22:%2299999%2B1234%22%7D
-```
-
-Note that the `id` keyword is treated as `text/plain` per the [Encoding Object](#encoding-object)'s default behavior, and is serialized as-is.
-If it were treated as `application/json`, then the serialized value would be a JSON string including quotation marks, which would be percent-encoded as `%22`.
-
-Here is the `id` parameter (without `address`) serialized as `application/json` instead of `text/plain`, and then encoded per RFC1866:
-
-```uri
-id=%22f81d4fae-7dec-11d0-a765-00a0c91e6bf6%22
-```
-
-###### Example: URL Encoded Form with Binary Values
-
-Note that `application/x-www-form-urlencoded` is a text format, which requires base64-encoding any binary data:
-
-```YAML
-requestBody:
-  content:
-    application/x-www-form-urlencoded:
-      schema:
-        type: object
-        properties:
-          name:
-            type: string
-          icon:
-            # The default with "contentEncoding" is application/octet-stream,
-            # so we need to set image media type(s) in the Encoding Object.
-            type: string
-            contentEncoding: base64url
-  encoding:
-    icon:
-      contentType: image/png, image/jpeg
-```
-
-Given a name of `example` and a solid red 2x2-pixel PNG for `icon`, this
-would produce a request body of:
-
-```uri
-name=example&icon=iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAABGdBTUEAALGPC_xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAqADAAQAAAABAAAAAgAAAADO0J6QAAAAEElEQVQIHWP8zwACTGCSAQANHQEDqtPptQAAAABJRU5ErkJggg%3D%3D
-```
-
-Note that the `=` padding characters at the end need to be percent-encoded, even with the "URL safe" `contentEncoding: base64url`.
-Some base64-decoding implementations may be able to use the string without the padding per [RFC4648](https://datatracker.ietf.org/doc/html/rfc4648#section-3.2).
-However, this is not guaranteed, so it may be more interoperable to keep the padding and rely on percent-decoding.
-
-##### Encoding `multipart` Media Types
-
-It is common to use `multipart/form-data` as a `Content-Type` when transferring forms as request bodies. In contrast to OpenAPI 2.0, a `schema` is REQUIRED to define the input parameters to the operation when using `multipart` content. This supports complex structures as well as supporting mechanisms for multiple file uploads.
-
-The `form-data` disposition and its `name` parameter are mandatory for `multipart/form-data` ([RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.2)).
-Array properties are handled by applying the same `name` to multiple parts, as is recommended by [RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3) for supplying multiple values per form field.
-See [RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-5) for guidance regarding non-ASCII part names.
-
-Various other `multipart` types, most notable `multipart/mixed` ([RFC2046](https://www.rfc-editor.org/rfc/rfc2046.html#section-5.1.3)) neither require nor forbid specific `Content-Disposition` values, which means care must be taken to ensure that any values used are supported by all relevant software.
-It is not currently possible to correlate schema properties with unnamed, ordered parts in media types such as `multipart/mixed`, but implementations MAY choose to support such types when `Content-Disposition: form-data` is used with a `name` parameter.
-
-Note that there are significant restrictions on what headers can be used with `multipart` media types in general ([RFC2046](https://www.rfc-editor.org/rfc/rfc2046.html#section-5.1)) and `multi-part/form-data` in particular ([RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.8)).
-
-Note also that `Content-Transfer-Encoding` is deprecated for `multipart/form-data` ([RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.7)) where binary data is supported, as it is in HTTP.
-
-+Using `contentEncoding` for a multipart field is equivalent to specifying an [Encoding Object](#encoding-object) with a `headers` field containing `Content-Transfer-Encoding` with a schema that requires the value used in `contentEncoding`.
-+If `contentEncoding` is used for a multipart field that has an Encoding Object with a `headers` field containing `Content-Transfer-Encoding` with a schema that disallows the value from `contentEncoding`, the result is undefined for serialization and parsing.
-
-Note that as stated in [Working with Binary Data](#working-with-binary-data), if the Encoding Object's `contentType`, whether set explicitly or implicitly through its default value rules, disagrees with the `contentMediaType` in a Schema Object, the `contentMediaType` SHALL be ignored.
-Because of this, and because the Encoding Object's `contentType` defaulting rules do not take the Schema Object's`contentMediaType` into account, the use of `contentMediaType` with an Encoding Object is NOT RECOMMENDED.
-
-See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a detailed examination of percent-encoding concerns for form media types.
-
-###### Example: Basic Multipart Form
-
-When the `encoding` field is _not_ used, the encoding is determined by the Encoding Object's defaults:
-
-```yaml
-requestBody:
-  content:
-    multipart/form-data:
-      schema:
-        type: object
-        properties:
-          id:
-            # default for primitives without a special format is text/plain
-            type: string
-            format: uuid
-          profileImage:
-            # default for string with binary format is `application/octet-stream`
-            type: string
-            format: binary
-          addresses:
-            # default for arrays is based on the type in the `items`
-            # subschema, which is an object, so `application/json`
-            type: array
-            items:
-              $ref: '#/components/schemas/Address'
-```
-
-###### Example: Multipart Form with Encoding Objects
-
-Using `encoding`, we can set more specific types for binary data, or non-JSON formats for complex values.
-We can also describe headers for each part:
-
-```yaml
-requestBody:
-  content:
-    multipart/form-data:
-      schema:
-        type: object
-        properties:
-          id:
-            # default is `text/plain`
-            type: string
-            format: uuid
-          addresses:
-            # default based on the `items` subschema would be
-            # `application/json`, but we want these address objects
-            # serialized as `application/xml` instead
-            description: addresses in XML format
-            type: array
-            items:
-              $ref: '#/components/schemas/Address'
-          profileImage:
-            # default is application/octet-stream, but we can declare
-            # a more specific image type or types
-            type: string
-            format: binary
-      encoding:
-        addresses:
-          # require XML Content-Type in utf-8 encoding
-          # This is applied to each address part corresponding
-          # to each address in he array
-          contentType: application/xml; charset=utf-8
-        profileImage:
-          # only accept png or jpeg
-          contentType: image/png, image/jpeg
-          headers:
-            X-Rate-Limit-Limit:
-              description: The number of allowed requests in the current period
-              schema:
-                type: integer
-```
-
-###### Example: Multipart Form with Multiple Files
-
-In accordance with [RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3), multiple files for a single form field are uploaded using the same name (`file` in this example) for each file's part:
-
-```yaml
-requestBody:
-  content:
-    multipart/form-data:
-      schema:
-        properties:
-          # The property name 'file' will be used for all files.
-          file:
-            type: array
-            items: {}
-```
-
-As seen in the [Encoding Object's `contentType` field documentation](#encoding-content-type), the empty schema for `items` indicates a media type of `application/octet-stream`.
 
 #### Responses Object
 
@@ -2861,48 +2534,6 @@ This allows correctly requiring the field on a GET and still using the same repr
 Even when read-only fields are not required, stripping them is burdensome for clients, particularly when the JSON data is complex or deeply nested.
 
 Note that the behavior of `readOnly` in particular differs from that specified by version 3.0 of this specification.
-
-##### Data Modeling Techniques
-
-###### Composition and Inheritance (Polymorphism)
-
-The OpenAPI Specification allows combining and extending model definitions using the `allOf` keyword of JSON Schema, in effect offering model composition.
-`allOf` takes an array of object definitions that are validated _independently_ but together compose a single object.
-
-While composition offers model extensibility, it does not imply a hierarchy between the models.
-
-JSON Schema also provides the `anyOf` and `oneOf` keywords, which allow defining multiple schemas where at least one or exactly one of them must be valid, respectively.
-As is the case with `allOf`, the schemas are validated _independently_.
-These keywords can be used to describe polymorphism, where a single field can accept multiple types of values.
-
-The OpenAPI specification extends the JSON Schema support for polymorphism by adding the [`discriminator`](#schema-discriminator) field whose value is a [Discriminator Object](#discriminator-object).
-When used, the Discriminator Object indicates the name of the property that hints which schema of an `anyOf` or `oneOf` is expected to validate the structure of the model.
-The discriminating property MAY be defined as required or optional, but when defined as an optional property the Discriminator Object MUST include a `defaultMapping` field that specifies which schema of the `anyOf` or `oneOf`, or which schema that references the current schema in an `allOf`, is expected to validate the structure of the model when the discriminating property is not present.
-
-There are two ways to define the value of a discriminating property for an inheriting instance.
-
-* Use the schema name.
-* [Override the schema name](#discriminator-mapping) by overriding the property with a new value. If a new value exists, this takes precedence over the schema name.
-
-###### Generic (Template) Data Structures
-
-Implementations MAY support defining generic or template data structures using JSON Schema's dynamic referencing feature:
-
-* `$dynamicAnchor` identifies a set of possible schemas (including a default placeholder schema) to which a `$dynamicRef` can resolve
-* `$dynamicRef` resolves to the first matching `$dynamicAnchor` encountered on its path from the schema entry point to the reference, as described in the JSON Schema specification
-
-An example is included in the "Schema Object Examples" section below, and further information can be found on the Learn OpenAPI site's ["Dynamic References"](https://learn.openapis.org/referencing/dynamic.html) page.
-
-###### Annotated Enumerations
-
-The Schema Object's `enum` keyword does not allow associating descriptions or other information with individual values.
-
-Implementations MAY support recognizing a `oneOf` or `anyOf` where each subschema in the keyword's array consists of a `const` keyword and annotations such as `title` or `description` as an enumerated type with additional information. The exact behavior of this pattern beyond what is required by JSON Schema is implementation-defined.
-
-###### XML Modeling
-
-The [xml](#schema-xml) field allows extra definitions when translating the JSON definition to XML.
-The [XML Object](#xml-object) contains additional information about the available options.
 
 ##### Specifying Schema Dialects
 
@@ -4263,6 +3894,369 @@ Two examples of this:
 
 1. The [Paths Object](#paths-object) MAY be present but empty. It may be counterintuitive, but this may tell the viewer that they got to the right place, but can't access any documentation. They would still have access to at least the [Info Object](#info-object) which may contain additional information regarding authentication.
 2. The [Path Item Object](#path-item-object) MAY be empty. In this case, the viewer will be aware that the path exists, but will not be able to see any of its operations or parameters. This is different from hiding the path itself from the [Paths Object](#paths-object), because the user will be aware of its existence. This allows the documentation provider to finely control what the viewer can see.
+
+## Modeling Data
+
+### Data Types
+
+Data types in the OAS are based on the types defined by the [JSON Schema Validation Specification Draft 2020-12](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-6.1.1):
+"null", "boolean", "object", "array", "number", "string", or "integer".
+Models are defined using the [Schema Object](#schema-object), which is a superset of the JSON Schema Specification Draft 2020-12.
+
+JSON Schema keywords and `format` values operate on JSON "instances" which may be one of the six JSON data types, "null", "boolean", "object", "array", "number", or "string", with certain keywords and formats only applying to a specific type. For example, the `pattern` keyword and the `date-time` format only apply to strings, and treat any instance of the other five types as _automatically valid._ This means JSON Schema keywords and formats do **NOT** implicitly require the expected type. Use the `type` keyword to explicitly constrain the type.
+
+Note that the `type` keyword allows `"integer"` as a value for convenience, but keyword and format applicability does not recognize integers as being of a distinct JSON type from other numbers because [[RFC7159|JSON]] itself does not make that distinction. Since there is no distinct JSON integer type, JSON Schema defines integers mathematically. This means that both `1` and `1.0` are [equivalent](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-4.2.2), and are both considered to be integers.
+
+#### Data Type Format
+
+As defined by the [JSON Schema Validation specification](https://tools.ietf.org/html/draft-bhutton-json-schema-validation-00#section-7.3), data types can have an optional modifier keyword: `format`. As described in that specification, `format` is treated as a non-validating annotation by default; the ability to validate `format` varies across implementations.
+
+The OpenAPI Initiative also hosts a [Format Registry](https://spec.openapis.org/registry/format/) for formats defined by OAS users and other specifications. Support for any registered format is strictly OPTIONAL, and support for one registered format does not imply support for any others.
+
+Types that are not accompanied by a `format` keyword follow the type definition in the JSON Schema. Tools that do not recognize a specific `format` MAY default back to the `type` alone, as if the `format` is not specified.
+For the purpose of [JSON Schema validation](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-7.1), each format should specify the set of JSON data types for which it applies. In this registry, these types are shown in the "JSON Data Type" column.
+
+The formats defined by the OAS are:
+
+| `format` | JSON Data Type | Comments |
+| ---- | ---- | ---- |
+| `int32` | number | signed 32 bits |
+| `int64` | number | signed 64 bits (a.k.a long) |
+| `float` | number | |
+| `double` | number | |
+| `password` | string | A hint to obscure the value. |
+
+As noted under [Data Type](#data-types), both `type: number` and `type: integer` are considered to be numbers in the data model.
+
+#### Working with Binary Data
+
+The OAS can describe either _raw_ or _encoded_ binary data.
+
+* **raw binary** is used where unencoded binary data is allowed, such as when sending a binary payload as the entire HTTP message body, or as part of a `multipart/*` payload that allows binary parts
+* **encoded binary** is used where binary data is embedded in a text-only format such as `application/json` or `application/x-www-form-urlencoded` (either as a message body or in the URL query string).
+
+In the following table showing how to use Schema Object keywords for binary data, we use `image/png` as an example binary media type. Any binary media type, including `application/octet-stream`, is sufficient to indicate binary content.
+
+| Keyword | Raw | Encoded | Comments |
+| ---- | ---- | ---- | ---- |
+| `type` | _omit_ | `string` | raw binary is [outside of `type`](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-4.2.3) |
+| `contentMediaType` | `image/png` | `image/png` | can sometimes be omitted if redundant (see below) |
+| `contentEncoding` | _omit_ | `base64`&nbsp;or&nbsp;`base64url` | other encodings are [allowed](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-8.3) |
+
+Note that the encoding indicated by `contentEncoding`, which inflates the size of data in order to represent it as 7-bit ASCII text, is unrelated to HTTP's `Content-Encoding` header, which indicates whether and how a message body has been compressed and is applied after all content serialization described in this section has occurred. Since HTTP allows unencoded binary message bodies, there is no standardized HTTP header for indicating base64 or similar encoding of an entire message body.
+
+Using a `contentEncoding` of `base64url` ensures that URL encoding (as required in the query string and in message bodies of type `application/x-www-form-urlencoded`) does not need to further encode any part of the already-encoded binary data.
+
+The `contentMediaType` keyword is redundant if the media type is already set:
+
+* as the key for a [MediaType Object](#media-type-object)
+* in the `contentType` field of an [Encoding Object](#encoding-object)
+
+If the [Schema Object](#schema-object) will be processed by a non-OAS-aware JSON Schema implementation, it may be useful to include `contentMediaType` even if it is redundant. However, if `contentMediaType` contradicts a relevant Media Type Object or Encoding Object, then `contentMediaType` SHALL be ignored.
+
+The `maxLength` keyword MAY be used to set an expected upper bound on the length of a streaming payload. The keyword can be applied to either string data, including encoded binary data, or to unencoded binary data. For unencoded binary, the length is the number of octets.
+
+##### Migrating binary descriptions from OAS 3.0
+
+The following table shows how to migrate from OAS 3.0 binary data descriptions, continuing to use `image/png` as the example binary media type:
+
+| OAS < 3.1 | OAS >= 3.1 | Comments |
+| ---- | ---- | ---- |
+| <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">format: binary</code> | <code style="white-space:nowrap">contentMediaType: image/png</code> | if redundant, can be omitted, often resulting in an empty [Schema Object](#schema-object) |
+| <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">format: byte</code> | <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">contentMediaType: image/png</code><br /><code style="white-space:nowrap">contentEncoding: base64</code> | note that `base64url` can be used to avoid re-encoding the base64 string to be URL-safe |
+
+### Data Modeling Techniques
+
+#### Composition and Inheritance (Polymorphism)
+
+The OpenAPI Specification allows combining and extending model definitions using the `allOf` keyword of JSON Schema, in effect offering model composition.
+`allOf` takes an array of object definitions that are validated _independently_ but together compose a single object.
+
+While composition offers model extensibility, it does not imply a hierarchy between the models.
+
+JSON Schema also provides the `anyOf` and `oneOf` keywords, which allow defining multiple schemas where at least one or exactly one of them must be valid, respectively.
+As is the case with `allOf`, the schemas are validated _independently_.
+These keywords can be used to describe polymorphism, where a single field can accept multiple types of values.
+
+The OpenAPI specification extends the JSON Schema support for polymorphism by adding the [`discriminator`](#schema-discriminator) field whose value is a [Discriminator Object](#discriminator-object).
+When used, the Discriminator Object indicates the name of the property that hints which schema of an `anyOf` or `oneOf` is expected to validate the structure of the model.
+The discriminating property MAY be defined as required or optional, but when defined as an optional property the Discriminator Object MUST include a `defaultMapping` field that specifies which schema of the `anyOf` or `oneOf`, or which schema that references the current schema in an `allOf`, is expected to validate the structure of the model when the discriminating property is not present.
+
+There are two ways to define the value of a discriminating property for an inheriting instance.
+
+* Use the schema name.
+* [Override the schema name](#discriminator-mapping) by overriding the property with a new value. If a new value exists, this takes precedence over the schema name.
+
+#### Generic (Template) Data Structures
+
+Implementations MAY support defining generic or template data structures using JSON Schema's dynamic referencing feature:
+
+* `$dynamicAnchor` identifies a set of possible schemas (including a default placeholder schema) to which a `$dynamicRef` can resolve
+* `$dynamicRef` resolves to the first matching `$dynamicAnchor` encountered on its path from the schema entry point to the reference, as described in the JSON Schema specification
+
+An example is included in the "Schema Object Examples" section below, and further information can be found on the Learn OpenAPI site's ["Dynamic References"](https://learn.openapis.org/referencing/dynamic.html) page.
+
+#### Annotated Enumerations
+
+The Schema Object's `enum` keyword does not allow associating descriptions or other information with individual values.
+
+Implementations MAY support recognizing a `oneOf` or `anyOf` where each subschema in the keyword's array consists of a `const` keyword and annotations such as `title` or `description` as an enumerated type with additional information. The exact behavior of this pattern beyond what is required by JSON Schema is implementation-defined.
+
+#### XML Modeling
+
+The [xml](#schema-xml) field allows extra definitions when translating the JSON definition to XML.
+The [XML Object](#xml-object) contains additional information about the available options.
+
+### Considerations for File Uploads
+
+In contrast to OpenAPI 2.0, `file` input/output content in OAS 3.x is described with the same semantics as any other schema type.
+
+In contrast to OAS 3.0, the `format` keyword has no effect on the content-encoding of the schema in OAS 3.1. Instead, JSON Schema's `contentEncoding` and `contentMediaType` keywords are used. See [Working With Binary Data](#working-with-binary-data) for how to model various scenarios with these keywords, and how to migrate from the previous `format` usage.
+
+Examples:
+
+Content transferred in binary (octet-stream) MAY omit `schema`:
+
+```yaml
+# a PNG image as a binary file:
+content:
+  image/png: {}
+```
+
+```yaml
+# an arbitrary binary file:
+content:
+  application/octet-stream: {}
+```
+
+```yaml
+# arbitrary JSON without constraints beyond being syntactically valid:
+content:
+  application/json: {}
+```
+
+These examples apply to either input payloads of file uploads or response payloads.
+
+A `requestBody` for submitting a file in a `POST` operation may look like the following example:
+
+```yaml
+requestBody:
+  content:
+    application/octet-stream: {}
+```
+
+In addition, specific media types MAY be specified:
+
+```yaml
+# multiple, specific media types may be specified:
+requestBody:
+  content:
+    # a binary file of type png or jpeg
+    image/jpeg: {}
+    image/png: {}
+```
+
+To upload multiple files, a `multipart` media type MUST be used as shown under [Example: Multipart Form with Multiple Files](#example-multipart-form-with-multiple-files).
+
+### Encoding the `x-www-form-urlencoded` Media Type
+
+To submit content using form url encoding via [RFC1866](https://tools.ietf.org/html/rfc1866), use the `application/x-www-form-urlencoded` media type in the [Media Type Object](#media-type-object) under the [Request Body Object](#request-body-object).
+This configuration means that the request body MUST be encoded per [RFC1866](https://tools.ietf.org/html/rfc1866) when passed to the server, after any complex objects have been serialized to a string representation.
+
+See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a detailed examination of percent-encoding concerns for form media types.
+
+#### Example: URL Encoded Form with JSON Values
+
+When there is no [`encoding`](#media-type-encoding) field, the serialization strategy is based on the Encoding Object's default values:
+
+```yaml
+requestBody:
+  content:
+    application/x-www-form-urlencoded:
+      schema:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+          address:
+            # complex types are stringified to support RFC 1866
+            type: object
+            properties: {}
+```
+
+With this example, consider an `id` of `f81d4fae-7dec-11d0-a765-00a0c91e6bf6` and a US-style address (with ZIP+4) as follows:
+
+```json
+{
+  "streetAddress": "123 Example Dr.",
+  "city": "Somewhere",
+  "state": "CA",
+  "zip": "99999+1234"
+}
+```
+
+Assuming the most compact representation of the JSON value (with unnecessary whitespace removed), we would expect to see the following request body, where space characters have been replaced with `+` and `+`, `"`, `{`, and `}` have been percent-encoded to `%2B`, `%22`, `%7B`, and `%7D`, respectively:
+
+```uri
+id=f81d4fae-7dec-11d0-a765-00a0c91e6bf6&address=%7B%22streetAddress%22:%22123+Example+Dr.%22,%22city%22:%22Somewhere%22,%22state%22:%22CA%22,%22zip%22:%2299999%2B1234%22%7D
+```
+
+Note that the `id` keyword is treated as `text/plain` per the [Encoding Object](#encoding-object)'s default behavior, and is serialized as-is.
+If it were treated as `application/json`, then the serialized value would be a JSON string including quotation marks, which would be percent-encoded as `%22`.
+
+Here is the `id` parameter (without `address`) serialized as `application/json` instead of `text/plain`, and then encoded per RFC1866:
+
+```uri
+id=%22f81d4fae-7dec-11d0-a765-00a0c91e6bf6%22
+```
+
+#### Example: URL Encoded Form with Binary Values
+
+Note that `application/x-www-form-urlencoded` is a text format, which requires base64-encoding any binary data:
+
+```YAML
+requestBody:
+  content:
+    application/x-www-form-urlencoded:
+      schema:
+        type: object
+        properties:
+          name:
+            type: string
+          icon:
+            # The default with "contentEncoding" is application/octet-stream,
+            # so we need to set image media type(s) in the Encoding Object.
+            type: string
+            contentEncoding: base64url
+  encoding:
+    icon:
+      contentType: image/png, image/jpeg
+```
+
+Given a name of `example` and a solid red 2x2-pixel PNG for `icon`, this
+would produce a request body of:
+
+```uri
+name=example&icon=iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAABGdBTUEAALGPC_xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAqADAAQAAAABAAAAAgAAAADO0J6QAAAAEElEQVQIHWP8zwACTGCSAQANHQEDqtPptQAAAABJRU5ErkJggg%3D%3D
+```
+
+Note that the `=` padding characters at the end need to be percent-encoded, even with the "URL safe" `contentEncoding: base64url`.
+Some base64-decoding implementations may be able to use the string without the padding per [RFC4648](https://datatracker.ietf.org/doc/html/rfc4648#section-3.2).
+However, this is not guaranteed, so it may be more interoperable to keep the padding and rely on percent-decoding.
+
+### Encoding `multipart` Media Types
+
+It is common to use `multipart/form-data` as a `Content-Type` when transferring forms as request bodies. In contrast to OpenAPI 2.0, a `schema` is REQUIRED to define the input parameters to the operation when using `multipart` content. This supports complex structures as well as supporting mechanisms for multiple file uploads.
+
+The `form-data` disposition and its `name` parameter are mandatory for `multipart/form-data` ([RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.2)).
+Array properties are handled by applying the same `name` to multiple parts, as is recommended by [RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3) for supplying multiple values per form field.
+See [RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-5) for guidance regarding non-ASCII part names.
+
+Various other `multipart` types, most notable `multipart/mixed` ([RFC2046](https://www.rfc-editor.org/rfc/rfc2046.html#section-5.1.3)) neither require nor forbid specific `Content-Disposition` values, which means care must be taken to ensure that any values used are supported by all relevant software.
+It is not currently possible to correlate schema properties with unnamed, ordered parts in media types such as `multipart/mixed`, but implementations MAY choose to support such types when `Content-Disposition: form-data` is used with a `name` parameter.
+
+Note that there are significant restrictions on what headers can be used with `multipart` media types in general ([RFC2046](https://www.rfc-editor.org/rfc/rfc2046.html#section-5.1)) and `multi-part/form-data` in particular ([RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.8)).
+
+Note also that `Content-Transfer-Encoding` is deprecated for `multipart/form-data` ([RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.7)) where binary data is supported, as it is in HTTP.
+
++Using `contentEncoding` for a multipart field is equivalent to specifying an [Encoding Object](#encoding-object) with a `headers` field containing `Content-Transfer-Encoding` with a schema that requires the value used in `contentEncoding`.
++If `contentEncoding` is used for a multipart field that has an Encoding Object with a `headers` field containing `Content-Transfer-Encoding` with a schema that disallows the value from `contentEncoding`, the result is undefined for serialization and parsing.
+
+Note that as stated in [Working with Binary Data](#working-with-binary-data), if the Encoding Object's `contentType`, whether set explicitly or implicitly through its default value rules, disagrees with the `contentMediaType` in a Schema Object, the `contentMediaType` SHALL be ignored.
+Because of this, and because the Encoding Object's `contentType` defaulting rules do not take the Schema Object's`contentMediaType` into account, the use of `contentMediaType` with an Encoding Object is NOT RECOMMENDED.
+
+See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a detailed examination of percent-encoding concerns for form media types.
+
+#### Example: Basic Multipart Form
+
+When the `encoding` field is _not_ used, the encoding is determined by the Encoding Object's defaults:
+
+```yaml
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        properties:
+          id:
+            # default for primitives without a special format is text/plain
+            type: string
+            format: uuid
+          profileImage:
+            # default for string with binary format is `application/octet-stream`
+            type: string
+            format: binary
+          addresses:
+            # default for arrays is based on the type in the `items`
+            # subschema, which is an object, so `application/json`
+            type: array
+            items:
+              $ref: '#/components/schemas/Address'
+```
+
+#### Example: Multipart Form with Encoding Objects
+
+Using `encoding`, we can set more specific types for binary data, or non-JSON formats for complex values.
+We can also describe headers for each part:
+
+```yaml
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        properties:
+          id:
+            # default is `text/plain`
+            type: string
+            format: uuid
+          addresses:
+            # default based on the `items` subschema would be
+            # `application/json`, but we want these address objects
+            # serialized as `application/xml` instead
+            description: addresses in XML format
+            type: array
+            items:
+              $ref: '#/components/schemas/Address'
+          profileImage:
+            # default is application/octet-stream, but we can declare
+            # a more specific image type or types
+            type: string
+            format: binary
+      encoding:
+        addresses:
+          # require XML Content-Type in utf-8 encoding
+          # This is applied to each address part corresponding
+          # to each address in he array
+          contentType: application/xml; charset=utf-8
+        profileImage:
+          # only accept png or jpeg
+          contentType: image/png, image/jpeg
+          headers:
+            X-Rate-Limit-Limit:
+              description: The number of allowed requests in the current period
+              schema:
+                type: integer
+```
+
+#### Example: Multipart Form with Multiple Files
+
+In accordance with [RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3), multiple files for a single form field are uploaded using the same name (`file` in this example) for each file's part:
+
+```yaml
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        properties:
+          # The property name 'file' will be used for all files.
+          file:
+            type: array
+            items: {}
+```
+
+As seen in the [Encoding Object's `contentType` field documentation](#encoding-content-type), the empty schema for `items` indicates a media type of `application/octet-stream`.
 
 ## Security Considerations
 

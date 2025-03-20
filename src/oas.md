@@ -2635,35 +2635,6 @@ additionalProperties:
   $ref: '#/components/schemas/ComplexModel'
 ```
 
-###### Model with Annotated Enumeration
-
-```json
-{
-  "oneOf": [
-    {
-      "const": "RGB",
-      "title": "Red, Green, Blue",
-      "description": "Specify colors with the red, green, and blue additive color model"
-    },
-    {
-      "const": "CMYK",
-      "title": "Cyan, Magenta, Yellow, Black",
-      "description": "Specify colors with the cyan, magenta, yellow, and black subtractive color model"
-    }
-  ]
-}
-```
-
-```yaml
-oneOf:
-  - const: RGB
-    title: Red, Green, Blue
-    description: Specify colors with the red, green, and blue additive color model
-  - const: CMYK
-    title: Cyan, Magenta, Yellow, Black
-    description: Specify colors with the cyan, magenta, yellow, and black subtractive color model
-```
-
 ###### Model with Example
 
 ```json
@@ -2701,343 +2672,6 @@ required:
 examples:
   - name: Puma
     id: 1
-```
-
-###### Models with Composition
-
-```json
-{
-  "components": {
-    "schemas": {
-      "ErrorModel": {
-        "type": "object",
-        "required": ["message", "code"],
-        "properties": {
-          "message": {
-            "type": "string"
-          },
-          "code": {
-            "type": "integer",
-            "minimum": 100,
-            "maximum": 600
-          }
-        }
-      },
-      "ExtendedErrorModel": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/ErrorModel"
-          },
-          {
-            "type": "object",
-            "required": ["rootCause"],
-            "properties": {
-              "rootCause": {
-                "type": "string"
-              }
-            }
-          }
-        ]
-      }
-    }
-  }
-}
-```
-
-```yaml
-components:
-  schemas:
-    ErrorModel:
-      type: object
-      required:
-        - message
-        - code
-      properties:
-        message:
-          type: string
-        code:
-          type: integer
-          minimum: 100
-          maximum: 600
-    ExtendedErrorModel:
-      allOf:
-        - $ref: '#/components/schemas/ErrorModel'
-        - type: object
-          required:
-            - rootCause
-          properties:
-            rootCause:
-              type: string
-```
-
-###### Models with Polymorphism Support
-
-The following example describes a `Pet` model that can represent either a cat or a dog, as distinguished by the `petType` property. Each type of pet has other properties beyond those of the base `Pet` model. An instance without a `petType` property, or with a `petType` property that does not match either `cat` or `dog`, is invalid.
-
-```yaml
-components:
-  schemas:
-    Pet:
-      type: object
-      properties:
-        name:
-          type: string
-      required:
-        - name
-        - petType
-      oneOf:
-        - $ref: '#/components/schemas/Cat'
-        - $ref: '#/components/schemas/Dog'
-    Cat:
-      description: A pet cat
-      type: object
-      properties:
-        petType:
-          const: 'cat'
-        huntingSkill:
-          type: string
-          description: The measured skill for hunting
-          enum:
-            - clueless
-            - lazy
-            - adventurous
-            - aggressive
-      required:
-        - huntingSkill
-    Dog:
-      description: A pet dog
-      type: object
-      properties:
-        petType:
-          const: 'dog'
-        packSize:
-          type: integer
-          format: int32
-          description: the size of the pack the dog is from
-          default: 0
-          minimum: 0
-      required:
-        - packSize
-```
-
-###### Models with Polymorphism Support and a Discriminator Object
-
-The following example extends the example of the previous section by adding a [Discriminator Object](#discriminator-object) to the `Pet` schema. Note that the Discriminator Object is only a hint to the consumer of the API and does not change the validation outcome of the schema.
-
-```yaml
-components:
-  schemas:
-    Pet:
-      type: object
-      discriminator:
-        propertyName: petType
-        mapping:
-          cat: '#/components/schemas/Cat'
-          dog: '#/components/schemas/Dog'
-      properties:
-        name:
-          type: string
-      required:
-        - name
-        - petType
-      oneOf:
-        - $ref: '#/components/schemas/Cat'
-        - $ref: '#/components/schemas/Dog'
-    Cat:
-      description: A pet cat
-      type: object
-      properties:
-        petType:
-          const: 'cat'
-        huntingSkill:
-          type: string
-          description: The measured skill for hunting
-          enum:
-            - clueless
-            - lazy
-            - adventurous
-            - aggressive
-      required:
-        - huntingSkill
-    Dog:
-      description: A pet dog
-      type: object
-      properties:
-        petType:
-          const: 'dog'
-        packSize:
-          type: integer
-          format: int32
-          description: the size of the pack the dog is from
-          default: 0
-          minimum: 0
-      required:
-        - petType
-        - packSize
-```
-
-###### Models with Polymorphism Support using allOf and a Discriminator Object
-
-It is also possible to describe polymorphic models using `allOf`. The following example uses `allOf` with a [Discriminator Object](#discriminator-object) to describe a polymorphic `Pet` model.
-
-```yaml
-components:
-  schemas:
-    Pet:
-      type: object
-      discriminator:
-        propertyName: petType
-      properties:
-        name:
-          type: string
-        petType:
-          type: string
-      required:
-        - name
-        - petType
-    Cat: # "Cat" will be used as the discriminating value
-      description: A representation of a cat
-      allOf:
-        - $ref: '#/components/schemas/Pet'
-        - type: object
-          properties:
-            huntingSkill:
-              type: string
-              description: The measured skill for hunting
-              enum:
-                - clueless
-                - lazy
-                - adventurous
-                - aggressive
-          required:
-            - huntingSkill
-    Dog: # "Dog" will be used as the discriminating value
-      description: A representation of a dog
-      allOf:
-        - $ref: '#/components/schemas/Pet'
-        - type: object
-          properties:
-            packSize:
-              type: integer
-              format: int32
-              description: the size of the pack the dog is from
-              default: 0
-              minimum: 0
-          required:
-            - packSize
-```
-
-###### Generic Data Structure Model
-
-```JSON
-{
-  "components": {
-    "schemas": {
-      "genericArrayComponent": {
-        "$id": "fully_generic_array",
-        "type": "array",
-        "items": {
-          "$dynamicRef": "#generic-array"
-        },
-        "$defs": {
-          "allowAll": {
-            "$dynamicAnchor": "generic-array"
-          }
-        }
-      },
-      "numberArray": {
-        "$id": "array_of_numbers",
-        "$ref": "fully_generic_array",
-        "$defs": {
-          "numbersOnly": {
-            "$dynamicAnchor": "generic-array",
-            "type": "number"
-          }
-        }
-      },
-      "stringArray": {
-        "$id": "array_of_strings",
-        "$ref": "fully_generic_array",
-        "$defs": {
-          "stringsOnly": {
-            "$dynamicAnchor": "generic-array",
-            "type": "string"
-          }
-        }
-      },
-      "objWithTypedArray": {
-        "$id": "obj_with_typed_array",
-        "type": "object",
-        "required": ["dataType", "data"],
-        "properties": {
-          "dataType": {
-            "enum": ["string", "number"]
-          }
-        },
-        "oneOf": [{
-          "properties": {
-            "dataType": {"const": "string"},
-            "data": {"$ref": "array_of_strings"}
-          }
-        }, {
-          "properties": {
-            "dataType": {"const": "number"},
-            "data": {"$ref": "array_of_numbers"}
-          }
-        }]
-      }
-    }
-  }
-}
-```
-
-```YAML
-components:
-  schemas:
-    genericArrayComponent:
-      $id: fully_generic_array
-      type: array
-      items:
-        $dynamicRef: '#generic-array'
-      $defs:
-        allowAll:
-          $dynamicAnchor: generic-array
-    numberArray:
-      $id: array_of_numbers
-      $ref: fully_generic_array
-      $defs:
-        numbersOnly:
-          $dynamicAnchor: generic-array
-          type: number
-    stringArray:
-      $id: array_of_strings
-      $ref: fully_generic_array
-      $defs:
-        stringsOnly:
-          $dynamicAnchor: generic-array
-          type: string
-    objWithTypedArray:
-      $id: obj_with_typed_array
-      type: object
-      required:
-      - dataType
-      - data
-      properties:
-        dataType:
-          enum:
-          - string
-          - number
-      oneOf:
-      - properties:
-          dataType:
-            const: string
-          data:
-            $ref: array_of_strings
-      - properties:
-          dataType:
-            const: number
-          data:
-            $ref: array_of_numbers
 ```
 
 #### Discriminator Object
@@ -3987,6 +3621,230 @@ There are two ways to define the value of a discriminating property for an inher
 * Use the schema name.
 * [Override the schema name](#discriminator-mapping) by overriding the property with a new value. If a new value exists, this takes precedence over the schema name.
 
+##### Models with Composition
+
+```json
+{
+  "components": {
+    "schemas": {
+      "ErrorModel": {
+        "type": "object",
+        "required": ["message", "code"],
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "integer",
+            "minimum": 100,
+            "maximum": 600
+          }
+        }
+      },
+      "ExtendedErrorModel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ErrorModel"
+          },
+          {
+            "type": "object",
+            "required": ["rootCause"],
+            "properties": {
+              "rootCause": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+```yaml
+components:
+  schemas:
+    ErrorModel:
+      type: object
+      required:
+        - message
+        - code
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
+          minimum: 100
+          maximum: 600
+    ExtendedErrorModel:
+      allOf:
+        - $ref: '#/components/schemas/ErrorModel'
+        - type: object
+          required:
+            - rootCause
+          properties:
+            rootCause:
+              type: string
+```
+
+##### Models with Polymorphism Support
+
+The following example describes a `Pet` model that can represent either a cat or a dog, as distinguished by the `petType` property. Each type of pet has other properties beyond those of the base `Pet` model. An instance without a `petType` property, or with a `petType` property that does not match either `cat` or `dog`, is invalid.
+
+```yaml
+components:
+  schemas:
+    Pet:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+        - petType
+      oneOf:
+        - $ref: '#/components/schemas/Cat'
+        - $ref: '#/components/schemas/Dog'
+    Cat:
+      description: A pet cat
+      type: object
+      properties:
+        petType:
+          const: 'cat'
+        huntingSkill:
+          type: string
+          description: The measured skill for hunting
+          enum:
+            - clueless
+            - lazy
+            - adventurous
+            - aggressive
+      required:
+        - huntingSkill
+    Dog:
+      description: A pet dog
+      type: object
+      properties:
+        petType:
+          const: 'dog'
+        packSize:
+          type: integer
+          format: int32
+          description: the size of the pack the dog is from
+          default: 0
+          minimum: 0
+      required:
+        - packSize
+```
+
+##### Models with Polymorphism Support and a Discriminator Object
+
+The following example extends the example of the previous section by adding a [Discriminator Object](#discriminator-object) to the `Pet` schema. Note that the Discriminator Object is only a hint to the consumer of the API and does not change the validation outcome of the schema.
+
+```yaml
+components:
+  schemas:
+    Pet:
+      type: object
+      discriminator:
+        propertyName: petType
+        mapping:
+          cat: '#/components/schemas/Cat'
+          dog: '#/components/schemas/Dog'
+      properties:
+        name:
+          type: string
+      required:
+        - name
+        - petType
+      oneOf:
+        - $ref: '#/components/schemas/Cat'
+        - $ref: '#/components/schemas/Dog'
+    Cat:
+      description: A pet cat
+      type: object
+      properties:
+        petType:
+          const: 'cat'
+        huntingSkill:
+          type: string
+          description: The measured skill for hunting
+          enum:
+            - clueless
+            - lazy
+            - adventurous
+            - aggressive
+      required:
+        - huntingSkill
+    Dog:
+      description: A pet dog
+      type: object
+      properties:
+        petType:
+          const: 'dog'
+        packSize:
+          type: integer
+          format: int32
+          description: the size of the pack the dog is from
+          default: 0
+          minimum: 0
+      required:
+        - petType
+        - packSize
+```
+
+##### Models with Polymorphism Support using allOf and a Discriminator Object
+
+It is also possible to describe polymorphic models using `allOf`. The following example uses `allOf` with a [Discriminator Object](#discriminator-object) to describe a polymorphic `Pet` model.
+
+```yaml
+components:
+  schemas:
+    Pet:
+      type: object
+      discriminator:
+        propertyName: petType
+      properties:
+        name:
+          type: string
+        petType:
+          type: string
+      required:
+        - name
+        - petType
+    Cat: # "Cat" will be used as the discriminating value
+      description: A representation of a cat
+      allOf:
+        - $ref: '#/components/schemas/Pet'
+        - type: object
+          properties:
+            huntingSkill:
+              type: string
+              description: The measured skill for hunting
+              enum:
+                - clueless
+                - lazy
+                - adventurous
+                - aggressive
+          required:
+            - huntingSkill
+    Dog: # "Dog" will be used as the discriminating value
+      description: A representation of a dog
+      allOf:
+        - $ref: '#/components/schemas/Pet'
+        - type: object
+          properties:
+            packSize:
+              type: integer
+              format: int32
+              description: the size of the pack the dog is from
+              default: 0
+              minimum: 0
+          required:
+            - packSize
+```
+
 #### Generic (Template) Data Structures
 
 Implementations MAY support defining generic or template data structures using JSON Schema's dynamic referencing feature:
@@ -3996,11 +3854,153 @@ Implementations MAY support defining generic or template data structures using J
 
 An example is included in the "Schema Object Examples" section below, and further information can be found on the Learn OpenAPI site's ["Dynamic References"](https://learn.openapis.org/referencing/dynamic.html) page.
 
+##### Generic Data Structure Model
+
+```JSON
+{
+  "components": {
+    "schemas": {
+      "genericArrayComponent": {
+        "$id": "fully_generic_array",
+        "type": "array",
+        "items": {
+          "$dynamicRef": "#generic-array"
+        },
+        "$defs": {
+          "allowAll": {
+            "$dynamicAnchor": "generic-array"
+          }
+        }
+      },
+      "numberArray": {
+        "$id": "array_of_numbers",
+        "$ref": "fully_generic_array",
+        "$defs": {
+          "numbersOnly": {
+            "$dynamicAnchor": "generic-array",
+            "type": "number"
+          }
+        }
+      },
+      "stringArray": {
+        "$id": "array_of_strings",
+        "$ref": "fully_generic_array",
+        "$defs": {
+          "stringsOnly": {
+            "$dynamicAnchor": "generic-array",
+            "type": "string"
+          }
+        }
+      },
+      "objWithTypedArray": {
+        "$id": "obj_with_typed_array",
+        "type": "object",
+        "required": ["dataType", "data"],
+        "properties": {
+          "dataType": {
+            "enum": ["string", "number"]
+          }
+        },
+        "oneOf": [{
+          "properties": {
+            "dataType": {"const": "string"},
+            "data": {"$ref": "array_of_strings"}
+          }
+        }, {
+          "properties": {
+            "dataType": {"const": "number"},
+            "data": {"$ref": "array_of_numbers"}
+          }
+        }]
+      }
+    }
+  }
+}
+```
+
+```YAML
+components:
+  schemas:
+    genericArrayComponent:
+      $id: fully_generic_array
+      type: array
+      items:
+        $dynamicRef: '#generic-array'
+      $defs:
+        allowAll:
+          $dynamicAnchor: generic-array
+    numberArray:
+      $id: array_of_numbers
+      $ref: fully_generic_array
+      $defs:
+        numbersOnly:
+          $dynamicAnchor: generic-array
+          type: number
+    stringArray:
+      $id: array_of_strings
+      $ref: fully_generic_array
+      $defs:
+        stringsOnly:
+          $dynamicAnchor: generic-array
+          type: string
+    objWithTypedArray:
+      $id: obj_with_typed_array
+      type: object
+      required:
+      - dataType
+      - data
+      properties:
+        dataType:
+          enum:
+          - string
+          - number
+      oneOf:
+      - properties:
+          dataType:
+            const: string
+          data:
+            $ref: array_of_strings
+      - properties:
+          dataType:
+            const: number
+          data:
+            $ref: array_of_numbers
+```
+
 #### Annotated Enumerations
 
 The Schema Object's `enum` keyword does not allow associating descriptions or other information with individual values.
 
 Implementations MAY support recognizing a `oneOf` or `anyOf` where each subschema in the keyword's array consists of a `const` keyword and annotations such as `title` or `description` as an enumerated type with additional information. The exact behavior of this pattern beyond what is required by JSON Schema is implementation-defined.
+
+##### Model with Annotated Enumeration
+
+```json
+{
+  "oneOf": [
+    {
+      "const": "RGB",
+      "title": "Red, Green, Blue",
+      "description": "Specify colors with the red, green, and blue additive color model"
+    },
+    {
+      "const": "CMYK",
+      "title": "Cyan, Magenta, Yellow, Black",
+      "description": "Specify colors with the cyan, magenta, yellow, and black subtractive color model"
+    }
+  ]
+}
+```
+
+```yaml
+oneOf:
+  - const: RGB
+    title: Red, Green, Blue
+    description: Specify colors with the red, green, and blue additive color model
+  - const: CMYK
+    title: Cyan, Magenta, Yellow, Black
+    description: Specify colors with the cyan, magenta, yellow, and black subtractive color model
+```
 
 #### XML Modeling
 

@@ -132,17 +132,18 @@ function preface(title,options) {
         // }
     };
 
-    let preface = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>${md.utils.escapeHtml(title)}</title>`;
+    let preface = '<!DOCTYPE html><html lang="en"><head>\n'
+    preface += fs.readFileSync(path.resolve(__dirname,'./analytics/google.html'),'utf8');
 
     // SEO
-    preface += '<meta name="description" content="The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs.">';
+    preface += `<meta charset="UTF-8">\n<title>${md.utils.escapeHtml(title)}</title>`;
+    preface += '<meta name="description" content="The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs.">\n';
 
     // ReSpec
     preface += '<meta name="color-scheme" content="light dark">';
     preface += '<script src="../js/respec-w3c.js" class="remove"></script>';
-    preface += `<script class="remove">var respecConfig = ${JSON.stringify(respec)};</script>`;
-    preface += fs.readFileSync(path.resolve(__dirname,'./analytics/google.html'),'utf8');
-    preface += '</head><body>';
+    preface += `<script class="remove">var respecConfig = ${JSON.stringify(respec)};</script>\n`;
+    preface += '</head>\n<body>';
     preface += '<style>';
     preface += fs.readFileSync(path.resolve(__dirname,'main.css'),'utf8').split(/\r?\n/).join(' ');
     preface += fs.readFileSync(path.resolve(__dirname,'gist.css'),'utf8').split(/\r?\n/).join(' ');

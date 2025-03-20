@@ -1548,6 +1548,8 @@ application/json:
       $ref: '#/components/examples/frog-example'
 ```
 
+For additional techniques and examples, see [Modeling Non-JSON Data](#modeling-non-json-data).
+
 #### Encoding Object
 
 A single encoding definition applied to a single schema property.
@@ -1598,6 +1600,8 @@ See also [Appendix C: Using RFC6570 Implementations](#appendix-c-using-rfc6570-b
 
 Note that the presence of at least one of `style`, `explode`, or `allowReserved` with an explicit value is equivalent to using `schema` with `in: "query"` Parameter Objects.
 The absence of all three of those fields is the equivalent of using `content`, but with the media type specified in `contentType` rather than through a Media Type Object.
+
+For additional techniques and examples, see [Modeling Non-JSON Data](#modeling-non-json-data).
 
 #### Responses Object
 
@@ -2512,6 +2516,8 @@ JSON Schema implementations MAY choose to treat keywords defined by the OpenAPI 
 
 This object MAY be extended with [Specification Extensions](#specification-extensions), though as noted, additional properties MAY omit the `x-` prefix within this object.
 
+For additional techniques and examples, see [Schema Modeling Techniques](#schema-modeling-techniques).
+
 ##### Extended Validation with Annotations
 
 JSON Schema Draft 2020-12 supports [collecting annotations](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-7.7.1), including [treating unrecognized keywords as annotations](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-6.5).
@@ -2547,6 +2553,8 @@ For standalone JSON Schema documents that do not set `$schema`, or for Schema Ob
 However, for maximum interoperability, it is RECOMMENDED that OpenAPI description authors explicitly set the dialect through `$schema` in such documents.
 
 ##### Schema Object Examples
+
+For additional techniques and examples, see [Schema Modeling Techniques](#schema-modeling-techniques).
 
 ###### Primitive Example
 
@@ -3531,6 +3539,8 @@ Two examples of this:
 
 ## Modeling Data
 
+This section collects guidance on various data modeling and encoding scenarios that are either very general, or are more complex than those needed to illustrate basic Object usage.
+
 ### Data Types
 
 Data types in the OAS are based on the types defined by the [JSON Schema Validation Specification Draft 2020-12](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-6.1.1):
@@ -3599,7 +3609,9 @@ The following table shows how to migrate from OAS 3.0 binary data descriptions, 
 | <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">format: binary</code> | <code style="white-space:nowrap">contentMediaType: image/png</code> | if redundant, can be omitted, often resulting in an empty [Schema Object](#schema-object) |
 | <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">format: byte</code> | <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">contentMediaType: image/png</code><br /><code style="white-space:nowrap">contentEncoding: base64</code> | note that `base64url` can be used to avoid re-encoding the base64 string to be URL-safe |
 
-### Data Modeling Techniques
+### Schema Modeling Techniques
+
+These techniques are all based on the [Schema Object](#schema-object).
 
 #### Composition and Inheritance (Polymorphism)
 
@@ -4002,12 +4014,18 @@ oneOf:
     description: Specify colors with the cyan, magenta, yellow, and black subtractive color model
 ```
 
+### Modeling Non-JSON Data
+
+This section describes how to model non-JSON formats, either by mapping the format into the
+[JSON Schema data model](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#name-instance-data-model)
+or by using additional Objects such as the [Encoding Object](#encoding-object).
+
 #### XML Modeling
 
 The [xml](#schema-xml) field allows extra definitions when translating the JSON definition to XML.
 The [XML Object](#xml-object) contains additional information about the available options.
 
-### Considerations for File Uploads
+#### Considerations for File Uploads
 
 In contrast to OpenAPI 2.0, `file` input/output content in OAS 3.x is described with the same semantics as any other schema type.
 
@@ -4058,14 +4076,14 @@ requestBody:
 
 To upload multiple files, a `multipart` media type MUST be used as shown under [Example: Multipart Form with Multiple Files](#example-multipart-form-with-multiple-files).
 
-### Encoding the `x-www-form-urlencoded` Media Type
+#### Encoding the `x-www-form-urlencoded` Media Type
 
 To submit content using form url encoding via [RFC1866](https://tools.ietf.org/html/rfc1866), use the `application/x-www-form-urlencoded` media type in the [Media Type Object](#media-type-object) under the [Request Body Object](#request-body-object).
 This configuration means that the request body MUST be encoded per [RFC1866](https://tools.ietf.org/html/rfc1866) when passed to the server, after any complex objects have been serialized to a string representation.
 
 See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a detailed examination of percent-encoding concerns for form media types.
 
-#### Example: URL Encoded Form with JSON Values
+##### Example: URL Encoded Form with JSON Values
 
 When there is no [`encoding`](#media-type-encoding) field, the serialization strategy is based on the Encoding Object's default values:
 
@@ -4111,7 +4129,7 @@ Here is the `id` parameter (without `address`) serialized as `application/json` 
 id=%22f81d4fae-7dec-11d0-a765-00a0c91e6bf6%22
 ```
 
-#### Example: URL Encoded Form with Binary Values
+##### Example: URL Encoded Form with Binary Values
 
 Note that `application/x-www-form-urlencoded` is a text format, which requires base64-encoding any binary data:
 
@@ -4145,7 +4163,7 @@ Note that the `=` padding characters at the end need to be percent-encoded, even
 Some base64-decoding implementations may be able to use the string without the padding per [RFC4648](https://datatracker.ietf.org/doc/html/rfc4648#section-3.2).
 However, this is not guaranteed, so it may be more interoperable to keep the padding and rely on percent-decoding.
 
-### Encoding `multipart` Media Types
+#### Encoding `multipart` Media Types
 
 It is common to use `multipart/form-data` as a `Content-Type` when transferring forms as request bodies. In contrast to OpenAPI 2.0, a `schema` is REQUIRED to define the input parameters to the operation when using `multipart` content. This supports complex structures as well as supporting mechanisms for multiple file uploads.
 
@@ -4168,7 +4186,7 @@ Because of this, and because the Encoding Object's `contentType` defaulting rule
 
 See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a detailed examination of percent-encoding concerns for form media types.
 
-#### Example: Basic Multipart Form
+##### Example: Basic Multipart Form
 
 When the `encoding` field is _not_ used, the encoding is determined by the Encoding Object's defaults:
 
@@ -4195,7 +4213,7 @@ requestBody:
               $ref: '#/components/schemas/Address'
 ```
 
-#### Example: Multipart Form with Encoding Objects
+##### Example: Multipart Form with Encoding Objects
 
 Using `encoding`, we can set more specific types for binary data, or non-JSON formats for complex values.
 We can also describe headers for each part:
@@ -4240,7 +4258,7 @@ requestBody:
                 type: integer
 ```
 
-#### Example: Multipart Form with Multiple Files
+##### Example: Multipart Form with Multiple Files
 
 In accordance with [RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3), multiple files for a single form field are uploaded using the same name (`file` in this example) for each file's part:
 

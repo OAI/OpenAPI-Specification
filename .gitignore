@@ -8,5 +8,5 @@ node_modules/
 deploy/
 deploy-preview/
 coverage/
-history
+_site/
 Gemfile.lock

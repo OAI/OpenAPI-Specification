@@ -3539,7 +3539,11 @@ Two examples of this:
 
 ## Modeling Data
 
-This section collects guidance on various data modeling and encoding scenarios that are either very general, or are more complex than those needed to illustrate basic Object usage.
+Modeling data in the OpenAPI Specification starts with the [[JSON]] data model of strings, numbers, booleans, arrays, objects, and `null`.
+This is further refined and constrained by the [Schema Object](#schema-object), which uses [JSON Schema Draft 2020-12](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-01) with several extensions, most notably the [Discriminator Object](#discriminator-object) and the [XML Object](#xml-object).
+Several additional Objects determine how to map between in-memory data, which is subject to schema validation, and on-the-wire formats, including the [Parameter Object](#parameter-object), [Header Object](#header-object), [Media Type Object](#media-type-object), and [Encoding Object](#encoding-object).
+
+This section collects guidance on both the basics of data types, and on how to use these Objects to handle more complex scenarios.
 
 ### Data Types
 
@@ -3988,7 +3992,7 @@ or by using additional Objects such as the [Encoding Object](#encoding-object).
 
 #### XML Modeling
 
-The [xml](#schema-xml) field allows extra definitions when translating the JSON definition to XML.
+The [xml](#schema-xml) field in the [Schema Object](#schema-object) allows extra definitions when translating the JSON definition to XML.
 The [XML Object](#xml-object) contains additional information about the available options.
 
 #### Working with Binary Data

@@ -3574,7 +3574,7 @@ The formats defined by the OAS are:
 | `double` | number | |
 | `password` | string | A hint to obscure the value. |
 
-As noted under [Data Type](#data-types), both `type: number` and `type: integer` are considered to be numbers in the data model.
+As noted under [Data Types](#data-types), both `type: number` and `type: integer` are considered to be numbers in the data model.
 
 See [Working with Binary Data](#working-with-binary-data) for guidance on modeling binary data in different places and scenarios.
 Note that binary data modeling changed between OAS 3.0 and 3.1.

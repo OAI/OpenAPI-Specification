@@ -361,7 +361,7 @@ components:
       $id: ./schemas/bar
 ```
 
-In this example, both Schema Objects use `https://example.com/openapi` as their base URI for resolving their relative `$id` values to `https://example.com/foo` and `https://example.com/bar`.  The `$ref` under `properties` is resolved against the `$id`-provided base URI `https://example.com/foo`, producing `https://example.com/bar`, which is the `$id`-assigned URI of the Bar schema component.
+In this example, both Schema Objects use `https://example.com/openapi` as their base URI for resolving their relative `$id` values to `https://example.com/schemas/foo` and `https://example.com/schemas/bar`.  The `$ref` under `properties` is resolved against the `$id`-provided base URI `https://example.com/schemas/foo`, producing `https://example.com/schemas/bar`, which is the `$id`-assigned URI of the Bar schema component.
 
 Note that using embedded `$id` keywords prevents using `$ref: "#/components/schemas/Bar"` in the `properties` field's `$ref` because the base URI for such fragments is set by the `$id`.  Therefore, a `$ref: "#/components/schemas/Bar"` would resolve to `"https://example.com/schemas/foo#/components/schemas/Bar"`, which is not useful.
 

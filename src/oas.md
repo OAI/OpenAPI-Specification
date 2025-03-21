@@ -3572,42 +3572,8 @@ The formats defined by the OAS are:
 
 As noted under [Data Type](#data-types), both `type: number` and `type: integer` are considered to be numbers in the data model.
 
-#### Working with Binary Data
-
-The OAS can describe either _raw_ or _encoded_ binary data.
-
-* **raw binary** is used where unencoded binary data is allowed, such as when sending a binary payload as the entire HTTP message body, or as part of a `multipart/*` payload that allows binary parts
-* **encoded binary** is used where binary data is embedded in a text-only format such as `application/json` or `application/x-www-form-urlencoded` (either as a message body or in the URL query string).
-
-In the following table showing how to use Schema Object keywords for binary data, we use `image/png` as an example binary media type. Any binary media type, including `application/octet-stream`, is sufficient to indicate binary content.
-
-| Keyword | Raw | Encoded | Comments |
-| ---- | ---- | ---- | ---- |
-| `type` | _omit_ | `string` | raw binary is [outside of `type`](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-4.2.3) |
-| `contentMediaType` | `image/png` | `image/png` | can sometimes be omitted if redundant (see below) |
-| `contentEncoding` | _omit_ | `base64`&nbsp;or&nbsp;`base64url` | other encodings are [allowed](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-8.3) |
-
-Note that the encoding indicated by `contentEncoding`, which inflates the size of data in order to represent it as 7-bit ASCII text, is unrelated to HTTP's `Content-Encoding` header, which indicates whether and how a message body has been compressed and is applied after all content serialization described in this section has occurred. Since HTTP allows unencoded binary message bodies, there is no standardized HTTP header for indicating base64 or similar encoding of an entire message body.
-
-Using a `contentEncoding` of `base64url` ensures that URL encoding (as required in the query string and in message bodies of type `application/x-www-form-urlencoded`) does not need to further encode any part of the already-encoded binary data.
-
-The `contentMediaType` keyword is redundant if the media type is already set:
-
-* as the key for a [MediaType Object](#media-type-object)
-* in the `contentType` field of an [Encoding Object](#encoding-object)
-
-If the [Schema Object](#schema-object) will be processed by a non-OAS-aware JSON Schema implementation, it may be useful to include `contentMediaType` even if it is redundant. However, if `contentMediaType` contradicts a relevant Media Type Object or Encoding Object, then `contentMediaType` SHALL be ignored.
-
-The `maxLength` keyword MAY be used to set an expected upper bound on the length of a streaming payload. The keyword can be applied to either string data, including encoded binary data, or to unencoded binary data. For unencoded binary, the length is the number of octets.
-
-##### Migrating binary descriptions from OAS 3.0
-
-The following table shows how to migrate from OAS 3.0 binary data descriptions, continuing to use `image/png` as the example binary media type:
-
-| OAS < 3.1 | OAS >= 3.1 | Comments |
-| ---- | ---- | ---- |
-| <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">format: binary</code> | <code style="white-space:nowrap">contentMediaType: image/png</code> | if redundant, can be omitted, often resulting in an empty [Schema Object](#schema-object) |
-| <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">format: byte</code> | <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">contentMediaType: image/png</code><br /><code style="white-space:nowrap">contentEncoding: base64</code> | note that `base64url` can be used to avoid re-encoding the base64 string to be URL-safe |
+See [Working with Binary Data](#working-with-binary-data) for guidance on modeling binary data in different places and scenarios.
+Note that binary data modeling changed between OAS 3.0 and 3.1.
 
 ### Schema Modeling Techniques
 
@@ -4024,6 +3990,43 @@ or by using additional Objects such as the [Encoding Object](#encoding-object).
 
 The [xml](#schema-xml) field allows extra definitions when translating the JSON definition to XML.
 The [XML Object](#xml-object) contains additional information about the available options.
+
+#### Working with Binary Data
+
+The OAS can describe either _raw_ or _encoded_ binary data.
+
+* **raw binary** is used where unencoded binary data is allowed, such as when sending a binary payload as the entire HTTP message body, or as part of a `multipart/*` payload that allows binary parts
+* **encoded binary** is used where binary data is embedded in a text-only format such as `application/json` or `application/x-www-form-urlencoded` (either as a message body or in the URL query string).
+
+In the following table showing how to use Schema Object keywords for binary data, we use `image/png` as an example binary media type. Any binary media type, including `application/octet-stream`, is sufficient to indicate binary content.
+
+| Keyword | Raw | Encoded | Comments |
+| ---- | ---- | ---- | ---- |
+| `type` | _omit_ | `string` | raw binary is [outside of `type`](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-4.2.3) |
+| `contentMediaType` | `image/png` | `image/png` | can sometimes be omitted if redundant (see below) |
+| `contentEncoding` | _omit_ | `base64`&nbsp;or&nbsp;`base64url` | other encodings are [allowed](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-8.3) |
+
+Note that the encoding indicated by `contentEncoding`, which inflates the size of data in order to represent it as 7-bit ASCII text, is unrelated to HTTP's `Content-Encoding` header, which indicates whether and how a message body has been compressed and is applied after all content serialization described in this section has occurred. Since HTTP allows unencoded binary message bodies, there is no standardized HTTP header for indicating base64 or similar encoding of an entire message body.
+
+Using a `contentEncoding` of `base64url` ensures that URL encoding (as required in the query string and in message bodies of type `application/x-www-form-urlencoded`) does not need to further encode any part of the already-encoded binary data.
+
+The `contentMediaType` keyword is redundant if the media type is already set:
+
+* as the key for a [MediaType Object](#media-type-object)
+* in the `contentType` field of an [Encoding Object](#encoding-object)
+
+If the [Schema Object](#schema-object) will be processed by a non-OAS-aware JSON Schema implementation, it may be useful to include `contentMediaType` even if it is redundant. However, if `contentMediaType` contradicts a relevant Media Type Object or Encoding Object, then `contentMediaType` SHALL be ignored.
+
+The `maxLength` keyword MAY be used to set an expected upper bound on the length of a streaming payload. The keyword can be applied to either string data, including encoded binary data, or to unencoded binary data. For unencoded binary, the length is the number of octets.
+
+##### Migrating binary descriptions from OAS 3.0
+
+The following table shows how to migrate from OAS 3.0 binary data descriptions, continuing to use `image/png` as the example binary media type:
+
+| OAS < 3.1 | OAS >= 3.1 | Comments |
+| ---- | ---- | ---- |
+| <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">format: binary</code> | <code style="white-space:nowrap">contentMediaType: image/png</code> | if redundant, can be omitted, often resulting in an empty [Schema Object](#schema-object) |
+| <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">format: byte</code> | <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">contentMediaType: image/png</code><br /><code style="white-space:nowrap">contentEncoding: base64</code> | note that `base64url` can be used to avoid re-encoding the base64 string to be URL-safe |
 
 #### Considerations for File Uploads
 

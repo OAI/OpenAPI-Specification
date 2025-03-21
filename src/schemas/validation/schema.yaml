@@ -11,6 +11,8 @@ properties:
   $self:
     type: string
     format: uri-reference
+    $comment: MUST NOT be empty, and MUST NOT contain a fragment
+    pattern: '^[^#]+$'
   info:
     $ref: '#/$defs/info'
   jsonSchemaDialect:

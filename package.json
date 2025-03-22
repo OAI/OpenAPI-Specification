@@ -1,7 +1,7 @@
 {
-  "name": "oas-schemas",
-  "version": "2.0.0",
-  "description": "OpenAPI Specification JSON schemas",
+  "name": "oas-infra",
+  "version": "0.0.0",
+  "description": "OpenAPI Specification Automation & Infrastructure",
   "author": {
     "name": "OpenAPI Initiative TSC",
     "email": "tsc@openapis.org",
@@ -19,11 +19,6 @@
     "format-markdown": "bash ./scripts/format-markdown.sh ./src/oas.md",
     "validate-markdown": "npx mdv src/oas.md && npx markdownlint-cli src/oas.md"
   },
-  "readmeFilename": "README.md",
-  "files": [
-    "README.md",
-    "schemas/*"
-  ],
   "dependencies": {
     "cheerio": "^1.0.0-rc.5",
     "highlight.js": "^11.11.1",

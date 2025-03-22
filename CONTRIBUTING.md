@@ -172,6 +172,8 @@ To do this locally, please
 2. Check out this repo, go to the repo root, and switch to a development branch
 3. Execute `npm install` (once, repeat after merging upstream changes)
 4. Execute `npm run build-src` after changing `src/oas.md` (this first executes `npm run validate-markdown`, which can also be run separately)
+   > [!NOTE] Use Git Bash on Windows
+   > This npm script calls bash scripts. Run it from [Git Bash](https://gitforwindows.org/) on Windows, or use the Windows Subsystem for Linux (WSL).
 5. Open output file `deploy-preview/oas.html` with a browser and check your changes
 
 Please make sure the markdown validates and builds using the above steps before creating a pull request or marking a draft pull request as ready for review.
@@ -199,7 +201,7 @@ The steps for creating a `vX.Y.Z-rel` branch are:
 
 1. Update `EDITORS.md` on `main`
 2. Merge `main` into `dev` and `dev` into `vX.Y-dev` via PRs
-   - Sync PRs are automatically created by workflows `sync-main-to-dev` and `sync-dev-to-vX.Y-dev`
+   - sync PRs are automatically created by workflows `sync-main-to-dev` and `sync-dev-to-vX.Y-dev`
 3. Prepare spec files in `vX.Y-dev`
    - `npm run format-markdown`
    - `npm run build-src`
@@ -211,6 +213,7 @@ The steps for creating a `vX.Y.Z-rel` branch are:
    - copy `EDITORS.md` to `versions/X.Y.Z-editors.md`
    - delete `src/schemas` 
    - delete `tests/schema`
+   - bash script `scripts/adjust-release-branch.sh` performs these steps
 5. Merge `vX.Y.Z-rel` into `main` via PR
    - this PR should only add files `versions/X.Y.Z.md` and `versions/X.Y.Z-editors.md`
 

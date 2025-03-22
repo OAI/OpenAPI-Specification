@@ -172,6 +172,8 @@ To do this locally, please
 2. Check out this repo, go to the repo root, and switch to a development branch
 3. Execute `npm install` (once, repeat after merging upstream changes)
 4. Execute `npm run build-src` after changing `src/oas.md` (this first executes `npm run validate-markdown`, which can also be run separately)
+   > [!NOTE] Use Git Bash on Windows
+   > This npm script calls bash scripts. Run it from [Git Bash](https://gitforwindows.org/) on Windows, or use the Windows Subsystem for Linux (WSL).
 5. Open output file `deploy-preview/oas.html` with a browser and check your changes
 
 Please make sure the markdown validates and builds using the above steps before creating a pull request or marking a draft pull request as ready for review.

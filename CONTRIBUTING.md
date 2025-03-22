@@ -201,7 +201,7 @@ The steps for creating a `vX.Y.Z-rel` branch are:
 
 1. Update `EDITORS.md` on `main`
 2. Merge `main` into `dev` and `dev` into `vX.Y-dev` via PRs
-   - Sync PRs are automatically created by workflows `sync-main-to-dev` and `sync-dev-to-vX.Y-dev`
+   - sync PRs are automatically created by workflows `sync-main-to-dev` and `sync-dev-to-vX.Y-dev`
 3. Prepare spec files in `vX.Y-dev`
    - `npm run format-markdown`
    - `npm run build-src`
@@ -213,6 +213,7 @@ The steps for creating a `vX.Y.Z-rel` branch are:
    - copy `EDITORS.md` to `versions/X.Y.Z-editors.md`
    - delete `src/schemas` 
    - delete `tests/schema`
+   - bash script `scripts/adjust-release-branch.sh` performs these steps
 5. Merge `vX.Y.Z-rel` into `main` via PR
    - this PR should only add files `versions/X.Y.Z.md` and `versions/X.Y.Z-editors.md`
 

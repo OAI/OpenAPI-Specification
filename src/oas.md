@@ -1024,7 +1024,7 @@ Describes a single API operation on a path.
 | <a name="operation-external-docs"></a>externalDocs | [External Documentation Object](#external-documentation-object) | Additional external documentation for this operation. |
 | <a name="operation-id"></a>operationId | `string` | Unique string used to identify the operation. The id MUST be unique among all operations described in the API. The operationId value is **case-sensitive**. Tools and libraries MAY use the operationId to uniquely identify an operation, therefore, it is RECOMMENDED to follow common programming naming conventions. |
 | <a name="operation-parameters"></a>parameters | [[Parameter Object](#parameter-object) \| [Reference Object](#reference-object)] | A list of parameters that are applicable for this operation. If a parameter is already defined at the [Path Item](#path-item-parameters), the new definition will override it but can never remove it. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a [name](#parameter-name) and [location](#parameter-in). The list can use the [Reference Object](#reference-object) to link to parameters that are defined in the [OpenAPI Object's `components.parameters`](#components-parameters). |
-| <a name="operation-request-body"></a>requestBody | [Request Body Object](#request-body-object) \| [Reference Object](#reference-object) | The request body applicable for this operation. The `requestBody` is fully supported in HTTP methods where the HTTP 1.1 specification [RFC7231](https://tools.ietf.org/html/rfc7231#section-4.3.1) has explicitly defined semantics for request bodies. In other cases where the HTTP spec is vague (such as [GET](https://tools.ietf.org/html/rfc7231#section-4.3.1), [HEAD](https://tools.ietf.org/html/rfc7231#section-4.3.2) and [DELETE](https://tools.ietf.org/html/rfc7231#section-4.3.5)), `requestBody` is permitted but does not have well-defined semantics and SHOULD be avoided if possible. |
+| <a name="operation-request-body"></a>requestBody | [Request Body Object](#request-body-object) \| [Reference Object](#reference-object) | The request body applicable for this operation. The `requestBody` is fully supported in HTTP methods where the HTTP specification [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.3) has explicitly defined semantics for request bodies. In other cases where the HTTP spec discourages message content (such as [GET](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.3.1) and [DELETE](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.3.5)), `requestBody` is permitted but does not have well-defined semantics and SHOULD be avoided if possible. |
 | <a name="operation-responses"></a>responses | [Responses Object](#responses-object) | The list of possible responses as they are returned from executing this operation. |
 | <a name="operation-callbacks"></a>callbacks | Map[`string`, [Callback Object](#callback-object) \| [Reference Object](#reference-object)] | A map of possible out-of band callbacks related to the parent operation. The key is a unique identifier for the Callback Object. Each value in the map is a [Callback Object](#callback-object) that describes a request that may be initiated by the API provider and the expected responses. |
 | <a name="operation-deprecated"></a>deprecated | `boolean` | Declares this operation to be deprecated. Consumers SHOULD refrain from usage of the declared operation. Default value is `false`. |
@@ -1179,7 +1179,7 @@ There are four possible parameter locations specified by the `in` field:
 
 * path - Used together with [Path Templating](#path-templating), where the parameter value is actually part of the operation's URL. This does not include the host or base path of the API. For example, in `/items/{itemId}`, the path parameter is `itemId`.
 * query - Parameters that are appended to the URL. For example, in `/items?id=###`, the query parameter is `id`.
-* header - Custom headers that are expected as part of the request. Note that [RFC7230](https://tools.ietf.org/html/rfc7230#section-3.2) states header names are case insensitive.
+* header - Custom headers that are expected as part of the request. Note that [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.1) states header names are case insensitive.
 * cookie - Used to pass a specific cookie value to the API.
 
 ##### Fixed Fields
@@ -1451,7 +1451,7 @@ Describes a single request body.
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="request-body-description"></a>description | `string` | A brief description of the request body. This could contain examples of use. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
-| <a name="request-body-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | **REQUIRED**. The content of the request body. The key is a media type or [media type range](https://tools.ietf.org/html/rfc7231#appendix-D) and the value describes it. For requests that match multiple keys, only the most specific key is applicable. e.g. `"text/plain"` overrides `"text/*"` |
+| <a name="request-body-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | **REQUIRED**. The content of the request body. The key is a media type or [media type range](https://www.rfc-editor.org/rfc/rfc9110.html#appendix-A) and the value describes it. For requests that match multiple keys, only the most specific key is applicable. e.g. `"text/plain"` overrides `"text/*"` |
 | <a name="request-body-required"></a>required | `boolean` | Determines if the request body is required in the request. Defaults to `false`. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
@@ -2009,8 +2009,8 @@ Describes a single response from an API operation, including design-time, static
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="response-description"></a>description | `string` | **REQUIRED**. A description of the response. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
-| <a name="response-headers"></a>headers | Map[`string`, [Header Object](#header-object) \| [Reference Object](#reference-object)] | Maps a header name to its definition. [RFC7230](https://tools.ietf.org/html/rfc7230#section-3.2) states header names are case insensitive. If a response header is defined with the name `"Content-Type"`, it SHALL be ignored. |
-| <a name="response-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | A map containing descriptions of potential response payloads. The key is a media type or [media type range](https://tools.ietf.org/html/rfc7231#appendix-D) and the value describes it. For responses that match multiple keys, only the most specific key is applicable. e.g. `"text/plain"` overrides `"text/*"` |
+| <a name="response-headers"></a>headers | Map[`string`, [Header Object](#header-object) \| [Reference Object](#reference-object)] | Maps a header name to its definition. [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.1) states header names are case insensitive. If a response header is defined with the name `"Content-Type"`, it SHALL be ignored. |
+| <a name="response-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | A map containing descriptions of potential response payloads. The key is a media type or [media type range](https://www.rfc-editor.org/rfc/rfc9110.html#appendix-A) and the value describes it. For responses that match multiple keys, only the most specific key is applicable. e.g. `"text/plain"` overrides `"text/*"` |
 | <a name="response-links"></a>links | Map[`string`, [Link Object](#link-object) \| [Reference Object](#reference-object)] | A map of operations links that can be followed from the response. The key of the map is a short name for the link, following the naming constraints of the names for [Component Objects](#components-object). |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
@@ -2562,7 +2562,7 @@ The runtime expression is defined by the following [ABNF](https://tools.ietf.org
           / "^" / "_" / "`" / "|" / "~" / DIGIT / ALPHA
 ```
 
-Here, `json-pointer` is taken from [RFC6901](https://tools.ietf.org/html/rfc6901), `char` from [RFC7159](https://tools.ietf.org/html/rfc7159#section-7) and `token` from [RFC7230](https://tools.ietf.org/html/rfc7230#section-3.2.6).
+Here, `json-pointer` is taken from [RFC6901](https://tools.ietf.org/html/rfc6901), `CHAR` from [RFC7159](https://tools.ietf.org/html/rfc7159#section-7) and `token` from [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.2).
 
 The `name` identifier is case-sensitive, whereas `token` is not.
 
@@ -2728,7 +2728,6 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 
 ```yaml
 tags:
-
   - name: account-updates
     summary: Account Updates
     description: Account update operations
@@ -3992,7 +3991,7 @@ Please note that as of 2020, the implicit flow is about to be deprecated by [OAu
 | <a name="security-scheme-description"></a>description | `string` | Any | A description for security scheme. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="security-scheme-name"></a>name | `string` | `apiKey` | **REQUIRED**. The name of the header, query or cookie parameter to be used. |
 | <a name="security-scheme-in"></a>in | `string` | `apiKey` | **REQUIRED**. The location of the API key. Valid values are `"query"`, `"header"`, or `"cookie"`. |
-| <a name="security-scheme-scheme"></a>scheme | `string` | `http` | **REQUIRED**. The name of the HTTP Authentication scheme to be used in the [Authorization header as defined in RFC7235](https://tools.ietf.org/html/rfc7235#section-5.1). The values used SHOULD be registered in the [IANA Authentication Scheme registry](https://www.iana.org/assignments/http-authschemes/http-authschemes.xhtml). The value is case-insensitive, as defined in [RFC7235](https://datatracker.ietf.org/doc/html/rfc7235#section-2.1). |
+| <a name="security-scheme-scheme"></a>scheme | `string` | `http` | **REQUIRED**. The name of the HTTP Authentication scheme to be used in the [Authorization header as defined in RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-16.4.1). The values used SHOULD be registered in the [IANA Authentication Scheme registry](https://www.iana.org/assignments/http-authschemes/http-authschemes.xhtml). The value is case-insensitive, as defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-11.1). |
 | <a name="security-scheme-bearer-format"></a>bearerFormat | `string` | `http` (`"bearer"`) | A hint to the client to identify how the bearer token is formatted. Bearer tokens are usually generated by an authorization server, so this information is primarily for documentation purposes. |
 | <a name="security-scheme-flows"></a>flows | [OAuth Flows Object](#oauth-flows-object) | `oauth2` | **REQUIRED**. An object containing configuration information for the flow types supported. |
 | <a name="security-scheme-open-id-connect-url"></a>openIdConnectUrl | `string` | `openIdConnect` | **REQUIRED**. [Well-known URL](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig) to discover the [[OpenID-Connect-Discovery]] [provider metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). |

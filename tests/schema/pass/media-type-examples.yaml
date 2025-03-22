@@ -1,0 +1,97 @@
+# including Encoding Object examples
+openapi: 3.2.0
+info:
+  title: API
+  version: 1.0.0
+paths:
+  /something:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+            examples:
+              cat:
+                summary: An example of a cat
+                value:
+                  name: Fluffy
+                  petType: Cat
+                  color: White
+                  gender: male
+                  breed: Persian
+              dog:
+                summary: An example of a dog with a cat's name
+                value:
+                  name: Puma
+                  petType: Dog
+                  color: Black
+                  gender: Female
+                  breed: Mixed
+              frog:
+                $ref: '#/components/examples/frog-example'
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                address:
+                  # complex types are stringified to support RFC 1866
+                  type: object
+                  properties: {}
+                icon:
+                  # The default with "contentEncoding" is application/octet-stream,
+                  # so we need to set image media type(s) in the Encoding Object.
+                  type: string
+                  contentEncoding: base64url
+            encoding:
+              icon:
+                contentType: image/png, image/jpeg
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                id:
+                  # default is `text/plain`
+                  type: string
+                  format: uuid
+                addresses:
+                  # default based on the `items` subschema would be
+                  # `application/json`, but we want these address objects
+                  # serialized as `application/xml` instead
+                  description: addresses in XML format
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Address'
+                profileImage:
+                  # default is application/octet-stream, but we can declare
+                  # a more specific image type or types
+                  type: string
+                  format: binary
+                forCoverage:
+                  type: string
+                forCoverage2:
+                  type: string
+            encoding:
+              addresses:
+                # require XML Content-Type in utf-8 encoding
+                # This is applied to each address part corresponding
+                # to each address in he array
+                contentType: application/xml; charset=utf-8
+              profileImage:
+                # only accept png or jpeg
+                contentType: image/png, image/jpeg
+                headers:
+                  X-Rate-Limit-Limit:
+                    description: The number of allowed requests in the current period
+                    schema:
+                      type: integer
+              forCoverage:
+                style: form
+                explode: false
+                allowReserved: true
+              forCoverage2:
+                style: spaceDelimited
+                explode: true

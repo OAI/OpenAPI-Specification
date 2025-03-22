@@ -151,7 +151,7 @@ It is RECOMMENDED that the entry document of an OAD be named: `openapi.json` or 
 
 #### Parsing Documents
 
-In order to properly handle [Schema Objects](#schema-object), OAS 3.1 inherits the parsing requirements of [JSON Schema Specification Draft 2020-12](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-9), with appropriate modifications regarding base URIs as specified in [Relative References In URIs](#relative-references-in-api-description-uris).
+In order to properly handle [Schema Objects](#schema-object), OAS 3.1 inherits the parsing requirements of [JSON Schema Specification Draft 2020-12](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-01#section-9), with appropriate modifications regarding base URIs as specified in [Relative References In URIs](#relative-references-in-api-description-uris).
 
 This includes a requirement to parse complete documents before deeming a Schema Object reference to be unresolvable, in order to detect keywords that might provide the reference target or impact the determination of the appropriate base URI.
 
@@ -224,22 +224,22 @@ Note that no aspect of implicit connection resolution changes how [URIs are reso
 
 ### Data Types
 
-Data types in the OAS are based on the types defined by the [JSON Schema Validation Specification Draft 2020-12](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-6.1.1):
+Data types in the OAS are based on the types defined by the [JSON Schema Validation Specification Draft 2020-12](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-01#section-6.1.1):
 "null", "boolean", "object", "array", "number", "string", or "integer".
 Models are defined using the [Schema Object](#schema-object), which is a superset of the JSON Schema Specification Draft 2020-12.
 
 JSON Schema keywords and `format` values operate on JSON "instances" which may be one of the six JSON data types, "null", "boolean", "object", "array", "number", or "string", with certain keywords and formats only applying to a specific type. For example, the `pattern` keyword and the `date-time` format only apply to strings, and treat any instance of the other five types as _automatically valid._ This means JSON Schema keywords and formats do **NOT** implicitly require the expected type. Use the `type` keyword to explicitly constrain the type.
 
-Note that the `type` keyword allows `"integer"` as a value for convenience, but keyword and format applicability does not recognize integers as being of a distinct JSON type from other numbers because [[RFC7159|JSON]] itself does not make that distinction. Since there is no distinct JSON integer type, JSON Schema defines integers mathematically. This means that both `1` and `1.0` are [equivalent](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-4.2.2), and are both considered to be integers.
+Note that the `type` keyword allows `"integer"` as a value for convenience, but keyword and format applicability does not recognize integers as being of a distinct JSON type from other numbers because [[RFC7159|JSON]] itself does not make that distinction. Since there is no distinct JSON integer type, JSON Schema defines integers mathematically. This means that both `1` and `1.0` are [equivalent](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-01#section-4.2.2), and are both considered to be integers.
 
 #### Data Type Format
 
-As defined by the [JSON Schema Validation specification](https://tools.ietf.org/html/draft-bhutton-json-schema-validation-00#section-7.3), data types can have an optional modifier keyword: `format`. As described in that specification, `format` is treated as a non-validating annotation by default; the ability to validate `format` varies across implementations.
+As defined by the [JSON Schema Validation specification](https://tools.ietf.org/html/draft-bhutton-json-schema-validation-01#section-7.3), data types can have an optional modifier keyword: `format`. As described in that specification, `format` is treated as a non-validating annotation by default; the ability to validate `format` varies across implementations.
 
 The OpenAPI Initiative also hosts a [Format Registry](https://spec.openapis.org/registry/format/) for formats defined by OAS users and other specifications. Support for any registered format is strictly OPTIONAL, and support for one registered format does not imply support for any others.
 
 Types that are not accompanied by a `format` keyword follow the type definition in the JSON Schema. Tools that do not recognize a specific `format` MAY default back to the `type` alone, as if the `format` is not specified.
-For the purpose of [JSON Schema validation](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-7.1), each format should specify the set of JSON data types for which it applies. In this registry, these types are shown in the "JSON Data Type" column.
+For the purpose of [JSON Schema validation](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-01#section-7.1), each format should specify the set of JSON data types for which it applies. In this registry, these types are shown in the "JSON Data Type" column.
 
 The formats defined by the OAS are:
 
@@ -264,9 +264,9 @@ In the following table showing how to use Schema Object keywords for binary data
 
 | Keyword | Raw | Encoded | Comments |
 | ---- | ---- | ---- | ---- |
-| `type` | _omit_ | `string` | raw binary is [outside of `type`](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-4.2.3) |
+| `type` | _omit_ | `string` | raw binary is [outside of `type`](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-01#section-4.2.3) |
 | `contentMediaType` | `image/png` | `image/png` | can sometimes be omitted if redundant (see below) |
-| `contentEncoding` | _omit_ | `base64`&nbsp;or&nbsp;`base64url` | other encodings are [allowed](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-8.3) |
+| `contentEncoding` | _omit_ | `base64`&nbsp;or&nbsp;`base64url` | other encodings are [allowed](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-01#section-8.3) |
 
 Note that the encoding indicated by `contentEncoding`, which inflates the size of data in order to represent it as 7-bit ASCII text, is unrelated to HTTP's `Content-Encoding` header, which indicates whether and how a message body has been compressed and is applied after all content serialization described in this section has occurred. Since HTTP allows unencoded binary message bodies, there is no standardized HTTP header for indicating base64 or similar encoding of an entire message body.
 
@@ -301,14 +301,14 @@ OpenAPI Description authors SHOULD consider how text using such extensions will 
 ### Relative References in API Description URIs
 
 URIs used as references within an OpenAPI Description, or to external documentation or other supplementary information such as a license, are resolved as _identifiers_, and described by this specification as **_URIs_**.
-As noted under [Parsing Documents](#parsing-documents), this specification inherits JSON Schema Specification Draft 2020-12's requirements for [loading documents](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-9) and associating them with their expected URIs, which might not match their current location.
+As noted under [Parsing Documents](#parsing-documents), this specification inherits JSON Schema Specification Draft 2020-12's requirements for [loading documents](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-01#section-9) and associating them with their expected URIs, which might not match their current location.
 This feature is used both for working in development or test environments without having to change the URIs, and for working within restrictive network configurations or security policies.
 
 Note that some URI fields are named `url` for historical reasons, but the descriptive text for those fields uses the correct "URI" terminology.
 
 Unless specified otherwise, all fields that are URIs MAY be relative references as defined by [RFC3986](https://tools.ietf.org/html/rfc3986#section-4.2).
 
-Relative references in [Schema Objects](#schema-object), including any that appear as `$id` values, use the nearest parent `$id` as a Base URI, as described by [JSON Schema Specification Draft 2020-12](https://tools.ietf.org/html/draft-bhutton-json-schema-00#section-8.2).
+Relative references in [Schema Objects](#schema-object), including any that appear as `$id` values, use the nearest parent `$id` as a Base URI, as described by [JSON Schema Specification Draft 2020-12](https://tools.ietf.org/html/draft-bhutton-json-schema-01#section-8.2).
 
 Relative URI references in other Objects, and in Schema Objects where no parent schema contains an `$id`, MUST be resolved using the referring document's base URI, which is determined in accordance with [[RFC3986]] [Section 5.1.2 – 5.1.4](https://tools.ietf.org/html/rfc3986#section-5.1.2).
 In practice, this is usually the retrieval URI of the document, which MAY be determined based on either its current actual location or a user-supplied expected location.
@@ -2804,16 +2804,16 @@ $ref: definitions.yaml#/Pet
 #### Schema Object
 
 The Schema Object allows the definition of input and output data types.
-These types can be objects, but also primitives and arrays. This object is a superset of the [JSON Schema Specification Draft 2020-12](https://tools.ietf.org/html/draft-bhutton-json-schema-00). The empty schema (which allows any instance to validate) MAY be represented by the boolean value `true` and a schema which allows no instance to validate MAY be represented by the boolean value `false`.
+These types can be objects, but also primitives and arrays. This object is a superset of the [JSON Schema Specification Draft 2020-12](https://tools.ietf.org/html/draft-bhutton-json-schema-01). The empty schema (which allows any instance to validate) MAY be represented by the boolean value `true` and a schema which allows no instance to validate MAY be represented by the boolean value `false`.
 
-For more information about the keywords, see [JSON Schema Core](https://tools.ietf.org/html/draft-bhutton-json-schema-00) and [JSON Schema Validation](https://tools.ietf.org/html/draft-bhutton-json-schema-validation-00).
+For more information about the keywords, see [JSON Schema Core](https://tools.ietf.org/html/draft-bhutton-json-schema-01) and [JSON Schema Validation](https://tools.ietf.org/html/draft-bhutton-json-schema-validation-01).
 
 Unless stated otherwise, the keyword definitions follow those of JSON Schema and do not add any additional semantics; this includes keywords such as `$schema`, `$id`, `$ref`, and `$dynamicRef` being URIs rather than URLs.
 Where JSON Schema indicates that behavior is defined by the application (e.g. for annotations), OAS also defers the definition of semantics to the application consuming the OpenAPI document.
 
 ##### JSON Schema Keywords
 
-The OpenAPI Schema Object [dialect](https://tools.ietf.org/html/draft-bhutton-json-schema-00#section-4.3.3) is defined as requiring the [OAS base vocabulary](#base-vocabulary), in addition to the vocabularies as specified in the JSON Schema Specification Draft 2020-12 [general purpose meta-schema](https://tools.ietf.org/html/draft-bhutton-json-schema-00#section-8).
+The OpenAPI Schema Object [dialect](https://tools.ietf.org/html/draft-bhutton-json-schema-01#section-4.3.3) is defined as requiring the [OAS base vocabulary](#base-vocabulary), in addition to the vocabularies as specified in the JSON Schema Specification Draft 2020-12 [general purpose meta-schema](https://tools.ietf.org/html/draft-bhutton-json-schema-01#section-8).
 
 The OpenAPI Schema Object dialect for this version of the specification is identified by the URI `https://spec.openapis.org/oas/3.1/dialect/base` (the <a name="dialect-schema-id"></a>"OAS dialect schema id").
 
@@ -2824,7 +2824,7 @@ The following keywords are taken from the JSON Schema specification but their de
 
 In addition to the JSON Schema keywords comprising the OAS dialect, the Schema Object supports keywords from any other vocabularies, or entirely arbitrary properties.
 
-JSON Schema implementations MAY choose to treat keywords defined by the OpenAPI Specification's base vocabulary as [unknown keywords](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-4.3.1), due to its inclusion in the OAS dialect with a [`$vocabulary`](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-8.1.2) value of `false`.
+JSON Schema implementations MAY choose to treat keywords defined by the OpenAPI Specification's base vocabulary as [unknown keywords](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-01#section-4.3.1), due to its inclusion in the OAS dialect with a [`$vocabulary`](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-01#section-8.1.2) value of `false`.
 <a name="base-vocabulary"></a>The OAS base vocabulary is comprised of the following keywords:
 
 ##### Fixed Fields
@@ -2840,20 +2840,20 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 
 ##### Extended Validation with Annotations
 
-JSON Schema Draft 2020-12 supports [collecting annotations](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-7.7.1), including [treating unrecognized keywords as annotations](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-6.5).
+JSON Schema Draft 2020-12 supports [collecting annotations](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-01#section-7.7.1), including [treating unrecognized keywords as annotations](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-01#section-6.5).
 OAS implementations MAY use such annotations, including [extensions](https://spec.openapis.org/registry/extension/) not recognized as part of a declared JSON Schema vocabulary, as the basis for further validation.
 Note that JSON Schema Draft 2020-12 does not require an `x-` prefix for extensions.
 
 ###### Non-validating constraint keywords
 
-The [`format` keyword (when using default format-annotation vocabulary)](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-7.2.1) and the [`contentMediaType`, `contentEncoding`, and `contentSchema` keywords](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-8.2) define constraints on the data, but are treated as annotations instead of being validated directly.
+The [`format` keyword (when using default format-annotation vocabulary)](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-01#section-7.2.1) and the [`contentMediaType`, `contentEncoding`, and `contentSchema` keywords](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-01#section-8.2) define constraints on the data, but are treated as annotations instead of being validated directly.
 Extended validation is one way that these constraints MAY be enforced.
 
 ###### Validating `readOnly` and `writeOnly`
 
 The `readOnly` and `writeOnly` keywords are annotations, as JSON Schema is not aware of how the data it is validating is being used.
 Validation of these keywords MAY be done by checking the annotation, the read or write direction, and (if relevant) the current value of the field.
-[JSON Schema Validation Draft 2020-12 §9.4](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-9.4) defines the expectations of these keywords, including that a resource (described as the "owning authority") MAY either ignore a `readOnly` field or treat it as an error.
+[JSON Schema Validation Draft 2020-12 §9.4](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-01#section-9.4) defines the expectations of these keywords, including that a resource (described as the "owning authority") MAY either ignore a `readOnly` field or treat it as an error.
 
 Fields that are both required and read-only are an example of when it is beneficial to ignore a `readOnly: true` constraint in a PUT, particularly if the value has not been changed.
 This allows correctly requiring the field on a GET and still using the same representation and schema with PUT.
@@ -2907,7 +2907,7 @@ The [XML Object](#xml-object) contains additional information about the availabl
 
 It is important for tooling to be able to determine which dialect or meta-schema any given resource wishes to be processed with: JSON Schema Core, JSON Schema Validation, OpenAPI Schema dialect, or some custom meta-schema.
 
-The `$schema` keyword MAY be present in any Schema Object that is a [schema resource root](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-4.3.5), and if present MUST be used to determine which dialect should be used when processing the schema. This allows use of Schema Objects which comply with other drafts of JSON Schema than the default Draft 2020-12 support. Tooling MUST support the <a href="#dialect-schema-id">OAS dialect schema id</a>, and MAY support additional values of `$schema`.
+The `$schema` keyword MAY be present in any Schema Object that is a [schema resource root](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-01#section-4.3.5), and if present MUST be used to determine which dialect should be used when processing the schema. This allows use of Schema Objects which comply with other drafts of JSON Schema than the default Draft 2020-12 support. Tooling MUST support the <a href="#dialect-schema-id">OAS dialect schema id</a>, and MAY support additional values of `$schema`.
 
 To allow use of a different default `$schema` value for all Schema Objects contained within an OAS document, a `jsonSchemaDialect` value may be set within the <a href="#openapi-object">OpenAPI Object</a>. If this default is not set, then the OAS dialect schema id MUST be used for these Schema Objects. The value of `$schema` within a resource root Schema Object always overrides any default.
 
@@ -4271,8 +4271,8 @@ OpenAPI Descriptions use a combination of JSON, YAML, and JSON Schema, and there
 
 * [JSON](https://www.iana.org/assignments/media-types/application/json)
 * [YAML](https://www.iana.org/assignments/media-types/application/yaml)
-* [JSON Schema Core](https://tools.ietf.org/html/draft-bhutton-json-schema-00#section-13)
-* [JSON Schema Validation](https://tools.ietf.org/html/draft-bhutton-json-schema-validation-00#section-10)
+* [JSON Schema Core](https://tools.ietf.org/html/draft-bhutton-json-schema-01#section-13)
+* [JSON Schema Validation](https://tools.ietf.org/html/draft-bhutton-json-schema-validation-01#section-10)
 
 ### Tooling and Usage Scenarios
 
@@ -4321,7 +4321,7 @@ Certain fields allow the use of Markdown which can contain HTML including script
 
 Serializing typed data to plain text, which can occur in `text/plain` message bodies or `multipart` parts, as well as in the `application/x-www-form-urlencoded` format in either URL query strings or message bodies, involves significant implementation- or application-defined behavior.
 
-[Schema Objects](#schema-object) validate data based on the [JSON Schema data model](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-4.2.1), which only recognizes four primitive data types: strings (which are [only broadly interoperable as UTF-8](https://datatracker.ietf.org/doc/html/rfc7159#section-8.1)), numbers, booleans, and `null`.
+[Schema Objects](#schema-object) validate data based on the [JSON Schema data model](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-01#section-4.2.1), which only recognizes four primitive data types: strings (which are [only broadly interoperable as UTF-8](https://datatracker.ietf.org/doc/html/rfc7159#section-8.1)), numbers, booleans, and `null`.
 Notably, integers are not a distinct type from other numbers, with `type: "integer"` being a convenience defined mathematically, rather than based on the presence or absence of a decimal point in any string representation.
 
 The [Parameter Object](#parameter-object), [Header Object](#header-object), and [Encoding Object](#encoding-object) offer features to control how to arrange values from array or object types.

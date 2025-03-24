@@ -58,9 +58,11 @@ for specification in $specifications; do
 
   node scripts/md2html/md2html.js --maintainers $maintainers $specification "$allVersions" > $tempfile
   npx respec --no-sandbox --use-local --src $tempfile --out $tempfile2
-  # remove unwanted Google Tag Manager and Google Analytics scripts
+  # remove unwanted Google Tag Manager and Google Analytics scripts, non-deterministic changes, and ReSpec minor version
   sed -e 's/<script type="text\/javascript" async="" src="https:\/\/www.google-analytics.com\/analytics.js"><\/script>//' \
       -e 's/<script type="text\/javascript" async="" src="https:\/\/www.googletagmanager.com\/gtag\/js?id=G-[^"]*"><\/script>//' \
+      -e 's/ toc-inline//' -e 's/ darkmode//' \
+      -e 's/"ReSpec \([0-9]*\)[.0-9]*"/"ReSpec \1"/' \
       $tempfile2 > $destination
 
   echo === Built $destination

@@ -165,6 +165,9 @@ Draft pull requests can still be reviewed while in draft state.
 
 ### Preview specification HTML locally
 
+> [!NOTE]
+> `npm run build-src` calls bash scripts. Use [Git Bash](https://gitforwindows.org/) on Windows, or use the Windows Subsystem for Linux (WSL).
+
 The markdown source files are converted to HTML before publishing.
 To do this locally, please
 
@@ -175,9 +178,6 @@ To do this locally, please
 5. Open output file `deploy-preview/oas.html` with a browser and check your changes
 
 Please make sure the markdown validates and builds using the above steps before creating a pull request or marking a draft pull request as ready for review.
-
-> [!NOTE]
-> `npm run build-src` calls bash scripts. Use [Git Bash](https://gitforwindows.org/) on Windows, or use the Windows Subsystem for Linux (WSL).
 
 ## Reviewers
 

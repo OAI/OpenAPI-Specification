@@ -19,8 +19,6 @@ This GitHub project is the starting point for OpenAPI. Here you will find the in
 
 This repository contains [the Markdown sources](versions) for [all published OpenAPI Specification versions](https://spec.openapis.org/). For release notes and release candidate versions, refer to the [releases page](releases).
 
-Each folder in this repository, such as [schemas](schemas) and [tests](tests), should contain folders pertaining to the current and previous versions of the specification.
-
 ## See It in Action
 
 If you just want to see it work, check out the [list of current examples](https://learn.openapis.org/examples/).

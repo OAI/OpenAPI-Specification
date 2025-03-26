@@ -339,7 +339,7 @@ components:
 ```
 
 1. The base URI used to resolve `$self` is the retrieval URI, resulting in an effective `$self` value of `https://example.com/openapi` (OADs that use HTTP content negotiation to provide both JSON and YAML representations typically do not use a file extension in their self-assigned URI, to avoid needing to change URIs based on the format).
-2. The base URI for the `$ref` comes from `$self` (`https://example.com/openapi`), producing a resolved URI of `https://example.com/shared#/components/pathItems/Foo`
+2. The base URI for the `$ref` comes from `$self` (`https://example.com/openapi`), producing a resolved URI of `https://example.com/shared#/components/pathItems/Foo`.
 
 Relative `$self` values are often used for APIs deployed in multiple locations, such as a device management API that is hosted on each device.
 
@@ -363,7 +363,7 @@ components:
 
 In this example, both Schema Objects use `https://example.com/openapi` as their base URI for resolving their relative `$id` values to `https://example.com/schemas/foo` and `https://example.com/schemas/bar`.  The `$ref` under `properties` is resolved against the `$id`-provided base URI `https://example.com/schemas/foo`, producing `https://example.com/schemas/bar`, which is the `$id`-assigned URI of the Bar schema component.
 
-Note that using embedded `$id` keywords prevents using `$ref: "#/components/schemas/Bar"` in the `properties` field's `$ref` because the base URI for such fragments is set by the `$id`.  Therefore, a `$ref: "#/components/schemas/Bar"` would resolve to `"https://example.com/schemas/foo#/components/schemas/Bar"`, which is not useful.
+Note that using embedded `$id` keywords would prevent using `$ref: "#/components/schemas/Bar"` in the `properties` field's `$ref` because the base URI for such fragments is set by the `$id`.  Therefore, a `$ref: "#/components/schemas/Bar"` would resolve to `"https://example.com/schemas/foo#/components/schemas/Bar"`, which is not the presumably-intended location.
 
 #### Resolving URI fragments
 

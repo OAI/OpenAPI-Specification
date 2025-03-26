@@ -316,14 +316,20 @@ Within an OpenAPI Document, a Schema Object that does not have its base URI set 
 See [JSON Schema draft 2020-12 Section 8.2](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-8.2) for more information about base URIs in Schema Objects.
 
 The most common base URI source in the absence of `$self` or `$id` is the retrieval URI, in accordance with RFC3986 Section 5.1.3.
-Since not all tools support direct retrieval, and because direct retrieval is sometimes prevented by network conditions or security policies, tools SHOULD allow users to provide the intended retrieval URI along with the document.
 
 Note that these rules mean that different fields in the document, particularly those in Schema Objects vs other kinds of Objects, can have different base URIs.
 Relative URI references in `$self` or `$id` are resolved against the base URI appropriate for their location in the document.
 
+Implementations SHOULD allow users to provide the intended retrieval URI along with each document, as this is necessary in situations including:
+
+* Implementations that do not support direct retrieval, which requires additional dependencies and security considerations
+* Network configurations or conditions that prevent direct retrieval
+* Test configurations that need to simulate the document being hosted in a production location
+* Documents that exist only in-memory and have no readily identifiable location (although for a single document without references to other documents, an application-specific default base URI in accordance with RFC3986 Section 5.1.4 would also be suitable)
+
 Base URIs for documents containing OpenAPI content without an OpenAPI Object at the root ignore the `$self` rule, as no `$self` can be present in such documents.
 
-##### Examples of Base URI Determination
+##### Examples of Base URI Determination and Reference Resolution
 
 Given a retrieval URI of `https://example.com/foo/bar/openapi.yaml`, and the following OpenAPI Document:
 
@@ -363,7 +369,7 @@ components:
 
 In this example, both Schema Objects use `https://example.com/openapi` as their base URI for resolving their relative `$id` values to `https://example.com/schemas/foo` and `https://example.com/schemas/bar`.  The `$ref` under `properties` is resolved against the `$id`-provided base URI `https://example.com/schemas/foo`, producing `https://example.com/schemas/bar`, which is the `$id`-assigned URI of the Bar schema component.
 
-Note that using embedded `$id` keywords would prevent using `$ref: "#/components/schemas/Bar"` in the `properties` field's `$ref` because the base URI for such fragments is set by the `$id`.  Therefore, a `$ref: "#/components/schemas/Bar"` would resolve to `"https://example.com/schemas/foo#/components/schemas/Bar"`, which is not the presumably-intended location.
+Note that using embedded `$id` keywords would prevent using `$ref: "#/components/schemas/Bar"` in the `properties` field's `$ref` because the base URI for such fragments is set by the `$id`.  Therefore, a `$ref: "#/components/schemas/Bar"` would resolve to `"https://example.com/schemas/foo#/components/schemas/Bar"`, rather than the presumably-intended location of `"https://example.com/openapi#/components/schemas/Bar"`.
 
 #### Resolving URI fragments
 
@@ -416,7 +422,7 @@ This is the root object of the [OpenAPI Description](#openapi-description).
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="oas-version"></a>openapi | `string` | **REQUIRED**. This string MUST be the [version number](#versions) of the OpenAPI Specification that the OpenAPI Document uses. The `openapi` field SHOULD be used by tooling to interpret the OpenAPI Document. This is _not_ related to the API [`info.version`](#info-version) string. |
-| <a name-"oas-self"></a>$self | `URI-reference` (without a fragment) | Sets the URI of this document, which also serves as its base URI in accordance with [RFC 3986 §5.1.1](https://www.rfc-editor.org/rfc/rfc3986#section-5.1.1); the value MUST NOT be the empty string and MUST NOT contain a fragment (even if the fragment is empty).  Implementations MUST support referencing a document by the resolved URI defined by this field. |
+| <a name-"oas-self"></a>$self | `URI-reference` (without a fragment) | Sets the URI of this document, which also serves as its base URI in accordance with [RFC 3986 §5.1.1](https://www.rfc-editor.org/rfc/rfc3986#section-5.1.1); the value MUST NOT be the empty string and MUST NOT contain a fragment (even if the fragment is empty).  Implementations MUST support identifying the targets of [API description URIs](#relative-references-in-api-description-uris) using the resolved URI defined by this field, as shown under [Examples of Base URI Determination and Reference Resolution](#examples-of-base-uri-determination-and-reference-resolution).|
 | <a name="oas-info"></a>info | [Info Object](#info-object) | **REQUIRED**. Provides metadata about the API. The metadata MAY be used by tooling as required. |
 | <a name="oas-json-schema-dialect"></a> jsonSchemaDialect | `string` | The default value for the `$schema` keyword within [Schema Objects](#schema-object) contained within this OAS document. This MUST be in the form of a URI. |
 | <a name="oas-servers"></a>servers | [[Server Object](#server-object)] | An array of Server Objects, which provide connectivity information to a target server. If the `servers` field is not provided, or is an empty array, the default value would be a [Server Object](#server-object) with a [url](#server-url) value of `/`. |

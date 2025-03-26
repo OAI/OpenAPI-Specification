@@ -7,8 +7,8 @@
 |---- | ---------------- |
 |Proposal |[2025-03-20-URIs-for-Tags](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/{2025-03-20-URIs-for-Tags.md})|
 |Authors|[Henry Andrews](https://github.com/handrews)|
-|Review Manager | TBD |
-|Status |Proposal|
+|Review Manager | [Lorna Mitchell](https://github.com/lornajane) |
+|Status | rejected |
 |Implementations | n/a |
 |Issues |[#2905 Allow the use of $ref and json pointer in tags](https://github.com/OAI/OpenAPI-Specification/issues/2905), consolidated into [#3853 Consolidated $ref-to-Some Object feature request](https://github.com/OAI/OpenAPI-Specification/issues/3853)|
 |Previous Revisions |n/a|
@@ -18,6 +18,7 @@
 |Date |Responsible Party |Description |
 |---- | ---------------- | ---------- |
 |2025-03-20 | @handrews | Initial publication |
+|2025-03-26 | @handrews | Document rejection |
 
 ## Introduction
 
@@ -124,3 +125,14 @@ To me, `operationId` is not a good precedent to follow, as we already have to pr
 While we could make collisions an error for this new mechanism, @baywet noted that trying to prevent such collisions is highly burdensome in large organizations (although @karenetheridge similarly pointed to experience of it working).
 The fact that `operationRef` had to be included to provide a URI-based alternative to using `operationId` in the Link Object is a strong piece of evidence in favor of a URI-based solution for tags.
 
+## Outcome
+
+Rejected per @lornajane, with concurrence by @ralfhandl:
+
+> I am not in favour of these additions for the 3.x branch. I wish that we'd implemented tags differently in the first place, and I'm sure that all the constructive discussion around the tags feature will help us a lot in future major releases.
+> 
+> I believe that the limitations of the current tag situation can be overcome with helper tooling and that this change (while solving a narrow but valid use case) adds complexity to the specification that is unnecessary and does not benefit the majority of users. As custodians of a widely-used standard, we have a responsibility to maintain something that is appropriate for its audience, and we should be "reluctant" in all our changes unless we see that they are really needed.
+> 
+> I propose that users would be equally well served by leaving the requirement to resolve tags from the entry document. Organisations can either maintain an extensive list of tags in all OpenAPI documents, and then remove any that aren't used before publishing (tooling exists for this use case), or alternatively if a tool wants to include tags found in the wider context of referenced OpenAPI documents by adding them to the top-level tags array during processing, that would work well too.
+> 
+> The tags array is a list of strings. It isn't an ID like the Operation uses, and it's not a named entry like the security schemes, so it is appropriate to approach the limitations of it differently. My proposal is to offer some advice or documentation on approaching this problem, but not to bring it in scope of the specification for 3.x since other options are available.

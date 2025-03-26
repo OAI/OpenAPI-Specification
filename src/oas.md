@@ -117,7 +117,7 @@ Occasionally, non-backwards compatible changes may be made in `minor` versions o
 
 ### Format
 
-An OpenAPI Document that conforms to the OpenAPI Specification is itself a JSON object, which may be represented either in JSON or YAML format.
+An OpenAPI Document that conforms to the OpenAPI Specification is itself a JSON object, which may be represented either in [[RFC8259|JSON]] or [[YAML|YAML]] format.
 
 For example, if a field has an array value, the JSON array representation will be used:
 
@@ -230,7 +230,7 @@ Models are defined using the [Schema Object](#schema-object), which is a superse
 
 JSON Schema keywords and `format` values operate on JSON "instances" which may be one of the six JSON data types, "null", "boolean", "object", "array", "number", or "string", with certain keywords and formats only applying to a specific type. For example, the `pattern` keyword and the `date-time` format only apply to strings, and treat any instance of the other five types as _automatically valid._ This means JSON Schema keywords and formats do **NOT** implicitly require the expected type. Use the `type` keyword to explicitly constrain the type.
 
-Note that the `type` keyword allows `"integer"` as a value for convenience, but keyword and format applicability does not recognize integers as being of a distinct JSON type from other numbers because [[RFC7159|JSON]] itself does not make that distinction. Since there is no distinct JSON integer type, JSON Schema defines integers mathematically. This means that both `1` and `1.0` are [equivalent](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-01#section-4.2.2), and are both considered to be integers.
+Note that the `type` keyword allows `"integer"` as a value for convenience, but keyword and format applicability does not recognize integers as being of a distinct JSON type from other numbers because [[RFC8259|JSON]] itself does not make that distinction. Since there is no distinct JSON integer type, JSON Schema defines integers mathematically. This means that both `1` and `1.0` are [equivalent](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-01#section-4.2.2), and are both considered to be integers.
 
 #### Data Type Format
 
@@ -2556,13 +2556,13 @@ The runtime expression is defined by the following [ABNF](https://tools.ietf.org
                     ; %x2F ('/') and %x7E ('~') are excluded from 'unescaped'
     escaped         = "~" ( "0" / "1" )
                     ; representing '~' and '/', respectively
-    name = *( CHAR )
+    name = *char
     token = 1*tchar
     tchar = "!" / "#" / "$" / "%" / "&" / "'" / "*" / "+" / "-" / "."
           / "^" / "_" / "`" / "|" / "~" / DIGIT / ALPHA
 ```
 
-Here, `json-pointer` is taken from [RFC6901](https://tools.ietf.org/html/rfc6901), `CHAR` from [RFC7159](https://tools.ietf.org/html/rfc7159#section-7) and `token` from [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.2).
+Here, `json-pointer` is taken from [RFC6901](https://tools.ietf.org/html/rfc6901), `char` from [RFC8259](https://tools.ietf.org/html/rfc8259#section-7) and `token` from [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.2).
 
 The `name` identifier is case-sensitive, whereas `token` is not.
 
@@ -4335,7 +4335,7 @@ Certain fields allow the use of Markdown which can contain HTML including script
 
 Serializing typed data to plain text, which can occur in `text/plain` message bodies or `multipart` parts, as well as in the `application/x-www-form-urlencoded` format in either URL query strings or message bodies, involves significant implementation- or application-defined behavior.
 
-[Schema Objects](#schema-object) validate data based on the [JSON Schema data model](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-01#section-4.2.1), which only recognizes four primitive data types: strings (which are [only broadly interoperable as UTF-8](https://datatracker.ietf.org/doc/html/rfc7159#section-8.1)), numbers, booleans, and `null`.
+[Schema Objects](#schema-object) validate data based on the [JSON Schema data model](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-01#section-4.2.1), which only recognizes four primitive data types: strings (which are [only broadly interoperable as UTF-8](https://datatracker.ietf.org/doc/html/rfc8259#section-8.1)), numbers, booleans, and `null`.
 Notably, integers are not a distinct type from other numbers, with `type: "integer"` being a convenience defined mathematically, rather than based on the presence or absence of a decimal point in any string representation.
 
 The [Parameter Object](#parameter-object), [Header Object](#header-object), and [Encoding Object](#encoding-object) offer features to control how to arrange values from array or object types.

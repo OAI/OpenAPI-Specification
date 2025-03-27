@@ -198,7 +198,7 @@ There are no URI-based alternatives for the Security Requirement Object or for t
 These limitations are expected to be addressed in a future release.
 
 See [Appendix F: Resolving Security Requirements in a Referenced Document](#appendix-f-resolving-security-requirements-in-a-referenced-document) for an example of the possible resolutions, including which one is recommended by this section.
-The behavior for Discrimator Object non-URI mappings and for the Operation Object's `tags` field operate on the same principles.
+The behavior for Discriminator Object non-URI mappings and for the Operation Object's `tags` field operate on the same principles.
 
 Note that no aspect of implicit connection resolution changes how [URIs are resolved](#relative-references-in-api-description-uris), or restricts their possible targets.
 

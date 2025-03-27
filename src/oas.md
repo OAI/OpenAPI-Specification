@@ -477,6 +477,7 @@ An object representing a Server.
 | ---- | :----: | ---- |
 | <a name="server-url"></a>url | `string` | **REQUIRED**. A URL to the target host. This URL supports Server Variables and MAY be relative, to indicate that the host location is relative to the location where the document containing the Server Object is being served. Variable substitutions will be made when a variable is named in `{`braces`}`. |
 | <a name="server-description"></a>description | `string` | An optional string describing the host designated by the URL. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
+| <a name="server-name"></a>name | `string` | An optional unique string to refer to the host designated by the URL. |
 | <a name="server-variables"></a>variables | Map[`string`, [Server Variable Object](#server-variable-object)] | A map between a variable name and its value. The value is used for substitution in the server's URL template. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
@@ -488,13 +489,15 @@ A single server would be described as:
 ```json
 {
   "url": "https://development.gigantic-server.com/v1",
-  "description": "Development server"
+  "description": "Development server",
+  "name": "dev"
 }
 ```
 
 ```yaml
 url: https://development.gigantic-server.com/v1
 description: Development server
+name: dev
 ```
 
 The following shows how multiple servers can be described, for example, at the OpenAPI Object's [`servers`](#oas-servers):
@@ -504,15 +507,18 @@ The following shows how multiple servers can be described, for example, at the O
   "servers": [
     {
       "url": "https://development.gigantic-server.com/v1",
-      "description": "Development server"
+      "description": "Development server",
+      "name": "dev"
     },
     {
       "url": "https://staging.gigantic-server.com/v1",
-      "description": "Staging server"
+      "description": "Staging server",
+      "name": "staging"
     },
     {
       "url": "https://api.gigantic-server.com/v1",
-      "description": "Production server"
+      "description": "Production server",
+      "name": "prod"
     }
   ]
 }
@@ -522,10 +528,13 @@ The following shows how multiple servers can be described, for example, at the O
 servers:
   - url: https://development.gigantic-server.com/v1
     description: Development server
+    name: dev
   - url: https://staging.gigantic-server.com/v1
     description: Staging server
+    name: staging
   - url: https://api.gigantic-server.com/v1
     description: Production server
+    name: prod
 ```
 
 The following shows how variables can be used for a server configuration:
@@ -536,6 +545,7 @@ The following shows how variables can be used for a server configuration:
     {
       "url": "https://{username}.gigantic-server.com:{port}/{basePath}",
       "description": "The production API server",
+      "name": "prod",
       "variables": {
         "username": {
           "default": "demo",
@@ -558,6 +568,7 @@ The following shows how variables can be used for a server configuration:
 servers:
   - url: https://{username}.gigantic-server.com:{port}/{basePath}
     description: The production API server
+    name: prod
     variables:
       username:
         # note! no enum here means it is an open value

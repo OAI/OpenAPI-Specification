@@ -6,6 +6,7 @@ paths: {}
 servers:
   - url: /v1
     description: Run locally.
+    name: local
   - url: https://production.com/v1
     description: Run on production server.
   - url: https://{username}.gigantic-server.com:{port}/{basePath}

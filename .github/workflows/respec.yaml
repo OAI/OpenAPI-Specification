@@ -8,11 +8,17 @@ name: respec
 # on the gh-pages branch when the corresponding markdown files change.
 #
 
-# run this on push to main
+# run this on push to main for spec-relevant files
 on:
   push:
     branches:
       - main
+    paths:
+      - 'versions/*.md'
+      - 'scripts/md2html/**'
+      - '.github/workflows/respec.yaml'
+      - 'package.json'
+      - 'package-lock.json'
   workflow_dispatch: {}
 
 jobs:

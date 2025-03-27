@@ -557,8 +557,6 @@ $defs:
         type: object
         additionalProperties:
           $ref: '#/$defs/link-or-reference'
-    required:
-      - description
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
 

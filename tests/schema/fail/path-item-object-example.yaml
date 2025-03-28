@@ -34,10 +34,19 @@ paths:
             type: string
         style: simple
     additionalOperations:
-      QUERY:
+      POST:
         description: Returns pets based on ID
         summary: Find pets by ID
-        operationId: queryPetsById
+        operationId: postPetsById
+        requestBody:
+          description: ID of pet to use
+          required: true
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
         responses:
           '200':
             description: pet response

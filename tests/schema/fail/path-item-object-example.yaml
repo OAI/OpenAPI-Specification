@@ -38,7 +38,7 @@ paths:
         description: Returns pets based on ID
         summary: Find pets by ID
         operationId: postPetsById
-        request-body:
+        requestBody:
           description: ID of pet to use
           required: true
           content:

@@ -1,8 +1,8 @@
-## Style Guide
+# Style Guide
 
 Contributions to this repository should follow the style guide as described in this section.
 
-### Markdown
+## Markdown
 
 Markdown files in this project should follow the style enforced by the [markdownlint tool](https://www.npmjs.com/package/markdownlint),
 as configured by the `.markdownlint.yaml` file in the root of the project.
@@ -35,14 +35,14 @@ Plus some suggestions, rather than rules:
   A blank line is needed to cause a paragraph break in Markdown.
 * In examples, use realistic values rather than foo/bar.
 
-### Use of "keyword", "field", "property", and "attribute"
+## Use of "keyword", "field", "property", and "attribute"
 
 * JSON Schema keywords -> "keyword"
 * OpenAPI fixed fields -> "field"
 * property of a "plain" JSON object that is not an OpenAPI-defined Foo Object -> "property"
 * "attribute" is only used in the XML context and means "XML attribute"
 
-### Field Names and Values in YAML comments
+## Field Names and Values in YAML comments
 
 Field names and keywords should be in backticks.
 Values like "Dog" should be double quoted.

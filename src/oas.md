@@ -924,6 +924,7 @@ The path itself is still exposed to the documentation viewer but they will not k
 | <a name="path-item-ref"></a>$ref | `string` | Allows for a referenced definition of this path item. The value MUST be in the form of a URI, and the referenced structure MUST be in the form of a [Path Item Object](#path-item-object). In case a Path Item Object field appears both in the defined object and the referenced object, the behavior is undefined. See the rules for resolving [Relative References](#relative-references-in-api-description-uris). <br><br>_**Note:** The behavior of `$ref` with adjacent properties is likely to change in future versions of this specification to bring it into closer alignment with the behavior of the [Reference Object](#reference-object)._ |
 | <a name="path-item-summary"></a>summary | `string` | An optional string summary, intended to apply to all operations in this path. |
 | <a name="path-item-description"></a>description | `string` | An optional string description, intended to apply to all operations in this path. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
+| <a name="path-item-additional-operations"></a>additionalOperations | Map[`string`, [Operation Object](#operation-object)] | A map of additional operations on this path. This map MUST NOT contain any entry matching (case-insensitive) any operation that can be defined on the parent path item object. |
 | <a name="path-item-get"></a>get | [Operation Object](#operation-object) | A definition of a GET operation on this path. |
 | <a name="path-item-put"></a>put | [Operation Object](#operation-object) | A definition of a PUT operation on this path. |
 | <a name="path-item-post"></a>post | [Operation Object](#operation-object) | A definition of a POST operation on this path. |
@@ -985,7 +986,39 @@ This object MAY be extended with [Specification Extensions](#specification-exten
       },
       "style": "simple"
     }
-  ]
+  ],
+  "additionalOperations": {
+    "query": {
+      "description": "Returns pets based on ID",
+      "summary": "Find pets by ID",
+      "operationId": "queryPetsById",
+      "responses": {
+        "200": {
+          "description": "pet response",
+          "content": {
+            "*/*": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            }
+          }
+        },
+        "default": {
+          "description": "error payload",
+          "content": {
+            "text/html": {
+              "schema": {
+                "$ref": "#/components/schemas/ErrorModel"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -1019,6 +1052,26 @@ parameters:
       items:
         type: string
     style: simple
+additionalOperations:
+  query:
+    description: Returns pets based on ID
+    summary: Find pets by ID
+    operationId: queryPetsById
+    responses:
+      '200':
+        description: pet response
+        content:
+          '*/*':
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Pet'
+      default:
+        description: error payload
+        content:
+          text/html:
+            schema:
+              $ref: '#/components/schemas/ErrorModel'
 ```
 
 #### Operation Object

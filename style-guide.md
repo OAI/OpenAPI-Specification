@@ -22,6 +22,12 @@ The following additional rules should be followed but currently are not enforced
 10. Use `<span id="thing"></span>` for link anchors. The `<a name="thing"></a>` format has been deprecated.
 11. Headings use [title case](https://en.wikipedia.org/wiki/Title_case) and are followed by a blank line.
 12. Do not use [RFC2119 key words (MUST, MAY, ...)](https://datatracker.ietf.org/doc/html/rfc2119) in "Examples" sections or when explaining examples, and state requirements only in sections that are clearly normative.
+13. Bullet lists and punctuation:
+    - If a bullet list item is a complete sentence or paragraph, start it with an uppercase letter and end it with a period.
+    - If a bullet list item is a word or short phrase, start it with an uppercase letter and do not end it with a punctuation character.
+    - If a bullet list item completes a stem sentence immediately preceding the bullet list, start it with a lowercase letter and end it with a period.
+    - Use a consistent bullet list item style for each bullet list.
+    - If in doubt which style to use for a new bullet list, look for similar lists in the same section or nearby sections and choose the same style.
 
 Plus some suggestions, rather than rules:
 

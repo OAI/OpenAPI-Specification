@@ -1,5 +1,5 @@
 ---
-name: Bug report
+name: Report an error in the specification
 about: Create a report to help us improve the specification
 title: 'vX.Y: ...'
 labels: ''

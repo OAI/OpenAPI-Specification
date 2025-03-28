@@ -235,23 +235,31 @@ $defs:
         additionalProperties:
           $ref: '#/$defs/operation'
         not:
-          required:
-            - get:
-              $ref: '#/$defs/operation'
-            - put:
-              $ref: '#/$defs/operation'
-            - post:
-              $ref: '#/$defs/operation'
-            - delete:
-              $ref: '#/$defs/operation'
-            - options:
-              $ref: '#/$defs/operation'
-            - head:
-              $ref: '#/$defs/operation'
-            - patch:
-              $ref: '#/$defs/operation'
-            - trace:
-              $ref: '#/$defs/operation'
+          anyOf:
+            - properties:
+              - get:
+                $ref: '#/$defs/operation'
+            - properties:
+              - put:
+                $ref: '#/$defs/operation'
+            - properties:
+              - post:
+                $ref: '#/$defs/operation'
+            - properties:
+              - delete:
+                $ref: '#/$defs/operation'
+            - properties:
+              - options:
+                $ref: '#/$defs/operation'
+            - properties:
+              - head:
+                $ref: '#/$defs/operation'
+            - properties:
+              - patch:
+                $ref: '#/$defs/operation'
+            - properties:
+              - trace:
+                $ref: '#/$defs/operation'
       get:
         $ref: '#/$defs/operation'
       put:

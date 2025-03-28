@@ -988,7 +988,7 @@ This object MAY be extended with [Specification Extensions](#specification-exten
     }
   ],
   "additionalOperations": {
-    "query": {
+    "QUERY": {
       "description": "Returns pets based on ID",
       "summary": "Find pets by ID",
       "operationId": "queryPetsById",
@@ -1053,7 +1053,7 @@ parameters:
         type: string
     style: simple
 additionalOperations:
-  query:
+  QUERY:
     description: Returns pets based on ID
     summary: Find pets by ID
     operationId: queryPetsById

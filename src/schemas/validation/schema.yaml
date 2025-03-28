@@ -238,28 +238,44 @@ $defs:
           anyOf:
             - properties:
               - get:
-                $ref: '#/$defs/operation'
+                  $ref: '#/$defs/operation'
+              required:
+                - get
             - properties:
               - put:
-                $ref: '#/$defs/operation'
+                  $ref: '#/$defs/operation'
+              required:
+                - put
             - properties:
               - post:
-                $ref: '#/$defs/operation'
+                  $ref: '#/$defs/operation'
+              required:
+                - post
             - properties:
               - delete:
-                $ref: '#/$defs/operation'
+                  $ref: '#/$defs/operation'
+              required:
+                - delete
             - properties:
               - options:
-                $ref: '#/$defs/operation'
+                  $ref: '#/$defs/operation'
+              required:
+                - options
             - properties:
               - head:
-                $ref: '#/$defs/operation'
+                  $ref: '#/$defs/operation'
+              required:
+                - head
             - properties:
               - patch:
-                $ref: '#/$defs/operation'
+                  $ref: '#/$defs/operation'
+              required:
+                - patch
             - properties:
               - trace:
-                $ref: '#/$defs/operation'
+                  $ref: '#/$defs/operation'
+              required:
+                - trace
       get:
         $ref: '#/$defs/operation'
       put:

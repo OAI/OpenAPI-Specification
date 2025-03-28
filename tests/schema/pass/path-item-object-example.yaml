@@ -34,7 +34,7 @@ paths:
             type: string
         style: simple
     additionalOperations:
-      query:
+      QUERY:
         description: Returns pets based on ID
         summary: Find pets by ID
         operationId: queryPetsById

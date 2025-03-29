@@ -2864,7 +2864,7 @@ Extended validation is one way that these constraints MAY be enforced.
 
 The `readOnly` and `writeOnly` keywords are annotations, as JSON Schema is not aware of how the data it is validating is being used.
 Validation of these keywords MAY be done by checking the annotation, the read or write direction, and (if relevant) the current value of the field.
-[JSON Schema Validation Draft 2020-12 §9.4](https://www.ietf.org/archive/id/draft-bhutton-json-schema-validation-01.html#section-9.4) defines the expectations of these keywords, including that a resource (described as the "owning authority") MAY either ignore a `readOnly` field or treat it as an error.
+[JSON Schema Validation Draft 2020-12 Section 9.4](https://www.ietf.org/archive/id/draft-bhutton-json-schema-validation-01.html#section-9.4) defines the expectations of these keywords, including that a resource (described as the "owning authority") MAY either ignore a `readOnly` field or treat it as an error.
 
 Fields that are both required and read-only are an example of when it is beneficial to ignore a `readOnly: true` constraint in a PUT, particularly if the value has not been changed.
 This allows correctly requiring the field on a GET and still using the same representation and schema with PUT.

@@ -62,6 +62,16 @@ https://foo.com/bar?baz=qux&fred=waldo#fragment
 https://foo.com/bar{?baz*,qux}
 ```
 
+```eventstream
+data: This data is formatted
+data: across two lines
+retry: 5
+
+event: add
+data: 1234.5678
+unknown-field: this is ignored
+```
+
 ## Appendix A: Revision History
 
 Version | Date

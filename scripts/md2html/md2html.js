@@ -48,6 +48,22 @@ hljs.registerLanguage('uri', function() {
       ],
     }
   });
+hljs.registerLanguage('eventstream', function() {
+    return {
+      contains: [
+          {
+              scope: "attr",
+              begin: /^/,
+              end: ":",
+          },
+          {
+              scope: "literal",
+              begin: /: */,
+              end: /$/,
+          },
+      ],
+    }
+  });
 const cheerio = require('cheerio');
 
 let argv = require('yargs')

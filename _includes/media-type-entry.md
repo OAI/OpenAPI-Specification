@@ -1,4 +1,4 @@
-# <a href=".">{{ page.collection | replace: '-', ' ' | replace: 'm', 'M' | replace: 't', 'T' }} Registry</a>
+# <a href=".">{{ page.collection | replace 'media-type', 'Media Type' | replace '-', ' ' }}</a>
 
 ## {{ page.description }}
 

@@ -1056,7 +1056,7 @@ additionalOperations:
   COPY:
     description: Copies pet information based on ID
     summary: Copies pets by ID
-    operationId: queryPetsById
+    operationId: copyPetsById
     responses:
       '200':
         description: pet response

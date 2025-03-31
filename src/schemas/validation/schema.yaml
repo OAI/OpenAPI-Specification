@@ -236,7 +236,7 @@ $defs:
           $ref: '#/$defs/operation'
         propertyNames:
           $comment: RFC9110 restricts methods to "1*tchar" in ABNF
-          pattern: "^[a-zA-Z0-9!#$%&'*+.-^`|~]+$"
+          pattern: "^[a-zA-Z0-9!#$%&'*+.^`|~-]+$"
           not:
             enum:
               - GET

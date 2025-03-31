@@ -234,48 +234,18 @@ $defs:
         type: object
         additionalProperties:
           $ref: '#/$defs/operation'
-        not:
-          anyOf:
-            - properties:
-                get:
-                  $ref: '#/$defs/operation'
-              required:
-                - get
-            - properties:
-                put:
-                  $ref: '#/$defs/operation'
-              required:
-                - put
-            - properties:
-                post:
-                  $ref: '#/$defs/operation'
-              required:
-                - post
-            - properties:
-                delete:
-                  $ref: '#/$defs/operation'
-              required:
-                - delete
-            - properties:
-                options:
-                  $ref: '#/$defs/operation'
-              required:
-                - options
-            - properties:
-                head:
-                  $ref: '#/$defs/operation'
-              required:
-                - head
-            - properties:
-                patch:
-                  $ref: '#/$defs/operation'
-              required:
-                - patch
-            - properties:
-                trace:
-                  $ref: '#/$defs/operation'
-              required:
-                - trace
+        propertyNames:
+          not:
+            enum:
+              - GET
+              - PUT
+              - POST
+              - DELETE
+              - OPTIONS
+              - HEAD
+              - PATCH
+              - TRACE
+              - QUERY
       get:
         $ref: '#/$defs/operation'
       put:

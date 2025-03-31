@@ -96,6 +96,7 @@ Several media types exist to transport a sequence of values, separated by some d
 Depending on the media type, the values could either be in another existing format such as JSON, or in a custom format specific to the sequential media type.
 
 Implementations MUST support modeling sequential media types with the [Schema Object](#schema-object) by treating the sequence as an array with the same items and ordering as the sequence.
+This requirement applies to the in-memory data structure corresponding to a sequential media type document, and does not change the behavior or restrict the capabilities of the Schema Object itself.
 
 ##### Working With Indefinite-Length Streams
 

@@ -292,6 +292,8 @@ $defs:
         $ref: '#/$defs/operation'
       trace:
         $ref: '#/$defs/operation'
+      query:
+        $ref: '#/$defs/operation'
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
 

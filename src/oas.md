@@ -988,10 +988,10 @@ This object MAY be extended with [Specification Extensions](#specification-exten
     }
   ],
   "additionalOperations": {
-    "QUERY": {
-      "description": "Returns pets based on ID",
-      "summary": "Find pets by ID",
-      "operationId": "queryPetsById",
+    "COPY": {
+      "description": "Copies pet information based on ID",
+      "summary": "Copies pets by ID",
+      "operationId": "copyPetsById",
       "responses": {
         "200": {
           "description": "pet response",
@@ -1053,9 +1053,9 @@ parameters:
         type: string
     style: simple
 additionalOperations:
-  QUERY:
-    description: Returns pets based on ID
-    summary: Find pets by ID
+  COPY:
+    description: Copies pet information based on ID
+    summary: Copies pets by ID
     operationId: queryPetsById
     responses:
       '200':

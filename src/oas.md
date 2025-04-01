@@ -932,6 +932,8 @@ The path itself is still exposed to the documentation viewer but they will not k
 | <a name="path-item-head"></a>head | [Operation Object](#operation-object) | A definition of a HEAD operation on this path. |
 | <a name="path-item-patch"></a>patch | [Operation Object](#operation-object) | A definition of a PATCH operation on this path. |
 | <a name="path-item-trace"></a>trace | [Operation Object](#operation-object) | A definition of a TRACE operation on this path. |
+| <a name="path-item-query"></a>query | [Operation Object](#operation-object) | A definition of a QUERY operation, as defined in the most recent IETF draft ([draft-ietf-httpbis-safe-method-w-body-08](https://www.ietf.org/archive/id/draft-ietf-httpbis-safe-method-w-body-08.html) as of this writing) or its RFC successor, on this path. |
+| <a name="path-item-additional-operations"></a>additionalOperations | Map[`string`, [Operation Object](#operation-object)] | A map of additional operations on this path. The map key is the HTTP method with the same capitalization that is to be sent in the request. This map MUST NOT contain any entry for the methods that can be defined by other Operation Object fields (e.g. no `POST` entry, as the Operation Object field `post` is used for this method). |
 | <a name="path-item-servers"></a>servers | [[Server Object](#server-object)] | An alternative `servers` array to service all operations in this path. If a `servers` array is specified at the [OpenAPI Object](#oas-servers) level, it will be overridden by this value. |
 | <a name="path-item-parameters"></a>parameters | [[Parameter Object](#parameter-object) \| [Reference Object](#reference-object)] | A list of parameters that are applicable for all the operations described under this path. These parameters can be overridden at the operation level, but cannot be removed there. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a [name](#parameter-name) and [location](#parameter-in). The list can use the [Reference Object](#reference-object) to link to parameters that are defined in the [OpenAPI Object's `components.parameters`](#components-parameters). |
 
@@ -985,7 +987,39 @@ This object MAY be extended with [Specification Extensions](#specification-exten
       },
       "style": "simple"
     }
-  ]
+  ],
+  "additionalOperations": {
+    "COPY": {
+      "description": "Copies pet information based on ID",
+      "summary": "Copies pets by ID",
+      "operationId": "copyPetsById",
+      "responses": {
+        "200": {
+          "description": "pet response",
+          "content": {
+            "*/*": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            }
+          }
+        },
+        "default": {
+          "description": "error payload",
+          "content": {
+            "text/html": {
+              "schema": {
+                "$ref": "#/components/schemas/ErrorModel"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -1019,6 +1053,26 @@ parameters:
       items:
         type: string
     style: simple
+additionalOperations:
+  COPY:
+    description: Copies pet information based on ID
+    summary: Copies pets by ID
+    operationId: copyPetsById
+    responses:
+      '200':
+        description: pet response
+        content:
+          '*/*':
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Pet'
+      default:
+        description: error payload
+        content:
+          text/html:
+            schema:
+              $ref: '#/components/schemas/ErrorModel'
 ```
 
 #### Operation Object

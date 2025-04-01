@@ -23,25 +23,6 @@ paths:
             text/html:
               schema:
                 $ref: '#/components/schemas/ErrorModel'
-    query:
-      description: Returns pets based on ID
-      summary: Find pets by ID
-      operationId: queryPetsById
-      responses:
-        '200':
-          description: pet response
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Pet'
-        default:
-          description: error payload
-          content:
-            text/html:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
     parameters:
       - name: id
         in: path
@@ -53,10 +34,19 @@ paths:
             type: string
         style: simple
     additionalOperations:
-      COPY:
-        description: Copies pet information based on ID
-        summary: Copies pets by ID
-        operationId: copyPetsById
+      POST:
+        description: Returns pets based on ID
+        summary: Find pets by ID
+        operationId: postPetsById
+        requestBody:
+          description: ID of pet to use
+          required: true
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
         responses:
           '200':
             description: pet response

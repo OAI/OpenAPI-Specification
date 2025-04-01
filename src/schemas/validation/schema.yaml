@@ -230,6 +230,24 @@ $defs:
         type: array
         items:
           $ref: '#/$defs/parameter-or-reference'
+      additionalOperations:
+        type: object
+        additionalProperties:
+          $ref: '#/$defs/operation'
+        propertyNames:
+          $comment: RFC9110 restricts methods to "1*tchar" in ABNF
+          pattern: "^[a-zA-Z0-9!#$%&'*+.^_`|~-]+$"
+          not:
+            enum:
+              - GET
+              - PUT
+              - POST
+              - DELETE
+              - OPTIONS
+              - HEAD
+              - PATCH
+              - TRACE
+              - QUERY
       get:
         $ref: '#/$defs/operation'
       put:
@@ -245,6 +263,8 @@ $defs:
       patch:
         $ref: '#/$defs/operation'
       trace:
+        $ref: '#/$defs/operation'
+      query:
         $ref: '#/$defs/operation'
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false

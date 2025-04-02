@@ -367,9 +367,9 @@ components:
       $id: ./schemas/bar
 ```
 
-In this example, both Schema Objects use `https://example.com/openapi` as their base URI for resolving their relative `$id` values to `https://example.com/schemas/foo` and `https://example.com/schemas/bar`.  The `$ref` under `properties` is resolved against the `$id`-provided base URI `https://example.com/schemas/foo`, producing `https://example.com/schemas/bar`, which is the `$id`-assigned URI of the Bar schema component.
+In this example, both Schema Objects use `https://example.com/openapi` as their base URI for resolving their relative `$id` values to `https://example.com/schemas/foo` and `https://example.com/schemas/bar`. The `$ref` under `properties` is resolved against the `$id`-provided base URI `https://example.com/schemas/foo`, producing `https://example.com/schemas/bar`, which is the `$id`-assigned URI of the Bar schema component.
 
-Note that using embedded `$id` keywords would prevent using `$ref: "#/components/schemas/Bar"` in the `properties` keyword's `$ref` because the base URI for such fragments is set by the `$id`.  Therefore, a `$ref: "#/components/schemas/Bar"` would resolve to `"https://example.com/schemas/foo#/components/schemas/Bar"`, rather than the presumably-intended location of `"https://example.com/openapi#/components/schemas/Bar"`.
+Note that using embedded `$id` keywords would prevent using `$ref: "#/components/schemas/Bar"` in the `properties` keyword's `$ref` because the base URI for such fragments is set by the `$id`. Therefore, a `$ref: "#/components/schemas/Bar"` would resolve to `"https://example.com/schemas/foo#/components/schemas/Bar"`, rather than the presumably-intended location of `"https://example.com/openapi#/components/schemas/Bar"`.
 
 #### Resolving URI fragments
 
@@ -402,7 +402,7 @@ servers:
   description: The test API on this device
 ```
 
-For API URLs, the `$self` field, which identifies the OpenAPI Document, is ignored, and the retrieval URL is used instead.  This produces a normalized production URL of `https://device1.example.com`, and a normalized test URL of `https://device1.example.com/test`.
+For API URLs, the `$self` field, which identifies the OpenAPI Document, is ignored, and the retrieval URL is used instead. This produces a normalized production URL of `https://device1.example.com`, and a normalized test URL of `https://device1.example.com/test`.
 
 ### Schema
 
@@ -422,7 +422,7 @@ This is the root object of the [OpenAPI Description](#openapi-description).
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="oas-version"></a>openapi | `string` | **REQUIRED**. This string MUST be the [version number](#versions) of the OpenAPI Specification that the OpenAPI Document uses. The `openapi` field SHOULD be used by tooling to interpret the OpenAPI Document. This is _not_ related to the API [`info.version`](#info-version) string. |
-| <a name="oas-self"></a>$self | `URI-reference` (without a fragment) | Sets the URI of this document, which also serves as its base URI in accordance with [[RFC3986]] [Section 5.1.1](https://www.rfc-editor.org/rfc/rfc3986#section-5.1.1); the value MUST NOT be the empty string and MUST NOT contain a fragment (even if the fragment is empty).  Implementations MUST support identifying the targets of [API description URIs](#relative-references-in-api-description-uris) using the resolved URI defined by this field, as shown under [Examples of Base URI Determination and Reference Resolution](#examples-of-base-uri-determination-and-reference-resolution).|
+| <a name="oas-self"></a>$self | `string` | This string MUST be in the form of a URI-reference, MUST NOT be an empty string, and MUST NOT contain a fragment (empty or otherwise). The `$self` field provides the self-assigned URI of this document, which also serves as its base URI in accordance with [[RFC3986]] [Section 5.1.1](https://www.rfc-editor.org/rfc/rfc3986#section-5.1.1). Implementations MUST support identifying the targets of [API description URIs](#relative-references-in-api-description-uris) using the resolved URI defined by this field, as shown under [Examples of Base URI Determination and Reference Resolution](#examples-of-base-uri-determination-and-reference-resolution). |
 | <a name="oas-info"></a>info | [Info Object](#info-object) | **REQUIRED**. Provides metadata about the API. The metadata MAY be used by tooling as required. |
 | <a name="oas-json-schema-dialect"></a> jsonSchemaDialect | `string` | The default value for the `$schema` keyword within [Schema Objects](#schema-object) contained within this OAS document. This MUST be in the form of a URI. |
 | <a name="oas-servers"></a>servers | [[Server Object](#server-object)] | An array of Server Objects, which provide connectivity information to a target server. If the `servers` field is not provided, or is an empty array, the default value would be a [Server Object](#server-object) with a [url](#server-url) value of `/`. |
@@ -556,7 +556,7 @@ An object representing a Server.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="server-url"></a>url | `string` | **REQUIRED**. A URL to the target host. This URL supports Server Variables and MAY be relative, to indicate that the host location is relative to the location where the document containing the Server Object is being served. Variable substitutions will be made when a variable is named in `{`braces`}`.   Note that the [OpenAPI Object's](#openapi-object) `$self` field is **NOT** used for relative URL reference resolution. |
+| <a name="server-url"></a>url | `string` | **REQUIRED**. A URL to the target host. This URL supports Server Variables and MAY be relative, to indicate that the host location is relative to the location where the document containing the Server Object is being served. Variable substitutions will be made when a variable is named in `{`braces`}`. Note that the [OpenAPI Object's](#openapi-object) `$self` field is **NOT** used for relative URL reference resolution. |
 | <a name="server-description"></a>description | `string` | An optional string describing the host designated by the URL. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="server-name"></a>name | `string` | An optional unique string to refer to the host designated by the URL. |
 | <a name="server-variables"></a>variables | Map[`string`, [Server Variable Object](#server-variable-object)] | A map between a variable name and its value. The value is used for substitution in the server's URL template. |

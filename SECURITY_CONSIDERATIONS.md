@@ -3,6 +3,7 @@
 ## OpenAPI Document Formats
 
 OpenAPI documents use JSON, YAML, and JSON Schema, and therefore share their security considerations:
+
 - [JSON](https://www.iana.org/assignments/media-types/application/json)
 - [YAML](https://www.iana.org/assignments/media-types/application/yaml)
 - [JSON Schema Core](https://json-schema.org/draft/2020-12/json-schema-core#section-13)

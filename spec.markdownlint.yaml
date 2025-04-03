@@ -1,12 +1,10 @@
-# First heading is a top-level heading
-MD002: true
-
 # Heading style (ATX is leading # symbols)
 MD003:
   style: atx
 
-# Unordered list symbol can be anything
-MD004: false
+# Unordered list symbol must be *
+MD004:
+  style: asterisk
 
 # Unordered list indentation size
 MD007:
@@ -25,9 +23,6 @@ MD022: true
 
 # Duplicate headings are allowed
 MD024: false
-
-# Surround lists with blank lines
-MD032: true
 
 # Allow inline HTML
 MD033: false

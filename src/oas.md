@@ -215,7 +215,7 @@ This allows Security Scheme Objects and Tag Objects to be defined next to the AP
 The interface approach can also work for Discriminator Objects and Schema Objects, but it is also possible to keep the Discriminator Object's behavior within a single document using the relative URI-reference syntax of `mapping`.
 
 There are no URI-based alternatives for the Operation Object's `tags` field.
-This limitation is expected to be addressed in a future release.
+OAD authors are advised to use external solutions such as the OpenAPI Initiative's Overlay Specification to simulate sharing [Tag Objects](#tag-object) across multiple documents.
 
 See [Appendix F: Resolving Security Requirements in a Referenced Document](#appendix-f-resolving-security-requirements-in-a-referenced-document) for an example of the possible resolutions, including which one is recommended by this section.
 The behavior for Discrimator Object non-URI mappings and for the Operation Object's `tags` field operate on the same principles.

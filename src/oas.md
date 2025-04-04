@@ -312,7 +312,7 @@ Unless specified otherwise, all fields that are URIs MAY be relative references 
 
 Relative URI references are resolved using the appropriate base URI, which MUST be determined in accordance with [[RFC3986]] [Section 5.1.1 – 5.1.4](https://tools.ietf.org/html/rfc3986#section-5.1.1).
 RFC3986 Section 5.1.1 requires determining the base URI from within a resource's contents, which for the OAS means the `$self` field of the [OpenAPI Object](#openapi-object) for an [OpenAPI Document](#openapi-document), or the `$id` JSON Schema keyword in [Schema Objects](#schema-object).
-Within an OpenAPI Document, a Schema Object that does not have its base URI set by `$id` uses `$self` the same as any other Object, treating the OpenAPI Document as the "encapsulating entity" in accordance with RFC3986 Section 5.1.2.
+Within an OpenAPI Document, a Schema Object that does not have its base URI set by `$id` takes its base URI from the OpenAPI Object's `$self` field the same as any other Object, treating the OpenAPI Document as the "encapsulating entity" in accordance with RFC3986 Section 5.1.2.
 See [JSON Schema draft 2020-12 Section 8.2](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-8.2) for more information about base URIs in Schema Objects.
 
 The most common base URI source in the absence of `$self` or `$id` is the retrieval URI, in accordance with RFC3986 Section 5.1.3.
@@ -337,6 +337,7 @@ Given a retrieval URI of `https://example.com/foo/bar/openapi.yaml`, and the fol
 openapi: 3.2.0
 $self: /openapi
 info:
+  title: Example API
   version: 1.0
 components:
   pathItems:
@@ -355,6 +356,7 @@ In the next example, the retrieval URI is irrelevant, because `$self` is already
 openapi: 3.2.0
 $self: https://example.com/openapi
 info:
+  title: Example API
   version: 1.0
 components:
   schemas:
@@ -394,6 +396,7 @@ Assume a retrieval URL of `https://device1.example.com` for the following OpenAP
 openapi: 3.2.0
 $self: https://apidescriptions.example.com/foo
 info:
+  title: Example API
   version: 1.0
 servers:
 - url: .

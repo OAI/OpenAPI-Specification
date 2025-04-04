@@ -19,6 +19,10 @@ All in-memory data described by the OpenAPI Specification (OAS) uses the same in
 However, the OAS defines _mappings_ for several additional media types, where JSON Schema is used on a JSON-like in-memory representation which may have a significantly different structure from the media type's representation in [HTTP content](https://www.rfc-editor.org/rfc/rfc9110.html#name-content).
 This registry documents those mappings, and in the future may document additional mappings not explicitly mentioned in the OAS.
 
+### Setting the Media Type
+
+JSON Schema draft 2020-12 offers [keywords for modeling embedded media types](https://www.ietf.org/archive/id/draft-bhutton-json-schema-validation-01.html#name-a-vocabulary-for-the-conten): `contentMediaType`, `contentEncoding`, and `contentSchema`, which can be used to set a media type, encoding, or schema for [certain types of data](https://spec.openapis.org/oas/latest.html#working-with-binary-data).  These keywords, most notably `contentMediaType`, can contradict media types set in the parent key of a Media Type Object, or by an Encoding Object (including by the default Encoding Object when an Encoding Object is relevant but not present).  In such cases, the Media Type Object key or the Encoding Object ***always*** take precedence over the JSON Schema keywords.
+
 ## Specification Versions
 
 This registry is being created for the OpenAPI Specification (OAS) version 3.2, and requirements regarding its support will be included in that specification's text.

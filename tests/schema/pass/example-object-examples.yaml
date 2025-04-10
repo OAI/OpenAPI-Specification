@@ -1,0 +1,63 @@
+openapi: 3.1.0
+info:
+  title: API
+  version: 1.0.0
+components:
+  requestBodies:
+    with-example:
+      content:
+        'application/json':
+          schema:
+            $ref: '#/components/schemas/Address'
+          examples:
+            foo:
+              summary: A foo example
+              value:
+                foo: bar
+            bar:
+              summary: A bar example
+              value:
+                bar: baz
+        application/xml:
+          examples:
+            xmlExample:
+              summary: This is an example in XML
+              externalValue: https://example.org/examples/address-example.xml
+        text/plain:
+          examples:
+            textExample:
+              summary: This is a text example
+              externalValue: https://foo.bar/examples/address-example.txt
+  parameters:
+    with-example:   
+      name: zipCode
+      in: query
+      schema:
+        type: string
+        format: zip-code
+      examples:
+        zip-example:
+          $ref: '#/components/examples/zip-example'
+  responses:
+    '200':
+      description: your car appointment has been booked
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SuccessResponse'
+          examples:
+            confirmation-success:
+              $ref: '#/components/examples/confirmation-success'
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              jsonValue:
+                type: string
+          encoding:
+            jsonValue:
+              contentType: application/json
+          examples:
+            jsonFormValue:
+              description: 'The JSON string "json" as a form value'
+              value: jsonValue=%22json%22

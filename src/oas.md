@@ -350,7 +350,7 @@ components:
 
 Relative `$self` values are often used for APIs deployed in multiple locations, such as a device management API that is hosted on each device.
 
-In the next example, the retrieval URI is irrelevant, because `$self` is already a full URI:
+In the next example, the retrieval URI is irrelevant, because `$self` is already a fully resolved URI rather than a relative URI-reference:
 
 ```YAML
 openapi: 3.2.0

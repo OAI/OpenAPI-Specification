@@ -45,9 +45,9 @@ Most ideas start as discussions.
 
 Please do come and start a discussion to:
 
- - ask questions
- - make suggestions
- - give feedback
+- ask questions
+- make suggestions
+- give feedback
 
 Anyone can start a discussion and you're very welcome to do so! Write a message and pick a relevant discussion category.
 
@@ -57,11 +57,11 @@ Participation in discussions and especially answering of questions is encouraged
 
 Discussions are closed when:
 
- - the question has been answered.
- - no further action or conversation would be useful.
- - there has been no engagement for a while, or a previously popular thread has been inactive for an extended period.
- - activity is now taking place elsewhere, such as in an issue.
- - the discussion is out of scope for the project.
+- the question has been answered.
+- no further action or conversation would be useful.
+- there has been no engagement for a while, or a previously popular thread has been inactive for an extended period.
+- activity is now taking place elsewhere, such as in an issue.
+- the discussion is out of scope for the project.
 
 ## Issues
 
@@ -212,7 +212,7 @@ The steps for creating a `vX.Y.Z-rel` branch are:
 4. Create `vX.Y.Z-rel` from `vX.Y-dev` and adjust it
    - move `src/oas.md` to `versions/X.Y.Z.md`
    - copy `EDITORS.md` to `versions/X.Y.Z-editors.md`
-   - delete `src/schemas` 
+   - delete `src/schemas`
    - delete `tests/schema`
    - bash script `scripts/adjust-release-branch.sh` performs these steps
 5. Merge `vX.Y.Z-rel` into `main` via PR
@@ -339,7 +339,7 @@ For information on the branch and release strategy for OAS 3.0.4 and 3.1.1 and e
 
 ### Branch roles
 
-* `main` is used to publish finished work and hold the authoritative versions of general documentation such as this document, which can be merged out to other branches as needed.  The `src` tree is ***not*** present on `main`.
+* `main` is used to publish finished work and hold the authoritative versions of general documentation such as this document, which can be merged out to other branches as needed.  The `src` tree is _**not**_ present on `main`.
 * `dev` is the primary branch for working with the `src` tree.  Development infrastructure that is not needed on `main` is maintained here, and can be merged out to other non-`main` branches as needed.
   Changes on `main` are automatically included in a pull request to `dev` (see the (section on [branch sync](#branch-sync-automation)).
 * `vX.Y-dev` is the minor release line development branch for X.Y, including both the initial X.Y.0 minor version and all subsequent X.Y.Z patch versions.  All PRs are made to oldest active `vX.Y-dev` branch to which the change is relevant, and then merged forward as shown in the diagram further down in this document.
@@ -350,17 +350,17 @@ For information on the branch and release strategy for OAS 3.0.4 and 3.1.1 and e
 Upon release:
 
 * Pre-release steps:
-    * The most recent _published_ patch release from the previous line is merged up to `vX.Y-dev`, if relevant
-    * If doing simultaneous releases on multiple lines, do them from the oldest to newest line
-    * For example, if releasing 3.1.3 and 3.2.0:
-        * release 3.1.3 first
-        * release 3.2.0 second
+  * The most recent _published_ patch release from the previous line is merged up to `vX.Y-dev`, if relevant
+  * If doing simultaneous releases on multiple lines, do them from the oldest to newest line
+  * For example, if releasing 3.1.3 and 3.2.0:
+    * release 3.1.3 first
+    * release 3.2.0 second
 * Release branching and merging:
-    * branch `vX.Y.Z-rel` from `vX.Y-dev` (same commit that was merged to `dev` if relevant)
-    * After renaming `src/oas.md` to `versions/X.Y.Z.md` and [other adjustments](#specification-versions), merge `vX.Y.Z-rel` to `main`
+  * branch `vX.Y.Z-rel` from `vX.Y-dev` (same commit that was merged to `dev` if relevant)
+  * After renaming `src/oas.md` to `versions/X.Y.Z.md` and [other adjustments](#specification-versions), merge `vX.Y.Z-rel` to `main`
 * Publishing to the [spec site](https://spec.openapis.org) is triggered by the merge to `main`
 * Post-release steps:
-    * If this was a major or minor release (Z == 0), branch `vX.Y+1-dev` from `vX.Y-dev`
+  * If this was a major or minor release (Z == 0), branch `vX.Y+1-dev` from `vX.Y-dev`
 
 _Release lines are grouped by color, although the colors of `dev` and `main` are not significant as these diagrams are limited to only 8 colors._
 

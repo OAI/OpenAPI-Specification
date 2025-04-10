@@ -8,15 +8,13 @@ name: respec
 # on the gh-pages branch when the corresponding markdown files change.
 #
 
-# run this on push to main
+# run this manually from main
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch: {}
 
 jobs:
   respec:
+    if: github.ref == 'refs/heads/main'
 
     runs-on: ubuntu-latest
 

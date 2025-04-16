@@ -26,7 +26,7 @@ dfn{cursor:pointer}
 <meta name="description" content="The Arazzo Specification provides a mechanism that can define sequences of calls and their dependencies to be woven together and expressed in the context of delivering a particular outcome or set of outcomes when dealing with API descriptions (such as OpenAPI descriptions)">
 <link rel="canonical" href="https://spec.openapis.org/arazzo/latest.html">
 <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
-<script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-JR4K3ZJLPH&amp;l=dataLayer&amp;cx=c&amp;gtm=457e51e0za200"></script>
+<script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-JR4K3ZJLPH&amp;l=dataLayer&amp;cx=c&amp;gtm=457e54e1za200&amp;tag_exp=102509683~102803279~102813109~102887800~102926062~103027016~103051953~103055465~103077950"></script>
 <style id="respec-mainstyle">
 @keyframes pop{
 0%{transform:scale(1,1)}
@@ -324,7 +324,7 @@ Unless specified otherwise, relative references are resolved using the URL of th
 <p>This object <em class="rfc2119">MAY</em> be extended with <a href="#specification-extensions">Specification Extensions</a>.</p>
 </section><section id="arazzo-specification-object-example"><div class="header-wrapper"><h5 id="x4-6-1-2-arazzo-specification-object-example"><bdi class="secno">4.6.1.2 </bdi>Arazzo Specification Object Example</h5><a class="self-link" href="#arazzo-specification-object-example" aria-label="Permalink for Section 4.6.1.2"></a></div>
 <pre class="nohighlight"><code>
-<span class="hljs-attr">arazzo:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+<span class="hljs-attr">arazzo:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.1</span>
 <span class="hljs-attr">info:</span>
   <span class="hljs-attr">title:</span> <span class="hljs-string">A</span> <span class="hljs-string">pet</span> <span class="hljs-string">purchasing</span> <span class="hljs-string">workflow</span>
   <span class="hljs-attr">summary:</span> <span class="hljs-string">This</span> <span class="hljs-string">Arazzo</span> <span class="hljs-string">Description</span> <span class="hljs-string">showcases</span> <span class="hljs-string">the</span> <span class="hljs-string">workflow</span> <span class="hljs-string">for</span> <span class="hljs-string">how</span> <span class="hljs-string">to</span> <span class="hljs-string">purchase</span> <span class="hljs-string">a</span> <span class="hljs-string">pet</span> <span class="hljs-string">through</span> <span class="hljs-string">a</span> <span class="hljs-string">sequence</span> <span class="hljs-string">of</span> <span class="hljs-string">API</span> <span class="hljs-string">calls</span>
@@ -773,12 +773,7 @@ The metadata <em class="rfc2119">MAY</em> be used by the clients if needed.</p>
 <tr>
 <td><span id="successWorkflowId"></span> workflowId</td>
 <td style="text-align:center"><code>string</code></td>
-<td>The <a href="#fixed-fields-2">workflowId</a> referencing an existing workflow within the Arazzo Description to transfer to upon success of the step. This field is only relevant when the <code>type</code> field value is <code>"goto"</code>.</td>
-</tr>
-<tr>
-<td>If the referenced workflow is contained within an <code>arazzo</code> type <code>sourceDescription</code>, then the <code>workflowId</code> <em class="rfc2119">MUST</em> be specified using a <a href="#runtime-expressions">Runtime Expression</a> (e.g., <code>$sourceDescriptions.&lt;name&gt;.&lt;workflowId&gt;</code>) to avoid ambiguity or potential clashes.  This field is mutually exclusive to <code>stepId</code>.</td>
-<td style="text-align:center"></td>
-<td></td>
+<td>The <a href="#fixed-fields-2">workflowId</a> referencing an existing workflow within the Arazzo Description to transfer to upon success of the step. This field is only relevant when the <code>type</code> field value is <code>"goto"</code>. If the referenced workflow is contained within an <code>arazzo</code> type <code>sourceDescription</code>, then the <code>workflowId</code> <em class="rfc2119">MUST</em> be specified using a <a href="#runtime-expressions">Runtime Expression</a> (e.g., <code>$sourceDescriptions.&lt;name&gt;.&lt;workflowId&gt;</code>) to avoid ambiguity or potential clashes.  This field is mutually exclusive to <code>stepId</code>.</td>
 </tr>
 <tr>
 <td><span id="successStepId"></span> stepId</td>

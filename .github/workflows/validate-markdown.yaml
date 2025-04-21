@@ -30,4 +30,4 @@ jobs:
       run: npx --yes markdownlint-cli2 --config spec.markdownlint.yaml src/oas.md
 
     - name: Lint other files
-      run: npx --yes markdownlint-cli2 --fix *.md
+      run: npx --yes markdownlint-cli2 *.md

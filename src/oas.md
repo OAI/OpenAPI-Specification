@@ -390,7 +390,7 @@ Unless specified otherwise, relative references are resolved using the URLs defi
 
 #### Examples of API Base URL Determination
 
-Assume a retrieval URL of `https://device1.example.com` for the following OpenAPI Document:
+Assume a retrieval URI of `https://device1.example.com` for the following OpenAPI Document:
 
 ```YAML
 openapi: 3.2.0
@@ -405,7 +405,7 @@ servers:
   description: The test API on this device
 ```
 
-For API URLs, the `$self` field, which identifies the OpenAPI Document, is ignored, and the retrieval URL is used instead. This produces a normalized production URL of `https://device1.example.com`, and a normalized test URL of `https://device1.example.com/test`.
+For API URLs, the `$self` field, which identifies the OpenAPI Document, is ignored, and the retrieval URI is used instead. This produces a normalized production URL of `https://device1.example.com`, and a normalized test URL of `https://device1.example.com/test`.
 
 ### Schema
 
@@ -425,7 +425,7 @@ This is the root object of the [OpenAPI Description](#openapi-description).
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="oas-version"></a>openapi | `string` | **REQUIRED**. This string MUST be the [version number](#versions) of the OpenAPI Specification that the OpenAPI Document uses. The `openapi` field SHOULD be used by tooling to interpret the OpenAPI Document. This is _not_ related to the API [`info.version`](#info-version) string. |
-| <a name="oas-self"></a>$self | `string` | This string MUST be in the form of a URI-reference, MUST NOT be an empty string, and MUST NOT contain a fragment (empty or otherwise). The `$self` field provides the self-assigned URI of this document, which also serves as its base URI in accordance with [[RFC3986]] [Section 5.1.1](https://www.rfc-editor.org/rfc/rfc3986#section-5.1.1). Implementations MUST support identifying the targets of [API description URIs](#relative-references-in-api-description-uris) using the resolved URI defined by this field, as shown under [Examples of Base URI Determination and Reference Resolution](#examples-of-base-uri-determination-and-reference-resolution). |
+| <a name="oas-self"></a>$self | `string` | This string MUST be in the form of a URI-reference, MUST NOT be an empty string, and MUST NOT contain a fragment (empty or otherwise). The `$self` field provides the self-assigned URI of this document, which also serves as its base URI in accordance with [[RFC3986]] [Section 5.1.1](https://www.rfc-editor.org/rfc/rfc3986#section-5.1.1). See [Establishing the Base URI](#establishing-the-base-uri) for handling an absent or relative `$self`.  Implementations MUST support identifying the targets of [API description URIs](#relative-references-in-api-description-uris) using the resolved URI defined by this field, as shown under [Examples of Base URI Determination and Reference Resolution](#examples-of-base-uri-determination-and-reference-resolution). |
 | <a name="oas-info"></a>info | [Info Object](#info-object) | **REQUIRED**. Provides metadata about the API. The metadata MAY be used by tooling as required. |
 | <a name="oas-json-schema-dialect"></a> jsonSchemaDialect | `string` | The default value for the `$schema` keyword within [Schema Objects](#schema-object) contained within this OAS document. This MUST be in the form of a URI. |
 | <a name="oas-servers"></a>servers | [[Server Object](#server-object)] | An array of Server Objects, which provide connectivity information to a target server. If the `servers` field is not provided, or is an empty array, the default value would be a [Server Object](#server-object) with a [url](#server-url) value of `/`. |

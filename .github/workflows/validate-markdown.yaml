@@ -4,16 +4,15 @@ name: validate-markdown
 # Issue: https://github.com/OAI/OpenAPI-Specification/issues/2130
 
 #
-# This workflow validates files in the versions directory matching 3.*.md
-# Versions before 3.0 are not validated, as they contain linking errors
-# where it is not currently planned to go back and fix them
+# This workflow validates markdown files in the project root.
+# It also validates the work-in-progress specification file src/oas.md with slightly different rules.
 #
 
 # run this on push to any branch and creation of pull-requests
 on: [push, pull_request]
 
 jobs:
-  mdv:
+  lint:
 
     runs-on: ubuntu-latest
 
@@ -27,8 +26,8 @@ jobs:
       with:
         node-version: '20.x'
 
-    - name: Validate markdown
-      run: npx --yes mdv versions/3.*.md src/oas.md
+    - name: Lint work-in-progress spec
+      run: npx --yes markdownlint-cli2 --config spec.markdownlint.yaml src/oas.md
 
-    - name: Lint markdown 3.0.4, 3.1.1, and later
-      run: npx --yes markdownlint-cli --config .markdownlint.yaml versions/3.0.4.md versions/3.1.[^0].md versions/3.[2-9].*.md src/oas.md
+    - name: Lint other files
+      run: npx --yes markdownlint-cli2 *.md

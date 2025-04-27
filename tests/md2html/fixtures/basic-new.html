@@ -45,14 +45,38 @@
 </code></pre>
 <pre class="nohighlight" tabindex="0"><code>https://foo.com/bar{<span class="hljs-attr">?baz*</span>,<span class="hljs-attr">qux</span>}
 </code></pre>
-<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">data:</span> This data is formatted
-<span class="hljs-attr">data:</span> across two lines
-<span class="hljs-attr">retry:</span> 5
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">event</span>: addString
+<span class="hljs-attr">data</span>: This data is formatted
+<span class="hljs-attr">data</span>: across two lines
+<span class="hljs-attr">retry</span>: 5
 <span class="hljs-attr">
-event:</span> add
-<span class="hljs-attr">data:</span> 1234.5678
-<span class="hljs-attr">unknown-field:</span> this is ignored
-<span class="hljs-attr"></span></code></pre>
+event</span>: addNumber
+<span class="hljs-attr">data</span>: 1234.5678
+<span class="hljs-attr">unknownField</span>: this is ignored
+<span class="hljs-attr">
+</span><span class="hljs-comment">: This is a comment</span>
+<span class="hljs-attr">event</span>: addJSON
+<span class="hljs-attr">data</span>: {&quot;foo&quot;: 42}
+</code></pre>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span><span class="hljs-attr">&quot;event&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;addString&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;This data is formatted\nacross two lines&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;retry&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">5</span><span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">{</span><span class="hljs-attr">&quot;event&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;addNumber&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1234.5678&quot;</span><span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">{</span><span class="hljs-attr">&quot;event&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;addJSON&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;{\&quot;foo\&quot;: 42}&quot;</span><span class="hljs-punctuation">}</span>
+</code></pre>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-punctuation">{</span><span class="hljs-attr">&quot;event&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;addString&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;This data is formatted\nacross two lines&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;retry&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">5</span><span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">{</span><span class="hljs-attr">&quot;event&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;addNumber&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1234.5678&quot;</span><span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">{</span><span class="hljs-attr">&quot;event&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;addJSON&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;{\&quot;foo\&quot;: 42}&quot;</span><span class="hljs-punctuation">}</span>
+</code></pre>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-meta">0x1E</span><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;timestamp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1985-04-12T23:20:50.52Z&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Hi!&quot;</span>
+<span class="hljs-punctuation">}</span>
+<span class="hljs-meta">0x1E</span><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;timestamp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1985-04-12T23:20:51.37Z&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Bye!&quot;</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
 </section></section><section class="appendix"><h1>Appendix A: Revision History</h1>
 <table>
 <thead>

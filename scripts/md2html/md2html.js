@@ -52,18 +52,70 @@ hljs.registerLanguage('eventstream', function() {
     return {
       contains: [
           {
-              scope: "attr",
-              begin: /^/,
-              end: ":",
+              scope: "comment",
+              begin: /^:/,
+              end: /$/,
           },
           {
-              scope: "literal",
-              begin: /: */,
-              end: /$/,
+              scope: "attr",
+              match: /^[^:]+/
           },
       ],
     }
   });
+hljs.registerLanguage('jsonseq', function() {
+    return {
+      keywords: ["true", "false", "null"],
+      contains: [
+          {
+              scope: "meta",
+              match: /0[xX]1[eE]/,
+          },
+          {
+              scope: "attr",
+              begin: /"(\\.|[^\\"\r\n])*"(?=\s*:)/,
+              relevance: 1.01
+          },
+          {
+              scope: "punctuation",
+              match: /[{}[\],:]/,
+              relevance: 0
+          },
+          {
+              scope: "literals",
+              beginKeywords: ["true", "false" , "null"].join(" "),
+          },
+          hljs.QUOTE_STRING_MODE,
+          hljs.C_NUMBER_MODE
+      ]
+    }
+  });
+hljs.registerLanguage('jsonl', function() {
+    return {
+      aliases: ["ndjson"],
+      keywords: ["true", "false", "null"],
+      contains: [
+          {
+              scope: 'attr',
+              begin: /"(\\.|[^\\"\r\n])*"(?=\s*:)/,
+              relevance: 1.01
+          },
+          {
+              scope: "punctuation",
+              match: /[{}[\],:]/,
+              relevance: 0
+          },
+          {
+              scope: "literals",
+              beginKeywords: ["true", "false" , "null"].join(" "),
+          },
+          hljs.QUOTE_STRING_MODE,
+          hljs.C_NUMBER_MODE
+      ]
+    }
+  });
+
+
 const cheerio = require('cheerio');
 
 let argv = require('yargs')

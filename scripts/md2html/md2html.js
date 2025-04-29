@@ -48,6 +48,31 @@ hljs.registerLanguage('uri', function() {
       ],
     }
   });
+hljs.registerLanguage('multipart', function() {
+    return {
+      // This is a very limited approach that only
+      // detects boundaries and headers that start
+      // with "Content-"
+      contains: [
+          {
+              scope: "meta",
+              match: /^--.*$/,
+          },
+          {
+              scope: "literal",
+              begin: /^Content-/,
+              end: /$/,
+              contains: [
+                {
+                    scope: "attr",
+                    begin: " ",
+                    end: /$/,
+                },
+              ]
+          },
+      ],
+    }
+  });
 hljs.registerLanguage('eventstream', function() {
     return {
       contains: [

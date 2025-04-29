@@ -1680,11 +1680,12 @@ For example, if partial content is read from a stream and then passed with the `
 
 ##### Special Considerations for `text/event-stream` Content
 
-For `text/event-stream`, each item in the array MUST be treated as if it were a JSON object with property names taken from the left side of the `:`, property values from the right side, and consecutive lines with the same name treated as a single property, with the value combined in accordance with the [`text/event-stream` specification](https://html.spec.whatwg.org/multipage/iana.html#text/event-stream).
+For `text/event-stream`, each item in the array MUST be treated as if it were a JSON object with property names taken from the left side of the `:` (or the enter non-empty line if no ":" is present), property values from the right side, and consecutive lines with the same name treated as a single property, with the value combined in accordance with the [`text/event-stream` specification](https://html.spec.whatwg.org/multipage/iana.html#text/event-stream).
 
 Field names can be repeated within an item to allow splitting the value across multiple lines; such split values MUST be treated the same as if they were a single field, with newlines added as required by the [`text/event-stream` specification](https://html.spec.whatwg.org/multipage/iana.html#text/event-stream).
+Similarly, when a field name appears without a value, the value MUST be treated as an empty string.
 
-The `text/event-stream` specification requires that fields with Unknown names, as well as `id` fields where the value contains `U+0000 NULL` be ignored.
+The `text/event-stream` specification requires that fields with Unknown names, as well as `id` fields where the value contains `U+0000 NULL` and `retry` fields with characters other than ASCII digits be ignored.
 These fields SHOULD NOT be present in the data used with the Schema Object.
 
 Field value types MUST be handled as specified by the `text/event-stream` specification (e.g. the `retry` field value is modeled as a JSON number that is expected to be of JSON Schema `type: integer`), and fields not given an explicit value type MUST be handled as strings.
@@ -1710,6 +1711,7 @@ items:
       type: string
     retry:
       type: integer
+      minimum: 0
 ```
 
 ##### Encoding Usage and Restrictions

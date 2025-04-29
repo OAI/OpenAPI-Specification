@@ -1682,7 +1682,7 @@ For example, if partial content is read from a stream and then passed with the `
 
 For `text/event-stream`, each item in the array MUST be treated as if it were a JSON object with property names taken from the left side of the `:` (or the enter non-empty line if no ":" is present), property values from the right side, and consecutive lines with the same name treated as a single property, with the value combined in accordance with the [`text/event-stream` specification](https://html.spec.whatwg.org/multipage/iana.html#text/event-stream).
 
-Field names can be repeated within an item to allow splitting the value across multiple lines; such split values MUST be treated the same as if they were a single field, with newlines added as required by the [`text/event-stream` specification](https://html.spec.whatwg.org/multipage/iana.html#text/event-stream).
+Field names can be repeated within an item to allow splitting the value across multiple lines; such split values MUST be treated the same as if they were a single field, with newlines added as required by the [`text/event-stream` specification](https://html.spec.whatwg.org/multipage/server-sent-events.html#parsing-an-event-stream).
 Similarly, when a field name appears without a value, the value MUST be treated as an empty string.
 
 The `text/event-stream` specification requires that fields with Unknown names, as well as `id` fields where the value contains `U+0000 NULL` and `retry` fields with characters other than ASCII digits be ignored.

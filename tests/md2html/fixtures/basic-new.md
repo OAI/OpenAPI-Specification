@@ -62,6 +62,32 @@ https://foo.com/bar?baz=qux&fred=waldo#fragment
 https://foo.com/bar{?baz*,qux}
 ```
 
+```multipart
+--boundary-example
+Content-Type: application/openapi+yaml
+Content-Location: https://inaccessible-domain.com/api/openapi.yaml
+
+openapi: 3.2.0
+info:
+  title: Example API
+  version: 1.0
+  externalDocs:
+    url: docs.html
+
+--boundary-example
+Content-Type: text/html
+Content-Location: https://example.com/api/docs.html
+
+<html>
+  <head>
+    <title>API Documentation</title>
+  </head>
+  <body>
+    <p>Awesome documentation goes here</p>
+  </body>
+</html>
+```
+
 ```eventstream
 event: addString
 data: This data is formatted

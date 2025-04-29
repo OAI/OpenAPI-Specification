@@ -45,6 +45,30 @@
 </code></pre>
 <pre class="nohighlight" tabindex="0"><code>https://foo.com/bar{<span class="hljs-attr">?baz*</span>,<span class="hljs-attr">qux</span>}
 </code></pre>
+<pre class="nohighlight" tabindex="0"><code><span class="hljs-meta">--boundary-example</span>
+<span class="hljs-literal">Content-Type:<span class="hljs-attr"> application/openapi+yaml</span></span>
+<span class="hljs-literal">Content-Location:<span class="hljs-attr"> https://inaccessible-domain.com/api/openapi.yaml</span></span>
+
+openapi: 3.2.0
+info:
+  title: Example API
+  version: 1.0
+  externalDocs:
+    url: docs.html
+
+<span class="hljs-meta">--boundary-example</span>
+<span class="hljs-literal">Content-Type:<span class="hljs-attr"> text/html</span></span>
+<span class="hljs-literal">Content-Location:<span class="hljs-attr"> https://example.com/api/docs.html</span></span>
+
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;API Documentation&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;Awesome documentation goes here&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
 <pre class="nohighlight" tabindex="0"><code><span class="hljs-attr">event</span>: addString
 <span class="hljs-attr">data</span>: This data is formatted
 <span class="hljs-attr">data</span>: across two lines

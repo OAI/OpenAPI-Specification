@@ -5203,11 +5203,28 @@ In the `other` document, the referenced path item has a Security Requirement for
 A base URI within the resource's content (RFC3986 Section 5.1.1) is the highest-precedence source of a base URI.
 For OpenAPI Documents, this source is the OpenAPI Object's `$self` field, while for Schema Objects that contain a `$id`, or are a subschema of a Schema Object containing a `$id`, the source is the `$id` field:
 
+Assume the retrieval URI of the following document is `file://home/someone/src/api/openapi.yaml`:
+
 ```YAML
 openapi: 3.2.0
-$self: https://example.com/openapi
+$self: https://example.com/api/openapi
 info:
   title: Example API
+  version: 1.0
+paths:
+  /foo:
+    get:
+      requestBody:
+        $ref: "shared#/components/requestBodies/Foo"
+```
+
+Assume the retrieval URI for the following document is `https://git.example.com/shared/blob/main/shared/foo.yaml`:
+
+```YAML
+openapi: 3.2.0
+$self: https://example.com/api/shared/foo
+info:
+  title: Shared components for all APIs
   version: 1.0
 components:
   requestBodies:
@@ -5215,7 +5232,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: schemas/foo
+            $ref: ../schemas/foo
   schemas:
     Foo:
       $id: https://example.com/api/schemas/foo
@@ -5227,7 +5244,12 @@ components:
       type: string
 ```
 
-In the example above, the `$ref` in the Request Body Object is resolved using `$self` as the base URI, producing `https://example.com/schemas/foo`.
+In this example, the retrieval URIs are irrelevant because both documents define `$self`.
+
+For the relative `$ref` in the first document, it is resolved against `$self` to produce `https://example.com/shared/foo#/components/requestBodies/Foo`.
+The portion of that URI before the '#' matches the `$self` of the second document, so the reference target is resolved to `#/components/requestBodies/Foo` in that second document.
+
+In that document, the `$ref` in the Request Body Object is resolved using that document's `$self` as the base URI, producing `https://example.com/schemas/foo`.
 This matches the `$id` at `#/components/schemas/Foo/$id` so it points to that Schema Object.
 That Schema Object has a subschema with `$ref: bar`, which is resolved against the `$id` to produce `https://example.com/schemas/bar`, which matches the `$id` at `#/components/schemas/Bar/$id`.
 
@@ -5237,7 +5259,6 @@ Therefore it is RECOMMENDED that OAD authors use `$id` values to reference such 
 
 Note also that it is impossible for the reference at `#/components/schemas/Foo/properties/bar/$ref` to reference the schema at `#/components/schemas/Bar` using a JSON Pointer, as the JSON Pointer would be resolved relative to `https://example.com/schemas/foo`, not to the OpenAPI Document's base URI from `$self`.
 
-
 ### Base URI From Encapsulating Entity
 
 If no base URI can be determined within the content, the next location to search is any encapsulating entity (RFC3986 Section 5.1.2).
@@ -5245,6 +5266,8 @@ If no base URI can be determined within the content, the next location to search
 This is common for Schema Objects encapsulated within an OpenAPI Document.
 An example of an OpenAPI Document itself being encapsulated in another entity would be a `multipart/related` archive ([[?RFC2557]]), such as the following `multipart/related; boundary="boundary-example"; type="application/openapi+yaml"` document.
 Note that this is purely an example, and support for such multipart documents or any other format that could encapsulate an OpenAPI Document is not a requirement of this specification.
+
+RFC2557 was written to allow sending hyperlinked sets of documents as email attachments, in which case there would not be a retrieval URI for the multipart attachment (although the format could also be used in HTTP as well).
 
 ```MULTIPART
 --boundary-example
@@ -5293,7 +5316,7 @@ Content-Location: https://example.com/api/docs.html
 
 In this example, the URI for each part, which also serves as its base URI, comes from the part's `Content-Location` header as specified by RFC2557.
 Since the Schema Object at `#/components/schemas/Foo` does not contain an `$id`, the reference in its subschema uses the OpenAPI Document's base URI, which is taken from the `Content-Location` header of its part within the `multipart/related` format.
-The resulting reference to `https://example.com/schemas/bar` matches the `Content-Location` header of the second part, which allows the reference target to be located within the multipart archive.
+The resulting reference to `https://example.com/schemas/bar` matches the `Content-Location` header of the second part, which according to RFC2557 allows the reference target to be located within the multipart archive.
 
 Similarly, the `url` field of the [External Documentation Object](#external-documentation-object) is resolved against the base URI from `Content-Location`, producing `https://example.com/api/docs.html` which matches the `Content-Location` of the third part.
 

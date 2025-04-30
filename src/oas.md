@@ -1661,7 +1661,7 @@ See also the [Media Type Registry](#media-type-registry).
 
 The `schema` field MUST be applied to the complete content, as defined by the media type and the context ([Request Body Object](#request-body-object), [Response Object](#response-object), [Parameter Object](#parameter-object), or [Header Object](#header-object).
 Unless some sort of streaming JSON Schema processor is available, this requires loading the entire content into memory.
-This poses a challenge for streamed media, particularly streams where the client is intended to choose when to stop reading as there is no well-defined end to the stream.
+This poses a challenge for streamed content, particularly streams where the client is intended to choose when to stop reading as there is no well-defined end to the stream.
 
 ###### Binary Streams
 

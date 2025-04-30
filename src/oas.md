@@ -424,7 +424,6 @@ components:
       properties:
         bar:
           $ref: schemas/bar
-
 --boundary-example
 Content-Type: application/schema+json; schema=https://spec.openapis.org/oas/3.2/schema-base/YYYY-MM-DD
 Content-Location: https://example.com/api/schemas/bar
@@ -432,7 +431,6 @@ Content-Location: https://example.com/api/schemas/bar
 {
   "type": "string"
 }
-
 --boundary-example
 Content-Type: text/html
 Content-Location: https://example.com/api/docs.html
@@ -445,6 +443,7 @@ Content-Location: https://example.com/api/docs.html
     <p>Awesome documentation goes here</p>
   </body>
 </html>
+--boundary-example
 ```
 
 In this example, the URI for each part, which also serves as its base URI, comes from the part's `Content-Location` header as specified by RFC2557.

@@ -84,6 +84,8 @@ Some examples of possible media type definitions:
   application/vnd.github.v3.patch
 ```
 
+#### Media Type Registry
+
 ### HTTP Status Codes
 
 The HTTP Status Codes are used to indicate the status of the executed operation.
@@ -1615,9 +1617,32 @@ See [Working With Examples](#working-with-examples) for further guidance regardi
 | <a name="media-type-schema"></a>schema | [Schema Object](#schema-object) | The schema defining the content of the request, response, parameter, or header. |
 | <a name="media-type-example"></a>example | Any | Example of the media type; see [Working With Examples](#working-with-examples). |
 | <a name="media-type-examples"></a>examples | Map[ `string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | Examples of the media type; see [Working With Examples](#working-with-examples). |
-| <a name="media-type-encoding"></a>encoding | Map[`string`, [Encoding Object](#encoding-object)] | A map between a property name and its encoding information. The key, being the property name, MUST exist in the schema as a property. The `encoding` field SHALL only apply when the media type is `multipart` or `application/x-www-form-urlencoded`. If no Encoding Object is provided for a property, the behavior is determined by the default values documented for the Encoding Object. |
+| <a name="media-type-encoding"></a>encoding | Map[`string`, [Encoding Object](#encoding-object)] | A map between a property name and its encoding information for media types supporting name-value pairs and allowing duplicate names, as defined under [Encoding Usage and Restrictions](#encoding-usage-and-restrictions). |
+
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
+
+##### Encoding Usage and Restrictions
+
+To use the `encoding` field, a `schema` MUST exist, and the `encoding` field's  keys MUST exist in the schema as a property.
+Array properties MUST be handled by applying the given Encoding Object to multiple parts (or query parameters) with the same `name`, as is recommended by [RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3) for supplying multiple values per form field.
+For all other property types, including array values within a top-level array, the Encoding Object MUST be applied to the entire values.
+
+The behavior of the `encoding` field is only defined for media types structured as name-value pairs that allow repeat values.
+The order of these name-value pairs in the target media type is implementation-defined.
+
+For `application/x-www-form-urlencoded`, the encoding keys MUST map to parameter names, with the values produced according to the rules of the [Encoding Object](#encoding-object).
+See [Encoding the `x-www-form-urlencoded` Media Type](#encoding-the-x-www-form-urlencoded-media-type) for guidance and examples, both with and without the `encoding` field.
+
+For `multipart/*`, the encoding keys MUST map to the [`name` parameter](https://www.rfc-editor.org/rfc/rfc7578#section-4.2) of the `Content-Disposition: form-data` header of each part.
+See [RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-5) for guidance regarding non-ASCII part names.
+
+This usage of a `name` [`Content-Disposition` parameter](https://www.iana.org/assignments/cont-disp/cont-disp.xhtml#cont-disp-2) is defined for `multipart/form-data` ([[?RFC7578]]) and the `form-data` [`Content-Disposition` value](https://www.iana.org/assignments/cont-disp/cont-disp.xhtml#cont-disp-1).
+Implementations MAY choose to support the `name` `Content-Disposition` parameter and the `encoding` field with other `multipart` formats, but this usage is unlikely to be supported by generic `multipart` implementations.
+
+See [Encoding `multipart` Media Types](#encoding-multipart-media-types) for further guidance and examples, both with and without the `encoding` field.
+
+For all media types where no mapping is defined by either this specification or the [Media Type Registry](#media-type-registry), the `encoding` field SHALL be ignored.
 
 ##### Media Type Examples
 
@@ -1732,21 +1757,11 @@ requestBody:
 
 To upload multiple files, a `multipart` media type MUST be used as shown under [Example: Multipart Form with Multiple Files](#example-multipart-form-with-multiple-files).
 
-##### Support for x-www-form-urlencoded Request Bodies
-
-See [Encoding the `x-www-form-urlencoded` Media Type](#encoding-the-x-www-form-urlencoded-media-type) for guidance and examples, both with and without the `encoding` field.
-
-##### Special Considerations for `multipart` Content
-
-See [Encoding `multipart` Media Types](#encoding-multipart-media-types) for further guidance and examples, both with and without the `encoding` field.
-
 #### Encoding Object
 
-A single encoding definition applied to a single schema property.
-See [Appendix B](#appendix-b-data-type-conversion) for a discussion of converting values of various types to string representations.
+A single encoding definition applied to a single value, as defined under [Encoding Usage and Restrictions](#encoding-usage-and-restrictions).
 
-Properties are correlated with `multipart` parts using the [`name` parameter](https://www.rfc-editor.org/rfc/rfc7578#section-4.2) of `Content-Disposition: form-data`, and with `application/x-www-form-urlencoded` using the query string parameter names.
-In both cases, their order is implementation-defined.
+See [Appendix B](#appendix-b-data-type-conversion) for a discussion of converting values of various types to string representations.
 
 See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a detailed examination of percent-encoding concerns for form media types.
 
@@ -1763,7 +1778,8 @@ These fields MAY be used either with or without the RFC6570-style serialization 
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
-The default values for `contentType` are as follows, where an _n/a_ in the `contentEncoding` column means that the presence or value of `contentEncoding` is irrelevant:
+The default values for `contentType` are as follows, where an _n/a_ in the `contentEncoding` column means that the presence or value of `contentEncoding` is irrelevant.
+This table is based on the value to which the Encoding Object is being applied, which as defined under [Encoding Usage and Restrictions](#encoding-usage-and-restrictions) is the array item for properties of type `"array"`, and the entire value for all other types.
 
 | `type` | `contentEncoding` | Default `contentType` |
 | ---- | ---- | ---- |
@@ -1772,7 +1788,7 @@ The default values for `contentType` are as follows, where an _n/a_ in the `cont
 | `string` | _absent_ | `text/plain` |
 | `number`, `integer`, or `boolean` | _n/a_ | `text/plain` |
 | `object` | _n/a_ | `application/json` |
-| `array` | _n/a_ | according to the `type` of the `items` schema |
+| `array` | _n/a_ | `application/json` |
 
 Determining how to handle a `type` value of `null` depends on how `null` values are being serialized.
 If `null` values are entirely omitted, then the `contentType` is irrelevant.
@@ -1880,20 +1896,13 @@ However, this is not guaranteed, so it may be more interoperable to keep the pad
 
 ##### Encoding `multipart` Media Types
 
-It is common to use `multipart/form-data` as a `Content-Type` when transferring forms as request bodies. In contrast to OpenAPI 2.0, a `schema` is REQUIRED to define the input parameters to the operation when using `multipart` content. This supports complex structures as well as supporting mechanisms for multiple file uploads.
-
-The `form-data` disposition and its `name` parameter are mandatory for `multipart/form-data` ([RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.2)).
-Array properties are handled by applying the same `name` to multiple parts, as is recommended by [RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3) for supplying multiple values per form field.
-See [RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-5) for guidance regarding non-ASCII part names.
-
-Various other `multipart` types, most notable `multipart/mixed` ([RFC2046](https://www.rfc-editor.org/rfc/rfc2046.html#section-5.1.3)) neither require nor forbid specific `Content-Disposition` values, which means care must be taken to ensure that any values used are supported by all relevant software.
-It is not currently possible to correlate schema properties with unnamed, ordered parts in media types such as `multipart/mixed`, but implementations MAY choose to support such types when `Content-Disposition: form-data` is used with a `name` parameter.
+See [Encoding Usage and Restrictions](#encoding-usage-and-restrictions) for guidance on correlating schema properties with parts.
 
 Note that there are significant restrictions on what headers can be used with `multipart` media types in general ([RFC2046](https://www.rfc-editor.org/rfc/rfc2046.html#section-5.1)) and `multi-part/form-data` in particular ([RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.8)).
 
 Note also that `Content-Transfer-Encoding` is deprecated for `multipart/form-data` ([RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.7)) where binary data is supported, as it is in HTTP.
 
-+Using `contentEncoding` for a multipart field is equivalent to specifying an [Encoding Object](#encoding-object) with a `headers` field containing `Content-Transfer-Encoding` with a schema that requires the value used in `contentEncoding`.
+Using `contentEncoding` for a multipart field is equivalent to specifying an [Encoding Object](#encoding-object) with a `headers` field containing `Content-Transfer-Encoding` with a schema that requires the value used in `contentEncoding`.
 +If `contentEncoding` is used for a multipart field that has an Encoding Object with a `headers` field containing `Content-Transfer-Encoding` with a schema that disallows the value from `contentEncoding`, the result is undefined for serialization and parsing.
 
 Note that as stated in [Working with Binary Data](#working-with-binary-data), if the Encoding Object's `contentType`, whether set explicitly or implicitly through its default value rules, disagrees with the `contentMediaType` in a Schema Object, the `contentMediaType` SHALL be ignored.
@@ -1921,8 +1930,9 @@ requestBody:
             type: string
             format: binary
           addresses:
-            # default for arrays is based on the type in the `items`
-            # subschema, which is an object, so `application/json`
+            # for arrays, the Encoding Object applies to each item
+            # individually based on that item's type, which in this
+            # example is an object, so `application/json`
             type: array
             items:
               $ref: '#/components/schemas/Address'

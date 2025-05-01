@@ -1671,7 +1671,7 @@ For this use case, `maxLength` MAY be implemented outside of regular JSON Schema
 
 ###### Streaming Sequential Media Types
 
-The `itemSchema` field is provided to support streaming use case for sequential media types.
+The `itemSchema` field is provided to support streaming use cases for sequential media types.
 Unlike `schema`, which is applied to the complete content (treated as an array as described in the [sequential media types](#sequential-media-types) section), `itemSchema` MUST be applied to each item in the stream independently, which supports processing each item as it is read from the stream.
 
 Both `schema` and `itemSchema` MAY be used in the same Media Type Object, although doing so is unlikely to have significant advantages over using the `items` keyword within the `schema` field.

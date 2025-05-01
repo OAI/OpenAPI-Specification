@@ -4166,7 +4166,7 @@ Allows configuration of the supported OAuth Flows.
 | <a name="oauth-flows-password"></a>password | [OAuth Flow Object](#oauth-flow-object) | Configuration for the OAuth Resource Owner Password flow |
 | <a name="oauth-flows-client-credentials"></a>clientCredentials | [OAuth Flow Object](#oauth-flow-object) | Configuration for the OAuth Client Credentials flow. Previously called `application` in OpenAPI 2.0. |
 | <a name="oauth-flows-authorization-code"></a>authorizationCode | [OAuth Flow Object](#oauth-flow-object) | Configuration for the OAuth Authorization Code flow. Previously called `accessCode` in OpenAPI 2.0. |
-| <a name="oauth-flows-device-authorization"></a>deviceAuthorization| [OAuth Flow Object](#oauth-flow-object) | Configuration for the OAuth Device Authorization flow. |
+| <a name="oauth-flows-device-authorization"></a>deviceAuthorization | [OAuth Flow Object](#oauth-flow-object) | Configuration for the OAuth Device Authorization flow. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
@@ -4235,7 +4235,7 @@ The name used for each property MUST either correspond to a security scheme decl
 Property names that are identical to a component name under the Components Object MUST be treated as a component name.
 To reference a Security Scheme with a single-segment relative URI reference (e.g. `foo`) that collides with a component name (e.g. `#/components/securitySchemes/foo`), use the `.` path segment (e.g. `./foo`).
 
-Using a Security Scheme component name that appears to be a URI is NOT RECOMMENDED, as the precedence of component-name-matching over URI resolution, which is necessary to maintain compatibility with prior OAS versions, is counter-intuitive.  See also [Security Considerations](#security-considerations).
+Using a Security Scheme component name that appears to be a URI is NOT RECOMMENDED, as the precedence of component-name-matching over URI resolution, which is necessary to maintain compatibility with prior OAS versions, is counter-intuitive. See also [Security Considerations](#security-considerations).
 
 A Security Requirement Object MAY refer to multiple security schemes in which case all schemes MUST be satisfied for a request to be authorized.
 This enables support for scenarios where multiple query parameters or HTTP headers are required to convey security information.
@@ -4248,7 +4248,7 @@ An empty Security Requirement Object (`{}`) indicates anonymous access is suppor
 ##### Patterned Fields
 
 | Field Pattern | Type | Description |
-| --- | :---: | --- |
+| ---- | :----: | ---- |
 | <a name="security-requirements-name"></a>{name} | [`string`] | Each name or URI MUST correspond to a security scheme as described above. If the security scheme is of type `"oauth2"` or `"openIdConnect"`, then the value is a list of scope names required for the execution, and the list MAY be empty if authorization does not require a specified scope. For other security scheme types, the array MAY contain a list of role names which are required for the execution, but are not otherwise defined or exchanged in-band. |
 
 ##### Security Requirement Object Examples
@@ -4356,7 +4356,7 @@ In addition, OpenAPI Descriptions are processed by a wide variety of tooling for
 
 An OpenAPI Description describes the security schemes used to protect the resources it defines. The security schemes available offer varying degrees of protection. Factors such as the sensitivity of the data and the potential impact of a security breach should guide the selection of security schemes for the API resources. Some security schemes, such as basic auth and OAuth Implicit flow, are supported for compatibility with existing APIs. However, their inclusion in OpenAPI does not constitute an endorsement of their use, particularly for highly sensitive data or operations.
 
-The rules for connecting a [Security Requirement Object](#security-requirement-object) to a [Security Scheme Object](#security-scheme-object) under a [Components Object](#components-object) are ambiguous in a way that could be exploited.  Specifically:
+The rules for connecting a [Security Requirement Object](#security-requirement-object) to a [Security Scheme Object](#security-scheme-object) under a [Components Object](#components-object) are ambiguous in a way that could be exploited. Specifically:
 
 * It is implementation-defined whether a component name used by a Security Requirement Object in a referenced document is resolved from the entry document (RECOMMENDED) or the referenced document.
 * A Security Requirement Object that uses a URI to identify a Security Scheme Object can have the URI resolution hijacked by providing a Security Scheme component name identical to the URI, as the name lookup behavior takes precedence over URI resolution for compatibility with previous versions of the OAS.

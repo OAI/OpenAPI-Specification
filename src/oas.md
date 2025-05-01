@@ -1676,7 +1676,7 @@ Unlike `schema`, which is applied to the complete content (treated as an array a
 
 Both `schema` and `itemSchema` MAY be used in the same Media Type Object, although doing so is unlikely to have significant advantages over using the `items` keyword within the `schema` field.
 OpenAPI Description authors are responsible for avoiding the use of the `schema` in any situation where tooling may not be able to discern when the content is complete.
-For example, if partial content is read from a stream and then passed with the `schema` value to a schema evaluator that is unaware of the stream context, the results are well-defined but will not be meaningful in terms of validating a keyword like `maxItems` as there may be additional items in the stream that are unknown to the schema evaluator.
+For example, if partial content is read from a stream and then passed with the `schema` value to a schema evaluator that is unaware of the stream context, the results will not be meaningful as there may be additional items in the stream that are necessary to or prohibitive of successful validation.
 
 ##### Special Considerations for `text/event-stream` Content
 

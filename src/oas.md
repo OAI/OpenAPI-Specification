@@ -1665,7 +1665,7 @@ Use cases where client is intended to choose when to stop reading are particular
 
 ###### Binary Streams
 
-The `maxLength` keyword MAY be used to set an expected upper bound on the length of a streaming payload that consists of either string data, including encoded binary data, or to unencoded binary data.
+The `maxLength` keyword MAY be used to set an expected upper bound on the length of a streaming payload that consists of either string data, including encoded binary data, or unencoded binary data.
 For unencoded binary, the length is the number of octets.
 For this use case, `maxLength` MAY be implemented outside of regular JSON Schema evaluation as JSON Schema does not directly apply to binary data, and an encoded binary stream may be impractical to store in memory in its entirety.
 

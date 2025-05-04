@@ -1759,7 +1759,7 @@ To upload multiple files, a `multipart` media type MUST be used as shown under [
 
 #### Encoding Object
 
-A single encoding definition applied to a single value, as defined under [Encoding Usage and Restrictions](#encoding-usage-and-restrictions).
+A single encoding definition applied to a single value, with the mapping of Encoding Objects to values determined by the [Media Type Object](@media-type-object) as described under [Encoding Usage and Restrictions](#encoding-usage-and-restrictions).
 
 See [Appendix B](#appendix-b-data-type-conversion) for a discussion of converting values of various types to string representations.
 
@@ -1780,6 +1780,7 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 
 The default values for `contentType` are as follows, where an _n/a_ in the `contentEncoding` column means that the presence or value of `contentEncoding` is irrelevant.
 This table is based on the value to which the Encoding Object is being applied, which as defined under [Encoding Usage and Restrictions](#encoding-usage-and-restrictions) is the array item for properties of type `"array"`, and the entire value for all other types.
+Therefore the `array` row in this table applies only to array values inside of a top-level array.
 
 | `type` | `contentEncoding` | Default `contentType` |
 | ---- | ---- | ---- |

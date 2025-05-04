@@ -5215,7 +5215,7 @@ paths:
   /foo:
     get:
       requestBody:
-        $ref: "shared#/components/requestBodies/Foo"
+        $ref: "shared/foo#/components/requestBodies/Foo"
 ```
 
 Assume the retrieval URI for the following document is `https://git.example.com/shared/blob/main/shared/foo.yaml`:
@@ -5249,7 +5249,7 @@ In this example, the retrieval URIs are irrelevant because both documents define
 For the relative `$ref` in the first document, it is resolved against `$self` to produce `https://example.com/shared/foo#/components/requestBodies/Foo`.
 The portion of that URI before the '#' matches the `$self` of the second document, so the reference target is resolved to `#/components/requestBodies/Foo` in that second document.
 
-In that document, the `$ref` in the Request Body Object is resolved using that document's `$self` as the base URI, producing `https://example.com/schemas/foo`.
+In that document, the `$ref` in the Request Body Object is resolved using that document's `$self` as the base URI, producing `https://example.com/api/schemas/foo`.
 This matches the `$id` at `#/components/schemas/Foo/$id` so it points to that Schema Object.
 That Schema Object has a subschema with `$ref: bar`, which is resolved against the `$id` to produce `https://example.com/schemas/bar`, which matches the `$id` at `#/components/schemas/Bar/$id`.
 

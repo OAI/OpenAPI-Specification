@@ -1690,21 +1690,19 @@ Note that `contentSchema` is [not automatically validated by default](https://ww
 The following Schema Object is a generic schema for the `text/event-stream` media type as documented by the HTML specification as of the time of this writing:
 
 ```YAML
-type: array
-items:
-  type: object
-  required:
-  - data
-  properties:
-    data:
-      type: string
-    event:
-      type: string
-    id:
-      type: string
-    retry:
-      type: integer
-      minimum: 0
+type: object
+required:
+- data
+properties:
+  data:
+    type: string
+  event:
+    type: string
+  id:
+    type: string
+  retry:
+    type: integer
+    minimum: 0
 ```
 
 ##### Encoding Usage and Restrictions

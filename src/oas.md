@@ -1624,7 +1624,7 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 
 ##### Encoding Usage and Restrictions
 
-To use the `encoding` field, a `schema` MUST exist, and the `encoding` field's  keys MUST exist in the schema as a property.
+To use the `encoding` field, a `schema` MUST exist, and the `encoding` field's  keys MUST exist in the schema as properties.
 Array properties MUST be handled by applying the given Encoding Object to multiple parts (or query parameters) with the same `name`, as is recommended by [RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3) for supplying multiple values per form field.
 For all other property types, including array values within a top-level array, the Encoding Object MUST be applied to the entire values.
 

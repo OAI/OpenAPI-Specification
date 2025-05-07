@@ -101,14 +101,17 @@ Some examples of sequential media types (including some that are not IANA-regist
   application/json-seq
   application/geo+json-seq
   text/event-stream
+  multipart/mixed
 ```
 
 In the first three above, the repeating structure is any [JSON value](https://tools.ietf.org/html/rfc8259#section-3).
-The fourth repeats `application/geo+json`-structured values, while the last repeats a custom text format related to Server-Sent Events.
+The fourth repeats `application/geo+json`-structured values, while `text/event-stream` repeats a custom text format related to Server-Sent Events.
+The final media type listed above, `multipart/mixed`, provides an ordered list of documents of any media type, and is sometimes streamed.
 
 Implementations MUST support mapping sequential media types into the JSON Schema data model by treating them as if the values were in an array in the same order.
 
 See [Complete vs Streaming Content](#complete-vs-streaming-content) for more information on handling sequential media types in a streaming context, including special considerations for `text/event-stream` content.
+For `multipart` types, see also [Encoding By Position](#encoding-by-position).
 
 #### Media Type Registry
 
@@ -1253,7 +1256,9 @@ See [Working With Examples](#working-with-examples) for further guidance regardi
 | <a name="media-type-item-schema"></a>itemSchema | [Schema Object](#schema-object) | A schema describing each item within a [sequential media type](#sequential-media-types). |
 | <a name="media-type-example"></a>example | Any | Example of the media type; see [Working With Examples](#working-with-examples). |
 | <a name="media-type-examples"></a>examples | Map[ `string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | Examples of the media type; see [Working With Examples](#working-with-examples). |
-| <a name="media-type-encoding"></a>encoding | Map[`string`, [Encoding Object](#encoding-object)] | A map between a property name and its encoding information, as defined under [Encoding Usage and Restrictions](#encoding-usage-and-restrictions).  The `encoding` field SHALL only apply when the media type is `multipart` or `application/x-www-form-urlencoded`. If no Encoding Object is provided for a property, the behavior is determined by the default values documented for the Encoding Object. |
+| <a name="media-type-encoding"></a>encoding | Map[`string`, [Encoding Object](#encoding-object)] | A map between a property name and its encoding information, as defined under [Encoding By Name](#encoding-by-name).  The `encoding` field SHALL only apply when the media type is `multipart` or `application/x-www-form-urlencoded`. If no Encoding Object is provided for a property, the behavior is determined by the default values documented for the Encoding Object. This field MUST NOT be present if `prefixEncoding` or `itemEncoding` are present. |
+| <a name="media-type-prefix-encoding"></a>prefixEncoding | [[Encoding Object](#encoding-object)] | An array of positional encoding information, as defined under [Encoding By Position](#encoding-by-position).  The `prefixEncoding` field SHALL only apply when the media type is `multipart`. If no Encoding Object is provided for a property, the behavior is determined by the default values documented for the Encoding Object. This field MUST NOT be present if `encoding` is present. |
+| <a name="media-type-item-encoding"></a>itemEncoding | [Encoding Object](#encoding-object) | A single Encoding Object that provides encoding information for multiple array items, as defined under [Encoding By Position](#encoding-by-position). The `itemEncoding` field SHALL only apply when the media type is `multipart`. If no Encoding Object is provided for a property, the behavior is determined by the default values documented for the Encoding Object. This field MUST NOT be present if `encoding` is present. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
@@ -1273,7 +1278,8 @@ For this use case, `maxLength` MAY be implemented outside of regular JSON Schema
 
 ###### Streaming Sequential Media Types
 
-The `itemSchema` field is provided to support streaming use cases for sequential media types.
+The `itemSchema` field is provided to support streaming use cases for sequential media types, with `itemEncoding` as a corresponding encoding mechanism for streaming [positional `multipart` media types](#encoding-by-position).
+
 Unlike `schema`, which is applied to the complete content (treated as an array as described in the [sequential media types](#sequential-media-types) section), `itemSchema` MUST be applied to each item in the stream independently, which supports processing each item as it is read from the stream.
 
 Both `schema` and `itemSchema` MAY be used in the same Media Type Object.
@@ -1309,13 +1315,16 @@ properties:
 
 ##### Encoding Usage and Restrictions
 
-The `encoding` field defines how to map each [Encoding Object](#encoding-object) to a specific value in the data.
+The three encoding fields define how to map each [Encoding Object](#encoding object) to a specific value in the data.
+Each field has its own set of media types with which it can be used; for all other media types all three fields SHALL be ignored.
 
-To use the `encoding` field, a `schema` MUST exist, and the `encoding` field's  keys MUST exist in the schema as properties.
-Array properties MUST be handled by applying the given Encoding Object to one part per array item, each with the same `name`, as is recommended by [[?RFC7578]] [Section 4.3](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3) for supplying multiple values per form field.
-For all other value types for both top-level non-array properties and for values, including array values, within a top-level array, the Encoding Object MUST be applied to the entire value.
+###### Encoding By Name
 
 The behavior of the `encoding` field is designed to support web forms, and is therefore only defined for media types structured as name-value pairs that allow repeat values, most notably `application/x-www-form-urlencoded` and `multipart/form-data`.
+
+To use the `encoding` field, each key under the field MUST exist in the `schema` as a property.
+Array properties MUST be handled by applying the given Encoding Object to produce one encoded value per array item, each with the same `name`, as is recommended by [[?RFC7578]] [Section 4.3](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3) for supplying multiple values per form field.
+For all other value types for both top-level non-array properties and for values, including array values, within a top-level array, the Encoding Object MUST be applied to the entire value.
 The order of these name-value pairs in the target media type is implementation-defined.
 
 For `application/x-www-form-urlencoded`, the encoding keys MUST map to parameter names, with the values produced according to the rules of the [Encoding Object](#encoding-object).
@@ -1324,15 +1333,29 @@ See [Encoding the `x-www-form-urlencoded` Media Type](#encoding-the-x-www-form-u
 For `multipart`, the encoding keys MUST map to the [`name` parameter](https://www.rfc-editor.org/rfc/rfc7578#section-4.2) of the `Content-Disposition: form-data` header of each part, as is defined for `multipart/form-data` in [[?RFC7578]].
 See [[?RFC7578]] [Section 5](https://www.rfc-editor.org/rfc/rfc7578.html#section-5) for guidance regarding non-ASCII part names.
 
-Other `multipart` media types are not directly supported as they do not define a mechanism for part names.
-However, the usage of a `name` [`Content-Disposition` parameter](https://www.iana.org/assignments/cont-disp/cont-disp.xhtml#cont-disp-2) is defined for the `form-data` [`Content-Disposition` value](https://www.iana.org/assignments/cont-disp/cont-disp.xhtml#cont-disp-1), which is not restricted to `multipart/form-data`.
-Implementations MAY choose to support the a `Conent-Disposition` of `form-data` with a `name` parameter in other `multipart` media types in order to use the `encoding` field with them, but this usage is unlikely to be supported by generic `multipart` implementations.
-
 See [Encoding `multipart` Media Types](#encoding-multipart-media-types) for further guidance and examples, both with and without the `encoding` field.
+
+###### Encoding By Position
+
+Most `multipart` media types, including `multipart/mixed` which defines the underlying rules for parsing all `multipart` types, do not have named parts.
+Data for these media types are modeled as an array, with one item per part, in order.
+
+To use the `prefixEncoding` and/or `itemEncoding` fields, either an array `schema` or `itemSchema` MUST be present.
+These fields are analogous to the `prefixItems` and `items` JSON Schema keywords, with `prefixEncoding` (if present) providing an array of Encoding Objects that are each applied to the value at the same position in the data array, and `itemEncoding` applying its single Encoding Object to all remaining items in the array.
+
+The `itemEncoding` field can also be used with `itemSchema` to support streaming `multipart` content.
+
+###### Additional Encoding Approaches
+
+The `prefixEncoding` field can be used with any `multipart` content to require a fixed part order.
+This includes `multipart/form-data`, for which the Encoding Object's `headers` field MUST be used to provide the `Content-Disposition` and part name, as no property names exist to provide the names automatically.
+
+Prior versions of this specifications advised using the `name` [`Content-Disposition` parameter](https://www.iana.org/assignments/cont-disp/cont-disp.xhtml#cont-disp-2) of the `form-data` [`Content-Disposition` value](https://www.iana.org/assignments/cont-disp/cont-disp.xhtml#cont-disp-1) with `multipart` media types other than `multipart/form-data` in order to work around the limitations of the `encoding` field.
+Implementations MAY choose to support this workaround, but as this usage is not common, implementations of non-`form-data` `multipart` media types are unlikely to support it.
 
 ##### Media Type Examples
 
-For form-related media type examples, see the [Encoding Object](#encoding-object).
+For form-related and `multipart` media type examples, see the [Encoding Object](#encoding-object).
 
 ###### JSON
 
@@ -1645,8 +1668,9 @@ These fields MAY be used either with or without the RFC6570-style serialization 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
 The default values for `contentType` are as follows, where an _n/a_ in the `contentEncoding` column means that the presence or value of `contentEncoding` is irrelevant.
-This table is based on the value to which the Encoding Object is being applied, which as defined under [Encoding Usage and Restrictions](#encoding-usage-and-restrictions) is the array item for properties of type `"array"`, and the entire value for all other types.
-Therefore the `array` row in this table applies only to array values inside of a top-level array.
+This table is based on the value to which the Encoding Object is being applied as defined under [Encoding Usage and Restrictions](#encoding-usage-and-restrictions).
+Note that in the case of [Encoding By Name](#encoding-by-name), this value is the array item for properties of type `"array"`, and the entire value for all other types.
+Therefore the `array` row in this table applies only to array values inside of a top-level array when encoding by name.
 
 | `type` | `contentEncoding` | Default `contentType` |
 | ---- | ---- | ---- |
@@ -1868,6 +1892,97 @@ requestBody:
 ```
 
 As seen in the [Encoding Object's `contentType` field documentation](#encoding-content-type), the empty schema for `items` indicates a media type of `application/octet-stream`.
+
+###### Example: Ordered, Unnamed Multipart
+
+A `multipart/mixed` payload consisting of a JSON metadata document followed by an image which the metadata describes:
+
+```yaml
+multipart/mixed:
+  schema:
+    prefixItems:
+    - # default content type for objects
+      # is `application/json`type: object
+      properties:
+        author:
+          type: string
+        created:
+          type: string
+          format: datetime
+        copyright:
+          type: string
+        license:
+          type: string
+    - # default content type for a schema without `type`
+      # is `application/octet-stream`, which we need
+      # to override.
+      {}
+  prefixEncoding:
+  - # Encoding Object defaults are correct for JSON
+    {}
+  - contentType: image/*
+```
+
+###### Example: Ordered Multipart With Required Header
+
+As described in [[?RFC2557]], a set of HTML pages can be sent in a `multipart/related` payload, preserving links among themselves by defining a `Content-Location` header for each page.
+
+See [Appendix D](appendix-d-serializing-headers-and-cookies) for an explanation of why `content: {text/plain: {...}}` is used to describe the header value.
+
+```yaml
+multipart/related:
+  schema:
+    items:
+      type: string
+  itemEncoding:
+    contentType: text/html
+    headers:
+      Content-Location:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              format: uri
+```
+
+While the above example could have used `itemSchema` instead, if the payload is expected to be processed all at once, using `schema` ensures that tools will wait until the complete response is available before processing.
+
+###### Example: Streaming Multipart
+
+This example assumes a device that takes large sets of pictures and streams them to the caller.
+Unlike the previous example, we use `itemSchema` here because the expectation is that each image is processed as it arrives (or in small batches), since we know that buffering the entire stream will take too much memory.
+
+```yaml
+multipart/mixed:
+  itemSchema:
+    $comment: A single data image from the device
+  itemEncoding:
+    contentType: image/jpg
+```
+
+###### Example: Streaming Byte Ranges
+
+For `multipart/byteranges` [[RFC9110]] [Section 14.6](https://www.rfc-editor.org/rfc/rfc9110.html#section-14.6), a `Content-Range` header is required:
+
+See [Appendix D](appendix-d-serializing-headers-and-cookies) for an explanation of why `content: {text/plain: {...}}` is used to describe the header value.
+
+```yaml
+multipart/byteranges:
+  itemSchema:
+    $comment: A single range of bytes from a video
+  itemEncoding:
+    contentType: video/mp4
+    headers:
+      Content-Range:
+        required: true
+        content:
+          text/plain:
+            schema:
+              # A suitable "pattern" constraint for this
+              # header is left as an exercise for the reader
+              type: string
+```
 
 #### Responses Object
 

@@ -1,6 +1,4 @@
----
-# title: Extensions Registry
-layout: default
+efault
 permalink: /registry/extension/index.html
 parent: Registry
 ---
@@ -13,7 +11,11 @@ parent: Registry
 
 ## Contributing
 
-Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls) or [Issue](https://github.com/OAI/OpenAPI-Specification/issues) to contribute or discuss a registry value.
+Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls)and
+follow the instructions in the
+[`CONTRIBUTING.md` file in the `gh-pages` branch](https://github.com/OAI/OpenAPI-Specification/blob/gh-pages/CONTRIBUTING.md),
+or open an [Issue](https://github.com/OAI/OpenAPI-Specification/issues)
+to contribute or discuss a registry value.
 
 ## Values
 
@@ -21,4 +23,3 @@ Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls
 |---|---|---|
 {% for value in site.extension %}| <a href="./{{ value.slug }}.html">{{ value.slug }}</a> | {{ value.description }} | {% if value.issue %}<a href="https://github.com/OAI/OpenAPI-Specification/issues/{{ value.issue }}">#{{ value.issue }}</a>{% endif %} |
 {% endfor %}
-

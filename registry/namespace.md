@@ -11,7 +11,12 @@ To allow for creators of OpenAPI descriptions to define new extensions without t
 
 ## Contributing
 
-Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls) or [Issue](https://github.com/OAI/OpenAPI-Specification/issues) to contribute or discuss a registry value.
+Please raise a
+[Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls) and
+follow the instructions in the
+[`CONTRIBUTING.md` file in the `gh-pages` branch](https://github.com/OAI/OpenAPI-Specification/blob/gh-pages/CONTRIBUTING.md),
+or open an [Issue](https://github.com/OAI/OpenAPI-Specification/issues)
+to contribute or discuss a registry value.
 
 ## Values
 

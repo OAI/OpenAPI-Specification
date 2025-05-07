@@ -84,8 +84,6 @@ Some examples of possible media type definitions:
   application/vnd.github.v3.patch
 ```
 
-#### Media Type Registry
-
 ### HTTP Status Codes
 
 The HTTP Status Codes are used to indicate the status of the executed operation.
@@ -1617,32 +1615,32 @@ See [Working With Examples](#working-with-examples) for further guidance regardi
 | <a name="media-type-schema"></a>schema | [Schema Object](#schema-object) | The schema defining the content of the request, response, parameter, or header. |
 | <a name="media-type-example"></a>example | Any | Example of the media type; see [Working With Examples](#working-with-examples). |
 | <a name="media-type-examples"></a>examples | Map[ `string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | Examples of the media type; see [Working With Examples](#working-with-examples). |
-| <a name="media-type-encoding"></a>encoding | Map[`string`, [Encoding Object](#encoding-object)] | A map between a property name and its encoding information for media types supporting name-value pairs and allowing duplicate names, as defined under [Encoding Usage and Restrictions](#encoding-usage-and-restrictions). |
-
+| <a name="media-type-encoding"></a>encoding | Map[`string`, [Encoding Object](#encoding-object)] | A map between a property name and its encoding information, as defined under [Encoding Usage and Restrictions](#encoding-usage-and-restrictions).  The `encoding` field SHALL only apply when the media type is `multipart` or `application/x-www-form-urlencoded`. If no Encoding Object is provided for a property, the behavior is determined by the default values documented for the Encoding Object. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
 ##### Encoding Usage and Restrictions
 
-To use the `encoding` field, a `schema` MUST exist, and the `encoding` field's  keys MUST exist in the schema as properties.
-Array properties MUST be handled by applying the given Encoding Object to multiple parts (or query parameters) with the same `name`, as is recommended by [RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3) for supplying multiple values per form field.
-For all other property types, including array values within a top-level array, the Encoding Object MUST be applied to the entire value.
+The `encoding` field defines how to map each [Encoding Object](#encoding-object) to a specific value in the data.
 
-The behavior of the `encoding` field is designed to support web forms, and is therefore only defined for media types structured as name-value pairs that allow repeat values.
+To use the `encoding` field, a `schema` MUST exist, and the `encoding` field's  keys MUST exist in the schema as properties.
+Array properties MUST be handled by applying the given Encoding Object to one part per array item, each with the same `name`, as is recommended by [[?RFC7578]] [Section 4.3](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3) for supplying multiple values per form field.
+For all other value types for both top-level non-array properties and for values, including array values, within a top-level array, the Encoding Object MUST be applied to the entire value.
+
+The behavior of the `encoding` field is designed to support web forms, and is therefore only defined for media types structured as name-value pairs that allow repeat values, most notably `application/x-www-form-urlencoded` and `multipart/form-data`.
 The order of these name-value pairs in the target media type is implementation-defined.
 
 For `application/x-www-form-urlencoded`, the encoding keys MUST map to parameter names, with the values produced according to the rules of the [Encoding Object](#encoding-object).
 See [Encoding the `x-www-form-urlencoded` Media Type](#encoding-the-x-www-form-urlencoded-media-type) for guidance and examples, both with and without the `encoding` field.
 
-For `multipart/*`, the encoding keys MUST map to the [`name` parameter](https://www.rfc-editor.org/rfc/rfc7578#section-4.2) of the `Content-Disposition: form-data` header of each part.
-See [RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-5) for guidance regarding non-ASCII part names.
+For `multipart`, the encoding keys MUST map to the [`name` parameter](https://www.rfc-editor.org/rfc/rfc7578#section-4.2) of the `Content-Disposition: form-data` header of each part, as is defined for `multipart/form-data` in [[?RFC7578]].
+See [[?RFC7578]] [Section 5](https://www.rfc-editor.org/rfc/rfc7578.html#section-5) for guidance regarding non-ASCII part names.
 
-This usage of a `name` [`Content-Disposition` parameter](https://www.iana.org/assignments/cont-disp/cont-disp.xhtml#cont-disp-2) is defined for `multipart/form-data` ([[?RFC7578]]) and the `form-data` [`Content-Disposition` value](https://www.iana.org/assignments/cont-disp/cont-disp.xhtml#cont-disp-1).
-Implementations MAY choose to support the `name` `Content-Disposition` parameter and the `encoding` field with other `multipart` formats, but this usage is unlikely to be supported by generic `multipart` implementations.
+Other `multipart` media types are not directly supported as they do not define a mechanism for part names.
+However, the usage of a `name` [`Content-Disposition` parameter](https://www.iana.org/assignments/cont-disp/cont-disp.xhtml#cont-disp-2) is defined for the `form-data` [`Content-Disposition` value](https://www.iana.org/assignments/cont-disp/cont-disp.xhtml#cont-disp-1), which is not restricted to `multipart/form-data`.
+Implementations MAY choose to support the a `Conent-Disposition` of `form-data` with a `name` parameter in other `multipart` media types in order to use the `encoding` field with them, but this usage is unlikely to be supported by generic `multipart` implementations.
 
 See [Encoding `multipart` Media Types](#encoding-multipart-media-types) for further guidance and examples, both with and without the `encoding` field.
-
-For all media types where no mapping is defined by either this specification or the [Media Type Registry](#media-type-registry), the `encoding` field SHALL be ignored.
 
 ##### Media Type Examples
 

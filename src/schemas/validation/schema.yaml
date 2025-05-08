@@ -10,7 +10,7 @@ properties:
     pattern: '^3\.2\.\d+(-.+)?$'
   $self:
     type: string
-    format: uri
+    format: uri-reference
     $comment: MUST NOT contain a fragment
     pattern: '^[^#]*$'
   info:

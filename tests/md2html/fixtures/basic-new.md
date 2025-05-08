@@ -62,14 +62,70 @@ https://foo.com/bar?baz=qux&fred=waldo#fragment
 https://foo.com/bar{?baz*,qux}
 ```
 
+```multipart
+--boundary-example
+Content-Type: application/openapi+yaml
+Content-Location: https://inaccessible-domain.com/api/openapi.yaml
+
+openapi: 3.2.0
+info:
+  title: Example API
+  version: 1.0
+  externalDocs:
+    url: docs.html
+
+--boundary-example
+Content-Type: text/html
+Content-Location: https://example.com/api/docs.html
+
+<html>
+  <head>
+    <title>API Documentation</title>
+  </head>
+  <body>
+    <p>Awesome documentation goes here</p>
+  </body>
+</html>
+```
+
 ```eventstream
+event: addString
 data: This data is formatted
 data: across two lines
 retry: 5
 
-event: add
+event: addNumber
 data: 1234.5678
-unknown-field: this is ignored
+unknownField: this is ignored
+
+: This is a comment
+event: addJSON
+data: {"foo": 42}
+```
+
+```jsonl
+{"event": "addString", "data": "This data is formatted\nacross two lines", "retry": 5}
+{"event": "addNumber", "data": "1234.5678"}
+{"event": "addJSON", "data": "{\"foo\": 42}"}
+```
+
+```ndjson
+{"event": "addString", "data": "This data is formatted\nacross two lines", "retry": 5}
+{"event": "addNumber", "data": "1234.5678"}
+{"event": "addJSON", "data": "{\"foo\": 42}"}
+```
+
+```jsonseq
+0x1E{
+  "timestamp": "1985-04-12T23:20:50.52Z",
+  "level": 1,
+  "message": "Hi!"
+}
+0x1E{
+  "timestamp": "1985-04-12T23:20:51.37Z",
+  "level": 1,
+  "message": "Bye!"
+}
 ```
 
 ## Appendix A: Revision History

@@ -505,6 +505,8 @@ $defs:
     properties:
       schema:
         $dynamicRef: '#meta'
+      itemSchema:
+        $dynamicRef: '#meta'
       encoding:
         type: object
         additionalProperties:

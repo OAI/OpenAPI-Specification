@@ -5246,18 +5246,18 @@ components:
 
 In this example, the retrieval URIs are irrelevant because both documents define `$self`.
 
-For the relative `$ref` in the first document, it is resolved against `$self` to produce `https://example.com/shared/foo#/components/requestBodies/Foo`.
+For the relative `$ref` in the first document, it is resolved against `$self` to produce `https://example.com/api/shared/foo#/components/requestBodies/Foo`.
 The portion of that URI before the '#' matches the `$self` of the second document, so the reference target is resolved to `#/components/requestBodies/Foo` in that second document.
 
 In that document, the `$ref` in the Request Body Object is resolved using that document's `$self` as the base URI, producing `https://example.com/api/schemas/foo`.
 This matches the `$id` at `#/components/schemas/Foo/$id` so it points to that Schema Object.
-That Schema Object has a subschema with `$ref: bar`, which is resolved against the `$id` to produce `https://example.com/schemas/bar`, which matches the `$id` at `#/components/schemas/Bar/$id`.
+That Schema Object has a subschema with `$ref: bar`, which is resolved against the `$id` to produce `https://example.com/api/schemas/bar`, which matches the `$id` at `#/components/schemas/Bar/$id`.
 
 Note that referring to a schema with a JSON Pointer that crosses a Schema Object with a `$id` [is not interoperable](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#name-json-pointer-fragments-and-).
 The JSON Schema specification does not address the case of using a pointer _to_ a Schema Object containing an `$id` without crossing into that Schema Object.
 Therefore it is RECOMMENDED that OAD authors use `$id` values to reference such schemas rather than JSON Pointers.
 
-Note also that it is impossible for the reference at `#/components/schemas/Foo/properties/bar/$ref` to reference the schema at `#/components/schemas/Bar` using a JSON Pointer, as the JSON Pointer would be resolved relative to `https://example.com/schemas/foo`, not to the OpenAPI Document's base URI from `$self`.
+Note also that it is impossible for the reference at `#/components/schemas/Foo/properties/bar/$ref` to reference the schema at `#/components/schemas/Bar` using a JSON Pointer, as the JSON Pointer would be resolved relative to `https://example.com/api/schemas/foo`, not to the OpenAPI Document's base URI from `$self`.
 
 ### Base URI From Encapsulating Entity
 

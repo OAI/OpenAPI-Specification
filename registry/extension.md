@@ -13,7 +13,7 @@ parent: Registry
 
 ## Contributing
 
-Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls)and
+Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls) and
 follow the instructions in the
 [`CONTRIBUTING.md` file in the `gh-pages` branch](https://github.com/OAI/OpenAPI-Specification/blob/gh-pages/CONTRIBUTING.md),
 or open an [Issue](https://github.com/OAI/OpenAPI-Specification/issues)

@@ -1918,13 +1918,13 @@ content:
             const: addString
       - properties:
           event:
-            const: addNumber
+            const: addInt64
           data:
             $comment: |
               Since the data field is a string,
-              we need a format to signal that
-              it should be handled as a number
-            format: double
+              we need a format to signal that it
+              should be handled as a 64-bit integer.
+            format: int64
       - properties:
           event:
             const: addJson
@@ -1953,7 +1953,7 @@ data: This data is formatted
 data: across two lines
 retry: 5
 
-event: addNumber
+event: addInt64
 data: 1234.5678
 unknownField: this is ignored
 
@@ -1966,7 +1966,7 @@ To more clearly see how this stream is handled, the following is the equivalent 
 
 ```JSONL
 {"event": "addString", "data": "This data is formatted\nacross two lines", "retry": 5}
-{"event": "addNumber", "data": "1234.5678"}
+{"event": "addInt64", "data": "1234.5678"}
 {"event": "addJSON", "data": "{\"foo\": 42}"}
 ```
 

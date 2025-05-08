@@ -48,22 +48,99 @@ hljs.registerLanguage('uri', function() {
       ],
     }
   });
-hljs.registerLanguage('eventstream', function() {
+hljs.registerLanguage('multipart', function() {
     return {
+      // This is a very limited approach that only
+      // detects boundaries and headers that start
+      // with "Content-"
       contains: [
           {
-              scope: "attr",
-              begin: /^/,
-              end: ":",
+              scope: "meta",
+              match: /^--.*$/,
           },
           {
               scope: "literal",
-              begin: /: */,
+              begin: /^Content-/,
               end: /$/,
+              contains: [
+                {
+                    scope: "attr",
+                    begin: " ",
+                    end: /$/,
+                },
+              ]
           },
       ],
     }
   });
+hljs.registerLanguage('eventstream', function() {
+    return {
+      contains: [
+          {
+              scope: "comment",
+              begin: /^:/,
+              end: /$/,
+          },
+          {
+              scope: "attr",
+              match: /^[^:]+/
+          },
+      ],
+    }
+  });
+hljs.registerLanguage('jsonseq', function() {
+    return {
+      keywords: ["true", "false", "null"],
+      contains: [
+          {
+              scope: "meta",
+              match: /0[xX]1[eE]/,
+          },
+          {
+              scope: "attr",
+              begin: /"(\\.|[^\\"\r\n])*"(?=\s*:)/,
+              relevance: 1.01
+          },
+          {
+              scope: "punctuation",
+              match: /[{}[\],:]/,
+              relevance: 0
+          },
+          {
+              scope: "literals",
+              beginKeywords: ["true", "false" , "null"].join(" "),
+          },
+          hljs.QUOTE_STRING_MODE,
+          hljs.C_NUMBER_MODE
+      ]
+    }
+  });
+hljs.registerLanguage('jsonl', function() {
+    return {
+      aliases: ["ndjson"],
+      keywords: ["true", "false", "null"],
+      contains: [
+          {
+              scope: 'attr',
+              begin: /"(\\.|[^\\"\r\n])*"(?=\s*:)/,
+              relevance: 1.01
+          },
+          {
+              scope: "punctuation",
+              match: /[{}[\],:]/,
+              relevance: 0
+          },
+          {
+              scope: "literals",
+              beginKeywords: ["true", "false" , "null"].join(" "),
+          },
+          hljs.QUOTE_STRING_MODE,
+          hljs.C_NUMBER_MODE
+      ]
+    }
+  });
+
+
 const cheerio = require('cheerio');
 
 let argv = require('yargs')

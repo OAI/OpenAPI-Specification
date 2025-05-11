@@ -5277,7 +5277,7 @@ RFC2557 was written to allow sending hyperlinked sets of documents as email atta
 ```MULTIPART
 --boundary-example
 Content-Type: application/openapi+yaml
-Content-Location: https://inaccessible-domain.com/api/openapi.yaml
+Content-Location: https://example.com/api/openapi.yaml
 
 openapi: 3.2.0
 info:

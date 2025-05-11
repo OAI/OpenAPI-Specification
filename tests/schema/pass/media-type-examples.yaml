@@ -30,6 +30,9 @@ paths:
                   breed: Mixed
               frog:
                 $ref: '#/components/examples/frog-example'
+          application/jsonl:
+            itemSchema:
+              $ref: '#components/schemas/Pet'
           application/x-www-form-urlencoded:
             schema:
               type: object

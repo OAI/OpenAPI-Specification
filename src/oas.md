@@ -84,6 +84,40 @@ Some examples of possible media type definitions:
   application/vnd.github.v3.patch
 ```
 
+JSON-based and JSON-compatible YAML-based media types can make direct use of the [Schema Object](#schema-object) as the Object uses JSON Schema.
+The use of the Schema Object with other media types is handled by mapping them into the JSON Schema [instance data model](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#name-instance-data-model).
+These mappings may be implicit based on the media type, or explicit based on the values of particular fields.
+Each mapping is addressed where the relevant media type is discussed in this section or under the [Media Type Object](#media-type-object) or [Encoding Object](#encoding-object)
+
+#### Sequential Media Types
+
+Within this specification, a _sequential media type_ is defined as any media type that consists of a repeating structure, without any sort of header, footer, envelope, or other metadata in addition to the sequence.
+
+Some examples of sequential media types (including some that are not IANA-registered but are in common use) are:
+
+```text
+  application/jsonl
+  application/x-ndjson
+  application/json-seq
+  application/geo+json-seq
+  text/event-stream
+```
+
+In the first three above, the repeating structure is any [JSON value](https://tools.ietf.org/html/rfc8259#section-3).
+The fourth repeats `application/geo+json`-structured values, while the last repeats a custom text format related to Server-Sent Events.
+
+Implementations MUST support mapping sequential media types into the JSON Schema data model by treating them as if the values were in an array in the same order.
+
+See [Complete vs Streaming Content](#complete-vs-streaming-content) for more information on handling sequential media type in a streaming context, including special considerations for `text/event-stream` content.
+
+#### Media Type Registry
+
+While the [Schema Object](#schema-object) is designed to describe and validate JSON, several other media types are commonly used in APIs.
+Requirements regarding support for other media types are documented in this Media Types section and in several Object sections later in this specification.
+For convenience and future extensibility, these are cataloged in the OpenAPI Initiative's [Media Type Registry](https://spec.openapis.org/registry/media-type/), which indicates where in this specification the relevant requirements can be found.
+
+See also the [Media Type Object](#media-type-object) for further information on working with specific media types.
+
 ### HTTP Status Codes
 
 The HTTP Status Codes are used to indicate the status of the executed operation.
@@ -279,7 +313,7 @@ The `contentMediaType` keyword is redundant if the media type is already set:
 
 If the [Schema Object](#schema-object) will be processed by a non-OAS-aware JSON Schema implementation, it may be useful to include `contentMediaType` even if it is redundant. However, if `contentMediaType` contradicts a relevant Media Type Object or Encoding Object, then `contentMediaType` SHALL be ignored.
 
-The `maxLength` keyword MAY be used to set an expected upper bound on the length of a streaming payload. The keyword can be applied to either string data, including encoded binary data, or to unencoded binary data. For unencoded binary, the length is the number of octets.
+See [Complete vs Streaming Content](#complete-vs-streaming-content) for guidance on streaming binary payloads.
 
 ##### Migrating binary descriptions from OAS 3.0
 
@@ -1602,7 +1636,8 @@ content:
 
 #### Media Type Object
 
-Each Media Type Object provides schema and examples for the media type identified by its key.
+Each Media Type Object describes content structured in accordance with the media type identified by its key.
+Multiple Media Type Objects can be used to describe content that can appear in any of several different media types.
 
 When `example` or `examples` are provided, the example SHOULD match the specified schema and be in the correct format as specified by the media type and its encoding.
 The `example` and `examples` fields are mutually exclusive, and if either is present it SHALL _override_ any `example` in the schema.
@@ -1612,12 +1647,63 @@ See [Working With Examples](#working-with-examples) for further guidance regardi
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="media-type-schema"></a>schema | [Schema Object](#schema-object) | The schema defining the content of the request, response, parameter, or header. |
+| <a name="media-type-schema"></a>schema | [Schema Object](#schema-object) | A schema describing the complete content of the request, response, parameter, or header. |
+| <a name="media-type-item-schema"></a>itemSchema | [Schema Object](#schema-object) | A schema describing each item within a [sequential media type](#sequential-media-types). |
 | <a name="media-type-example"></a>example | Any | Example of the media type; see [Working With Examples](#working-with-examples). |
 | <a name="media-type-examples"></a>examples | Map[ `string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | Examples of the media type; see [Working With Examples](#working-with-examples). |
 | <a name="media-type-encoding"></a>encoding | Map[`string`, [Encoding Object](#encoding-object)] | A map between a property name and its encoding information, as defined under [Encoding Usage and Restrictions](#encoding-usage-and-restrictions).  The `encoding` field SHALL only apply when the media type is `multipart` or `application/x-www-form-urlencoded`. If no Encoding Object is provided for a property, the behavior is determined by the default values documented for the Encoding Object. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
+
+See also the [Media Type Registry](#media-type-registry).
+
+##### Complete vs Streaming Content
+
+The `schema` field MUST be applied to the complete content, as defined by the media type and the context ([Request Body Object](#request-body-object), [Response Object](#response-object), [Parameter Object](#parameter-object), or [Header Object](#header-object).
+Because this requires loading the content into memory in its entirety, it poses a challenge for streamed content.
+Use cases where client is intended to choose when to stop reading are particularly challenging as there is no well-defined end to the stream.
+
+###### Binary Streams
+
+The `maxLength` keyword MAY be used to set an expected upper bound on the length of a streaming payload that consists of either string data, including encoded binary data, or unencoded binary data.
+For unencoded binary, the length is the number of octets.
+For this use case, `maxLength` MAY be implemented outside of regular JSON Schema evaluation as JSON Schema does not directly apply to binary data, and an encoded binary stream may be impractical to store in memory in its entirety.
+
+###### Streaming Sequential Media Types
+
+The `itemSchema` field is provided to support streaming use cases for sequential media types.
+Unlike `schema`, which is applied to the complete content (treated as an array as described in the [sequential media types](#sequential-media-types) section), `itemSchema` MUST be applied to each item in the stream independently, which supports processing each item as it is read from the stream.
+
+Both `schema` and `itemSchema` MAY be used in the same Media Type Object.
+However, doing so is unlikely to have significant advantages over using the `items` keyword within the `schema` field.
+
+##### Special Considerations for `text/event-stream` Content
+
+For `text/event-stream`, implementations MUST work with event data after it has been parsed according to the [`text/event-stream` specification](https://html.spec.whatwg.org/multipage/server-sent-events.html#parsing-an-event-stream), including all guidance on ignoring certain fields (including comments) and/or values, and on combining values split across multiple lines.
+
+Field value types MUST be handled as specified by the `text/event-stream` specification (e.g. the `retry` field value is modeled as a JSON number that is expected to be of JSON Schema `type: integer`), and fields not given an explicit value type MUST be handled as strings.
+
+Some users of `text/event-stream` use a format such as JSON for field values, particularly the `data` field.
+Use JSON Schema's keywords for working with the [contents of string-encoded data](https://www.ietf.org/archive/id/draft-bhutton-json-schema-validation-01.html#name-a-vocabulary-for-the-conten), particularly `contentMediaType` and `contentSchema`, to describe and validate such fields with more detail than string-related validation keywords such as `pattern` can support.
+Note that `contentSchema` is [not automatically validated by default](https://www.ietf.org/archive/id/draft-bhutton-json-schema-validation-01.html#name-implementation-requirements-2) (see also the [Non-validating constraint keywords](#non-validating-constraint-keywords) section of this specification).
+
+The following Schema Object is a generic schema for the `text/event-stream` media type as documented by the HTML specification as of the time of this writing:
+
+```YAML
+type: object
+required:
+- data
+properties:
+  data:
+    type: string
+  event:
+    type: string
+  id:
+    type: string
+  retry:
+    type: integer
+    minimum: 0
+```
 
 ##### Encoding Usage and Restrictions
 
@@ -1644,40 +1730,12 @@ See [Encoding `multipart` Media Types](#encoding-multipart-media-types) for furt
 
 ##### Media Type Examples
 
-```json
-{
-  "application/json": {
-    "schema": {
-      "$ref": "#/components/schemas/Pet"
-    },
-    "examples": {
-      "cat": {
-        "summary": "An example of a cat",
-        "value": {
-          "name": "Fluffy",
-          "petType": "Cat",
-          "color": "White",
-          "gender": "male",
-          "breed": "Persian"
-        }
-      },
-      "dog": {
-        "summary": "An example of a dog with a cat's name",
-        "value": {
-          "name": "Puma",
-          "petType": "Dog",
-          "color": "Black",
-          "gender": "Female",
-          "breed": "Mixed"
-        }
-      },
-      "frog": {
-        "$ref": "#/components/examples/frog-example"
-      }
-    }
-  }
-}
-```
+For form-related media type examples, see the [Encoding Object](#encoding-object).
+
+###### JSON
+
+Note that since this example is written in YAML, the Example Object `value` field can be formatted as YAML due to the trivial conversion to JSON.
+This avoids needing to embed JSON as a string.
 
 ```yaml
 application/json:
@@ -1702,6 +1760,214 @@ application/json:
         breed: Mixed
     frog:
       $ref: '#/components/examples/frog-example'
+```
+
+Alternatively, since all JSON is valid YAML, the example value can use JSON syntax within a YAML document:
+
+```yaml
+application/json:
+  schema:
+    $ref: '#/components/schemas/Pet'
+  examples:
+    cat:
+      summary: An example of a cat
+      value: {
+        "name": "Fluffy",
+        "petType": "Cat",
+        "color": "White",
+        "gender": "male",
+        "breed": "Persian"
+      }
+    dog:
+      summary: An example of a dog with a cat's name
+      value: {
+        "name": "Puma",
+        "petType": "Dog",
+        "color": "Black",
+        "gender": "Female",
+        "breed": "Mixed"
+      }
+    frog:
+      $ref: '#/components/examples/frog-example'
+```
+
+###### Sequential JSON
+
+For any [sequential media type](#sequential-media-types) where the items in the sequence are JSON values, no conversion of each value is required.
+JSON Text Sequences ([[?RFC7464]] `application/json-seq` and [[?RFC8091]] the `+json-seq` structured suffix), [JSON Lines](https://jsonlines.org/) (`application/jsonl`), and [NDJSON](https://github.com/ndjson/ndjson-spec) (`application/x-ndjson`) are all in this category.
+Note that the media types for JSON Lines and NDJSON are not registered with the IANA, but are in common use.
+
+The following example shows Media Type Objects for both streaming log entries and returning a fixed-length set in response to a query.
+This shows the relationship between `schema` and `itemSchema`, and when to use each even though the `examples` field is the same either way.
+
+```YAML
+components:
+  schemas:
+    LogEntry:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        level:
+          type: integer
+          minimum: 0
+        message:
+          type: string
+    Log:
+      type: array
+      items:
+        $ref: "#/components/schemas/LogEntry"
+      maxItems: 100
+  examples:
+    LogJSONSeq:
+      summary: Log entries in application/json-seq
+      # JSON Text Sequences require an unprintable character
+      # that cannot be escaped in a YAML string, and therefore
+      # must be placed in an external document shown below
+      externalValue: examples/log.json-seq
+    LogJSONPerLine:
+      summary: Log entries in application/jsonl or application/x-ndjson
+      description: JSONL and NDJSON are identical for this example
+      # Note that the value must be written as a string with newlines,
+      # as JSONL and NDJSON are not valid YAML
+      value: |
+        {"timestamp": "1985-04-12T23:20:50.52Z", "level": 1, "message": "Hi!"}
+        {"timestamp": "1985-04-12T23:20:51.37Z", "level": 1, "message": "Bye!"}
+  responses:
+    LogStream:
+      description: |
+        A stream of JSON-format log messages that can be read
+        for as long as the application is running, and is available
+        in any of the sequential JSON media types.
+      content:
+        application/json-seq:
+          itemSchema:
+            $ref: "#/components/schemas/LogEntry"
+          examples:
+            JSON-SEQ:
+              $ref: "#/components/examples/LogJSONSeq"
+        application/jsonl:
+          itemSchema:
+            $ref: "#/components/schemas/LogEntry"
+          examples:
+            JSONL:
+              $ref: "#/components/examples/LogJSONPerLine"
+        application/x-ndjson:
+          itemSchema:
+            $ref: "#/components/schemas/LogEntry"
+          examples:
+            NDJSON:
+              $ref: "#/components/examples/LogJSONPerLine"
+    LogExcerpt:
+      description: |
+        A response consisting of no more than 100 log records,
+        generally as a result of a query of the historical log,
+        available in any of the sequential JSON media types.
+      content:
+        application/json-seq:
+          schema:
+            $ref: "#/components/schemas/Log"
+          examples:
+            JSON-SEQ:
+              $ref: "#/components/examples/LogJSONSeq"
+        application/jsonl:
+          schema:
+            $ref: "#/components/schemas/Log"
+          examples:
+            JSONL:
+              $ref: "#/components/examples/LogJSONPerLine"
+        application/x-ndjson:
+          schema:
+            $ref: "#/components/schemas/Log"
+          examples:
+            NDJSON:
+              $ref: "#/components/examples/LogJSONPerLine"
+```
+
+Our `application/json-seq` example has to be an external document because of the use of both newlines and of the unprintable Record Separator (`0x1E`) character, which cannot be escaped in YAML block literals:
+
+```JSONSEQ
+0x1E{
+  "timestamp": "1985-04-12T23:20:50.52Z",
+  "level": 1,
+  "message": "Hi!"
+}
+0x1E{
+  "timestamp": "1985-04-12T23:20:51.37Z",
+  "level": 1,
+  "message": "Bye!"
+}
+```
+
+###### Server-Sent Event Streams
+
+For this example, assume that the generic event schema provided in the "Special Considerations for `text/event-stream` Content" section is available at `#/components/schemas/Event`:
+
+```YAML
+description: A request body to add a stream of typed data.
+required: true
+content:
+  text/event-stream:
+    itemSchema:
+      $ref: "#/components/schemas/Event"
+      required: [event]
+      oneOf:
+      - properties:
+          event:
+            const: addString
+      - properties:
+          event:
+            const: addInt64
+          data:
+            $comment: |
+              Since the data field is a string,
+              we need a format to signal that it
+              should be handled as a 64-bit integer.
+            format: int64
+      - properties:
+          event:
+            const: addJson
+          data:
+            $comment: |
+              These content fields indicate
+              that the string value should
+              be parsed and validated as a
+              JSON document (since JSON is not
+              a binary format, contentEncoding
+              is not needed)
+            contentMediaType: application/json
+            contentSchema:
+              type: object
+              required: [foo]
+              properties:
+                foo:
+                  type: integer
+```
+
+The following `text/event-stream` document is an example of a valid request body for the above example:
+
+```EVENTSTREAM
+event: addString
+data: This data is formatted
+data: across two lines
+retry: 5
+
+event: addInt64
+data: 1234.5678
+unknownField: this is ignored
+
+: This is a comment
+event: addJSON
+data: {"foo": 42}
+```
+
+To more clearly see how this stream is handled, the following is the equivalent JSON Lines document, which shows how the numeric and JSON data are handled as strings, and how unknown fields and comments are ignored and not passed to schema validation:
+
+```JSONL
+{"event": "addString", "data": "This data is formatted\nacross two lines", "retry": 5}
+{"event": "addInt64", "data": "1234.5678"}
+{"event": "addJSON", "data": "{\"foo\": 42}"}
 ```
 
 ##### Considerations for File Uploads

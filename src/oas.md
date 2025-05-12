@@ -5251,7 +5251,7 @@ components:
 
 In this example, the retrieval URIs are irrelevant because both documents define `$self`.
 
-For the relative `$ref` in the first document, it is resolved against `$self` to produce `https://example.com/api/shared/foo#/components/requestBodies/Foo`.
+The relative `$ref` in the first document is resolved against `$self` to produce `https://example.com/api/shared/foo#/components/requestBodies/Foo`.
 The portion of that URI before the '#' matches the `$self` of the second document, so the reference target is resolved to `#/components/requestBodies/Foo` in that second document.
 
 In that document, the `$ref` in the Request Body Object is resolved using that document's `$self` as the base URI, producing `https://example.com/api/schemas/foo`.

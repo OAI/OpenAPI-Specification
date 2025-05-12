@@ -5297,7 +5297,7 @@ components:
         bar:
           $ref: schemas/bar
 --boundary-example
-Content-Type: application/schema+json; schema=https://spec.openapis.org/oas/3.2/schema-base/YYYY-MM-DD
+Content-Type: application/schema+json
 Content-Location: https://example.com/api/schemas/bar
 
 {

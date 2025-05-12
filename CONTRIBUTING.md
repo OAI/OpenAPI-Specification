@@ -56,8 +56,9 @@ Make a local clone of your fork and check out the
 
 Working in the `gh-pages` branch,
 add a new Markdown file in `registries/_namespace/`. The file name
-should be the namespace name with a `.md` extension. For example,
-to add an extension namespace `abc` for extensions named `x-abc-*`,
+should be the namespace name with a `.md` extension, without the `x-`
+prefix.
+For example, to add an extension namespace `abc` for extensions named `x-abc-*`,
 create `registries/_namespace/abc.md`. Use the following template,
 replacing the instruction text in `<<instruction-text>>` markers:
 
@@ -89,13 +90,13 @@ the site as described above and view
 [http://127.0.0.1:4000/registry/namespace/index.html](http://127.0.0.1:4000/registry/namespace/index.html)
 to verify your namespace is listed.
 (Modify the URL if Jekyll is running on a different IP or port.)
-The namespace name in Value column
+The namespace name in __Value__ column
 should link to your namespace page, and the __Description__
 text should be the `description:` from the Markdown frontmatter.
 
 Preview your content at
 `http://127.0.0.1:4000/registry/namespace/abc.html`
-(change `abc` in to your namespace URL).
+(change `abc` in to your namespace name in the URL).
 
 ### Add a New Specification Extension Registry Entry
 
@@ -147,9 +148,9 @@ Build the site locally as described above.
 Preview [http://127.0.0.1:4000/registry/extension/](http://127.0.0.1:4000/registry/extension/).
 
 (Modify the URL if Jekyll is running on a different IP or port.)
-Verify that you specification extension
-should is listed. The __Value__ column should contain you extension name
-with a link to you documentation, such as
+Verify that your specification extension
+is listed. The __Value__ column should contain your extension name
+with a link to your documentation, such as
 `http://127.0.0.1:4000/registry/extension/x-abc-wander.html`,
 and the __Description__ should be your brief description.
 

@@ -420,8 +420,8 @@ This is the root object of the [OpenAPI Description](#openapi-description).
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
-Implementations MAY choose to support referencing OpenAPI Documents that contain `$self` by another URI such as the retrieval URI, however this behavior is not interoperable and relying on it is NOT RECOMMENDED.
-OAD authors MUST write references using the target document's `$self` URI in order to have interoperable behavior.
+To ensure interoperability, references MUST use the target document's `$self` URI if the `$self` field is present.
+Implementations MAY choose to support referencing by other URIs such as the retrieval URI even when `$self` is present, however this behavior is not interoperable and relying on it is NOT RECOMMENDED.
 
 #### Info Object
 
@@ -5258,11 +5258,10 @@ In that document, the `$ref` in the Request Body Object is resolved using that d
 This matches the `$id` at `#/components/schemas/Foo/$id` so it points to that Schema Object.
 That Schema Object has a subschema with `$ref: bar`, which is resolved against the `$id` to produce `https://example.com/api/schemas/bar`, which matches the `$id` at `#/components/schemas/Bar/$id`.
 
-Note that referring to a schema with a JSON Pointer that crosses a Schema Object with a `$id` [is not interoperable](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#name-json-pointer-fragments-and-).
-The JSON Schema specification does not address the case of using a pointer _to_ a Schema Object containing an `$id` without crossing into that Schema Object.
-Therefore it is RECOMMENDED that OAD authors use `$id` values to reference such schemas rather than JSON Pointers.
+To guarantee interoperability, Schema Objects containing an `$id`, or that are under a schema containing an `$id`, MUST be referenced by the nearest such `$id` for the non-fragment part of the reference.
+As the JSON Schema specification notes, using a base URI other than the nearest `$id` and crossing that `$id` with a JSON Pointer fragment [is not interoperable](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#name-json-pointer-fragments-and-).
 
-Note also that it is impossible for the reference at `#/components/schemas/Foo/properties/bar/$ref` to reference the schema at `#/components/schemas/Bar` using a JSON Pointer, as the JSON Pointer would be resolved relative to `https://example.com/api/schemas/foo`, not to the OpenAPI Document's base URI from `$self`.
+Note also that it is impossible for the reference at `#/components/schemas/Foo/properties/bar/$ref` to reference the schema at `#/components/schemas/Bar` using _only_ a JSON Pointer fragment, as the JSON Pointer would be resolved relative to `https://example.com/api/schemas/foo`, not to the OpenAPI Document's base URI from `$self`.
 
 ### Base URI From Encapsulating Entity
 
@@ -5367,7 +5366,7 @@ While this sort of internal resolution an be performed in practice without choos
 
 ### Resolving Relative `$self` and `$id`
 
-Let's re-consider the first example in this appendix, but with relative URI-references for `$self` and `$id`, and retrieval URLs that support that relative usage:
+Let's re-consider the first example in this appendix, but with relative URI-references for `$self` and `$id`, and retrieval URIs that support that relative usage:
 
 
 Assume that the following is retrieved from `https://staging.example.com/api/openapi`:
@@ -5412,5 +5411,5 @@ components:
 ```
 
 In this example, all of the `$self` and `$id` values are relative URI-references consisting of an absolute path.
-This allows the retrieval URL to set the host (and scheme), in this case `https://staging.example.com`, resulting in the first document's `$self` being `https://staging.example.com/openapi`, and the second document's `$self` being `https://staging.example.com/api/shared/foo`, with `$id` values of `https://staging.example.com/api/schemas/foo` and `https://staging.example.com/api/schemas/bar`.
+This allows the retrieval URI to set the host (and scheme), in this case `https://staging.example.com`, resulting in the first document's `$self` being `https://staging.example.com/openapi`, and the second document's `$self` being `https://staging.example.com/api/shared/foo`, with `$id` values of `https://staging.example.com/api/schemas/foo` and `https://staging.example.com/api/schemas/bar`.
 Relative `$self` and `$id` values of this sort  allow the same set of documents to work when deployed to other hosts, e.g. `https://example.com` (production) or `https://localhost:8080` (local development).

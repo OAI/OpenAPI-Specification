@@ -96,7 +96,7 @@ text should be the `description:` from the Markdown frontmatter.
 
 Preview your content at
 `http://127.0.0.1:4000/registry/namespace/abc.html`
-(change `abc` in to your namespace name in the URL).
+(change `abc` to your namespace name in the URL).
 
 ### Add a New Specification Extension Registry Entry
 

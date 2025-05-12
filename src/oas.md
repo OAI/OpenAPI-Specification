@@ -387,7 +387,7 @@ servers:
   description: The test API on this device
 ```
 
-For API URLs, the `$self` field, which identifies the OpenAPI Document, is ignored, and the retrieval URI is used instead. This produces a normalized production URL of `https://device1.example.com`, and a normalized test URL of `https://device1.example.com/test`.
+For API URLs the `$self` field, which identifies the OpenAPI Document, is ignored and the retrieval URI is used instead. This produces a normalized production URL of `https://device1.example.com`, and a normalized test URL of `https://device1.example.com/test`.
 
 ### Schema
 
@@ -5329,8 +5329,6 @@ Similarly, the `url` field of the [External Documentation Object](#external-docu
 
 If no base URI is provided from either of the previous sources, the next source is the retrieval URI (RFC 3986 Section 5.1.3).
 
-For this example, assume that the YAML OpenAPI Document was retrieved from `https://example.com/api/openapis.yaml` and the JSON Schema document from `https://example.com/api/schemas/foo`
-
 Assume this document was retrieved from `https://example.com/api/openapis.yaml`:
 
 ```YAML
@@ -5413,6 +5411,6 @@ components:
       type: string
 ```
 
-In this example, All of the `$self` and `$id` values are relative URI-references consisting of an absolute path.
+In this example, all of the `$self` and `$id` values are relative URI-references consisting of an absolute path.
 This allows the retrieval URL to set the host (and scheme), in this case `https://staging.example.com`, resulting in the first document's `$self` being `https://staging.example.com/openapi`, and the second document's `$self` being `https://staging.example.com/api/shared/foo`, with `$id` values of `https://staging.example.com/api/schemas/foo` and `https://staging.example.com/api/schemas/bar`.
 Relative `$self` and `$id` values of this sort  allow the same set of documents to work when deployed to other hosts, e.g. `https://example.com` (production) or `https://localhost:8080` (local development).

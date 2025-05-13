@@ -152,14 +152,7 @@ Occasionally, non-backwards compatible changes may be made in `minor` versions o
 ### Format
 
 An OpenAPI Document that conforms to the OpenAPI Specification is itself a JSON object, which may be represented either in [[RFC8259|JSON]] or [[YAML|YAML]] format.
-
-For example, if a field has an array value, the JSON array representation will be used:
-
-```json
-{
-  "field": [1, 2, 3]
-}
-```
+Examples in this specification will be shown in YAML for brevity.
 
 All field names in the specification are **case sensitive**.
 This includes all fields that are used as keys in a map, except where explicitly noted that keys are **case insensitive**.
@@ -409,25 +402,6 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 
 ##### Info Object Example
 
-```json
-{
-  "title": "Example Pet Store App",
-  "summary": "A pet store manager.",
-  "description": "This is an example server for a pet store.",
-  "termsOfService": "https://example.com/terms/",
-  "contact": {
-    "name": "API Support",
-    "url": "https://www.example.com/support",
-    "email": "support@example.com"
-  },
-  "license": {
-    "name": "Apache 2.0",
-    "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
-  },
-  "version": "1.0.1"
-}
-```
-
 ```yaml
 title: Example Pet Store App
 summary: A pet store manager.
@@ -459,14 +433,6 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 
 ##### Contact Object Example
 
-```json
-{
-  "name": "API Support",
-  "url": "https://www.example.com/support",
-  "email": "support@example.com"
-}
-```
-
 ```yaml
 name: API Support
 url: https://www.example.com/support
@@ -488,13 +454,6 @@ License information for the exposed API.
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
 ##### License Object Example
-
-```json
-{
-  "name": "Apache 2.0",
-  "identifier": "Apache-2.0"
-}
-```
 
 ```yaml
 name: Apache 2.0
@@ -520,14 +479,6 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 
 A single server would be described as:
 
-```json
-{
-  "url": "https://development.gigantic-server.com/v1",
-  "description": "Development server",
-  "name": "dev"
-}
-```
-
 ```yaml
 url: https://development.gigantic-server.com/v1
 description: Development server
@@ -535,28 +486,6 @@ name: dev
 ```
 
 The following shows how multiple servers can be described, for example, at the OpenAPI Object's [`servers`](#oas-servers):
-
-```json
-{
-  "servers": [
-    {
-      "url": "https://development.gigantic-server.com/v1",
-      "description": "Development server",
-      "name": "dev"
-    },
-    {
-      "url": "https://staging.gigantic-server.com/v1",
-      "description": "Staging server",
-      "name": "staging"
-    },
-    {
-      "url": "https://api.gigantic-server.com/v1",
-      "description": "Production server",
-      "name": "prod"
-    }
-  ]
-}
-```
 
 ```yaml
 servers:
@@ -572,31 +501,6 @@ servers:
 ```
 
 The following shows how variables can be used for a server configuration:
-
-```json
-{
-  "servers": [
-    {
-      "url": "https://{username}.gigantic-server.com:{port}/{basePath}",
-      "description": "The production API server",
-      "name": "prod",
-      "variables": {
-        "username": {
-          "default": "demo",
-          "description": "A user-specific subdomain. Use `demo` for a free sandbox environment."
-        },
-        "port": {
-          "enum": ["8443", "443"],
-          "default": "8443"
-        },
-        "basePath": {
-          "default": "v2"
-        }
-      }
-    }
-  ]
-}
-```
 
 ```yaml
 servers:
@@ -694,108 +598,6 @@ my.org.User
 ```
 
 ##### Components Object Example
-
-```json
-"components": {
-  "schemas": {
-    "GeneralError": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        }
-      }
-    },
-    "Category": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "Tag": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
-    }
-  },
-  "parameters": {
-    "skipParam": {
-      "name": "skip",
-      "in": "query",
-      "description": "number of items to skip",
-      "required": true,
-      "schema": {
-        "type": "integer",
-        "format": "int32"
-      }
-    },
-    "limitParam": {
-      "name": "limit",
-      "in": "query",
-      "description": "max records to return",
-      "required": true,
-      "schema" : {
-        "type": "integer",
-        "format": "int32"
-      }
-    }
-  },
-  "responses": {
-    "NotFound": {
-      "description": "Entity not found."
-    },
-    "IllegalInput": {
-      "description": "Illegal input for operation."
-    },
-    "GeneralError": {
-      "description": "General Error",
-      "content": {
-        "application/json": {
-          "schema": {
-            "$ref": "#/components/schemas/GeneralError"
-          }
-        }
-      }
-    }
-  },
-  "securitySchemes": {
-    "api_key": {
-      "type": "apiKey",
-      "name": "api-key",
-      "in": "header"
-    },
-    "petstore_auth": {
-      "type": "oauth2",
-      "flows": {
-        "implicit": {
-          "authorizationUrl": "https://example.org/api/oauth/dialog",
-          "scopes": {
-            "write:pets": "modify pets in your account",
-            "read:pets": "read your pets"
-          }
-        }
-      }
-    }
-  }
-}
-```
 
 ```yaml
 components:
@@ -905,31 +707,6 @@ The following may lead to ambiguous resolution:
 
 ##### Paths Object Example
 
-```json
-{
-  "/pets": {
-    "get": {
-      "description": "Returns all pets from the system that the user has access to",
-      "responses": {
-        "200": {
-          "description": "A list of pets.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/pet"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-```
-
 ```yaml
 /pets:
   get:
@@ -974,88 +751,6 @@ The path itself is still exposed to the documentation viewer but they will not k
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
 ##### Path Item Object Example
-
-```json
-{
-  "get": {
-    "description": "Returns pets based on ID",
-    "summary": "Find pets by ID",
-    "operationId": "getPetsById",
-    "responses": {
-      "200": {
-        "description": "pet response",
-        "content": {
-          "*/*": {
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/Pet"
-              }
-            }
-          }
-        }
-      },
-      "default": {
-        "description": "error payload",
-        "content": {
-          "text/html": {
-            "schema": {
-              "$ref": "#/components/schemas/ErrorModel"
-            }
-          }
-        }
-      }
-    }
-  },
-  "parameters": [
-    {
-      "name": "id",
-      "in": "path",
-      "description": "ID of pet to use",
-      "required": true,
-      "schema": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
-      },
-      "style": "simple"
-    }
-  ],
-  "additionalOperations": {
-    "COPY": {
-      "description": "Copies pet information based on ID",
-      "summary": "Copies pets by ID",
-      "operationId": "copyPetsById",
-      "responses": {
-        "200": {
-          "description": "pet response",
-          "content": {
-            "*/*": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              }
-            }
-          }
-        },
-        "default": {
-          "description": "error payload",
-          "content": {
-            "text/html": {
-              "schema": {
-                "$ref": "#/components/schemas/ErrorModel"
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-```
 
 ```yaml
 get:
@@ -1134,66 +829,6 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 
 ##### Operation Object Example
 
-```json
-{
-  "tags": ["pet"],
-  "summary": "Updates a pet in the store with form data",
-  "operationId": "updatePetWithForm",
-  "parameters": [
-    {
-      "name": "petId",
-      "in": "path",
-      "description": "ID of pet that needs to be updated",
-      "required": true,
-      "schema": {
-        "type": "string"
-      }
-    }
-  ],
-  "requestBody": {
-    "content": {
-      "application/x-www-form-urlencoded": {
-        "schema": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "description": "Updated name of the pet",
-              "type": "string"
-            },
-            "status": {
-              "description": "Updated status of the pet",
-              "type": "string"
-            }
-          },
-          "required": ["status"]
-        }
-      }
-    }
-  },
-  "responses": {
-    "200": {
-      "description": "Pet updated.",
-      "content": {
-        "application/json": {},
-        "application/xml": {}
-      }
-    },
-    "405": {
-      "description": "Method Not Allowed",
-      "content": {
-        "application/json": {},
-        "application/xml": {}
-      }
-    }
-  },
-  "security": [
-    {
-      "petstore_auth": ["write:pets", "read:pets"]
-    }
-  ]
-}
-```
-
 ```yaml
 tags:
   - pet
@@ -1251,13 +886,6 @@ Allows referencing an external resource for extended documentation.
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
 ##### External Documentation Object Example
-
-```json
-{
-  "description": "Find more info here",
-  "url": "https://example.com"
-}
-```
 
 ```yaml
 description: Find more info here
@@ -1388,23 +1016,6 @@ The following table shows examples, as would be shown with the `example` or `exa
 
 A header parameter with an array of 64-bit integer numbers:
 
-```json
-{
-  "name": "token",
-  "in": "header",
-  "description": "token to be passed as a header",
-  "required": true,
-  "schema": {
-    "type": "array",
-    "items": {
-      "type": "integer",
-      "format": "int64"
-    }
-  },
-  "style": "simple"
-}
-```
-
 ```yaml
 name: token
 in: header
@@ -1420,18 +1031,6 @@ style: simple
 
 A path parameter of a string value:
 
-```json
-{
-  "name": "username",
-  "in": "path",
-  "description": "username to fetch",
-  "required": true,
-  "schema": {
-    "type": "string"
-  }
-}
-```
-
 ```yaml
 name: username
 in: path
@@ -1442,23 +1041,6 @@ schema:
 ```
 
 An optional query parameter of a string value, allowing multiple values by repeating the query parameter:
-
-```json
-{
-  "name": "id",
-  "in": "query",
-  "description": "ID of the object to fetch",
-  "required": false,
-  "schema": {
-    "type": "array",
-    "items": {
-      "type": "string"
-    }
-  },
-  "style": "form",
-  "explode": true
-}
-```
 
 ```yaml
 name: id
@@ -1475,20 +1057,6 @@ explode: true
 
 A free-form query parameter, allowing undefined parameters of a specific type:
 
-```json
-{
-  "in": "query",
-  "name": "freeForm",
-  "schema": {
-    "type": "object",
-    "additionalProperties": {
-      "type": "integer"
-    }
-  },
-  "style": "form"
-}
-```
-
 ```yaml
 in: query
 name: freeForm
@@ -1500,29 +1068,6 @@ style: form
 ```
 
 A complex parameter using `content` to define serialization:
-
-```json
-{
-  "in": "query",
-  "name": "coordinates",
-  "content": {
-    "application/json": {
-      "schema": {
-        "type": "object",
-        "required": ["lat", "long"],
-        "properties": {
-          "lat": {
-            "type": "number"
-          },
-          "long": {
-            "type": "number"
-          }
-        }
-      }
-    }
-  }
-}
-```
 
 ```yaml
 in: query
@@ -1558,52 +1103,6 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 ##### Request Body Examples
 
 A request body with a referenced schema definition.
-
-```json
-{
-  "description": "user to add to the system",
-  "content": {
-    "application/json": {
-      "schema": {
-        "$ref": "#/components/schemas/User"
-      },
-      "examples": {
-        "user": {
-          "summary": "User Example",
-          "externalValue": "https://foo.bar/examples/user-example.json"
-        }
-      }
-    },
-    "application/xml": {
-      "schema": {
-        "$ref": "#/components/schemas/User"
-      },
-      "examples": {
-        "user": {
-          "summary": "User example in XML",
-          "externalValue": "https://foo.bar/examples/user-example.xml"
-        }
-      }
-    },
-    "text/plain": {
-      "examples": {
-        "user": {
-          "summary": "User example in Plain text",
-          "externalValue": "https://foo.bar/examples/user-example.txt"
-        }
-      }
-    },
-    "*/*": {
-      "examples": {
-        "user": {
-          "summary": "User example in other format",
-          "externalValue": "https://foo.bar/examples/user-example.whatever"
-        }
-      }
-    }
-  }
-}
-```
 
 ```yaml
 description: user to add to the system
@@ -1689,7 +1188,7 @@ Note that `contentSchema` is [not automatically validated by default](https://ww
 
 The following Schema Object is a generic schema for the `text/event-stream` media type as documented by the HTML specification as of the time of this writing:
 
-```YAML
+```yaml
 type: object
 required:
 - data
@@ -1800,7 +1299,7 @@ Note that the media types for JSON Lines and NDJSON are not registered with the 
 The following example shows Media Type Objects for both streaming log entries and returning a fixed-length set in response to a query.
 This shows the relationship between `schema` and `itemSchema`, and when to use each even though the `examples` field is the same either way.
 
-```YAML
+```yaml
 components:
   schemas:
     LogEntry:
@@ -1887,7 +1386,7 @@ components:
 
 Our `application/json-seq` example has to be an external document because of the use of both newlines and of the unprintable Record Separator (`0x1E`) character, which cannot be escaped in YAML block literals:
 
-```JSONSEQ
+```jsonseq
 0x1E{
   "timestamp": "1985-04-12T23:20:50.52Z",
   "level": 1,
@@ -1904,7 +1403,7 @@ Our `application/json-seq` example has to be an external document because of the
 
 For this example, assume that the generic event schema provided in the "Special Considerations for `text/event-stream` Content" section is available at `#/components/schemas/Event`:
 
-```YAML
+```yaml
 description: A request body to add a stream of typed data.
 required: true
 content:
@@ -1947,7 +1446,7 @@ content:
 
 The following `text/event-stream` document is an example of a valid request body for the above example:
 
-```EVENTSTREAM
+```eventstream
 event: addString
 data: This data is formatted
 data: across two lines
@@ -1964,7 +1463,7 @@ data: {"foo": 42}
 
 To more clearly see how this stream is handled, the following is the equivalent JSON Lines document, which shows how the numeric and JSON data are handled as strings, and how unknown fields and comments are ignored and not passed to schema validation:
 
-```JSONL
+```jsonl
 {"event": "addString", "data": "This data is formatted\nacross two lines", "retry": 5}
 {"event": "addInt64", "data": "1234.5678"}
 {"event": "addJSON", "data": "{\"foo\": 42}"}
@@ -2129,7 +1628,7 @@ id=%22f81d4fae-7dec-11d0-a765-00a0c91e6bf6%22
 
 Note that `application/x-www-form-urlencoded` is a text format, which requires base64-encoding any binary data:
 
-```YAML
+```yaml
 requestBody:
   content:
     application/x-www-form-urlencoded:
@@ -2299,31 +1798,6 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 
 A 200 response for a successful operation and a default response for others (implying an error):
 
-```json
-{
-  "200": {
-    "description": "a pet to be returned",
-    "content": {
-      "application/json": {
-        "schema": {
-          "$ref": "#/components/schemas/Pet"
-        }
-      }
-    }
-  },
-  "default": {
-    "description": "Unexpected error",
-    "content": {
-      "application/json": {
-        "schema": {
-          "$ref": "#/components/schemas/ErrorModel"
-        }
-      }
-    }
-  }
-}
-```
-
 ```yaml
 '200':
   description: a pet to be returned
@@ -2359,22 +1833,6 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 
 Response of an array of a complex type:
 
-```json
-{
-  "description": "A complex object array response",
-  "content": {
-    "application/json": {
-      "schema": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/VeryComplexType"
-        }
-      }
-    }
-  }
-}
-```
-
 ```yaml
 description: A complex object array response
 content:
@@ -2387,19 +1845,6 @@ content:
 
 Response with a string type:
 
-```json
-{
-  "description": "A simple string response",
-  "content": {
-    "text/plain": {
-      "schema": {
-        "type": "string"
-      }
-    }
-  }
-}
-```
-
 ```yaml
 description: A simple string response
 content:
@@ -2409,40 +1854,6 @@ content:
 ```
 
 Plain text response with headers:
-
-```json
-{
-  "description": "A simple string response",
-  "content": {
-    "text/plain": {
-      "schema": {
-        "type": "string"
-      },
-      "example": "whoa!"
-    }
-  },
-  "headers": {
-    "X-Rate-Limit-Limit": {
-      "description": "The number of allowed requests in the current period",
-      "schema": {
-        "type": "integer"
-      }
-    },
-    "X-Rate-Limit-Remaining": {
-      "description": "The number of remaining requests in the current period",
-      "schema": {
-        "type": "integer"
-      }
-    },
-    "X-Rate-Limit-Reset": {
-      "description": "The number of seconds left in the current period",
-      "schema": {
-        "type": "integer"
-      }
-    }
-  }
-}
-```
 
 ```yaml
 description: A simple string response
@@ -2467,12 +1878,6 @@ headers:
 ```
 
 Response with no return value:
-
-```json
-{
-  "description": "object created"
-}
-```
 
 ```yaml
 description: object created
@@ -2680,20 +2085,6 @@ Two different uses of JSON strings:
 
 First, a request or response body that is just a JSON string (not an object containing a string):
 
-```json
-"application/json": {
-  "schema": {
-    "type": "string"
-  },
-  "examples": {
-    "jsonBody": {
-      "description": "A body of just the JSON string \"json\"",
-      "value": "json"
-    }
-  }
-}
-```
-
 ```yaml
 application/json:
   schema:
@@ -2707,30 +2098,6 @@ application/json:
 In the above example, we can just show the JSON string (or any JSON value) as-is, rather than stuffing a serialized JSON value into a JSON string, which would have looked like `"\"json\""`.
 
 In contrast, a JSON string encoded inside of a URL-style form body:
-
-```json
-"application/x-www-form-urlencoded": {
-  "schema": {
-    "type": "object",
-    "properties": {
-      "jsonValue": {
-        "type": "string"
-      }
-    }
-  },
-  "encoding": {
-    "jsonValue": {
-      "contentType": "application/json"
-    }
-  },
-  "examples": {
-    "jsonFormValue": {
-      "description": "The JSON string \"json\" as a form value",
-      "value": "jsonValue=%22json%22"
-    }
-  }
-}
-```
 
 ```yaml
 application/x-www-form-urlencoded:
@@ -2980,15 +2347,6 @@ Using `content` with a `text/plain` media type is RECOMMENDED for headers where 
 
 A simple header of type `integer`:
 
-```json
-"X-Rate-Limit-Limit": {
-  "description": "The number of allowed requests in the current period",
-  "schema": {
-    "type": "integer"
-  }
-}
-```
-
 ```yaml
 X-Rate-Limit-Limit:
   description: The number of allowed requests in the current period
@@ -2997,20 +2355,6 @@ X-Rate-Limit-Limit:
 ```
 
 Requiring that a strong `ETag` header (with a value starting with `"` rather than `W/`) is present. Note the use of `content`, because using `schema` and `style` would require the `"` to be percent-encoded as `%22`:
-
-```json
-"ETag": {
-  "required": true,
-  "content": {
-    "text/plain": {
-      "schema": {
-        "type": "string",
-        "pattern": "^\""
-      }
-    }
-  }
-}
-```
 
 ```yaml
 ETag:
@@ -3041,30 +2385,6 @@ It is not mandatory to have a Tag Object per tag defined in the Operation Object
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
 ##### Tag Object Example
-
-```json
-"tags": [
-  {
-    "name": "account-updates",
-    "summary": "Account Updates",
-    "description": "Account update operations",
-    "kind": "nav"
-  },
-  {
-    "name": "partner",
-    "summary": "Partner",
-    "description": "Operations available to the partners network",
-    "parent": "external",
-    "kind": "audience"
-  },
-  {
-    "name": "external",
-    "summary": "External",
-    "description": "Operations available to external consumers",
-    "kind": "audience"
-  }
-]
-```
 
 ```yaml
 tags:
@@ -3107,35 +2427,17 @@ Note that this restriction on additional properties is a difference between Refe
 
 ##### Reference Object Example
 
-```json
-{
-  "$ref": "#/components/schemas/Pet"
-}
-```
-
 ```yaml
 $ref: '#/components/schemas/Pet'
 ```
 
 ##### Relative Schema Document Example
 
-```json
-{
-  "$ref": "Pet.json"
-}
-```
-
 ```yaml
 $ref: Pet.yaml
 ```
 
 ##### Relative Documents with Embedded Schema Example
-
-```json
-{
-  "$ref": "definitions.json#/Pet"
-}
-```
 
 ```yaml
 $ref: definitions.yaml#/Pet
@@ -3258,39 +2560,12 @@ However, for maximum interoperability, it is RECOMMENDED that OpenAPI descriptio
 
 ###### Primitive Example
 
-```json
-{
-  "type": "string",
-  "format": "email"
-}
-```
-
 ```yaml
 type: string
 format: email
 ```
 
 ###### Simple Model
-
-```json
-{
-  "type": "object",
-  "required": ["name"],
-  "properties": {
-    "name": {
-      "type": "string"
-    },
-    "address": {
-      "$ref": "#/components/schemas/Address"
-    },
-    "age": {
-      "type": "integer",
-      "format": "int32",
-      "minimum": 0
-    }
-  }
-}
-```
 
 ```yaml
 type: object
@@ -3311,15 +2586,6 @@ properties:
 
 For a simple string to string mapping:
 
-```json
-{
-  "type": "object",
-  "additionalProperties": {
-    "type": "string"
-  }
-}
-```
-
 ```yaml
 type: object
 additionalProperties:
@@ -3328,15 +2594,6 @@ additionalProperties:
 
 For a string to model mapping:
 
-```json
-{
-  "type": "object",
-  "additionalProperties": {
-    "$ref": "#/components/schemas/ComplexModel"
-  }
-}
-```
-
 ```yaml
 type: object
 additionalProperties:
@@ -3344,23 +2601,6 @@ additionalProperties:
 ```
 
 ###### Model with Annotated Enumeration
-
-```json
-{
-  "oneOf": [
-    {
-      "const": "RGB",
-      "title": "Red, Green, Blue",
-      "description": "Specify colors with the red, green, and blue additive color model"
-    },
-    {
-      "const": "CMYK",
-      "title": "Cyan, Magenta, Yellow, Black",
-      "description": "Specify colors with the cyan, magenta, yellow, and black subtractive color model"
-    }
-  ]
-}
-```
 
 ```yaml
 oneOf:
@@ -3373,28 +2613,6 @@ oneOf:
 ```
 
 ###### Model with Example
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "id": {
-      "type": "integer",
-      "format": "int64"
-    },
-    "name": {
-      "type": "string"
-    }
-  },
-  "required": ["name"],
-  "examples": [
-    {
-      "name": "Puma",
-      "id": 1
-    }
-  ]
-}
-```
 
 ```yaml
 type: object
@@ -3412,45 +2630,6 @@ examples:
 ```
 
 ###### Models with Composition
-
-```json
-{
-  "components": {
-    "schemas": {
-      "ErrorModel": {
-        "type": "object",
-        "required": ["message", "code"],
-        "properties": {
-          "message": {
-            "type": "string"
-          },
-          "code": {
-            "type": "integer",
-            "minimum": 100,
-            "maximum": 600
-          }
-        }
-      },
-      "ExtendedErrorModel": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/ErrorModel"
-          },
-          {
-            "type": "object",
-            "required": ["rootCause"],
-            "properties": {
-              "rootCause": {
-                "type": "string"
-              }
-            }
-          }
-        ]
-      }
-    }
-  }
-}
-```
 
 ```yaml
 components:
@@ -3637,69 +2816,7 @@ components:
 
 ###### Generic Data Structure Model
 
-```JSON
-{
-  "components": {
-    "schemas": {
-      "genericArrayComponent": {
-        "$id": "fully_generic_array",
-        "type": "array",
-        "items": {
-          "$dynamicRef": "#generic-array"
-        },
-        "$defs": {
-          "allowAll": {
-            "$dynamicAnchor": "generic-array"
-          }
-        }
-      },
-      "numberArray": {
-        "$id": "array_of_numbers",
-        "$ref": "fully_generic_array",
-        "$defs": {
-          "numbersOnly": {
-            "$dynamicAnchor": "generic-array",
-            "type": "number"
-          }
-        }
-      },
-      "stringArray": {
-        "$id": "array_of_strings",
-        "$ref": "fully_generic_array",
-        "$defs": {
-          "stringsOnly": {
-            "$dynamicAnchor": "generic-array",
-            "type": "string"
-          }
-        }
-      },
-      "objWithTypedArray": {
-        "$id": "obj_with_typed_array",
-        "type": "object",
-        "required": ["dataType", "data"],
-        "properties": {
-          "dataType": {
-            "enum": ["string", "number"]
-          }
-        },
-        "oneOf": [{
-          "properties": {
-            "dataType": {"const": "string"},
-            "data": {"$ref": "array_of_strings"}
-          }
-        }, {
-          "properties": {
-            "dataType": {"const": "number"},
-            "data": {"$ref": "array_of_numbers"}
-          }
-        }]
-      }
-    }
-  }
-}
-```
-
-```YAML
+```yaml
 components:
   schemas:
     genericArrayComponent:
@@ -3990,14 +3107,6 @@ The JSON and YAML representations of the `properties` value are followed by an e
 
 Basic string property:
 
-```json
-{
-  "animals": {
-    "type": "string"
-  }
-}
-```
-
 ```yaml
 animals:
   type: string
@@ -4008,17 +3117,6 @@ animals:
 ```
 
 Basic string array property ([`wrapped`](#xml-wrapped) is `false` by default):
-
-```json
-{
-  "animals": {
-    "type": "array",
-    "items": {
-      "type": "string"
-    }
-  }
-}
-```
 
 ```yaml
 animals:
@@ -4035,17 +3133,6 @@ animals:
 
 ###### XML Name Replacement
 
-```json
-{
-  "animals": {
-    "type": "string",
-    "xml": {
-      "name": "animal"
-    }
-  }
-}
-```
-
 ```yaml
 animals:
   type: string
@@ -4060,30 +3147,6 @@ animals:
 ###### XML Attribute, Prefix and Namespace
 
 In this example, a full model definition is shown.
-
-```json
-{
-  "Person": {
-    "type": "object",
-    "properties": {
-      "id": {
-        "type": "integer",
-        "format": "int32",
-        "xml": {
-          "attribute": true
-        }
-      },
-      "name": {
-        "type": "string",
-        "xml": {
-          "namespace": "https://example.com/schema/sample",
-          "prefix": "sample"
-        }
-      }
-    }
-  }
-}
-```
 
 ```yaml
 Person:
@@ -4111,20 +3174,6 @@ Person:
 
 Changing the element names:
 
-```json
-{
-  "animals": {
-    "type": "array",
-    "items": {
-      "type": "string",
-      "xml": {
-        "name": "animal"
-      }
-    }
-  }
-}
-```
-
 ```yaml
 animals:
   type: array
@@ -4140,23 +3189,6 @@ animals:
 ```
 
 The external `name` field has no effect on the XML:
-
-```json
-{
-  "animals": {
-    "type": "array",
-    "items": {
-      "type": "string",
-      "xml": {
-        "name": "animal"
-      }
-    },
-    "xml": {
-      "name": "aliens"
-    }
-  }
-}
-```
 
 ```yaml
 animals:
@@ -4176,20 +3208,6 @@ animals:
 
 Even when the array is wrapped, if a name is not explicitly defined, the same name will be used both internally and externally:
 
-```json
-{
-  "animals": {
-    "type": "array",
-    "items": {
-      "type": "string"
-    },
-    "xml": {
-      "wrapped": true
-    }
-  }
-}
-```
-
 ```yaml
 animals:
   type: array
@@ -4207,23 +3225,6 @@ animals:
 ```
 
 To overcome the naming problem in the example above, the following definition can be used:
-
-```json
-{
-  "animals": {
-    "type": "array",
-    "items": {
-      "type": "string",
-      "xml": {
-        "name": "animal"
-      }
-    },
-    "xml": {
-      "wrapped": true
-    }
-  }
-}
-```
 
 ```yaml
 animals:
@@ -4245,24 +3246,6 @@ animals:
 
 Affecting both internal and external names:
 
-```json
-{
-  "animals": {
-    "type": "array",
-    "items": {
-      "type": "string",
-      "xml": {
-        "name": "animal"
-      }
-    },
-    "xml": {
-      "name": "aliens",
-      "wrapped": true
-    }
-  }
-}
-```
-
 ```yaml
 animals:
   type: array
@@ -4283,21 +3266,6 @@ animals:
 ```
 
 If we change the external element but not the internal ones:
-
-```json
-{
-  "animals": {
-    "type": "array",
-    "items": {
-      "type": "string"
-    },
-    "xml": {
-      "name": "aliens",
-      "wrapped": true
-    }
-  }
-}
-```
 
 ```yaml
 animals:
@@ -4344,27 +3312,12 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 
 ###### Basic Authentication Example
 
-```json
-{
-  "type": "http",
-  "scheme": "basic"
-}
-```
-
 ```yaml
 type: http
 scheme: basic
 ```
 
 ###### API Key Example
-
-```json
-{
-  "type": "apiKey",
-  "name": "api-key",
-  "in": "header"
-}
-```
 
 ```yaml
 type: apiKey
@@ -4374,14 +3327,6 @@ in: header
 
 ###### JWT Bearer Example
 
-```json
-{
-  "type": "http",
-  "scheme": "bearer",
-  "bearerFormat": "JWT"
-}
-```
-
 ```yaml
 type: http
 scheme: bearer
@@ -4390,34 +3335,12 @@ bearerFormat: JWT
 
 ###### MutualTLS Example
 
-```json
-{
-  "type": "mutualTLS",
-  "description": "Cert must be signed by example.com CA"
-}
-```
-
 ```yaml
 type: mutualTLS
 description: Cert must be signed by example.com CA
 ```
 
 ###### Implicit OAuth2 Example
-
-```json
-{
-  "type": "oauth2",
-  "flows": {
-    "implicit": {
-      "authorizationUrl": "https://example.com/api/oauth/dialog",
-      "scopes": {
-        "write:pets": "modify pets in your account",
-        "read:pets": "read your pets"
-      }
-    }
-  }
-}
-```
 
 ```yaml
 type: oauth2
@@ -4462,29 +3385,6 @@ Configuration details for a supported OAuth Flow
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
 ##### OAuth Flow Object Example
-
-```JSON
-{
-  "type": "oauth2",
-  "flows": {
-    "implicit": {
-      "authorizationUrl": "https://example.com/api/oauth/dialog",
-      "scopes": {
-        "write:pets": "modify pets in your account",
-        "read:pets": "read your pets"
-      }
-    },
-    "authorizationCode": {
-      "authorizationUrl": "https://example.com/api/oauth/dialog",
-      "tokenUrl": "https://example.com/api/oauth/token",
-      "scopes": {
-        "write:pets": "modify pets in your account",
-        "read:pets": "read your pets"
-      }
-    }
-  }
-}
-```
 
 ```yaml
 type: oauth2
@@ -4532,12 +3432,6 @@ See also [Appendix F: Resolving Security Requirements in a Referenced Document](
 
 ###### Non-OAuth2 Security Requirement
 
-```json
-{
-  "api_key": []
-}
-```
-
 ```yaml
 api_key: []
 ```
@@ -4545,12 +3439,6 @@ api_key: []
 ###### OAuth2 Security Requirement
 
 This example uses a component name for the Security Scheme.
-
-```json
-{
-  "petstore_auth": ["write:pets", "read:pets"]
-}
-```
 
 ```yaml
 petstore_auth:
@@ -4563,17 +3451,6 @@ petstore_auth:
 This example uses a relative URI reference for the Security Scheme.
 
 Optional OAuth2 security as would be defined in an <a href="#openapi-object">OpenAPI Object</a> or an <a href="#operation-object">Operation Object</a>:
-
-```json
-{
-  "security": [
-    {},
-    {
-      "#/components/securitySchemes/petstore_auth": ["write:pets", "read:pets"]
-    }
-  ]
-}
-```
 
 ```yaml
 security:
@@ -4737,7 +3614,7 @@ Certain field values translate to RFC6570 [operators](https://datatracker.ietf.o
 
 Multiple `style: "form"` parameters are equivalent to a single RFC6570 [variable list](https://www.rfc-editor.org/rfc/rfc6570#section-2.2) using the `?` prefix operator:
 
-```YAML
+```yaml
 parameters:
 - name: foo
   in: query
@@ -4782,7 +3659,7 @@ A parameter name that includes characters outside of the allowed RFC6570 variabl
 
 Let's say we want to use the following data in a form query string, where `formulas` is exploded, and `words` is not:
 
-```YAML
+```yaml
 formulas:
   a: x+y
   b: x/y
@@ -4797,7 +3674,7 @@ words:
 
 This array of Parameter Objects uses regular `style: "form"` expansion, fully supported by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570):
 
-```YAML
+```yaml
 parameters:
 - name: formulas
   in: query
@@ -4831,7 +3708,7 @@ when expanded with the data given earlier, we get:
 But now let's say that (for some reason), we really want that `/` in the `b` formula to show up as-is in the query string, and we want our words to be space-separated like in a written phrase.
 To do that, we'll add `allowReserved: true` to `formulas`, and change to `style: "spaceDelimited"` for `words`:
 
-```YAML
+```yaml
 parameters:
 - name: formulas
   in: query
@@ -4871,7 +3748,7 @@ See also [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for fur
 
 So here is our data structure that arranges the names and values to suit the template above, where values for `formulas` have `[]#&=+` pre-percent encoded (although only `+` appears in this example):
 
-```YAML
+```yaml
 a: x%2By
 b: x/y
 c: x^y
@@ -4892,7 +3769,7 @@ The `/` and the pre-percent-encoded `%2B` have been left alone, but the disallow
 
 Care must be taken when manually constructing templates to handle the values that RFC6570 [considers to be _undefined_](https://datatracker.ietf.org/doc/html/rfc6570#section-2.3) correctly:
 
-```YAML
+```yaml
 formulas: {}
 words:
 - hello
@@ -4909,7 +3786,7 @@ This means that the manually constructed URI Template and restructured data need
 
 Restructured data:
 
-```YAML
+```yaml
 words.0: hello
 words.1: world
 ```
@@ -4930,7 +3807,7 @@ Result:
 
 In this example, the heart emoji is not legal in URI Template names (or URIs):
 
-```YAML
+```yaml
 parameters:
 - name: ❤️
   in: query
@@ -4941,7 +3818,7 @@ parameters:
 We can't just pass `❤️: "love!"` to an RFC6570 implementation.
 Instead, we have to pre-percent-encode the name (which is a six-octet UTF-8 sequence) in both the data and the URI Template:
 
-```YAML
+```yaml
 "%E2%9D%A4%EF%B8%8F": love!
 ```
 
@@ -5072,7 +3949,7 @@ This appendix shows how to retrieve an HTTP-accessible multi-document OpenAPI De
 
 First, the [entry document](#openapi-description-structure) is where parsing begins. It defines the `MySecurity` security scheme to be JWT-based, and it defines a Path Item as a reference to a component in another document:
 
-```HTTP
+```http
 GET /api/description/openapi HTTP/1.1
 Host: www.example.com
 Accept: application/openapi+json
@@ -5095,7 +3972,7 @@ Accept: application/openapi+json
 }
 ```
 
-```HTTP
+```http
 GET /api/description/openapi HTTP/1.1
 Host: www.example.com
 Accept: application/openapi+yaml
@@ -5115,7 +3992,7 @@ paths:
 
 This entry document references another document, `other`, without using a file extension. This gives the client the flexibility to choose an acceptable format on a resource-by-resource basis, assuming both representations are available:
 
-```HTTP
+```http
 GET /api/description/other HTTP/1.1
 Host: www.example.com
 Accept: application/openapi+json
@@ -5141,7 +4018,7 @@ Accept: application/openapi+json
 }
 ```
 
-```HTTP
+```http
 GET /api/description/other HTTP/1.1
 Host: www.example.com
 Accept: application/openapi+yaml

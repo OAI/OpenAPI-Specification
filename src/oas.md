@@ -3447,7 +3447,7 @@ See examples for expected behavior.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="xml-name"></a>name | `string` | Replaces the name of the element/attribute used for the described schema property. When defined within `items`, it will affect the name of the individual XML elements within the list. When defined alongside `type` being `"array"` (outside the `items`), it will affect the wrapping element if and only if `wrapped` is `true`. If `wrapped` is `false`, it will be ignored. |
+| <a name="xml-name"></a>name | `string` | Replaces the name of the element/attribute used for the described schema property. For the root XML element, the name comes from the [schema component](#components-schemas) name; for other elements or attributes, the name comes from the property name.  When defined within `items`, it will affect the name of the individual XML elements within the list. When defined alongside `type` being `"array"` (outside the `items`), it will affect the wrapping element if and only if `wrapped` is `true`. If `wrapped` is `false`, it will be ignored. |
 | <a name="xml-namespace"></a>namespace | `string` | The URI of the namespace definition. Value MUST be in the form of a non-relative URI. |
 | <a name="xml-prefix"></a>prefix | `string` | The prefix to be used for the [name](#xml-name). |
 | <a name="xml-attribute"></a>attribute | `boolean` | Declares whether the property definition translates to an attribute instead of an element. Default value is `false`. |
@@ -3539,25 +3539,30 @@ animals:
 
 ###### XML Attribute, Prefix and Namespace
 
-In this example, a full model definition is shown.
+In this example, a full [schema component](#components-schemas) definition is shown.
+Note that the name of the root XML element comes from the component name.
 
 ```json
 {
-  "Person": {
-    "type": "object",
-    "properties": {
-      "id": {
-        "type": "integer",
-        "format": "int32",
-        "xml": {
-          "attribute": true
-        }
-      },
-      "name": {
-        "type": "string",
-        "xml": {
-          "namespace": "https://example.com/schema/sample",
-          "prefix": "sample"
+  "components": {
+    "schemas": {
+      "Person": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "xml": {
+              "attribute": true
+            }
+          },
+          "name": {
+            "type": "string",
+            "xml": {
+              "namespace": "https://example.com/schema/sample",
+              "prefix": "sample"
+            }
+          }
         }
       }
     }
@@ -3566,19 +3571,21 @@ In this example, a full model definition is shown.
 ```
 
 ```yaml
-Person:
-  type: object
-  properties:
-    id:
-      type: integer
-      format: int32
-      xml:
-        attribute: true
-    name:
-      type: string
-      xml:
-        namespace: https://example.com/schema/sample
-        prefix: sample
+components:
+  schemas:
+    Person:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          xml:
+            attribute: true
+        name:
+          type: string
+          xml:
+            namespace: https://example.com/schema/sample
+            prefix: sample
 ```
 
 ```xml

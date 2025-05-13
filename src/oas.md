@@ -3253,22 +3253,25 @@ animals:
 
 ###### XML Attribute, Prefix and Namespace
 
-In this example, a full model definition is shown.
+In this example, a full [schema component](#components-schemas) definition is shown.
+Note that the name of the root XML element comes from the component name.
 
 ```yaml
-Person:
-  type: object
-  properties:
-    id:
-      type: integer
-      format: int32
-      xml:
-        attribute: true
-    name:
-      type: string
-      xml:
-        namespace: https://example.com/schema/sample
-        prefix: sample
+components:
+  schemas:
+    Person:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          xml:
+            attribute: true
+        name:
+          type: string
+          xml:
+            namespace: https://example.com/schema/sample
+            prefix: sample
 ```
 
 ```xml

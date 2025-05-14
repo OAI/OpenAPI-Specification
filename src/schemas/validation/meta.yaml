@@ -60,7 +60,7 @@ $defs:
       name:
         type: string
       namespace:
-        format: uri
+        format: iri
         type: string
       prefix:
         type: string

@@ -3192,7 +3192,7 @@ See examples for expected behavior.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="xml-name"></a>name | `string` | Replaces the name of the element/attribute used for the described schema property. When defined within `items`, it will affect the name of the individual XML elements within the list. When defined alongside `type` being `"array"` (outside the `items`), it will affect the wrapping element if and only if `wrapped` is `true`. If `wrapped` is `false`, it will be ignored. |
+| <a name="xml-name"></a>name | `string` | Replaces the inferred name of the element/attribute used for the described schema property. For the root schema object of a [schema component](#components-schemas), the inferred name is the name of the component; for other schemas the name is inferred from the parent property name.  When defined within `items`, it will affect the name of the individual XML elements within the list. When defined alongside `type` being `"array"` (outside the `items`), it will affect the wrapping element if and only if `wrapped` is `true`. If `wrapped` is `false`, it will be ignored. |
 | <a name="xml-namespace"></a>namespace | `string` | The IRI ([[RFC3987]]) of the namespace definition. Value MUST be in the form of a non-relative IRI. |
 | <a name="xml-prefix"></a>prefix | `string` | The prefix to be used for the [name](#xml-name). |
 | <a name="xml-attribute"></a>attribute | `boolean` | Declares whether the property definition translates to an attribute instead of an element. Default value is `false`. |

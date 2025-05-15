@@ -2,7 +2,7 @@
 owner: baywet
 issue: 4564
 description: unsigned 64-bit integer
-base_type: [number, string]
+base_type: number
 layout: default
 source: https://spec.openapis.org/oas/latest.html#data-types
 source_label: OAS

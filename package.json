@@ -23,7 +23,7 @@
     "cheerio": "^1.0.0-rc.5",
     "highlight.js": "^11.11.1",
     "markdown-it": "^14.1.0",
-    "respec": "35.3.1",
+    "respec": "35.4.0",
     "yargs": "^17.7.2"
   },
   "devDependencies": {

@@ -12,7 +12,7 @@ properties:
     $ref: '#/$defs/info'
   jsonSchemaDialect:
     type: string
-    format: uri
+    format: uri-reference
     default: 'https://spec.openapis.org/oas/3.2/dialect/WORK-IN-PROGRESS'
   servers:
     type: array
@@ -64,7 +64,7 @@ $defs:
         type: string
       termsOfService:
         type: string
-        format: uri
+        format: uri-reference
       contact:
         $ref: '#/$defs/contact'
       license:
@@ -85,7 +85,7 @@ $defs:
         type: string
       url:
         type: string
-        format: uri
+        format: uri-reference
       email:
         type: string
         format: email
@@ -102,7 +102,7 @@ $defs:
         type: string
       url:
         type: string
-        format: uri
+        format: uri-reference
     required:
       - name
     dependentSchemas:
@@ -319,7 +319,7 @@ $defs:
         type: string
       url:
         type: string
-        format: uri
+        format: uri-reference
     required:
       - url
     $ref: '#/$defs/specification-extensions'
@@ -620,7 +620,7 @@ $defs:
       value: true
       externalValue:
         type: string
-        format: uri
+        format: uri-reference
     not:
       required:
       - value
@@ -864,7 +864,7 @@ $defs:
           properties:
             openIdConnectUrl:
               type: string
-              format: uri
+              format: uri-reference
           required:
             - openIdConnectUrl
 
@@ -900,10 +900,10 @@ $defs:
         properties:
           authorizationUrl:
             type: string
-            format: uri
+            format: uri-reference
           refreshUrl:
             type: string
-            format: uri
+            format: uri-reference
           scopes:
             $ref: '#/$defs/map-of-strings'
         required:
@@ -917,10 +917,10 @@ $defs:
         properties:
           tokenUrl:
             type: string
-            format: uri
+            format: uri-reference
           refreshUrl:
             type: string
-            format: uri
+            format: uri-reference
           scopes:
             $ref: '#/$defs/map-of-strings'
         required:
@@ -934,10 +934,10 @@ $defs:
         properties:
           tokenUrl:
             type: string
-            format: uri
+            format: uri-reference
           refreshUrl:
             type: string
-            format: uri
+            format: uri-reference
           scopes:
             $ref: '#/$defs/map-of-strings'
         required:
@@ -951,13 +951,13 @@ $defs:
         properties:
           authorizationUrl:
             type: string
-            format: uri
+            format: uri-reference
           tokenUrl:
             type: string
-            format: uri
+            format: uri-reference
           refreshUrl:
             type: string
-            format: uri
+            format: uri-reference
           scopes:
             $ref: '#/$defs/map-of-strings'
         required:

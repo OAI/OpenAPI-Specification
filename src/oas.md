@@ -3190,7 +3190,7 @@ When using a Schema Object with XML, if no XML Object is present, the behavior i
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="xml-node-type"></a>nodeType | `string` | One of `element`, `attribute`, `text`, `cdata`, or `none`, as explained under [XML Node Types](#xml-node-types).  The default value is `none` if `$ref`, `$dynamicRef`, or `type: array` is present in the [Schema Object](#schema-object) containing the XML Object, and `element` otherwise. |
+| <a name="xml-node-type"></a>nodeType | `string` | One of `element`, `attribute`, `text`, `cdata`, or `none`, as explained under [XML Node Types](#xml-node-types).  The default value is `none` if `$ref`, `$dynamicRef`, or `type: "array"` is present in the [Schema Object](#schema-object) containing the XML Object, and `element` otherwise. |
 | <a name="xml-name"></a>name | `string` | Sets the name of the element/attribute corresponding to the schema, replacing name that was inferred as described under [XML Node Names](#xml-node-names). This field SHALL be ignored if the `nodeType` is `text`, `cdata`, or `none`. |
 | <a name="xml-namespace"></a>namespace | `string` | The IRI ([[RFC3987]]) of the namespace definition. Value MUST be in the form of a non-relative IRI. |
 | <a name="xml-prefix"></a>prefix | `string` | The prefix to be used for the [name](#xml-name). |
@@ -3219,10 +3219,10 @@ The `none` type is useful for JSON Schema constructs that require more Schema Ob
 
 ###### Modeling Element Lists
 
-For historical compatibility, schemas of `type: array` default to `nodeType: "none"`, placing the nodes for each array item directly under the parent node.
+For historical compatibility, schemas of `type: "array"` default to `nodeType: "none"`, placing the nodes for each array item directly under the parent node.
 This also aligns with the inferred naming behavior defined under [XML Node Names](#xml-node-names).
 
-To produce an element wrapping the list, set an explicit `nodeType: "element"` on the `type: array` schema.
+To produce an element wrapping the list, set an explicit `nodeType: "element"` on the `type: "array"` schema.
 When doing so, it is advisable to set an explicit name on either the wrapping element or the item elements to avoid them having the same inferred name.
 See examples for expected behavior.
 
@@ -3347,7 +3347,7 @@ properties:
 <animal>value</animal>
 ```
 
-The `name` field for the `type: array` schema has no effect because the default `nodeType` for that object is `none`:
+The `name` field for the `type: "array"` schema has no effect because the default `nodeType` for that object is `none`:
 
 ```yaml
 properties:

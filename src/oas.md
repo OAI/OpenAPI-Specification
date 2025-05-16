@@ -3837,7 +3837,7 @@ This will expand to the result:
 [RFC6570](https://www.rfc-editor.org/rfc/rfc6570)'s percent-encoding behavior is not always appropriate for `in: "header"` and `in: "cookie"` parameters.
 In many cases, it is more appropriate to use `content` with a media type such as `text/plain` and require the application to assemble the correct string.
 
-In some cases, setting `allowReserved: true` will be sufficient to avoid incorret encoding, however many characters are still percent-encoded with this field enabled, so care must be taken to ensure no unexpected percent-encoding will take place.
+In some cases, setting `allowReserved: true` will be sufficient to avoid incorrect encoding, however many characters are still percent-encoded with this field enabled, so care must be taken to ensure no unexpected percent-encoding will take place.
 
 For both [RFC6265](https://www.rfc-editor.org/rfc/rfc6265) cookies and HTTP headers using the [RFC8941](https://www.rfc-editor.org/rfc/rfc8941) structured fields syntax, non-ASCII content is handled using base64 encoding (`contentEncoding: "base64"`).
 Note that the standard base64-encoding alphabet includes non-URL-safe characters that are percent-encoded by RFC6570 expansion; serializing values through both encodings is NOT RECOMMENDED.

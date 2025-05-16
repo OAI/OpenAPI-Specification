@@ -3213,7 +3213,7 @@ Except for the special value `none`, these values have numeric equivalents in th
 * `attribute` (2): The schema represents an attribute and describes its value
 * `text` (3): The schema represents a text node (parsed character data)
 * `cdata` (4): The schema represents a CDATA section
-* `none`: The schema does not correspond to any node in the XML document, and its contents are included directly under the parent schema's node
+* `none`: The schema does not correspond to any node in the XML document, and the nodes corresponding to its subschema(s) are included directly under its parent schema's node
 
 The `none` type is useful for JSON Schema constructs that require more Schema Objects than XML nodes, such as a schema containing only `$ref` that exists to facilitate re-use rather than imply any structure.
 

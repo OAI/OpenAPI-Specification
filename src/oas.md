@@ -3206,8 +3206,8 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 
 ##### XML Node Types
 
-Each Schema Object describes a particular type of XML [node](https://dom.spec.whatwg.org/#interface-node) which is specified by the `nodeType` field, which has the following possible values.
-Except for the special value `none`, these values have numeric equivalents in the DOM [specification](https://dom.spec.whatwg.org/#interface-node) which are given in parentheses after the name:
+Each Schema Object describes a particular type of XML [[!DOM]] [node](https://dom.spec.whatwg.org/#interface-node) which is specified by the `nodeType` field, which has the following possible values.
+Except for the special value `none`, these values have numeric equivalents in the DOM specification which are given in parentheses after the name:
 
 * `element` (1): The schema represents an element and describes its contents
 * `attribute` (2): The schema represents an attribute and describes its value

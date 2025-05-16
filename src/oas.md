@@ -1022,9 +1022,9 @@ The following table shows examples, as would be shown with the `example` or `exa
 Many frameworks define query string syntax for complex values, such as appending array indices to parameter names or indicating multiple levels of of nested objects, which go well beyond the capabilities of the `deepObject` style.
 
 As these are not standards, and often contradict each other, the OAS does not attempt to support them directly.
-Two avenues are available for supporting such formats with `in: querystring`:
+Two avenues are available for supporting such formats with `in: "querystring"`:
 
-* Use `content` and `text/plain` with a schema of `type: string` and define the format outside of OpenAPI.  While this requires more work to document and construct or parse the format, which is seen as a plain string from the OpenAPI perspective, it provides the easiest flexible option
+* Use `content` and `text/plain` with a schema of `type: "string"` and define the format outside of OpenAPI.  While this requires more work to document and construct or parse the format, which is seen as a plain string from the OpenAPI perspective, it provides the easiest flexible option
 * Define a media type (which need not necessarily be [IANA-registered](https://www.rfc-editor.org/rfc/rfc6838.html)) and submit a registration for how it can be supported (using `in: "querystring"` and the `content` field) to the OpenAPI Initiative's [Media Type Registry](#media-type-registry).
 
 ##### Parameter Object Examples

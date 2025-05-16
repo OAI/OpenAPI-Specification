@@ -149,7 +149,7 @@ The OpenAPI Specification is versioned using a `major`.`minor`.`patch` versionin
 
 Occasionally, non-backwards compatible changes may be made in `minor` versions of the OAS where impact is believed to be low relative to the benefit provided.
 
-#### Deprecation
+### Deprecation
 
 Certain fields or features may be marked **Deprecated**.
 These fields and features remain part of the specification and can be used like any other field or feature.

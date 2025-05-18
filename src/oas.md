@@ -2749,7 +2749,7 @@ JSON Schema implementations MAY choose to treat keywords defined by the OpenAPI 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="schema-discriminator"></a>discriminator | [Discriminator Object](#discriminator-object) | Adds support for polymorphism. The discriminator is used to determine which of a set of schemas a payload is expected to satisfy. See [Composition and Inheritance](#composition-and-inheritance-polymorphism) for more details. |
-| <a name="schema-xml"></a>xml | [XML Object](#xml-object) | This MAY be used only on property schemas. It has no effect on root schemas. Adds additional metadata to describe the XML representation of this property. |
+| <a name="schema-xml"></a>xml | [XML Object](#xml-object) | Implementations MUST support this field on property schemas, and MAY support it in other kinds of schemas, in which case such support SHOULD follow the guidance in version 3.2 of this specification for forward compatibility. Adds additional metadata to describe the XML representation of this property. |
 | <a name="schema-external-docs"></a>externalDocs | [External Documentation Object](#external-documentation-object) | Additional external documentation for this schema. |
 | <a name="schema-example"></a>example | Any | A free-form field to include an example of an instance for this schema. To represent examples that cannot be naturally represented in JSON or YAML, a string value can be used to contain the example with escaping where necessary.<br><br>**Deprecated:** The `example` field has been deprecated in favor of the JSON Schema `examples` keyword. Use of `example` is discouraged, and later versions of this specification may remove it. |
 

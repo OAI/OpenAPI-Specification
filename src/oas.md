@@ -3455,11 +3455,28 @@ See examples for expected behavior.
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
+##### Namespace Limitations
+
 The `namespace` field is intended to match the syntax of [XML namespaces](https://www.w3.org/TR/xml-names11/), although there are a few caveats:
 
 * Versions 3.1.0, 3.0.3, and earlier of this specification erroneously used the term "absolute URI" instead of "non-relative URI", so authors using namespaces that include a fragment should check tooling support carefully.
 * XML allows but discourages relative URI-references, while this specification outright forbids them.
 * XML 1.1 allows IRIs ([RFC3987](https://datatracker.ietf.org/doc/html/rfc3987)) as namespaces, and specifies that namespaces are compared without any encoding or decoding, which means that IRIs encoded to meet this specification's URI syntax requirement cannot be compared to IRIs as-is.
+
+##### Handling `null` Values
+
+XML does not, by default, have a concept equivalent to `null`, and to preserve compatibility with version 3.1.1 and earlier of this specification, the behavior of serializing `null` values is implementation-defined.
+
+However, implementations SHOULD handle `null` values as follows:
+
+* For elements, produce an empty element with an `xsi:nil="true"` attribute
+* For attributes, omit the attribute
+
+Note that for attributes, this makes either a `null` value or a missing property serialize to an omitted attribute.
+As the Schema Object validates the in-memory representation, this allows handling the combination of `null` and a required property.
+However, because there is no distinct way to represent `null` as an attribute, it is RECOMMENDED to make attribute properties optional rather than use `null`.
+
+To ensure correct round-trip behavior, when parsing an element that omits an attribute, implementations SHOULD set the corresponding property to `null` if the schema allows for that value (e.g. `type: ["number", "null"]`), and omit the property otherwise (e.g.`type: "number"`).
 
 ##### XML Object Examples
 
@@ -3794,6 +3811,85 @@ animals:
   <aliens>value</aliens>
   <aliens>value</aliens>
 </aliens>
+```
+
+###### XML With `null` Values
+
+Recall that the schema validates the in-memory data, not the XML document itself.
+The properties of the `"metadata"` element are omitted for brevity as it is here to show how the `null` value is represented.
+
+```json
+{
+  "product": {
+    "type": "object",
+    "required": ["count", "description", "related"],
+    "properties": {
+      "count": {
+        "type": ["number", "null"],
+        "xml": {
+          "attribute": true
+        }
+      },
+      "rating": {
+        "type": "string",
+        "xml": {
+          "attribute": true
+        }
+      },
+      "description": {
+        "type": "string"
+      },
+      "related": {
+        "type": ["object", "null"]
+      }
+    }
+  }
+}
+```
+
+```yaml
+product:
+  type: object
+  required:
+  - count
+  - description
+  - related
+  properties:
+    count:
+      type:
+      - number
+      - "null"
+      xml:
+        attribute: true
+    rating:
+      type: string
+      xml:
+        attribute: true
+    description:
+      type: string
+    related:
+      type:
+      - object
+      - "null"
+```
+
+```xml
+<product>
+  <description>Thing</description>
+  <related xsi:nil="true" />
+</product>
+```
+
+The above XML example corresponds to the following in-memory instance:
+
+```json
+{
+  "product": {
+    "count": null,
+    "description": "Thing",
+    "related": null
+  }
+}
 ```
 
 #### Security Scheme Object

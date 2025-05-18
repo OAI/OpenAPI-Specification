@@ -2079,16 +2079,27 @@ headers:
       type: integer
 ```
 
-Response with no return value:
+Response with no return value (note that the `Content-Length` header is not marked as required, as some implementations might not set it at all if there is no content):
 
 ```json
 {
   "description": "object created"
+  "headers": {
+    "Content-Length": {
+      "schema": {
+        "const": 0
+      }
+    }
+  }
 }
 ```
 
 ```yaml
 description: object created
+headers:
+  Content-Length:
+    schema:
+      const: 0
 ```
 
 #### Callback Object

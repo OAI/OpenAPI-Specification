@@ -469,7 +469,8 @@ An object representing a Server.
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="server-url"></a>url | `string` | **REQUIRED**. A URL to the target host. This URL supports Server Variables and MAY be relative, to indicate that the host location is relative to the location where the document containing the Server Object is being served. Query and fragment MUST NOT be part of this URL. Variable substitutions will be made when a variable is named in `{`braces`}`. |
-| <a name="server-description"></a>description | `string` | An optional string describing the host designated by the URL. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
+| <a name="server-summary"></a>summary | `string` | A short summary of the purpose of the server. |
+| <a name="server-description"></a>description | `string` | A longer description of the host designated by the URL. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="server-name"></a>name | `string` | An optional unique string to refer to the host designated by the URL. |
 | <a name="server-variables"></a>variables | Map[`string`, [Server Variable Object](#server-variable-object)] | A map between a variable name and its value. The value is used for substitution in the server's URL template. |
 
@@ -559,7 +560,8 @@ See the [Paths Object](#paths-object) for guidance on constructing full request 
 | ---- | :----: | ---- |
 | <a name="server-variable-enum"></a>enum | [`string`] | An enumeration of string values to be used if the substitution options are from a limited set. The array MUST NOT be empty. |
 | <a name="server-variable-default"></a>default | `string` | **REQUIRED**. The default value to use for substitution, which SHALL be sent if an alternate value is _not_ supplied. If the [`enum`](#server-variable-enum) is defined, the value MUST exist in the enum's values. Note that this behavior is different from the [Schema Object](#schema-object)'s `default` keyword, which documents the receiver's behavior rather than inserting the value into the data. |
-| <a name="server-variable-description"></a>description | `string` | An optional description for the server variable. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
+| <a name="server-variable-summary"></a>summary | `string` | A short summary of the purpose of the server variable. |
+| <a name="server-variable-description"></a>description | `string` | A longer description for the server variable. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
@@ -880,6 +882,7 @@ Allows referencing an external resource for extended documentation.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
+| <a name="external-doc-summary"></a>summary | `string` | A short summary of the purpose of the target documentation. |
 | <a name="external-doc-description"></a>description | `string` | A description of the target documentation. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="external-doc-url"></a>url | `string` | **REQUIRED**. The URI for the target documentation. This MUST be in the form of a URI. |
 
@@ -923,7 +926,8 @@ These fields MAY be used with either `content` or `schema`.
 | ---- | :----: | ---- |
 | <a name="parameter-name"></a>name | `string` | **REQUIRED**. The name of the parameter. Parameter names are _case sensitive_. <ul><li>If [`in`](#parameter-in) is `"path"`, the `name` field MUST correspond to a template expression occurring within the [path](#paths-path) field in the [Paths Object](#paths-object). See [Path Templating](#path-templating) for further information.<li>If [`in`](#parameter-in) is `"header"` and the `name` field is `"Accept"`, `"Content-Type"` or `"Authorization"`, the parameter definition SHALL be ignored.<li>For all other cases, the `name` corresponds to the parameter name used by the [`in`](#parameter-in) field.</ul> |
 | <a name="parameter-in"></a>in | `string` | **REQUIRED**. The location of the parameter. Possible values are `"query"`, `"header"`, `"path"` or `"cookie"`. |
-| <a name="parameter-description"></a>description | `string` | A brief description of the parameter. This could contain examples of use. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
+| <a name="parameter-summary"></a>summary | `string` | A short summary of the parameter. |
+| <a name="parameter-description"></a>description | `string` | A longer description of the parameter. This could contain examples of use. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="parameter-required"></a>required | `boolean` | Determines whether this parameter is mandatory. If the [parameter location](#parameter-in) is `"path"`, this field is **REQUIRED** and its value MUST be `true`. Otherwise, the field MAY be included and its default value is `false`. |
 | <a name="parameter-deprecated"></a> deprecated | `boolean` | Specifies that a parameter is deprecated and SHOULD be transitioned out of usage. Default value is `false`. |
 | <a name="parameter-allow-empty-value"></a> allowEmptyValue | `boolean` | If `true`, clients MAY pass a zero-length string value in place of parameters that would otherwise be omitted entirely, which the server SHOULD interpret as the parameter being unused. Default value is `false`. If [`style`](#parameter-style) is used, and if [behavior is _n/a_ (cannot be serialized)](#style-examples), the value of `allowEmptyValue` SHALL be ignored. Interactions between this field and the parameter's [Schema Object](#schema-object) are implementation-defined. This field is valid only for `query` parameters. Use of this field is NOT RECOMMENDED, and it is likely to be removed in a later revision. |
@@ -1094,7 +1098,8 @@ Describes a single request body.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="request-body-description"></a>description | `string` | A brief description of the request body. This could contain examples of use. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
+| <a name="request-body-summary"></a>summary | `string` | A short summary of the purpose of the request body. |
+| <a name="request-body-description"></a>description | `string` | A longer description of the request body. This could contain examples of use. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="request-body-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | **REQUIRED**. The content of the request body. The key is a media type or [media type range](https://www.rfc-editor.org/rfc/rfc9110.html#appendix-A) and the value describes it. For requests that match multiple keys, only the most specific key is applicable. e.g. `"text/plain"` overrides `"text/*"` |
 | <a name="request-body-required"></a>required | `boolean` | Determines if the request body is required in the request. Defaults to `false`. |
 
@@ -1823,6 +1828,7 @@ Describes a single response from an API operation, including design-time, static
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
+| <a name="response-summary"></a>summary | `string` | A short summary of the meaning of the response. |
 | <a name="response-description"></a>description | `string` | A description of the response. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="response-headers"></a>headers | Map[`string`, [Header Object](#header-object) \| [Reference Object](#reference-object)] | Maps a header name to its definition. [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.1) states header names are case insensitive. If a response header is defined with the name `"Content-Type"`, it SHALL be ignored. |
 | <a name="response-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | A map containing descriptions of potential response payloads. The key is a media type or [media type range](https://www.rfc-editor.org/rfc/rfc9110.html#appendix-A) and the value describes it. For responses that match multiple keys, only the most specific key is applicable. e.g. `"text/plain"` overrides `"text/*"` |
@@ -2135,6 +2141,7 @@ For computing links and providing instructions to execute them, a [runtime expre
 | <a name="link-operation-id"></a>operationId | `string` | The name of an _existing_, resolvable OAS operation, as defined with a unique `operationId`. This field is mutually exclusive of the `operationRef` field. |
 | <a name="link-parameters"></a>parameters | Map[`string`, Any \| [{expression}](#runtime-expressions)] | A map representing parameters to pass to an operation as specified with `operationId` or identified via `operationRef`. The key is the parameter name to be used (optionally qualified with the parameter location, e.g. `path.id` for an `id` parameter in the path), whereas the value can be a constant or an expression to be evaluated and passed to the linked operation. |
 | <a name="link-request-body"></a>requestBody | Any \| [{expression}](#runtime-expressions) | A literal value or [{expression}](#runtime-expressions) to use as a request body when calling the target operation. |
+| <a name="link-summary"></a>summary | `string` | A short summary of the purpose of the link. |
 | <a name="link-description"></a>description | `string` | A description of the link. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="link-server"></a>server | [Server Object](#server-object) | A server object to be used by the target operation. |
 
@@ -2309,6 +2316,7 @@ These fields MAY be used with either `content` or `schema`.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
+| <a name="header-summary"></a>summary | `string` | A short summary of the header. |
 | <a name="header-description"></a>description | `string` | A brief description of the header. This could contain examples of use. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="header-required"></a>required | `boolean` | Determines whether this header is mandatory. The default value is `false`. |
 | <a name="header-deprecated"></a> deprecated | `boolean` | Specifies that the header is deprecated and SHOULD be transitioned out of usage. Default value is `false`. |
@@ -3296,6 +3304,7 @@ Please note that as of 2020, the implicit flow is about to be deprecated by [OAu
 | Field Name | Type | Applies To | Description |
 | ---- | :----: | ---- | ---- |
 | <a name="security-scheme-type"></a>type | `string` | Any | **REQUIRED**. The type of the security scheme. Valid values are `"apiKey"`, `"http"`, `"mutualTLS"`, `"oauth2"`, `"openIdConnect"`. |
+| <a name="security-scheme-summary"></a>summary | `string` | Any | A short summary of the security scheme. |
 | <a name="security-scheme-description"></a>description | `string` | Any | A description for security scheme. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="security-scheme-name"></a>name | `string` | `apiKey` | **REQUIRED**. The name of the header, query or cookie parameter to be used. |
 | <a name="security-scheme-in"></a>in | `string` | `apiKey` | **REQUIRED**. The location of the API key. Valid values are `"query"`, `"header"`, or `"cookie"`. |

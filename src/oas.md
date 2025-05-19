@@ -3198,7 +3198,7 @@ When using a Schema Object with XML, if no XML Object is present, the behavior i
 | <a name="xml-wrapped"></a>wrapped | `boolean` | MAY be used only for an array definition. Signifies whether the array is wrapped (for example, `<books><book/><book/></books>`) or unwrapped (`<book/><book/>`). Default value is `false`. The definition takes effect only when defined alongside `type` being `"array"` (outside the `items`). If `nodeType` is present, this field MUST NOT be present.<br /><br />**Deprecated:** Set `nodeType: "element"` explicitly in place of `wrapped: true` |
 
 Note that when generating an XML document from object data, the order of the nodes is undefined.
-Use `prefixItems` to control node ordering.
+Use `prefixItems` to control node ordering as shown under [Ordered Elements and Text](#ordered-elements-and-text).
 
 See [Appendix B](#appendix-b-data-type-conversion) for a discussion of converting values of various types to string representations.
 
@@ -3509,33 +3509,166 @@ components:
 </Documentation>
 ```
 
-###### Element With Text Before and After a Child Element
+Alternatively, the named root element could be set at the point of use and the root element disabled on the component:
 
-In this example, `prefixItems` is used to control the ordering.
-Since `prefixItems` works with arrays, we need to explicitly set the `nodeType` to `element`.
-Within `prefixItems`, we need to explicitly set the `nodeType` of the `text` nodes, but do not need a name, while the data node's default `nodeType` of `element` is correct, but it needs an explicit `name`:
+```yaml
+paths:
+  /docs:
+    get:
+      responses:
+        "200":
+          content:
+            application/xml:
+              xml:
+                nodeType: element
+                name: StoredDocument
+              $ref: "#/components/schemas/Documentation"
+    put:
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            xml:
+              nodeType: element
+              name: UpdatedDocument
+            $ref: "#/components/schemas/Documentation"
+      responses:
+        "201": {}
+components:
+  schemas:
+    Documentation:
+      xml:
+        nodeType: none
+      type: object
+      properties:
+        content:
+          type: string
+          contentMediaType: text/html
+          xml:
+            nodeType: cdata
+```
+
+The GET response XML:
+
+```xml
+<StoredDocument>
+  <![CDATA[<html><head><title>Awesome Docs</title></head><body></body><html>]]>
+</StoredDocument>
+```
+
+The PUT request XML:
+
+```xml
+<UpdatedDocument>
+  <![CDATA[<html><head><title>Awesome Docs</title></head><body></body><html>]]>
+</UpdatedDocument>
+```
+
+The in-memory instance data for all three of the above XML documents:
+
+```json
+{
+  "content": "<html><head><title>Awesome Docs</title></head><body></body><html>"
+}
+```
+
+###### Ordered Elements and Text
+
+To control the exact order of elements, use the `prefixItems` keyword.
+With this approach, it is necessary to set the element names using the XML Object as they would otherwise all inherit the parent's name despite being different elements in a specific order.
+It is also necessary to set `nodeType: "element"` explicitly on the array in order to get an element containing the sequence.
+
+This first ordered example shows a sequence of elements, as well as the recommended serialization of `null` for elements:
+
+```yaml
+components:
+  schemas:
+    OneTwoThree:
+      xml:
+        nodeType: element
+      type: array
+      minLength: 3
+      maxLength: 3
+      prefixItems:
+      - xml:
+          name: One
+        type: string
+      - xml:
+          name: Two
+        type: object
+        required:
+        - unit
+        - value
+        properties:
+          unit:
+            type: string
+            xml:
+              nodeType: attribute
+          value:
+            type: number
+            xml:
+              nodeType: text
+      - xml:
+          name: Three
+        type:
+        - boolean
+        - "null"
+```
+
+```xml
+<OneTwoThree>
+  <One>Some text</One>
+  <Two unit="cubits">42</Two>
+  <Three xsi:nil="true" />
+</OneTwoThree>
+```
+
+The in-memory instance data that would produce the above XML snippet with the preceding schema would be:
+
+```json
+[
+  "Some Text",
+  {
+    "unit": "cubits",
+    "value": 42
+  },
+  null
+]
+```
+
+In this next example, the `name` needs to be set for the element, while the `nodeType` needs to be set for the text nodes.
 
 ```yaml
 components:
   schemas:
     Report:
-      type: array
       xml:
         nodeType: element
+      type: array
       prefixItems:
-      - type: string
-        xml:
+      - xml:
           nodeType: text
-      - type: number
-        xml:
+        type: string
+      - xml:
           name: data
-      - type: string
-        xml:
+        type: number
+      - xml:
           nodeType: text
+        type: string
 ```
 
 ```xml
 <Report>Some preamble text.<data>42</data>Some postamble text.</Report>
+```
+
+The in-memory instance data structure for the above example would be:
+
+```json
+[
+  "Some preamble text."
+  42,
+  "Some postamble text."
+]
 ```
 
 #### Security Scheme Object

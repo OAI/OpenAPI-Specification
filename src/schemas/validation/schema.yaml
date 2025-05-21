@@ -119,6 +119,8 @@ $defs:
     properties:
       url:
         type: string
+      summary:
+        type: string
       description:
         type: string
       name:
@@ -142,6 +144,8 @@ $defs:
           type: string
         minItems: 1
       default:
+        type: string
+      summary:
         type: string
       description:
         type: string
@@ -315,6 +319,8 @@ $defs:
     $comment: https://spec.openapis.org/oas/v3.2#external-documentation-object
     type: object
     properties:
+      summary:
+        type: string
       description:
         type: string
       url:
@@ -337,6 +343,8 @@ $defs:
           - header
           - path
           - cookie
+      summary:
+        type: string
       description:
         type: string
       required:
@@ -469,6 +477,8 @@ $defs:
     $comment: https://spec.openapis.org/oas/v3.2#request-body-object
     type: object
     properties:
+      summary:
+        type: string
       description:
         type: string
       content:
@@ -567,6 +577,8 @@ $defs:
     $comment: https://spec.openapis.org/oas/v3.2#response-object
     type: object
     properties:
+      summary:
+        type: string
       description:
         type: string
       headers:
@@ -650,6 +662,8 @@ $defs:
       parameters:
         $ref: '#/$defs/map-of-strings'
       requestBody: true
+      summary:
+        type: string
       description:
         type: string
       server:
@@ -676,6 +690,8 @@ $defs:
     $comment: https://spec.openapis.org/oas/v3.2#header-object
     type: object
     properties:
+      summary:
+        type: string
       description:
         type: string
       required:
@@ -769,6 +785,8 @@ $defs:
           - mutualTLS
           - oauth2
           - openIdConnect
+      summary:
+        type: string
       description:
         type: string
       deprecated:

@@ -1112,6 +1112,16 @@ content:
       # Allow an arbitrary JSON object to keep
       # the example simple
       type: object
+  example: {
+    "numbers": [1, 2],
+    "flag": null
+  }
+```
+
+Assuming a path of `/foo`, a server of `https://example.com`, the full URL incorporateing the value from the `example` field (with whitespace minimized) would be:
+
+```uri
+https://example.com/foo?%7B%22numbers%22%3A%5B1%2C2%5D%2C%22flag%22%3Anull%7D
 ```
 
 A querystring parameter that uses JSONPath:
@@ -1126,7 +1136,7 @@ content:
     example: $.a.b[1:1]
 ```
 
-As there is not currently a defined mapping between the JSON Schema data model and JSONPath, the details of the string's allowed structure would need to be conveyed either in a human-readable `description` field, or through a mechanism outside of the OpenAPI Description, such as a JSON Schema for the data structure to be queried.
+As there is not, as of this writing, a [registered](#media-type-registry) mapping between the JSON Schema data model and JSONPath, the details of the string's allowed structure would need to be conveyed either in a human-readable `description` field, or through a mechanism outside of the OpenAPI Description, such as a JSON Schema for the data structure to be queried.
 
 Assuming a path of `/foo` and a server of `https://example.com`, the full URL incorporateing the value from the `example` field would be:
 

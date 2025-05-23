@@ -2079,7 +2079,7 @@ headers:
       type: integer
 ```
 
-Response with no return value:
+A response with no return value can be specified by omitting the `content` field, although this technically does not enforce a lack of content, it merely indicates that none is documented:
 
 ```json
 {
@@ -2089,6 +2089,29 @@ Response with no return value:
 
 ```yaml
 description: object created
+```
+
+To signal a definitive lack of content, require that the `Content-Length` header, if present, is `0` (note the HTTP specification does not always require `Content-Length`, so this usage is more to set expectations than to guarantee the header's use):
+
+```json
+{
+  "description": "object created",
+  "headers": {
+    "Content-Length": {
+      "schema": {
+        "const": 0
+      }
+    }
+  }
+}
+```
+
+```yaml
+description: object created
+headers:
+  Content-Length:
+    schema:
+      const: 0
 ```
 
 #### Callback Object

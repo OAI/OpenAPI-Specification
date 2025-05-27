@@ -1025,7 +1025,7 @@ As these are not standards, and often contradict each other, the OAS does not at
 Two avenues are available for supporting such formats with `in: "querystring"`:
 
 * Use `content` and `text/plain` with a schema of `type: "string"` and define the format outside of OpenAPI.  While this requires more work to document and construct or parse the format, which is seen as a plain string from the OpenAPI perspective, it provides the easiest flexible option
-* Define a media type (which need not necessarily be [IANA-registered](https://www.rfc-editor.org/rfc/rfc6838.html)) and submit a registration for how it can be supported (using `in: "querystring"` and the `content` field) to the OpenAPI Initiative's [Media Type Registry](#media-type-registry).
+* Define a media type (which need not necessarily be [IANA-registered](https://www.rfc-editor.org/rfc/rfc6838.html)) and a process for mapping in-memory data to the serialized  media type.  To increase the likelihood of support across multiple tools, submit a registration for the media type and process to the OpenAPI Initiative's [Media Type Registry](#media-type-registry).
 
 ##### Parameter Object Examples
 
@@ -1112,10 +1112,9 @@ content:
       # Allow an arbitrary JSON object to keep
       # the example simple
       type: object
-  example: {
-    "numbers": [1, 2],
-    "flag": null
-  }
+    example:
+      # Shown with whitespace minimized
+      '{"numbers":[1,2],"flag":null}'
 ```
 
 Assuming a path of `/foo`, a server of `https://example.com`, the full URL incorporating the value from the `example` field (with whitespace minimized) would be:

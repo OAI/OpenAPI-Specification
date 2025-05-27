@@ -1686,6 +1686,8 @@ Determining how to handle a `type` value of `null` depends on how `null` values 
 If `null` values are entirely omitted, then the `contentType` is irrelevant.
 See [Appendix B](#appendix-b-data-type-conversion) for a discussion of data type conversion options.
 
+It is not currently possible to model nested `multipart` media types.
+
 ###### Fixed Fields for RFC6570-style Serialization
 
 | Field Name | Type | Description |

@@ -567,6 +567,8 @@ $defs:
     $comment: https://spec.openapis.org/oas/v3.2#response-object
     type: object
     properties:
+      summary:
+        type: string
       description:
         type: string
       headers:

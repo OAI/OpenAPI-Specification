@@ -1831,6 +1831,7 @@ Describes a single response from an API operation, including design-time, static
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
+| <a name="response-summary"></a>summary | `string` | A short summary of the meaning of the response. |
 | <a name="response-description"></a>description | `string` | A description of the response. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="response-headers"></a>headers | Map[`string`, [Header Object](#header-object) \| [Reference Object](#reference-object)] | Maps a header name to its definition. [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.1) states header names are case insensitive. If a response header is defined with the name `"Content-Type"`, it SHALL be ignored. |
 | <a name="response-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | A map containing descriptions of potential response payloads. The key is a media type or [media type range](https://www.rfc-editor.org/rfc/rfc9110.html#appendix-A) and the value describes it. For responses that match multiple keys, only the most specific key is applicable. e.g. `"text/plain"` overrides `"text/*"` |

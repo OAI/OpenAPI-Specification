@@ -3367,12 +3367,13 @@ properties:
       nodeType: element
       name: animals
     items:
+      xml:
+        name: animal
       properties:
         kind:
           type: string
           xml:
             nodeType: attribute
-            name: animal
         content:
           type: string
           xml:

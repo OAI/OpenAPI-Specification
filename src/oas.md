@@ -343,12 +343,22 @@ Note that some URI fields are named `url` for historical reasons, but the descri
 
 Unless specified otherwise, all fields that are URIs MAY be relative references as defined by [RFC3986](https://tools.ietf.org/html/rfc3986#section-4.2).
 
-Relative references in [Schema Objects](#schema-object), including any that appear as `$id` values, use the nearest parent `$id` as a Base URI, as described by [JSON Schema Specification Draft 2020-12](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-8.2).
+#### Establishing the Base URI
 
-Relative URI references in other Objects, and in Schema Objects where no parent schema contains an `$id`, MUST be resolved using the referring document's base URI, which is determined in accordance with [[RFC3986]] [Section 5.1.2 – 5.1.4](https://tools.ietf.org/html/rfc3986#section-5.1.2).
-In practice, this is usually the retrieval URI of the document, which MAY be determined based on either its current actual location or a user-supplied expected location.
+Relative URI references are resolved using the appropriate base URI, which MUST be determined in accordance with [[RFC3986]] [Section 5.1.1 – 5.1.4](https://tools.ietf.org/html/rfc3986#section-5.1.1) and, for Schema objects, [JSON Schema draft 2020-12 Section 8.2](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-8.2), as illustrated by the examles in [Appendix G: Examples of Base URI Determination and Reference Resolution](#appendix-g-examples-of-base-uri-determination-and-reference-resolution).
+
+If `$self` is a relative URI-reference, it is resolved agains the next possible base URI source ([[RFC3986]] [Section 5.1.2 – 5.1.4](https://tools.ietf.org/html/rfc3986#section-5.1.2)) before being used for the resolution of other relative URI-references.
+
+The most common base URI source that is used in the event of a missing or relative `$self` (in the [OpenAPI Object](#openapi-object)) and (for [Schema Object](#schema-object)) `$id` is the retrieval URI.
+Implementations MAY support document retrieval, although see the [Security Considerations](#security-considerations) sections for additional guidance.
+Even if retrieval is supported, it may be impossible due to network configuration or server unavailability (including the server hosting an older version while a new version is in development), or undesirable due to performance impacts.
+Therefore, all implementations SHOULD allow users to provide the intended retrieval URI for each document so that references can be resolved as if retrievals were performed.
+
+#### Resolving URI fragments
 
 If a URI contains a fragment identifier, then the fragment should be resolved per the fragment resolution mechanism of the referenced document. If the representation of the referenced document is JSON or YAML, then the fragment identifier SHOULD be interpreted as a JSON-Pointer as per [RFC6901](https://tools.ietf.org/html/rfc6901).
+
+#### Relative URI References in CommonMark Fields
 
 Relative references in CommonMark hyperlinks are resolved in their rendered context, which might differ from the context of the API description.
 
@@ -357,7 +367,28 @@ Relative references in CommonMark hyperlinks are resolved in their rendered cont
 API endpoints are by definition accessed as locations, and are described by this specification as **_URLs_**.
 
 Unless specified otherwise, all fields that are URLs MAY be relative references as defined by [RFC3986](https://tools.ietf.org/html/rfc3986#section-4.2).
+
+Because the API Is a distinct entity from the OpenAPI Document, RFC3986's base URI rules for the OpenAPI Document do not apply.
 Unless specified otherwise, relative references are resolved using the URLs defined in the [Server Object](#server-object) as a Base URL. Note that these themselves MAY be relative to the referring document.
+
+#### Examples of API Base URL Determination
+
+Assume a retrieval URI of `https://device1.example.com` for the following OpenAPI Document:
+
+```YAML
+openapi: 3.2.0
+$self: https://apidescriptions.example.com/foo
+info:
+  title: Example API
+  version: 1.0
+servers:
+- url: .
+  description: The production API on this device
+- url: ./test
+  description: The test API on this device
+```
+
+For API URLs the `$self` field, which identifies the OpenAPI Document, is ignored and the retrieval URI is used instead. This produces a normalized production URL of `https://device1.example.com`, and a normalized test URL of `https://device1.example.com/test`.
 
 ### Schema
 
@@ -377,6 +408,7 @@ This is the root object of the [OpenAPI Description](#openapi-description).
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="oas-version"></a>openapi | `string` | **REQUIRED**. This string MUST be the [version number](#versions) of the OpenAPI Specification that the OpenAPI Document uses. The `openapi` field SHOULD be used by tooling to interpret the OpenAPI Document. This is _not_ related to the API [`info.version`](#info-version) string. |
+| <a name="oas-self"></a>$self | `string` | This string MUST be in the form of a URI-reference as defined by [[RFC3986]] [Section 4.1](https://www.rfc-editor.org/rfc/rfc3986#section-4.1). The `$self` field provides the self-assigned URI of this document, which also serves as its base URI in accordance with [[RFC3986]] [Section 5.1.1](https://www.rfc-editor.org/rfc/rfc3986#section-5.1.1). Implementations MUST support identifying the targets of [API description URIs](#relative-references-in-api-description-uris) using the URI defined by this field when it is present. See [Establishing the Base URI](#establishing-the-base-uri) for the base URI behavior when `$self` is absent or relative, and see [Appendix G]((#appendix-g-examples-of-base-uri-determination-and-reference-resolution)) for examples of using `$self` to resolve references. |
 | <a name="oas-info"></a>info | [Info Object](#info-object) | **REQUIRED**. Provides metadata about the API. The metadata MAY be used by tooling as required. |
 | <a name="oas-json-schema-dialect"></a> jsonSchemaDialect | `string` | The default value for the `$schema` keyword within [Schema Objects](#schema-object) contained within this OAS document. This MUST be in the form of a URI. |
 | <a name="oas-servers"></a>servers | [[Server Object](#server-object)] | An array of Server Objects, which provide connectivity information to a target server. If the `servers` field is not provided, or is an empty array, the default value would be a [Server Object](#server-object) with a [url](#server-url) value of `/`. |
@@ -388,6 +420,9 @@ This is the root object of the [OpenAPI Description](#openapi-description).
 | <a name="oas-external-docs"></a>externalDocs | [External Documentation Object](#external-documentation-object) | Additional external documentation. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
+
+To ensure interoperability, references MUST use the target document's `$self` URI if the `$self` field is present.
+Implementations MAY choose to support referencing by other URIs such as the retrieval URI even when `$self` is present, however this behavior is not interoperable and relying on it is NOT RECOMMENDED.
 
 #### Info Object
 
@@ -482,6 +517,8 @@ An object representing a Server.
 | <a name="server-variables"></a>variables | Map[`string`, [Server Variable Object](#server-variable-object)] | A map between a variable name and its value. The value is used for substitution in the server's URL template. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
+
+See [Examples of API Base URL Determination](#examples-of-api-base-url-determination) for examples of resolving relative server URLs.
 
 ##### Server Object Example
 
@@ -4049,3 +4086,218 @@ components:
 ```
 
 In the `other` document, the referenced path item has a Security Requirement for a Security Scheme, `MySecurity`. The same Security Scheme exists in the original entry document. As outlined in [Resolving Implicit Connections](#resolving-implicit-connections), `MySecurity` is resolved with an [implementation-defined behavior](#undefined-and-implementation-defined-behavior). However, documented in that section, it is RECOMMENDED that tools resolve component names from the [entry document](#openapi-description-structure). As with all implementation-defined behavior, it is important to check tool documentation to determine which behavior is supported.
+
+## Appendix G: Examples of Base URI Determination and Reference Resolution
+
+This section shows each of the four possible sources of base URIs, followed by an example with a relative `$self` and `$id`.
+
+### Base URI Within Content
+
+A base URI within the resource's content (RFC3986 Section 5.1.1) is the highest-precedence source of a base URI.
+For OpenAPI Documents, this source is the OpenAPI Object's `$self` field, while for Schema Objects that contain a `$id`, or are a subschema of a Schema Object containing a `$id`, the source is the `$id` field:
+
+Assume the retrieval URI of the following document is `file://home/someone/src/api/openapi.yaml`:
+
+```YAML
+openapi: 3.2.0
+$self: https://example.com/api/openapi
+info:
+  title: Example API
+  version: 1.0
+paths:
+  /foo:
+    get:
+      requestBody:
+        $ref: "shared/foo#/components/requestBodies/Foo"
+```
+
+Assume the retrieval URI for the following document is `https://git.example.com/shared/blob/main/shared/foo.yaml`:
+
+```YAML
+openapi: 3.2.0
+$self: https://example.com/api/shared/foo
+info:
+  title: Shared components for all APIs
+  version: 1.0
+components:
+  requestBodies:
+    Foo:
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/foo
+  schemas:
+    Foo:
+      $id: https://example.com/api/schemas/foo
+      properties:
+        bar:
+          $ref: bar
+    Bar:
+      $id: https://example.com/api/schemas/bar
+      type: string
+```
+
+In this example, the retrieval URIs are irrelevant because both documents define `$self`.
+
+The relative `$ref` in the first document is resolved against `$self` to produce `https://example.com/api/shared/foo#/components/requestBodies/Foo`.
+The portion of that URI before the '#' matches the `$self` of the second document, so the reference target is resolved to `#/components/requestBodies/Foo` in that second document.
+
+In that document, the `$ref` in the Request Body Object is resolved using that document's `$self` as the base URI, producing `https://example.com/api/schemas/foo`.
+This matches the `$id` at `#/components/schemas/Foo/$id` so it points to that Schema Object.
+That Schema Object has a subschema with `$ref: bar`, which is resolved against the `$id` to produce `https://example.com/api/schemas/bar`, which matches the `$id` at `#/components/schemas/Bar/$id`.
+
+To guarantee interoperability, Schema Objects containing an `$id`, or that are under a schema containing an `$id`, MUST be referenced by the nearest such `$id` for the non-fragment part of the reference.
+As the JSON Schema specification notes, using a base URI other than the nearest `$id` and crossing that `$id` with a JSON Pointer fragment [is not interoperable](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#name-json-pointer-fragments-and-).
+
+Note also that it is impossible for the reference at `#/components/schemas/Foo/properties/bar/$ref` to reference the schema at `#/components/schemas/Bar` using _only_ a JSON Pointer fragment, as the JSON Pointer would be resolved relative to `https://example.com/api/schemas/foo`, not to the OpenAPI Document's base URI from `$self`.
+
+### Base URI From Encapsulating Entity
+
+If no base URI can be determined within the content, the next location to search is any encapsulating entity (RFC3986 Section 5.1.2).
+
+This is common for Schema Objects encapsulated within an OpenAPI Document.
+An example of an OpenAPI Document itself being encapsulated in another entity would be a `multipart/related` archive ([[?RFC2557]]), such as the following `multipart/related; boundary="boundary-example"; type="application/openapi+yaml"` document.
+Note that this is purely an example, and support for such multipart documents or any other format that could encapsulate an OpenAPI Document is not a requirement of this specification.
+
+RFC2557 was written to allow sending hyperlinked sets of documents as email attachments, in which case there would not be a retrieval URI for the multipart attachment (although the format could also be used in HTTP as well).
+
+```MULTIPART
+--boundary-example
+Content-Type: application/openapi+yaml
+Content-Location: https://example.com/api/openapi.yaml
+
+openapi: 3.2.0
+info:
+  title: Example API
+  version: 1.0
+  externalDocs:
+    url: docs.html
+components:
+  requestBodies:
+    Foo:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/api/schemas/Foo"
+  schemas:
+    Foo:
+      properties:
+        bar:
+          $ref: schemas/bar
+--boundary-example
+Content-Type: application/schema+json
+Content-Location: https://example.com/api/schemas/bar
+
+{
+  "type": "string"
+}
+--boundary-example
+Content-Type: text/html
+Content-Location: https://example.com/api/docs.html
+
+<html>
+  <head>
+    <title>API Documentation</title>
+  </head>
+  <body>
+    <p>Awesome documentation goes here</p>
+  </body>
+</html>
+--boundary-example
+```
+
+In this example, the URI for each part, which also serves as its base URI, comes from the part's `Content-Location` header as specified by RFC2557.
+Since the Schema Object at `#/components/schemas/Foo` does not contain an `$id`, the reference in its subschema uses the OpenAPI Document's base URI, which is taken from the `Content-Location` header of its part within the `multipart/related` format.
+The resulting reference to `https://example.com/schemas/bar` matches the `Content-Location` header of the second part, which according to RFC2557 allows the reference target to be located within the multipart archive.
+
+Similarly, the `url` field of the [External Documentation Object](#external-documentation-object) is resolved against the base URI from `Content-Location`, producing `https://example.com/api/docs.html` which matches the `Content-Location` of the third part.
+
+### Base URI From the Retrieval URI
+
+If no base URI is provided from either of the previous sources, the next source is the retrieval URI (RFC 3986 Section 5.1.3).
+
+Assume this document was retrieved from `https://example.com/api/openapis.yaml`:
+
+```YAML
+openapi: 3.2.0
+info:
+  title: Example API
+  version: 1.0
+components:
+  requestBodies:
+    Foo:
+      content:
+        application/json:
+          schema:
+            $ref: schemas/foo
+```
+
+Assume this document was retrieved from `https://example.com/api/schemas/foo`:
+
+```JSON
+{
+  "type": "object",
+  "properties": {
+    "bar": {
+      "type": "string"
+    }
+  }
+}
+```
+
+Resolving the `$ref: schemas/foo` against the retrieval URI of the OpenAPI Document produces `https://example.com/api/schemas/foo`, the retrieval URI of the JSON Schema document.
+
+### Application-Specific Default Base URI
+
+When constructing an OpenAPI Document in memory that does not have a `$self`, or an encapsulating entity, or a retrieval URI, applications can resolve internal (fragment-only) references by assuming a default base URI (RFC3986 Section 5.1.4).
+While this sort of internal resolution an be performed in practice without choosing a base URI, choosing one, such as a URN with a randomly generated UUID (e.g. `urn:uuid:f26cdaad-3193-4398-a838-4ecb7326c4c5`) avoids the need to implement it as a special case.
+
+### Resolving Relative `$self` and `$id`
+
+Let's re-consider the first example in this appendix, but with relative URI-references for `$self` and `$id`, and retrieval URIs that support that relative usage:
+
+
+Assume that the following is retrieved from `https://staging.example.com/api/openapi`:
+
+```YAML
+openapi: 3.2.0
+$self: /api/openapi
+info:
+  title: Example API
+  version: 1.0
+paths:
+  /foo:
+    get:
+      requestBody:
+        $ref: "shared/foo#/components/requestBodies/Foo"
+```
+
+Assume the retrieval URI for the following document is `https://staging.example.com/api/shared/foo`:
+
+```YAML
+openapi: 3.2.0
+$self: /api/shared/foo
+info:
+  title: Shared components for all APIs
+  version: 1.0
+components:
+  requestBodies:
+    Foo:
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/foo
+  schemas:
+    Foo:
+      $id: /api/schemas/foo
+      properties:
+        bar:
+          $ref: bar
+    Bar:
+      $id: /api/schemas/bar
+      type: string
+```
+
+In this example, all of the `$self` and `$id` values are relative URI-references consisting of an absolute path.
+This allows the retrieval URI to set the host (and scheme), in this case `https://staging.example.com`, resulting in the first document's `$self` being `https://staging.example.com/openapi`, and the second document's `$self` being `https://staging.example.com/api/shared/foo`, with `$id` values of `https://staging.example.com/api/schemas/foo` and `https://staging.example.com/api/schemas/bar`.
+Relative `$self` and `$id` values of this sort  allow the same set of documents to work when deployed to other hosts, e.g. `https://example.com` (production) or `https://localhost:8080` (local development).

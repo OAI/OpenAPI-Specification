@@ -994,7 +994,7 @@ Serializing with `schema` is NOT RECOMMENDED for `in: "cookie"` parameters, `in:
 | <a name="parameter-explode"></a>explode | `boolean` | When this is true, parameter values of type `array` or `object` generate separate parameters for each value of the array or key-value pair of the map. For other types of parameters this field has no effect. When [`style`](#parameter-style) is `"form"`, the default value is `true`. For all other styles, the default value is `false`. Note that despite `false` being the default for `deepObject`, the combination of `false` with `deepObject` is undefined. |
 | <a name="parameter-allow-reserved"></a>allowReserved | `boolean` | When this is true, parameter values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). Applications are still responsible for percent-encoding reserved characters that are not allowed by the rules of the `in` destination or media type, or are [not allowed in the path by this specification](#path-templating); see Appendices [C](#appendix-c-using-rfc6570-based-serialization) and [E](#appendix-e-percent-encoding-and-form-media-types) for details. The default value is `false`. |
 | <a name="parameter-schema"></a>schema | [Schema Object](#schema-object) | The schema defining the type used for the parameter. |
-| <a name="parameter-example"></a>example | Any | Example of the parameter's potential value; see [Working With Examples](#working-with-examples). |
+| <a name="parameter-example"></a>example | Any | **Deprecated**. Example of the parameter's potential value; see [Working With Examples](#working-with-examples). |
 | <a name="parameter-examples"></a>examples | Map[ `string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | Examples of the parameter's potential value; see [Working With Examples](#working-with-examples). |
 
 See also [Appendix C: Using RFC6570-Based Serialization](#appendix-c-using-rfc6570-based-serialization) for additional guidance.
@@ -1028,7 +1028,7 @@ See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a discus
 
 ##### Style Examples
 
-Assume a parameter named `color` has one of the following values:
+Assume a parameter named `color` has one of the following values, where the value to the right of the `->` is what would be shown in [the `dataValue` field](#example-data-value) of an Example Object:
 
 ```js
    string -> "blue"
@@ -1036,13 +1036,13 @@ Assume a parameter named `color` has one of the following values:
    object -> { "R": 100, "G": 200, "B": 150 }
 ```
 
-The following table shows examples, as would be shown with the `example` or `examples` keywords, of the different serializations for each value.
+The following table shows serialized examples, as would be shown with the `serializedValue` field of an Example Object, of the different serializations for each value.
 
 * The value _empty_ denotes the empty string, and is unrelated to the `allowEmptyValue` field
 * The behavior of combinations marked _n/a_ is undefined
 * The `undefined` column replaces the `empty` column in previous versions of this specification in order to better align with [RFC6570](https://www.rfc-editor.org/rfc/rfc6570.html#section-2.3) terminology, which describes certain values including but not limited to `null` as "undefined" values with special handling; notably, the empty string is _not_ undefined
-* For `form` and the non-RFC6570 query string styles `spaceDelimited`, `pipeDelimited`, and `deepObject`, each example is shown prefixed with `?` as if it were the only query parameter; see [Appendix C](#appendix-c-using-rfc6570-based-serialization) for more information on constructing query strings from multiple parameters, and [Appendix D](#appendix-d-serializing-headers-and-cookies) for warnings regarding `form` and cookie parameters
-* Note that the `?` prefix is not appropriate for serializing `application/x-www-form-urlencoded` HTTP message bodies, and MUST be stripped or (if constructing the string manually) not added when used in that context; see the [Encoding Object](#encoding-object) for more information
+* Note that RFC6570 form expansion implementations will include either a leading `?` or `&` delimiter, depending on which type of form expansion is used; these leading delimiters are not shown here as they are not part of the `application/x-www-form-urlencoded` media type when it is used on its own such as in HTTP message content, or when treating the entire query string (between `?` and `#` or the end of the URI) as a document of that media type
+* For `form` and the non-RFC6570 query string styles `spaceDelimited`, `pipeDelimited`, and `deepObject`, see [Appendix C](#appendix-c-using-rfc6570-based-serialization) for more information on constructing query strings from multiple parameters, and [Appendix D](#appendix-d-serializing-headers-and-cookies) for warnings regarding `form` and cookie parameters
 * The examples are percent-encoded as required by RFC6570 and RFC3986; see [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a thorough discussion of percent-encoding concerns, including why unencoded `|` (`%7C`), `[` (`%5B`), and `]` (`%5D`) seem to work in some environments despite not being compliant.
 
 | [`style`](#style-values) | `explode` | `undefined` | `string` | `array` | `object` |
@@ -1053,14 +1053,14 @@ The following table shows examples, as would be shown with the `example` or `exa
 | label | true | . | .blue | .blue.black.brown | .R=100.G=200.B=150 |
 | simple | false | _empty_ | blue | blue,black,brown | R,100,G,200,B,150 |
 | simple | true | _empty_ | blue | blue,black,brown | R=100,G=200,B=150 |
-| form | false | <span style="white-space: nowrap;">?color=</span> | <span style="white-space: nowrap;">?color=blue</span> | <span style="white-space: nowrap;">?color=blue,black,brown</span> | <span style="white-space: nowrap;">?color=R,100,G,200,B,150</span> |
-| form | true | <span style="white-space: nowrap;">?color=</span> | <span style="white-space: nowrap;">?color=blue</span> | <span style="white-space: nowrap;">?color=blue&color=black&color=brown</span> | <span style="white-space: nowrap;">?R=100&G=200&B=150</span> |
-| spaceDelimited</span> | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">?color=blue%20black%20brown</span> | <span style="white-space: nowrap;">?color=R%20100%20G%20200%20B%20150</span> |
+| form | false | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue,black,brown</span> | <span style="white-space: nowrap;">color=R,100,G,200,B,150</span> |
+| form | true | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue&color=black&color=brown</span> | <span style="white-space: nowrap;">R=100&G=200&B=150</span> |
+| spaceDelimited</span> | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color=blue%20black%20brown</span> | <span style="white-space: nowrap;">color=R%20100%20G%20200%20B%20150</span> |
 | spaceDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
-| pipeDelimited | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">?color=blue%7Cblack%7Cbrown</span> | <span style="white-space: nowrap;">?color=R%7C100%7CG%7C200%7CB%7C150</span> |
+| pipeDelimited | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color=blue%7Cblack%7Cbrown</span> | <span style="white-space: nowrap;">color=R%7C100%7CG%7C200%7CB%7C150</span> |
 | pipeDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
 | deepObject | false | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
-| deepObject | true | _n/a_ | _n/a_ | _n/a_ | <span style="white-space: nowrap;">?color%5BR%5D=100&color%5BG%5D=200&color%5BB%5D=150</span> |
+| deepObject | true | _n/a_ | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color%5BR%5D=100&color%5BG%5D=200&color%5BB%5D=150</span> |
 
 ##### Extending Support for Querystring Formats
 
@@ -1087,6 +1087,10 @@ schema:
     type: integer
     format: int64
 style: simple
+examples:
+  number:
+    dataValue: 12345678
+    serializedValue: "token: 12345678"
 ```
 
 A path parameter of a string value:
@@ -1098,6 +1102,13 @@ description: username to fetch
 required: true
 schema:
   type: string
+examples:
+  "Edsger Dijkstra":
+    dataValue: edijkstra
+    serializedValue: edijkstra
+  Diṅnāga:
+    dataValue: diṅnāga
+    serializedValue: di%E1%B9%85n%C4%81ga
 ```
 
 An optional query parameter of a string value, allowing multiple values by repeating the query parameter:
@@ -1113,6 +1124,10 @@ schema:
     type: string
 style: form
 explode: true
+examples:
+  stuff:
+    dataValue: [this, that, theother]
+    serializedValue: id=this&id=that&id=theother
 ```
 
 A free-form query parameter, allowing undefined parameters of a specific type:
@@ -1125,6 +1140,10 @@ schema:
   additionalProperties:
     type: integer
 style: form
+examples:
+  freeForm:
+    dataValue: {"yeah": "I'm", "free": "forming"}
+    serializedValue: yeah=I%27m&free=forming
 ```
 
 A complex parameter using `content` to define serialization:
@@ -1157,13 +1176,17 @@ content:
       # Allow an arbitrary JSON object to keep
       # the example simple
       type: object
-    example: {
-      "numbers": [1, 2],
-      "flag": null
-    }
+    examples:
+      minimized:
+        summary: JSON should be serialized with minimal whitespace
+        dataValue: {
+          "numbers": [1, 2],
+          "flag": null
+        }
+        serializedValue: '{"numbers":[1,2],"flag":null}'
 ```
 
-Assuming a path of `/foo`, a server of `https://example.com`, the full URL incorporating the value from the `example` field (with whitespace minimized) would be:
+Assuming a path of `/foo`, a server of `https://example.com`, the full URL incorporating the value from the `serializedValue` field would be:
 
 ```uri
 https://example.com/foo?%7B%22numbers%22%3A%5B1%2C2%5D%2C%22flag%22%3Anull%7D
@@ -1178,12 +1201,14 @@ content:
   application/jsonpath:
     schema:
       type: string
-    example: $.a.b[1:1]
+    examples:
+      simpleSelector:
+        dataValue: $.a.b[1:1]
 ```
 
 As there is not, as of this writing, a [registered](#media-type-registry) mapping between the JSON Schema data model and JSONPath, the details of the string's allowed structure would need to be conveyed either in a human-readable `description` field, or through a mechanism outside of the OpenAPI Description, such as a JSON Schema for the data structure to be queried.
 
-Assuming a path of `/foo` and a server of `https://example.com`, the full URL incorporating the value from the `example` field would be:
+Assuming a path of `/foo` and a server of `https://example.com`, the full URL incorporating the value from the `dataValue` field would be:
 
 ```uri
 https://example.com/foo?%24.a.b%5B1%3A1%5D
@@ -1216,24 +1241,24 @@ content:
     examples:
       user:
         summary: User example
-        externalValue: https://foo.bar/examples/user-example.json
+        externalDataValue: https://foo.bar/examples/user-example.json
   application/xml:
     schema:
       $ref: '#/components/schemas/User'
     examples:
       user:
         summary: User example in XML
-        externalValue: https://foo.bar/examples/user-example.xml
+        externalSerializedValue: https://foo.bar/examples/user-example.xml
   text/plain:
     examples:
       user:
         summary: User example in plain text
-        externalValue: https://foo.bar/examples/user-example.txt
+        externalSerializedValue: https://foo.bar/examples/user-example.txt
   '*/*':
     examples:
       user:
         summary: User example in other format
-        externalValue: https://foo.bar/examples/user-example.whatever
+        externalSerializedValue: https://foo.bar/examples/user-example.whatever
 ```
 
 #### Media Type Object
@@ -1251,7 +1276,7 @@ See [Working With Examples](#working-with-examples) for further guidance regardi
 | ---- | :----: | ---- |
 | <a name="media-type-schema"></a>schema | [Schema Object](#schema-object) | A schema describing the complete content of the request, response, parameter, or header. |
 | <a name="media-type-item-schema"></a>itemSchema | [Schema Object](#schema-object) | A schema describing each item within a [sequential media type](#sequential-media-types). |
-| <a name="media-type-example"></a>example | Any | Example of the media type; see [Working With Examples](#working-with-examples). |
+| <a name="media-type-example"></a>example | Any | **Deprecated**. Example of the media type; see [Working With Examples](#working-with-examples). |
 | <a name="media-type-examples"></a>examples | Map[ `string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | Examples of the media type; see [Working With Examples](#working-with-examples). |
 | <a name="media-type-encoding"></a>encoding | Map[`string`, [Encoding Object](#encoding-object)] | A map between a property name and its encoding information, as defined under [Encoding Usage and Restrictions](#encoding-usage-and-restrictions).  The `encoding` field SHALL only apply when the media type is `multipart` or `application/x-www-form-urlencoded`. If no Encoding Object is provided for a property, the behavior is determined by the default values documented for the Encoding Object. |
 
@@ -1424,16 +1449,30 @@ components:
   examples:
     LogJSONSeq:
       summary: Log entries in application/json-seq
+      dataValue: [
+        {
+          "timestamp": "1985-04-12T23:20:50.52Z",
+          "level": 1,
+          "message": "Hi!"
+        },
+        {
+          "timestamp": "1985-04-12T23:20:51.37Z",
+          "level": 1,
+          "message": "Bye!"
+        }
+      ]
       # JSON Text Sequences require an unprintable character
       # that cannot be escaped in a YAML string, and therefore
       # must be placed in an external document shown below
-      externalValue: examples/log.json-seq
+      externalSerializedValue: examples/log.json-seq
     LogJSONPerLine:
       summary: Log entries in application/jsonl or application/x-ndjson
       description: JSONL and NDJSON are identical for this example
-      # Note that the value must be written as a string with newlines,
-      # as JSONL and NDJSON are not valid YAML
-      value: |
+      dataValue: [
+        {"timestamp": "1985-04-12T23:20:50.52Z", "level": 1, "message": "Hi!"},
+        {"timestamp": "1985-04-12T23:20:51.37Z", "level": 1, "message": "Bye!"}
+      ]
+      serializedValue: |
         {"timestamp": "1985-04-12T23:20:50.52Z", "level": 1, "message": "Hi!"}
         {"timestamp": "1985-04-12T23:20:51.37Z", "level": 1, "message": "Bye!"}
   responses:
@@ -1545,9 +1584,21 @@ content:
               properties:
                 foo:
                   type: integer
+    examples:
+      threeEvents:
+        summary: Three events in a short stream
+        description: |
+          These events show how multi-line data, numbers-as-text,
+          and embedded JSON are handled.
+        dataValue: [
+          {"event": "addString", "data": "This data is formatted\nacross two lines", "retry": 5},
+          {"event": "addInt64", "data": "12345678"},
+          {"event": "addJSON", "data": "{\"foo\": 42}"}
+        ]
+        externalSerializedValue: ./examples/three-event-stream
 ```
 
-The following `text/event-stream` document is an example of a valid request body for the above example:
+The `./examples/three-event-stream` document is shown separately here to allow syntax highlighting for readability, but could have been included as a YAML block string literal.  Note that the comment and unknown field do not appear in the scorresponding `dataValue`, but are an example of how a serialized form may include elements that are ignored when parsed:
 
 ```eventstream
 event: addString
@@ -1556,20 +1607,12 @@ data: across two lines
 retry: 5
 
 event: addInt64
-data: 1234.5678
+data: 12345678
 unknownField: this is ignored
 
 : This is a comment
 event: addJSON
 data: {"foo": 42}
-```
-
-To more clearly see how this stream is handled, the following is the equivalent JSON Lines document, which shows how the numeric and JSON data are handled as strings, and how unknown fields and comments are ignored and not passed to schema validation:
-
-```jsonl
-{"event": "addString", "data": "This data is formatted\nacross two lines", "retry": 5}
-{"event": "addInt64", "data": "1234.5678"}
-{"event": "addJSON", "data": "{\"foo\": 42}"}
 ```
 
 ##### Considerations for File Uploads
@@ -1699,26 +1742,33 @@ requestBody:
             # complex types are stringified to support RFC 1866
             type: object
             properties: {}
+      examples:
+        CaliforniaWithZIPPlusFour:
+          summary: A U.S. address example
+          description: |
+            Note that JSON whitespace in the address is minimized
+            before encoding
+          dataValue: {
+            "id": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
+            "address": {
+              "streetAddress": "123 Example Dr.",
+              "city": "Somewhere",
+              "state": "CA",
+              "zip": "99999+1234"
+            }
+          }
+          serializedValue: ./examples/urlencoded
 ```
 
-With this example, consider an `id` of `f81d4fae-7dec-11d0-a765-00a0c91e6bf6` and a US-style address (with ZIP+4) as follows:
-
-```json
-{
-  "streetAddress": "123 Example Dr.",
-  "city": "Somewhere",
-  "state": "CA",
-  "zip": "99999+1234"
-}
-```
-
-Assuming the most compact representation of the JSON value (with unnecessary whitespace removed), we would expect to see the following request body, where space characters have been replaced with `+` and `+`, `"`, `{`, and `}` have been percent-encoded to `%2B`, `%22`, `%7B`, and `%7D`, respectively:
+Where `./examples/urlencoded` would be:
 
 ```uri
 id=f81d4fae-7dec-11d0-a765-00a0c91e6bf6&address=%7B%22streetAddress%22:%22123+Example+Dr.%22,%22city%22:%22Somewhere%22,%22state%22:%22CA%22,%22zip%22:%2299999%2B1234%22%7D
 ```
 
-Note that the `id` keyword is treated as `text/plain` per the [Encoding Object](#encoding-object)'s default behavior, and is serialized as-is.
+Note that per the media type rules, spaces have been replaced with `+`, while `+`, `"`, `{`, and `}` have been percent-encoded to `%2B`, `%22`, `%7B`, and `%7D`, respectively.
+
+Note also that the `id` keyword is treated as `text/plain` per the [Encoding Object](#encoding-object)'s default behavior, and is serialized as-is.
 If it were treated as `application/json`, then the serialized value would be a JSON string including quotation marks, which would be percent-encoded as `%22`.
 
 Here is the `id` parameter (without `address`) serialized as `application/json` instead of `text/plain`, and then encoded per RFC1866:
@@ -1746,13 +1796,19 @@ requestBody:
             # image media type(s) in the Encoding Object.
             type: string
             contentEncoding: base64url
-  encoding:
-    icon:
-      contentType: image/png, image/jpeg
+    encoding:
+      icon:
+        contentType: image/png, image/jpeg
+    examples:
+      namedIcon:
+        summary: A small icon image with a plain text name
+        description: |
+          The input data for "name" is "example", and for "icon"
+          is a solid red 2x2-pixel PNG
+        externalSerializedValue: ./examples/namedIcon
 ```
 
-Given a name of `example` and a solid red 2x2-pixel PNG for `icon`, this
-would produce a request body of:
+Where `./examples/namedIcon` would be:
 
 ```uri
 name=example&icon=iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAABGdBTUEAALGPC_xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAqADAAQAAAABAAAAAgAAAADO0J6QAAAAEElEQVQIHWP8zwACTGCSAQANHQEDqtPptQAAAABJRU5ErkJggg%3D%3D
@@ -1826,14 +1882,25 @@ requestBody:
           id:
             type: string
             format: uuid
+            examples:
+            - f81d4fae-7dec-11d0-a765-00a0c91e6bf6
 
           # Encoding Object overrides the default `application/json` content type
           # for each item in the array with `application/xml; charset=utf-8`
           addresses:
             description: addresses in XML format
             type: array
+            xml:
+              wrapped: true
             items:
               $ref: '#/components/schemas/Address'
+              examples:
+              - {
+                  "streetAddress": "123 Example Dr.",
+                  "city": "Somewhere",
+                  "state": "CA",
+                  "zip": "99999+1234"
+                }
 
           # Encoding Object accepts only PNG or JPEG, and also describes
           # a custom header for just this part in the multipart format
@@ -1849,7 +1916,43 @@ requestBody:
               description: The number of allowed requests in the current period
               schema:
                 type: integer
+
+      examples:
+        multipart:
+          description: |
+            The input example data for the 
+          externalSerializedValue: ./examples/multipart
 ```
+
+As it is not possible to embed raw binary in JSON, JSON-compatible YAML, or Markdown, we cannot show the true contents of `./examples/multipart`.
+But using `[binary contents here]` as a placeholder, it would look something like:
+
+```multipart
+--boundary-example
+Content-Type: text/plain
+Content-Disposition: form-data; name=id
+
+f81d4fae-7dec-11d0-a765-00a0c91e6bf6
+--boundary-example
+Content-Type: application/xml; charset=utf-8
+Content-Disposition: form-data; name=address
+
+<addresses>
+  <address>
+    <streetAddress>123 Example Dr.</streetAddress>
+    <city>Somewhere</city>
+    <state>CA</state>
+    <zip>99999+1234</zip>
+  </address>
+</addresses>
+--boundary-example
+Content-Type: image/png
+Content-Disposition: form-data; name=profileImage
+
+[binary contents here]
+--boundary-example
+```
+
 
 ###### Example: Multipart Form with Multiple Files
 
@@ -1972,14 +2075,26 @@ headers:
     description: The number of allowed requests in the current period
     schema:
       type: integer
+    examples:
+      allowTen:
+        dataValue: 10
+        serializedValue: 'X-Rate-Limit-Limit: 10'
   X-Rate-Limit-Remaining:
     description: The number of remaining requests in the current period
     schema:
       type: integer
+    examples:
+      twoRemaining:
+        dataValue: 2
+        serializedValue: 'X-Rate-Limit-Remaining: 2'
   X-Rate-Limit-Reset:
     description: The number of seconds left in the current period
     schema:
       type: integer
+    examples:
+      oneMinute:
+        dataValue: 60
+        serializedValue: 'X-Rate-Limit-Reset: 60'
 ```
 
 Response with no return value:
@@ -2087,10 +2202,9 @@ transactionCallback:
 
 #### Example Object
 
-An object grouping an internal or external example value with basic `summary` and `description` metadata.
-This object is typically used in fields named `examples` (plural), and is a [referenceable](#reference-object) alternative to older `example` (singular) fields that do not support referencing or metadata.
+Example values along with `summary` and `description` metadata, showing either a valid data structure for use with a schema, a valid serialized form of the data, or both.
 
-Examples allow demonstration of the usage of properties, parameters and objects within OpenAPI.
+As further explained under [Working With Examples](#working-with-examples), this Object is used in fields named `examples` (plural),and is a [referenceable](#reference-object) alternative to older `example` (singular) fields that do not support referencing, metadata, or data structure vs serialized forms.
 
 ##### Fixed Fields
 
@@ -2098,129 +2212,135 @@ Examples allow demonstration of the usage of properties, parameters and objects 
 | ---- | :----: | ---- |
 | <a name="example-summary"></a>summary | `string` | Short description for the example. |
 | <a name="example-description"></a>description | `string` | Long description for the example. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
-| <a name="example-value"></a>value | Any | Embedded literal example. The `value` field and `externalValue` field are mutually exclusive. To represent examples of media types that cannot naturally represented in JSON or YAML, use a string value to contain the example, escaping where necessary. |
-| <a name="example-external-value"></a>externalValue | `string` | A URI that identifies the literal example. This provides the capability to reference examples that cannot easily be included in JSON or YAML documents. The `value` field and `externalValue` field are mutually exclusive. See the rules for resolving [Relative References](#relative-references-in-api-description-uris). |
+| <a name="example-data-value"></a>dataValue | Any | An example of the data structure that MUST be valid according to the relevant [Schema Object](#schema-object).  If this field is present, `externalDataValue`, `value`, and `externalValue` MUST be absent. |
+| <a name="example-external-data-value"></a>externalDataValue | `string` | A URI that identifies the data example in a separate document, allowing for values not easily expressed in JSON or YAML.  This is usually only needed when working with binary data. The value MUST be valid accordinig to the relevant Schema Object. If this field is present, then `dataValue`, `value`, and `externalValue` MUST be absent. See also the rules for resolving [Relative URI References](#relative-references-in-api-description-uris). |
+| <a name="example-serialized-value"></a>serializedValue | `string` | An example of the serialized form of the value, including all relevant encoding and escaping.  If `dataValue` or `externalDataValue` are present, then this field SHOULD contain the serialization of the given data.  Otherwise, it SHOULD be the valid serialization of a data value that itself MUST be valid as described for `dataValue`.  This field SHOULD NOT be used if the serialization format is JSON, as the data form is easier to work with. If this field is present, `externalSerializedValue`, `value`, and `externalValue` MUST be absent. |
+| <a name="example-eternal-serialized-value"></a>externalSerializedValue | `string` | A URI that identifies the serialized example in a separate document, allowing for values not easily or readably expressed in JSON or YAML strings.  If `dataValue` or `externalDataValue` are present, then this field SHOULD identify a serialization of the given data.  Otherwise, the value SHOULD be a valid serialization as described for `serializedValue`.  If this field is present, `serializedValue`, `value`, and `externalValue` MUST be absent. See also the rules for resolving [Relative References](#relative-references-in-api-description-uris). |
+| <a name="example-value"></a>value | Any | **Deprecated**: It is implementation-defined whether this field is used for data or serialized forms. Embedded literal example. The `value` field and `externalValue` field are mutually exclusive. To represent examples of media types that cannot naturally represented in JSON or YAML, use a string value to contain the example, escaping where necessary. |
+| <a name="example-external-value"></a>externalValue | `string` | **Deprecated**: It is implementation-defined whether this field is used for data or serialized forms. A URI that identifies the literal example. This provides the capability to reference examples that cannot easily be included in JSON or YAML documents. The `value` field and `externalValue` field are mutually exclusive. See also the rules for resolving [Relative URI References](#relative-references-in-api-description-uris). |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
-In all cases, the example value SHOULD be compatible with the schema of its associated value.
-Tooling implementations MAY choose to validate compatibility automatically, and reject the example value(s) if incompatible.
-
 ##### Working with Examples
 
-Example Objects can be used in [Parameter Objects](#parameter-object), [Header Objects](#header-object), and [Media Type Objects](#media-type-object).
-In all three Objects, this is done through the `examples` (plural) field.
-However, there are several other ways to provide examples: The `example` (singular) field that is mutually exclusive with `examples` in all three Objects, and two keywords (the deprecated singular `example` and the current plural `examples`, which takes an array of examples) in the [Schema Object](#schema-object) that appears in the `schema` field of all three Objects.
+Due to the history of example fields in both this specifiction and JSON Schema, there are a number of different ways to specify examples.
+
+Outside of [Schema Objects](#schema-object), it is RECOMMENDED to use Example Objects with the `examples` (plural) fields available in the [Parameter](#parameter-object), [Header](#header-object), [Media Type](#media-type-object), and [Encoding](#encoding-object) Objects.
+
+###### Example Objects vs Other Fields Allowing Examples
+
+However, there are several other ways to provide examples: The deprecated `example` (singular) field that is mutually exclusive with `examples` in all Objects that support both fields, and two keywords (the deprecated singular `example` and the current plural `examples`, which takes an array of examples) in the [Schema Object](#schema-object).
+When a schema is present alongside of the non-Schema Object `example` and `examples`, this results in four possible ways to specify an example.
 Each of these fields has slightly different considerations.
 
 The Schema Object's fields are used to show example values without regard to how they might be formatted as parameters or within media type representations.
 The `examples` array is part of JSON Schema and is the preferred way to include examples in the Schema Object, while `example` is retained purely for compatibility with older versions of the OpenAPI Specification.
 
-The mutually exclusive fields in the Parameter, Header, or Media Type Objects are used to show example values which SHOULD both match the schema and be formatted as they would appear as a serialized parameter, serialized header, or within a media type representation.
-The exact serialization and encoding is determined by various fields in the Parameter Object, Header Object, or in the Media Type Object's [Encoding Object](#encoding-object).
-Because examples using these fields represent the final serialized form of the data, they SHALL _override_ any `example` in the corresponding Schema Object.
+The fields outside of the Schema Object can be used to show how data in either or both of serialized (`serializedValue`, `externalSerializedValue`) or unserialized (`dataValue`, `externalDataValue`) forms.
+However, the `example` (singular) field is deprecated as it shares the same difficulties as the likewise deprecated `value` and `externalValue` fields of the Example Object.
 
-The singular `example` field in the Parameter, Header, or Media Type Object is concise and convenient for simple examples, but does not offer any other advantages over using Example Objects under `examples`.
+Because examples using these non-Schema Object fields can show both the data and its serialization more clearly, they SHALL _override_ any `example` in the corresponding Schema Object.
 
-Some examples cannot be represented directly in JSON or YAML.
-For all three ways of providing examples, these can be shown as string values with any escaping necessary to make the string valid in the JSON or YAML format of documents that comprise the OpenAPI Description.
-With the Example Object, such values can alternatively be handled through the `externalValue` field.
+###### Deprecated Example Object Fields
+
+Historically, the Example Object's `value` and `externalValue` field and the non-Schema Object singulary `example` fields were intended to show examples of the serialized form, while allowing JSON or YAML examples to be included inline rather than as serialized strings.
+Due to some ambiguity in this guidance, these fields have been implemented in several different ways.
+To preserve existing tooling behavior, these fields have been deemed to have implementation-defined behavior, and are deprecated in favor of the new unambiguous fields that allow OAD authors to choose which form(s) to show.
+
+###### Data and Serialization Examples and Validity
+
+The `dataValue` and `externalDataValue` fields are intended to show example data structures suitable for validation by the relevant Schema Object, against which they MUST be valid.
+
+When the input data is a value outside of the JSON data model, such as a raw binary image, the `externalDataValue` field can be used.
+
+Data structures, such as those used for `multipart` forms, that mix JSON-compatible data types and raw binary cannot be represented in JSON or in the subset of YAML used for OAD authoring.
+Therefore, such examples can only show the serialized form.
+
+The `serializedValue` and `externalSerializedValue` fields show the serialized form.
+These values SHOULD be valid examples of the serialized form, however this is not feasible to enforce in all cases due to some data values having multiple valid representations in certain formats as noted in [Appendix B](#appendix-b-data-type-conversion).
+If either of `dataValue` or `externalDataValue` are also present, the serialized value MUST be a serialization of the data value, and SHOULD be a valid according to the serialization format.
+
+When using `serializedValue`, the value MUST be a string that is suitably escaped for inclusion in JSON or YAML in addition to any escaping that is part of the serialization format.
+The `externalSerializedValue` field supports any format for the external value.
 
 ##### Example Object Examples
 
-In a request body:
+###### JSON Examples
+
+When writing in YAML, JSON syntax can be used for `dataValue` (as shown in the `noRating` example) but is not required.
+While this example shows the behavior of both `dataValue` and `serializedValue` for JSON (in the 'withRating` example), in most cases only the data form is needed.
 
 ```yaml
-requestBody:
-  content:
-    'application/json':
-      schema:
-        $ref: '#/components/schemas/Address'
-      examples:
-        foo:
-          summary: A foo example
-          value:
-            foo: bar
-        bar:
-          summary: A bar example
-          value:
-            bar: baz
-    application/xml:
-      examples:
-        xmlExample:
-          summary: This is an example in XML
-          externalValue: https://example.org/examples/address-example.xml
-    text/plain:
-      examples:
-        textExample:
-          summary: This is a text example
-          externalValue: https://foo.bar/examples/address-example.txt
-```
-
-In a parameter:
-
-```yaml
-parameters:
-  - name: zipCode
-    in: query
+content:
+  application/json:
     schema:
-      type: string
-      format: zip-code
+      type: object
+      required:
+      - author
+      - title
+      properties:
+        author:
+          type: string
+        title:
+          type: string
+        rating:
+          type: number
+          minimum: 1
+          maximum: 5
+          multipleOf: 0.5
     examples:
-      zip-example:
-        $ref: '#/components/examples/zip-example'
+      noRating:
+        summary: A not-yet-rated work
+        dataValue: {
+          "author": "A. Writer",
+          "title": "The Newest Book"
+        }
+      withRating:
+        summary: A work with an average rating of 4.5 stars
+        dataValue:
+          author: A. Writer
+          title: An Older Book
+          rating: 4.5
+        serializedValue: |
+          {
+            "author": "A. Writer",
+            "title": "An Older Book",
+            "rating": 4.5
+          }
 ```
 
-In a response:
+###### Binary Examples
+
+This example shows both `externalDataValue` and `externalSerializedValue` to emphasize that no encoding is taking place, but it is also valid to show only one or the other.
 
 ```yaml
-responses:
-  '200':
-    description: your car appointment has been booked
-    content:
-      application/json:
-        schema:
-          $ref: '#/components/schemas/SuccessResponse'
-        examples:
-          confirmation-success:
-            $ref: '#/components/examples/confirmation-success'
+content:
+  image/png:
+    schema: {}
+    examples:
+      Red:
+        externalDataValue: ./examples/2-by-2-red-pixels.png
+        serializedDataValue: ./examples/2-by-2-red-pixels.png
 ```
 
-Two different uses of JSON strings:
+###### Boolean Query Parameter Examples
 
-First, a request or response body that is just a JSON string (not an object containing a string):
+Since there is no standard for serializing boolean values (as discussed in [Appendix B](#appendix-b-data-type-conversion)), this example uses `dataValue` and `serializedValue` to show how booleans are serialized for this particular parameter:
 
 ```yaml
-application/json:
-  schema:
-    type: string
-  examples:
-    jsonBody:
-      description: 'A body of just the JSON string "json"'
-      value: json
+name: flag
+in: query
+required: true
+schema:
+  type: boolean
+examples:
+  "true":
+    dataValue: true
+    serializedValue: flag=true
+  "false":
+    dataValue: false
+    serializedValue: flag=false
 ```
-
-In the above example, we can just show the JSON string (or any JSON value) as-is, rather than stuffing a serialized JSON value into a JSON string, which would have looked like `"\"json\""`.
-
-In contrast, a JSON string encoded inside of a URL-style form body:
-
-```yaml
-application/x-www-form-urlencoded:
-  schema:
-    type: object
-    properties:
-      jsonValue:
-        type: string
-  encoding:
-    jsonValue:
-      contentType: application/json
-  examples:
-    jsonFormValue:
-      description: 'The JSON string "json" as a form value'
-      value: jsonValue=%22json%22
-```
-
-In this example, the JSON string had to be serialized before encoding it into the URL form value, so the example includes the quotation marks that are part of the JSON serialization, which are then URL percent-encoded.
 
 #### Link Object
 
@@ -2434,7 +2554,7 @@ The `example` and `examples` fields are mutually exclusive, and if either is pre
 | <a name="header-style"></a>style | `string` | Describes how the header value will be serialized. The default (and only legal value for headers) is `"simple"`. |
 | <a name="header-explode"></a>explode | `boolean` | When this is true, header values of type `array` or `object` generate a single header whose value is a comma-separated list of the array items or key-value pairs of the map, see [Style Examples](#style-examples). For other data types this field has no effect. The default value is `false`. |
 | <a name="header-schema"></a>schema | [Schema Object](#schema-object) \| [Reference Object](#reference-object) | The schema defining the type used for the header. |
-| <a name="header-example"></a>example | Any | Example of the header's potential value; see [Working With Examples](#working-with-examples). |
+| <a name="header-example"></a>example | Any | **Deprecated**. Example of the header's potential value; see [Working With Examples](#working-with-examples). |
 | <a name="header-examples"></a>examples | Map[ `string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | Examples of the header's potential value; see [Working With Examples](#working-with-examples). |
 
 See also [Appendix C: Using RFC6570-Based Serialization](#appendix-c-using-rfc6570-based-serialization) for additional guidance.
@@ -2457,6 +2577,10 @@ X-Rate-Limit-Limit:
   description: The number of allowed requests in the current period
   schema:
     type: integer
+  examples:
+    OneHundred:
+      dataValue: 100
+      serializedValue: "X-Rate-Limit-Limit: 100"
 ```
 
 Requiring that a strong `ETag` header (with a value starting with `"` rather than `W/`) is present. Note the use of `content`, because using `schema` and `style` would require the `"` to be percent-encoded as `%22`:
@@ -3207,66 +3331,119 @@ The `namespace` field is intended to match the syntax of [XML namespaces](https:
 Each of the following examples represent the value of the `properties` keyword in a [Schema Object](#schema-object) that is omitted for brevity.
 The JSON and YAML representations of the `properties` value are followed by an example XML representation produced for the single property shown.
 
-###### No XML Element
+###### No XML Object
 
-Basic string property:
+Basic string property without an XML Object, using `serializedValue` (the remaining examples will use `externalSerializedValue` so that the XML form can be shown with syntax highlighting):
 
 ```yaml
-animals:
-  type: string
-```
-
-```xml
-<animals>...</animals>
+application/xml:
+  schema:
+    type: object
+    xml:
+      name: document
+    properties:
+      animals:
+        type: string
+  examples:
+    pets:
+      dataValue: "dog, cat, hamster"
+      serializedValue: |
+        <document>
+          <animals>dog, cat, hamster</animals>
+        </document>
 ```
 
 Basic string array property ([`wrapped`](#xml-wrapped) is `false` by default):
 
 ```yaml
-animals:
-  type: array
-  items:
-    type: string
+application/xml:
+  schema:
+    type: object
+    xml:
+      name: document
+    properties:
+      animals:
+        type: array
+        items:
+          type: string
+  examples:
+    pets:
+      dataValue: [dog, cat, hamster]
+      externalSerializedValue: ./examples/pets.xml
 ```
 
+Where `./examples/pets.xml` would be:
+
 ```xml
-<animals>...</animals>
-<animals>...</animals>
-<animals>...</animals>
+<document>
+  <animals>dog</animals>
+  <animals>cat</animals>
+  <animals>hamster</animals>
+</document>
 ```
 
 ###### XML Name Replacement
 
 ```yaml
-animals:
-  type: string
-  xml:
-    name: animal
+application/xml:
+  schema:
+    type: object
+    xml:
+      name: document
+    properties:
+      animals:
+        type: string
+        xml:
+          name: animal
+  examples:
+    pets:
+      dataValue: [dog, cat, hamster]
+      externalSerializedValue: ./examples/pets.xml
 ```
 
+Where `./examples/pets.xml` would be:
+
 ```xml
-<animal>...</animal>
+<document>
+  <animal>dog</animal>
+  <animal>cat</animal>
+  <animal>hamster</animal>
+</document>
 ```
 
 ###### XML Attribute, Prefix and Namespace
 
-In this example, a full model definition is shown.
-
 ```yaml
-Person:
-  type: object
-  properties:
-    id:
-      type: integer
-      format: int32
-      xml:
-        attribute: true
-    name:
-      type: string
-      xml:
-        namespace: https://example.com/schema/sample
-        prefix: sample
+components:
+  schemas:
+    Person:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          xml:
+            attribute: true
+        name:
+          type: string
+          xml:
+            namespace: https://example.com/schema/sample
+            prefix: sample
+  requestBodies:
+    Person:
+      content:
+        application/xml:
+          schema:
+            $ref: "#/components/schemas/Person"
+          examples:
+            Person:
+              dataValue:
+                id: 123
+                name: example
+              externalSerializedValue: ./examples/Person.xml
 ```
+
+Where `./examples/Person.xml` would be:
 
 ```xml
 <Person id="123">
@@ -3279,94 +3456,169 @@ Person:
 Changing the element names:
 
 ```yaml
-animals:
-  type: array
-  items:
-    type: string
+application/xml:
+  schema:
+    type: object
     xml:
-      name: animal
+      name: document
+    properties:
+      animals:
+        type: array
+        items:
+          type: string
+          xml:
+            name: animal
+  examples:
+    pets:
+      dataValue: [dog, cat, hamster]
+      externalSerializedValue: ./examples/pets.xml
 ```
 
+Where `./examples/pets.xml` would be:
+
 ```xml
-<animal>value</animal>
-<animal>value</animal>
+<document>
+  <animal>dog</animal>
+  <animal>cat</animal>
+  <animal>hamster</animal>
+</document>
 ```
 
 The external `name` field has no effect on the XML:
 
 ```yaml
-animals:
-  type: array
-  items:
-    type: string
+application/xml:
+  schema:
+    type: object
     xml:
-      name: animal
-  xml:
-    name: aliens
+      name: document
+    properties:
+      animals:
+        type: array
+        xml:
+          name: aliens
+        items:
+          type: string
+          xml:
+            name: animal
+  examples:
+    pets:
+      dataValue: [dog, cat, hamster]
+      externalSerializedValue: ./examples/pets.xml
 ```
 
+Where `./examples/pets.xml` would be:
+
 ```xml
-<animal>value</animal>
-<animal>value</animal>
+<document>
+  <animal>dog</animal>
+  <animal>cat</animal>
+  <animal>hamster</animal>
+</document>
 ```
 
 Even when the array is wrapped, if a name is not explicitly defined, the same name will be used both internally and externally:
 
 ```yaml
-animals:
-  type: array
-  items:
-    type: string
-  xml:
-    wrapped: true
+application/xml:
+  schema:
+    type: object
+    xml:
+      name: document
+    properties:
+      animals:
+        type: array
+        xml:
+          wrapped: true
+        items:
+          type: string
+  examples:
+    pets:
+      dataValue: [dog, cat, hamster]
+      externalSerializedValue: ./examples/pets.xml
 ```
 
+Where `./examples/pets.xml` would be:
+
 ```xml
-<animals>
-  <animals>value</animals>
-  <animals>value</animals>
-</animals>
+<document>
+  <animals>
+    <animals>dog</animals>
+    <animals>cat</animals>
+    <animals>hamster</animals>
+  </animals>
+</document>
 ```
 
 To overcome the naming problem in the example above, the following definition can be used:
 
 ```yaml
-animals:
-  type: array
-  items:
-    type: string
+application/xml:
+  schema:
+    type: object
     xml:
-      name: animal
-  xml:
-    wrapped: true
+      name: document
+    properties:
+      animals:
+        type: array
+        xml:
+          wrapped: true
+        items:
+          type: string
+          xml:
+            name: animal
+  examples:
+    pets:
+      dataValue: [dog, cat, hamster]
+      externalSerializedValue: ./examples/pets.xml
 ```
 
+Where `./examples/pets.xml` would be:
+
 ```xml
-<animals>
-  <animal>value</animal>
-  <animal>value</animal>
-</animals>
+<document>
+  <animals>
+    <animal>dog</animal>
+    <animal>cat</animal>
+    <animal>hamster</animal>
+  </animals>
+</document>
 ```
 
 Affecting both internal and external names:
 
 ```yaml
-animals:
-  type: array
-  items:
-    type: string
+application/xml:
+  schema:
+    type: object
     xml:
-      name: animal
-  xml:
-    name: aliens
-    wrapped: true
+      name: document
+    properties:
+      animals:
+        type: array
+        xml:
+          name: aliens
+          wrapped: true
+        items:
+          type: string
+          xml:
+            name: animal
+  examples:
+    pets:
+      dataValue: [dog, cat, hamster]
+      externalSerializedValue: ./examples/pets.xml
 ```
 
+Where `./examples/pets.xml` would be:
+
 ```xml
-<aliens>
-  <animal>value</animal>
-  <animal>value</animal>
-</aliens>
+<document>
+  <aliens>
+    <animal>dog</animal>
+    <animal>cat</animal>
+    <animal>hamster</animal>
+  </aliens>
+</document>
 ```
 
 If we change the external element but not the internal ones:
@@ -4219,7 +4471,7 @@ Note that this is purely an example, and support for such multipart documents or
 
 RFC2557 was written to allow sending hyperlinked sets of documents as email attachments, in which case there would not be a retrieval URI for the multipart attachment (although the format could also be used in HTTP as well).
 
-```MULTIPART
+```multipart
 --boundary-example
 Content-Type: application/openapi+yaml
 Content-Location: https://example.com/api/openapi.yaml

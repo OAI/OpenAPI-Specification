@@ -52,8 +52,8 @@ Minor edits that are worth a mention:
 - In-place updates to existing specifications and standards that we reference:
   - Update to https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html of JSON Schema Specification
   - Update to https://www.ietf.org/archive/id/draft-bhutton-json-schema-validation-01.html of JSON Schema Validation Specification
-  - Use [RFC8529]((https://tools.ietf.org/html/rfc8259) for JSON
-  - Use [RFC9110]((https://tools.ietf.org/html/rfc9110) for HTTP
+  - Use [RFC8529](https://tools.ietf.org/html/rfc8259) for JSON
+  - Use [RFC9110](https://tools.ietf.org/html/rfc9110) for HTTP
 
 - Editorial changes:
   - Extensive additions around media types, encoding, sequential media types, SSE examples, working with binary data,

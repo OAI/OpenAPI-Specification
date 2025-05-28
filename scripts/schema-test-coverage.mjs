@@ -95,15 +95,15 @@ const compiled = await compile(schema);
 /** @type Set<string> */
 const visitedLocations = new Set();
 const baseInterpret = Validation.interpret;
-Validation.interpret = (url, instance, ast, dynamicAnchors, quiet) => {
-  if (Array.isArray(ast[url])) {
-    for (const keywordNode of ast[url]) {
+Validation.interpret = (url, instance, context) => {
+  if (Array.isArray(context.ast[url])) {
+    for (const keywordNode of context.ast[url]) {
       if (Array.isArray(keywordNode)) {
         visitedLocations.add(keywordNode[1]);
       }
     }
   }
-  return baseInterpret(url, instance, ast, dynamicAnchors, quiet);
+  return baseInterpret(url, instance, context);
 };
 
 await runTests(argv[3]);

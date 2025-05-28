@@ -3259,6 +3259,7 @@ However, implementations SHOULD handle `null` values as follows:
 
 * For elements, produce an empty element with an `xsi:nil="true"` attribute.
 * For attributes, omit the attribute.
+* For text and CDATA sections, see [Appendix B](#appendix-b-data-type-conversion) for a discussion of serializing non-text values to text
 
 Note that for attributes, this makes either a `null` value or a missing property serialize to an omitted attribute.
 As the Schema Object validates the in-memory representation, this allows handling the combination of `null` and a required property.

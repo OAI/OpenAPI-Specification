@@ -1112,9 +1112,10 @@ content:
       # Allow an arbitrary JSON object to keep
       # the example simple
       type: object
-    example:
-      # Shown with whitespace minimized
-      '{"numbers":[1,2],"flag":null}'
+    example: {
+      "numbers": [1, 2],
+      "flag": null
+    }
 ```
 
 Assuming a path of `/foo`, a server of `https://example.com`, the full URL incorporating the value from the `example` field (with whitespace minimized) would be:

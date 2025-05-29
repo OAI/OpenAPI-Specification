@@ -339,6 +339,7 @@ $defs:
       in:
         enum:
           - query
+          - querystring
           - header
           - path
           - cookie
@@ -364,17 +365,33 @@ $defs:
         - schema
       - required:
         - content
-    if:
-      properties:
-        in:
-          const: query
-      required:
-        - in
-    then:
-      properties:
-        allowEmptyValue:
-          default: false
-          type: boolean
+    allOf:
+      - if:
+          properties:
+            in:
+              const: query
+          required:
+            - in
+        then:
+          properties:
+            allowEmptyValue:
+              default: false
+              type: boolean
+      - if:
+          properties:
+            in:
+              const: querystring
+          required:
+            - in
+        then:
+          required:
+            - content
+          not:
+            required:
+              - schema
+              - style
+              - explode
+              - allowReserved
     dependentSchemas:
       schema:
         properties:

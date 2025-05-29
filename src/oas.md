@@ -1128,7 +1128,7 @@ A querystring parameter that uses JSONPath:
 
 ```yaml
 in: querystring
-name: sql
+name: selector
 content:
   application/jsonpath:
     schema:

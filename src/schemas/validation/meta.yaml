@@ -55,8 +55,14 @@ $defs:
   xml:
     $ref: '#/$defs/extensible'
     properties:
-      attribute:
-        type: boolean
+      nodeType:
+        type: string
+        enum:
+          - element
+          - attribute
+          - text
+          - cdata
+          - none
       name:
         type: string
       namespace:
@@ -64,7 +70,14 @@ $defs:
         type: string
       prefix:
         type: string
+      attribute:
+        type: boolean
       wrapped:
         type: boolean
     type: object
+    dependentSchemas:
+      nodeType:
+        properties:
+          attribute: false
+          wrapped: false
     unevaluatedProperties: false

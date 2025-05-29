@@ -143,12 +143,12 @@ hljs.registerLanguage('jsonl', function() {
 
 const cheerio = require('cheerio');
 
-let argv = require('yargs')
+let argv = require('yargs')(process.argv.slice(2))
     .string('maintainers')
     .alias('m','maintainers')
     .describe('maintainers','path to MAINTAINERS.md')
     .demandCommand(1)
-    .argv;
+    .parse();
 const abstract = 'What is the OpenAPI Specification?';
 let maintainers = [];
 let emeritus = [];

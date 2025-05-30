@@ -107,7 +107,7 @@ Some examples of sequential media types (including some that are not IANA-regist
 In the first three above, the repeating structure is any [JSON value](https://tools.ietf.org/html/rfc8259#section-3).
 The fourth repeats `application/geo+json`-structured values, while `text/event-stream` repeats a custom text format related to Server-Sent Events.
 The final media type listed above, `multipart/mixed`, provides an ordered list of documents of any media type, and is sometimes streamed.
-Note that while `multipart` formats technically allow a preamble and an epilogue, the RFC directs that they are to be ignored, making the effectively comments, and this specification does not model them.
+Note that while `multipart` formats technically allow a preamble and an epilogue, the RFC directs that they are to be ignored, making them effectively comments, and this specification does not model them.
 
 Implementations MUST support mapping sequential media types into the JSON Schema data model by treating them as if the values were in an array in the same order.
 

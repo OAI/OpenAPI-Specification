@@ -1351,7 +1351,7 @@ The `itemEncoding` field can also be used with `itemSchema` to support streaming
 The `prefixEncoding` field can be used with any `multipart` content to require a fixed part order.
 This includes `multipart/form-data`, for which the Encoding Object's `headers` field MUST be used to provide the `Content-Disposition` and part name, as no property names exist to provide the names automatically.
 
-Prior versions of this specifications advised using the `name` [`Content-Disposition` parameter](https://www.iana.org/assignments/cont-disp/cont-disp.xhtml#cont-disp-2) of the `form-data` [`Content-Disposition` value](https://www.iana.org/assignments/cont-disp/cont-disp.xhtml#cont-disp-1) with `multipart` media types other than `multipart/form-data` in order to work around the limitations of the `encoding` field.
+Prior versions of this specification advised using the `name` [`Content-Disposition` parameter](https://www.iana.org/assignments/cont-disp/cont-disp.xhtml#cont-disp-2) of the `form-data` [`Content-Disposition` value](https://www.iana.org/assignments/cont-disp/cont-disp.xhtml#cont-disp-1) with `multipart` media types other than `multipart/form-data` in order to work around the limitations of the `encoding` field.
 Implementations MAY choose to support this workaround, but as this usage is not common, implementations of non-`form-data` `multipart` media types are unlikely to support it.
 
 ##### Media Type Examples
@@ -1905,7 +1905,8 @@ multipart/mixed:
   schema:
     prefixItems:
     - # default content type for objects
-      # is `application/json`type: object
+      # is `application/json`
+      type: object
       properties:
         author:
           type: string

@@ -542,7 +542,7 @@ $defs:
     allOf:
       - $ref: '#/$defs/examples'
       - $ref: '#/$defs/specification-extensions'
-      - dependentSchema:
+      - dependentSchemas:
           encoding:
             properties:
               prefixEncoding: false

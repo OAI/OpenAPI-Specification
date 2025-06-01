@@ -947,7 +947,7 @@ See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a detail
 
 ##### Parameter Locations
 
-There are four possible parameter locations specified by the `in` field:
+There are five possible parameter locations specified by the `in` field:
 
 * path - Used together with [Path Templating](#path-templating), where the parameter value is actually part of the operation's URL. This does not include the host or base path of the API. For example, in `/items/{itemId}`, the path parameter is `itemId`.
 * query - Parameters that are appended to the URL. For example, in `/items?id=###`, the query parameter is `id`; MUST NOT appear in the same operation as an `in: "querystring"` parameter.

@@ -6,7 +6,7 @@ What's coming up? Look at `src/oas.md` on the relevant development branch for fu
 
 - Methods:
   - support the new `query` operation alongside get/post/put/delete/options/head/patch/trace
-  - under an additionalOperations entry, use any other methods not listed as keys using the correct capitalization. e.g. do NOT add HEAD under this, use the existing sibling `head`
+  - under an `additionalOperations` entry, use any other methods not listed as keys using the correct capitalization. e.g. do NOT add HEAD under this, use the existing sibling `head`
 
 - Tags
   - new summary field to match other things

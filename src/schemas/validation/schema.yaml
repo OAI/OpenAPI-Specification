@@ -641,14 +641,45 @@ $defs:
         type: string
       description:
         type: string
-      value: true
-      externalValue:
+      dataValue: true
+      externalDataValue:
         type: string
         format: uri-reference
-    not:
-      required:
-      - value
-      - externalValue
+      serializedValue:
+        type: string
+      externalSerializedValue:
+        type: string
+        format: uri-reference
+      value:
+        deprecated: true
+      externalValue:
+        deprecated: true
+        type: string
+        format: uri-reference
+    allOf:
+    - not:
+        required:
+        - value
+        - externalValue
+    - not:
+        required:
+        - dataValue
+        - externalDataValue
+    - not:
+        required:
+        - serializedValue
+        - externalSerializedValue
+    if:
+      anyOf:
+      - required: [value]
+      - required: [externalValue]
+    then:
+      not:
+        anyOf:
+        - required: [dataValue]
+        - required: [externalDataValue]
+        - required: [serializedValue]
+        - required: [externalSerializedValue]
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
 
@@ -1027,7 +1058,8 @@ $defs:
 
   examples:
     properties:
-      example: true
+      example:
+        deprecated: true
       examples:
         type: object
         additionalProperties:

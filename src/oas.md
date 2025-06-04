@@ -2213,8 +2213,8 @@ As further explained under [Working With Examples](#working-with-examples), this
 | <a name="example-summary"></a>summary | `string` | Short description for the example. |
 | <a name="example-description"></a>description | `string` | Long description for the example. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="example-data-value"></a>dataValue | Any | An example of the data structure that MUST be valid according to the relevant [Schema Object](#schema-object).  If this field is present, `externalDataValue`, `value`, and `externalValue` MUST be absent. |
-| <a name="example-external-data-value"></a>externalDataValue | `string` | A URI that identifies the data example in a separate document, allowing for values not easily expressed in JSON or YAML.  This is usually only needed when working with binary data. The value MUST be valid accordinig to the relevant Schema Object. If this field is present, then `dataValue`, `value`, and `externalValue` MUST be absent. See also the rules for resolving [Relative URI References](#relative-references-in-api-description-uris). |
-| <a name="example-serialized-value"></a>serializedValue | `string` | An example of the serialized form of the value, including all relevant encoding and escaping.  If `dataValue` or `externalDataValue` are present, then this field SHOULD contain the serialization of the given data.  Otherwise, it SHOULD be the valid serialization of a data value that itself MUST be valid as described for `dataValue`.  This field SHOULD NOT be used if the serialization format is JSON, as the data form is easier to work with. If this field is present, `externalSerializedValue`, `value`, and `externalValue` MUST be absent. |
+| <a name="example-external-data-value"></a>externalDataValue | `string` | A URI that identifies the data example in a separate document, allowing for values not easily expressed in JSON or YAML.  This is usually only needed when working with binary data. The value MUST be valid according to the relevant Schema Object. If this field is present, then `dataValue`, `value`, and `externalValue` MUST be absent. See also the rules for resolving [Relative URI References](#relative-references-in-api-description-uris). |
+| <a name="example-serialized-value"></a>serializedValue | `string` | An example of the serialized form of the value, including encoding and escaping as described under [Validity of Data and Serialized Examples](#validity-of-data-and-serialized-examples).  If `dataValue` or `externalDataValue` are present, then this field SHOULD contain the serialization of the given data.  Otherwise, it SHOULD be the valid serialization of a data value that itself MUST be valid as described for `dataValue`.  This field SHOULD NOT be used if the serialization format is JSON, as the data form is easier to work with. If this field is present, `externalSerializedValue`, `value`, and `externalValue` MUST be absent. |
 | <a name="example-eternal-serialized-value"></a>externalSerializedValue | `string` | A URI that identifies the serialized example in a separate document, allowing for values not easily or readably expressed in JSON or YAML strings.  If `dataValue` or `externalDataValue` are present, then this field SHOULD identify a serialization of the given data.  Otherwise, the value SHOULD be a valid serialization as described for `serializedValue`.  If this field is present, `serializedValue`, `value`, and `externalValue` MUST be absent. See also the rules for resolving [Relative References](#relative-references-in-api-description-uris). |
 | <a name="example-value"></a>value | Any | **Deprecated**: It is implementation-defined whether this field is used for data or serialized forms. Embedded literal example. The `value` field and `externalValue` field are mutually exclusive. To represent examples of media types that cannot naturally represented in JSON or YAML, use a string value to contain the example, escaping where necessary. |
 | <a name="example-external-value"></a>externalValue | `string` | **Deprecated**: It is implementation-defined whether this field is used for data or serialized forms. A URI that identifies the literal example. This provides the capability to reference examples that cannot easily be included in JSON or YAML documents. The `value` field and `externalValue` field are mutually exclusive. See also the rules for resolving [Relative URI References](#relative-references-in-api-description-uris). |
@@ -2223,7 +2223,7 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 
 ##### Working with Examples
 
-Due to the history of example fields in both this specifiction and JSON Schema, there are a number of different ways to specify examples.
+Due to the history of example fields in both this specification and JSON Schema, there are a number of different ways to specify examples.
 
 Outside of [Schema Objects](#schema-object), it is RECOMMENDED to use Example Objects with the `examples` (plural) fields available in the [Parameter](#parameter-object), [Header](#header-object), [Media Type](#media-type-object), and [Encoding](#encoding-object) Objects.
 
@@ -2243,20 +2243,23 @@ Because examples using these non-Schema Object fields can show both the data and
 
 ###### Deprecated Example Object Fields
 
-Historically, the Example Object's `value` and `externalValue` field and the non-Schema Object singulary `example` fields were intended to show examples of the serialized form, while allowing JSON or YAML examples to be included inline rather than as serialized strings.
+Historically, the Example Object's `value` and `externalValue` field and the non-Schema Object singular `example` fields were intended to show examples of the serialized form, while allowing JSON or YAML examples to be included inline rather than as serialized strings.
 Due to some ambiguity in this guidance, these fields have been implemented in several different ways.
 To preserve existing tooling behavior, these fields have been deemed to have implementation-defined behavior, and are deprecated in favor of the new unambiguous fields that allow OAD authors to choose which form(s) to show.
 
-###### Data and Serialization Examples and Validity
+###### Validity of Data and Serialized Examples
 
 The `dataValue` and `externalDataValue` fields are intended to show example data structures suitable for validation by the relevant Schema Object, against which they MUST be valid.
 
-When the input data is a value outside of the JSON data model, such as a raw binary image, the `externalDataValue` field can be used.
+When the data consists of a value outside of the JSON data model, such as a raw binary image, the `externalDataValue` field can be used.
 
 Data structures, such as those used for `multipart` forms, that mix JSON-compatible data types and raw binary cannot be represented in JSON or in the subset of YAML used for OAD authoring.
 Therefore, such examples can only show the serialized form.
 
-The `serializedValue` and `externalSerializedValue` fields show the serialized form.
+The `serializedValue` and `externalSerializedValue` fields show the serialized form according to the format specified by the parent Object.
+For Example Objects directly under a Media Type Object, this is the serialization to the relevant media type.
+For Example Objects directly under a Parameter or Header Object, this is the serialization to the appropriate format for use in the appropriate part of a URL or HTTP header (depending on the `in` field in the case of the Parameter Object).
+
 These values SHOULD be valid examples of the serialized form, however this is not feasible to enforce in all cases due to some data values having multiple valid representations in certain formats as noted in [Appendix B](#appendix-b-data-type-conversion).
 In some cases, parsing the serialized example and validating the resulting data can eliminate the ambiguity, but in a few cases parsing is also ambiguous, meaning that validation of serialized examples is by necessity a best-effort feature.
 

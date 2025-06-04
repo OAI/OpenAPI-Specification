@@ -1130,7 +1130,7 @@ examples:
     serializedValue: id=this&id=that&id=theother
 ```
 
-A free-form query parameter, allowing undefined parameters of a specific type:
+A free-form query parameter, allowing undefined parameters of a `type: "string"`:
 
 ```yaml
 in: query
@@ -1138,7 +1138,7 @@ name: freeForm
 schema:
   type: object
   additionalProperties:
-    type: integer
+    type: string
 style: form
 examples:
   freeForm:
@@ -2258,6 +2258,8 @@ Therefore, such examples can only show the serialized form.
 
 The `serializedValue` and `externalSerializedValue` fields show the serialized form.
 These values SHOULD be valid examples of the serialized form, however this is not feasible to enforce in all cases due to some data values having multiple valid representations in certain formats as noted in [Appendix B](#appendix-b-data-type-conversion).
+In some cases, parsing the serialized example and validating the resulting data can eliminate the ambiguity, but in a few cases parsing is also ambiguous, meaning that validation of serialized examples is by necessity a best-effort feature.
+
 If either of `dataValue` or `externalDataValue` are also present, the serialized value MUST be a serialization of the data value, and SHOULD be a valid according to the serialization format.
 
 When using `serializedValue`, the value MUST be a string that is suitably escaped for inclusion in JSON or YAML in addition to any escaping that is part of the serialization format.

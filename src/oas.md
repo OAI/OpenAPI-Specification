@@ -994,7 +994,7 @@ Serializing with `schema` is NOT RECOMMENDED for `in: "cookie"` parameters, `in:
 | <a name="parameter-explode"></a>explode | `boolean` | When this is true, parameter values of type `array` or `object` generate separate parameters for each value of the array or key-value pair of the map. For other types of parameters this field has no effect. When [`style`](#parameter-style) is `"form"`, the default value is `true`. For all other styles, the default value is `false`. Note that despite `false` being the default for `deepObject`, the combination of `false` with `deepObject` is undefined. |
 | <a name="parameter-allow-reserved"></a>allowReserved | `boolean` | When this is true, parameter values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). Applications are still responsible for percent-encoding reserved characters that are not allowed by the rules of the `in` destination or media type, or are [not allowed in the path by this specification](#path-templating); see Appendices [C](#appendix-c-using-rfc6570-based-serialization) and [E](#appendix-e-percent-encoding-and-form-media-types) for details. The default value is `false`. |
 | <a name="parameter-schema"></a>schema | [Schema Object](#schema-object) | The schema defining the type used for the parameter. |
-| <a name="parameter-example"></a>example | Any | **Deprecated**. Example of the parameter's potential value; see [Working With Examples](#working-with-examples). |
+| <a name="parameter-example"></a>example | Any | Example of the parameter's potential value; see [Working With Examples](#working-with-examples). |
 | <a name="parameter-examples"></a>examples | Map[ `string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | Examples of the parameter's potential value; see [Working With Examples](#working-with-examples). |
 
 See also [Appendix C: Using RFC6570-Based Serialization](#appendix-c-using-rfc6570-based-serialization) for additional guidance.
@@ -1276,7 +1276,7 @@ See [Working With Examples](#working-with-examples) for further guidance regardi
 | ---- | :----: | ---- |
 | <a name="media-type-schema"></a>schema | [Schema Object](#schema-object) | A schema describing the complete content of the request, response, parameter, or header. |
 | <a name="media-type-item-schema"></a>itemSchema | [Schema Object](#schema-object) | A schema describing each item within a [sequential media type](#sequential-media-types). |
-| <a name="media-type-example"></a>example | Any | **Deprecated**. Example of the media type; see [Working With Examples](#working-with-examples). |
+| <a name="media-type-example"></a>example | Any | Example of the media type; see [Working With Examples](#working-with-examples). |
 | <a name="media-type-examples"></a>examples | Map[ `string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | Examples of the media type; see [Working With Examples](#working-with-examples). |
 | <a name="media-type-encoding"></a>encoding | Map[`string`, [Encoding Object](#encoding-object)] | A map between a property name and its encoding information, as defined under [Encoding Usage and Restrictions](#encoding-usage-and-restrictions).  The `encoding` field SHALL only apply when the media type is `multipart` or `application/x-www-form-urlencoded`. If no Encoding Object is provided for a property, the behavior is determined by the default values documented for the Encoding Object. |
 
@@ -1920,7 +1920,10 @@ requestBody:
       examples:
         multipart:
           description: |
-            The input example data for the 
+            The input example data for the serialized value
+            is taken from the Schema Object `examples` fields
+            for the "id" and "addresses" field, and is a solid
+            red 2x2 pixel PNG for the "profileImage" field.
           externalSerializedValue: ./examples/multipart
 ```
 
@@ -2216,8 +2219,8 @@ As further explained under [Working With Examples](#working-with-examples), this
 | <a name="example-external-data-value"></a>externalDataValue | `string` | A URI that identifies the data example in a separate document, allowing for values not easily expressed in JSON or YAML.  This is usually only needed when working with binary data. The value MUST be valid according to the relevant Schema Object. If this field is present, then `dataValue`, `value`, and `externalValue` MUST be absent. See also the rules for resolving [Relative URI References](#relative-references-in-api-description-uris). |
 | <a name="example-serialized-value"></a>serializedValue | `string` | An example of the serialized form of the value, including encoding and escaping as described under [Validity of Data and Serialized Examples](#validity-of-data-and-serialized-examples).  If `dataValue` or `externalDataValue` are present, then this field SHOULD contain the serialization of the given data.  Otherwise, it SHOULD be the valid serialization of a data value that itself MUST be valid as described for `dataValue`.  This field SHOULD NOT be used if the serialization format is JSON, as the data form is easier to work with. If this field is present, `externalSerializedValue`, `value`, and `externalValue` MUST be absent. |
 | <a name="example-eternal-serialized-value"></a>externalSerializedValue | `string` | A URI that identifies the serialized example in a separate document, allowing for values not easily or readably expressed in JSON or YAML strings.  If `dataValue` or `externalDataValue` are present, then this field SHOULD identify a serialization of the given data.  Otherwise, the value SHOULD be a valid serialization as described for `serializedValue`.  If this field is present, `serializedValue`, `value`, and `externalValue` MUST be absent. See also the rules for resolving [Relative References](#relative-references-in-api-description-uris). |
-| <a name="example-value"></a>value | Any | **Deprecated**: It is implementation-defined whether this field is used for data or serialized forms. Embedded literal example. The `value` field and `externalValue` field are mutually exclusive. To represent examples of media types that cannot naturally represented in JSON or YAML, use a string value to contain the example, escaping where necessary. |
-| <a name="example-external-value"></a>externalValue | `string` | **Deprecated**: It is implementation-defined whether this field is used for data or serialized forms. A URI that identifies the literal example. This provides the capability to reference examples that cannot easily be included in JSON or YAML documents. The `value` field and `externalValue` field are mutually exclusive. See also the rules for resolving [Relative URI References](#relative-references-in-api-description-uris). |
+| <a name="example-value"></a>value | Any | Embedded literal example. The `value` field and `externalValue` field are mutually exclusive. To represent examples of media types that cannot naturally represented in JSON or YAML, use a string value to contain the example, escaping where necessary. |
+| <a name="example-external-value"></a>externalValue | `string` | A URI that identifies the literal example. This provides the capability to reference examples that cannot easily be included in JSON or YAML documents. The `value` field and `externalValue` field are mutually exclusive. See the rules for resolving [Relative References](#relative-references-in-api-description-uris). |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
@@ -2225,11 +2228,15 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 
 Due to the history of example fields in both this specification and JSON Schema, there are a number of different ways to specify examples.
 
-Outside of [Schema Objects](#schema-object), it is RECOMMENDED to use Example Objects with the `examples` (plural) fields available in the [Parameter](#parameter-object), [Header](#header-object), [Media Type](#media-type-object), and [Encoding](#encoding-object) Objects.
+In the case of the non-Schema Object `example` (singular) fields, and of the `value` and`externalValue` fields of the Example Object, the example value SHOULD be compatible with the schema of its associated value.
+Because of variations in tooling support for `value` and `externalValue` and ambiguity regarding what can be "easily" represented in JSON or YAML, the `dataValue` `externalDataValue`, `serializedValue`, and `externalSerializedValue` fields have been introduced.
+ For compatibility requirements of these new fields, see [Validity of Data and Serialized Examples](#validity-of-data-and-serialized-examples).
+
+Tooling implementations MAY choose to validate compatibility automatically, and reject the example value(s) if incompatible.
 
 ###### Example Objects vs Other Fields Allowing Examples
 
-However, there are several other ways to provide examples: The deprecated `example` (singular) field that is mutually exclusive with `examples` in all Objects that support both fields, and two keywords (the deprecated singular `example` and the current plural `examples`, which takes an array of examples) in the [Schema Object](#schema-object).
+However, there are several other ways to provide examples: The `example` (singular) field that is mutually exclusive with `examples` in all Objects that support both fields, and two keywords (the deprecated singular `example` and the current plural `examples`, which takes an array of examples) in the [Schema Object](#schema-object).
 When a schema is present alongside of the non-Schema Object `example` and `examples`, this results in four possible ways to specify an example.
 Each of these fields has slightly different considerations.
 
@@ -2237,15 +2244,8 @@ The Schema Object's fields are used to show example values without regard to how
 The `examples` array is part of JSON Schema and is the preferred way to include examples in the Schema Object, while `example` is retained purely for compatibility with older versions of the OpenAPI Specification.
 
 The fields outside of the Schema Object can be used to show how data in either or both of serialized (`serializedValue`, `externalSerializedValue`) or unserialized (`dataValue`, `externalDataValue`) forms.
-However, the `example` (singular) field is deprecated as it shares the same difficulties as the likewise deprecated `value` and `externalValue` fields of the Example Object.
 
 Because examples using these non-Schema Object fields can show both the data and its serialization more clearly, they SHALL _override_ any `example` in the corresponding Schema Object.
-
-###### Deprecated Example Object Fields
-
-Historically, the Example Object's `value` and `externalValue` field and the non-Schema Object singular `example` fields were intended to show examples of the serialized form, while allowing JSON or YAML examples to be included inline rather than as serialized strings.
-Due to some ambiguity in this guidance, these fields have been implemented in several different ways.
-To preserve existing tooling behavior, these fields have been deemed to have implementation-defined behavior, and are deprecated in favor of the new unambiguous fields that allow OAD authors to choose which form(s) to show.
 
 ###### Validity of Data and Serialized Examples
 
@@ -2559,7 +2559,7 @@ The `example` and `examples` fields are mutually exclusive, and if either is pre
 | <a name="header-style"></a>style | `string` | Describes how the header value will be serialized. The default (and only legal value for headers) is `"simple"`. |
 | <a name="header-explode"></a>explode | `boolean` | When this is true, header values of type `array` or `object` generate a single header whose value is a comma-separated list of the array items or key-value pairs of the map, see [Style Examples](#style-examples). For other data types this field has no effect. The default value is `false`. |
 | <a name="header-schema"></a>schema | [Schema Object](#schema-object) \| [Reference Object](#reference-object) | The schema defining the type used for the header. |
-| <a name="header-example"></a>example | Any | **Deprecated**. Example of the header's potential value; see [Working With Examples](#working-with-examples). |
+| <a name="header-example"></a>example | Any | Example of the header's potential value; see [Working With Examples](#working-with-examples). |
 | <a name="header-examples"></a>examples | Map[ `string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | Examples of the header's potential value; see [Working With Examples](#working-with-examples). |
 
 See also [Appendix C: Using RFC6570-Based Serialization](#appendix-c-using-rfc6570-based-serialization) for additional guidance.
@@ -3351,7 +3351,8 @@ application/xml:
         type: string
   examples:
     pets:
-      dataValue: "dog, cat, hamster"
+      dataValue:
+        animals: "dog, cat, hamster"
       serializedValue: |
         <document>
           <animals>dog, cat, hamster</animals>
@@ -3373,7 +3374,8 @@ application/xml:
           type: string
   examples:
     pets:
-      dataValue: [dog, cat, hamster]
+      dataValue:
+        animals: [dog, cat, hamster]
       externalSerializedValue: ./examples/pets.xml
 ```
 
@@ -3402,7 +3404,8 @@ application/xml:
           name: animal
   examples:
     pets:
-      dataValue: [dog, cat, hamster]
+      dataValue:
+        animals: [dog, cat, hamster]
       externalSerializedValue: ./examples/pets.xml
 ```
 
@@ -3475,7 +3478,8 @@ application/xml:
             name: animal
   examples:
     pets:
-      dataValue: [dog, cat, hamster]
+      dataValue:
+        animals: [dog, cat, hamster]
       externalSerializedValue: ./examples/pets.xml
 ```
 
@@ -3508,7 +3512,8 @@ application/xml:
             name: animal
   examples:
     pets:
-      dataValue: [dog, cat, hamster]
+      dataValue:
+        animals: [dog, cat, hamster]
       externalSerializedValue: ./examples/pets.xml
 ```
 
@@ -3539,7 +3544,8 @@ application/xml:
           type: string
   examples:
     pets:
-      dataValue: [dog, cat, hamster]
+      dataValue:
+        animals: [dog, cat, hamster]
       externalSerializedValue: ./examples/pets.xml
 ```
 
@@ -3574,7 +3580,8 @@ application/xml:
             name: animal
   examples:
     pets:
-      dataValue: [dog, cat, hamster]
+      dataValue:
+        animals: [dog, cat, hamster]
       externalSerializedValue: ./examples/pets.xml
 ```
 
@@ -3610,7 +3617,8 @@ application/xml:
             name: animal
   examples:
     pets:
-      dataValue: [dog, cat, hamster]
+      dataValue:
+        animals: [dog, cat, hamster]
       externalSerializedValue: ./examples/pets.xml
 ```
 
@@ -3629,20 +3637,36 @@ Where `./examples/pets.xml` would be:
 If we change the external element but not the internal ones:
 
 ```yaml
-animals:
-  type: array
-  items:
-    type: string
-  xml:
-    name: aliens
-    wrapped: true
+application/xml:
+  schema:
+    type: object
+    xml:
+      name: document
+    properties:
+      animals:
+        type: array
+        xml:
+          name: aliens
+          wrapped: true
+        items:
+          type: string
+  examples:
+    pets:
+      dataValue:
+        animals: [dog, cat, hamster]
+      externalSerializedValue: ./examples/pets.xml
 ```
 
+Where `./examples/pets.xml` would be:
+
 ```xml
-<aliens>
-  <aliens>value</aliens>
-  <aliens>value</aliens>
-</aliens>
+<document>
+  <aliens>
+    <aliens>dog</aliens>
+    <aliens>cat</aliens>
+    <aliens>hamster</aliens>
+  </aliens>
+</document>
 ```
 
 #### Security Scheme Object

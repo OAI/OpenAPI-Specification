@@ -650,10 +650,8 @@ $defs:
       externalSerializedValue:
         type: string
         format: uri-reference
-      value:
-        deprecated: true
+      value: true
       externalValue:
-        deprecated: true
         type: string
         format: uri-reference
     allOf:
@@ -1058,8 +1056,7 @@ $defs:
 
   examples:
     properties:
-      example:
-        deprecated: true
+      example: true
       examples:
         type: object
         additionalProperties:

@@ -2632,7 +2632,7 @@ There are two ways to define the value of a discriminating property for an inher
 
 ###### Generic (Template) Data Structures
 
-Implementations MAY support defining generic or template data structures using JSON Schema's dynamic referencing feature:
+Implementations SHOULD support defining generic or template data structures using JSON Schema's dynamic referencing feature:
 
 * `$dynamicAnchor` identifies a set of possible schemas (including a default placeholder schema) to which a `$dynamicRef` can resolve
 * `$dynamicRef` resolves to the first matching `$dynamicAnchor` encountered on its path from the schema entry point to the reference, as described in the JSON Schema specification

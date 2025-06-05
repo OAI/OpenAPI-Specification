@@ -1757,7 +1757,7 @@ requestBody:
               "zip": "99999+1234"
             }
           }
-          serializedValue: ./examples/urlencoded
+          externalSerializedValue: ./examples/urlencoded
 ```
 
 Where `./examples/urlencoded` would be:

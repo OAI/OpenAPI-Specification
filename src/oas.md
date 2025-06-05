@@ -1175,8 +1175,7 @@ examples:
     dataValue:
       foo: a + b
       bar: true
-    serializedValue:
-          foo=a+%2B+b&bar=true
+    serializedValue: foo=a+%2B+b&bar=true
 
 A querystring parameter that uses JSON for the entire string (not as a single query parameter value):
 

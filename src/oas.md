@@ -1026,9 +1026,23 @@ In order to support common ways of serializing simple parameters, a set of `styl
 
 See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a discussion of percent-encoding, including when delimiters need to be percent-encoded and options for handling collisions with percent-encoded data.
 
+##### Serialization and Examples
+
+When showing serialized examples, such as with the [Example Object's](#example-object) `serializedValue` or `externalSerializedValue` fields, in most cases the value to show is the value, with all relevant percent-encoding or other encoding/escaping mechanisms, and also including any delimiters produced by the `style` and `explode` configuration.
+
+For query parameters (`in: "query"` and `in: "querystring"`) and cookies (`in: "cookie"`), the parameter names MUST also be shown, as they are determined in part by `style` and `explode` rather than only by `name`, and the leading `?` or `&` delimiter MUST NOT be shown, as it is not used in all scenarios.
+
+In particular, these fields are also used in the [Encoding Object](#encoding-object) for `application/x-www-form-urlencoded` request bodies which do not use a leading `?` as that delimiter is part of the URI syntax.
+Within URIs, whether each parameter is preceded by the `?` or a `&` is determined by its position relative to other parameters, and may not always be the same for a Parameter Object that is referenced by multiple Operations.
+For cookies, neither the `?` nor `&` delimiter is correct (see [Appendix D: Serializing Headers and Cookies](#appendix-d-serializing-headers-and-cookies) for more details).
+
+Note that RFC6570 form expansion implementations will include either a leading `?` or `&` delimiter, depending on which type of form expansion is used, so in some scenarios it is necessary to strip off or change the leading delimiter.
+
+The following section illustrates these rules.
+
 ##### Style Examples
 
-Assume a parameter named `color` has one of the following values:
+Assume a parameter named `color` has one of the following values, where the value to the right of the `->` is what would be shown in the `dataValue` field of an Example Object:
 
 ```js
    string -> "blue"
@@ -1036,13 +1050,12 @@ Assume a parameter named `color` has one of the following values:
    object -> { "R": 100, "G": 200, "B": 150 }
 ```
 
-The following table shows examples, as would be shown with the `example` or `examples` keywords, of the different serializations for each value.
+The following table shows serialized examples, as would be shown with the `serializedValue` field of an Example Object, of the different serializations for each value.
 
 * The value _empty_ denotes the empty string, and is unrelated to the `allowEmptyValue` field
 * The behavior of combinations marked _n/a_ is undefined
 * The `undefined` column replaces the `empty` column in previous versions of this specification in order to better align with [RFC6570](https://www.rfc-editor.org/rfc/rfc6570.html#section-2.3) terminology, which describes certain values including but not limited to `null` as "undefined" values with special handling; notably, the empty string is _not_ undefined
-* For `form` and the non-RFC6570 query string styles `spaceDelimited`, `pipeDelimited`, and `deepObject`, each example is shown prefixed with `?` as if it were the only query parameter; see [Appendix C](#appendix-c-using-rfc6570-based-serialization) for more information on constructing query strings from multiple parameters, and [Appendix D](#appendix-d-serializing-headers-and-cookies) for warnings regarding `form` and cookie parameters
-* Note that the `?` prefix is not appropriate for serializing `application/x-www-form-urlencoded` HTTP message bodies, and MUST be stripped or (if constructing the string manually) not added when used in that context; see the [Encoding Object](#encoding-object) for more information
+* For `form` and the non-RFC6570 query string styles `spaceDelimited`, `pipeDelimited`, and `deepObject`, see [Appendix C](#appendix-c-using-rfc6570-based-serialization) for more information on constructing query strings from multiple parameters, and [Appendix D](#appendix-d-serializing-headers-and-cookies) for warnings regarding `form` and cookie parameters
 * The examples are percent-encoded as required by RFC6570 and RFC3986; see [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a thorough discussion of percent-encoding concerns, including why unencoded `|` (`%7C`), `[` (`%5B`), and `]` (`%5D`) seem to work in some environments despite not being compliant.
 
 | [`style`](#style-values) | `explode` | `undefined` | `string` | `array` | `object` |
@@ -1053,14 +1066,14 @@ The following table shows examples, as would be shown with the `example` or `exa
 | label | true | . | .blue | .blue.black.brown | .R=100.G=200.B=150 |
 | simple | false | _empty_ | blue | blue,black,brown | R,100,G,200,B,150 |
 | simple | true | _empty_ | blue | blue,black,brown | R=100,G=200,B=150 |
-| form | false | <span style="white-space: nowrap;">?color=</span> | <span style="white-space: nowrap;">?color=blue</span> | <span style="white-space: nowrap;">?color=blue,black,brown</span> | <span style="white-space: nowrap;">?color=R,100,G,200,B,150</span> |
-| form | true | <span style="white-space: nowrap;">?color=</span> | <span style="white-space: nowrap;">?color=blue</span> | <span style="white-space: nowrap;">?color=blue&color=black&color=brown</span> | <span style="white-space: nowrap;">?R=100&G=200&B=150</span> |
-| spaceDelimited</span> | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">?color=blue%20black%20brown</span> | <span style="white-space: nowrap;">?color=R%20100%20G%20200%20B%20150</span> |
+| form | false | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue,black,brown</span> | <span style="white-space: nowrap;">color=R,100,G,200,B,150</span> |
+| form | true | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue&color=black&color=brown</span> | <span style="white-space: nowrap;">R=100&G=200&B=150</span> |
+| spaceDelimited</span> | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color=blue%20black%20brown</span> | <span style="white-space: nowrap;">color=R%20100%20G%20200%20B%20150</span> |
 | spaceDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
-| pipeDelimited | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">?color=blue%7Cblack%7Cbrown</span> | <span style="white-space: nowrap;">?color=R%7C100%7CG%7C200%7CB%7C150</span> |
+| pipeDelimited | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color=blue%7Cblack%7Cbrown</span> | <span style="white-space: nowrap;">color=R%7C100%7CG%7C200%7CB%7C150</span> |
 | pipeDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
 | deepObject | false | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
-| deepObject | true | _n/a_ | _n/a_ | _n/a_ | <span style="white-space: nowrap;">?color%5BR%5D=100&color%5BG%5D=200&color%5BB%5D=150</span> |
+| deepObject | true | _n/a_ | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color%5BR%5D=100&color%5BG%5D=200&color%5BB%5D=150</span> |
 
 ##### Extending Support for Querystring Formats
 

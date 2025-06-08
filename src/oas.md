@@ -2207,7 +2207,7 @@ transactionCallback:
 
 Example values along with `summary` and `description` metadata, showing either a valid data structure for use with a schema, a valid serialized form of the data, or both.
 
-As further explained under [Working With Examples](#working-with-examples), this Object is used in fields named `examples` (plural),and is a [referenceable](#reference-object) alternative to older `example` (singular) fields that do not support referencing, metadata, or data structure vs serialized forms.
+As further explained under [Working With Examples](#working-with-examples), this Object is used in fields named `examples` (plural), and is a [referenceable](#reference-object) alternative to older `example` (singular) fields that do not support referencing, metadata, or data structure vs serialized forms.
 
 ##### Fixed Fields
 

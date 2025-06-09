@@ -2128,99 +2128,82 @@ With the Example Object, such values can alternatively be handled through the `e
 
 ##### Example Object Examples
 
-In a request body:
+###### JSON Examples
+
+When writing in YAML, JSON syntax can be used for `dataValue` (as shown in the `noRating` example) but is not required.
+While this example shows the behavior of both `dataValue` and `serializedValue` for JSON (in the 'withRating` example), in most cases only the data form is needed.
 
 ```yaml
-requestBody:
-  content:
-    'application/json':
-      schema:
-        $ref: '#/components/schemas/Address'
-      examples:
-        foo:
-          summary: A foo example
-          value:
-            foo: bar
-        bar:
-          summary: A bar example
-          value:
-            bar: baz
-    application/xml:
-      examples:
-        xmlExample:
-          summary: This is an example in XML
-          externalValue: https://example.org/examples/address-example.xml
-    text/plain:
-      examples:
-        textExample:
-          summary: This is a text example
-          externalValue: https://foo.bar/examples/address-example.txt
-```
-
-In a parameter:
-
-```yaml
-parameters:
-  - name: zipCode
-    in: query
+content:
+  application/json:
     schema:
-      type: string
-      format: zip-code
+      type: object
+      required:
+      - author
+      - title
+      properties:
+        author:
+          type: string
+        title:
+          type: string
+        rating:
+          type: number
+          minimum: 1
+          maximum: 5
+          multipleOf: 0.5
     examples:
-      zip-example:
-        $ref: '#/components/examples/zip-example'
+      noRating:
+        summary: A not-yet-rated work
+        dataValue: {
+          "author": "A. Writer",
+          "title": "The Newest Book"
+        }
+      withRating:
+        summary: A work with an average rating of 4.5 stars
+        dataValue:
+          author: A. Writer
+          title: An Older Book
+          rating: 4.5
+        serializedValue: |
+          {
+            "author": "A. Writer",
+            "title": "An Older Book",
+            "rating": 4.5
+          }
 ```
 
-In a response:
+###### Binary Examples
+
+This example shows both `externalDataValue` and `externalSerializedValue` to emphasize that no encoding is taking place, but it is also valid to show only one or the other.
 
 ```yaml
-responses:
-  '200':
-    description: your car appointment has been booked
-    content:
-      application/json:
-        schema:
-          $ref: '#/components/schemas/SuccessResponse'
-        examples:
-          confirmation-success:
-            $ref: '#/components/examples/confirmation-success'
+content:
+  image/png:
+    schema: {}
+    examples:
+      Red:
+        externalDataValue: ./examples/2-by-2-red-pixels.png
+        serializedDataValue: ./examples/2-by-2-red-pixels.png
 ```
 
-Two different uses of JSON strings:
+###### Boolean Query Parameter Examples
 
-First, a request or response body that is just a JSON string (not an object containing a string):
+Since there is no standard for serializing boolean values (as discussed in [Appendix B](#appendix-b-data-type-conversion)), this example uses `dataValue` and `serializedValue` to show how booleans are serialized for this particular parameter:
 
 ```yaml
-application/json:
-  schema:
-    type: string
-  examples:
-    jsonBody:
-      description: 'A body of just the JSON string "json"'
-      value: json
+name: flag
+in: query
+required: true
+schema:
+  type: boolean
+examples:
+  "true":
+    dataValue: true
+    serializedValue: flag=true
+  "false":
+    dataValue: false
+    serializedValue: flag=false
 ```
-
-In the above example, we can just show the JSON string (or any JSON value) as-is, rather than stuffing a serialized JSON value into a JSON string, which would have looked like `"\"json\""`.
-
-In contrast, a JSON string encoded inside of a URL-style form body:
-
-```yaml
-application/x-www-form-urlencoded:
-  schema:
-    type: object
-    properties:
-      jsonValue:
-        type: string
-  encoding:
-    jsonValue:
-      contentType: application/json
-  examples:
-    jsonFormValue:
-      description: 'The JSON string "json" as a form value'
-      value: jsonValue=%22json%22
-```
-
-In this example, the JSON string had to be serialized before encoding it into the URL form value, so the example includes the quotation marks that are part of the JSON serialization, which are then URL percent-encoded.
 
 #### Link Object
 

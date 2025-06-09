@@ -108,7 +108,7 @@ The fourth repeats `application/geo+json`-structured values, while the last repe
 
 Implementations MUST support mapping sequential media types into the JSON Schema data model by treating them as if the values were in an array in the same order.
 
-See [Complete vs Streaming Content](#complete-vs-streaming-content) for more information on handling sequential media type in a streaming context, including special considerations for `text/event-stream` content.
+See [Complete vs Streaming Content](#complete-vs-streaming-content) for more information on handling sequential media types in a streaming context, including special considerations for `text/event-stream` content.
 
 #### Media Type Registry
 

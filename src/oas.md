@@ -2325,7 +2325,7 @@ content:
     examples:
       Red:
         externalDataValue: ./examples/2-by-2-red-pixels.png
-        serializedDataValue: ./examples/2-by-2-red-pixels.png
+        externalSerializedValue: ./examples/2-by-2-red-pixels.png
 ```
 
 ###### Boolean Query Parameter Examples

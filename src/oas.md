@@ -1100,6 +1100,10 @@ schema:
     type: integer
     format: int64
 style: simple
+examples:
+  number:
+    dataValue: [12345678, 90099]
+    serializedValue: "12345678,90099"
 ```
 
 A path parameter of a string value:
@@ -1111,6 +1115,13 @@ description: username to fetch
 required: true
 schema:
   type: string
+examples:
+  "Edsger Dijkstra":
+    dataValue: edijkstra
+    serializedValue: edijkstra
+  Diṅnāga:
+    dataValue: diṅnāga
+    serializedValue: di%E1%B9%85n%C4%81ga
 ```
 
 An optional query parameter of a string value, allowing multiple values by repeating the query parameter:
@@ -1126,9 +1137,13 @@ schema:
     type: string
 style: form
 explode: true
+examples:
+  stuff:
+    dataValue: [this, that, theother]
+    serializedValue: id=this&id=that&id=theother
 ```
 
-A free-form query parameter, allowing undefined parameters of a specific type:
+A free-form query parameter, allowing undefined parameters of a `type: "string"`:
 
 ```yaml
 in: query
@@ -1136,8 +1151,12 @@ name: freeForm
 schema:
   type: object
   additionalProperties:
-    type: integer
+    type: string
 style: form
+examples:
+  freeForm:
+    dataValue: {"yeah": "I'm", "free": "forming"}
+    serializedValue: yeah=I%27m&free=forming
 ```
 
 A complex parameter using `content` to define serialization:
@@ -1170,13 +1189,17 @@ content:
       # Allow an arbitrary JSON object to keep
       # the example simple
       type: object
-    example: {
-      "numbers": [1, 2],
-      "flag": null
-    }
+    examples:
+      minimized:
+        summary: JSON should be serialized with minimal whitespace
+        dataValue: {
+          "numbers": [1, 2],
+          "flag": null
+        }
+        serializedValue: '{"numbers":[1,2],"flag":null}'
 ```
 
-Assuming a path of `/foo`, a server of `https://example.com`, the full URL incorporating the value from the `example` field (with whitespace minimized) would be:
+Assuming a path of `/foo`, a server of `https://example.com`, the full URL incorporating the value from the `serializedValue` field would be:
 
 ```uri
 https://example.com/foo?%7B%22numbers%22%3A%5B1%2C2%5D%2C%22flag%22%3Anull%7D
@@ -1191,12 +1214,14 @@ content:
   application/jsonpath:
     schema:
       type: string
-    example: $.a.b[1:1]
+    examples:
+      simpleSelector:
+        dataValue: $.a.b[1:1]
 ```
 
 As there is not, as of this writing, a [registered](#media-type-registry) mapping between the JSON Schema data model and JSONPath, the details of the string's allowed structure would need to be conveyed either in a human-readable `description` field, or through a mechanism outside of the OpenAPI Description, such as a JSON Schema for the data structure to be queried.
 
-Assuming a path of `/foo` and a server of `https://example.com`, the full URL incorporating the value from the `example` field would be:
+Assuming a path of `/foo` and a server of `https://example.com`, the full URL incorporating the value from the `dataValue` field would be:
 
 ```uri
 https://example.com/foo?%24.a.b%5B1%3A1%5D

@@ -1185,9 +1185,14 @@ name: json
 content:
   application/json:
     schema:
-      # Allow an arbitrary JSON object to keep
-      # the example simple
       type: object
+      properties:
+        numbers:
+          type: array
+          items:
+            type: number
+        flag:
+          type: [boolean, "null"]
     examples:
       TwoNoFlag:
         description: Serialize with minimized whitespace

@@ -2010,14 +2010,26 @@ headers:
     description: The number of allowed requests in the current period
     schema:
       type: integer
+    examples:
+      allowTen:
+        dataValue: 10
+        serializedValue: '10'
   X-Rate-Limit-Remaining:
     description: The number of remaining requests in the current period
     schema:
       type: integer
+    examples:
+      twoRemaining:
+        dataValue: 2
+        serializedValue: '2'
   X-Rate-Limit-Reset:
     description: The number of seconds left in the current period
     schema:
       type: integer
+    examples:
+      oneMinute:
+        dataValue: 60
+        serializedValue: '60'
 ```
 
 Response with no return value:

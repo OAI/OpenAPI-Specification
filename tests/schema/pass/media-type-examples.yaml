@@ -117,6 +117,10 @@ paths:
                   type: string
                 forCoverage2:
                   type: string
+                nested1:
+                  type: object
+                nested2:
+                  type: array
             encoding:
               addresses:
                 # require XML Content-Type in utf-8 encoding
@@ -138,3 +142,12 @@ paths:
               forCoverage2:
                 style: spaceDelimited
                 explode: true
+              nested1:
+                contentType: multipart/form-data
+                encoding:
+                  inner: {}
+              nested2:
+                contentType: multipart/mixed
+                prefixEncoding:
+                - {}
+                itemEncoding: {}

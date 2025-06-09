@@ -1319,6 +1319,51 @@ properties:
 The three encoding fields define how to map each [Encoding Object](#encoding object) to a specific value in the data.
 Each field has its own set of media types with which it can be used; for all other media types all three fields SHALL be ignored.
 
+###### Encoding and `type`
+
+Several encoding behaviors, including which of the Media Type Object's encoding fields can be used, the way in which those fields apply Encoding Objects to either the immediate instance or to items in an instance array, and the default behavior of the Encoding Object's `contentType` field, depend on the relevant schema's `type`.
+
+When only a single Schema Object with a single-valued `type` keyword is relevant, this behavior is easily-determined.
+However, when schemas are assembled through references, this can be more challenging.
+When schemas have constraints that are only resolvable at runtime, determining the type prior to runtime can be impossible.
+
+When working with in-memory data at runtime, if an implementation cannot locate an appropriate `type` keyword but the data is valid according to all relevant Schema Objects, then the runtime type of the data MUST be used to determine the behavior.
+
+When parsing a data format using an Encoding Object, implementations MUST support using a single-valued `type` keyword that is either in the corresponding Schema Object, or reachable from that Schema Object by following a chain of `$ref` and/or `allOf` keywords.
+Note that if `allOf` is used to combine single-valued `type` keywords with conflicting type values, schema validation will always fail, so such conflicts need not be detected in advance as long as validation is applied to the parsed result.
+Note also that while the `type` value `"integer"` can be applied with `type: "number"`, the encoding behavior is the same for JSON numbers whether they meet JSON Schema's additional `type: "integer"` constraint or not, so these types do not conflict.
+
+For example, the relevant type of the `"foo"` property is `"number"`, found by following the `$ref` to the `"Thing"` schema, then the `$ref` under the `"foo"` property schema to the `"Foo"` schema, then the `$ref` under the first branch of the `allOf` to the `"Bar"` schema, which defines a `type` keyword with the single value `"number"`, a primitive type:
+
+```yaml
+components:
+  schemas:
+    Thing:
+      type: object
+      properties:
+        foo:
+          $ref: "#/components/Schemas/Foo"
+    Foo:
+      allOf:
+      - $ref: "#/components/Schemas/Bar"
+      - $ref: "#/components/Schemas/Baz"
+    Bar:
+      type: number
+    Baz:
+      minimum: 0
+  requestBodies:
+    Thing:
+      schema:
+        $ref: "#/components/Schemas/Thing"
+      encoding:
+        foo:
+          # The default `contentType` is `text/plain`
+```
+
+Implementations MAY attempt to handle more complex schema arrangements, in which case they MUST document what is handled and with what behavior.
+If they do, then `type` keywords that contain multiple values (e.g. `type: ["number", "nul"]`) SHOULD be handled by attempting to parse according to each type in the order provided, falling back to the next type until the list is exhausted.
+However OAD authors are advised that depending on handling scenarios other than `$ref`/`allOf`-reachable single-valued `type` keywords is not interoperable.
+
 ###### Encoding By Name
 
 The behavior of the `encoding` field is designed to support web forms, and is therefore only defined for media types structured as name-value pairs that allow repeat values, most notably `application/x-www-form-urlencoded` and `multipart/form-data`.
@@ -1669,7 +1714,7 @@ These fields MAY be used either with or without the RFC6570-style serialization 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
 The default values for `contentType` are as follows, where an _n/a_ in the `contentEncoding` column means that the presence or value of `contentEncoding` is irrelevant.
-This table is based on the value to which the Encoding Object is being applied as defined under [Encoding Usage and Restrictions](#encoding-usage-and-restrictions).
+This table is based on the value to which the Encoding Object is being applied as defined under [Encoding Usage and Restrictions](#encoding-usage-and-restrictions), where determining the type is done as described under [Encoding and `type`](#encoding-and-type).
 Note that in the case of [Encoding By Name](#encoding-by-name), this value is the array item for properties of type `"array"`, and the entire value for all other types.
 Therefore the `array` row in this table applies only to array values inside of a top-level array when encoding by name.
 

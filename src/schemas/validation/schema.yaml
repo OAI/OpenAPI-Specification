@@ -728,6 +728,9 @@ $defs:
           explode:
             default: false
             type: boolean
+          allowReserved:
+            default: false
+            type: boolean
         $ref: '#/$defs/examples'
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false

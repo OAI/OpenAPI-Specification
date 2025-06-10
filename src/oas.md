@@ -2489,7 +2489,7 @@ Using `content` with a `text/plain` media type is RECOMMENDED for headers where 
 | ---- | :----: | ---- |
 | <a name="header-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | A map containing the representations for the header. The key is the media type and the value describes it. The map MUST only contain one entry. |
 
-##### Header Object Example
+##### Header Object Examples
 
 A simple header of type `integer`:
 
@@ -2515,6 +2515,38 @@ ETag:
         type: string
         pattern: ^"
 ```
+
+A `Link` header that, if present, must include links with the standard relation types `self`, `first`, `prev`, `next`, and `last`, as might be used on a paginated collection:
+
+```yaml
+Link:
+  schema:
+    type: array
+    uniqueItems: true
+    minItems: 5
+    maxItems: 5
+    items:
+      type: string
+      anyOf:
+      - pattern: rel="?first"?
+      - pattern: rel="?prev"?
+      - pattern: rel="?self"?
+      - pattern: rel="?next"?
+      - pattern: rel="?last"?
+  style: simple
+  examples:
+    CollectionLinks:
+      dataValue:
+      - https://example.com/foos?page=1; rel=first
+      - https://example.com/foos?page=4; rel=prev
+      - https://example.com/foos?page=5; rel=self
+      - https://example.com/foos?page=6; rel=next
+      - https://example.com/foos?page=10; rel=last
+      serializedValue: https://example.com/foos?page=1; rel=first, https://example.com/foos?page=4; rel=prev, https://example.com/foos?page=5; rel=self, https://example.com/foos?page=6; rel=next, https://example.com/foos?page=10; rel=last
+```
+
+Note that the `items`, `uniqueItems: true`, and `anyOf` combination allows the links to appear in any order.
+If a fixed order is desired, then `prefixItems` could be used and `uniqueItems` would not be necessary.
 
 #### Tag Object
 

@@ -2531,6 +2531,10 @@ Link:
       - pattern: rel="?next"?
       - pattern: rel="?last"?
   style: simple
+  # The ";" character and the URI delimiters are reserved
+  # but needs to be allowed as headers do not expect these
+  # to be percent-encoded.
+  allowReserved: true
   examples:
     CollectionLinks:
       dataValue:

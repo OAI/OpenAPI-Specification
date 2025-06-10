@@ -2525,6 +2525,9 @@ ETag:
       schema:
         type: string
         pattern: ^"
+  examples:
+    dataValue: xyzzx
+    serializedValue: xyzzx
 ```
 
 #### Tag Object

@@ -2,20 +2,13 @@ import { readdir, readFile } from "node:fs/promises";
 import YAML from "yaml";
 import { join } from "node:path";
 import { argv } from "node:process";
-import "@hyperjump/json-schema/draft-2020-12";
+import { validate } from "@hyperjump/json-schema/draft-2020-12";
 import "@hyperjump/json-schema/draft-04";
-import {
-  compile,
-  getSchema,
-  interpret,
-  Validation,
-  BASIC,
-} from "@hyperjump/json-schema/experimental";
-import * as Instance from "@hyperjump/json-schema/instance/experimental";
+import { BASIC } from "@hyperjump/json-schema/experimental";
 
 /**
- * @import { AST } from "@hyperjump/json-schema/experimental"
- * @import { Json } from "@hyperjump/json-schema"
+ * @import { EvaluationPlugin } from "@hyperjump/json-schema/experimental"
+ * @import { Json } from "@hyperjump/json-pointer"
  */
 
 import contentTypeParser from "content-type";
@@ -36,6 +29,41 @@ addMediaTypePlugin("application/schema+yaml", {
   fileMatcher: (path) => path.endsWith(".yaml"),
 });
 
+/** @implements EvaluationPlugin */
+class TestCoveragePlugin {
+  constructor() {
+    /** @type Set<string> */
+    this.visitedLocations = new Set();
+  }
+
+  beforeSchema(_schemaUri, _instance, context) {
+    if (this.allLocations) {
+      return;
+    }
+
+    /** @type Set<string> */
+    this.allLocations = [];
+
+    for (const schemaLocation in context.ast) {
+      if (schemaLocation === "metaData") {
+        continue;
+      }
+
+      if (Array.isArray(context.ast[schemaLocation])) {
+        for (const keyword of context.ast[schemaLocation]) {
+          if (Array.isArray(keyword)) {
+            this.allLocations.push(keyword[1]);
+          }
+        }
+      }
+    }
+  }
+
+  beforeKeyword([, schemaUri]) {
+    this.visitedLocations.add(schemaUri);
+  }
+}
+
 /** @type (testDirectory: string) => AsyncGenerator<[string,Json]> */
 const tests = async function* (testDirectory) {
   for (const file of await readdir(testDirectory, {
@@ -53,70 +81,43 @@ const tests = async function* (testDirectory) {
   }
 };
 
-/** @type (testDirectory: string) => Promise<void> */
-const runTests = async (testDirectory) => {
-  for await (const [name, test] of tests(testDirectory)) {
-    const instance = Instance.fromJs(test);
+/**
+ * @typedef {{
+ *   allLocations: string[];
+ *   visitedLocations: Set<string>;
+ * }} Coverage
+ */
 
-    const result = interpret(compiled, instance, BASIC);
+/** @type (schemaUri: string, testDirectory: string) => Promise<Coverage> */
+const runTests = async (schemaUri, testDirectory) => {
+  const testCoveragePlugin = new TestCoveragePlugin();
+  const validateOpenApi = await validate(schemaUri);
+
+  for await (const [name, test] of tests(testDirectory)) {
+    const result = validateOpenApi(test, {
+      outputFormat: BASIC,
+      plugins: [testCoveragePlugin],
+    });
 
     if (!result.valid) {
       console.log("Failed:", name, result.errors);
     }
   }
-};
 
-/** @type (ast: AST) => string[] */
-const keywordLocations = (ast) => {
-  /** @type string[] */
-  const locations = [];
-  for (const schemaLocation in ast) {
-    if (schemaLocation === "metaData") {
-      continue;
-    }
-
-    if (Array.isArray(ast[schemaLocation])) {
-      for (const keyword of ast[schemaLocation]) {
-        if (Array.isArray(keyword)) {
-          locations.push(keyword[1]);
-        }
-      }
-    }
-  }
-
-  return locations;
+  return {
+    allLocations: testCoveragePlugin.allLocations ?? new Set(),
+    visitedLocations: testCoveragePlugin.visitedLocations
+  };
 };
 
 ///////////////////////////////////////////////////////////////////////////////
 
-const schema = await getSchema(argv[2]);
-const compiled = await compile(schema);
-
-/** @type Set<string> */
-const visitedLocations = new Set();
-const baseInterpret = Validation.interpret;
-Validation.interpret = (url, instance, context) => {
-  if (Array.isArray(context.ast[url])) {
-    for (const keywordNode of context.ast[url]) {
-      if (Array.isArray(keywordNode)) {
-        visitedLocations.add(keywordNode[1]);
-      }
-    }
-  }
-  return baseInterpret(url, instance, context);
-};
-
-await runTests(argv[3]);
-Validation.interpret = baseInterpret;
-
-// console.log("Covered:", visitedLocations);
-
-const allKeywords = keywordLocations(compiled.ast);
-const notCovered = allKeywords.filter(
+const { allLocations, visitedLocations } = await runTests(argv[2], argv[3]);
+const notCovered = allLocations.filter(
   (location) => !visitedLocations.has(location),
 );
 if (notCovered.length > 0) {
-  console.log("NOT Covered:", notCovered.length, "of", allKeywords.length);
+  console.log("NOT Covered:", notCovered.length, "of", allLocations.length);
   const maxNotCovered = 20;
   const firstNotCovered = notCovered.slice(0, maxNotCovered);
   if (notCovered.length > maxNotCovered) firstNotCovered.push("...");
@@ -127,6 +128,6 @@ console.log(
   "Covered:",
   visitedLocations.size,
   "of",
-  allKeywords.length,
-  "(" + Math.floor((visitedLocations.size / allKeywords.length) * 100) + "%)",
+  allLocations.length,
+  "(" + Math.floor((visitedLocations.size / allLocations.length) * 100) + "%)",
 );

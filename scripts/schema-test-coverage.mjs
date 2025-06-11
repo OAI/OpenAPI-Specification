@@ -131,3 +131,7 @@ console.log(
   allLocations.length,
   "(" + Math.floor((visitedLocations.size / allLocations.length) * 100) + "%)",
 );
+
+if (visitedLocations.size != allLocations.length) {
+  process.exitCode = 1;
+}

@@ -2534,17 +2534,19 @@ A `Link` header that, if present, must include links with the standard relation 
 Link:
   schema:
     type: array
-    uniqueItems: true
-    minItems: 5
-    maxItems: 5
     items:
       type: string
-      anyOf:
-      - pattern: rel="?first"?
-      - pattern: rel="?prev"?
-      - pattern: rel="?self"?
-      - pattern: rel="?next"?
-      - pattern: rel="?last"?
+    allOf:
+    - contains:
+        pattern: rel="?first"?
+    - contains:
+        pattern: rel="?prev"?
+    - contains:
+        pattern: rel="?self"?
+    - contains:
+        pattern: rel="?next"?
+    - contains:
+        pattern: rel="?last"?
   style: simple
   # The ";" character and the URI delimiters are reserved
   # but needs to be allowed as headers do not expect these
@@ -2561,8 +2563,8 @@ Link:
       serializedValue: https://example.com/foos?page=1; rel=first, https://example.com/foos?page=4; rel=prev, https://example.com/foos?page=5; rel=self, https://example.com/foos?page=6; rel=next, https://example.com/foos?page=10; rel=last
 ```
 
-Note that the `items`, `uniqueItems: true`, and `anyOf` combination allows the links to appear in any order.
-If a fixed order is desired, then `prefixItems` could be used and `uniqueItems` would not be necessary.
+Note that the `allOf` with `contains` combination allows the links to appear in any order.
+If a fixed order is desired, then `prefixItems` could be used and the `allof` would not be necessary.
 
 #### Tag Object
 

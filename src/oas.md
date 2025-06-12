@@ -2174,7 +2174,7 @@ content:
 
 ###### Binary Examples
 
-This example shows both `externalDataValue` and `externalSerializedValue` to emphasize that no encoding is taking place, but it is also valid to show only one or the other.
+Fully binary data is shown using `serializedDataValue`:
 
 ```yaml
 content:
@@ -2182,7 +2182,6 @@ content:
     schema: {}
     examples:
       Red:
-        externalDataValue: ./examples/2-by-2-red-pixels.png
         serializedDataValue: ./examples/2-by-2-red-pixels.png
 ```
 

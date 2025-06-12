@@ -3694,7 +3694,7 @@ The in-memory instance data structure for the above example would be:
 ###### XML With `null` Values
 
 Recall that the schema validates the in-memory data, not the XML document itself.
-The properties of the `"metadata"` element are omitted for brevity as it is here to show how the `null` value is represented.
+The properties of the `"related"` element object are omitted for brevity as it is here to show how the `null` value is represented.
 
 ```yaml
 product:

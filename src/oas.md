@@ -2171,7 +2171,7 @@ For `externalDataValue`, it is always the parsed data that is significant, not i
 While JSON Schema allows for applying schemas to data outside of its data model, this allowance is intended to support consistent use of Schema Objects, including fields such as `readOnly` that do not impact JSON Schema's validation outcome.
 No standard format suitable for passing such non-JSON data to JSON Schema has been defined, and therefore data that is outside of the JSON data model cannot be represented with `dataValue` or `externalDataValue`, and MUST use `serializedValue` or `externalSerializedValue`.
 
-Note that `serializedValue`, which MUST be a string, is by necessity a sequence of Unicode code points, which may need to be re-encoded based on the character set or other constraints of the target location.
+Note that `serializedValue`, which MUST be a string, is by necessity a sequence of Unicode code points, which will need to be encoded based on the character set or other constraints of the target location.
 This conversion is purely one of encoding.  All escaping necessary to reduce the example to the set of characters valid for the target location (e.g. URI percent-encoding) MUST be included in the `serializedValue`.
 If the target location's encoding is ambiguous, `externalSerializedValue` can be used to demonstrate the exact serialization, including character set encoding, that is intended.
 

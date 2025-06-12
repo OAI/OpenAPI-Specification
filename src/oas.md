@@ -2099,7 +2099,7 @@ The various fields and types of examples are explained in more detail under [Wor
 | <a name="example-summary"></a>summary | `string` | Short description for the example. |
 | <a name="example-description"></a>description | `string` | Long description for the example. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="example-data-value"></a>dataValue | Any | An example of the data structure that MUST be valid according to the relevant [Schema Object](#schema-object).  If this field is present, `externalDataValue`, `value`, and `externalValue` MUST be absent. |
-| <a name="example-external-data-value"></a>externalDataValue | `string` | A URI that identifies the data example in a separate document, allowing for values not easily expressed in JSON or YAML.  This is usually only needed when working with binary data. The value MUST be valid according to the relevant Schema Object. If this field is present, then `dataValue`, `value`, and `externalValue` MUST be absent. See also the rules for resolving [Relative URI References](#relative-references-in-api-description-uris). |
+| <a name="example-external-data-value"></a>externalDataValue | `string` | A URI that identifies the data example in a separate document, which is otherwise treated identically to `dataValue` once parsed, with the same validity requirements. If this field is present, then `dataValue`, `value`, and `externalValue` MUST be absent. See also the rules for resolving [Relative URI References](#relative-references-in-api-description-uris). |
 | <a name="example-serialized-value"></a>serializedValue | `string` | An example of the serialized form of the value, including encoding and escaping as described under [Validating Examples](#validating-examples).  If `dataValue` or `externalDataValue` are present, then this field SHOULD contain the serialization of the given data.  Otherwise, it SHOULD be the valid serialization of a data value that itself MUST be valid as described for `dataValue`.  This field SHOULD NOT be used if the serialization format is JSON, as the data form is easier to work with. If this field is present, `externalSerializedValue`, `value`, and `externalValue` MUST be absent. |
 | <a name="example-eternal-serialized-value"></a>externalSerializedValue | `string` | A URI that identifies the serialized example in a separate document, allowing for values not easily or readably expressed in JSON or YAML strings.  If `dataValue` or `externalDataValue` are present, then this field SHOULD identify a serialization of the given data.  Otherwise, the value SHOULD be a valid serialization as described for `serializedValue`.  If this field is present, `serializedValue`, `value`, and `externalValue` MUST be absent. See also the rules for resolving [Relative References](#relative-references-in-api-description-uris). |
 | <a name="example-value"></a>value | Any | Embedded literal example. The `value` field and `externalValue` field are mutually exclusive. To represent examples of media types that cannot naturally represented in JSON or YAML, use a string value to contain the example, escaping where necessary. |
@@ -2135,9 +2135,7 @@ For this reason, OpenAPI Description authors who want portable behavior with exa
 In addition, it can be challenging to correlate the validation-ready Schema Object example with serialized Example Object examples when all are part of shared Objects reached through (possibly multiple) references.
 Authors who wish to clearly show serialized and unserialized forms of the same data together are RECOMMENDED to use the new fields in the Example Object to do so.
 
-When the validation-ready data consists of a value outside of the JSON data model, such as a raw binary image, the `externalDataValue` field can be used.
-While `externalDataValue` can be used for entirely binary data, there is no format suitable for mixing JSON Schema data model-compatible data with binary data as might happen in a `multipart` media type.
-In such cases, it is only possible to show the serialized form.
+Due to the lack of any format for mixing JSON Schema data model-compatible data with binary data (as might happen in a `multipart` media type), such examples can only be given using the `externalSerializedValue` field.
 
 Because examples using these fields represent the final serialized form of the data, they SHALL _override_ any `example` in the corresponding Schema Object.
 
@@ -2158,6 +2156,7 @@ In some cases, parsing the serialized example and validating the resulting data 
 If either of `dataValue` or `externalDataValue` are also present, the serialized value MUST be a serialization of the data value, and SHOULD be a valid according to the serialization format.
 
 When using `serializedValue`, the value MUST be a string that is suitably escaped for inclusion in JSON or YAML in addition to any escaping that is part of the target format.
+See [Character Encodings and Binary Data](#character-encodings-and-binary-data) for details.
 
 The `externalSerializedValue` field supports any format for the external value.
 Note that this serialization may or may not exactly match what is transmitted over the wire, as different versions of HTTP use different text or binary encodings, and HTTP content may be subject to compression or other transformations not captured in the OpenAPI Description.
@@ -2167,15 +2166,17 @@ However, many implementations treat them as data values, so these fields are amb
 
 ###### Character Encodings and Binary Data
 
+For `externalDataValue`, it is always the parsed data that is significant, not its character encoding.
+
+While JSON Schema allows for applying schemas to data outside of its data model, this allowance is intended to support consistent use of Schema Objects, including fields such as `readOnly` that do not impact JSON Schema's validation outcome.
+No standard format suitable for passing such non-JSON data to JSON Schema has been defined, and therefore data that is outside of the JSON data model cannot be represented with `dataValue` or `externalDataValue`, and MUST use `serializedValue` or `externalSerializedValue`.
+
 Note that `serializedValue`, which MUST be a string, is by necessity a sequence of Unicode code points, which may need to be re-encoded based on the character set or other constraints of the target location.
 This conversion is purely one of encoding.  All escaping necessary to reduce the example to the set of characters valid for the target location (e.g. URI percent-encoding) MUST be included in the `serializedValue`.
 If the target location's encoding is ambiguous, `externalSerializedValue` can be used to demonstrate the exact serialization, including character set encoding, that is intended.
 
-`serializedValue` can be used for any textual value with a character set encoding which has an unambiguous mapping to Unicode code points. Since Unicode strings have no inherent binary representation, `serializedValue` cannot be used for binary data.
 Per [[!RFC8259]] [Section 8.2](https://www.rfc-editor.org/rfc/rfc8259.html#section-8.2), using escape sequences that cannot encode Unicode characters to represent binary data is not portable and may cause runtime errors.
-Therefore, data formats that are not always representable as Unicode code points SHOULD use `externalSerializedValue`.
-
-For `externalDataValue`, it is always the parsed data that is significant, not its encoding.
+Therefore, data formats such those including binary data that are not always representable as Unicode code points SHOULD use `externalSerializedValue`.
 
 ##### Example Object Examples
 

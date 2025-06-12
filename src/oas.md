@@ -3330,7 +3330,7 @@ components:
           type: integer
           format: int32
           xml:
-            attribute: true
+            nodeType: attribute
         name:
           type: string
           xml:
@@ -3507,7 +3507,8 @@ paths:
         "200":
           content:
             application/xml:
-              $ref: "#/components/schemas/Documentation"
+              schema:
+                $ref: "#/components/schemas/Documentation"
 components:
   schemas:
     Documentation:
@@ -3536,19 +3537,21 @@ paths:
         "200":
           content:
             application/xml:
-              xml:
-                nodeType: element
-                name: StoredDocument
-              $ref: "#/components/schemas/Documentation"
+              schema:
+                xml:
+                  nodeType: element
+                  name: StoredDocument
+                $ref: "#/components/schemas/Documentation"
     put:
       requestBody:
         required: true
         content:
           application/xml:
-            xml:
-              nodeType: element
-              name: UpdatedDocument
-            $ref: "#/components/schemas/Documentation"
+            schema:
+              xml:
+                nodeType: element
+                name: UpdatedDocument
+              $ref: "#/components/schemas/Documentation"
       responses:
         "201": {}
 components:

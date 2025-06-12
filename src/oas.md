@@ -2175,7 +2175,7 @@ Note that `serializedValue`, which MUST be a string, is by necessity a sequence 
 This conversion is purely one of encoding.  All escaping necessary to reduce the example to the set of characters valid for the target location (e.g. URI percent-encoding) MUST be included in the `serializedValue`.
 If the target location's encoding is ambiguous, `externalSerializedValue` can be used to demonstrate the exact serialization, including character set encoding, that is intended.
 
-Per [[!RFC8259]] [Section 8.2](https://www.rfc-editor.org/rfc/rfc8259.html#section-8.2), using escape sequences that cannot encode Unicode characters to represent binary data is not portable and may cause runtime errors.
+The `serializedValue` field can be used for any textual value with a character set encoding which has an unambiguous mapping to Unicode code points. Since Unicode strings have no inherent binary representation, `serializedValue` cannot be used for binary data.
 Therefore, data formats such those including binary data that are not always representable as Unicode code points SHOULD use `externalSerializedValue`.
 
 ##### Example Object Examples

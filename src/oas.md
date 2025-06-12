@@ -108,7 +108,7 @@ The fourth repeats `application/geo+json`-structured values, while the last repe
 
 Implementations MUST support mapping sequential media types into the JSON Schema data model by treating them as if the values were in an array in the same order.
 
-See [Complete vs Streaming Content](#complete-vs-streaming-content) for more information on handling sequential media type in a streaming context, including special considerations for `text/event-stream` content.
+See [Complete vs Streaming Content](#complete-vs-streaming-content) for more information on handling sequential media types in a streaming context, including special considerations for `text/event-stream` content.
 
 #### Media Type Registry
 
@@ -2424,7 +2424,9 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 For simpler scenarios, a [`schema`](#header-schema) and [`style`](#header-style) can describe the structure and syntax of the header.
 When `example` or `examples` are provided in conjunction with the `schema` field, the example MUST follow the prescribed serialization strategy for the header.
 
-Serializing with `schema` is NOT RECOMMENDED for headers with parameters (name=value pairs following a `;`) in their values, or where values might have non-URL-safe characters; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for details.
+Serializing headers with `schema` can be problematic due to the URI percent-encoding that is automatically applied, which would percent-encode characters such as `;` that are used to separate primary header values from their parameters.
+The `allowReserved` field can disable most but not all of this behavior.
+See [Appendix D](#appendix-d-serializing-headers-and-cookies) for details and further guidance.
 
 When `example` or `examples` are provided in conjunction with the `schema` field, the example SHOULD match the specified schema and follow the prescribed serialization strategy for the header.
 The `example` and `examples` fields are mutually exclusive, and if either is present it SHALL _override_ any `example` in the schema.
@@ -2433,6 +2435,7 @@ The `example` and `examples` fields are mutually exclusive, and if either is pre
 | ---- | :----: | ---- |
 | <a name="header-style"></a>style | `string` | Describes how the header value will be serialized. The default (and only legal value for headers) is `"simple"`. |
 | <a name="header-explode"></a>explode | `boolean` | When this is true, header values of type `array` or `object` generate a single header whose value is a comma-separated list of the array items or key-value pairs of the map, see [Style Examples](#style-examples). For other data types this field has no effect. The default value is `false`. |
+| <a name="header-allow-reserved"></a>allowReserved | `boolean` | When this is true, header values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). See [Appendix D: Serializing Headers and Cookies](#appendix-d-serializing-headers-and-cookies) for guidance on header encoding and escaping. The default value is `false`. |
 | <a name="header-schema"></a>schema | [Schema Object](#schema-object) | The schema defining the type used for the header. |
 | <a name="header-example"></a>example | Any | Example of the header's potential value; see [Working With Examples](#working-with-examples). |
 | <a name="header-examples"></a>examples | Map[ `string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | Examples of the header's potential value; see [Working With Examples](#working-with-examples). |

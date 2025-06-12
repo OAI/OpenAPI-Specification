@@ -52,3 +52,17 @@ paths:
                   type: number
                 long:
                   type: number
+  /user:
+    parameters:
+      - in: querystring
+        name: json
+        content:
+          application/json:
+            schema:
+              # Allow an arbitrary JSON object to keep
+              # the example simple
+              type: object
+            example: {
+              "numbers": [1, 2],
+              "flag": null
+            }

@@ -5,6 +5,7 @@ info:
 components:
   responses:
     complex-object-array:
+      summary: Complex object array
       description: A complex object array response
       content:
         application/json:

@@ -2126,7 +2126,7 @@ The `examples` array is part of JSON Schema and is the preferred way to include 
 The singular `example` field in non-Schema Objects is a shorthand for a single Example Object using only the `value` field, and all guidance for the `value` field applies to it.
 
 As originally conceived, the Schema Object's keywords are intended to show data as it would be validated by the containing Schema Object, while the fields in the other Objects were intended to show the serialized media type, parameter, or header.
-However, the non-Schema Object fields allowed serialized forms that could be "easily" represented as JSON or JSON-compatible YAML to be shown as inline data structures rather than serialized to strings, which means that in the most common case (`appication/json` documents), this sort of "serialized" example would be represented in the same way as the validation-ready Schema Object examples.
+However, the non-Schema Object fields allowed serialized forms that could be "easily" represented as JSON or JSON-compatible YAML to be shown as inline data structures rather than serialized to strings, which means that in the most common case (`application/json` documents), this sort of "serialized" example would be represented in the same way as the validation-ready Schema Object examples.
 Furthermore, some parameters and headers are simple enough that there is no difference between the serialized and validation-ready forms.
 
 Possibly due to these ambiguities, many implementations appear to have implemented the fields that existed prior to version 3.2 of this specification as requiring validation-ready data structures.

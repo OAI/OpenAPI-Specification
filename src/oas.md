@@ -1026,9 +1026,23 @@ In order to support common ways of serializing simple parameters, a set of `styl
 
 See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a discussion of percent-encoding, including when delimiters need to be percent-encoded and options for handling collisions with percent-encoded data.
 
+##### Serialization and Examples
+
+When showing serialized examples, such as with the [Example Object's](#example-object) `serializedValue` or `externalSerializedValue` fields, in most cases the value to show is the value, with all relevant percent-encoding or other encoding/escaping mechanisms, and also including any delimiters produced by the `style` and `explode` configuration.
+
+For query parameters (`in: "query"` and `in: "querystring"`) and cookies (`in: "cookie"`), the parameter names MUST also be shown, as they are determined in part by `style` and `explode` rather than only by `name`, and the leading `?` or `&` delimiter MUST NOT be shown, as it is not used in all scenarios.
+
+In particular, these fields are also used in the [Encoding Object](#encoding-object) for `application/x-www-form-urlencoded` request bodies which do not use a leading `?` as that delimiter is part of the URI syntax.
+Within URIs, whether each parameter is preceded by the `?` or a `&` is determined by its position relative to other parameters, and may not always be the same for a Parameter Object that is referenced by multiple Operations.
+For cookies, neither the `?` nor `&` delimiter is correct (see [Appendix D: Serializing Headers and Cookies](#appendix-d-serializing-headers-and-cookies) for more details).
+
+Note that RFC6570 form expansion implementations will include either a leading `?` or `&` delimiter, depending on which type of form expansion is used, so in some scenarios it is necessary to strip off or change the leading delimiter.
+
+The following section illustrates these rules.
+
 ##### Style Examples
 
-Assume a parameter named `color` has one of the following values:
+Assume a parameter named `color` has one of the following values, where the value to the right of the `->` is what would be shown in the `dataValue` field of an Example Object:
 
 ```js
    string -> "blue"
@@ -1036,13 +1050,12 @@ Assume a parameter named `color` has one of the following values:
    object -> { "R": 100, "G": 200, "B": 150 }
 ```
 
-The following table shows examples, as would be shown with the `example` or `examples` keywords, of the different serializations for each value.
+The following table shows serialized examples, as would be shown with the `serializedValue` field of an Example Object, of the different serializations for each value.
 
 * The value _empty_ denotes the empty string, and is unrelated to the `allowEmptyValue` field
 * The behavior of combinations marked _n/a_ is undefined
 * The `undefined` column replaces the `empty` column in previous versions of this specification in order to better align with [RFC6570](https://www.rfc-editor.org/rfc/rfc6570.html#section-2.3) terminology, which describes certain values including but not limited to `null` as "undefined" values with special handling; notably, the empty string is _not_ undefined
-* For `form` and the non-RFC6570 query string styles `spaceDelimited`, `pipeDelimited`, and `deepObject`, each example is shown prefixed with `?` as if it were the only query parameter; see [Appendix C](#appendix-c-using-rfc6570-based-serialization) for more information on constructing query strings from multiple parameters, and [Appendix D](#appendix-d-serializing-headers-and-cookies) for warnings regarding `form` and cookie parameters
-* Note that the `?` prefix is not appropriate for serializing `application/x-www-form-urlencoded` HTTP message bodies, and MUST be stripped or (if constructing the string manually) not added when used in that context; see the [Encoding Object](#encoding-object) for more information
+* For `form` and the non-RFC6570 query string styles `spaceDelimited`, `pipeDelimited`, and `deepObject`, see [Appendix C](#appendix-c-using-rfc6570-based-serialization) for more information on constructing query strings from multiple parameters, and [Appendix D](#appendix-d-serializing-headers-and-cookies) for warnings regarding `form` and cookie parameters
 * The examples are percent-encoded as required by RFC6570 and RFC3986; see [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a thorough discussion of percent-encoding concerns, including why unencoded `|` (`%7C`), `[` (`%5B`), and `]` (`%5D`) seem to work in some environments despite not being compliant.
 
 | [`style`](#style-values) | `explode` | `undefined` | `string` | `array` | `object` |
@@ -1053,14 +1066,14 @@ The following table shows examples, as would be shown with the `example` or `exa
 | label | true | . | .blue | .blue.black.brown | .R=100.G=200.B=150 |
 | simple | false | _empty_ | blue | blue,black,brown | R,100,G,200,B,150 |
 | simple | true | _empty_ | blue | blue,black,brown | R=100,G=200,B=150 |
-| form | false | <span style="white-space: nowrap;">?color=</span> | <span style="white-space: nowrap;">?color=blue</span> | <span style="white-space: nowrap;">?color=blue,black,brown</span> | <span style="white-space: nowrap;">?color=R,100,G,200,B,150</span> |
-| form | true | <span style="white-space: nowrap;">?color=</span> | <span style="white-space: nowrap;">?color=blue</span> | <span style="white-space: nowrap;">?color=blue&color=black&color=brown</span> | <span style="white-space: nowrap;">?R=100&G=200&B=150</span> |
-| spaceDelimited</span> | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">?color=blue%20black%20brown</span> | <span style="white-space: nowrap;">?color=R%20100%20G%20200%20B%20150</span> |
+| form | false | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue,black,brown</span> | <span style="white-space: nowrap;">color=R,100,G,200,B,150</span> |
+| form | true | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue&color=black&color=brown</span> | <span style="white-space: nowrap;">R=100&G=200&B=150</span> |
+| spaceDelimited</span> | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color=blue%20black%20brown</span> | <span style="white-space: nowrap;">color=R%20100%20G%20200%20B%20150</span> |
 | spaceDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
-| pipeDelimited | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">?color=blue%7Cblack%7Cbrown</span> | <span style="white-space: nowrap;">?color=R%7C100%7CG%7C200%7CB%7C150</span> |
+| pipeDelimited | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color=blue%7Cblack%7Cbrown</span> | <span style="white-space: nowrap;">color=R%7C100%7CG%7C200%7CB%7C150</span> |
 | pipeDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
 | deepObject | false | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
-| deepObject | true | _n/a_ | _n/a_ | _n/a_ | <span style="white-space: nowrap;">?color%5BR%5D=100&color%5BG%5D=200&color%5BB%5D=150</span> |
+| deepObject | true | _n/a_ | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color%5BR%5D=100&color%5BG%5D=200&color%5BB%5D=150</span> |
 
 ##### Extending Support for Querystring Formats
 
@@ -1087,6 +1100,10 @@ schema:
     type: integer
     format: int64
 style: simple
+examples:
+  number:
+    dataValue: [12345678, 90099]
+    serializedValue: "12345678,90099"
 ```
 
 A path parameter of a string value:
@@ -1098,6 +1115,13 @@ description: username to fetch
 required: true
 schema:
   type: string
+examples:
+  "Edsger Dijkstra":
+    dataValue: edijkstra
+    serializedValue: edijkstra
+  Diṅnāga:
+    dataValue: diṅnāga
+    serializedValue: di%E1%B9%85n%C4%81ga
 ```
 
 An optional query parameter of a string value, allowing multiple values by repeating the query parameter:
@@ -1113,9 +1137,13 @@ schema:
     type: string
 style: form
 explode: true
+examples:
+  stuff:
+    dataValue: [this, that, theother]
+    serializedValue: id=this&id=that&id=theother
 ```
 
-A free-form query parameter, allowing undefined parameters of a specific type:
+A free-form query parameter, allowing undefined parameters of a `type: "string"`:
 
 ```yaml
 in: query
@@ -1123,8 +1151,12 @@ name: freeForm
 schema:
   type: object
   additionalProperties:
-    type: integer
+    type: string
 style: form
+examples:
+  freeForm:
+    dataValue: {"yeah": "I'm", "free": "forming"}
+    serializedValue: yeah=I%27m&free=forming
 ```
 
 A complex parameter using `content` to define serialization:
@@ -1157,13 +1189,17 @@ content:
       # Allow an arbitrary JSON object to keep
       # the example simple
       type: object
-    example: {
-      "numbers": [1, 2],
-      "flag": null
-    }
+    examples:
+      minimized:
+        summary: JSON should be serialized with minimal whitespace
+        dataValue: {
+          "numbers": [1, 2],
+          "flag": null
+        }
+        serializedValue: '{"numbers":[1,2],"flag":null}'
 ```
 
-Assuming a path of `/foo`, a server of `https://example.com`, the full URL incorporating the value from the `example` field (with whitespace minimized) would be:
+Assuming a path of `/foo`, a server of `https://example.com`, the full URL incorporating the value from the `serializedValue` field would be:
 
 ```uri
 https://example.com/foo?%7B%22numbers%22%3A%5B1%2C2%5D%2C%22flag%22%3Anull%7D
@@ -1178,12 +1214,14 @@ content:
   application/jsonpath:
     schema:
       type: string
-    example: $.a.b[1:1]
+    examples:
+      simpleSelector:
+        dataValue: $.a.b[1:1]
 ```
 
 As there is not, as of this writing, a [registered](#media-type-registry) mapping between the JSON Schema data model and JSONPath, the details of the string's allowed structure would need to be conveyed either in a human-readable `description` field, or through a mechanism outside of the OpenAPI Description, such as a JSON Schema for the data structure to be queried.
 
-Assuming a path of `/foo` and a server of `https://example.com`, the full URL incorporating the value from the `example` field would be:
+Assuming a path of `/foo` and a server of `https://example.com`, the full URL incorporating the value from the `dataValue` field would be:
 
 ```uri
 https://example.com/foo?%24.a.b%5B1%3A1%5D
@@ -1972,14 +2010,26 @@ headers:
     description: The number of allowed requests in the current period
     schema:
       type: integer
+    examples:
+      allowTen:
+        dataValue: 10
+        serializedValue: '10'
   X-Rate-Limit-Remaining:
     description: The number of remaining requests in the current period
     schema:
       type: integer
+    examples:
+      twoRemaining:
+        dataValue: 2
+        serializedValue: '2'
   X-Rate-Limit-Reset:
     description: The number of seconds left in the current period
     schema:
       type: integer
+    examples:
+      oneMinute:
+        dataValue: 60
+        serializedValue: '60'
 ```
 
 Response with no return value:
@@ -2451,7 +2501,7 @@ Using `content` with a `text/plain` media type is RECOMMENDED for headers where 
 | ---- | :----: | ---- |
 | <a name="header-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | A map containing the representations for the header. The key is the media type and the value describes it. The map MUST only contain one entry. |
 
-##### Header Object Example
+##### Header Object Examples
 
 A simple header of type `integer`:
 
@@ -2460,6 +2510,10 @@ X-Rate-Limit-Limit:
   description: The number of allowed requests in the current period
   schema:
     type: integer
+  examples:
+    OneHundred:
+      dataValue: 100
+      serializedValue: "100"
 ```
 
 Requiring that a strong `ETag` header (with a value starting with `"` rather than `W/`) is present. Note the use of `content`, because using `schema` and `style` would require the `"` to be percent-encoded as `%22`:
@@ -2473,6 +2527,44 @@ ETag:
         type: string
         pattern: ^"
 ```
+
+A `Link` header that, if present, must include links with the standard relation types `self`, `first`, `prev`, `next`, and `last`, as might be used on a paginated collection:
+
+```yaml
+Link:
+  schema:
+    type: array
+    items:
+      type: string
+    allOf:
+    - contains:
+        pattern: rel="?first"?
+    - contains:
+        pattern: rel="?prev"?
+    - contains:
+        pattern: rel="?self"?
+    - contains:
+        pattern: rel="?next"?
+    - contains:
+        pattern: rel="?last"?
+  style: simple
+  # The ";" character and the URI delimiters are reserved
+  # but needs to be allowed as headers do not expect these
+  # to be percent-encoded.
+  allowReserved: true
+  examples:
+    CollectionLinks:
+      dataValue:
+      - https://example.com/foos?page=1; rel=first
+      - https://example.com/foos?page=4; rel=prev
+      - https://example.com/foos?page=5; rel=self
+      - https://example.com/foos?page=6; rel=next
+      - https://example.com/foos?page=10; rel=last
+      serializedValue: https://example.com/foos?page=1; rel=first, https://example.com/foos?page=4; rel=prev, https://example.com/foos?page=5; rel=self, https://example.com/foos?page=6; rel=next, https://example.com/foos?page=10; rel=last
+```
+
+Note that the `allOf` with `contains` combination allows the links to appear in any order.
+If a fixed order is desired, then `prefixItems` could be used and the `allof` would not be necessary.
 
 #### Tag Object
 

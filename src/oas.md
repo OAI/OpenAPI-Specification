@@ -2176,7 +2176,7 @@ This conversion is purely one of encoding.  All escaping necessary to reduce the
 If the target location's encoding is ambiguous, `externalSerializedValue` can be used to demonstrate the exact serialization, including character set encoding, that is intended.
 
 The `serializedValue` field can be used for any textual value with a character set encoding which has an unambiguous mapping to Unicode code points. Since Unicode strings have no inherent binary representation, `serializedValue` cannot be used for binary data.
-Therefore, data formats such those including binary data that are not always representable as Unicode code points SHOULD use `externalSerializedValue`.
+Instead, binary data and other formats that are not always representable as Unicode code points SHOULD use `externalSerializedValue`.
 
 ##### Example Object Examples
 

@@ -53,6 +53,26 @@ paths:
                   type: string
                   xml:
                     attribute: true
+                elementNode:
+                  $ref: "#/components/schemas/Pet"
+                  xml:
+                    nodeType: element
+                attributeNode:
+                  type: string
+                  xml:
+                    nodeType: attribute
+                textNode:
+                  type: string
+                  xml:
+                    nodeType: text
+                cdataNode:
+                  type: string
+                  xml:
+                    nodeType: cdata
+                noneNode:
+                  type: object
+                  xml:
+                    nodeType: none
           application/x-www-form-urlencoded:
             schema:
               type: object

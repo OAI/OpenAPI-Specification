@@ -52,7 +52,6 @@ class TestCoveragePlugin {
         schemaLocation.includes("json-schema.org") ||
         // Do not require coverage of default $dynamicAnchor
         // schemas, as they are not expected to be reached
-        // schemaLocation.includes("/schema/WORK-IN-PROGRESS#/$defs/schema/")
         schemaLocation.endsWith("/schema/WORK-IN-PROGRESS#/$defs/schema")
       ) {
         continue;

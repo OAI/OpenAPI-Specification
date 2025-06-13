@@ -1361,7 +1361,7 @@ components:
 ```
 
 Implementations MAY attempt to handle more complex schema arrangements, in which case they MUST document what is handled and with what behavior.
-If they do, then `type` keywords that contain multiple values (e.g. `type: ["number", "nul"]`) SHOULD be handled by attempting to parse according to each type in the order provided, falling back to the next type until the list is exhausted.
+If they do, then `type` keywords that contain multiple values (e.g. `type: ["number", "null"]`) SHOULD be handled by attempting to parse according to each type in the order provided.
 However OAD authors are advised that depending on handling scenarios other than `$ref`/`allOf`-reachable single-valued `type` keywords is not interoperable.
 
 ###### Encoding By Name

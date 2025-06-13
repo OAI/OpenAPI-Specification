@@ -2582,7 +2582,7 @@ JSON Schema implementations MAY choose to treat keywords defined by the OpenAPI 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="schema-discriminator"></a>discriminator | [Discriminator Object](#discriminator-object) | The discriminator provides a "hint" for which of a set of schemas a payload is expected to satisfy. See [Composition and Inheritance](#composition-and-inheritance-polymorphism) for more details. |
-| <a name="schema-xml"></a>xml | [XML Object](#xml-object) | This MAY be used only on property schemas. It has no effect on root schemas. Adds additional metadata to describe the XML representation of this property. |
+| <a name="schema-xml"></a>xml | [XML Object](#xml-object) | Adds additional metadata to describe the XML representation of this schema. |
 | <a name="schema-external-docs"></a>externalDocs | [External Documentation Object](#external-documentation-object) | Additional external documentation for this schema. |
 | <a name="schema-example"></a>example | Any | A free-form field to include an example of an instance for this schema. To represent examples that cannot be naturally represented in JSON or YAML, a string value can be used to contain the example with escaping where necessary.<br><br>**Deprecated:** The `example` field has been deprecated in favor of the JSON Schema `examples` keyword. Use of `example` is discouraged, and later versions of this specification may remove it. |
 
@@ -3184,52 +3184,116 @@ will map to `#/components/schemas/Dog` because the `dog` entry in the `mapping` 
 #### XML Object
 
 A metadata object that allows for more fine-tuned XML model definitions.
-
-When using arrays, XML element names are _not_ inferred (for singular/plural forms) and the `name` field SHOULD be used to add that information.
-See examples for expected behavior.
+When using a Schema Object with XML, if no XML Object is present, the behavior is determined by the XML Object's default field values.
 
 ##### Fixed Fields
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="xml-name"></a>name | `string` | Replaces the name of the element/attribute used for the described schema property. When defined within `items`, it will affect the name of the individual XML elements within the list. When defined alongside `type` being `"array"` (outside the `items`), it will affect the wrapping element if and only if `wrapped` is `true`. If `wrapped` is `false`, it will be ignored. |
+| <a name="xml-node-type"></a>nodeType | `string` | One of `element`, `attribute`, `text`, `cdata`, or `none`, as explained under [XML Node Types](#xml-node-types).  The default value is `none` if `$ref`, `$dynamicRef`, or `type: "array"` is present in the [Schema Object](#schema-object) containing the XML Object, and `element` otherwise. |
+| <a name="xml-name"></a>name | `string` | Sets the name of the element/attribute corresponding to the schema, replacing the name that was inferred as described under [XML Node Names](#xml-node-names). This field SHALL be ignored if the `nodeType` is `text`, `cdata`, or `none`. |
 | <a name="xml-namespace"></a>namespace | `string` | The IRI ([[RFC3987]]) of the namespace definition. Value MUST be in the form of a non-relative IRI. |
 | <a name="xml-prefix"></a>prefix | `string` | The prefix to be used for the [name](#xml-name). |
-| <a name="xml-attribute"></a>attribute | `boolean` | Declares whether the property definition translates to an attribute instead of an element. Default value is `false`. |
-| <a name="xml-wrapped"></a>wrapped | `boolean` | MAY be used only for an array definition. Signifies whether the array is wrapped (for example, `<books><book/><book/></books>`) or unwrapped (`<book/><book/>`). Default value is `false`. The definition takes effect only when defined alongside `type` being `"array"` (outside the `items`). |
+| <a name="xml-attribute"></a>attribute | `boolean` | Declares whether the property definition translates to an attribute instead of an element. Default value is `false`. If `nodeType` is present, this field MUST NOT be present.<br /><br />**Deprecated:** Use `nodeType: "attribute"` in place of `attribute: true` |
+| <a name="xml-wrapped"></a>wrapped | `boolean` | MAY be used only for an array definition. Signifies whether the array is wrapped (for example, `<books><book/><book/></books>`) or unwrapped (`<book/><book/>`). Default value is `false`. The definition takes effect only when defined alongside `type` being `"array"` (outside the `items`). If `nodeType` is present, this field MUST NOT be present.<br /><br />**Deprecated:** Set `nodeType: "element"` explicitly in place of `wrapped: true` |
+
+Note that when generating an XML document from object data, the order of the nodes is undefined.
+Use `prefixItems` to control node ordering as shown under [Ordered Elements and Text](#ordered-elements-and-text).
+
+See [Appendix B](#appendix-b-data-type-conversion) for a discussion of converting values of various types to string representations.
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
+
+##### XML Node Types
+
+Each Schema Object describes a particular type of XML [[!DOM]] [node](https://dom.spec.whatwg.org/#interface-node) which is specified by the `nodeType` field, which has the following possible values.
+Except for the special value `none`, these values have numeric equivalents in the DOM specification which are given in parentheses after the name:
+
+* `element` (1): The schema represents an element and describes its contents
+* `attribute` (2): The schema represents an attribute and describes its value
+* `text` (3): The schema represents a text node (parsed character data)
+* `cdata` (4): The schema represents a CDATA section
+* `none`: The schema does not correspond to any node in the XML document, and the nodes corresponding to its subschema(s) are included directly under its parent schema's node
+
+The `none` type is useful for JSON Schema constructs that require more Schema Objects than XML nodes, such as a schema containing only `$ref` that exists to facilitate re-use rather than imply any structure.
+
+###### Modeling Element Lists
+
+For historical compatibility, schemas of `type: "array"` default to `nodeType: "none"`, placing the nodes for each array item directly under the parent node.
+This also aligns with the inferred naming behavior defined under [XML Node Names](#xml-node-names).
+
+To produce an element wrapping the list, set an explicit `nodeType: "element"` on the `type: "array"` schema.
+When doing so, it is advisable to set an explicit name on either the wrapping element or the item elements to avoid them having the same inferred name.
+See examples for expected behavior.
+
+###### Implicit and Explicit `text` Nodes
+
+If an `element` node has a primitive type, then the schema also produces an implicit `text` node described by the schema for the contents of the `element` node named by the property name (or `name` field).
+
+Explicit `text` nodes are necessary if an element has both attributes and content.
+
+Note that placing two `text` nodes adjacent to each other is ambiguous for parsing, and the resulting behavior is implementation-defined.
+
+##### XML Node Names
+
+The `element` and `attribute` node types require a name, which MUST be inferred from the schema as follows, unless overridden by the `name` field:
+
+* For schemas directly under the [Components Object's](#components-object) `schemas` field, the component name is the inferred name.
+* For property schemas, and for array item schemas under a property schema, the property name is the inferred name
+* In all other cases, such as an inline schema under a [Media Type Object's](#media-type-object) `schema` field, no name can be inferred and an XML Object with a `name` field MUST be present
+
+Note that when using arrays, singular vs plural forms are _not_ inferred, and must be set explicitly.
+
+##### Namespace Limitations
 
 The `namespace` field is intended to match the syntax of [XML namespaces](https://www.w3.org/TR/xml-names11/), although there are a few caveats:
 
 * Versions 3.1.0, 3.0.3, and earlier of this specification erroneously used the term "absolute URI" instead of "non-relative URI" ("non-relative IRI" as of OAS v3.2.0), so authors using namespaces that include a fragment should check tooling support carefully.
 * XML allows but discourages relative IRI-references, while this specification outright forbids them.
 
+##### Handling `null` Values
+
+XML does not, by default, have a concept equivalent to `null`, and to preserve compatibility with version 3.1.1 and earlier of this specification, the behavior of serializing `null` values is implementation-defined.
+
+However, implementations SHOULD handle `null` values as follows:
+
+* For elements, produce an empty element with an `xsi:nil="true"` attribute.
+* For attributes, omit the attribute.
+* For text and CDATA sections, see [Appendix B](#appendix-b-data-type-conversion) for a discussion of serializing non-text values to text
+
+Note that for attributes, this makes either a `null` value or a missing property serialize to an omitted attribute.
+As the Schema Object validates the in-memory representation, this allows handling the combination of `null` and a required property.
+However, because there is no distinct way to represent `null` as an attribute, it is RECOMMENDED to make attribute properties optional rather than use `null`.
+
+To ensure correct round-trip behavior, when parsing an element that omits an attribute, implementations SHOULD set the corresponding property to `null` if the schema allows for that value (e.g. `type: ["number", "null"]`), and omit the property otherwise (e.g.`type: "number"`).
+
 ##### XML Object Examples
 
-Each of the following examples represent the value of the `properties` keyword in a [Schema Object](#schema-object) that is omitted for brevity.
-The JSON and YAML representations of the `properties` value are followed by an example XML representation produced for the single property shown.
+The Schema Objects are followed by an example XML representation produced for the schema shown.
+For examples using `attribute` or `wrapped`, please see version 3.1 of the OpenAPI Specification.
 
-###### No XML Element
+###### No XML Object
 
-Basic string property:
+Basic string property (`nodeType` is `element` by default):
 
 ```yaml
-animals:
-  type: string
+properties:
+  animals:
+    type: string
 ```
 
 ```xml
 <animals>...</animals>
 ```
 
-Basic string array property ([`wrapped`](#xml-wrapped) is `false` by default):
+Basic string array property (`nodeType` is `none` by default):
 
 ```yaml
-animals:
-  type: array
-  items:
-    type: string
+properties:
+  animals:
+    type: array
+    items:
+      type: string
 ```
 
 ```xml
@@ -3241,10 +3305,11 @@ animals:
 ###### XML Name Replacement
 
 ```yaml
-animals:
-  type: string
-  xml:
-    name: animal
+properties:
+  animals:
+    type: string
+    xml:
+      name: animal
 ```
 
 ```xml
@@ -3253,22 +3318,24 @@ animals:
 
 ###### XML Attribute, Prefix and Namespace
 
-In this example, a full model definition is shown.
+Note that the name of the root XML element comes from the component name.
 
 ```yaml
-Person:
-  type: object
-  properties:
-    id:
-      type: integer
-      format: int32
-      xml:
-        attribute: true
-    name:
-      type: string
-      xml:
-        namespace: https://example.com/schema/sample
-        prefix: sample
+components:
+  schemas:
+    Person:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          xml:
+            nodeType: attribute
+        name:
+          type: string
+          xml:
+            namespace: https://example.com/schema/sample
+            prefix: sample
 ```
 
 ```xml
@@ -3282,12 +3349,13 @@ Person:
 Changing the element names:
 
 ```yaml
-animals:
-  type: array
-  items:
-    type: string
-    xml:
-      name: animal
+properties:
+  animals:
+    type: array
+    items:
+      type: string
+      xml:
+        name: animal
 ```
 
 ```xml
@@ -3295,17 +3363,18 @@ animals:
 <animal>value</animal>
 ```
 
-The external `name` field has no effect on the XML:
+The `name` field for the `type: "array"` schema has no effect because the default `nodeType` for that object is `none`:
 
 ```yaml
-animals:
-  type: array
-  items:
-    type: string
+properties:
+  animals:
+    type: array
+    items:
+      type: string
+      xml:
+        name: animal
     xml:
-      name: animal
-  xml:
-    name: aliens
+      name: aliens
 ```
 
 ```xml
@@ -3313,15 +3382,16 @@ animals:
 <animal>value</animal>
 ```
 
-Even when the array is wrapped, if a name is not explicitly defined, the same name will be used both internally and externally:
+Even when a wrapping element is explicitly created by setting `nodeType` to `element`, if a name is not explicitly defined, the same name will be used for both the wrapping element and the list item elements:
 
 ```yaml
-animals:
-  type: array
-  items:
-    type: string
-  xml:
-    wrapped: true
+properties:
+  animals:
+    type: array
+    items:
+      type: string
+    xml:
+      nodeType: element
 ```
 
 ```xml
@@ -3334,14 +3404,15 @@ animals:
 To overcome the naming problem in the example above, the following definition can be used:
 
 ```yaml
-animals:
-  type: array
-  items:
-    type: string
+properties:
+  animals:
+    type: array
+    items:
+      type: string
+      xml:
+        name: animal
     xml:
-      name: animal
-  xml:
-    wrapped: true
+      nodeType: element
 ```
 
 ```xml
@@ -3351,18 +3422,19 @@ animals:
 </animals>
 ```
 
-Affecting both internal and external names:
+Affecting both wrapping element and item element names:
 
 ```yaml
-animals:
-  type: array
-  items:
-    type: string
+properties:
+  animals:
+    type: array
+    items:
+      type: string
+      xml:
+        name: animal
     xml:
-      name: animal
-  xml:
-    name: aliens
-    wrapped: true
+      name: aliens
+      nodeType: element
 ```
 
 ```xml
@@ -3372,16 +3444,17 @@ animals:
 </aliens>
 ```
 
-If we change the external element but not the internal ones:
+If we change the wrapping element name but not the item element names:
 
 ```yaml
-animals:
-  type: array
-  items:
-    type: string
-  xml:
-    name: aliens
-    wrapped: true
+properties:
+  animals:
+    type: array
+    items:
+      type: string
+    xml:
+      name: aliens
+      nodeType: element
 ```
 
 ```xml
@@ -3389,6 +3462,283 @@ animals:
   <aliens>value</aliens>
   <aliens>value</aliens>
 </aliens>
+```
+
+###### Elements With Attributes And Text
+
+```yaml
+properties:
+  animals:
+    type: array
+    xml:
+      nodeType: element
+      name: animals
+    items:
+      xml:
+        name: animal
+      properties:
+        kind:
+          type: string
+          xml:
+            nodeType: attribute
+        content:
+          type: string
+          xml:
+            nodeType: text
+```
+
+```xml
+<animals>
+  <animal kind="Cat">Fluffy</animals>
+  <animal kind="Dog">Fido</animals>
+<animals>
+```
+
+###### Referenced Element With CDATA
+
+In this example, no element is created for the Schema Object that contains only  the `$ref`, as its `nodeType` defaults to `none`.
+It is necessary to create a subschema for the CDATA section as otherwise the content would be treated as an implicit node of type `text`.
+
+```yaml
+paths:
+  /docs:
+    get:
+      responses:
+        "200":
+          content:
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Documentation"
+components:
+  schemas:
+    Documentation:
+      type: object
+      properties:
+        content:
+          type: string
+          contentMediaType: text/html
+          xml:
+            nodeType: cdata
+```
+
+```xml
+<Documentation>
+  <![CDATA[<html><head><title>Awesome Docs</title></head><body></body><html>]]>
+</Documentation>
+```
+
+Alternatively, the named root element could be set at the point of use and the root element disabled on the component:
+
+```yaml
+paths:
+  /docs:
+    get:
+      responses:
+        "200":
+          content:
+            application/xml:
+              schema:
+                xml:
+                  nodeType: element
+                  name: StoredDocument
+                $ref: "#/components/schemas/Documentation"
+    put:
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              xml:
+                nodeType: element
+                name: UpdatedDocument
+              $ref: "#/components/schemas/Documentation"
+      responses:
+        "201": {}
+components:
+  schemas:
+    Documentation:
+      xml:
+        nodeType: none
+      type: object
+      properties:
+        content:
+          type: string
+          contentMediaType: text/html
+          xml:
+            nodeType: cdata
+```
+
+The GET response XML:
+
+```xml
+<StoredDocument>
+  <![CDATA[<html><head><title>Awesome Docs</title></head><body></body><html>]]>
+</StoredDocument>
+```
+
+The PUT request XML:
+
+```xml
+<UpdatedDocument>
+  <![CDATA[<html><head><title>Awesome Docs</title></head><body></body><html>]]>
+</UpdatedDocument>
+```
+
+The in-memory instance data for all three of the above XML documents:
+
+```json
+{
+  "content": "<html><head><title>Awesome Docs</title></head><body></body><html>"
+}
+```
+
+###### Ordered Elements and Text
+
+To control the exact order of elements, use the `prefixItems` keyword.
+With this approach, it is necessary to set the element names using the XML Object as they would otherwise all inherit the parent's name despite being different elements in a specific order.
+It is also necessary to set `nodeType: "element"` explicitly on the array in order to get an element containing the sequence.
+
+This first ordered example shows a sequence of elements, as well as the recommended serialization of `null` for elements:
+
+```yaml
+components:
+  schemas:
+    OneTwoThree:
+      xml:
+        nodeType: element
+      type: array
+      minLength: 3
+      maxLength: 3
+      prefixItems:
+      - xml:
+          name: One
+        type: string
+      - xml:
+          name: Two
+        type: object
+        required:
+        - unit
+        - value
+        properties:
+          unit:
+            type: string
+            xml:
+              nodeType: attribute
+          value:
+            type: number
+            xml:
+              nodeType: text
+      - xml:
+          name: Three
+        type:
+        - boolean
+        - "null"
+```
+
+```xml
+<OneTwoThree>
+  <One>Some text</One>
+  <Two unit="cubits">42</Two>
+  <Three xsi:nil="true" />
+</OneTwoThree>
+```
+
+The in-memory instance data that would produce the above XML snippet with the preceding schema would be:
+
+```json
+[
+  "Some Text",
+  {
+    "unit": "cubits",
+    "value": 42
+  },
+  null
+]
+```
+
+In this next example, the `name` needs to be set for the element, while the `nodeType` needs to be set for the text nodes.
+
+```yaml
+components:
+  schemas:
+    Report:
+      xml:
+        nodeType: element
+      type: array
+      prefixItems:
+      - xml:
+          nodeType: text
+        type: string
+      - xml:
+          name: data
+        type: number
+      - xml:
+          nodeType: text
+        type: string
+```
+
+```xml
+<Report>Some preamble text.<data>42</data>Some postamble text.</Report>
+```
+
+The in-memory instance data structure for the above example would be:
+
+```json
+[
+  "Some preamble text."
+  42,
+  "Some postamble text."
+]
+```
+
+###### XML With `null` Values
+
+Recall that the schema validates the in-memory data, not the XML document itself.
+The properties of the `"related"` element object are omitted for brevity as it is here to show how the `null` value is represented.
+
+```yaml
+product:
+  type: object
+  required:
+  - count
+  - description
+  - related
+  properties:
+    count:
+      type:
+      - number
+      - "null"
+      xml:
+        nodeType: attribute
+    rating:
+      type: string
+      xml:
+        nodeType: attribute
+    description:
+      type: string
+    related:
+      type:
+      - object
+      - "null"
+```
+
+```xml
+<product>
+  <description>Thing</description>
+  <related xsi:nil="true" />
+</product>
+```
+
+The above XML example corresponds to the following in-memory instance:
+
+```json
+{
+  "product": {
+    "count": null,
+    "description": "Thing",
+    "related": null
+  }
+}
 ```
 
 #### Security Scheme Object

@@ -2130,7 +2130,7 @@ However, the non-Schema Object fields allowed serialized forms that could be "ea
 Furthermore, some parameters and headers are simple enough that there is no difference between the serialized and validation-ready forms.
 
 Possibly due to these ambiguities, many implementations appear to have implemented the fields that existed prior to version 3.2 of this specification as requiring validation-ready data structures.
-For this reason, OpenAPI Description authors who want portable behavior with examples that are not for `application/json` media types or trivial strings without any formatting or escaping are RECOMMENDED to use the new fields (`dataValue` or `externalDataValue` for validation-ready data, and `serializedValue` or `externalSerializedValue` for serialized forms)
+For this reason, OpenAPI Description authors who want portable behavior with examples that are not for `application/json` media types or trivial strings without any formatting or escaping are RECOMMENDED to use the new fields (`dataValue` or `externalDataValue` for validation-ready data, and `serializedValue` or `externalSerializedValue` for serialized forms).
 
 In addition, it can be challenging to correlate the validation-ready Schema Object example with serialized Example Object examples when all are part of shared Objects reached through (possibly multiple) references.
 Authors who wish to clearly show serialized and unserialized forms of the same data together are RECOMMENDED to use the new fields in the Example Object to do so.

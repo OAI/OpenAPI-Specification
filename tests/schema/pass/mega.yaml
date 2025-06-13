@@ -27,6 +27,9 @@ components:
           content:
             'application/json':
               schema:
+                externalDocs:
+                  description: More docs!
+                  url: https://example.com/elsewhere.html
                 type: object
                 properties:
                   type:

@@ -30,6 +30,26 @@ paths:
                   breed: Mixed
               frog:
                 $ref: '#/components/examples/frog-example'
+          application/xml:
+            schema:
+              type: object
+              properties:
+                foo:
+                  type: string
+                  xml:
+                    namespace: https://example.com
+                    prefix: example
+                    name: Foo
+                bar:
+                  type: array
+                  items:
+                    type: number
+                  xml:
+                    wrapped: true
+                attr:
+                  type: string
+                  xml:
+                    attribute: true
           application/x-www-form-urlencoded:
             schema:
               type: object

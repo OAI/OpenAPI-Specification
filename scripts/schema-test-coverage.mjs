@@ -197,8 +197,8 @@ if (notCovered.length > 0) {
 
 console.log(
   "Covered:",
-  (allocations.length - notCovered.length),
+  (allLocations.length - notCovered.length),
   "of",
   allLocations.length,
-  "(" + Math.floor(((allocations.length - notCovered.length) / allLocations.length) * 100) + "%)",
+  "(" + Math.floor(((allLocations.length - notCovered.length) / allLocations.length) * 100) + "%)",
 );

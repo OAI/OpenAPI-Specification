@@ -48,7 +48,7 @@ class TestCoveragePlugin {
     for (const schemaLocation in context.ast) {
       if (
         schemaLocation === "metaData" ||
-        // Do not reqiure coverage of standard JSON Schema
+        // Do not require coverage of standard JSON Schema
         schemaLocation.includes("json-schema.org") ||
         // Do not require coverage of default $dynamicAnchor
         // schemas, as they are not expected to be reached

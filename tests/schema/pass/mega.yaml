@@ -6,7 +6,6 @@ info:
   license:
     name: Apache 2.0
     identifier: Apache-2.0
-jsonSchemaDialect: https://spec.openapis.org/oas/3.1/dialect/base
 paths:
   /:
     get:
@@ -20,6 +19,12 @@ components:
   securitySchemes:
     mtls:
       type: mutualTLS
+  schemas:
+    Foo:
+      type: object
+      properties:
+        type:
+          const: foo
   pathItems:
     myPathItem:
       post:
@@ -28,6 +33,9 @@ components:
           content:
             'application/json':
               schema:
+                externalDocs:
+                  description: More docs!
+                  url: https://example.com/elsewhere.html
                 type: object
                 properties:
                   type:
@@ -45,5 +53,9 @@ components:
                     type: ['string','null']
                 discriminator:
                   propertyName: type
+                  mapping:
+                    foo: Foo
                   x-extension: true
+                anyOf:
+                - $ref: "#/components/schemas/Foo"
                 myArbitraryKeyword: true

@@ -200,5 +200,5 @@ console.log(
   (allocations.length - notCovered.length),
   "of",
   allLocations.length,
-  "(" + Math.floor((visitedLocations.size / allLocations.length) * 100) + "%)",
+  "(" + Math.floor(((allocations.length - notCovered.length) / allLocations.length) * 100) + "%)",
 );

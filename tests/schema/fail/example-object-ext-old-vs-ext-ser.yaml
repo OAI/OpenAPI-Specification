@@ -1,0 +1,10 @@
+openapi: 3.2.0
+info:
+  title: API
+  version: 1.0.0
+
+components:
+  examples:
+    NoValueWithDataValue:
+      externalValue: https://example.org/foo
+      externalSerializedValue: https://example.org/foo

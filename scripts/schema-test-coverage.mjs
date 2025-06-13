@@ -1,10 +1,11 @@
+import { readFileSync } from "node:fs";
 import { readdir, readFile } from "node:fs/promises";
 import YAML from "yaml";
 import { join } from "node:path";
 import { argv } from "node:process";
-import { validate } from "@hyperjump/json-schema/draft-2020-12";
+import { registerSchema, validate } from "@hyperjump/json-schema/draft-2020-12";
 import "@hyperjump/json-schema/draft-04";
-import { BASIC } from "@hyperjump/json-schema/experimental";
+import { BASIC, addKeyword, defineVocabulary } from "@hyperjump/json-schema/experimental";
 
 /**
  * @import { EvaluationPlugin } from "@hyperjump/json-schema/experimental"
@@ -45,7 +46,14 @@ class TestCoveragePlugin {
     this.allLocations = [];
 
     for (const schemaLocation in context.ast) {
-      if (schemaLocation === "metaData") {
+      if (
+        schemaLocation === "metaData" ||
+        // Do not require coverage of standard JSON Schema
+        schemaLocation.includes("json-schema.org") ||
+        // Do not require coverage of default $dynamicAnchor
+        // schemas, as they are not expected to be reached
+        schemaLocation.endsWith("/schema/WORK-IN-PROGRESS#/$defs/schema")
+      ) {
         continue;
       }
 
@@ -110,6 +118,68 @@ const runTests = async (schemaUri, testDirectory) => {
   };
 };
 
+addKeyword({
+  id: "https://spec.openapis.org/oas/schema/vocab/keyword/discriminator",
+  interpret: (discriminator, instance, context) => {
+    return true;
+  },
+  /* discriminator is not exactly an annotation, but it's not allowed
+   * to change the validation outcome (hence returing true from interopret())
+   * and for our purposes of testing, this is sufficient.
+   */
+  annotation: (discriminator) => {
+    return discriminator;
+  },
+});
+
+addKeyword({
+  id: "https://spec.openapis.org/oas/schema/vocab/keyword/example",
+  interpret: (example, instance, context) => {
+    return true;
+  },
+  annotation: (example) => {
+    return example;
+  },
+});
+
+addKeyword({
+  id: "https://spec.openapis.org/oas/schema/vocab/keyword/externalDocs",
+  interpret: (externalDocs, instance, context) => {
+    return true;
+  },
+  annotation: (externalDocs) => {
+    return externalDocs;
+  },
+});
+
+addKeyword({
+  id: "https://spec.openapis.org/oas/schema/vocab/keyword/xml",
+  interpret: (xml, instance, context) => {
+    return true;
+  },
+  annotation: (xml) => {
+    return xml;
+  },
+});
+
+defineVocabulary(
+  "https://spec.openapis.org/oas/3.1/vocab/base",
+  {
+    "discriminator": "https://spec.openapis.org/oas/schema/vocab/keyword/discriminator",
+    "example": "https://spec.openapis.org/oas/schema/vocab/keyword/example",
+    "externalDocs": "https://spec.openapis.org/oas/schema/vocab/keyword/externalDocs",
+    "xml": "https://spec.openapis.org/oas/schema/vocab/keyword/xml",
+  },
+);
+
+const parseYamlFromFile = (filePath) => {
+  const schemaYaml = readFileSync(filePath, "utf8");
+  return YAML.parse(schemaYaml, { prettyErrors: true });
+};
+registerSchema(parseYamlFromFile("./src/schemas/validation/meta.yaml"));
+registerSchema(parseYamlFromFile("./src/schemas/validation/dialect.yaml"));
+registerSchema(parseYamlFromFile("./src/schemas/validation/schema.yaml"));
+
 ///////////////////////////////////////////////////////////////////////////////
 
 const { allLocations, visitedLocations } = await runTests(argv[2], argv[3]);
@@ -122,16 +192,13 @@ if (notCovered.length > 0) {
   const firstNotCovered = notCovered.slice(0, maxNotCovered);
   if (notCovered.length > maxNotCovered) firstNotCovered.push("...");
   console.log(firstNotCovered);
+  process.exitCode = 1;
 }
 
 console.log(
   "Covered:",
-  visitedLocations.size,
+  (allocations.length - notCovered.length),
   "of",
   allLocations.length,
-  "(" + Math.floor((visitedLocations.size / allLocations.length) * 100) + "%)",
+  "(" + Math.floor(((allocations.length - notCovered.length) / allLocations.length) * 100) + "%)",
 );
-
-if (visitedLocations.size != allLocations.length) {
-  process.exitCode = 1;
-}

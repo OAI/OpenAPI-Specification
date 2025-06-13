@@ -2088,7 +2088,7 @@ transactionCallback:
 #### Example Object
 
 An object grouping an internal or external example value with basic `summary` and `description` metadata.
-The examples can show either data suitable for schema validation, or serialized data as required by tehe containing [Media Type Object](#media-type-object), [Parameter Object](#parameter-object), or [Header Object](#header-object).
+The examples can show either data suitable for schema validation, or serialized data as required by the containing [Media Type Object](#media-type-object), [Parameter Object](#parameter-object), or [Header Object](#header-object).
 This object is typically used in fields named `examples` (plural), and is a [referenceable](#reference-object) alternative to older `example` (singular) fields that do not support referencing or metadata.
 The various fields and types of examples are explained in more detail under [Working With Examples](#working-with-examples).
 

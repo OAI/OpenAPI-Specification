@@ -12,7 +12,7 @@ echo
 echo "Schema Test Coverage"
 echo
 
-node scripts/schema-test-coverage.mjs src/schemas/validation/schema.yaml tests/schema/pass
+node scripts/schema-test-coverage.mjs src/schemas/validation/schema-base.yaml tests/schema/pass
 rc=$?
 
 [[ "$branch" == "dev" ]] || exit $rc

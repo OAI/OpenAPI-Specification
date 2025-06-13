@@ -46,7 +46,10 @@ class TestCoveragePlugin {
     this.allLocations = [];
 
     for (const schemaLocation in context.ast) {
-      if (schemaLocation === "metaData") {
+      if (
+        schemaLocation === "metaData" ||
+        schemaLocation.includes("json-schema.org")
+      ) {
         continue;
       }
 

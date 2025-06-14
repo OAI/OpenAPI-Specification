@@ -3712,7 +3712,7 @@ paths:
                 name: UpdatedDocument
               $ref: "#/components/schemas/Documentation"
             examples:
-              stored:
+              updated:
                 externalDataValue: ./examples/content.json
                 externalSerializedValue: ./examples/updated.xml
       responses:

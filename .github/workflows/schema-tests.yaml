@@ -9,8 +9,7 @@ name: schema-test
 #
 
 # run this on push to any branch and creation of pull-requests
-on: 
-  push: {}
+on:
   pull_request: {}
   workflow_dispatch: {}
 
@@ -33,3 +32,5 @@ jobs:
 
     - name: Run tests
       run: npm run test
+      env:
+        BASE: ${{ github.event.pull_request.base.ref }}

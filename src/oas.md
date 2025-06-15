@@ -1198,7 +1198,7 @@ Describes a single request body.
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="request-body-description"></a>description | `string` | A brief description of the request body. This could contain examples of use. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
-| <a name="request-body-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | **REQUIRED**. The content of the request body. The key is a media type or [media type range](https://www.rfc-editor.org/rfc/rfc9110.html#appendix-A) and the value describes it. For requests that match multiple keys, only the most specific key is applicable. e.g. `"text/plain"` overrides `"text/*"` |
+| <a name="request-body-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | **REQUIRED**. The content of the request body. The key is a media type or [media type range](https://www.rfc-editor.org/rfc/rfc9110.html#appendix-A) and the value describes it. The map SHOULD have at least one entry; if it does not, the behavior is implementation-defined. For requests that match multiple keys, only the most specific key is applicable. e.g. `"text/plain"` overrides `"text/*"` |
 | <a name="request-body-required"></a>required | `boolean` | Determines if the request body is required in the request. Defaults to `false`. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).

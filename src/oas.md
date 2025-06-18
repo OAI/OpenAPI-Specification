@@ -288,6 +288,40 @@ The formats defined by the OAS are:
 
 As noted under [Data Type](#data-types), both `type: number` and `type: integer` are considered to be numbers in the data model.
 
+#### Determining Type and Structure
+
+Several features of the OpenAPI Specification depend on detecting data characteristics such as type, format, media type, and object property or array item structure.
+
+If the data is in a form that can be validated by the relevant Schema Object and is determined to be valid, implementations MUST support detecting characteristics such as JSON type or property or item structure from the data, whether it can be gleaned from the schema(s) or not.
+If `format` or the `content*` keywords are involved in further characterizing the data, these can be obtained as [annotation results](#extended-validation-with-annotations).
+
+##### Locating Schemas and Keywords
+
+When the data is in a non-JSON format, particularly one such as XML or various form media types where data is stored as strings without type information, it can be necessary to find this information through the relevant Schema Object to determine how to parse the format into a structure that can be validated by the schema.
+As schema organization can become very complex, implementations are not expected to handle every possible schema layout.
+However, given a known starting point schema (usually the value of the nearest `schema` field), implementations MUST search the following for the relevant keywords (e.g. `type`, `format`, `contentMediaType`, etc.):
+
+* The starting point schema itself
+* Any schema reachable from there solely through `$ref` and/or `allOf`
+
+These schemas are guaranteed to be applied to any instance.
+
+In some cases, such as correlating [Encoding Objects](#encoding-object) with Schema Objects using fields in a [Media Type Object](#media-type-object), it is be necessary to first find a keyword such as `properties`, and then treat its subschema(s) as starting point schemas for further searches.
+
+Implementations MAY analyze subschemas of other keywords such as `oneOf` or `dependentSchemas`, or possible `$dynamicRef` targets, and MUST document the extent and nature of such support.
+
+##### Handling Multiple Types
+
+When a `type` keyword with multiple values (e.g. `type: ["number", "null"]`) is found, implementations MUST attempt to use the types as follows, ignoring any types not present in the `type` list:
+
+1. Determine if the data can be parsed as whichever of `null`, `number`, `object`, or `array` are present in the `type` list, treating `integer` as `number` for this step.
+2. If the data can be parsed as a number, and `integer` is in the `type` list, check to see if the value is a mathematical integer, regardless of its textual representation.
+3. If the data has not been parsed successfully and `string` is in the type list, parse it as a string.
+
+This process is sufficient to produce data that can be validated by JSON Schema.
+If `format` or `content*` are needed for further parsing, they can be checked in the same way as `type`, or as annotations from the schema evaluation process.
+Parsing string contents based on `contentMediaType` carries the same security risks as parsing HTTP message bodies based on `Content-Type`, as noted under [Handling External Resources](#handling-external-resources).
+
 #### Working with Binary Data
 
 The OAS can describe either _raw_ or _encoded_ binary data.
@@ -309,7 +343,7 @@ Using a `contentEncoding` of `base64url` ensures that URL encoding (as required 
 
 The `contentMediaType` keyword is redundant if the media type is already set:
 
-* as the key for a [MediaType Object](#media-type-object)
+* as the key for a [Media Type Object](#media-type-object)
 * in the `contentType` field of an [Encoding Object](#encoding-object)
 
 If the [Schema Object](#schema-object) will be processed by a non-OAS-aware JSON Schema implementation, it may be useful to include `contentMediaType` even if it is redundant. However, if `contentMediaType` contradicts a relevant Media Type Object or Encoding Object, then `contentMediaType` SHALL be ignored.
@@ -324,6 +358,19 @@ The following table shows how to migrate from OAS 3.0 binary data descriptions, 
 | ---- | ---- | ---- |
 | <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">format: binary</code> | <code style="white-space:nowrap">contentMediaType: image/png</code> | if redundant, can be omitted, often resulting in an empty [Schema Object](#schema-object) |
 | <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">format: byte</code> | <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">contentMediaType: image/png</code><br /><code style="white-space:nowrap">contentEncoding: base64</code> | note that `base64url` can be used to avoid re-encoding the base64 string to be URL-safe |
+
+##### Schema Evaluation and Binary Data
+
+Evaluating a binary media type with a single Schema Object is straightforward, as it is usually simple check for [annotations](#extended-validation-with-annotations) as most assertions are not relevant, and `const` and `enum` cannot be used as they cannot hold binary data.
+However, `multipart` media types can mix binary and text-based data, leaving implementations with two options for performing schema validation.
+
+The simplest is to use a placeholder value, as schemas for binary data are generally written in a way that prevents any possible validation failure.
+However, it is possible that a complex schema might produce unexpected results if a particular value is allowed to be either binary or some other data type that happens to match the chosen placeholder.
+This risk could be reduced by trying multiple placeholders of different types.
+
+Alternatively, implementations can use the procedures outlined under [Determining Type and Structure](#determining-type-and-structure) to find the property or item schemas to apply individually to the non-binary data, and handle the binary data separately as it would be handled if it were a separate document.
+
+Implementations MUST document how such evaluations are handled, along with any expected limitations of the chosen technique(s).
 
 ### Rich Text Formatting
 

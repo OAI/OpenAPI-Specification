@@ -1708,7 +1708,7 @@ These fields MAY be used either with or without the RFC6570-style serialization 
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="encoding-content-type"></a>contentType | `string` | The `Content-Type` for encoding a specific property. The value is a comma-separated list, each element of which is either a specific media type (e.g. `image/png`) or a wildcard media type (e.g. `image/*`). Default value depends on the property type as shown in the table below. |
+| <a name="encoding-content-type"></a>contentType | `string` | The `Content-Type` for encoding a specific property. The value is a comma-separated list, each element of which is either a specific media type (e.g. `image/png`) or a wildcard media type (e.g. `image/*`). See [Detecting Media Types](#detecting media types) for related security concerns.  Default value depends on the property type as shown in the table below. |
 | <a name="encoding-headers"></a>headers | Map[`string`, [Header Object](#header-object) \| [Reference Object](#reference-object)] | A map allowing additional information to be provided as headers. `Content-Type` is described separately and SHALL be ignored in this section. This field SHALL be ignored if the media type is not a `multipart`. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
@@ -1974,28 +1974,51 @@ multipart/mixed:
 
 ###### Example: Ordered Multipart With Required Header
 
-As described in [[?RFC2557]], a set of HTML pages can be sent in a `multipart/related` payload, preserving links among themselves by defining a `Content-Location` header for each page.
+As described in [[?RFC2557]], a set of resources making up a web pages can be sent in a `multipart/related` payload, preserving links among themselves by defining a `Content-Location` header for each page.
+The first part is used as the root resource (unless using `Content-ID`, which RFC2557 advises against), so we use `prefixItems` and `prefixEncoding` to define that it must be an HTML resource, and then allow any of several different types of resources in any order to follow.
 
-See [Appendix D](appendix-d-serializing-headers-and-cookies) for an explanation of why `content: {text/plain: {...}}` is used to describe the header value.
+The `Content-Location` header is defined using `content: {text/plain: {...}}` to avoid percent-encoding its URI value; see [Appendix D](appendix-d-serializing-headers-and-cookies) for further details.
 
 ```yaml
-multipart/related:
-  schema:
-    items:
-      type: string
-  itemEncoding:
-    contentType: text/html
-    headers:
-      Content-Location:
-        required: true
-        content:
-          text/plain:
-            schema:
-              type: string
-              format: uri
+components:
+  headers:
+    RFC2557ContentId:
+      description: Use Content-Location instead of Content-ID
+      schema: false
+    RFC2557ContentLocation:
+      required: true
+      content:
+        text/plain:
+          schema:
+            $comment: Use a full URI (not a relative reference)
+            type: string
+            format: uri
+  requestBodies:
+    RFC2557:
+      content:
+        multipart/related; type=text/html:
+          schema:
+            prefixItems:
+            - type: string
+            items:
+              anyOf:
+              - type: string
+              - $comment: To allow binary, this must always pass
+          prefixEncoding:
+          - contentType: text/html
+            headers:
+              Content-ID:
+                $ref: '#/components/headers/RFC2557ContentId'
+              Content-Location:
+                $ref: '#/components/headers/RFC2557ContentLocation'
+          itemEncoding:
+            contentType: text/html, text/css, text/javascript
+            headers:
+              Content-ID:
+                $ref: '#/components/headers/RFC2557ContentId'
+              Content-Location:
+                $ref: '#/components/headers/RFC2557ContentLocation'
 ```
-
-While the above example could have used `itemSchema` instead, if the payload is expected to be processed all at once, using `schema` ensures that tools will wait until the complete response is available before processing.
 
 ###### Example: Streaming Multipart
 
@@ -4137,6 +4160,11 @@ The rules for connecting a [Security Requirement Object](#security-requirement-o
 ### Handling External Resources
 
 OpenAPI Descriptions may contain references to external resources that may be dereferenced automatically by consuming tools. External resources may be hosted on different domains that may be untrusted.
+
+### Detecting Media Types
+
+Scenarios such as those documented under [Example: Ordered Multipart With Required Header](#example-ordered-multipart-with-required-header) can require an implementation to test whether data matches one of several different media types.
+Each media type has its own security considerations to be taken into accound during such testing.
 
 ### Handling Reference Cycles
 

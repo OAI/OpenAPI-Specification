@@ -1893,6 +1893,99 @@ requestBody:
 
 As seen in the [Encoding Object's `contentType` field documentation](#encoding-content-type), the empty schema for `items` indicates a media type of `application/octet-stream`.
 
+###### Example: Ordered, Unnamed Multipart
+
+A `multipart/mixed` payload consisting of a JSON metadata document followed by an image which the metadata describes:
+
+```yaml
+multipart/mixed:
+  schema:
+    type: array
+    prefixItems:
+    - # default content type for objects
+      # is `application/json`
+      type: object
+      properties:
+        author:
+          type: string
+        created:
+          type: string
+          format: datetime
+        copyright:
+          type: string
+        license:
+          type: string
+    - # default content type for a schema without `type`
+      # is `application/octet-stream`, which we need
+      # to override.
+      {}
+  prefixEncoding:
+  - # Encoding Object defaults are correct for JSON
+    {}
+  - contentType: image/*
+```
+
+###### Example: Ordered Multipart With Required Header
+
+As described in [[?RFC2557]], a set of HTML pages can be sent in a `multipart/related` payload, preserving links among themselves by defining a `Content-Location` header for each page.
+
+See [Appendix D](appendix-d-serializing-headers-and-cookies) for an explanation of why `content: {text/plain: {...}}` is used to describe the header value.
+
+```yaml
+multipart/related:
+  schema:
+    items:
+      type: string
+  itemEncoding:
+    contentType: text/html
+    headers:
+      Content-Location:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              format: uri
+```
+
+While the above example could have used `itemSchema` instead, if the payload is expected to be processed all at once, using `schema` ensures that tools will wait until the complete response is available before processing.
+
+###### Example: Streaming Multipart
+
+This example assumes a device that takes large sets of pictures and streams them to the caller.
+Unlike the previous example, we use `itemSchema` here because the expectation is that each image is processed as it arrives (or in small batches), since we know that buffering the entire stream will take too much memory.
+
+```yaml
+multipart/mixed:
+  itemSchema:
+    $comment: A single data image from the device
+  itemEncoding:
+    contentType: image/jpg
+```
+
+###### Example: Streaming Byte Ranges
+
+For `multipart/byteranges` [[RFC9110]] [Section 14.6](https://www.rfc-editor.org/rfc/rfc9110.html#section-14.6), a `Content-Range` header is required:
+
+See [Appendix D](appendix-d-serializing-headers-and-cookies) for an explanation of why `content: {text/plain: {...}}` is used to describe the header value.
+
+```yaml
+multipart/byteranges:
+  itemSchema:
+    $comment: A single range of bytes from a video
+  itemEncoding:
+    contentType: video/mp4
+    headers:
+      Content-Range:
+        required: true
+        content:
+          text/plain:
+            schema:
+              # A suitable "pattern" constraint for this
+              # header is left as an exercise for the reader
+              type: string
+```
+
 ###### Example: Nested `multipart/mixed`
 
 This defines a two-part `multipart/mixed` where the first part is a JSON array and the second part is a nested `multipart/mixed` document.
@@ -1901,7 +1994,6 @@ The nested parts are XML, plain text, and a PNG image.
 ```yaml
 multipart/mixed:
   schema:
-    type: array
     prefixItems:
     - type: array
     - type: array

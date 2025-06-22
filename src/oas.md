@@ -288,40 +288,6 @@ The formats defined by the OAS are:
 
 As noted under [Data Type](#data-types), both `type: number` and `type: integer` are considered to be numbers in the data model.
 
-#### Determining Type and Structure
-
-Several features of the OpenAPI Specification depend on detecting data characteristics such as type, format, media type, and object property or array item structure.
-
-If the data is in a form that can be validated by the relevant Schema Object and is determined to be valid, implementations MUST support detecting characteristics such as JSON type or property or item structure from the data, whether it can be gleaned from the schema(s) or not.
-If `format` or the `content*` keywords are involved in further characterizing the data, these can be obtained as [annotation results](#extended-validation-with-annotations).
-
-##### Locating Schemas and Keywords
-
-When the data is in a non-JSON format, particularly one such as XML or various form media types where data is stored as strings without type information, it can be necessary to find this information through the relevant Schema Object to determine how to parse the format into a structure that can be validated by the schema.
-As schema organization can become very complex, implementations are not expected to handle every possible schema layout.
-However, given a known starting point schema (usually the value of the nearest `schema` field), implementations MUST search the following for the relevant keywords (e.g. `type`, `format`, `contentMediaType`, etc.):
-
-* The starting point schema itself
-* Any schema reachable from there solely through `$ref` and/or `allOf`
-
-These schemas are guaranteed to be applied to any instance.
-
-In some cases, such as correlating [Encoding Objects](#encoding-object) with Schema Objects using fields in a [Media Type Object](#media-type-object), it is be necessary to first find a keyword such as `properties`, and then treat its subschema(s) as starting point schemas for further searches.
-
-Implementations MAY analyze subschemas of other keywords such as `oneOf` or `dependentSchemas`, or possible `$dynamicRef` targets, and MUST document the extent and nature of such support.
-
-##### Handling Multiple Types
-
-When a `type` keyword with multiple values (e.g. `type: ["number", "null"]`) is found, implementations MUST attempt to use the types as follows, ignoring any types not present in the `type` list:
-
-1. Determine if the data can be parsed as whichever of `null`, `number`, `object`, or `array` are present in the `type` list, treating `integer` as `number` for this step.
-2. If the data can be parsed as a number, and `integer` is in the `type` list, check to see if the value is a mathematical integer, regardless of its textual representation.
-3. If the data has not been parsed successfully and `string` is in the type list, parse it as a string.
-
-This process is sufficient to produce data that can be validated by JSON Schema.
-If `format` or `content*` are needed for further parsing, they can be checked in the same way as `type`, or as annotations from the schema evaluation process.
-Parsing string contents based on `contentMediaType` carries the same security risks as parsing HTTP message bodies based on `Content-Type`, as noted under [Handling External Resources](#handling-external-resources).
-
 #### Working with Binary Data
 
 The OAS can describe either _raw_ or _encoded_ binary data.
@@ -358,19 +324,6 @@ The following table shows how to migrate from OAS 3.0 binary data descriptions, 
 | ---- | ---- | ---- |
 | <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">format: binary</code> | <code style="white-space:nowrap">contentMediaType: image/png</code> | if redundant, can be omitted, often resulting in an empty [Schema Object](#schema-object) |
 | <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">format: byte</code> | <code style="white-space:nowrap">type: string</code><br /><code style="white-space:nowrap">contentMediaType: image/png</code><br /><code style="white-space:nowrap">contentEncoding: base64</code> | note that `base64url` can be used to avoid re-encoding the base64 string to be URL-safe |
-
-##### Schema Evaluation and Binary Data
-
-Evaluating a binary media type with a single Schema Object is straightforward, as it is usually simple check for [annotations](#extended-validation-with-annotations) as most assertions are not relevant, and `const` and `enum` cannot be used as they cannot hold binary data.
-However, `multipart` media types can mix binary and text-based data, leaving implementations with two options for performing schema validation.
-
-The simplest is to use a placeholder value, as schemas for binary data are generally written in a way that prevents any possible validation failure.
-However, it is possible that a complex schema might produce unexpected results if a particular value is allowed to be either binary or some other data type that happens to match the chosen placeholder.
-This risk could be reduced by trying multiple placeholders of different types.
-
-Alternatively, implementations can use the procedures outlined under [Determining Type and Structure](#determining-type-and-structure) to find the property or item schemas to apply individually to the non-binary data, and handle the binary data separately as it would be handled if it were a separate document.
-
-Implementations MUST document how such evaluations are handled, along with any expected limitations of the chosen technique(s).
 
 ### Rich Text Formatting
 
@@ -1304,6 +1257,8 @@ See [Working With Examples](#working-with-examples) for further guidance regardi
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
+Note that correlating Encoding Objects with Schema Objects may require [schema searches](#searching-schemas) for keywords such as `properties`, `prefixItems`, and `items`.
+
 See also the [Media Type Registry](#media-type-registry).
 
 ##### Complete vs Streaming Content
@@ -1686,7 +1641,7 @@ These fields MAY be used either with or without the RFC6570-style serialization 
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="encoding-content-type"></a>contentType | `string` | The `Content-Type` for encoding a specific property. The value is a comma-separated list, each element of which is either a specific media type (e.g. `image/png`) or a wildcard media type (e.g. `image/*`). Default value depends on the property type as shown in the table below. |
+| <a name="encoding-content-type"></a>contentType | `string` | The `Content-Type` for encoding a specific property. The value is a comma-separated list, each element of which is either a specific media type (e.g. `image/png`) or a wildcard media type (e.g. `image/*`). Default value depends on the type (determined by a [schema search](#searching-schemas)) as shown in the table below. |
 | <a name="encoding-headers"></a>headers | Map[`string`, [Header Object](#header-object) \| [Reference Object](#reference-object)] | A map allowing additional information to be provided as headers. `Content-Type` is described separately and SHALL be ignored in this section. This field SHALL be ignored if the media type is not a `multipart`. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
@@ -2646,6 +2601,10 @@ Note that JSON Schema Draft 2020-12 does not require an `x-` prefix for extensio
 The [`format` keyword (when using default format-annotation vocabulary)](https://www.ietf.org/archive/id/draft-bhutton-json-schema-validation-01.html#section-7.2.1) and the [`contentMediaType`, `contentEncoding`, and `contentSchema` keywords](https://www.ietf.org/archive/id/draft-bhutton-json-schema-validation-01.html#section-8.2) define constraints on the data, but are treated as annotations instead of being validated directly.
 Extended validation is one way that these constraints MAY be enforced.
 
+In addition to extended validation, annotations are the most effective way to determine whether these keywords impact the type and structure of the fully parsed data.
+For example, formats such as `int64` can be applied to JSON strings, as JSON numers have limitations that make large integers non-portable.
+If annotation collection is not available, implementations MUST perform a [schema search](#searching-schemas) for these keywords, and MUST document the limitatioons this imposes.
+
 ###### Validating `readOnly` and `writeOnly`
 
 The `readOnly` and `writeOnly` keywords are annotations, as JSON Schema is not aware of how the data it is validating is being used.
@@ -2657,6 +2616,106 @@ This allows correctly requiring the field on a GET and still using the same repr
 Even when read-only fields are not required, stripping them is burdensome for clients, particularly when the JSON data is complex or deeply nested.
 
 Note that the behavior of `readOnly` in particular differs from that specified by version 3.0 of this specification.
+
+##### Working with Schemas
+
+In addition to schema evaluation, which encompasses both validation and annotation, some OAS features require inspecting schemas in other ways.
+
+###### Preparing Data for Schema Evaluation
+
+When the data source is a JSON document, preparing the data is trivial as parsing JSON produces a suitable data structure.
+Some other media types, as well as URL components and header values, lack sufficient type information to parse directly to suitable data types.
+
+Consider this URL-encoded form:
+
+```uri
+foo=42&bar=42
+```
+
+As URL query parameters are strings, this would naturally parse to something equivalent to the following JSON:
+
+```json
+{
+  "foo": "42",
+  "bar": "42"
+}
+```
+
+But consider this [Media Type Object](#media-type-object) for the form:
+
+```yaml
+application/x-www-form-urlencoded:
+  schema:
+    type: object
+    properties:
+      foo:
+        type: string
+      bar:
+        type: integer
+```
+
+From the `schema` field, we can tell that the correct data structure would actually be equivalent to:
+
+```json
+{
+  "foo": "42",
+  "bar": 42
+}
+```
+
+In order to prepare the correct data structure for evaluation in such cases, implementations MUST perform a [schema search](#searching-schemas) for the `type` keyword.
+
+###### Applying Further Type Information
+
+The `format` keyword provides more fine-grained type information, and can even change the underlying data type for the purposes of the application.
+For example, if `foo` had the schema `{"type": "string", "format": "int64")`, the data structure used for validation would still be the same, but the application will need to convert the string `"42"` to the 64-bit integer `42`.
+Similarly, the `content*` keywords can indicate further structure within a string.
+
+Implementations MUST either use [annotation collection](#extended-validation-with-annotations) to gather this information, or perform a [schema search](#searching-schemas), and MUST document which approach it implements.
+
+Note that parsing string contents based on `contentMediaType` carries the same security risks as parsing HTTP message bodies based on `Content-Type`; see [Handling External Resources](#handling-external-resources) for further information.
+
+###### Schema Evaluation and Binary Data
+
+As noted under [Working with Binary Data](#working-with-binary-data), Schema Objects for binary documents do not use any standard JSON Schema assertions, as the only ones that could apply (`const` and `enum`) would require embedding raw binary into JSON which is not possible.
+
+However, `multipart` media types can mix binary and text-based data, leaving implementations with two options for schema evaluations:
+
+1. Use a placeholder value, on the assumption that no assertions will apply to the binary data and no conditional schema keywords will cause the schema to treat the placeholder value differently (e.g. a part that could be either plain text or binary might behave unexpectedly if a string is used as a binary placeholder, as it would likely be treated as plain text and subject to different subschemas and keywords).
+2. Perform [schema searches](#searching-schemas) to find the appropriate keywords (`properties`, `prefixItems`, etc.) in order to break up the subschemas and apply them separately to binary and JSON-compatible data.
+
+Implementations MUST document which strategy or strategies they use, as well as any known limitations.
+
+##### Searching Schemas
+
+Several OAS features require searching Schema Objects for keywords indicating the data type and/or structure.
+Even if the requirement is given in terms of schema keywords, if the data is in a form [suitable for schema evaluation](#preparing-data-for-schema-evaluation) and the necessary information (including type) can be determined by inspecting the data (and possibly also annotations such as `format`), implementations MUST support doing so as this is effective regardless of how schemas are structured.
+
+If this is not possible, the schemas MUST be searched to see if the information can be determined without performing evaluation.
+As schema organization can become very complex, implementations are not expected to handle every possible schema layout.
+However, given a known starting point schema (usually the value of the nearest `schema` field), implementations MUST search the following for the relevant keywords (e.g. `type`, `format`, `contentMediaType`, `properties`, `prefixItems`, `items`, etc.):
+
+* The starting point schema itself
+* Any schema reachable from there solely through `$ref` and/or `allOf`
+
+These schemas are guaranteed to be applied to any instance.
+
+In some cases, such as correlating [Encoding Objects](#encoding-object) with Schema Objects using fields in a [Media Type Object](#media-type-object), it is be necessary to first find a keyword such as `properties`, and then treat its subschema(s) as starting point schemas for further searches.
+
+Implementations MAY analyze subschemas of other keywords such as `oneOf` or `dependentSchemas`, or examine possible `$dynamicRef` targets, and MUST document the extent and nature of any such additional support.
+
+###### Handling Multiple Types
+
+When a `type` keyword with multiple values (e.g. `type: ["number", "null"]`) is found, implementations MUST attempt to use the types as follows, ignoring any types not present in the `type` list:
+
+1. Determine if the data can be parsed as whichever of `null`, `number`, `object`, or `array` are present in the `type` list, treating `integer` as `number` for this step.
+2. If the data can be parsed as a number, and `integer` is in the `type` list, check to see if the value is a mathematical integer, regardless of its textual representation.
+3. If the data has not been parsed successfully and `string` is in the type list, parse it as a string.
+
+This process is sufficient to produce data that can be validated by JSON Schema.
+If `format` or `content*` are needed for further parsing, they can be checked in the same way as `type`, or as annotations from the schema evaluation process.
+
+Implementations that choose to search conditional keywords such as `anyOf` SHOULD use this same precedence to resolve multiple possible `type` values found through such searches.
 
 ##### Data Modeling Techniques
 

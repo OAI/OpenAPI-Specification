@@ -2524,6 +2524,72 @@ components:
             $ref: '#/components/mediaTypes/CollectionLinks'
 ```
 
+##### Representing the `Set-Cookie` Header
+
+As noted in [[!RFC9110]] [Section 5.3](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.3) the `Set-Cookie` response header violates the requirements for representing multiple values as a comma-separated list, as `style: "simple"` produces.
+
+```http
+Set-Cookie: lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT
+Set-Cookie: foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT
+```
+
+If these values were to be place on a single line using `style: "simple"`, the result would be `lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT,foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT`, which when split would then produce four values: `lang=en-US; Expires=Wed`, `09 Jun 2021 10:18:14 GMT`, `foo=bar; Expires=Wed`, and `09 Jun 2021 10:18:14 GMT`.
+While the two dates (`09...`) are not valid `Set-Cookie` values on their own, [[?RFC6265]] does not provide any guarantee that all such embedded uses of commas will produce detectable errors when split in this way.
+
+RFC9110 therefore advises recipients to 'handle "Set-Cookie" as a special case while processing fields,' so the OAS similarly special-cases its handling of `Set-Cookie` as follows:
+
+For the `Set-Cookie` response header _**only**_, `style: "simple"` MUST be treated as producing a newline-delimited list instead of a comma-separated list, with each line corresponding to the value of a single `Set-Cookie:` header field.
+This newline-delimited format MUST be used whenever a string representing the values is required, including in the [Example Object's](#example-object) serialized example fields, and when using `content` with a `text/plain` [Media Type Object](#media-type-object) as is necessary to prevent percent-encoding whitespace.
+
+The following example shows two different ways to describe `Set-Cookie` headers that require cookies named `"lang"` and `"foo"`.  The first uses `content` to preserve the necessary whitespace in the `"Expires"` cookie attribute, while the second shows the use of `style: "simple"` and forbids whitespace to ensure that values work with this serialization approach:
+
+```yaml
+components:
+  headers:
+    SetCookieWithExpires:
+      # Spaces within the Expires values prevent the use of `schema` and
+      # `style` as they would be percent-encoded, even with `allowReserved`.
+      content:
+        text/plain:
+          schema:
+            type: string
+            allOf:
+            - pattern: "^lang=[^;];.*Expires="
+            - pattern: "^foo=[^;];.*Expires="
+      examples:
+        WithExpires:
+          # This demonstrates that the text is required to be provided
+          # in the final format, and is not changed by serialization.
+          # In practice, it is not necessary to show both fields here.
+          dataValue: |
+            lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT
+            foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT
+          serializedValue: |
+            lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT
+            foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT
+    SetCookieWithNoSpaces:
+      schema:
+        type: object
+        required:
+        - lang
+        - foo
+        additionalProperties:
+          type: string
+          pattern: "^[^[:space:]]$"
+      style: simple
+      explode: true
+      allowReserved: true  # "=", ";", and " " are reserved
+      examples:
+        SetCookies:
+          dataValue: {
+            "lang": "en-US",
+            "foo": "bar"
+          }
+          serializedValue: |
+            lang=en-US
+            foo=bar
+```
+
 ##### Header Object Example
 
 A simple header of type `integer`:

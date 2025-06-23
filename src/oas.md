@@ -1038,6 +1038,8 @@ For cookies, neither the `?` nor `&` delimiter is correct (see [Appendix D: Seri
 
 Note that RFC6570 form expansion implementations will include either a leading `?` or `&` delimiter, depending on which type of form expansion is used, so in some scenarios it is necessary to strip off or change the leading delimiter.
 
+See the [Header Object](#header-object) for special rules for showing examples of the `Set-Cookie` response header, which violates the normal rules for multiple header values.
+
 The following section illustrates these rules.
 
 ##### Style Examples
@@ -2506,8 +2508,10 @@ Using `content` with a `text/plain` media type is RECOMMENDED for headers where 
 A simple header of type `integer`:
 
 ```yaml
-X-Rate-Limit-Limit:
-  description: The number of allowed requests in the current period
+Retry-After:
+  description: |
+    The number of seconds to wait before retrying the operation.
+    This Header Object does not allow the HTTP date format syntax.
   schema:
     type: integer
   examples:
@@ -2527,44 +2531,6 @@ ETag:
         type: string
         pattern: ^"
 ```
-
-A `Link` header that, if present, must include links with the standard relation types `self`, `first`, `prev`, `next`, and `last`, as might be used on a paginated collection:
-
-```yaml
-Link:
-  schema:
-    type: array
-    items:
-      type: string
-    allOf:
-    - contains:
-        pattern: rel="?first"?
-    - contains:
-        pattern: rel="?prev"?
-    - contains:
-        pattern: rel="?self"?
-    - contains:
-        pattern: rel="?next"?
-    - contains:
-        pattern: rel="?last"?
-  style: simple
-  # The ";" character and the URI delimiters are reserved
-  # but needs to be allowed as headers do not expect these
-  # to be percent-encoded.
-  allowReserved: true
-  examples:
-    CollectionLinks:
-      dataValue:
-      - https://example.com/foos?page=1; rel=first
-      - https://example.com/foos?page=4; rel=prev
-      - https://example.com/foos?page=5; rel=self
-      - https://example.com/foos?page=6; rel=next
-      - https://example.com/foos?page=10; rel=last
-      serializedValue: https://example.com/foos?page=1; rel=first, https://example.com/foos?page=4; rel=prev, https://example.com/foos?page=5; rel=self, https://example.com/foos?page=6; rel=next, https://example.com/foos?page=10; rel=last
-```
-
-Note that the `allOf` with `contains` combination allows the links to appear in any order.
-If a fixed order is desired, then `prefixItems` could be used and the `allof` would not be necessary.
 
 #### Tag Object
 

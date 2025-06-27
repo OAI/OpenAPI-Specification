@@ -2602,8 +2602,8 @@ The [`format` keyword (when using default format-annotation vocabulary)](https:/
 Extended validation is one way that these constraints MAY be enforced.
 
 In addition to extended validation, annotations are the most effective way to determine whether these keywords impact the type and structure of the fully parsed data.
-For example, formats such as `int64` can be applied to JSON strings, as JSON numers have limitations that make large integers non-portable.
-If annotation collection is not available, implementations MUST perform a [schema search](#searching-schemas) for these keywords, and MUST document the limitatioons this imposes.
+For example, formats such as `int64` can be applied to JSON strings, as JSON numbers have limitations that make large integers non-portable.
+If annotation collection is not available, implementations MUST perform a [schema search](#searching-schemas) for these keywords, and MUST document the limitations this imposes.
 
 ###### Validating `readOnly` and `writeOnly`
 

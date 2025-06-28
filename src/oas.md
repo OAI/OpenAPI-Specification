@@ -2677,7 +2677,10 @@ Note that parsing string contents based on `contentMediaType` carries the same s
 
 ###### Schema Evaluation and Binary Data
 
-As noted under [Working with Binary Data](#working-with-binary-data), Schema Objects for binary documents do not use any standard JSON Schema assertions, as the only ones that could apply (`const` and `enum`) would require embedding raw binary into JSON which is not possible.
+Few JSON Schema implementations directly support working with binary data, as doing so is not a mandatory part of that specification.
+
+OAS Implementations that do not have access to a binary-instance-supporting JSON Schema implementation MUST examine schemas and apply them in accordance with [Working with Binary Data](#working-with-binary-data),
+When the entire instance is binary, this is straightforward as few keywords are relevant.
 
 However, `multipart` media types can mix binary and text-based data, leaving implementations with two options for schema evaluations:
 

@@ -2689,11 +2689,13 @@ Implementations MUST document which strategy or strategies they use, as well as 
 ##### Searching Schemas
 
 Several OAS features require searching Schema Objects for keywords indicating the data type and/or structure.
+Each feature that needs such a search documents which keywords or structures need to be found.
+
 Even if the requirement is given in terms of schema keywords, if the data is in a form [suitable for schema evaluation](#preparing-data-for-schema-evaluation) and the necessary information (including type) can be determined by inspecting the data (and possibly also annotations such as `format`), implementations MUST support doing so as this is effective regardless of how schemas are structured.
 
 If this is not possible, the schemas MUST be searched to see if the information can be determined without performing evaluation.
 As schema organization can become very complex, implementations are not expected to handle every possible schema layout.
-However, given a known starting point schema (usually the value of the nearest `schema` field), implementations MUST search the following for the relevant keywords (e.g. `type`, `format`, `contentMediaType`, `properties`, `prefixItems`, `items`, etc.):
+However, given a known starting point schema (usually the value of the nearest `schema` field), implementations MUST search the following for the relevant keywords, which vary depending on the use case but might include `type`, `format`, `contentMediaType`, `properties`, `prefixItems`, `items`, etc.:
 
 * The starting point schema itself
 * Any schema reachable from there solely through `$ref` and/or `allOf`
@@ -2706,16 +2708,13 @@ Implementations MAY analyze subschemas of other keywords such as `oneOf` or `dep
 
 ###### Handling Multiple Types
 
-When a `type` keyword with multiple values (e.g. `type: ["number", "null"]`) is found, implementations MUST attempt to use the types as follows, ignoring any types not present in the `type` list:
+When searching for `type`, if the `type` keyword has multiple values, one of which is `"null"` (e.g. `type: ["number", "null"]`), the non-null type MUST be treated as the relevant type if a single type is needed to determine behavior.
 
-1. Determine if the data can be parsed as whichever of `null`, `number`, `object`, or `array` are present in the `type` list, treating `integer` as `number` for this step.
-2. If the data can be parsed as a number, and `integer` is in the `type` list, check to see if the value is a mathematical integer, regardless of its textual representation.
-3. If the data has not been parsed successfully and `string` is in the type list, parse it as a string.
+For other multi-valued `type` keywords, the behavior is implementation-defined but MUST either follow a documented process or be documented to produce an informative error.
 
-This process is sufficient to produce data that can be validated by JSON Schema.
-If `format` or `content*` are needed for further parsing, they can be checked in the same way as `type`, or as annotations from the schema evaluation process.
+If an implementation supports handling multi-valued `type` keywords for type searches, it SHOULD attempt to use non-`"string"` types before using `"string"` (if `"string"` is one of the types) as all current type interpretation use cases for involve data stored in string form by default.
 
-Implementations that choose to search conditional keywords such as `anyOf` SHOULD use this same precedence to resolve multiple possible `type` values found through such searches.
+Implementations MAY treat the order of types in the `type` keyword as significant, except when it conflicts with the above requirements.
 
 ##### Data Modeling Techniques
 

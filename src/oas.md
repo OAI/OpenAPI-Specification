@@ -2533,7 +2533,7 @@ Set-Cookie: lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT
 Set-Cookie: foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT
 ```
 
-If these values were to be place on a single line using `style: "simple"`, the result would be `lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT,foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT`, which when split would then produce four values: `lang=en-US; Expires=Wed`, `09 Jun 2021 10:18:14 GMT`, `foo=bar; Expires=Wed`, and `09 Jun 2021 10:18:14 GMT`.
+If these values were to be placed on a single line using `style: "simple"`, the result would be `lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT,foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT`, which when split would then produce four values: `lang=en-US; Expires=Wed`, `09 Jun 2021 10:18:14 GMT`, `foo=bar; Expires=Wed`, and `09 Jun 2021 10:18:14 GMT`.
 While the two dates (`09...`) are not valid `Set-Cookie` values on their own, [[?RFC6265]] does not provide any guarantee that all such embedded uses of commas will produce detectable errors when split in this way.
 
 RFC9110 therefore advises recipients to 'handle "Set-Cookie" as a special case while processing fields,' so the OAS similarly special-cases its handling of `Set-Cookie` as follows:

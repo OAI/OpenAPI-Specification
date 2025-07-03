@@ -3,6 +3,25 @@ openapi: 3.2.0
 info:
   title: API
   version: 1.0.0
+components:
+  mediaTypes:
+    StreamingPets:
+      description: |
+        Streaming sequence of JSON pet representations,
+        suitable for use with any of the streaming JSON
+        media types.
+      itemSchema:
+        $ref: '#components/schemas/Pet'
+  encodings:
+    ReservedNoExplode:
+      description: |
+        This allows multiple values under the same name,
+        and disables reserved percent-encoding.
+        Clients are responsible for adequately percent-encoding
+        the values in advance.
+      style: form
+      explode: false
+      allowReserved: true
 paths:
   /something:
     put:
@@ -31,8 +50,9 @@ paths:
               frog:
                 $ref: '#/components/examples/frog-example'
           application/jsonl:
-            itemSchema:
-              $ref: '#components/schemas/Pet'
+            $ref: '#/components/mediaTypes/StreamingPets'
+          application/x-ndjson:
+            $ref: '#/components/mediaTypes/StreamingPets'
           application/xml:
             schema:
               type: object
@@ -132,9 +152,7 @@ paths:
                     schema:
                       type: integer
               forCoverage:
-                style: form
-                explode: false
-                allowReserved: true
+                $ref: '#/components/encodings/ReservedNoExplode'
               forCoverage2:
                 style: spaceDelimited
                 explode: true

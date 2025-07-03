@@ -22,7 +22,8 @@ components:
           examples:
             xmlExample:
               summary: This is an example in XML
-              externalValue: https://example.org/examples/address-example.xml
+              externalDataValue: https://example.org/examples/address-example.json
+              externalSerializedValue: https://example.org/examples/address-example.xml
         text/plain:
           examples:
             textExample:
@@ -60,4 +61,5 @@ components:
           examples:
             jsonFormValue:
               description: 'The JSON string "json" as a form value'
-              value: jsonValue=%22json%22
+              dataValue: json
+              serializedValue: jsonValue=%22json%22

@@ -2536,7 +2536,11 @@ Set-Cookie: foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT
 If these values were to be placed on a single line using `style: "simple"`, the result would be `lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT,foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT`, which when split would then produce four values: `lang=en-US; Expires=Wed`, `09 Jun 2021 10:18:14 GMT`, `foo=bar; Expires=Wed`, and `09 Jun 2021 10:18:14 GMT`.
 While the two dates (`09...`) are not valid `Set-Cookie` values on their own, [[?RFC6265]] does not provide any guarantee that all such embedded uses of commas will produce detectable errors when split in this way.
 
-RFC9110 therefore advises recipients to 'handle "Set-Cookie" as a special case while processing fields,' so the OAS similarly special-cases its handling of `Set-Cookie` as follows:
+RFC9110 therefore advises recipients to 'handle "Set-Cookie" as a special case while processing fields,' so the OAS similarly special-cases its handling of `Set-Cookie`.
+
+When an OAS implementation is mapping directly between the multi-`Set-Cookie:` header line format and an array representation, without any intermediate single string holding the multiple values, no special handling is needed as the behavior is the same as for headers that can be either on a single line with comma-separated values or on multiple lines.
+
+However, if a multi-value text representation is needed, such as for a `text/plain` representation (using the `content` field) or in an Example Object, the following special handling is required:
 
 For the `Set-Cookie` response header _**only**_, `style: "simple"` MUST be treated as producing a newline-delimited list instead of a comma-separated list, with each line corresponding to the value of a single `Set-Cookie:` header field.
 This newline-delimited format MUST be used whenever a string representing the values is required, including in the [Example Object's](#example-object) serialized example fields, and when using `content` with a `text/plain` [Media Type Object](#media-type-object) as is necessary to prevent percent-encoding whitespace.
@@ -2578,7 +2582,6 @@ components:
           pattern: "^[^[:space:]]$"
       style: simple
       explode: true
-      allowReserved: true  # "=", ";", and " " are reserved
       examples:
         SetCookies:
           dataValue: {

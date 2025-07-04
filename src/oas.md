@@ -2526,24 +2526,27 @@ components:
 
 ##### Representing the `Set-Cookie` Header
 
-As noted in [[!RFC9110]] [Section 5.3](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.3) the `Set-Cookie` response header violates the requirements for representing multiple values as a comma-separated list, as `style: "simple"` produces.
+The `Set-Cookie` header is noted in [[!RFC9110]] [Section 5.3](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.3) as an exception to the normal rules of headers with multiple values.
+
+For most headers using the general syntax defined in RFC9110, the multiple-line and comma-separaed single-line forms are interchangeable, meaning that this:
 
 ```http
-Set-Cookie: lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT
-Set-Cookie: foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT
+Accept-Encoding: compress;q=0.5
+Accept-Encoding: gzip;q=1.0
 ```
 
-If these values were to be placed on a single line using `style: "simple"`, the result would be `lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT,foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT`, which when split would then produce four values: `lang=en-US; Expires=Wed`, `09 Jun 2021 10:18:14 GMT`, `foo=bar; Expires=Wed`, and `09 Jun 2021 10:18:14 GMT`.
-While the two dates (`09...`) are not valid `Set-Cookie` values on their own, [[?RFC6265]] does not provide any guarantee that all such embedded uses of commas will produce detectable errors when split in this way.
+is interchangeable with the one-line form that works well with the OAS's `style: "simple"` option:
 
-RFC9110 therefore advises recipients to 'handle "Set-Cookie" as a special case while processing fields,' so the OAS similarly applies a special case to its handling of `Set-Cookie`.
+```http
+Accept-Encoding: compress;q=0.5,gzip;q=1.0
+```
 
-When an OAS implementation is mapping directly between the multi-`Set-Cookie:` header line format and an array representation, without any intermediate single string holding the multiple values, no special handling is needed as the behavior is the same as for headers that can be either on a single line with comma-separated values or on multiple lines.
+The OAS models such multi-value headers using the one-line form as it matches the behavior of `style: "simple"`, and works well when using `content` as the values are completely separate from the header name, but it does not matter which form is used in an actual HTTP message.
 
-However, if a multi-value text representation is needed, such as for a `text/plain` representation (using the `content` field) or in an Example Object, the following special handling is required:
+As also noted in the RFC, `Set-Cookie` is an exception as it allows unquoted, non-escaped commas in its values, and can only use the one-value-per-line form.
+For HTTP messages, this is purely a serialization concern, and no more of a problem than a message that uses the multi-line form of any other header.
 
-For the `Set-Cookie` response header _**only**_, `style: "simple"` MUST be treated as producing a newline-delimited list instead of a comma-separated list, with each line corresponding to the value of a single `Set-Cookie:` header field.
-This newline-delimited format MUST be used whenever a string representing the values is required, including in the [Example Object's](#example-object) serialized example fields, and when using `content` with a `text/plain` [Media Type Object](#media-type-object) as is necessary to prevent percent-encoding whitespace.
+However, because examples and values modeled with `content` do not incorporate the header name, for these fields `Set-Cookie` MUST be handled by placing each value on a separate line, without the header name or the `:` delimiter.
 
 The following example shows two different ways to describe `Set-Cookie` headers that require cookies named `"lang"` and `"foo"`.  The first uses `content` to preserve the necessary whitespace in the `"Expires"` cookie attribute, while the second shows the use of `style: "simple"` and forbids whitespace to ensure that values work with this serialization approach:
 
@@ -2564,7 +2567,7 @@ components:
         WithExpires:
           # This demonstrates that the text is required to be provided
           # in the final format, and is not changed by serialization.
-          # In practice, it is not necessary to show both fields here.
+          # In practice, it is not necessary to show both value fields.
           dataValue: |
             lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT
             foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT
@@ -2591,6 +2594,20 @@ components:
           serializedValue: |
             lang=en-US
             foo=bar
+```
+
+In an HTTP message, the serialized example with Expires would look like:
+
+```http
+Set-Cookie: lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GM
+Set-Cookie: foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT
+```
+
+and the example without Expires would look like:
+
+```http
+Set-Cookie: lang=en-US
+Set-Cookie: foo=bar
 ```
 
 ##### Header Object Example

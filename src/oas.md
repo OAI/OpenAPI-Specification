@@ -169,12 +169,22 @@ The [schema](#schema) exposes two types of fields: _fixed fields_, which have a 
 
 Patterned fields MUST have unique names within the containing object.
 
-In order to preserve the ability to round-trip between YAML and JSON formats, YAML version [1.2](https://yaml.org/spec/1.2/spec.html) is RECOMMENDED along with some additional constraints:
-
-* Tags MUST be limited to those allowed by [YAML's JSON schema ruleset](https://yaml.org/spec/1.2/spec.html#id2803231), which defines a subset of the YAML syntax and is unrelated to [[JSON-Schema-2020-12|JSON Schema]].
-* Keys used in YAML maps MUST be limited to a scalar string, as defined by the [YAML Failsafe schema ruleset](https://yaml.org/spec/1.2/spec.html#id2802346).
-
 **Note:** While APIs may be described by OpenAPI Descriptions in either YAML or JSON format, the API request and response bodies and other content are not required to be JSON or YAML.
+
+#### JSON and YAML Compatibility
+
+In order to preserve the ability to round-trip between YAML and JSON formats, YAML version [1.2](https://yaml.org/spec/1.2/spec.html) is RECOMMENDED along with the additional constraints listed in [[!RFC9512]] [Section 3.4](https://www.rfc-editor.org/rfc/rfc9512.html#name-yaml-and-json).
+
+Previous versions of this specification expressed this requirement in terms of [YAML's JSON schema ruleset](https://yaml.org/spec/1.2/spec.html#id2803231), which defines a subset of the YAML syntax and is unrelated to [[JSON-Schema-2020-12|JSON Schema]].
+Despite its name, this ruleset supports features that are not part of JSON, such as distinguishing between integers and floats (see [Data Types](#data-types)) or supporting `!!float .nan` as a value.
+OAD authors SHOULD NOT rely on any YAML features supported by YAML's JSON schema ruleset that are listed as having interoperability challenges in RFC9512.
+
+#### Character Encoding
+
+Note that as stated in [[RFC8259|JSON]] [Section 8.1](https://www.rfc-editor.org/rfc/rfc8259.html#section-8.1), only JSON encoded using UTF-8 is interoperable, which is extended to JSON-compatible YAML in [[!RFC9512]] [Section 3.4](https://www.rfc-editor.org/rfc/rfc9512.html#name-yaml-and-json).
+
+This specification assumes that all OADs are encoded using UTF-8.
+If an implementation chooses to support additional character encodings, the behavior of any feature relying on the assumption of UTF-8 encoding is implementation-defined.
 
 ### OpenAPI Description Structure
 

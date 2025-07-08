@@ -4354,7 +4354,7 @@ This will expand to the result:
 
 [RFC6570](https://www.rfc-editor.org/rfc/rfc6570)'s percent-encoding behavior is not always appropriate for `in: "header"` and `in: "cookie"` parameters.
 In many cases, it is more appropriate to use `content` with a media type such as `text/plain` and require the application to assemble the correct string.
-Other media types, such as `application/linkset` (see [Modeling Link Headers](#modeling-link-headers) are directly suitable for use as `content` for specific headers.
+Other media types, such as `application/linkset` (see [Modeling Link Headers](#modeling-link-headers)), are directly suitable for use as `content` for specific headers.
 
 In some cases, setting `allowReserved: true` will be sufficient to avoid incorrect encoding, however many characters are still percent-encoded with this field enabled, so care must be taken to ensure no unexpected percent-encoding will take place.
 

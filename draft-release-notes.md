@@ -29,12 +29,13 @@ What's coming up? Look at `src/oas.md` on the relevant development branch for fu
   - support new `name` field alongside `description`, `url` and `variables`.
   - formal path templating support for variable substitution in server urls.
 
-### Discriminator
+### Code Generation
 
-  - no change from previous versions: use `discriminator` to hint which entry in `anyOf` or `oneOf` is expected.
-  - no change from previous versions: use `mapping` to link the discriminator property value to the Schema name if they aren't an exact match.
   - the discriminator `propertyName` can now be an optional field.
   - additional `defaultMapping` field to indicate which schema to use if the `propertyName` is not set, or if the value is unrecognized.
+  - no change from previous versions: use `discriminator` to hint which entry in `anyOf` or `oneOf` is expected.
+  - no change from previous versions: use `mapping` to link the discriminator property value to the Schema name if they aren't an exact match.
+  - Implementations now SHOULD (rather than MAY) support templates/generics using `$dynamicRef`
 
 ### Reference resolution
 
@@ -44,6 +45,10 @@ What's coming up? Look at `src/oas.md` on the relevant development branch for fu
 
 ### Improvements for APIs using XML as a content format
 
+  - New `nodeType` field allows maping schemas to all common XML node types (elements, attributes, text, or cdata) or to nothing
+  - `attribute: true` deprecated in favor of `nodeType: attribute`
+  - `wrapped: true` deprecated in favor of `nodeType: element` (as `nodeType` defaults to `none` for arrays to preserve compatibility)
+  - The `xml` keyword can be used in any Schema Object
   - XML namespaces can be IRIs (rather than URIs)
   - Explanation and example on how to handle `null` in XML
     Clarify that the root schema of an XML object should use the component name.
@@ -56,11 +61,11 @@ What's coming up? Look at `src/oas.md` on the relevant development branch for fu
   - Related: a new media types registry is published to give more context for each of the media types
   - Also a "Complete vs Streaming Content" section for guidance on streaming binary payloads
 
-### Parameters
+### Parameters and Headers
 
   - additional parameter location `querystring`, to allow parsing the entire query string as a single field similar to the way a request body is handled, using the `content` field. Useful for complex or unconventional query data. Mutually exclusive with the `query` field.
   - parameters can therefore be `in` the `querystring` as an alternative to the existing `header`, `cookie`, `query` and `path` values.
-  - `allowReserved` field is now permitted on parameters with any value of `in` (however this many not be a Good Idea (TM) in some scenarios)
+  - `allowReserved` field is now permitted on parameters and headers with any value of `in` (however this many not be a Good Idea (TM) in some scenarios)
     
 ### Responses
 

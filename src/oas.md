@@ -1330,7 +1330,7 @@ Each field has its own set of media types with which it can be used; for all oth
 
 The behavior of the `encoding` field is designed to support web forms, and is therefore only defined for media types structured as name-value pairs that allow repeat values, most notably `application/x-www-form-urlencoded` and `multipart/form-data`.
 
-To use the `encoding` field, each key under the field MUST exist in the `schema` as a property.
+To use the `encoding` field, each key under the field MUST exist as a property; `encoding` entries with no corresponding property SHALL be ignored.
 Array properties MUST be handled by applying the given Encoding Object to produce one encoded value per array item, each with the same `name`, as is recommended by [[?RFC7578]] [Section 4.3](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3) for supplying multiple values per form field.
 For all other value types for both top-level non-array properties and for values, including array values, within a top-level array, the Encoding Object MUST be applied to the entire value.
 The order of these name-value pairs in the target media type is implementation-defined.
@@ -1350,6 +1350,7 @@ Data for these media types are modeled as an array, with one item per part, in o
 
 To use the `prefixEncoding` and/or `itemEncoding` fields, either `itemSchema` or an array `schema` MUST be present.
 These fields are analogous to the `prefixItems` and `items` JSON Schema keywords, with `prefixEncoding` (if present) providing an array of Encoding Objects that are each applied to the value at the same position in the data array, and `itemEncoding` applying its single Encoding Object to all remaining items in the array.
+As with `prefixItems`, it is _not_ an error if the instance array is shorter than the `prefixEncoding` array; the additional Encoding Objects SHALL be ignored.
 
 The `itemEncoding` field can also be used with `itemSchema` to support streaming `multipart` content.
 

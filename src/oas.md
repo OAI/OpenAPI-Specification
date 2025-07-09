@@ -2679,7 +2679,7 @@ Note that parsing string contents based on `contentMediaType` carries the same s
 
 Few JSON Schema implementations directly support working with binary data, as doing so is not a mandatory part of that specification.
 
-OAS Implementations that do not have access to a binary-instance-supporting JSON Schema implementation MUST examine schemas and apply them in accordance with [Working with Binary Data](#working-with-binary-data),
+OAS Implementations that do not have access to a binary-instance-supporting JSON Schema implementation MUST examine schemas and apply them in accordance with [Working with Binary Data](#working-with-binary-data).
 When the entire instance is binary, this is straightforward as few keywords are relevant.
 
 However, `multipart` media types can mix binary and text-based data, leaving implementations with two options for schema evaluations:
@@ -2715,7 +2715,7 @@ When searching for `type`, if the `type` keyword has multiple values, one of whi
 
 For other multi-valued `type` keywords, the behavior is implementation-defined but MUST either follow a documented process or be documented to produce an informative error.
 
-If an implementation supports handling multi-valued `type` keywords for type searches, it SHOULD attempt to use non-`"string"` types before using `"string"` (if `"string"` is one of the types) as all current type interpretation use cases for involve data stored in string form by default.
+If an implementation supports handling multi-valued `type` keywords for type searches, it SHOULD attempt to use non-`"string"` types before using `"string"` (if `"string"` is one of the types) as all current type interpretation use cases involve data stored in string form by default.
 
 Implementations MAY treat the order of types in the `type` keyword as significant, except when it conflicts with the above requirements.
 

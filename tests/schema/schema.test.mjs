@@ -21,7 +21,6 @@ defineVocabulary(oasBaseVocab, {
 await registerSchema("./src/schemas/validation/meta.yaml");
 await registerSchema("./src/schemas/validation/dialect.yaml");
 await registerSchema("./src/schemas/validation/schema.yaml");
-await registerSchema("./src/schemas/validation/schema-base.yaml");
 const fixtures = './tests/schema';
 
 describe("v3.1", () => {
@@ -31,7 +30,7 @@ describe("v3.1", () => {
       .forEach((entry) => {
         test(entry.name, async () => {
           const instance = parseYamlFromFile(`${fixtures}/pass/${entry.name}`);
-          await expect(instance).to.matchJsonSchema("https://spec.openapis.org/oas/3.1/schema-base/WORK-IN-PROGRESS");
+          await expect(instance).to.matchJsonSchema("./src/schemas/validation/schema-base.yaml");
         });
       });
   });
@@ -42,7 +41,7 @@ describe("v3.1", () => {
       .forEach((entry) => {
         test(entry.name, async () => {
           const instance = parseYamlFromFile(`${fixtures}/fail/${entry.name}`);
-          await expect(instance).to.not.matchJsonSchema("https://spec.openapis.org/oas/3.1/schema-base/WORK-IN-PROGRESS");
+          await expect(instance).to.not.matchJsonSchema("./src/schemas/validation/schema-base.yaml");
         });
       });
   });

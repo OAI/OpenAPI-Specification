@@ -5,7 +5,7 @@ description: RFC3339 time without the timezone component
 base_type: string
 layout: default
 source_label: RFC 3339
-source: https://datatracker.ietf.org/doc/html/rfc3339#section-5.6
+source: https://www.rfc-editor.org/rfc/rfc3339#section-5.6
 ---
 
 {% capture summary %}

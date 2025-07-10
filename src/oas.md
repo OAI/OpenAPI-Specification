@@ -1641,7 +1641,7 @@ These fields MAY be used either with or without the RFC6570-style serialization 
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="encoding-content-type"></a>contentType | `string` | The `Content-Type` for encoding a specific property. The value is a comma-separated list, each element of which is either a specific media type (e.g. `image/png`) or a wildcard media type (e.g. `image/*`). Default value depends on the type (determined by a [schema search](#searching-schemas)) as shown in the table below. |
+| <a name="encoding-content-type"></a>contentType | `string` | The `Content-Type` for encoding a specific property. The value is a comma-separated list, each element of which is either a specific media type (e.g. `image/png`) or a wildcard media type (e.g. `image/*`). The default value depends on the type (determined by a [schema search](#searching-schemas)) as shown in the table below. |
 | <a name="encoding-headers"></a>headers | Map[`string`, [Header Object](#header-object) \| [Reference Object](#reference-object)] | A map allowing additional information to be provided as headers. `Content-Type` is described separately and SHALL be ignored in this section. This field SHALL be ignored if the media type is not a `multipart`. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).

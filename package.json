@@ -27,7 +27,7 @@
     "yargs": "^18.0.0"
   },
   "devDependencies": {
-    "@hyperjump/json-schema": "^1.16.0",
+    "@hyperjump/json-schema": "^1.16.1",
     "c8": "^10.1.3",
     "markdownlint-cli2": "^0.18.1",
     "vitest": "^3.2.4",

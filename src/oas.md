@@ -1768,10 +1768,19 @@ See [Encoding Usage and Restrictions](#encoding-usage-and-restrictions) for guid
 
 Note that there are significant restrictions on what headers can be used with `multipart` media types in general ([RFC2046](https://www.rfc-editor.org/rfc/rfc2046.html#section-5.1)) and `multi-part/form-data` in particular ([RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.8)).
 
+###### Handling Multiple `contentType` Values
+
+When multiple values are provided for `contentType`, parsing remains straightforward as the part's actual `Content-Type` is included in the document.
+
+For encoding and serialization, implementations MUST provide a mechanism for applications to indicate which media type is intended.
+Implementations MAY choose to offer media type sniffing ([[!SNIFF]]) as an alternative, but this MUST NOT be the default behavior due to the security risks inherent in the process.
+
+###### `Content-Transfer-Encoding` and `contentEncoding`
+
 Note also that `Content-Transfer-Encoding` is deprecated for `multipart/form-data` ([RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.7)) where binary data is supported, as it is in HTTP.
 
 Using `contentEncoding` for a multipart field is equivalent to specifying an [Encoding Object](#encoding-object) with a `headers` field containing `Content-Transfer-Encoding` with a schema that requires the value used in `contentEncoding`.
-+If `contentEncoding` is used for a multipart field that has an Encoding Object with a `headers` field containing `Content-Transfer-Encoding` with a schema that disallows the value from `contentEncoding`, the result is undefined for serialization and parsing.
+If `contentEncoding` is used for a multipart field that has an Encoding Object with a `headers` field containing `Content-Transfer-Encoding` with a schema that disallows the value from `contentEncoding`, the result is undefined for serialization and parsing.
 
 Note that as stated in [Working with Binary Data](#working-with-binary-data), if the Encoding Object's `contentType`, whether set explicitly or implicitly through its default value rules, disagrees with the `contentMediaType` in a Schema Object, the `contentMediaType` SHALL be ignored.
 Because of this, and because the Encoding Object's `contentType` defaulting rules do not take the Schema Object's`contentMediaType` into account, the use of `contentMediaType` with an Encoding Object is NOT RECOMMENDED.

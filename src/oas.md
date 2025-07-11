@@ -1081,7 +1081,7 @@ Two avenues are available for supporting such formats with `in: "querystring"`:
 A header parameter with an array of 64-bit integer numbers:
 
 ```yaml
-name: token
+name: X-Token
 in: header
 description: token to be passed as a header
 required: true
@@ -1091,6 +1091,10 @@ schema:
     type: integer
     format: int64
 style: simple
+examples:
+  Tokens:
+    dataValue: [12345678, 90099]
+    serializedValue: "12345678,90099"
 ```
 
 A path parameter of a string value:
@@ -1102,14 +1106,25 @@ description: username to fetch
 required: true
 schema:
   type: string
+examples:
+  "Edsger Dijkstra":
+    dataValue: edijkstra
+    serializedValue: edijkstra
+  Diṅnāga:
+    dataValue: diṅnāga
+    serializedValue: di%E1%B9%85n%C4%81ga
+examples:
+  Al-Khwarizmi:
+    dataValue: "الخوارزميّ"
+    serializedValue: "%D8%A7%D9%84%D8%AE%D9%88%D8%A7%D8%B1%D8%B2%D9%85%D9%8A%D9%91"
 ```
 
-An optional query parameter of a string value, allowing multiple values by repeating the query parameter:
+An optional query parameter of a integer value, allowing multiple values by repeating the query parameter
+(Note that we use `"%20"` in place of `" "` (space) because that is how RFC6570 handles it; for guidance on using `+` to represent the space character, see [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for more guidance on these escaping options):
 
 ```yaml
-name: id
+name: thing
 in: query
-description: ID of the object to fetch
 required: false
 schema:
   type: array
@@ -1117,9 +1132,13 @@ schema:
     type: string
 style: form
 explode: true
+examples:
+  ObjectList:
+    dataValue: ["one thing", "another thing"]
+    serializedValue: "thing=one%20thing&thing=another%20thing"
 ```
 
-A free-form query parameter, allowing undefined parameters of a specific type:
+A free-form query parameter, allowing arbitrary parameters of a `type: "integer"`:
 
 ```yaml
 in: query
@@ -1129,9 +1148,16 @@ schema:
   additionalProperties:
     type: integer
 style: form
+examples:
+  Pagination:
+    dataValue: {
+      "page": 4,
+      "pageSize": 50
+    }
+    serializeValue: page=4&pageSize=50
 ```
 
-A complex parameter using `content` to define serialization:
+A complex parameter using `content` to define serialization, with multiple levels and types of examples shown to make the example usage options clear — note that `dataValue` is the same at both levels and does not need to be shown in both places in normal usage, but `serializedValue` is different:
 
 ```yaml
 in: query
@@ -1148,9 +1174,56 @@ content:
           type: number
         long:
           type: number
+    examples:
+      dataValue: {
+        "lat": 10,
+        "long": 60
+      }
+      serializedValue: '{"lat":10,"long":60}'
+examples:
+  dataValue: {
+    "lat": 10,
+    "long": 60
+  }
+  serializedValue: coordinates=%7B%22lat%22%3A10%2C%22long%22%3A60%7D
 ```
 
-A querystring parameter that uses JSON for the entire string (not as a single query parameter value):
+A querystring parameter using regular form encoding, but managed with a Media Type Object.
+This shows spaces being handled per the `application/x-www-form-urlencoded` media type rules (encode as `+`) rather than the RFC6570 process (encode as `%20`); see [Appendix E](appendix-e-percent-encoding-and-form-media-types) for further guidance on this distinction.
+Examples are shown at both the media type and parameter level to emphasize that, since `application/x-www-form-urlencoded` is suitable for use in query strings by definition, no further encoding or escaping is applied to the serialized media type value:
+
+```yaml
+in: querystring
+content:
+  application/x-www-form-urlencoded:
+    schema:
+      type: object
+      properties:
+        foo:
+          type: string
+        bar:
+          type: boolean
+    examples:
+      spacesAndPluses:
+        description: Note handling of spaces and "+" per media type.
+        dataValue:
+          foo: a + b
+          bar: true
+        serializedValue: foo=a+%2B+b&bar=true
+examples:
+  spacesAndPluses:
+    description: |
+      Note that no additional percent encoding is done, as this
+      media type is URI query string-ready by definition.
+    dataValue:
+      foo: a + b
+      bar: true
+    serializedValue: foo=a+%2B+b&bar=true
+```
+
+A querystring parameter that uses JSON for the entire string (not as a single query parameter value).
+The `dataValue` field is shown at both levels to fully illustrate both ways of providing an example.
+As seen below, this is redundant and need not be done in practice:
 
 ```yaml
 in: querystring
@@ -1158,22 +1231,39 @@ name: json
 content:
   application/json:
     schema:
-      # Allow an arbitrary JSON object to keep
-      # the example simple
       type: object
-    example: {
+      properties:
+        numbers:
+          type: array
+          items:
+            type: integer
+        flag:
+          type: [boolean, "null"]
+    examples:
+      TwoNoFlag:
+        description: Serialize with minimized whitespace
+        dataValue: {
+          "numbers": [1, 2],
+          "flag": null
+        }
+        serializedValue: '{"numbers":[1,2],"flag":null}'
+examples:
+  TwoNoFlag:
+    dataValue: {
       "numbers": [1, 2],
       "flag": null
     }
+    serializedValue: "%7B%22numbers%22%3A%5B1%2C2%5D%2C%22flag%22%3Anull%7D"
 ```
 
-Assuming a path of `/foo`, a server of `https://example.com`, the full URL incorporating the value from the `example` field (with whitespace minimized) would be:
+Assuming a path of `/foo`, a server of `https://example.com`, the full URL incorporating the value from `serializedValue` would be:
 
 ```uri
 https://example.com/foo?%7B%22numbers%22%3A%5B1%2C2%5D%2C%22flag%22%3Anull%7D
 ```
 
-A querystring parameter that uses JSONPath:
+A querystring parameter that uses JSONPath.
+Note that in this example we not only do not repeat `dataValue`, but we use the shorthand `example` because the `application/jsonpath` value is a string that, at the media type level, is serialized as-is:
 
 ```yaml
 in: querystring
@@ -1183,11 +1273,14 @@ content:
     schema:
       type: string
     example: $.a.b[1:1]
+examples:
+  Selector:
+    serializedValue: "%24.a.b%5B1%3A1%5D"
 ```
 
 As there is not, as of this writing, a [registered](#media-type-registry) mapping between the JSON Schema data model and JSONPath, the details of the string's allowed structure would need to be conveyed either in a human-readable `description` field, or through a mechanism outside of the OpenAPI Description, such as a JSON Schema for the data structure to be queried.
 
-Assuming a path of `/foo` and a server of `https://example.com`, the full URL incorporating the value from the `example` field would be:
+Assuming a path of `/foo` and a server of `https://example.com`, the full URL incorporating the value from `serializedValue` would be:
 
 ```uri
 https://example.com/foo?%24.a.b%5B1%3A1%5D
@@ -2545,6 +2638,7 @@ ETag:
       schema:
         type: string
         pattern: ^"
+  example: xyzzx
 ```
 
 #### Tag Object

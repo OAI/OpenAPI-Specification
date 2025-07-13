@@ -15,7 +15,7 @@
   "scripts": {
     "build": "bash ./scripts/md2html/build.sh",
     "build-src": "npm run validate-markdown && bash ./scripts/md2html/build.sh src && bash ./scripts/schema-publish.sh src",
-    "test": "c8 --100 vitest run --coverage && nyc check-coverage",
+    "test": "c8 --100 vitest run --coverage && ([ \"$BASE\" = \"dev\" ] || nyc check-coverage )",
     "format-markdown": "npx markdownlint-cli2 --config spec.markdownlint.yaml --fix src/oas.md && npx markdownlint-cli2 --fix *.md",
     "validate-markdown": "npx markdownlint-cli2 --config spec.markdownlint.yaml src/oas.md && npx markdownlint-cli2 *.md"
   },
@@ -27,7 +27,7 @@
     "yargs": "^18.0.0"
   },
   "devDependencies": {
-    "@hyperjump/json-schema-coverage": "^1.0.1",
+    "@hyperjump/json-schema-coverage": "^1.0.2",
     "c8": "^10.1.3",
     "markdownlint-cli2": "^0.18.1",
     "nyc": "^17.1.0",

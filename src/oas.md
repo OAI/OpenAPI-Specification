@@ -982,7 +982,7 @@ Note that while `"Cookie"` as a `name` is not forbidden if `in` is `"header"`, t
 
 For simpler scenarios, a [`schema`](#parameter-schema) and [`style`](#parameter-style) can describe the structure and syntax of the parameter.
 When `example` or `examples` are provided in conjunction with the `schema` field, the example SHOULD match the specified schema and follow the prescribed serialization strategy for the parameter.
-The `example` and `examples` fields are mutually exclusive, and if either is present it SHALL _override_ any `example` in the schema.
+The `example` and `examples` fields are mutually exclusive.
 
 These fields MUST NOT be used with `in: "querystring"`.
 
@@ -1242,7 +1242,7 @@ Each Media Type Object describes content structured in accordance with the media
 Multiple Media Type Objects can be used to describe content that can appear in any of several different media types.
 
 When `example` or `examples` are provided, the example SHOULD match the specified schema and be in the correct format as specified by the media type and its encoding.
-The `example` and `examples` fields are mutually exclusive, and if either is present it SHALL _override_ any `example` in the schema.
+The `example` and `examples` fields are mutually exclusive.
 See [Working With Examples](#working-with-examples) for further guidance regarding the different ways of specifying examples, including non-JSON/YAML values.
 
 ##### Fixed Fields
@@ -2118,7 +2118,6 @@ The `examples` array is part of JSON Schema and is the preferred way to include 
 
 The mutually exclusive fields in the Parameter, Header, or Media Type Objects are used to show example values which SHOULD both match the schema and be formatted as they would appear as a serialized parameter, serialized header, or within a media type representation.
 The exact serialization and encoding is determined by various fields in the Parameter Object, Header Object, or in the Media Type Object's [Encoding Object](#encoding-object).
-Because examples using these fields represent the final serialized form of the data, they SHALL _override_ any `example` in the corresponding Schema Object.
 
 The singular `example` field in the Parameter, Header, or Media Type Object is concise and convenient for simple examples, but does not offer any other advantages over using Example Objects under `examples`.
 
@@ -2429,7 +2428,7 @@ The `allowReserved` field can disable most but not all of this behavior.
 See [Appendix D](#appendix-d-serializing-headers-and-cookies) for details and further guidance.
 
 When `example` or `examples` are provided in conjunction with the `schema` field, the example SHOULD match the specified schema and follow the prescribed serialization strategy for the header.
-The `example` and `examples` fields are mutually exclusive, and if either is present it SHALL _override_ any `example` in the schema.
+The `example` and `examples` fields are mutually exclusive.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |

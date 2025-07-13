@@ -1,25 +1,15 @@
 import { readdirSync, readFileSync } from "node:fs";
 import YAML from "yaml";
 import { describe, test, expect } from "vitest";
-import { defineVocabulary, registerSchema } from "@hyperjump/json-schema-coverage/vitest";
+import { registerSchema } from "@hyperjump/json-schema-coverage/vitest";
+import registerOasSchema from "./oas-schema.mjs";
 
 const parseYamlFromFile = (filePath) => {
   const schemaYaml = readFileSync(filePath, "utf8");
   return YAML.parse(schemaYaml, { prettyErrors: true });
 };
 
-const meta = parseYamlFromFile("./src/schemas/validation/meta.yaml");
-const oasBaseVocab = Object.keys(meta.$vocabulary)[0];
-
-defineVocabulary(oasBaseVocab, {
-  "discriminator": "https://spec.openapis.org/oas/3.0/keyword/discriminator",
-  "example": "https://spec.openapis.org/oas/3.0/keyword/example",
-  "externalDocs": "https://spec.openapis.org/oas/3.0/keyword/externalDocs",
-  "xml": "https://spec.openapis.org/oas/3.0/keyword/xml"
-});
-
-await registerSchema("./src/schemas/validation/meta.yaml");
-await registerSchema("./src/schemas/validation/dialect.yaml");
+await registerOasSchema();
 await registerSchema("./src/schemas/validation/schema.yaml");
 const fixtures = './tests/schema';
 

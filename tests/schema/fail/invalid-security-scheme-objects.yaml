@@ -1,0 +1,88 @@
+openapi: 3.2.0
+info:
+  title: API
+  version: 1.0.0
+security:
+  - true
+  - basic: true
+  - apiKey: [true]
+components:
+  securitySchemes:
+    no-object: true
+    no-type:
+      typo: noauth3
+    invalid-type:
+      type: invalid
+    invalid-description:
+      type: http
+      description: 42
+      deprecated: yes
+    apiKey-invalid-name:
+      type: apiKey
+      name: 42
+    apiKey-invalid-in:
+      type: apiKey
+      name: invalid-in
+      in: garbage
+    http-no-scheme:
+      type: http
+    http-invalid-scheme:
+      type: http
+      scheme: 42
+    barer-invalid-bearerFormat:
+      type: http
+      scheme: bearer
+      bearerFormat: 42
+    oauth2-no-flows:
+      type: oauth2
+    oauth2-invalid-oauth2MetadataUrl:
+      type: oauth2
+      oauth2MetadataUrl: 42
+    openIdConnect-no-openIdConnectUrl:
+      type: openIdConnect
+    openIdConnect-invalid-openIdConnectUrl:
+      type: openIdConnect
+      openIdConnectUrl: true
+    oauth-invalid-flows:
+      type: oauth2
+      flows: false
+    oauth-invalid-flow-no-objects:
+      type: oauth2
+      flows:
+        implicit: false
+        password: false
+        clientCredentials: false
+        authorizationCode: false
+        deviceAuthorization: false
+    oauth-invalid-flow-objects:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: 42
+          refreshUrl: 42
+        password:
+          tokenUrl: 42
+          refreshUrl: 42
+        clientCredentials:
+          tokenUrl: 42
+          refreshUrl: 42
+        authorizationCode:
+          authorizationUrl: 42
+          tokenUrl: 42
+          refreshUrl: 42
+        deviceAuthorization:
+          deviceAuthorizationUrl: 42
+          tokenUrl: 42
+          refreshUrl: 42
+    oauth-invalid-scopes:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: 42
+          refreshUrl: 42
+          scopes: 42
+        password:
+          tokenUrl: 42
+          refreshUrl: 42
+          scopes:
+            invalid: 42

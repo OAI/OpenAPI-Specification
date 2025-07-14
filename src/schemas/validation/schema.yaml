@@ -163,7 +163,6 @@ $defs:
         type: object
         additionalProperties:
           $dynamicRef: '#meta'
-          $ref: '#/$defs/schema' # just to satisfy schema coverage
       responses:
         type: object
         additionalProperties:

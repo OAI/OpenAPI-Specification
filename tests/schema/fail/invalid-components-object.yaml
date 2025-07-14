@@ -1,0 +1,16 @@
+openapi: 3.2.0
+info:
+  title: API
+  version: 1.0.0
+paths: true
+components:
+  schemas: true
+  responses: true
+  parameters: true
+  examples: true
+  requestBodies: true
+  headers: true
+  securitySchemes: true
+  links: true
+  callbacks: true
+  pathItems: true

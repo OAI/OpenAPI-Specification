@@ -1,0 +1,9 @@
+openapi: 3.2.0
+$self: true
+info:
+  summary: true
+  description: true
+  termsOfService: true
+  license:
+    identifier: true
+    url: true

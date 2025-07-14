@@ -1,0 +1,19 @@
+openapi: 3.2.0
+info:
+  title: API
+  version: 1.0.0
+servers:
+  - url: true
+    description: true
+    name: true
+    variables: true
+  - description: no url
+    variables:
+      no-object: true
+      invalid-enum:
+        enum: true
+        description: true
+      invalid-enum-value:
+        enum: [42]
+      invalid-default:
+        default: true

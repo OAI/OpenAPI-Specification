@@ -1,0 +1,26 @@
+openapi: 3.2.0
+info:
+  title: API
+  version: 1.0.0
+components:
+  schemas:
+    externalDocs-no-object:
+      externalDocs: true
+    externalDocs-incomplete:
+      externalDocs:
+        description: true
+    externalDocs-invalid-url:
+      externalDocs:
+        url: true
+    discriminator-no-object:
+      discriminator: true
+    discriminator-incomplete:
+      discriminator:
+        mapping: true
+    discriminator-invalid-propertyName:
+      discriminator:
+        propertyName: true
+    discriminator-invalid-mapping:
+      discriminator:
+        mapping:
+          key: true

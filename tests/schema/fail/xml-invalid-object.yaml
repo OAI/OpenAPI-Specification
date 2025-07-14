@@ -1,0 +1,15 @@
+openapi: 3.2.0
+info:
+  title: API
+  version: 1.0.0
+components:
+  schemas:
+    Attr:
+      type: string
+      xml: 
+        nodeType: true
+        name: true
+        namespace: true
+        prefix: true
+        attribute: 42
+        wrapped: 42

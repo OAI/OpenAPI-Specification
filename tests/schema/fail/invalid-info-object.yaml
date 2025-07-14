@@ -1,0 +1,9 @@
+openapi: 3.2.0
+info:
+  title: true
+  summary: true
+  description: true
+  termsOfService: true
+  version: 1
+  contact: true
+  license: true

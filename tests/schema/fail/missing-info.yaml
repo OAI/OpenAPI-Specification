@@ -1,0 +1,3 @@
+openapi: hi
+jsonSchemaDialect: true
+$self: a#b

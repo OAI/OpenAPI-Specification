@@ -52,6 +52,13 @@ describe("v3.2", () => {
     await expect(oad).to.not.matchJsonSchema("./src/schemas/validation/schema.yaml"); // <-- "schema.yaml" instead of "schema-base.yaml"
   });
 
+  test("unreachable branch in Reference Object", async () => {
+    // The Reference Object schema is only conditionally reached if the instance is an object,
+    // so the `type: object` line will never fail unless "directly" tested with a non-object instance.
+    const invalidReferenceObject = 42;
+    await expect(invalidReferenceObject).to.not.matchJsonSchema("./src/schemas/validation/schema.yaml#/$defs/reference"); // <-- "schema.yaml" instead of "schema-base.yaml"
+  });
+
   describe("Pass", () => {
     readdirSync(`${fixtures}/pass`, { withFileTypes: true })
       .filter((entry) => entry.isFile() && /\.yaml$/.test(entry.name))

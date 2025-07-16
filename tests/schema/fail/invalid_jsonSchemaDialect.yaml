@@ -12,4 +12,5 @@ components:
     WithDollarSchema:
       $id: "locked-metaschema"
       $schema: https://spec.openapis.org/oas/3.2/dialect/WORK-IN-PROGRESS
-paths: {}
+paths:
+  invalid: true

@@ -25,10 +25,6 @@ components:
       description: true
       servers: true
       parameters: true
-      additionalOperations: none
-    invalid-additionalOperations:
-      additionalOperations:
-        ö: true
     invalid-operations:
       get:
         tags: true
@@ -47,6 +43,9 @@ components:
         responses: false
       patch:
         responses: {}
+      post:
+        responses:
+          invalid: true
   requestBodies:
     no-object: true
     invalid:

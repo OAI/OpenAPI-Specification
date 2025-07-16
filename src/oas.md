@@ -2450,6 +2450,67 @@ Using `content` with a `text/plain` media type is RECOMMENDED for headers where 
 | ---- | :----: | ---- |
 | <a name="header-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | A map containing the representations for the header. The key is the media type and the value describes it. The map MUST only contain one entry. |
 
+##### Modeling Link Headers
+
+[[!RFC9264]] defines the `application/linkset` and `application/linkset+json` media types.
+The former is exactly the format of HTTP link header values except allowing additional whitespace for readability, while the latter is an equivalent JSON representation of such headers.
+
+To use either of these media types, the `schema` in the [Media Type Object](#media-type-object) MUST describe the links as they would be structured in the `application/linkset+json` format.
+If the Media Type Object's parent key is `application/linkset+json`, then the serialization is trivial, however this format cannot be used in the HTTP `Link` header.
+If the Media Type Object's parent key is `application/linkset`, then the serialization MUST be the equivalent representation of the `schema`-modeled links in the `application/linkset` format.
+If the `application/linkset` Media Type Object is used in the `content` field of a Header Object (or a Parameter Object with `in: "header"`), the serialization MUST be made compatible with the HTTP field syntax as described by [[!RFC9264]] [Section 4.1](https://www.rfc-editor.org/rfc/rfc9264.html#name-http-link-document-format-a).
+
+The following example shows how the same data model can be used for a collection pagination linkset either in JSON format as message content, or in the HTTP `Link` header:
+
+```yaml
+components:
+  schemas:
+    SimpleLinkContext:
+      type: array
+      items:
+        type: object
+        required:
+        - href
+        properties:
+          href:
+            type: string
+            format: uri-reference
+    CollectionLinks:
+      type: object
+      required:
+      - linkset
+      properties:
+        linkset:
+          type: array
+          items:
+            type: object
+            required: [first, prev, next, last]
+            properties:
+              anchor:
+                type: string
+                format: uri
+            additionalProperties:
+              $ref: '#/components/schemas/SimpleLinkContext'
+  responses:
+    CollectionWithLinks:
+      content:
+        application/json:
+          schema:
+            type: array
+      headers:
+        Link:
+          required: true
+          content:
+            application/linkset:
+              schema:
+                $ref: '#/components/schemas/CollectionLinks'
+    StandaloneJsonLinkset:
+      content:
+        application/linkset+json:
+          schema:
+            $ref: '#/components/mediaTypes/CollectionLinks'
+```
+
 ##### Header Object Example
 
 A simple header of type `integer`:
@@ -4292,6 +4353,7 @@ This will expand to the result:
 
 [RFC6570](https://www.rfc-editor.org/rfc/rfc6570)'s percent-encoding behavior is not always appropriate for `in: "header"` and `in: "cookie"` parameters.
 In many cases, it is more appropriate to use `content` with a media type such as `text/plain` and require the application to assemble the correct string.
+Other media types, such as `application/linkset` (see [Modeling Link Headers](#modeling-link-headers)), are directly suitable for use as `content` for specific headers.
 
 In some cases, setting `allowReserved: true` will be sufficient to avoid incorrect encoding, however many characters are still percent-encoded with this field enabled, so care must be taken to ensure no unexpected percent-encoding will take place.
 

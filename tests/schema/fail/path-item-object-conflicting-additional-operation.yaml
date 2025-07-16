@@ -23,6 +23,7 @@ paths:
             text/html:
               schema:
                 $ref: '#/components/schemas/ErrorModel'
+          unexpected: true
     parameters:
       - name: id
         in: path

@@ -1,0 +1,18 @@
+openapi: 3.1.0
+info:
+  title: API
+  version: 1.0.0
+paths:
+  /user:
+    parameters:
+      - in: query
+        name: example
+        schema:
+          # Allow an arbitrary JSON object to keep
+          # the example simple
+          type: object
+          # DEPRECATED: don't use example keyword inside Schema Object
+          example: {
+            "numbers": [1, 2],
+            "flag": null
+          }

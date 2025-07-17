@@ -1773,7 +1773,7 @@ Note that there are significant restrictions on what headers can be used with `m
 When multiple values are provided for `contentType`, parsing remains straightforward as the part's actual `Content-Type` is included in the document.
 
 For encoding and serialization, implementations MUST provide a mechanism for applications to indicate which media type is intended.
-Implementations MAY choose to offer media type sniffing ([[!SNIFF]]) as an alternative, but this MUST NOT be the default behavior due to the security risks inherent in the process.
+Implementations MAY choose to offer media type sniffing ([[SNIFF]]) as an alternative, but this MUST NOT be the default behavior due to the security risks inherent in the process.
 
 ###### `Content-Transfer-Encoding` and `contentEncoding`
 

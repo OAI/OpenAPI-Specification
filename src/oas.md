@@ -1331,15 +1331,15 @@ Each field has its own set of media types with which it can be used; for all oth
 The behavior of the `encoding` field is designed to support web forms, and is therefore only defined for media types structured as name-value pairs that allow repeat values, most notably `application/x-www-form-urlencoded` and `multipart/form-data`.
 
 To use the `encoding` field, each key under the field MUST exist as a property; `encoding` entries with no corresponding property SHALL be ignored.
-Array properties MUST be handled by applying the given Encoding Object to produce one encoded value per array item, each with the same `name`, as is recommended by [[?RFC7578]] [Section 4.3](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3) for supplying multiple values per form field.
+Array properties MUST be handled by applying the given Encoding Object to produce one encoded value per array item, each with the same `name`, as is recommended by [[!RFC7578]] [Section 4.3](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3) for supplying multiple values per form field.
 For all other value types for both top-level non-array properties and for values, including array values, within a top-level array, the Encoding Object MUST be applied to the entire value.
 The order of these name-value pairs in the target media type is implementation-defined.
 
 For `application/x-www-form-urlencoded`, the encoding keys MUST map to parameter names, with the values produced according to the rules of the [Encoding Object](#encoding-object).
 See [Encoding the `x-www-form-urlencoded` Media Type](#encoding-the-x-www-form-urlencoded-media-type) for guidance and examples, both with and without the `encoding` field.
 
-For `multipart`, the encoding keys MUST map to the [`name` parameter](https://www.rfc-editor.org/rfc/rfc7578#section-4.2) of the `Content-Disposition: form-data` header of each part, as is defined for `multipart/form-data` in [[?RFC7578]].
-See [[?RFC7578]] [Section 5](https://www.rfc-editor.org/rfc/rfc7578.html#section-5) for guidance regarding non-ASCII part names.
+For `multipart`, the encoding keys MUST map to the [`name` parameter](https://www.rfc-editor.org/rfc/rfc7578#section-4.2) of the `Content-Disposition: form-data` header of each part, as is defined for `multipart/form-data` in [[!RFC7578]].
+See [[!RFC7578]] [Section 5](https://www.rfc-editor.org/rfc/rfc7578.html#section-5) for guidance regarding non-ASCII part names.
 
 See [Encoding `multipart` Media Types](#encoding-multipart-media-types) for further guidance and examples, both with and without the `encoding` field.
 
@@ -1359,7 +1359,7 @@ The `itemEncoding` field can also be used with `itemSchema` to support streaming
 The `prefixEncoding` field can be used with any `multipart` content to require a fixed part order.
 This includes `multipart/form-data`, for which the Encoding Object's `headers` field MUST be used to provide the `Content-Disposition` and part name, as no property names exist to provide the names automatically.
 
-Prior versions of this specification advised using the `name` [`Content-Disposition` parameter](https://www.iana.org/assignments/cont-disp/cont-disp.xhtml#cont-disp-2) of the `form-data` [`Content-Disposition` value](https://www.iana.org/assignments/cont-disp/cont-disp.xhtml#cont-disp-1) with `multipart` media types other than `multipart/form-data` in order to work around the limitations of the `encoding` field.
+Prior versions of this specification advised using the [`name` parameter](https://www.rfc-editor.org/rfc/rfc7578#section-4.2) of the `Content-Disposition: form-data` header of each part with `multipart` media types other than `multipart/form-data` in order to work around the limitations of the `encoding` field.
 Implementations MAY choose to support this workaround, but as this usage is not common, implementations of non-`form-data` `multipart` media types are unlikely to support it.
 
 ##### Media Type Examples

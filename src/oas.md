@@ -1323,7 +1323,7 @@ properties:
 
 ##### Encoding Usage and Restrictions
 
-The three encoding fields define how to map each [Encoding Object](#encoding object) to a specific value in the data.
+These encoding fields define how to map each [Encoding Object](#encoding object) to a specific value in the data.
 Each field has its own set of media types with which it can be used; for all other media types all three fields SHALL be ignored.
 
 ###### Encoding By Name

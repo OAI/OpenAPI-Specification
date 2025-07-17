@@ -309,7 +309,7 @@ Using a `contentEncoding` of `base64url` ensures that URL encoding (as required 
 
 The `contentMediaType` keyword is redundant if the media type is already set:
 
-* as the key for a [MediaType Object](#media-type-object)
+* as the key for a [Media Type Object](#media-type-object)
 * in the `contentType` field of an [Encoding Object](#encoding-object)
 
 If the [Schema Object](#schema-object) will be processed by a non-OAS-aware JSON Schema implementation, it may be useful to include `contentMediaType` even if it is redundant. However, if `contentMediaType` contradicts a relevant Media Type Object or Encoding Object, then `contentMediaType` SHALL be ignored.

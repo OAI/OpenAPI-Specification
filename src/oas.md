@@ -1927,15 +1927,15 @@ multipart/mixed:
 
 ###### Example: Ordered Multipart With Required Header
 
-As described in [[?RFC2557]], a set of resources making up a web pages can be sent in a `multipart/related` payload, preserving links among themselves by defining a `Content-Location` header for each page.
-The first part is used as the root resource (unless using `Content-ID`, which RFC2557 advises against), so we use `prefixItems` and `prefixEncoding` to define that it must be an HTML resource, and then allow any of several different types of resources in any order to follow.
+As described in [[?RFC2557]], a set of resources making up a web page can be sent in a `multipart/related` payload, preserving links from the `text/html` document to subsidiary resources such as scripts, style sheets, and images by defining a `Content-Location` header for each page.
+The first part is used as the root resource (unless using `Content-ID`, which RFC2557 advises against and is forbidden in this example), so we use `prefixItems` and `prefixEncoding` to define that it must be an HTML resource, and then allow any of several different types of resources in any order to follow.
 
 The `Content-Location` header is defined using `content: {text/plain: {...}}` to avoid percent-encoding its URI value; see [Appendix D](appendix-d-serializing-headers-and-cookies) for further details.
 
 ```yaml
 components:
   headers:
-    RFC2557ContentId:
+    RFC2557NoContentId:
       description: Use Content-Location instead of Content-ID
       schema: false
     RFC2557ContentLocation:
@@ -1961,14 +1961,14 @@ components:
           - contentType: text/html
             headers:
               Content-ID:
-                $ref: '#/components/headers/RFC2557ContentId'
+                $ref: '#/components/headers/RFC2557NoContentId'
               Content-Location:
                 $ref: '#/components/headers/RFC2557ContentLocation'
           itemEncoding:
-            contentType: text/html, text/css, text/javascript, image/*
+            contentType: text/css,text/javascript,image/*
             headers:
               Content-ID:
-                $ref: '#/components/headers/RFC2557ContentId'
+                $ref: '#/components/headers/RFC2557NoContentId'
               Content-Location:
                 $ref: '#/components/headers/RFC2557ContentLocation'
 ```

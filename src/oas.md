@@ -1880,8 +1880,8 @@ As seen in the [Encoding Object's `contentType` field documentation](#encoding-c
 
 ###### Example: Nested `multipart/mixed`
 
-This defines a two-part `multipart/mixed` where the first part is JSON and the second part is a nested `multipart/mixed` document.
-The nested parts are JSON, plain text, and a PNG image.
+This defines a two-part `multipart/mixed` where the first part is a JSON array and the second part is a nested `multipart/mixed` document.
+The nested parts are XML, plain text, and a PNG image.
 
 ```yaml
 multipart/mixed:
@@ -1889,7 +1889,8 @@ multipart/mixed:
     type: array
     prefixItems:
     - type: array
-    - prefixItems:
+    - type: array
+      prefixItems:
       - type: object
       - type: string
       - {}

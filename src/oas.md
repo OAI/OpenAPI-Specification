@@ -2004,8 +2004,8 @@ multipart/byteranges:
         content:
           text/plain:
             schema:
-              # A suitable "pattern" constraint for this
-              # header is left as an exercise for the reader
+              # The `pattern` regular expression that would
+              # be included in practice is omitted for simplicity
               type: string
 ```
 

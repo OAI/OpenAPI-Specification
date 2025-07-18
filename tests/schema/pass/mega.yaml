@@ -6,6 +6,7 @@ info:
   license:
     name: Apache 2.0
     identifier: Apache-2.0
+x-tensions: can appear in many places
 paths:
   /:
     get:

@@ -2174,7 +2174,7 @@ content:
 
 ###### Binary Examples
 
-Fully binary data is shown using `serializedDataValue`:
+Fully binary data is shown using `externalValue`:
 
 ```yaml
 content:
@@ -2182,7 +2182,7 @@ content:
     schema: {}
     examples:
       Red:
-        serializedDataValue: ./examples/2-by-2-red-pixels.png
+        externalValue: ./examples/2-by-2-red-pixels.png
 ```
 
 ###### Boolean Query Parameter Examples

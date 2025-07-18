@@ -60,4 +60,5 @@ components:
           examples:
             jsonFormValue:
               description: 'The JSON string "json" as a form value'
-              value: jsonValue=%22json%22
+              dataValue: json
+              serializedValue: jsonValue=%22json%22

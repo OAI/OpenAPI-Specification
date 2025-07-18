@@ -301,7 +301,7 @@ API data has three forms:
 ##### JSON Data
 
 JSON-serialized data is nearly equivalent to the data form because the [JSON Schema data model](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-4.2.1) is nearly equivalent to the JSON representation.
-The serialized UTF-8 JSON string `{"when": "1985-04-12T23%3A20%3A50.52"}` represents an object with one data field, named `when`, with a string value, `1985-04-12T23%3A20%3A50.52`.
+The serialized UTF-8 JSON string `{"when": "1985-04-12T23:20:50.52"}` represents an object with one data field, named `when`, with a string value, `1985-04-12T23:20:50.52`.
 
 The exact application form is beyond the scope of this specification, as can be shown with the following schema for our JSON instance:
 
@@ -328,10 +328,33 @@ Serializing data into such formats requires either examining the schema-validate
 
 When inspecting schemas, given a starting point schema, implementations MUST examine that schema and all schemas that can be reached from it by following only `$ref` and `allOf` keywords.
 These schemas are guaranteed to apply to any instance.
+When searching schemas for `type`, if the `type` keyword's value is a list of types and the serialized value can be successfully parsed as more than one of the types in the list, and no other findable `type` keyword disambiguates the actual required type, the behavior is implementation-defined.
+Schema Objects that do not contain `type` MUST be considered to allow all types, regardless of which other keywords are present (e.g. `maximum` applies to numbers, but _does not_ require the instance to be a number).
 
-Due to this limited requirement for searching schemas, serializers that have access to validated data MUST inspect the data if possible; implementations that either do not work with runtime data (such as code generators) or cannot access validated data for some reason MUST fall back to schema inspection.
+Implementations MAY inspect subschemas or possible reference targets of other keywords such as `oneOf` or `$dynamicRef`, but MUST NOT attempt to resolve ambiguities.
+For example, if an implementation opts to inspect `anyOf`, the schema:
 
-When searching schemas for `type`, if the `type` keyword's value is a list of types and the serialized value can be successfully parsed as more than one of the types in the list, the behavior is implementation-defined.
+```yaml
+anyOf:
+- type: number
+  minimum: 0
+- type: number
+  maximum: 100
+```
+
+unambiguously indicates a numeric type, but the schema:
+
+```yaml
+anyOf:
+- type: number
+- maximum: 100
+```
+
+does not, because the second subschema allows all types.
+
+Due to these limited requirements for searching schemas, serializers that have access to validated data MUST inspect the data if possible; implementations that either do not work with runtime data (such as code generators) or cannot access validated data for some reason MUST fall back to schema inspection.
+
+Recall also that in JSON Schema, keywords that apply to a specific type (e.g. `pattern` applies to strings, `minimum` applies to numbers) _do not_ require or imply that the data will actually be of that type.
 
 As an example of these processes, given these OpenAPI components:
 
@@ -352,8 +375,9 @@ components:
       properties:
         code:
           allOf:
-          - type: string
+          - type: [string, number]
             pattern: "1"
+            minimum: 0
           - type: string
             pattern: "2"
         count:
@@ -373,12 +397,14 @@ We must first search the schema for `properties` or other property-defining keyw
 * `#/components/requestBodies/Form/content/application~1x-www-form-urlencoded/schema` (initial starting point schema, only `$ref`)
 * `#/components/schemas/FormData` (follow `$ref`, found `properties`)
 * `#/components/schemas/FormData/properties/code` (starting point schema for `code` property)
-* `#/components/schemas/FormData/properties/code/allOf/0` (follow `allOf`, but no `type`)
+* `#/components/schemas/FormData/properties/code/allOf/0` (follow `allOf`, found `type: [string, number]`)
 * `#/components/schemas/FormData/properties/code/allOf/1` (follow `allOf`, found `type: string`)
 * `#/components/schemas/FormData/properties/count` (starting point schema for `count` property, found `type: integer`)
 * `#/components/schemas/FormData/properties/extra` (starting point schema for `extra` property, found `type: object`)
 
-From this, we determine that `code` is a string that happens to look like a number, while `count` needs to be parsed into a number _prior_ to schema validation.
+Note that for `code` we first found an ambiguous `type`, but then found another `type` keyword that ensures only one of the two possibilities is valid.
+
+From this inspection, we determine that `code` is a string that happens to look like a number, while `count` needs to be parsed into a number _prior_ to schema validation.
 Furthermore, the `extra` string is in fact an XML serialization of an object containing an `info` property.
 This means that the data form of this serialization is equivalent to the following JSON object:
 

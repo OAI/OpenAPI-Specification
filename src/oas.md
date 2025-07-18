@@ -3274,7 +3274,7 @@ For examples using `attribute` or `wrapped`, please see version 3.1 of the OpenA
 
 ###### No XML Object
 
-Basic string property without an XML Object, using `serializedValue` (the remaining examples will use `externalSerializedValue` so that the XML form can be shown with syntax highlighting):
+Basic string property without an XML Object, using `serializedValue` (the remaining examples will use `externalValue` so that the XML form can be shown with syntax highlighting):
 
 ```yaml
 application/xml:
@@ -3312,7 +3312,7 @@ application/xml:
     pets:
       dataValue:
         animals: [dog, cat, hamster]
-      externalSerializedValue: ./examples/pets.xml
+      externalValue: ./examples/pets.xml
 ```
 
 Where `./examples/pets.xml` would be:
@@ -3342,7 +3342,7 @@ application/xml:
     pets:
       dataValue:
         animals: [dog, cat, hamster]
-      externalSerializedValue: ./examples/pets.xml
+      externalValue: ./examples/pets.xml
 ```
 
 Where `./examples/pets.xml` would be:
@@ -3386,7 +3386,7 @@ components:
               dataValue:
                 id: 123
                 name: example
-              externalSerializedValue: ./examples/Person.xml
+              externalValue: ./examples/Person.xml
 ```
 
 Where `./examples/Person.xml` would be:
@@ -3418,7 +3418,7 @@ application/xml:
     pets:
       dataValue:
         animals: [dog, cat, hamster]
-      externalSerializedValue: ./examples/pets.xml
+      externalValue: ./examples/pets.xml
 ```
 
 Where `./examples/pets.xml` would be:
@@ -3452,7 +3452,7 @@ application/xml:
     pets:
       dataValue:
         animals: [dog, cat, hamster]
-      externalSerializedValue: ./examples/pets.xml
+      externalValue: ./examples/pets.xml
 ```
 
 Where `./examples/pets.xml` would be:
@@ -3484,7 +3484,7 @@ application/xml:
     pets:
       dataValue:
         animals: [dog, cat, hamster]
-      externalSerializedValue: ./examples/pets.xml
+      externalValue: ./examples/pets.xml
 ```
 
 Where `./examples/pets.xml` would be:
@@ -3520,7 +3520,7 @@ application/xml:
     pets:
       dataValue:
         animals: [dog, cat, hamster]
-      externalSerializedValue: ./examples/pets.xml
+      externalValue: ./examples/pets.xml
 ```
 
 Where `./examples/pets.xml` would be:
@@ -3557,7 +3557,7 @@ application/xml:
     pets:
       dataValue:
         animals: [dog, cat, hamster]
-      externalSerializedValue: ./examples/pets.xml
+      externalValue: ./examples/pets.xml
 ```
 
 Where `./examples/pets.xml` would be:
@@ -3592,7 +3592,7 @@ application/xml:
     pets:
       dataValue:
         animals: [dog, cat, hamster]
-      externalSerializedValue: ./examples/pets.xml
+      externalValue: ./examples/pets.xml
 ```
 
 Where `./examples/pets.xml` would be:
@@ -3671,7 +3671,7 @@ components:
           docs:
             dataValue:
               content: <html><head><title>Awesome Docs</title></head><body></body><html>
-            externalSerializedValue: ./examples/docs.xml
+            externalValue: ./examples/docs.xml
 ```
 
 Where `./examples/docs.xml` would be:
@@ -3682,7 +3682,7 @@ Where `./examples/docs.xml` would be:
 </Documentation>
 ```
 
-Alternatively, the named root element could be set at the point of use and the root element disabled on the component:
+Alternatively, the named root element could be set at the point of use and the root element disabled on the component (note that in this example, the same `dataValue` is used in two places with different serializations shown with `externalValue`):
 
 ```yaml
 paths:
@@ -3699,8 +3699,10 @@ paths:
                 $ref: "#/components/schemas/Documentation"
               examples:
                 stored:
-                  externalDataValue: ./examples/content.json
-                  externalSerializedValue: ./examples/stored.xml
+                  dataValue: {
+                    "content": "<html><head><title>Awesome Docs</title></head><body></body><html>"
+                  }
+                  externalValue: ./examples/stored.xml
     put:
       requestBody:
         required: true
@@ -3713,8 +3715,10 @@ paths:
               $ref: "#/components/schemas/Documentation"
             examples:
               updated:
-                externalDataValue: ./examples/content.json
-                externalSerializedValue: ./examples/updated.xml
+                dataValue: {
+                  "content": "<html><head><title>Awesome Docs</title></head><body></body><html>"
+                }
+                externalValue: ./examples/updated.xml
       responses:
         "201": {}
 components:
@@ -3733,11 +3737,6 @@ components:
 
 where `./examples/content.json` would be:
 
-```json
-{
-  "content": "<html><head><title>Awesome Docs</title></head><body></body><html>"
-}
-```
 
 `./examples/stored.xml` would be:
 
@@ -3806,7 +3805,7 @@ application/xml:
         },
         null
       ]
-      externalSerializedValue: ./examples/OneTwoThree.xml
+      externalValue: ./examples/OneTwoThree.xml
 ```
 
 Where `./examples/OneTwoThree.xml` would be:
@@ -3845,7 +3844,7 @@ application/xml:
         42,
         "Some postamble text."
       ]
-      externalSerializedValue: ./examples/Report.xml
+      externalValue: ./examples/Report.xml
 ```
 
 Where `./examples/Report.xml` would be:
@@ -3894,14 +3893,14 @@ examples:
       "description": "Thing",
       "related": null
     }
-    externalSerializedValue: ./examples/productWithNulls.xml
+    externalValue: ./examples/productWithNulls.xml
   productNoNulls:
     dataValue: {
       "count": 42,
       "description: "Thing"
       "related": {}
     }
-   externalSerializedValue: ./examples/productNoNulls.xml
+   externalValue: ./examples/productNoNulls.xml
 ```
 
 Where `./examples/productWithNulls.xml` would be:

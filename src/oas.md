@@ -318,13 +318,13 @@ This specification only requires that the data is valid according to the schema,
 
 ##### Non-JSON Data
 
-Non-JSON serializetions can be substantially different from their corresponding data form, and might require several steps to parse.
+Non-JSON serializations can be substantially different from their corresponding data form, and might require several steps to parse.
 
 To continue our "when" example, if we serialized the object as `application/x-www-form-urlencoded`, it would appear as the ASCII string `when=1985-04-12T23%3A20%3A50.52`.
 This example is still straightforward to use as it is all string data, and the only differences from JSON are the URI percent-encoding and the delimiter syntax (`=` instead of JSON punctuation and quoting).
 
 However, many non-JSON text-based formats can be complex, requiring examination of the appropriate schema(s) in order to correctly parse the text into a schema-ready data structure.
-Serializing data into such formats requires either examing the schema-validated data or performing the same schema inspections.
+Serializing data into such formats requires either examining the schema-validated data or performing the same schema inspections.
 
 When inspecting schemas, given a starting point schema, implementations MUST examine that schema and all schemas that can be reached from it by following only `$ref` and `allOf` keywords.
 These schemas are guaranteed to apply to any instance.
@@ -376,7 +376,7 @@ We must first search the schema for `properties` or other property-defining keyw
 * `#/components/schemas/FormData/properties/code/allOf/0` (follow `allOf`, but no `type`)
 * `#/components/schemas/FormData/properties/code/allOf/1` (follow `allOf`, found `type: string`)
 * `#/components/schemas/FormData/properties/count` (starting point schema for `count` property, found `type: integer`)
-* `#/components/schemas/FormData/properties/extra` (starting point schema for `count` property, found `type: object`)
+* `#/components/schemas/FormData/properties/extra` (starting point schema for `extra` property, found `type: object`)
 
 From this, we determine that `code` is a string that happens to look like a number, while `count` needs to be parsed into a number _prior_ to schema validation.
 Furthermore, the `extra` string is in fact an XML serialization of an object containing an `info` property.

@@ -1119,7 +1119,7 @@ examples:
     serializedValue: "%D8%A7%D9%84%D8%AE%D9%88%D8%A7%D8%B1%D8%B2%D9%85%D9%8A%D9%91"
 ```
 
-An optional query parameter of a integer value, allowing multiple values by repeating the query parameter
+An optional query parameter of a string value, allowing multiple values by repeating the query parameter
 (Note that we use `"%20"` in place of `" "` (space) because that is how RFC6570 handles it; for guidance on using `+` to represent the space character, see [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for more guidance on these escaping options):
 
 ```yaml
@@ -1138,7 +1138,7 @@ examples:
     serializedValue: "thing=one%20thing&thing=another%20thing"
 ```
 
-A free-form query parameter, allowing arbitrary parameters of a `type: "integer"`:
+A free-form query parameter, allowing arbitrary parameters of `type: "integer"`:
 
 ```yaml
 in: query

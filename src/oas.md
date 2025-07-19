@@ -2166,8 +2166,10 @@ For Parameter and Header Objects using `schema` and `style` rather than a Media 
 A serialization can be represented as a valid Unicode string in `serializedValue` if any of the following are true of the serialization:
 
 * It is for a media type that supports a `charset` parameter that indicates any Unicode encoding (UTF-8, UTF-16, etc.), or any valid subset of such an encoding, such as US-ASCII.
-* It is for a format (such as URIs or HTTP fields) or character-based media type that requires or defaults to a Unicode encoding such as UTF-8, or any valid subset of such an encoding, such as US-ASCII, and this is not overridden by `charset`.
+* It is for a format (such as URIs or HTTP fields) or character-based media type that requires or defaults to a Unicode encoding, or any valid subset of such an encoding, such as US-ASCII, and this is not overridden by `charset`.
 * It is for a compound format where all parts meet at least one of the above criteria, e.g. a `multipart/mixed` media type with parts that are `application/json` (a media type that defaults to UTF-8) and `application/xml; charset=utf-8` (a media type with an explicit `charset` parameter).
+
+In all of these cases, the conversion from the character set of the OAD (presumed to be UTF-8 as the only interoperable character set for JSON, an therefore also for JSON-compatible YAML as noted in [[RFC9512]] [Section 3.4](https://www.rfc-editor.org/rfc/rfc9512.html#section-3.4)) first to Unicode code points and then to the actual serialization character set is well-defined.
 
 For `externalValue`, if the character set is neither explicitly stated nor determined by the format or media type specification, implementations SHOULD assume UTF-8.
 

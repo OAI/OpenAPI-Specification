@@ -633,7 +633,7 @@ All objects defined within the Components Object will have no effect on the API 
 | <a name="components-links"></a> links | Map[`string`, [Link Object](#link-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Link Objects](#link-object). |
 | <a name="components-callbacks"></a> callbacks | Map[`string`, [Callback Object](#callback-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Callback Objects](#callback-object). |
 | <a name="components-path-items"></a> pathItems | Map[`string`, [Path Item Object](#path-item-object)] | An object to hold reusable [Path Item Objects](#path-item-object). |
-| <a name="components-media-types"></a> mediaTypes | Map[`string`, [Media Type Objects](#media-type-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Media Type Objects](#media-type-object). |
+| <a name="components-media-types"></a> mediaTypes | Map[`string`, [Media Type Object](#media-type-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Media Type Objects](#media-type-object). |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 

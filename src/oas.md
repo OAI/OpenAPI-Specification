@@ -2637,8 +2637,12 @@ ETag:
     text/plain:
       schema:
         type: string
+        # Note that quotation markes are part of the
+        # ETag value, unlike many other headers that
+        # use a quoted string purely for managing
+        # reserved characters.
         pattern: ^"
-  example: xyzzx
+  example: '"xyzzy"'
 ```
 
 #### Tag Object

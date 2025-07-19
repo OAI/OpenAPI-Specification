@@ -732,7 +732,6 @@ $defs:
             default: false
             type: boolean
         $ref: '#/$defs/examples'
-    $ref: '#/$defs/specification-extensions'
     allOf:
     - $ref: '#/$defs/examples'
     - $ref: '#/$defs/specification-extensions'

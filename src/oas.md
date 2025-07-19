@@ -1681,7 +1681,6 @@ The absence of all three of those fields is the equivalent of using `content`, b
 
 Nested formats requiring encoding, most notably nested `multipart/mixed`, can be supported with this Object's `encoding`, `prefixEncoding`, and / or `itemEncoding` fields.
 Implementations MUST support one level of nesting, and MAY support additional levels.
-If supporting additional levels, any limits on nesting levels MUST be documented.
 
 ##### Encoding the `x-www-form-urlencoded` Media Type
 

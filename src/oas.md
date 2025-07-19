@@ -631,6 +631,8 @@ All objects defined within the Components Object will have no effect on the API 
 | <a name="components-links"></a> links | Map[`string`, [Link Object](#link-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Link Objects](#link-object). |
 | <a name="components-callbacks"></a> callbacks | Map[`string`, [Callback Object](#callback-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Callback Objects](#callback-object). |
 | <a name="components-path-items"></a> pathItems | Map[`string`, [Path Item Object](#path-item-object)] | An object to hold reusable [Path Item Objects](#path-item-object). |
+| <a name="components-media-types"></a> mediaTypes | Map[`string`, [Media Type Objects](#media-type-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Media Type Objects](#media-type-object). |
+| <a name="components-encodings"></a> encodings | Map[`string`, [Encoding Objects](#encoding-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Encoding Objects](#encoding-object). |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
@@ -1012,7 +1014,7 @@ For use with `in: "querystring"` and `application/x-www-form-urlencoded`, see [E
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="parameter-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | A map containing the representations for the parameter. The key is the media type and the value describes it. The map MUST only contain one entry. |
+| <a name="parameter-content"></a>content | Map[`string`, [Media Type Object](#media-type-object) \| [Reference Object](#reference-object)] | A map containing the representations for the parameter. The key is the media type and the value describes it. The map MUST only contain one entry. |
 
 ##### Style Values
 
@@ -1202,7 +1204,7 @@ Describes a single request body.
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="request-body-description"></a>description | `string` | A brief description of the request body. This could contain examples of use. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
-| <a name="request-body-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | **REQUIRED**. The content of the request body. The key is a media type or [media type range](https://www.rfc-editor.org/rfc/rfc9110.html#appendix-A) and the value describes it. The map SHOULD have at least one entry; if it does not, the behavior is implementation-defined. For requests that match multiple keys, only the most specific key is applicable. e.g. `"text/plain"` overrides `"text/*"` |
+| <a name="request-body-content"></a>content | Map[`string`, [Media Type Object](#media-type-object) \| [Reference Object](#reference-object)] | **REQUIRED**. The content of the request body. The key is a media type or [media type range](https://www.rfc-editor.org/rfc/rfc9110.html#appendix-A) and the value describes it. The map SHOULD have at least one entry; if it does not, the behavior is implementation-defined. For requests that match multiple keys, only the most specific key is applicable. e.g. `"text/plain"` overrides `"text/*"` |
 | <a name="request-body-required"></a>required | `boolean` | Determines if the request body is required in the request. Defaults to `false`. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
@@ -1253,11 +1255,12 @@ See [Working With Examples](#working-with-examples) for further guidance regardi
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
+| <a name="media-type-description"></a>description | `string` | A brief description of the media type. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="media-type-schema"></a>schema | [Schema Object](#schema-object) | A schema describing the complete content of the request, response, parameter, or header. |
 | <a name="media-type-item-schema"></a>itemSchema | [Schema Object](#schema-object) | A schema describing each item within a [sequential media type](#sequential-media-types). |
 | <a name="media-type-example"></a>example | Any | Example of the media type; see [Working With Examples](#working-with-examples). |
 | <a name="media-type-examples"></a>examples | Map[ `string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | Examples of the media type; see [Working With Examples](#working-with-examples). |
-| <a name="media-type-encoding"></a>encoding | Map[`string`, [Encoding Object](#encoding-object)] | A map between a property name and its encoding information, as defined under [Encoding Usage and Restrictions](#encoding-usage-and-restrictions).  The `encoding` field SHALL only apply when the media type is `multipart` or `application/x-www-form-urlencoded`. If no Encoding Object is provided for a property, the behavior is determined by the default values documented for the Encoding Object. |
+| <a name="media-type-encoding"></a>encoding | Map[`string`, [Encoding Object](#encoding-object) \| [Reference Object](#reference-object)] | A map between a property name and its encoding information, as defined under [Encoding Usage and Restrictions](#encoding-usage-and-restrictions).  The `encoding` field SHALL only apply when the media type is `multipart` or `application/x-www-form-urlencoded`. If no Encoding Object is provided for a property, the behavior is determined by the default values documented for the Encoding Object. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
@@ -1643,6 +1646,7 @@ These fields MAY be used either with or without the RFC6570-style serialization 
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
+| <a name="encoding-description"></a>description | `string` | A brief description of the media type. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="encoding-content-type"></a>contentType | `string` | The `Content-Type` for encoding a specific property. The value is a comma-separated list, each element of which is either a specific media type (e.g. `image/png`) or a wildcard media type (e.g. `image/*`). Default value depends on the property type as shown in the table below. |
 | <a name="encoding-headers"></a>headers | Map[`string`, [Header Object](#header-object) \| [Reference Object](#reference-object)] | A map allowing additional information to be provided as headers. `Content-Type` is described separately and SHALL be ignored in this section. This field SHALL be ignored if the media type is not a `multipart`. |
 
@@ -1942,7 +1946,7 @@ Describes a single response from an API operation, including design-time, static
 | <a name="response-summary"></a>summary | `string` | A short summary of the meaning of the response. |
 | <a name="response-description"></a>description | `string` | A description of the response. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="response-headers"></a>headers | Map[`string`, [Header Object](#header-object) \| [Reference Object](#reference-object)] | Maps a header name to its definition. [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.1) states header names are case insensitive. If a response header is defined with the name `"Content-Type"`, it SHALL be ignored. |
-| <a name="response-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | A map containing descriptions of potential response payloads. The key is a media type or [media type range](https://www.rfc-editor.org/rfc/rfc9110.html#appendix-A) and the value describes it. For responses that match multiple keys, only the most specific key is applicable. e.g. `"text/plain"` overrides `"text/*"` |
+| <a name="response-content"></a>content | Map[`string`, [Media Type Object](#media-type-object) \| [Reference Object](#reference-object)] | A map containing descriptions of potential response payloads. The key is a media type or [media type range](https://www.rfc-editor.org/rfc/rfc9110.html#appendix-A) and the value describes it. For responses that match multiple keys, only the most specific key is applicable. e.g. `"text/plain"` overrides `"text/*"` |
 | <a name="response-links"></a>links | Map[`string`, [Link Object](#link-object) \| [Reference Object](#reference-object)] | A map of operations links that can be followed from the response. The key of the map is a short name for the link, following the naming constraints of the names for [Component Objects](#components-object). |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
@@ -2443,7 +2447,7 @@ Using `content` with a `text/plain` media type is RECOMMENDED for headers where 
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="header-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | A map containing the representations for the header. The key is the media type and the value describes it. The map MUST only contain one entry. |
+| <a name="header-content"></a>content | Map[`string`, [Media Type Object](#media-type-object) \| [Reference Object](#reference-object)] | A map containing the representations for the header. The key is the media type and the value describes it. The map MUST only contain one entry. |
 
 ##### Modeling Link Headers
 

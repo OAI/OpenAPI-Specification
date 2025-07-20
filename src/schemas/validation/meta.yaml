@@ -29,6 +29,8 @@ $defs:
         additionalProperties:
           type: string
         type: object
+      defaultMapping:
+        type: object
       propertyName:
         type: string
     required:

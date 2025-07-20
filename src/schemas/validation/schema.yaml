@@ -577,9 +577,24 @@ $defs:
       allowReserved:
         default: false
         type: boolean
+      encoding:
+        type: object
+        additionalProperties:
+          $ref: '#/$defs/encoding'
+      prefixEncoding:
+        type: array
+        items:
+          $ref: '#/$defs/encoding'
+      itemEncoding:
+        $ref: '#/$defs/encoding'
     allOf:
       - $ref: '#/$defs/specification-extensions'
       - $ref: '#/$defs/styles-for-form'
+      - dependentSchemas:
+          encoding:
+            properties:
+              prefixEncoding: false
+              itemEncoding: false
     unevaluatedProperties: false
 
   responses:

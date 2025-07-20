@@ -1648,6 +1648,9 @@ These fields MAY be used either with or without the RFC6570-style serialization 
 | ---- | :----: | ---- |
 | <a name="encoding-content-type"></a>contentType | `string` | The `Content-Type` for encoding a specific property. The value is a comma-separated list, each element of which is either a specific media type (e.g. `image/png`) or a wildcard media type (e.g. `image/*`). Default value depends on the property type as shown in the table below. |
 | <a name="encoding-headers"></a>headers | Map[`string`, [Header Object](#header-object) \| [Reference Object](#reference-object)] | A map allowing additional information to be provided as headers. `Content-Type` is described separately and SHALL be ignored in this section. This field SHALL be ignored if the media type is not a `multipart`. |
+| <a name="encoding-encoding"></a>encoding | Map[`string`, [Encoding Object](#encoding-object)] | Applies nested Encoding Objects in the same manner as the [Media Type Object](#media-type-object)'s `encoding` field. |
+| <a name="encoding-prefix-encoding"></a>prefixEncoding | [[Encoding Object](#encoding-object)] | Applies nested Encoding Objects in the same manner as the [Media Type Object](#media-type-object)'s `prefixEncoding` field. |
+| <a name="encoding-item-encoding"></a>itemEncoding | [Encoding Object](#encoding-object) | Applies nested Encoding Objects in the same manner as the [Media Type Object](#media-type-object)'s `itemEncoding` field. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
@@ -1680,6 +1683,11 @@ See also [Appendix C: Using RFC6570 Implementations](#appendix-c-using-rfc6570-b
 
 Note that the presence of at least one of `style`, `explode`, or `allowReserved` with an explicit value is equivalent to using `schema` with `in: "query"` Parameter Objects.
 The absence of all three of those fields is the equivalent of using `content`, but with the media type specified in `contentType` rather than through a Media Type Object.
+
+##### Nested Encoding
+
+Nested formats requiring encoding, most notably nested `multipart/mixed`, can be supported with this Object's `encoding`, `prefixEncoding`, and / or `itemEncoding` fields.
+Implementations MUST support one level of nesting, and MAY support additional levels.
 
 ##### Encoding the `x-www-form-urlencoded` Media Type
 
@@ -1884,6 +1892,31 @@ requestBody:
 ```
 
 As seen in the [Encoding Object's `contentType` field documentation](#encoding-content-type), the empty schema for `items` indicates a media type of `application/octet-stream`.
+
+###### Example: Nested `multipart/mixed`
+
+This defines a two-part `multipart/mixed` where the first part is a JSON array and the second part is a nested `multipart/mixed` document.
+The nested parts are XML, plain text, and a PNG image.
+
+```yaml
+multipart/mixed:
+  schema:
+    type: array
+    prefixItems:
+    - type: array
+    - type: array
+      prefixItems:
+      - type: object
+      - type: string
+      - {}
+  prefixEncoding:
+    - {} # Accept the default application/json
+    - contentType: multipart/mixed
+      prefixEncoding:
+      - contentType: application/xml
+      - {} # Accept the default text/plain
+      - contentType: image/png
+```
 
 #### Responses Object
 

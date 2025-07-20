@@ -30,7 +30,7 @@ $defs:
           type: string
         type: object
       defaultMapping:
-        type: object
+        type: string
       propertyName:
         type: string
     required:

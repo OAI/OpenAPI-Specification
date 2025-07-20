@@ -1039,7 +1039,7 @@ When showing serialized examples, such as with the [Example Object's](#example-o
 In cases where the name is an inherent part of constructing the serialization, such as the `name=value` pairs produced by `style: "form"` or the combination of `style: "simple", explode: true`, the name and any delimiter between the name and value MUST be included.
 
 The `matrix` and `label` styles produce a leading delimiter which is always a valid part of the serialization and MUST be included.
-The RFC6570 operators corresponding to `style: "form"` produces a leading delimiter of either `?` or `&` depending on the exact syntax used.
+The RFC6570 operators corresponding to `style: "form"` produce a leading delimiter of either `?` or `&` depending on the exact syntax used.
 As the suitability of either delimiter depends on where in the query string the parameter occurs, as well as whether it is in a URI or in `application/x-www-form-urlencoded` content, this leading delimiter MUST NOT be included in examples of individual parameters or media type documents.
 For `in: "cookie", style: "form"`, neither the `&` nor `?` delimiters are ever correct; see [Appendix D: Serializing Headers and Cookies](#appendix-d-serializing-headers-and-cookies) for more details.
 

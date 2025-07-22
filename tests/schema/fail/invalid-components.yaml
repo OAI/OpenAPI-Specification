@@ -33,6 +33,9 @@ components:
         responses: false
       patch:
         responses: {}
+      post:
+        responses:
+          invalid: true
   requestBodies:
     no-object: true
     invalid:

@@ -3,10 +3,10 @@ info:
   title: API
   version: 1.0.0
 servers:
-  - url: true
-    description: true
-    name: true
-    variables: true
+  - url: true # not a string
+    description: true # not a string
+    name: true # not a string
+    variables: [] # not an object
   - description: no url
     variables:
       no-object: true

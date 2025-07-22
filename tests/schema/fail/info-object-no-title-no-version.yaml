@@ -1,0 +1,4 @@
+openapi: 3.2.0
+info:
+  summary: must have title and version
+paths: {}

@@ -1,0 +1,18 @@
+openapi: 3.2.0
+info:
+  title: API
+  version: 1.0.0
+tags:
+  - true # not an object
+  - summary: true # no name
+  - name: true # not a string
+    description: true # not a string
+    externalDocs: true # not a string
+    parent: true # not a string
+    kind: true # not a string
+  - name: foo
+    externalDocs:
+      url: true # not a string
+  - name: bar
+    externalDocs:
+      description: true # not a string

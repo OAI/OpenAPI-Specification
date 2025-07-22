@@ -2,4 +2,165 @@ openapi: 3.2.0
 info:
   title: API
   version: 1.0.0
-components: true
+components:
+  pathItems:
+    ö: true
+    invalid:
+      $ref: 42
+      summary: true
+      description: true
+      servers: true
+      parameters: true
+      additionalOperations: none
+    invalid-additionalOperations:
+      additionalOperations:
+        ö: true
+    invalid-operations:
+      get:
+        tags: true
+        summary: true
+        description: true
+        operationId: true
+        parameters: true
+        callbacks: true
+        deprecated: maybe
+        security: no
+        servers: none
+      patch: false
+    invalid-responses:
+      get:
+        tags: [true]
+        responses: false
+      patch:
+        responses: {}
+  requestBodies:
+    no-object: true
+    invalid:
+      description: true
+      required: no
+  parameters:
+    no-object: true
+    no-in:
+      name: id
+      schema:
+        type: string
+    invalid:
+      name: 42
+      in: invalid
+      description: true
+      required: no
+      deprecated: no
+      content: {}
+    invalid-content:
+      name: id
+      content: 
+        one: true
+        two: false
+    invalid-querystring:
+      name: id
+      in: querystring
+    optional-path:
+      name: id
+      in: path
+      schema:
+        type: string
+      required: false
+    invalid-path:
+      name: id
+      in: path
+      schema:
+        type: string
+      style: invalid
+      allowReserved: yes
+    invalid-header:
+      name: id
+      in: header
+      schema:
+        type: string
+      style: 42
+    invalid-query:
+      name: id
+      in: query
+      schema:
+        type: string
+      style: invalid
+      allowEmptyValue: yes
+    invalid-cookie:
+      name: id
+      in: cookie
+      schema:
+        type: string
+      style: invalid
+    invalid-examples:
+      name: id
+      in: query
+      schema:
+        type: string
+      examples: true
+      explode: 42
+  callbacks:
+    no-object: true
+    invalid:
+      foo: true
+  links:
+    no-object: true
+    invalid:
+      description: true
+      operationId: true
+      operationRef: true
+      parameters: true
+      requestBody: true
+      responses: true
+      server: true
+      servers: true
+      deprecated: no
+  headers:
+    no-object: true
+    invalid:
+      description: true
+      required: yes
+      deprecated: no
+      content: {}
+    invalid-content:
+      content: 
+        one: true
+        two: false
+    invalid-style:
+      schema:
+        type: string
+      style: true
+      explode: no
+      allowReserved: yes
+  examples:
+    no-object: true
+    invalid-reference:
+      $ref: 42
+      summary: false
+      description: true
+    invalid:
+      summary: true
+      description: true
+      externalValue: true
+  responses:
+    no-object: true
+    invalid:
+      summary: true
+      description: true
+      headers: true
+      links: true
+      content: true
+    invalid-encoding:
+      content:
+        'application/json':
+          encoding: true
+    invalid-encoding-object:
+      content:
+        'application/json':
+          encoding:
+            foo: true
+            bar:
+              contentType: true
+              headers: true
+              style: true
+              explode: yes
+              allowReserved: no

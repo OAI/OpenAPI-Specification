@@ -2,7 +2,6 @@ openapi: 3.2.0
 info:
   title: API
   version: 1.0.0
-paths: []
 components:
   schemas: []
   responses: []

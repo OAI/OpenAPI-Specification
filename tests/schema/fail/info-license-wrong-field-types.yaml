@@ -1,0 +1,9 @@
+openapi: 3.2.0
+info:
+  title: API
+  version: 1.0.0
+  license:
+    name: true
+    identifier: true
+    url: true
+paths: {}

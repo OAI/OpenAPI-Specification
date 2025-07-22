@@ -156,6 +156,7 @@ components:
     invalid-encoding-object:
       content:
         'application/json':
+          description: true
           encoding:
             foo: true
             bar:
@@ -164,3 +165,5 @@ components:
               style: true
               explode: yes
               allowReserved: no
+              encoding: true
+              prefixEncoding: true

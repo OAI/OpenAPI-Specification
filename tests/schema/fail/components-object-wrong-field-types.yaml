@@ -1,0 +1,16 @@
+openapi: 3.1.0
+info:
+  title: API
+  version: 1.0.0
+components:
+  schemas: []
+  responses: []
+  parameters: []
+  examples: []
+  requestBodies: []
+  headers: []
+  securitySchemes: []
+  links: []
+  callbacks: []
+  pathItems: []
+  mediaTypes: []

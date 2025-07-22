@@ -3,6 +3,15 @@ openapi: 3.2.0
 info:
   title: API
   version: 1.0.0
+components:
+  mediaTypes:
+    StreamingPets:
+      description: |
+        Streaming sequence of JSON pet representations,
+        suitable for use with any of the streaming JSON
+        media types.
+      itemSchema:
+        $ref: '#components/schemas/Pet'
 paths:
   /something:
     put:
@@ -31,8 +40,9 @@ paths:
               frog:
                 $ref: '#/components/examples/frog-example'
           application/jsonl:
-            itemSchema:
-              $ref: '#components/schemas/Pet'
+            $ref: '#/components/mediaTypes/StreamingPets'
+          application/x-ndjson:
+            $ref: '#/components/mediaTypes/StreamingPets'
           application/xml:
             schema:
               type: object
@@ -117,6 +127,10 @@ paths:
                   type: string
                 forCoverage2:
                   type: string
+                nested1:
+                  type: object
+                nested2:
+                  type: array
             encoding:
               addresses:
                 # require XML Content-Type in utf-8 encoding
@@ -138,3 +152,12 @@ paths:
               forCoverage2:
                 style: spaceDelimited
                 explode: true
+              nested1:
+                contentType: multipart/form-data
+                encoding:
+                  inner: {}
+              nested2:
+                contentType: multipart/mixed
+                prefixEncoding:
+                - {}
+                itemEncoding: {}

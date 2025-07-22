@@ -199,8 +199,12 @@ $defs:
         type: object
         additionalProperties:
           $ref: '#/$defs/path-item'
+      mediaTypes:
+        type: object
+        additionalProperties:
+          $ref: '#/$defs/media-type-or-reference'
     patternProperties:
-      '^(schemas|responses|parameters|examples|requestBodies|headers|securitySchemes|links|callbacks|pathItems)$':
+      '^(schemas|responses|parameters|examples|requestBodies|headers|securitySchemes|links|callbacks|pathItems|mediaTypes)$':
         $comment: Enumerating all of the property names in the regex above is necessary for unevaluatedProperties to work as expected
         propertyNames:
           pattern: '^[a-zA-Z0-9._-]+$'
@@ -517,7 +521,7 @@ $defs:
     $comment: https://spec.openapis.org/oas/v3.2#fixed-fields-10
     type: object
     additionalProperties:
-      $ref: '#/$defs/media-type'
+      $ref: '#/$defs/media-type-or-reference'
     propertyNames:
       format: media-range
 
@@ -525,6 +529,8 @@ $defs:
     $comment: https://spec.openapis.org/oas/v3.2#media-type-object
     type: object
     properties:
+      description:
+        type: string
       schema:
         $dynamicRef: '#meta'
       itemSchema:
@@ -537,6 +543,16 @@ $defs:
       - $ref: '#/$defs/specification-extensions'
       - $ref: '#/$defs/examples'
     unevaluatedProperties: false
+
+  media-type-or-reference:
+    if:
+      type: object
+      required:
+        - $ref
+    then:
+      $ref: '#/$defs/reference'
+    else:
+      $ref: '#/$defs/media-type'
 
   encoding:
     $comment: https://spec.openapis.org/oas/v3.2#encoding-object
@@ -561,9 +577,24 @@ $defs:
       allowReserved:
         default: false
         type: boolean
+      encoding:
+        type: object
+        additionalProperties:
+          $ref: '#/$defs/encoding'
+      prefixEncoding:
+        type: array
+        items:
+          $ref: '#/$defs/encoding'
+      itemEncoding:
+        $ref: '#/$defs/encoding'
     allOf:
       - $ref: '#/$defs/specification-extensions'
       - $ref: '#/$defs/styles-for-form'
+      - dependentSchemas:
+          encoding:
+            properties:
+              prefixEncoding: false
+              itemEncoding: false
     unevaluatedProperties: false
 
   responses:

@@ -62,6 +62,8 @@ sub-delims          = "!" / "$" / "&" / "'" / "(" / ")"
 
 Here, `pchar`, `unreserved`, `pct-encoded` and `sub-delims` definitions are taken from [RFC 3986](https://tools.ietf.org/html/rfc3986). The `path-template` is directly derived from [RFC 3986, section 3.3](https://datatracker.ietf.org/doc/html/rfc3986#section-3.3).
 
+Each template expression MUST NOT appear more than once in a single path template.
+
 See also [Appendix C: Using RFC6570-Based Serialization](#appendix-c-using-rfc6570-based-serialization) for additional guidance.
 
 ### Media Types
@@ -169,12 +171,14 @@ The [schema](#schema) exposes two types of fields: _fixed fields_, which have a 
 
 Patterned fields MUST have unique names within the containing object.
 
-In order to preserve the ability to round-trip between YAML and JSON formats, YAML version [1.2](https://yaml.org/spec/1.2/spec.html) is RECOMMENDED along with some additional constraints:
-
-* Tags MUST be limited to those allowed by [YAML's JSON schema ruleset](https://yaml.org/spec/1.2/spec.html#id2803231), which defines a subset of the YAML syntax and is unrelated to [[JSON-Schema-2020-12|JSON Schema]].
-* Keys used in YAML maps MUST be limited to a scalar string, as defined by the [YAML Failsafe schema ruleset](https://yaml.org/spec/1.2/spec.html#id2802346).
-
 **Note:** While APIs may be described by OpenAPI Descriptions in either YAML or JSON format, the API request and response bodies and other content are not required to be JSON or YAML.
+
+#### JSON and YAML Compatibility
+
+In order to preserve the ability to round-trip between YAML and JSON formats, YAML version [1.2](https://yaml.org/spec/1.2/spec.html) is RECOMMENDED along with the additional constraints listed in [[!RFC9512]] [Section 3.4](https://www.rfc-editor.org/rfc/rfc9512.html#name-yaml-and-json).
+
+The recommendation in previous versions of this specification to restrict YAML to its "JSON" [schema ruleset](https://yaml.org/spec/1.2/spec.html#id2803231) allowed for the inclusion of certain values that (despite the name) cannot be represented in JSON.
+OAD authors SHOULD NOT rely on any such JSON-incompatible YAML values.
 
 ### OpenAPI Description Structure
 
@@ -218,6 +222,63 @@ JSON or YAML objects within an OAD are interpreted as specific Objects (such as 
 * As a reference target, with the Object type matching the reference source's context
 
 If the same JSON/YAML object is parsed multiple times and the respective contexts require it to be parsed as _different_ Object types, the resulting behavior is _implementation defined_, and MAY be treated as an error if detected. An example would be referencing an empty Schema Object under `#/components/schemas` where a Path Item Object is expected, as an empty object is valid for both types. For maximum interoperability, it is RECOMMENDED that OpenAPI Description authors avoid such scenarios.
+
+#### Relative References in API Description URIs
+
+URIs used as references within an OpenAPI Description, or to external documentation or other supplementary information such as a license, are resolved as _identifiers_, and described by this specification as **_URIs_**.
+As noted under [Parsing Documents](#parsing-documents), this specification inherits JSON Schema Specification Draft 2020-12's requirements for [loading documents](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-9) and associating them with their expected URIs, which might not match their current location.
+This feature is used both for working in development or test environments without having to change the URIs, and for working within restrictive network configurations or security policies.
+
+Note that some URI fields are named `url` for historical reasons, but the descriptive text for those fields uses the correct "URI" terminology.
+
+Unless specified otherwise, all fields that are URIs MAY be relative references as defined by [RFC3986](https://tools.ietf.org/html/rfc3986#section-4.2).
+
+##### Establishing the Base URI
+
+Relative URI references are resolved using the appropriate base URI, which MUST be determined in accordance with [[RFC3986]] [Section 5.1.1 – 5.1.4](https://tools.ietf.org/html/rfc3986#section-5.1.1) and, for Schema objects, [JSON Schema draft 2020-12 Section 8.2](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-8.2), as illustrated by the examles in [Appendix G: Examples of Base URI Determination and Reference Resolution](#appendix-g-examples-of-base-uri-determination-and-reference-resolution).
+
+If `$self` is a relative URI-reference, it is resolved agains the next possible base URI source ([[RFC3986]] [Section 5.1.2 – 5.1.4](https://tools.ietf.org/html/rfc3986#section-5.1.2)) before being used for the resolution of other relative URI-references.
+
+The most common base URI source that is used in the event of a missing or relative `$self` (in the [OpenAPI Object](#openapi-object)) and (for [Schema Object](#schema-object)) `$id` is the retrieval URI.
+Implementations MAY support document retrieval, although see the [Security Considerations](#security-considerations) sections for additional guidance.
+Even if retrieval is supported, it may be impossible due to network configuration or server unavailability (including the server hosting an older version while a new version is in development), or undesirable due to performance impacts.
+Therefore, all implementations SHOULD allow users to provide the intended retrieval URI for each document so that references can be resolved as if retrievals were performed.
+
+##### Resolving URI fragments
+
+If a URI contains a fragment identifier, then the fragment should be resolved per the fragment resolution mechanism of the referenced document. If the representation of the referenced document is JSON or YAML, then the fragment identifier SHOULD be interpreted as a JSON-Pointer as per [RFC6901](https://tools.ietf.org/html/rfc6901).
+
+##### Relative URI References in CommonMark Fields
+
+Relative references in CommonMark hyperlinks are resolved in their rendered context, which might differ from the context of the API description.
+
+#### Relative References in API URLs
+
+API endpoints are by definition accessed as locations, and are described by this specification as **_URLs_**.
+
+Unless specified otherwise, all fields that are URLs MAY be relative references as defined by [RFC3986](https://tools.ietf.org/html/rfc3986#section-4.2).
+
+Because the API Is a distinct entity from the OpenAPI Document, RFC3986's base URI rules for the OpenAPI Document do not apply.
+Unless specified otherwise, relative references are resolved using the URLs defined in the [Server Object](#server-object) as a Base URL. Note that these themselves MAY be relative to the referring document.
+
+##### Examples of API Base URL Determination
+
+Assume a retrieval URI of `https://device1.example.com` for the following OpenAPI Document:
+
+```YAML
+openapi: 3.2.0
+$self: https://apidescriptions.example.com/foo
+info:
+  title: Example API
+  version: 1.0
+servers:
+- url: .
+  description: The production API on this device
+- url: ./test
+  description: The test API on this device
+```
+
+For API URLs the `$self` field, which identifies the OpenAPI Document, is ignored and the retrieval URI is used instead. This produces a normalized production URL of `https://device1.example.com`, and a normalized test URL of `https://device1.example.com/test`.
 
 #### Resolving Implicit Connections
 
@@ -309,7 +370,7 @@ Using a `contentEncoding` of `base64url` ensures that URL encoding (as required 
 
 The `contentMediaType` keyword is redundant if the media type is already set:
 
-* as the key for a [MediaType Object](#media-type-object)
+* as the key for a [Media Type Object](#media-type-object)
 * in the `contentType` field of an [Encoding Object](#encoding-object)
 
 If the [Schema Object](#schema-object) will be processed by a non-OAS-aware JSON Schema implementation, it may be useful to include `contentMediaType` even if it is redundant. However, if `contentMediaType` contradicts a relevant Media Type Object or Encoding Object, then `contentMediaType` SHALL be ignored.
@@ -332,63 +393,6 @@ Where OpenAPI tooling renders rich text it MUST support, at a minimum, markdown 
 
 While the framing of CommonMark 0.27 as a minimum requirement means that tooling MAY choose to implement extensions on top of it, note that any such extensions are by definition implementation-defined and will not be interoperable.
 OpenAPI Description authors SHOULD consider how text using such extensions will be rendered by tools that offer only the minimum support.
-
-### Relative References in API Description URIs
-
-URIs used as references within an OpenAPI Description, or to external documentation or other supplementary information such as a license, are resolved as _identifiers_, and described by this specification as **_URIs_**.
-As noted under [Parsing Documents](#parsing-documents), this specification inherits JSON Schema Specification Draft 2020-12's requirements for [loading documents](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-9) and associating them with their expected URIs, which might not match their current location.
-This feature is used both for working in development or test environments without having to change the URIs, and for working within restrictive network configurations or security policies.
-
-Note that some URI fields are named `url` for historical reasons, but the descriptive text for those fields uses the correct "URI" terminology.
-
-Unless specified otherwise, all fields that are URIs MAY be relative references as defined by [RFC3986](https://tools.ietf.org/html/rfc3986#section-4.2).
-
-#### Establishing the Base URI
-
-Relative URI references are resolved using the appropriate base URI, which MUST be determined in accordance with [[RFC3986]] [Section 5.1.1 – 5.1.4](https://tools.ietf.org/html/rfc3986#section-5.1.1) and, for Schema objects, [JSON Schema draft 2020-12 Section 8.2](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-8.2), as illustrated by the examles in [Appendix G: Examples of Base URI Determination and Reference Resolution](#appendix-g-examples-of-base-uri-determination-and-reference-resolution).
-
-If `$self` is a relative URI-reference, it is resolved agains the next possible base URI source ([[RFC3986]] [Section 5.1.2 – 5.1.4](https://tools.ietf.org/html/rfc3986#section-5.1.2)) before being used for the resolution of other relative URI-references.
-
-The most common base URI source that is used in the event of a missing or relative `$self` (in the [OpenAPI Object](#openapi-object)) and (for [Schema Object](#schema-object)) `$id` is the retrieval URI.
-Implementations MAY support document retrieval, although see the [Security Considerations](#security-considerations) sections for additional guidance.
-Even if retrieval is supported, it may be impossible due to network configuration or server unavailability (including the server hosting an older version while a new version is in development), or undesirable due to performance impacts.
-Therefore, all implementations SHOULD allow users to provide the intended retrieval URI for each document so that references can be resolved as if retrievals were performed.
-
-#### Resolving URI fragments
-
-If a URI contains a fragment identifier, then the fragment should be resolved per the fragment resolution mechanism of the referenced document. If the representation of the referenced document is JSON or YAML, then the fragment identifier SHOULD be interpreted as a JSON-Pointer as per [RFC6901](https://tools.ietf.org/html/rfc6901).
-
-#### Relative URI References in CommonMark Fields
-
-Relative references in CommonMark hyperlinks are resolved in their rendered context, which might differ from the context of the API description.
-
-### Relative References in API URLs
-
-API endpoints are by definition accessed as locations, and are described by this specification as **_URLs_**.
-
-Unless specified otherwise, all fields that are URLs MAY be relative references as defined by [RFC3986](https://tools.ietf.org/html/rfc3986#section-4.2).
-
-Because the API Is a distinct entity from the OpenAPI Document, RFC3986's base URI rules for the OpenAPI Document do not apply.
-Unless specified otherwise, relative references are resolved using the URLs defined in the [Server Object](#server-object) as a Base URL. Note that these themselves MAY be relative to the referring document.
-
-#### Examples of API Base URL Determination
-
-Assume a retrieval URI of `https://device1.example.com` for the following OpenAPI Document:
-
-```YAML
-openapi: 3.2.0
-$self: https://apidescriptions.example.com/foo
-info:
-  title: Example API
-  version: 1.0
-servers:
-- url: .
-  description: The production API on this device
-- url: ./test
-  description: The test API on this device
-```
-
-For API URLs the `$self` field, which identifies the OpenAPI Document, is ignored and the retrieval URI is used instead. This produces a normalized production URL of `https://device1.example.com`, and a normalized test URL of `https://device1.example.com/test`.
 
 ### Schema
 
@@ -596,6 +600,8 @@ iprivate       =  %xE000-F8FF / %xF0000-FFFFD / %x100000-10FFFD
 
 Here, `literals`, `pct-encoded`, `ucschar` and `iprivate` definitions are taken from [RFC 6570](https://www.rfc-editor.org/rfc/rfc6570), incorporating the corrections specified in [Errata 6937](https://www.rfc-editor.org/errata/eid6937) for `literals`.
 
+Each server variable MUST NOT appear more than once in the URL template.
+
 See the [Paths Object](#paths-object) for guidance on constructing full request URLs.
 
 ##### Fixed Fields
@@ -627,6 +633,7 @@ All objects defined within the Components Object will have no effect on the API 
 | <a name="components-links"></a> links | Map[`string`, [Link Object](#link-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Link Objects](#link-object). |
 | <a name="components-callbacks"></a> callbacks | Map[`string`, [Callback Object](#callback-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Callback Objects](#callback-object). |
 | <a name="components-path-items"></a> pathItems | Map[`string`, [Path Item Object](#path-item-object)] | An object to hold reusable [Path Item Objects](#path-item-object). |
+| <a name="components-media-types"></a> mediaTypes | Map[`string`, [Media Type Object](#media-type-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Media Type Objects](#media-type-object). |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
@@ -967,7 +974,7 @@ These fields MAY be used with either `content` or `schema`.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="parameter-name"></a>name | `string` | **REQUIRED**. The name of the parameter. Parameter names are _case sensitive_. <ul><li>If [`in`](#parameter-in) is `"path"`, the `name` field MUST correspond to a template expression occurring within the [path](#paths-path) field in the [Paths Object](#paths-object). See [Path Templating](#path-templating) for further information.<li>If [`in`](#parameter-in) is `"header"` and the `name` field is `"Accept"`, `"Content-Type"` or `"Authorization"`, the parameter definition SHALL be ignored.<li>If `in` is `"querystring"`, or for [certain combinations](#style-examples) of [`style`](#parameter-style) and [`explode`](#parameter-explode), the value of `name` is not used in the parameter serialization.<li>For all other cases, the `name` corresponds to the parameter name used by the [`in`](#parameter-in) field.</ul> |
+| <a name="parameter-name"></a>name | `string` | **REQUIRED**. The name of the parameter. Parameter names are _case sensitive_. <ul><li>If [`in`](#parameter-in) is `"path"`, the `name` field MUST correspond to a single template expression occurring within the [path](#paths-path) field in the [Paths Object](#paths-object). See [Path Templating](#path-templating) for further information.<li>If [`in`](#parameter-in) is `"header"` and the `name` field is `"Accept"`, `"Content-Type"` or `"Authorization"`, the parameter definition SHALL be ignored.<li>If `in` is `"querystring"`, or for [certain combinations](#style-examples) of [`style`](#parameter-style) and [`explode`](#parameter-explode), the value of `name` is not used in the parameter serialization.<li>For all other cases, the `name` corresponds to the parameter name used by the [`in`](#parameter-in) field.</ul> |
 | <a name="parameter-in"></a>in | `string` | **REQUIRED**. The location of the parameter. Possible values are `"query"`, `"querystring"`, `"header"`, `"path"` or `"cookie"`. |
 | <a name="parameter-description"></a>description | `string` | A brief description of the parameter. This could contain examples of use. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="parameter-required"></a>required | `boolean` | Determines whether this parameter is mandatory. If the [parameter location](#parameter-in) is `"path"`, this field is **REQUIRED** and its value MUST be `true`. Otherwise, the field MAY be included and its default value is `false`. |
@@ -1008,7 +1015,7 @@ For use with `in: "querystring"` and `application/x-www-form-urlencoded`, see [E
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="parameter-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | A map containing the representations for the parameter. The key is the media type and the value describes it. The map MUST only contain one entry. |
+| <a name="parameter-content"></a>content | Map[`string`, [Media Type Object](#media-type-object) \| [Reference Object](#reference-object)] | A map containing the representations for the parameter. The key is the media type and the value describes it. The map MUST only contain one entry. |
 
 ##### Style Values
 
@@ -1198,7 +1205,7 @@ Describes a single request body.
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="request-body-description"></a>description | `string` | A brief description of the request body. This could contain examples of use. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
-| <a name="request-body-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | **REQUIRED**. The content of the request body. The key is a media type or [media type range](https://www.rfc-editor.org/rfc/rfc9110.html#appendix-A) and the value describes it. The map SHOULD have at least one entry; if it does not, the behavior is implementation-defined. For requests that match multiple keys, only the most specific key is applicable. e.g. `"text/plain"` overrides `"text/*"` |
+| <a name="request-body-content"></a>content | Map[`string`, [Media Type Object](#media-type-object) \| [Reference Object](#reference-object)] | **REQUIRED**. The content of the request body. The key is a media type or [media type range](https://www.rfc-editor.org/rfc/rfc9110.html#appendix-A) and the value describes it. The map SHOULD have at least one entry; if it does not, the behavior is implementation-defined. For requests that match multiple keys, only the most specific key is applicable. e.g. `"text/plain"` overrides `"text/*"` |
 | <a name="request-body-required"></a>required | `boolean` | Determines if the request body is required in the request. Defaults to `false`. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
@@ -1641,6 +1648,9 @@ These fields MAY be used either with or without the RFC6570-style serialization 
 | ---- | :----: | ---- |
 | <a name="encoding-content-type"></a>contentType | `string` | The `Content-Type` for encoding a specific property. The value is a comma-separated list, each element of which is either a specific media type (e.g. `image/png`) or a wildcard media type (e.g. `image/*`). Default value depends on the property type as shown in the table below. |
 | <a name="encoding-headers"></a>headers | Map[`string`, [Header Object](#header-object) \| [Reference Object](#reference-object)] | A map allowing additional information to be provided as headers. `Content-Type` is described separately and SHALL be ignored in this section. This field SHALL be ignored if the media type is not a `multipart`. |
+| <a name="encoding-encoding"></a>encoding | Map[`string`, [Encoding Object](#encoding-object)] | Applies nested Encoding Objects in the same manner as the [Media Type Object](#media-type-object)'s `encoding` field. |
+| <a name="encoding-prefix-encoding"></a>prefixEncoding | [[Encoding Object](#encoding-object)] | Applies nested Encoding Objects in the same manner as the [Media Type Object](#media-type-object)'s `prefixEncoding` field. |
+| <a name="encoding-item-encoding"></a>itemEncoding | [Encoding Object](#encoding-object) | Applies nested Encoding Objects in the same manner as the [Media Type Object](#media-type-object)'s `itemEncoding` field. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
@@ -1673,6 +1683,11 @@ See also [Appendix C: Using RFC6570 Implementations](#appendix-c-using-rfc6570-b
 
 Note that the presence of at least one of `style`, `explode`, or `allowReserved` with an explicit value is equivalent to using `schema` with `in: "query"` Parameter Objects.
 The absence of all three of those fields is the equivalent of using `content`, but with the media type specified in `contentType` rather than through a Media Type Object.
+
+##### Nested Encoding
+
+Nested formats requiring encoding, most notably nested `multipart/mixed`, can be supported with this Object's `encoding`, `prefixEncoding`, and / or `itemEncoding` fields.
+Implementations MUST support one level of nesting, and MAY support additional levels.
 
 ##### Encoding the `x-www-form-urlencoded` Media Type
 
@@ -1768,10 +1783,19 @@ See [Encoding Usage and Restrictions](#encoding-usage-and-restrictions) for guid
 
 Note that there are significant restrictions on what headers can be used with `multipart` media types in general ([RFC2046](https://www.rfc-editor.org/rfc/rfc2046.html#section-5.1)) and `multi-part/form-data` in particular ([RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.8)).
 
+###### Handling Multiple `contentType` Values
+
+When multiple values are provided for `contentType`, parsing remains straightforward as the part's actual `Content-Type` is included in the document.
+
+For encoding and serialization, implementations MUST provide a mechanism for applications to indicate which media type is intended.
+Implementations MAY choose to offer media type sniffing ([[SNIFF]]) as an alternative, but this MUST NOT be the default behavior due to the security risks inherent in the process.
+
+###### `Content-Transfer-Encoding` and `contentEncoding`
+
 Note also that `Content-Transfer-Encoding` is deprecated for `multipart/form-data` ([RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.7)) where binary data is supported, as it is in HTTP.
 
 Using `contentEncoding` for a multipart field is equivalent to specifying an [Encoding Object](#encoding-object) with a `headers` field containing `Content-Transfer-Encoding` with a schema that requires the value used in `contentEncoding`.
-+If `contentEncoding` is used for a multipart field that has an Encoding Object with a `headers` field containing `Content-Transfer-Encoding` with a schema that disallows the value from `contentEncoding`, the result is undefined for serialization and parsing.
+If `contentEncoding` is used for a multipart field that has an Encoding Object with a `headers` field containing `Content-Transfer-Encoding` with a schema that disallows the value from `contentEncoding`, the result is undefined for serialization and parsing.
 
 Note that as stated in [Working with Binary Data](#working-with-binary-data), if the Encoding Object's `contentType`, whether set explicitly or implicitly through its default value rules, disagrees with the `contentMediaType` in a Schema Object, the `contentMediaType` SHALL be ignored.
 Because of this, and because the Encoding Object's `contentType` defaulting rules do not take the Schema Object's`contentMediaType` into account, the use of `contentMediaType` with an Encoding Object is NOT RECOMMENDED.
@@ -1869,6 +1893,31 @@ requestBody:
 
 As seen in the [Encoding Object's `contentType` field documentation](#encoding-content-type), the empty schema for `items` indicates a media type of `application/octet-stream`.
 
+###### Example: Nested `multipart/mixed`
+
+This defines a two-part `multipart/mixed` where the first part is a JSON array and the second part is a nested `multipart/mixed` document.
+The nested parts are XML, plain text, and a PNG image.
+
+```yaml
+multipart/mixed:
+  schema:
+    type: array
+    prefixItems:
+    - type: array
+    - type: array
+      prefixItems:
+      - type: object
+      - type: string
+      - {}
+  prefixEncoding:
+    - {} # Accept the default application/json
+    - contentType: multipart/mixed
+      prefixEncoding:
+      - contentType: application/xml
+      - {} # Accept the default text/plain
+      - contentType: image/png
+```
+
 #### Responses Object
 
 A container for the expected responses of an operation.
@@ -1929,7 +1978,7 @@ Describes a single response from an API operation, including design-time, static
 | <a name="response-summary"></a>summary | `string` | A short summary of the meaning of the response. |
 | <a name="response-description"></a>description | `string` | A description of the response. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="response-headers"></a>headers | Map[`string`, [Header Object](#header-object) \| [Reference Object](#reference-object)] | Maps a header name to its definition. [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.1) states header names are case insensitive. If a response header is defined with the name `"Content-Type"`, it SHALL be ignored. |
-| <a name="response-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | A map containing descriptions of potential response payloads. The key is a media type or [media type range](https://www.rfc-editor.org/rfc/rfc9110.html#appendix-A) and the value describes it. For responses that match multiple keys, only the most specific key is applicable. e.g. `"text/plain"` overrides `"text/*"` |
+| <a name="response-content"></a>content | Map[`string`, [Media Type Object](#media-type-object) \| [Reference Object](#reference-object)] | A map containing descriptions of potential response payloads. The key is a media type or [media type range](https://www.rfc-editor.org/rfc/rfc9110.html#appendix-A) and the value describes it. For responses that match multiple keys, only the most specific key is applicable. e.g. `"text/plain"` overrides `"text/*"` |
 | <a name="response-links"></a>links | Map[`string`, [Link Object](#link-object) \| [Reference Object](#reference-object)] | A map of operations links that can be followed from the response. The key of the map is a short name for the link, following the naming constraints of the names for [Component Objects](#components-object). |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
@@ -2127,99 +2176,81 @@ With the Example Object, such values can alternatively be handled through the `e
 
 ##### Example Object Examples
 
-In a request body:
+###### JSON Examples
+
+When writing in YAML, JSON syntax can be used for `dataValue` (as shown in the `noRating` example) but is not required.
+While this example shows the behavior of both `dataValue` and `serializedValue` for JSON (in the 'withRating` example), in most cases only the data form is needed.
 
 ```yaml
-requestBody:
-  content:
-    'application/json':
-      schema:
-        $ref: '#/components/schemas/Address'
-      examples:
-        foo:
-          summary: A foo example
-          value:
-            foo: bar
-        bar:
-          summary: A bar example
-          value:
-            bar: baz
-    application/xml:
-      examples:
-        xmlExample:
-          summary: This is an example in XML
-          externalValue: https://example.org/examples/address-example.xml
-    text/plain:
-      examples:
-        textExample:
-          summary: This is a text example
-          externalValue: https://foo.bar/examples/address-example.txt
-```
-
-In a parameter:
-
-```yaml
-parameters:
-  - name: zipCode
-    in: query
+content:
+  application/json:
     schema:
-      type: string
-      format: zip-code
+      type: object
+      required:
+      - author
+      - title
+      properties:
+        author:
+          type: string
+        title:
+          type: string
+        rating:
+          type: number
+          minimum: 1
+          maximum: 5
+          multipleOf: 0.5
     examples:
-      zip-example:
-        $ref: '#/components/examples/zip-example'
+      noRating:
+        summary: A not-yet-rated work
+        dataValue: {
+          "author": "A. Writer",
+          "title": "The Newest Book"
+        }
+      withRating:
+        summary: A work with an average rating of 4.5 stars
+        dataValue:
+          author: A. Writer
+          title: An Older Book
+          rating: 4.5
+        serializedValue: |
+          {
+            "author": "A. Writer",
+            "title": "An Older Book",
+            "rating": 4.5
+          }
 ```
 
-In a response:
+###### Binary Examples
+
+Fully binary data is shown using `externalValue`:
 
 ```yaml
-responses:
-  '200':
-    description: your car appointment has been booked
-    content:
-      application/json:
-        schema:
-          $ref: '#/components/schemas/SuccessResponse'
-        examples:
-          confirmation-success:
-            $ref: '#/components/examples/confirmation-success'
+content:
+  image/png:
+    schema: {}
+    examples:
+      Red:
+        externalValue: ./examples/2-by-2-red-pixels.png
 ```
 
-Two different uses of JSON strings:
+###### Boolean Query Parameter Examples
 
-First, a request or response body that is just a JSON string (not an object containing a string):
+Since there is no standard for serializing boolean values (as discussed in [Appendix B](#appendix-b-data-type-conversion)), this example uses `dataValue` and `serializedValue` to show how booleans are serialized for this particular parameter:
 
 ```yaml
-application/json:
-  schema:
-    type: string
-  examples:
-    jsonBody:
-      description: 'A body of just the JSON string "json"'
-      value: json
+name: flag
+in: query
+required: true
+schema:
+  type: boolean
+examples:
+  "true":
+    dataValue: true
+    serializedValue: flag=true
+  "false":
+    dataValue: false
+    serializedValue: flag=false
 ```
-
-In the above example, we can just show the JSON string (or any JSON value) as-is, rather than stuffing a serialized JSON value into a JSON string, which would have looked like `"\"json\""`.
-
-In contrast, a JSON string encoded inside of a URL-style form body:
-
-```yaml
-application/x-www-form-urlencoded:
-  schema:
-    type: object
-    properties:
-      jsonValue:
-        type: string
-  encoding:
-    jsonValue:
-      contentType: application/json
-  examples:
-    jsonFormValue:
-      description: 'The JSON string "json" as a form value'
-      value: jsonValue=%22json%22
-```
-
-In this example, the JSON string had to be serialized before encoding it into the URL form value, so the example includes the quotation marks that are part of the JSON serialization, which are then URL percent-encoded.
 
 #### Link Object
 
@@ -2448,7 +2479,68 @@ Using `content` with a `text/plain` media type is RECOMMENDED for headers where 
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="header-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | A map containing the representations for the header. The key is the media type and the value describes it. The map MUST only contain one entry. |
+| <a name="header-content"></a>content | Map[`string`, [Media Type Object](#media-type-object) \| [Reference Object](#reference-object)] | A map containing the representations for the header. The key is the media type and the value describes it. The map MUST only contain one entry. |
+
+##### Modeling Link Headers
+
+[[!RFC9264]] defines the `application/linkset` and `application/linkset+json` media types.
+The former is exactly the format of HTTP link header values except allowing additional whitespace for readability, while the latter is an equivalent JSON representation of such headers.
+
+To use either of these media types, the `schema` in the [Media Type Object](#media-type-object) MUST describe the links as they would be structured in the `application/linkset+json` format.
+If the Media Type Object's parent key is `application/linkset+json`, then the serialization is trivial, however this format cannot be used in the HTTP `Link` header.
+If the Media Type Object's parent key is `application/linkset`, then the serialization MUST be the equivalent representation of the `schema`-modeled links in the `application/linkset` format.
+If the `application/linkset` Media Type Object is used in the `content` field of a Header Object (or a Parameter Object with `in: "header"`), the serialization MUST be made compatible with the HTTP field syntax as described by [[!RFC9264]] [Section 4.1](https://www.rfc-editor.org/rfc/rfc9264.html#name-http-link-document-format-a).
+
+The following example shows how the same data model can be used for a collection pagination linkset either in JSON format as message content, or in the HTTP `Link` header:
+
+```yaml
+components:
+  schemas:
+    SimpleLinkContext:
+      type: array
+      items:
+        type: object
+        required:
+        - href
+        properties:
+          href:
+            type: string
+            format: uri-reference
+    CollectionLinks:
+      type: object
+      required:
+      - linkset
+      properties:
+        linkset:
+          type: array
+          items:
+            type: object
+            required: [first, prev, next, last]
+            properties:
+              anchor:
+                type: string
+                format: uri
+            additionalProperties:
+              $ref: '#/components/schemas/SimpleLinkContext'
+  responses:
+    CollectionWithLinks:
+      content:
+        application/json:
+          schema:
+            type: array
+      headers:
+        Link:
+          required: true
+          content:
+            application/linkset:
+              schema:
+                $ref: '#/components/schemas/CollectionLinks'
+    StandaloneJsonLinkset:
+      content:
+        application/linkset+json:
+          schema:
+            $ref: '#/components/mediaTypes/CollectionLinks'
+```
 
 ##### Header Object Example
 
@@ -4292,6 +4384,7 @@ This will expand to the result:
 
 [RFC6570](https://www.rfc-editor.org/rfc/rfc6570)'s percent-encoding behavior is not always appropriate for `in: "header"` and `in: "cookie"` parameters.
 In many cases, it is more appropriate to use `content` with a media type such as `text/plain` and require the application to assemble the correct string.
+Other media types, such as `application/linkset` (see [Modeling Link Headers](#modeling-link-headers)), are directly suitable for use as `content` for specific headers.
 
 In some cases, setting `allowReserved: true` will be sufficient to avoid incorrect encoding, however many characters are still percent-encoded with this field enabled, so care must be taken to ensure no unexpected percent-encoding will take place.
 
@@ -4317,7 +4410,18 @@ For multiple values, `style: "form"` is always incorrect as name=value pairs in 
 _**NOTE:** In this section, the `application/x-www-form-urlencoded` and `multipart/form-data` media types are abbreviated as `form-urlencoded` and `form-data`, respectively, for readability._
 
 Percent-encoding is used in URIs and media types that derive their syntax from URIs.
-This process is concerned with three sets of characters, the names of which vary among specifications but are defined as follows for the purposes of this section:
+The fundamental rules of percent-encoding are:
+
+* The set of characters that MUST be encoded varies depending on which version of which specification you use, and (for URIs) in which part of the URI the character appears.
+* The way an unencoded `+` character is decoded depends on whether you are using `application/x-www-form-urlencoded` rules or more general URI rules; this is the only time where choice of decoding algorithm can change the outcome.
+* Encoding more characters than necessary is always safe in terms of the decoding process, but may produce non-normalized URIs.
+* In practice, some systems tolerate or even expect unencoded characters that some or all percent-encoding specifications require to be encoded; this can cause interoperability issues with more strictly compliant implementations.
+
+The rest of this appendix provides more detailed guidance based on the above rules.
+
+### Percent-Encoding Character Classes
+
+This process is concerned with three classes of characters, the names of which vary among specifications but are defined as follows for the purposes of this section:
 
 * _unreserved_ characters do not need to be percent-encoded; while it is safe to percent-encode them, doing so produces a URI that is [not normalized](https://datatracker.ietf.org/doc/html/rfc3986#section-6.2.2.2)
 * _reserved_ characters either have special behavior in the URI syntax (such as delimiting components) or are reserved for other specifications that need to define special behavior (e.g. `form-urlencoded` defines special behavior for `=`, `&`, and `+`)
@@ -4366,7 +4470,7 @@ Note that content-based serialization for `form-data` does not expect or require
 
 #### Interoperability with Historical Specifications
 
-In most cases, generating query strings in strict compliance with [[RFC3986]] is sufficient to pass validation (including JSON Schema's `format: "uri"` and `format: "uri-reference"`), but some `form-urlencoded` implementations still expect the slightly more restrictive [[RFC1738]] rules to be used.
+In most cases, generating query strings in strict compliance with [[RFC3986]] is sufficient to pass validation (including JSON Schema's `format: "uri"` and `format: "uri-reference"` when `format` validation is enabled), but some `form-urlencoded` implementations still expect the slightly more restrictive [[RFC1738]] rules to be used.
 
 Since all RFC1738-compliant URIs are compliant with RFC3986, applications needing to ensure historical interoperability SHOULD use RFC1738's rules.
 
@@ -4376,7 +4480,7 @@ WHATWG is a [web browser-oriented](https://whatwg.org/faq#what-is-the-whatwg-wor
 WHATWG's percent-encoding rules for query strings are different depending on whether the query string is [being treated as `form-urlencoded`](https://url.spec.whatwg.org/#application-x-www-form-urlencoded-percent-encode-set) (where it requires more percent-encoding than [[RFC1738]]) or [as part of the generic syntax](https://url.spec.whatwg.org/#query-percent-encode-set), where it allows characters that [[RFC3986]] forbids.
 
 Implementations needing maximum compatibility with web browsers SHOULD use WHATWG's `form-urlencoded` percent-encoding rules.
-However, they SHOULD NOT rely on WHATWG's less stringent generic query string rules, as the resulting URLs would fail RFC3986 validation, including JSON Schema's `format: uri` and `format: uri-reference`.
+However, they SHOULD NOT rely on WHATWG's less stringent generic query string rules, as the resulting URLs would fail RFC3986 validation, including JSON Schema's `format: uri` and `format: uri-reference` (when `format` validation is endabled).
 
 ### Decoding URIs and `form-urlencoded` Strings
 

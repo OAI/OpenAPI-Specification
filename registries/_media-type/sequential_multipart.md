@@ -31,7 +31,7 @@ In both cases, `itemEncoding` can used to manage the media type and headers of e
 
 The `boundary` required parameter is common to all `multipart` subtypes, but does not need to be described explicitly in OpenAPI Descriptions as it is typically generated and used automatically, with a value that is not predictable in advance.
 
-Note that OAS v3.0 claimed support for `multipart/mixed`, but did not define a mechanism for doing so for reasons that are no longer known.  This claim of support was removed in OAS v3.0.4 and OAS v3.1.1, but can be seen in older patch releases of the 3.0 and 3.1 lines.
+Note that OAS v3.0 claimed support for `multipart/mixed`, but behaviour was undefined.  The claim of support was removed in OAS v3.0.4 and OAS v3.1.1, but can be seen in older patch releases of the 3.0 and 3.1 lines.
 {% endcapture %}
 
 {% include media-type-entry.md summary=summary remarks=remarks %}

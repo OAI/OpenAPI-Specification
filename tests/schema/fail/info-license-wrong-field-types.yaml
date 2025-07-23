@@ -3,7 +3,7 @@ info:
   title: API
   version: 1.0.0
   license:
-    name: true
-    identifier: true
-    url: true
+    name: true        # must be a string
+    identifier: true  # must be a string
+    url: true         # must be a string
 paths: {}

@@ -2,5 +2,5 @@ openapi: 3.1.0
 info:
   title: API
   version: 1.0.0
-  license: {} # must have name
+  license: {} # must have `name` field`
 paths: {}

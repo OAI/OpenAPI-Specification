@@ -3,7 +3,7 @@ info:
   title: API
   version: 1.0.0
   contact:
-    name: true
-    email: true
-    url: true
+    name: true    # must be a string
+    email: true   # must be a string
+    url: true     # must be a string
 paths: {}

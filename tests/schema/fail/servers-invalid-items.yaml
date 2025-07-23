@@ -3,17 +3,17 @@ info:
   title: API
   version: 1.0.0
 servers:
-  - url: true # not a string
-    description: true # not a string
-    name: true # not a string
-    variables: [] # not an object
-  - description: no url
+  - url: true               # must be a string
+    description: true       # must be a string
+    name: true              # must be a string
+    variables: []           # must be an object
+  - description: no url     # object must have `url` field
     variables:
-      no-object: true
+      no-object: true       # must be an object
       invalid-enum:
-        enum: true
-        description: true
+        enum: true          # must be an array
+        description: true   # must be a string
       invalid-enum-value:
-        enum: [42]
+        enum: [42]          # array items must be strings
       invalid-default:
-        default: true
+        default: true       # must be a string

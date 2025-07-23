@@ -1,4 +1,4 @@
 openapi: 3.1.0
 info:
-  summary: must have title and version
+  summary: must have `title` and `version` fields
 paths: {}

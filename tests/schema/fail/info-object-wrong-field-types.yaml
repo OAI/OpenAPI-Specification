@@ -1,9 +1,9 @@
 openapi: 3.2.0
 info:
-  title: true
-  summary: true
-  description: true
-  termsOfService: true
-  version: 1
-  contact: true
-  license: true
+  title: true           # must be a string  
+  summary: true         # must be a string
+  description: true     # must be a string
+  termsOfService: true  # must be a string
+  version: 1            # must be a string
+  contact: true         # must be a string
+  license: true         # must be a string

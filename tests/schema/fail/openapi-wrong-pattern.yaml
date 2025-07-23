@@ -1,4 +1,4 @@
-openapi: hello # wrong pattern, should be a string like "3.2.0"
+openapi: hello # wrong pattern, must be a string like "3.2.0"
 info:
   title: API
   version: 1.0.0

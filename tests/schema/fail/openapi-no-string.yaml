@@ -1,4 +1,4 @@
-openapi: 4.2 # a number, not a string
+openapi: 4.2 # must be a string, must be a number
 info:
   title: API
   version: 1.0.0

@@ -3,16 +3,16 @@ info:
   title: API
   version: 1.0.0
 tags:
-  - true # not an object
-  - summary: true # no name
-  - name: true # not a string
-    description: true # not a string
-    externalDocs: true # not a string
-    parent: true # not a string
-    kind: true # not a string
+  - true                # must be an object
+  - summary: true       # object must have `name` field
+  - name: true          # must be a string
+    description: true   # must be a string
+    externalDocs: true  # must be an object
+    parent: true        # must be a string
+    kind: true          # must be a string
   - name: foo
     externalDocs:
-      url: true # not a string
+      url: true         # must be a string
   - name: bar
-    externalDocs:
-      description: true # not a string
+    externalDocs:       # object must have `url` field
+      description: true # must be a string

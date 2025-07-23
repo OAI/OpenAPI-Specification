@@ -4,169 +4,166 @@ info:
   version: 1.0.0
 components:
   pathItems:
-    ö: true
+    ö: true                       # wrong map key pattern
     invalid:
-      $ref: 42
-      summary: true
-      description: true
-      servers: true
-      parameters: true
-      additionalOperations: none
+      $ref: 42                    # must be a string
+      summary: true               # must be a string
+      description: true           # must be a string
+      servers: true               # must be an array
+      parameters: true            # must be an array
+      additionalOperations: none  # must be an object
     invalid-additionalOperations:
       additionalOperations:
-        ö: true
+        ö: true                   # wrong map key pattern
     invalid-operations:
       get:
-        tags: true
-        summary: true
-        description: true
-        operationId: true
-        parameters: true
-        callbacks: true
-        deprecated: maybe
-        security: no
-        servers: none
-      patch: false
+        tags: true                # must be an array
+        summary: true             # must be a string
+        description: true         # must be a string
+        operationId: true         # must be a string
+        parameters: true          # must be an array
+        callbacks: true           # must be an object
+        deprecated: maybe         # must be a boolean
+        security: no              # must be an array
+        servers: none             # must be an array
+      patch: false                # must be an object
     invalid-responses:
       get:
-        tags: [true]
-        responses: false
+        tags: [true]              # array items must be strings
+        responses: false          # must be an object
       patch:
-        responses: {}
+        responses: {}             # must have at least one field
       post:
         responses:
-          invalid: true
+          invalid: true           # must be an object
   requestBodies:
-    no-object: true
+    no-object: true      # must be an object
     invalid:
-      description: true
-      required: no
+      description: true  # must be a string
+      required: no       # must be a boolean
   parameters:
-    no-object: true
-    no-in:
+    no-object: true      # must be an object
+    no-in:               # object must have `in` field
       name: id
       schema:
         type: string
     invalid:
-      name: 42
-      in: invalid
-      description: true
-      required: no
-      deprecated: no
-      content: {}
+      name: 42            # must be a string
+      in: invalid         # must be one of `query`, `header`, `path`, `cookie`
+      description: true   # must be a string
+      required: no        # must be a boolean
+      deprecated: no      # must be a boolean
+      content: {}         # must have at least one field
     invalid-content:
       name: id
       content: 
-        one: true
-        two: false
-    invalid-querystring:
+        one: true         # must be an object
+        two: false        # must be an object
+    invalid-querystring:  # must have `content` field
       name: id
-      in: querystring
+      in: querystring     
     optional-path:
       name: id
       in: path
       schema:
         type: string
-      required: false
+      required: false     # must be true for path parameters
     invalid-path:
       name: id
       in: path
       schema:
         type: string
-      style: invalid
-      allowReserved: yes
+      style: invalid      # must be one of the allowed enum values
+      allowReserved: yes  # must be a boolean
     invalid-header:
       name: id
       in: header
       schema:
         type: string
-      style: 42
+      style: 42           # must be the string "simple"
     invalid-query:
       name: id
       in: query
       schema:
         type: string
-      style: invalid
-      allowEmptyValue: yes
+      style: invalid        # must be one of the allowed enum values
+      allowEmptyValue: yes  # must be a boolean
     invalid-cookie:
       name: id
       in: cookie
       schema:
         type: string
-      style: invalid
+      style: invalid        # must be one of the allowed enum values
     invalid-examples:
       name: id
       in: query
       schema:
         type: string
-      examples: true
-      explode: 42
+      examples: true        # must be an object
+      explode: 42           # must be a boolean
   callbacks:
-    no-object: true
+    no-object: true         # must be an object
     invalid:
-      foo: true
+      foo: true             # must be an object
   links:
-    no-object: true
+    no-object: true         # must be an object
     invalid:
-      description: true
-      operationId: true
-      operationRef: true
-      parameters: true
-      requestBody: true
-      responses: true
-      server: true
-      servers: true
-      deprecated: no
+      description: true     # must be a string
+      operationId: true     # must be a string
+      operationRef: true    # must be a string
+      parameters: true      # must be an object
+      responses: true       # must be an object
+      server: true          # must be an object
   headers:
-    no-object: true
+    no-object: true         # must be an object
     invalid:
-      description: true
-      required: yes
-      deprecated: no
-      content: {}
+      description: true     # must be a string
+      required: yes         # must be a boolean
+      deprecated: no        # must be a boolean
+      content: {}           # must have at least one field
     invalid-content:
-      content: 
-        one: true
-        two: false
+      content:             
+        one: true           # must be an object
+        two: false          # must be an object
     invalid-style:
       schema:
         type: string
-      style: true
-      explode: no
-      allowReserved: yes
+      style: true           # must be a string
+      explode: no           # must be a boolean
+      allowReserved: yes    # must be a boolean
   examples:
-    no-object: true
+    no-object: true         # must be an object
     invalid-reference:
-      $ref: 42
-      summary: false
-      description: true
+      $ref: 42              # must be a string
+      summary: false        # must be a string
+      description: true     # must be a string
     invalid:
-      summary: true
-      description: true
-      externalValue: true
+      summary: true         # must be a string
+      description: true     # must be a string
+      externalValue: true   # must be a string
   responses:
-    no-object: true
+    no-object: true         # must be an object
     invalid:
-      summary: true
-      description: true
-      headers: true
-      links: true
-      content: true
+      summary: true         # must be a string
+      description: true     # must be a string
+      headers: true         # must be an object
+      links: true           # must be an object
+      content: true         # must be an object
     invalid-encoding:
       content:
         'application/json':
-          encoding: true
+          encoding: true    # must be an object
     invalid-encoding-object:
       content:
         'application/json':
-          description: true
+          description: true           # must be a string
           encoding:
-            foo: true
+            foo: true                 # must be an object
             bar:
-              contentType: true
-              headers: true
-              style: true
-              explode: yes
-              allowReserved: no
-              encoding: true
-              prefixEncoding: true
+              contentType: true       # must be a string
+              headers: true           # must be an object
+              style: true             # must be a string
+              explode: yes            # must be a boolean
+              allowReserved: no       # must be a boolean
+              encoding: true          # must be an object
+              prefixEncoding: true    # must be an array

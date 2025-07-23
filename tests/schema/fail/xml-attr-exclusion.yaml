@@ -7,5 +7,5 @@ components:
     Attr:
       type: string
       xml:
-        attribute: true
+        attribute: true      # can't have both `attribute` and `nodeType`
         nodeType: attribute

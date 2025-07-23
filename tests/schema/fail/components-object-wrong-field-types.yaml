@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: API
   version: 1.0.0
-components:
+components: # must all be objects
   schemas: []
   responses: []
   parameters: []

@@ -5,22 +5,23 @@ info:
 components:
   schemas:
     externalDocs-no-object:
-      externalDocs: true
+      externalDocs: true      # must be an object
     externalDocs-incomplete:
-      externalDocs:
-        description: true
+      externalDocs:           # must have `url` field
+        description: true     # must be a string
     externalDocs-invalid-url:
       externalDocs:
-        url: true
+        url: true             # must be a string
     discriminator-no-object:
-      discriminator: true
+      discriminator: true     # must be an object
     discriminator-incomplete:
-      discriminator:
-        mapping: true
+      discriminator:          # must have `propertyName` field
+        mapping: true         # must be an object
     discriminator-invalid-propertyName:
       discriminator:
-        propertyName: true
+        propertyName: true    # must be a string
     discriminator-invalid-mapping:
       discriminator:
+        propertyName: foo
         mapping:
-          key: true
+          key: true           # must be a string

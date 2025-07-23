@@ -2,5 +2,5 @@ openapi: 3.2.0
 info:
   title: API
   version: 1.0.0
-tags: {} # must be an array
+tags: {}  # must be an array
 paths: {}

@@ -6,4 +6,4 @@ components:
   schemas:
     Attr:
       type: string
-      xml: true
+      xml: true      # must be an object

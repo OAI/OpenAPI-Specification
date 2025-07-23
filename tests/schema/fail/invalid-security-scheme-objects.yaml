@@ -3,86 +3,86 @@ info:
   title: API
   version: 1.0.0
 security:
-  - true
-  - basic: true
-  - apiKey: [true]
+  - true                # array items must be objects
+  - basic: true         # field value must be an array
+  - apiKey: [true]      # array items must be strings
 components:
   securitySchemes:
     no-object: true
-    no-type:
+    no-type:            # must have `type` field
       typo: noauth3
     invalid-type:
-      type: invalid
+      type: invalid     # must be one of the allowed enum values
     invalid-description:
       type: http
-      description: 42
-      deprecated: yes
+      description: 42   # must be a string
+      deprecated: yes   # must be a boolean
     apiKey-invalid-name:
       type: apiKey
-      name: 42
+      name: 42          # must be a string
     apiKey-invalid-in:
       type: apiKey
       name: invalid-in
-      in: garbage
+      in: garbage       # must be one of `query`, `header`, `cookie`
     http-no-scheme:
       type: http
     http-invalid-scheme:
       type: http
-      scheme: 42
+      scheme: 42        # must be a string
     barer-invalid-bearerFormat:
       type: http
       scheme: bearer
-      bearerFormat: 42
+      bearerFormat: 42  # must be a string
     oauth2-no-flows:
-      type: oauth2
+      type: oauth2      # must have `flows` field
     oauth2-invalid-oauth2MetadataUrl:
       type: oauth2
-      oauth2MetadataUrl: 42
+      oauth2MetadataUrl: 42         # must be a string
     openIdConnect-no-openIdConnectUrl:
-      type: openIdConnect
+      type: openIdConnect           # must have `openIdConnectUrl` field
     openIdConnect-invalid-openIdConnectUrl:
       type: openIdConnect
-      openIdConnectUrl: true
+      openIdConnectUrl: true        # must be a string
     oauth-invalid-flows:
       type: oauth2
-      flows: false
+      flows: false                  # must be an object
     oauth-invalid-flow-no-objects:
       type: oauth2
       flows:
-        implicit: false
-        password: false
-        clientCredentials: false
-        authorizationCode: false
-        deviceAuthorization: false
+        implicit: false             # must be an object
+        password: false             # must be an object
+        clientCredentials: false    # must be an object
+        authorizationCode: false    # must be an object
+        deviceAuthorization: false  # must be an object
     oauth-invalid-flow-objects:
       type: oauth2
       flows:
         implicit:
-          authorizationUrl: 42
-          refreshUrl: 42
+          authorizationUrl: 42  # must be a string
+          refreshUrl: 42        # must be a string
         password:
-          tokenUrl: 42
-          refreshUrl: 42
+          tokenUrl: 42     # must be a string
+          refreshUrl: 42   # must be a string
         clientCredentials:
-          tokenUrl: 42
-          refreshUrl: 42
+          tokenUrl: 42     # must be a string
+          refreshUrl: 42   # must be a string
         authorizationCode:
-          authorizationUrl: 42
-          tokenUrl: 42
-          refreshUrl: 42
+          authorizationUrl: 42  # must be a string
+          tokenUrl: 42          # must be a string
+          refreshUrl: 42        # must be a string
         deviceAuthorization:
-          deviceAuthorizationUrl: 42
-          tokenUrl: 42
-          refreshUrl: 42
+          deviceAuthorizationUrl: 42  # must be a string
+          tokenUrl: 42                # must be a string
+          refreshUrl: 42              # must be a string
     oauth-invalid-scopes:
       type: oauth2
       flows:
-        implicit:
-          authorizationUrl: 42
-          refreshUrl: 42
-          scopes: 42
-        password:
-          tokenUrl: 42
-          refreshUrl: 42
+        implicit:               # must have `tokenUrl` field
+          authorizationUrl: a
+          refreshUrl: b
+          scopes: 42            # must be an object
+        password:               # must have `authorizationUrl` field
+          tokenUrl: a
+          refreshUrl: b
           scopes:
-            invalid: 42
+            invalid: 42         # map values must be strings

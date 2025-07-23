@@ -56,6 +56,7 @@ components:
                   propertyName: type
                   mapping:
                     foo: Foo
+                  defaultMapping: Bar
                   x-extension: true
                 anyOf:
                 - $ref: "#/components/schemas/Foo"

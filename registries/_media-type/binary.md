@@ -53,7 +53,7 @@ As of OAS v3.1, binary data is modeled using an empty Schema Object, in accordan
 {% endcapture %}
 
 {% capture remarks %}
-As specified in [Working with Binary Data](https://spec.openapis.org/oas/latest.html#working-with-binary-data), modeling binary data that has been encoded into a string is handled differently from raw binary data, with two variations: With the [Schema Object](https://spec.openapis.org/oas/latest.html#schema-object)'s `contentMediaType` and `contentEncoding`, or with a `Content-Transfer-Encoding` header in the [Encoding Object](https://spec.openapis.org/oas/latest.html#encoding-object) (for media types that use Encoding Objects).  Consult the specification for how these two mechanisms interact when they both apply.
+As specified in [Working with Binary Data](https://spec.openapis.org/oas/latest.html#working-with-binary-data), modeling binary data that has been encoded into a string is handled differently from raw binary data, with two variations: with the [Schema Object](https://spec.openapis.org/oas/latest.html#schema-object)'s `contentMediaType` and `contentEncoding`, or with a `Content-Transfer-Encoding` header in the [Encoding Object](https://spec.openapis.org/oas/latest.html#encoding-object) (for media types that use Encoding Objects).  Consult the specification for how these two mechanisms interact when they both apply.
 
 In OAS v3.0, raw binary content was modeled as `type: string, format: binary`, while `type: string, format: byte` was used for base64-encoded binary.  This was dropped in favor of JSON Schema draft 2020-12's support because it did not allow specifying the media type along with the binary encoding.
 {% endcapture %}

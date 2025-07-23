@@ -4,7 +4,8 @@ info:
   version: 1.0.0
 components:
   requestBodies:
-    content:
-      multipart/mixed:
-        encoding: {}
-        prefixEncoding: {}
+    encoding-with-prefixEncoding-not-allowed:
+      content:
+        multipart/mixed:
+          encoding: {}
+          prefixEncoding: []

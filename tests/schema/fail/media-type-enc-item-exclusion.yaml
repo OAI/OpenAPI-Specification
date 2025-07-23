@@ -4,7 +4,8 @@ info:
   version: 1.0.0
 components:
   requestBodies:
-    content:
-      multipart/mixed:
-        encoding: {}
-        itemEncoding: {}
+    encoding-with-itemEncoding-not-allowed:
+      content:
+        multipart/mixed:
+          encoding: {}
+          itemEncoding: {}

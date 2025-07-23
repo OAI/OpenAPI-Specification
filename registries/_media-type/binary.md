@@ -1,21 +1,50 @@
 ---
 owner: handrews
-description: Binary
+name: Binary
+description: Non-text-based media types
 media_types:
   - name: application/octet-stream
-    registered: true
+    iana: https://www.iana.org/assignments/media-types/application/octet-stream
+    specifications:
+    - name: RFC2045
+      url: https://www.rfc-editor.org/rfc/rfc2045
+    - name: RFC2046 §4.5.1
+      url: https://www.rfc-editor.org/rfc/rfc2046#section-4.5.1
   - name: audio/*
-    registered: true
+    iana: https://www.iana.org/assignments/media-types/media-types.xhtml#audio
+    specifications:
+    - name: RFC2045
+      url: https://www.rfc-editor.org/rfc/rfc2045
+    - name: RFC2046 §4.2
+      url: https://www.rfc-editor.org/rfc/rfc2046#section-4.3
   - name: image/*
-    registered: true
+    iana: https://www.iana.org/assignments/media-types/media-types.xhtml#image
+    specifications:
+    - name: RFC2045
+      url: https://www.rfc-editor.org/rfc/rfc2045
+    - name: RFC2046 §4.2
+      url: https://www.rfc-editor.org/rfc/rfc2046#section-4.2
   - name: video/*
-    registered: true
+    iana: https://www.iana.org/assignments/media-types/media-types.xhtml#video
+    specifications:
+    - name: RFC2045
+      url: https://www.rfc-editor.org/rfc/rfc2045
+    - name: RFC2046 §4.4
+      url: https://www.rfc-editor.org/rfc/rfc2046#section-4.4
 default_for: binary
 references:
   - section: Working with Binary Data
     anchor: working-with-binary-data
+    parent: Working with Data
+    parentAnchor: Working with Data
   - section: Binary Streams
     anchor: binary-streams
+    parent: Media Type Object
+    parentAnchor: media-type-object
+  - section: "`Content-Transfer-Encoding` and `contentEncoding`"
+    anchor: content-transfer-encoding-and-contentencoding
+    parent: Encoding Object
+    parentAnchor: encoding-object
 layout: default
 ---
 
@@ -24,7 +53,7 @@ As of OAS v3.1, binary data is modeled using an empty Schema Object, in accordan
 {% endcapture %}
 
 {% capture remarks %}
-As specified in the linked reference section ("Working with Binary Data"), modeling binary data that has been encoded into a string is handled differently from raw binary data, with two variations: With an Encoding Object or with the Schema Object's `contentMediaType` and `contentEncoding`.
+As specified in [Working with Binary Data](https://spec.openapis.org/oas/latest.html#working-with-binary-data), modeling binary data that has been encoded into a string is handled differently from raw binary data, with two variations: With the [Schema Object](https://spec.openapis.org/oas/latest.html#schema-object)'s `contentMediaType` and `contentEncoding`, or with a `Content-Transfer-Encoding` header in the [Encoding Object](https://spec.openapis.org/oas/latest.html#encoding-object) (for media types that use Encoding Objects).  Consult the specification for how these two mechanisms interact when they both apply.
 
 In OAS v3.0, raw binary content was modeled as `type: string, format: binary`, while `type: string, format: byte` was used for base64-encoded binary.  This was dropped in favor of JSON Schema draft 2020-12's support because it did not allow specifying the media type along with the binary encoding.
 {% endcapture %}

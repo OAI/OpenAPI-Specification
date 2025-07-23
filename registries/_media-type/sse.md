@@ -1,16 +1,28 @@
 ---
 owner: handrews
-description: Server-Sent Events
+name: Server-Sent Events
+description: Event streams for SSE
 media_types:
   - name: text/event-stream
-    registered: false
+    iana: false
+    specifications:
+    - name: WHATWG HTML §Server-Sent Events
+      url: https://html.spec.whatwg.org/multipage/server-sent-events.html#parsing-an-event-stream
+    - name: WHATWG HTML §IANA
+      url: https://html.spec.whatwg.org/multipage/iana.html#text/event-stream
 references:
   - section: Sequential Media Types
     anchor: sequential-media-types
+    parent: Media Types
+    parentAnchor: media-types
   - section: Special Considerations for `text/event-stream` Content
     anchor: special-considerations-for-text-event-stream-conten
-  - section: Server-Sent Event Streams (example)
+    parent: Media Type Object
+    parentAnchor: media-type-object
+  - section: Server-Sent Event Stream
     anchor: server-sent-event-streams
+    parent: Media Type Examples
+    parentAnchor: media-type-examples
 layout: default
 ---
 

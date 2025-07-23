@@ -22,8 +22,8 @@ Please open a [discussion](https://github.com/OAI/OpenAPI-Specification/discussi
 
 **Note:** Media types with a structured suffix are handled the same way as the media type corresponding to the suffix (e.g. all `+json` media types are handled as `application/json`).
 
-|Group|Media Types|
-|---|---|
-{% for value in site.media-type %}| <a href="{{ value.slug }}">{{ value.description }}</a> | {% for mt in value.media_types %}<tt>{{ mt.name }}</tt>{% unless forloop.last %}<br />{% endunless%}{% endfor %}{% if value.default_for %}<br />any unknown {{ value.default_for }} media type{% endif %}|
+|Group|Description|Media Types|
+|---|---|---|
+{% for value in site.media-type %}| <a href="{{ value.slug }}">{{ value.name }}</a> | {{ value.description }} | {% for mt in value.media_types %}<tt>{{ mt.name }}</tt>{% unless forloop.last %}<br />{% endunless%}{% endfor %}{% if value.default_for %}<br />any unrecognized {{ value.default_for }} media type{% endif %}|
 {% endfor %}
 

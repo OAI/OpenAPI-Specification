@@ -1,22 +1,50 @@
 ---
 owner: handrews
-description: Sequential Multipart
+name: Sequential Multipart
+description: Multipart subtypes with unnamed parts
 media_types:
   - name: multipart/*
-    registered: true
+    iana: https://www.iana.org/assignments/media-types/media-types.xhtml#multipart
+    specifications:
+    - name: RFC2045
+      url: https://www.rfc-editor.org/rfc/rfc2045
+    - name: RFC2046 §5.1
+      url: https://www.rfc-editor.org/rfc/rfc2046#section-5.1
   - name: multipart/mixed
-    registered: true
+    iana: https://www.iana.org/assignments/media-types/multipart/mixed
+    specifications:
+    - name: RFC2045
+      url: https://www.rfc-editor.org/rfc/rfc2045
+    - name: RFC2046 §5.1.3
+      url: https://www.rfc-editor.org/rfc/rfc2046#section-5.1.3
   - name: multipart/alternative
-    registered: true
+    iana: https://www.iana.org/assignments/media-types/multipart/alternative
+    specifications:
+    - name: RFC2045
+      url: https://www.rfc-editor.org/rfc/rfc2045
+    - name: RFC2046 §5.1.4
+      url: https://www.rfc-editor.org/rfc/rfc2046#section-5.1.4
   - name: multipart/related
-    registered: true
+    iana: https://www.iana.org/assignments/media-types/multipart/related
+    specifications:
+    - name: RFC2389
+      url: https://www.rfc-editor.org/rfc/rfc2389
+    - name: RFC2557
+      url: https://www.rfc-editor.org/rfc/rfc2557
   - name: multipart/byteranges
-    registered: true
+    iana: https://www.iana.org/assignments/media-types/multipart/byteranges
+    specifications:
+    - name: RFC9110 §14.6
+      url: https://www.rfc-editor.org/rfc/rfc9110#name-media-type-multipart-bytera
 references:
   - section: Encoding By Position
     anchor: encoding-by-position
-  - section: Encoding multipart Media Types
+    parent: Encoding Usage and Restrictions
+    parentAnchor: encoding-usage-and-restrictions
+  - section: Encoding `multipart` Media Types
     anchor: encoding-multipart-media-types
+    parent: Encoding Object
+    parentAnchor: encoding-object
 layout: default
 ---
 

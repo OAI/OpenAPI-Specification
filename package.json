@@ -20,7 +20,7 @@
     "validate-markdown": "npx markdownlint-cli2 --config spec.markdownlint.yaml src/oas.md && npx markdownlint-cli2 *.md"
   },
   "dependencies": {
-    "cheerio": "^1.1.0",
+    "cheerio": "^1.1.2",
     "highlight.js": "^11.11.1",
     "markdown-it": "^14.1.0",
     "respec": "35.4.3",

@@ -17,9 +17,10 @@ components:
     discriminator-incomplete:
       discriminator:          # must have `propertyName` field
         mapping: true         # must be an object
-    discriminator-invalid-propertyName:
+    discriminator-invalid-field-values:
       discriminator:
         propertyName: true    # must be a string
+        defaultMapping: true  # must be a string
     discriminator-invalid-mapping:
       discriminator:
         propertyName: foo

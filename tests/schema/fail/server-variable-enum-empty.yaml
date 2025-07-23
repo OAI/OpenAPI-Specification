@@ -9,6 +9,6 @@ servers:
   - url: https://example.com/{var}
     variables:
       var:
-        enum: []
+        enum: [] # must not be empty and must contain the default value
         default: a
 components: {}

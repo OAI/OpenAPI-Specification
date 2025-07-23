@@ -1,6 +1,6 @@
 openapi: 3.1.0
 
-# this example should fail as overlays is not a valid top-level object/keyword
+# this example should fail as `overlays` is not a valid top-level field
 
 info:
   title: API

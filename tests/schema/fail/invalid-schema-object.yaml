@@ -1,0 +1,27 @@
+openapi: 3.1.0
+info:
+  title: API
+  version: 1.0.0
+components:
+  schemas:
+    externalDocs-no-object:
+      externalDocs: true      # must be an object
+    externalDocs-incomplete:
+      externalDocs:           # must have `url` field
+        description: true     # must be a string
+    externalDocs-invalid-url:
+      externalDocs:
+        url: true             # must be a string
+    discriminator-no-object:
+      discriminator: true     # must be an object
+    discriminator-incomplete:
+      discriminator:          # must have `propertyName` field
+        mapping: true         # must be an object
+    discriminator-invalid-field-values:
+      discriminator:
+        propertyName: true    # must be a string
+    discriminator-invalid-mapping:
+      discriminator:
+        propertyName: foo
+        mapping:
+          key: true           # must be a string

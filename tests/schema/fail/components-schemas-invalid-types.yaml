@@ -6,7 +6,7 @@ info:
   title: API
   version: 1.0.0
 components:
-  schemas:
+  schemas: # must all be objects
     invalid_null: null
     invalid_number: 0
     invalid_array: []

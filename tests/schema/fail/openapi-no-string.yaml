@@ -1,0 +1,5 @@
+openapi: 4.2 # a number, not a string
+info:
+  title: API
+  version: 1.0.0
+paths: {}

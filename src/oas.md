@@ -322,7 +322,9 @@ The behavior for Discriminator Object non-URI mappings and for the Operation Obj
 
 Note that no aspect of implicit connection resolution changes how [URIs are resolved](#relative-references-in-api-description-uris), or restricts their possible targets.
 
-### Data Types
+### Working with Data
+
+#### Data Types
 
 Data types in the OAS are based on the types defined by the [JSON Schema Validation Specification Draft 2020-12](https://www.ietf.org/archive/id/draft-bhutton-json-schema-validation-01.html#section-6.1.1):
 "null", "boolean", "object", "array", "number", "string", or "integer".
@@ -332,7 +334,7 @@ JSON Schema keywords and `format` values operate on JSON "instances" which may b
 
 Note that the `type` keyword allows `"integer"` as a value for convenience, but keyword and format applicability does not recognize integers as being of a distinct JSON type from other numbers because [[RFC8259|JSON]] itself does not make that distinction. Since there is no distinct JSON integer type, JSON Schema defines integers mathematically. This means that both `1` and `1.0` are [equivalent](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-4.2.2), and are both considered to be integers.
 
-#### Data Type Format
+##### Data Type Format
 
 As defined by the [JSON Schema Validation specification](https://www.ietf.org/archive/id/draft-bhutton-json-schema-validation-01.html#section-7.3), data types can have an optional modifier keyword: `format`. As described in that specification, `format` is treated as a non-validating annotation by default; the ability to validate `format` varies across implementations.
 
@@ -353,7 +355,141 @@ The formats defined by the OAS are:
 
 As noted under [Data Type](#data-types), both `type: number` and `type: integer` are considered to be numbers in the data model.
 
-#### Working with Binary Data
+#### Parsing and Serializing
+
+API data has several forms:
+
+1. The serialized form, which is either a document of a particular media type, an HTTP header value, or part of a URI.
+2. The data form, intended for use with a [Schema Object](#schema-object).
+3. The application form, which incorporates any additional information conveyed by JSON Schema keywords such as `format` and `contentType`, and possibly additional information such as class hierarchies that are beyond the scope of this specification, although they MAY be based on specification elements such as the [Discriminator Object](#discriminator-object) or guidance regarding [Data Modeling Techniques](#data-modeling-techniques).
+
+##### JSON Data
+
+JSON-serialized data is nearly equivalent to the data form because the [JSON Schema data model](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-4.2.1) is nearly equivalent to the JSON representation.
+The serialized UTF-8 JSON string `{"when": "1985-04-12T23:20:50.52"}` represents an object with one data field, named `when`, with a string value, `1985-04-12T23:20:50.52`.
+
+The exact application form is beyond the scope of this specification, as can be shown with the following schema for our JSON instance:
+
+```yaml
+type: object
+properties:
+  when:
+    type: string
+    format: date-time
+```
+
+Some applications might leave the string as a string regardless of programming language, while others might notice the `format` and use it as a `datetime.datetime` instance in Python, or a `java.time.ZonedDateTime` in Java.
+This specification only requires that the data is valid according to the schema, and that [annotations](#extended-validation-with-annotations) such as `format` are available in accordance with the JSON Schema specification.
+
+##### Non-JSON Data
+
+Non-JSON serializations can be substantially different from their corresponding data form, and might require several steps to parse.
+
+To continue our "when" example, if we serialized the object as `application/x-www-form-urlencoded`, it would appear as the ASCII string `when=1985-04-12T23%3A20%3A50.52`.
+This example is still straightforward to use as it is all string data, and the only differences from JSON are the URI percent-encoding and the delimiter syntax (`=` instead of JSON punctuation and quoting).
+
+However, many non-JSON text-based formats can be complex, requiring examination of the appropriate schema(s) in order to correctly parse the text into a schema-ready data structure.
+Serializing data into such formats requires either examining the schema-validated data or performing the same schema inspections.
+
+When inspecting schemas, given a starting point schema, implementations MUST examine that schema and all schemas that can be reached from it by following only `$ref` and `allOf` keywords.
+These schemas are guaranteed to apply to any instance.
+When searching schemas for `type`, if the `type` keyword's value is a list of types and the serialized value can be successfully parsed as more than one of the types in the list, and no other findable `type` keyword disambiguates the actual required type, the behavior is implementation-defined.
+Schema Objects that do not contain `type` MUST be considered to allow all types, regardless of which other keywords are present (e.g. `maximum` applies to numbers, but _does not_ require the instance to be a number).
+
+Implementations MAY inspect subschemas or possible reference targets of other keywords such as `oneOf` or `$dynamicRef`, but MUST NOT attempt to resolve ambiguities.
+For example, if an implementation opts to inspect `anyOf`, the schema:
+
+```yaml
+anyOf:
+- type: number
+  minimum: 0
+- type: number
+  maximum: 100
+```
+
+unambiguously indicates a numeric type, but the schema:
+
+```yaml
+anyOf:
+- type: number
+- maximum: 100
+```
+
+does not, because the second subschema allows all types.
+
+Due to these limited requirements for searching schemas, serializers that have access to validated data MUST inspect the data if possible; implementations that either do not work with runtime data (such as code generators) or cannot access validated data for some reason MUST fall back to schema inspection.
+
+Recall also that in JSON Schema, keywords that apply to a specific type (e.g. `pattern` applies to strings, `minimum` applies to numbers) _do not_ require or imply that the data will actually be of that type.
+
+As an example of these processes, given these OpenAPI components:
+
+```yaml
+components:
+  requestBodies:
+    Form:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: "#/components/schemas/FormData"
+          encoding:
+            extra:
+              contentType: application/xml
+  schemas:
+    FormData:
+      type: object
+      properties:
+        code:
+          allOf:
+          - type: [string, number]
+            pattern: "1"
+            minimum: 0
+          - type: string
+            pattern: "2"
+        count:
+          type: integer
+        extra:
+          type: object
+```
+
+And this request body to parse into its data form:
+
+```uri
+code=1234&count=42&extra=%3Cinfo%3Eabc%3C/info%3E
+```
+
+We must first search the schema for `properties` or other property-defining keywords, and then use each property schema as a starting point for a search for that property's `type` keyword, as follows (the exact order is implementation-defined):
+
+* `#/components/requestBodies/Form/content/application~1x-www-form-urlencoded/schema` (initial starting point schema, only `$ref`)
+* `#/components/schemas/FormData` (follow `$ref`, found `properties`)
+* `#/components/schemas/FormData/properties/code` (starting point schema for `code` property)
+* `#/components/schemas/FormData/properties/code/allOf/0` (follow `allOf`, found `type: [string, number]`)
+* `#/components/schemas/FormData/properties/code/allOf/1` (follow `allOf`, found `type: string`)
+* `#/components/schemas/FormData/properties/count` (starting point schema for `count` property, found `type: integer`)
+* `#/components/schemas/FormData/properties/extra` (starting point schema for `extra` property, found `type: object`)
+
+Note that for `code` we first found an ambiguous `type`, but then found another `type` keyword that ensures only one of the two possibilities is valid.
+
+From this inspection, we determine that `code` is a string that happens to look like a number, while `count` needs to be parsed into a number _prior_ to schema validation.
+Furthermore, the `extra` string is in fact an XML serialization of an object containing an `info` property.
+This means that the data form of this serialization is equivalent to the following JSON object:
+
+```json
+{
+  "code": "1234",
+  "count": 42
+  "extra": {
+    "info": "abc"
+  }
+}
+```
+
+Serializing this object also requires correlating properties with [Encoding Objects](#encoding-object), and may require inspection to determine a default value of the `contentType` field.
+If validated data is not available, the schema inspection process is identical to that shown for parsing.
+
+In this example, both `code` and `count` are of primitive type and do not appear in the `encoding` field, and are therefore serialized as plain text.
+However, the `extra` field is an object, which would by default be serialized as JSON, but the `extra` entry in the `encoding` field tells use to serialize it as XML instead.
+
+##### Working with Binary Data
 
 The OAS can describe either _raw_ or _encoded_ binary data.
 
@@ -381,7 +517,19 @@ If the [Schema Object](#schema-object) will be processed by a non-OAS-aware JSON
 
 See [Complete vs Streaming Content](#complete-vs-streaming-content) for guidance on streaming binary payloads.
 
-##### Migrating binary descriptions from OAS 3.0
+###### Schema Evaluation and Binary Data
+
+Few JSON Schema implementations directly support working with binary data, as doing so is not a mandatory part of that specification.
+
+OAS Implementations that do not have access to a binary-instance-supporting JSON Schema implementation MUST examine schemas and apply them in accordance with [Working with Binary Data](#working-with-binary-data).
+When the entire instance is binary, this is straightforward as few keywords are relevant.
+
+However, `multipart` media types can mix binary and text-based data, leaving implementations with two options for schema evaluations:
+
+1. Use a placeholder value, on the assumption that no assertions will apply to the binary data and no conditional schema keywords will cause the schema to treat the placeholder value differently (e.g. a part that could be either plain text or binary might behave unexpectedly if a string is used as a binary placeholder, as it would likely be treated as plain text and subject to different subschemas and keywords).
+2. Inspect the schema(s) to find the appropriate keywords (`properties`, `prefixItems`, etc.) in order to break up the subschemas and apply them separately to binary and JSON-compatible data.
+
+###### Migrating binary descriptions from OAS 3.0
 
 The following table shows how to migrate from OAS 3.0 binary data descriptions, continuing to use `image/png` as the example binary media type:
 
@@ -1689,7 +1837,7 @@ These fields MAY be used either with or without the RFC6570-style serialization 
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="encoding-content-type"></a>contentType | `string` | The `Content-Type` for encoding a specific property. The value is a comma-separated list, each element of which is either a specific media type (e.g. `image/png`) or a wildcard media type (e.g. `image/*`). Default value depends on the property type as shown in the table below. |
+| <a name="encoding-content-type"></a>contentType | `string` | The `Content-Type` for encoding a specific property. The value is a comma-separated list, each element of which is either a specific media type (e.g. `image/png`) or a wildcard media type (e.g. `image/*`). The default value depends on the type as shown in the table below. |
 | <a name="encoding-headers"></a>headers | Map[`string`, [Header Object](#header-object) \| [Reference Object](#reference-object)] | A map allowing additional information to be provided as headers. `Content-Type` is described separately and SHALL be ignored in this section. This field SHALL be ignored if the media type is not a `multipart`. |
 | <a name="encoding-encoding"></a>encoding | Map[`string`, [Encoding Object](#encoding-object)] | Applies nested Encoding Objects in the same manner as the [Media Type Object](#media-type-object)'s `encoding` field. |
 | <a name="encoding-prefix-encoding"></a>prefixEncoding | [[Encoding Object](#encoding-object)] | Applies nested Encoding Objects in the same manner as the [Media Type Object](#media-type-object)'s `prefixEncoding` field. |

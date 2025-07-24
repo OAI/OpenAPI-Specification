@@ -292,7 +292,7 @@ As noted under [Data Type](#data-types), both `type: number` and `type: integer`
 
 #### Parsing and Serializing
 
-API data has three forms:
+API data has several forms:
 
 1. The serialized form, which is either a document of a particular media type, part of an HTTP header value, or part of a URI.
 2. The data form, intended for use with a [Schema Object](#schema-object).

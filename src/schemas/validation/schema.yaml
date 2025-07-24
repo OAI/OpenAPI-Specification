@@ -539,9 +539,20 @@ $defs:
         type: object
         additionalProperties:
           $ref: '#/$defs/encoding'
+      prefixEncoding:
+        type: array
+        items:
+          $ref: '#/$defs/encoding'
+      itemEncoding:
+        $ref: '#/$defs/encoding'
     allOf:
-      - $ref: '#/$defs/specification-extensions'
       - $ref: '#/$defs/examples'
+      - $ref: '#/$defs/specification-extensions'
+      - dependentSchemas:
+          encoding:
+            properties:
+              prefixEncoding: false
+              itemEncoding: false
     unevaluatedProperties: false
 
   media-type-or-reference:

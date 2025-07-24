@@ -2559,10 +2559,9 @@ components:
       content:
         text/plain:
           schema:
+            # Due to lack of support for multiline regular expressions
+            # in the `pattern` keyword, not much validation can be done.
             type: string
-            allOf:
-            - pattern: "^lang=[^;];.*Expires="
-            - pattern: "^foo=[^;];.*Expires="
       examples:
         WithExpires:
           # This demonstrates that the text is required to be provided
@@ -2582,7 +2581,7 @@ components:
         - foo
         additionalProperties:
           type: string
-          pattern: "^[^[:space:]]$"
+          pattern: "^[^[:space:]]*$"
       style: simple
       explode: true
       examples:

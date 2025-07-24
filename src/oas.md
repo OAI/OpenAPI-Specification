@@ -2528,7 +2528,7 @@ components:
 
 The `Set-Cookie` header is noted in [[!RFC9110]] [Section 5.3](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.3) as an exception to the normal rules of headers with multiple values.
 
-For most headers using the general syntax defined in RFC9110, the multiple-line and comma-separaed single-line forms are interchangeable, meaning that this:
+For most headers using the general syntax defined in RFC9110, the multiple-line and comma-separated single-line forms are interchangeable, meaning that this:
 
 ```http
 Accept-Encoding: compress;q=0.5

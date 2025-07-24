@@ -370,6 +370,8 @@ $defs:
       - required:
         - content
     allOf:
+      - $ref: '#/$defs/examples'
+      - $ref: '#/$defs/specification-extensions'
       - if:
           properties:
             in:
@@ -407,7 +409,6 @@ $defs:
             default: false
             type: boolean
         allOf:
-          - $ref: '#/$defs/examples'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-path'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-header'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-query'
@@ -478,7 +479,6 @@ $defs:
                   default: form
                   const: form
 
-    $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
 
   parameter-or-reference:
@@ -790,7 +790,9 @@ $defs:
             default: false
             type: boolean
         $ref: '#/$defs/examples'
-    $ref: '#/$defs/specification-extensions'
+    allOf:
+    - $ref: '#/$defs/examples'
+    - $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
 
   header-or-reference:

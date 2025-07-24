@@ -1124,6 +1124,8 @@ See [Appendix B](#appendix-b-data-type-conversion) for a discussion of convertin
 
 These fields MAY be used with either `content` or `schema`.
 
+The `example` and `examples` fields are mutually exclusive; see [Working with Examples](#working-with-examples) for guidance on validation requirements.
+
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="parameter-name"></a>name | `string` | **REQUIRED**. The name of the parameter. Parameter names are _case sensitive_. <ul><li>If [`in`](#parameter-in) is `"path"`, the `name` field MUST correspond to a single template expression occurring within the [path](#paths-path) field in the [Paths Object](#paths-object). See [Path Templating](#path-templating) for further information.<li>If [`in`](#parameter-in) is `"header"` and the `name` field is `"Accept"`, `"Content-Type"` or `"Authorization"`, the parameter definition SHALL be ignored.<li>If `in` is `"querystring"`, or for [certain combinations](#style-examples) of [`style`](#parameter-style) and [`explode`](#parameter-explode), the value of `name` is not used in the parameter serialization.<li>For all other cases, the `name` corresponds to the parameter name used by the [`in`](#parameter-in) field.</ul> |
@@ -1132,6 +1134,8 @@ These fields MAY be used with either `content` or `schema`.
 | <a name="parameter-required"></a>required | `boolean` | Determines whether this parameter is mandatory. If the [parameter location](#parameter-in) is `"path"`, this field is **REQUIRED** and its value MUST be `true`. Otherwise, the field MAY be included and its default value is `false`. |
 | <a name="parameter-deprecated"></a> deprecated | `boolean` | Specifies that a parameter is deprecated and SHOULD be transitioned out of usage. Default value is `false`. |
 | <a name="parameter-allow-empty-value"></a> allowEmptyValue | `boolean` | If `true`, clients MAY pass a zero-length string value in place of parameters that would otherwise be omitted entirely, which the server SHOULD interpret as the parameter being unused. Default value is `false`. If [`style`](#parameter-style) is used, and if [behavior is _n/a_ (cannot be serialized)](#style-examples), the value of `allowEmptyValue` SHALL be ignored. Interactions between this field and the parameter's [Schema Object](#schema-object) are implementation-defined. This field is valid only for `query` parameters. <br><br>**Deprecated:** Use of this field is NOT RECOMMENDED, and it is likely to be removed in a later revision. |
+| <a name="parameter-example"></a>example | Any | Example of the parameter's potential value; see [Working With Examples](#working-with-examples). |
+| <a name="parameter-examples"></a>examples | Map[ `string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | Examples of the parameter's potential value; see [Working With Examples](#working-with-examples). |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
@@ -1140,8 +1144,6 @@ Note that while `"Cookie"` as a `name` is not forbidden if `in` is `"header"`, t
 ###### Fixed Fields for use with `schema`
 
 For simpler scenarios, a [`schema`](#parameter-schema) and [`style`](#parameter-style) can describe the structure and syntax of the parameter.
-When `example` or `examples` are provided in conjunction with the `schema` field, the example SHOULD match the specified schema and follow the prescribed serialization strategy for the parameter.
-The `example` and `examples` fields are mutually exclusive.
 
 These fields MUST NOT be used with `in: "querystring"`.
 
@@ -1153,8 +1155,6 @@ Serializing with `schema` is NOT RECOMMENDED for `in: "cookie"` parameters, `in:
 | <a name="parameter-explode"></a>explode | `boolean` | When this is true, parameter values of type `array` or `object` generate separate parameters for each value of the array or key-value pair of the map. For other types of parameters this field has no effect. When [`style`](#parameter-style) is `"form"`, the default value is `true`. For all other styles, the default value is `false`. Note that despite `false` being the default for `deepObject`, the combination of `false` with `deepObject` is undefined. |
 | <a name="parameter-allow-reserved"></a>allowReserved | `boolean` | When this is true, parameter values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). Applications are still responsible for percent-encoding reserved characters that are not allowed by the rules of the `in` destination or media type, or are [not allowed in the path by this specification](#path-templating); see Appendices [C](#appendix-c-using-rfc6570-based-serialization) and [E](#appendix-e-percent-encoding-and-form-media-types) for details. The default value is `false`. |
 | <a name="parameter-schema"></a>schema | [Schema Object](#schema-object) | The schema defining the type used for the parameter. |
-| <a name="parameter-example"></a>example | Any | Example of the parameter's potential value; see [Working With Examples](#working-with-examples). |
-| <a name="parameter-examples"></a>examples | Map[ `string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | Examples of the parameter's potential value; see [Working With Examples](#working-with-examples). |
 
 See also [Appendix C: Using RFC6570-Based Serialization](#appendix-c-using-rfc6570-based-serialization) for additional guidance.
 
@@ -2677,25 +2677,25 @@ The Header Object follows the structure of the [Parameter Object](#parameter-obj
 
 These fields MAY be used with either `content` or `schema`.
 
+The `example` and `examples` fields are mutually exclusive; see [Working with Examples](#working-with-examples) for guidance on validation requirements.
+
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="header-description"></a>description | `string` | A brief description of the header. This could contain examples of use. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="header-required"></a>required | `boolean` | Determines whether this header is mandatory. The default value is `false`. |
 | <a name="header-deprecated"></a> deprecated | `boolean` | Specifies that the header is deprecated and SHOULD be transitioned out of usage. Default value is `false`. |
+| <a name="header-example"></a>example | Any | Example of the header's potential value; see [Working With Examples](#working-with-examples). |
+| <a name="header-examples"></a>examples | Map[ `string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | Examples of the header's potential value; see [Working With Examples](#working-with-examples). |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
 ###### Fixed Fields for use with `schema`
 
 For simpler scenarios, a [`schema`](#header-schema) and [`style`](#header-style) can describe the structure and syntax of the header.
-When `example` or `examples` are provided in conjunction with the `schema` field, the example MUST follow the prescribed serialization strategy for the header.
 
 Serializing headers with `schema` can be problematic due to the URI percent-encoding that is automatically applied, which would percent-encode characters such as `;` that are used to separate primary header values from their parameters.
 The `allowReserved` field can disable most but not all of this behavior.
 See [Appendix D](#appendix-d-serializing-headers-and-cookies) for details and further guidance.
-
-When `example` or `examples` are provided in conjunction with the `schema` field, the example SHOULD match the specified schema and follow the prescribed serialization strategy for the header.
-The `example` and `examples` fields are mutually exclusive.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
@@ -2703,8 +2703,6 @@ The `example` and `examples` fields are mutually exclusive.
 | <a name="header-explode"></a>explode | `boolean` | When this is true, header values of type `array` or `object` generate a single header whose value is a comma-separated list of the array items or key-value pairs of the map, see [Style Examples](#style-examples). For other data types this field has no effect. The default value is `false`. |
 | <a name="header-allow-reserved"></a>allowReserved | `boolean` | When this is true, header values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). See [Appendix D: Serializing Headers and Cookies](#appendix-d-serializing-headers-and-cookies) for guidance on header encoding and escaping. The default value is `false`. |
 | <a name="header-schema"></a>schema | [Schema Object](#schema-object) | The schema defining the type used for the header. |
-| <a name="header-example"></a>example | Any | Example of the header's potential value; see [Working With Examples](#working-with-examples). |
-| <a name="header-examples"></a>examples | Map[ `string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | Examples of the header's potential value; see [Working With Examples](#working-with-examples). |
 
 See also [Appendix C: Using RFC6570-Based Serialization](#appendix-c-using-rfc6570-based-serialization) for additional guidance.
 

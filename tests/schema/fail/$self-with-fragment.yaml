@@ -1,0 +1,6 @@
+openapi: 3.2.0
+$self: no#fragment # must not contain a fragment
+info:
+  title: API
+  version: 1.0.0
+paths: {}

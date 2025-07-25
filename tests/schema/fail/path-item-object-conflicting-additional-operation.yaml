@@ -6,4 +6,4 @@ paths:
   /pets/{id}:
     additionalOperations:
       POST:
-        description: must be allowed, use `post` next to `additionalOperations`
+        description: not allowed, use `post` next to `additionalOperations`

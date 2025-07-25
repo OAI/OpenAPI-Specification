@@ -1,5 +1,5 @@
 openapi: 3.2.0
-$self: 42 # must be a string, must be a number
+$self: 42 # must be a string, not a number
 info:
   title: API
   version: 1.0.0

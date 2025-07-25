@@ -140,6 +140,7 @@ components:
     invalid:
       summary: true         # must be a string
       description: true     # must be a string
+      serializedValue: true # must be a string
       externalValue: true   # must be a string
   responses:
     no-object: true         # must be an object
@@ -166,4 +167,7 @@ components:
               explode: yes            # must be a boolean
               allowReserved: no       # must be a boolean
               encoding: true          # must be an object
-              prefixEncoding: true    # must be an array
+              prefixEncoding: {}      # must be an array
+  mediaTypes:
+    invalid-prefixEncoding:
+      prefixEncoding: {}  # must be an array

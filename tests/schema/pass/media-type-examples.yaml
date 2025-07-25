@@ -161,3 +161,13 @@ paths:
                 prefixEncoding:
                 - {}
                 itemEncoding: {}
+          multipart/related:
+            schema:
+              type: array
+            itemEncoding:
+              contentType: text/plain
+            prefixEncoding:
+            - headers:
+                Content-Location:
+                  schema:
+                    type: string

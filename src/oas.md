@@ -3782,46 +3782,85 @@ For examples using `attribute` or `wrapped`, please see version 3.1 of the OpenA
 
 ###### No XML Object
 
-Basic string property (`nodeType` is `element` by default):
+Basic string property without an XML Object, using `serializedValue` (the remaining examples will use `externalValue` so that the XML form can be shown with syntax highlighting):
 
 ```yaml
-properties:
-  animals:
-    type: string
-```
-
-```xml
-<animals>...</animals>
+application/xml:
+  schema:
+    type: object
+    xml:
+      name: document
+    properties:
+      animals:
+        type: string
+  examples:
+    pets:
+      dataValue:
+        animals: "dog, cat, hamster"
+      serializedValue: |
+        <document>
+          <animals>dog, cat, hamster</animals>
+        </document>
 ```
 
 Basic string array property (`nodeType` is `none` by default):
 
 ```yaml
-properties:
-  animals:
-    type: array
-    items:
-      type: string
+application/xml:
+  schema:
+    type: object
+    xml:
+      name: document
+    properties:
+      animals:
+        type: array
+        items:
+          type: string
+  examples:
+    pets:
+      dataValue:
+        animals: [dog, cat, hamster]
+      externalValue: ./examples/pets.xml
 ```
 
+Where `./examples/pets.xml` would be:
+
 ```xml
-<animals>...</animals>
-<animals>...</animals>
-<animals>...</animals>
+<document>
+  <animals>dog</animals>
+  <animals>cat</animals>
+  <animals>hamster</animals>
+</document>
 ```
 
 ###### XML Name Replacement
 
 ```yaml
-properties:
-  animals:
-    type: string
+application/xml:
+  schema:
+    type: object
     xml:
-      name: animal
+      name: document
+    properties:
+      animals:
+        type: string
+        xml:
+          name: animal
+  examples:
+    pets:
+      dataValue:
+        animals: [dog, cat, hamster]
+      externalValue: ./examples/pets.xml
 ```
 
+Where `./examples/pets.xml` would be:
+
 ```xml
-<animal>...</animal>
+<document>
+  <animal>dog</animal>
+  <animal>cat</animal>
+  <animal>hamster</animal>
+</document>
 ```
 
 ###### XML Attribute, Prefix and Namespace
@@ -3844,7 +3883,21 @@ components:
           xml:
             namespace: https://example.com/schema/sample
             prefix: sample
+  requestBodies:
+    Person:
+      content:
+        application/xml:
+          schema:
+            $ref: "#/components/schemas/Person"
+          examples:
+            Person:
+              dataValue:
+                id: 123
+                name: example
+              externalValue: ./examples/Person.xml
 ```
+
+Where `./examples/Person.xml` would be:
 
 ```xml
 <Person id="123">
@@ -3857,126 +3910,216 @@ components:
 Changing the element names:
 
 ```yaml
-properties:
-  animals:
-    type: array
-    items:
-      type: string
-      xml:
-        name: animal
+application/xml:
+  schema:
+    type: object
+    xml:
+      name: document
+    properties:
+      animals:
+        type: array
+        items:
+          type: string
+          xml:
+            name: animal
+  examples:
+    pets:
+      dataValue:
+        animals: [dog, cat, hamster]
+      externalValue: ./examples/pets.xml
 ```
 
+Where `./examples/pets.xml` would be:
+
 ```xml
-<animal>value</animal>
-<animal>value</animal>
+<document>
+  <animal>dog</animal>
+  <animal>cat</animal>
+  <animal>hamster</animal>
+</document>
 ```
 
 The `name` field for the `type: "array"` schema has no effect because the default `nodeType` for that object is `none`:
 
 ```yaml
-properties:
-  animals:
-    type: array
-    items:
-      type: string
-      xml:
-        name: animal
+application/xml:
+  schema:
+    type: object
     xml:
-      name: aliens
+      name: document
+    properties:
+      animals:
+        type: array
+        xml:
+          name: aliens
+        items:
+          type: string
+          xml:
+            name: animal
+  examples:
+    pets:
+      dataValue:
+        animals: [dog, cat, hamster]
+      externalValue: ./examples/pets.xml
 ```
 
+Where `./examples/pets.xml` would be:
+
 ```xml
-<animal>value</animal>
-<animal>value</animal>
+<document>
+  <animal>dog</animal>
+  <animal>cat</animal>
+  <animal>hamster</animal>
+</document>
 ```
 
 Even when a wrapping element is explicitly created by setting `nodeType` to `element`, if a name is not explicitly defined, the same name will be used for both the wrapping element and the list item elements:
 
 ```yaml
-properties:
-  animals:
-    type: array
-    items:
-      type: string
+application/xml:
+  schema:
+    type: object
     xml:
-      nodeType: element
+      name: document
+    properties:
+      animals:
+        type: array
+        xml:
+          nodeType: element
+        items:
+          type: string
+  examples:
+    pets:
+      dataValue:
+        animals: [dog, cat, hamster]
+      externalValue: ./examples/pets.xml
 ```
 
+Where `./examples/pets.xml` would be:
+
 ```xml
-<animals>
-  <animals>value</animals>
-  <animals>value</animals>
-</animals>
+<document>
+  <animals>
+    <animals>dog</animals>
+    <animals>cat</animals>
+    <animals>hamster</animals>
+  </animals>
+</document>
 ```
 
 To overcome the naming problem in the example above, the following definition can be used:
 
 ```yaml
-properties:
-  animals:
-    type: array
-    items:
-      type: string
-      xml:
-        name: animal
+application/xml:
+  schema:
+    type: object
     xml:
-      nodeType: element
+      name: document
+    properties:
+      animals:
+        type: array
+        xml:
+          nodeType: element
+        items:
+          type: string
+          xml:
+            name: animal
+  examples:
+    pets:
+      dataValue:
+        animals: [dog, cat, hamster]
+      externalValue: ./examples/pets.xml
 ```
 
+Where `./examples/pets.xml` would be:
+
 ```xml
-<animals>
-  <animal>value</animal>
-  <animal>value</animal>
-</animals>
+<document>
+  <animals>
+    <animal>dog</animal>
+    <animal>cat</animal>
+    <animal>hamster</animal>
+  </animals>
+</document>
 ```
 
 Affecting both wrapping element and item element names:
 
 ```yaml
-properties:
-  animals:
-    type: array
-    items:
-      type: string
-      xml:
-        name: animal
+application/xml:
+  schema:
+    type: object
     xml:
-      name: aliens
-      nodeType: element
+      name: document
+    properties:
+      animals:
+        type: array
+        xml:
+          name: aliens
+          nodeType: element
+        items:
+          type: string
+          xml:
+            name: animal
+  examples:
+    pets:
+      dataValue:
+        animals: [dog, cat, hamster]
+      externalValue: ./examples/pets.xml
 ```
 
+Where `./examples/pets.xml` would be:
+
 ```xml
-<aliens>
-  <animal>value</animal>
-  <animal>value</animal>
-</aliens>
+<document>
+  <aliens>
+    <animal>dog</animal>
+    <animal>cat</animal>
+    <animal>hamster</animal>
+  </aliens>
+</document>
 ```
 
 If we change the wrapping element name but not the item element names:
 
 ```yaml
-properties:
-  animals:
-    type: array
-    items:
-      type: string
+application/xml:
+  schema:
+    type: object
     xml:
-      name: aliens
-      nodeType: element
+      name: document
+    properties:
+      animals:
+        type: array
+        xml:
+          name: aliens
+          nodeType: element
+        items:
+          type: string
+  examples:
+    pets:
+      dataValue:
+        animals: [dog, cat, hamster]
+      externalValue: ./examples/pets.xml
 ```
 
+Where `./examples/pets.xml` would be:
+
 ```xml
-<aliens>
-  <aliens>value</aliens>
-  <aliens>value</aliens>
-</aliens>
+<document>
+  <aliens>
+    <aliens>dog</aliens>
+    <aliens>cat</aliens>
+    <aliens>hamster</aliens>
+  </aliens>
+</document>
 ```
 
 ###### Elements With Attributes And Text
 
 ```yaml
-properties:
-  animals:
+application/xml:
+  schema:
     type: array
     xml:
       nodeType: element
@@ -3989,11 +4132,20 @@ properties:
           type: string
           xml:
             nodeType: attribute
-        content:
+        name:
           type: string
           xml:
             nodeType: text
+  examples:
+    pets:
+      dataValue:
+      - kind: Cat
+        name: Fluffy
+      - kind: Dog
+        name: Fido
 ```
+
+Where `./examples/pets.xml` would be:
 
 ```xml
 <animals>
@@ -4008,15 +4160,6 @@ In this example, no element is created for the Schema Object that contains only 
 It is necessary to create a subschema for the CDATA section as otherwise the content would be treated as an implicit node of type `text`.
 
 ```yaml
-paths:
-  /docs:
-    get:
-      responses:
-        "200":
-          content:
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Documentation"
 components:
   schemas:
     Documentation:
@@ -4027,7 +4170,19 @@ components:
           contentMediaType: text/html
           xml:
             nodeType: cdata
+  responses:
+    content:
+      application/xml:
+        schema:
+          $ref: "#/components/schemas/Documentation"
+        examples:
+          docs:
+            dataValue:
+              content: <html><head><title>Awesome Docs</title></head><body></body><html>
+            externalValue: ./examples/docs.xml
 ```
+
+Where `./examples/docs.xml` would be:
 
 ```xml
 <Documentation>
@@ -4035,7 +4190,7 @@ components:
 </Documentation>
 ```
 
-Alternatively, the named root element could be set at the point of use and the root element disabled on the component:
+Alternatively, the named root element could be set at the point of use and the root element disabled on the component (note that in this example, the same `dataValue` is used in two places with different serializations shown with `externalValue`):
 
 ```yaml
 paths:
@@ -4050,6 +4205,12 @@ paths:
                   nodeType: element
                   name: StoredDocument
                 $ref: "#/components/schemas/Documentation"
+              examples:
+                stored:
+                  dataValue: {
+                    "content": "<html><head><title>Awesome Docs</title></head><body></body><html>"
+                  }
+                  externalValue: ./examples/stored.xml
     put:
       requestBody:
         required: true
@@ -4060,6 +4221,12 @@ paths:
                 nodeType: element
                 name: UpdatedDocument
               $ref: "#/components/schemas/Documentation"
+            examples:
+              updated:
+                dataValue: {
+                  "content": "<html><head><title>Awesome Docs</title></head><body></body><html>"
+                }
+                externalValue: ./examples/updated.xml
       responses:
         "201": {}
 components:
@@ -4076,7 +4243,10 @@ components:
             nodeType: cdata
 ```
 
-The GET response XML:
+where `./examples/content.json` would be:
+
+
+`./examples/stored.xml` would be:
 
 ```xml
 <StoredDocument>
@@ -4084,20 +4254,12 @@ The GET response XML:
 </StoredDocument>
 ```
 
-The PUT request XML:
+and `./examples/updated.xml` would be:
 
 ```xml
 <UpdatedDocument>
   <![CDATA[<html><head><title>Awesome Docs</title></head><body></body><html>]]>
 </UpdatedDocument>
-```
-
-The in-memory instance data for all three of the above XML documents:
-
-```json
-{
-  "content": "<html><head><title>Awesome Docs</title></head><body></body><html>"
-}
 ```
 
 ###### Ordered Elements and Text
@@ -4109,39 +4271,52 @@ It is also necessary to set `nodeType: "element"` explicitly on the array in ord
 This first ordered example shows a sequence of elements, as well as the recommended serialization of `null` for elements:
 
 ```yaml
-components:
-  schemas:
+application/xml:
+  schema:
+    xml:
+      nodeType: element
+      name: OneTwoThree
+    type: array
+    minLength: 3
+    maxLength: 3
+    prefixItems:
+    - xml:
+        name: One
+      type: string
+    - xml:
+        name: Two
+      type: object
+      required:
+      - unit
+      - value
+      properties:
+        unit:
+          type: string
+          xml:
+            nodeType: attribute
+        value:
+          type: number
+          xml:
+            nodeType: text
+    - xml:
+        name: Three
+      type:
+      - boolean
+      - "null"
+  examples:
     OneTwoThree:
-      xml:
-        nodeType: element
-      type: array
-      minLength: 3
-      maxLength: 3
-      prefixItems:
-      - xml:
-          name: One
-        type: string
-      - xml:
-          name: Two
-        type: object
-        required:
-        - unit
-        - value
-        properties:
-          unit:
-            type: string
-            xml:
-              nodeType: attribute
-          value:
-            type: number
-            xml:
-              nodeType: text
-      - xml:
-          name: Three
-        type:
-        - boolean
-        - "null"
+      dataValue: [
+        "Some text",
+        {
+          "unit": "cubits"
+          "value": 42
+        },
+        null
+      ]
+      externalValue: ./examples/OneTwoThree.xml
 ```
+
+Where `./examples/OneTwoThree.xml` would be:
 
 ```xml
 <OneTwoThree>
@@ -4151,61 +4326,52 @@ components:
 </OneTwoThree>
 ```
 
-The in-memory instance data that would produce the above XML snippet with the preceding schema would be:
-
-```json
-[
-  "Some Text",
-  {
-    "unit": "cubits",
-    "value": 42
-  },
-  null
-]
-```
-
 In this next example, the `name` needs to be set for the element, while the `nodeType` needs to be set for the text nodes.
 
 ```yaml
-components:
-  schemas:
+application/xml:
+  schema:
+    xml:
+      nodeType: element
+      name: Report
+    type: array
+    prefixItems:
+    - xml:
+        nodeType: text
+      type: string
+    - xml:
+        name: data
+      type: number
+    - xml:
+        nodeType: text
+      type: string
+  examples:
     Report:
-      xml:
-        nodeType: element
-      type: array
-      prefixItems:
-      - xml:
-          nodeType: text
-        type: string
-      - xml:
-          name: data
-        type: number
-      - xml:
-          nodeType: text
-        type: string
+      dataValue: [
+        "Some preamble text.",
+        42,
+        "Some postamble text."
+      ]
+      externalValue: ./examples/Report.xml
 ```
+
+Where `./examples/Report.xml` would be:
 
 ```xml
 <Report>Some preamble text.<data>42</data>Some postamble text.</Report>
 ```
 
-The in-memory instance data structure for the above example would be:
-
-```json
-[
-  "Some preamble text."
-  42,
-  "Some postamble text."
-]
-```
-
 ###### XML With `null` Values
 
 Recall that the schema validates the in-memory data, not the XML document itself.
-The properties of the `"related"` element object are omitted for brevity as it is here to show how the `null` value is represented.
+This example does not define properties for `"related"` as it is showing how
+empty objects and `null` are handled.
 
 ```yaml
-product:
+appliaction/xml:
+schema:
+  xml:
+    name: product
   type: object
   required:
   - count
@@ -4228,7 +4394,24 @@ product:
       type:
       - object
       - "null"
+examples:
+  productWithNulls:
+    dataValue: {
+      "count": null,
+      "description": "Thing",
+      "related": null
+    }
+    externalValue: ./examples/productWithNulls.xml
+  productNoNulls:
+    dataValue: {
+      "count": 42,
+      "description: "Thing"
+      "related": {}
+    }
+   externalValue: ./examples/productNoNulls.xml
 ```
+
+Where `./examples/productWithNulls.xml` would be:
 
 ```xml
 <product>
@@ -4237,16 +4420,13 @@ product:
 </product>
 ```
 
-The above XML example corresponds to the following in-memory instance:
+and `./examples/productNoNulls.xml` would be:
 
-```json
-{
-  "product": {
-    "count": null,
-    "description": "Thing",
-    "related": null
-  }
-}
+```xml
+<product count="42">
+  <description>Thing</description>
+  <related></related>
+</product>
 ```
 
 #### Security Scheme Object

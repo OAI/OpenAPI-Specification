@@ -2017,6 +2017,7 @@ The nested parts are XML, plain text, and a PNG image.
 ```yaml
 multipart/mixed:
   schema:
+    type: array
     prefixItems:
     - type: array
     - type: array

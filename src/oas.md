@@ -2178,6 +2178,122 @@ requestBody:
 
 As seen in the [Encoding Object's `contentType` field documentation](#encoding-content-type), the empty schema for `items` indicates a media type of `application/octet-stream`.
 
+###### Example: Ordered, Unnamed Multipart
+
+A `multipart/mixed` payload consisting of a JSON metadata document followed by an image which the metadata describes:
+
+```yaml
+multipart/mixed:
+  schema:
+    type: array
+    prefixItems:
+    - # default content type for objects
+      # is `application/json`
+      type: object
+      properties:
+        author:
+          type: string
+        created:
+          type: string
+          format: datetime
+        copyright:
+          type: string
+        license:
+          type: string
+    - # default content type for a schema without `type`
+      # is `application/octet-stream`, which we need
+      # to override.
+      {}
+  prefixEncoding:
+  - # Encoding Object defaults are correct for JSON
+    {}
+  - contentType: image/*
+```
+
+###### Example: Ordered Multipart With Required Header
+
+As described in [[?RFC2557]], a set of resources making up a web page can be sent in a `multipart/related` payload, preserving links from the `text/html` document to subsidiary resources such as scripts, style sheets, and images by defining a `Content-Location` header for each page.
+The first part is used as the root resource (unless using `Content-ID`, which RFC2557 advises against and is forbidden in this example), so we use `prefixItems` and `prefixEncoding` to define that it must be an HTML resource, and then allow any of several different types of resources in any order to follow.
+
+The `Content-Location` header is defined using `content: {text/plain: {...}}` to avoid percent-encoding its URI value; see [Appendix D](appendix-d-serializing-headers-and-cookies) for further details.
+
+```yaml
+components:
+  headers:
+    RFC2557NoContentId:
+      description: Use Content-Location instead of Content-ID
+      schema: false
+    RFC2557ContentLocation:
+      required: true
+      content:
+        text/plain:
+          schema:
+            $comment: Use a full URI (not a relative reference)
+            type: string
+            format: uri
+  requestBodies:
+    RFC2557:
+      content:
+        multipart/related; type=text/html:
+          schema:
+            prefixItems:
+            - type: string
+            items:
+              anyOf:
+              - type: string
+              - $comment: To allow binary, this must always pass
+          prefixEncoding:
+          - contentType: text/html
+            headers:
+              Content-ID:
+                $ref: '#/components/headers/RFC2557NoContentId'
+              Content-Location:
+                $ref: '#/components/headers/RFC2557ContentLocation'
+          itemEncoding:
+            contentType: text/css,text/javascript,image/*
+            headers:
+              Content-ID:
+                $ref: '#/components/headers/RFC2557NoContentId'
+              Content-Location:
+                $ref: '#/components/headers/RFC2557ContentLocation'
+```
+
+###### Example: Streaming Multipart
+
+This example assumes a device that takes large sets of pictures and streams them to the caller.
+Unlike the previous example, we use `itemSchema` here because the expectation is that each image is processed as it arrives (or in small batches), since we know that buffering the entire stream will take too much memory.
+
+```yaml
+multipart/mixed:
+  itemSchema:
+    $comment: A single data image from the device
+  itemEncoding:
+    contentType: image/jpg
+```
+
+###### Example: Streaming Byte Ranges
+
+For `multipart/byteranges` [[RFC9110]] [Section 14.6](https://www.rfc-editor.org/rfc/rfc9110.html#section-14.6), a `Content-Range` header is required:
+
+See [Appendix D](appendix-d-serializing-headers-and-cookies) for an explanation of why `content: {text/plain: {...}}` is used to describe the header value.
+
+```yaml
+multipart/byteranges:
+  itemSchema:
+    $comment: A single range of bytes from a video
+  itemEncoding:
+    contentType: video/mp4
+    headers:
+      Content-Range:
+        required: true
+        content:
+          text/plain:
+            schema:
+              # The `pattern` regular expression that would
+              # be included in practice is omitted for simplicity
+              type: string
+```
+
 ###### Example: Nested `multipart/mixed`
 
 This defines a two-part `multipart/mixed` where the first part is a JSON array and the second part is a nested `multipart/mixed` document.

@@ -6,6 +6,6 @@ info:
   title: API
   version: 1.0.0
 paths: {}
-servers:
+servers:  # must be an array
   url: /v1
   description: Run locally.

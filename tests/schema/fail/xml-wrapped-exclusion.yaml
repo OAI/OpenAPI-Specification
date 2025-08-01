@@ -7,5 +7,5 @@ components:
     List:
       type: array
       xml:
-        wrapped: true
+        wrapped: true       # can't have both `wrapped` and `nodeType`
         nodeType: element

@@ -43,6 +43,7 @@ Path templating refers to the usage of template expressions, delimited by curly 
 Each template expression in the path MUST correspond to a path parameter that is included in the [Path Item](#path-item-object) itself and/or in each of the Path Item's [Operations](#operation-object). An exception is if the path item is empty, for example due to ACL constraints, matching path parameters are not required.
 
 The value for these path parameters MUST NOT contain any unescaped "generic syntax" characters described by [RFC3986](https://tools.ietf.org/html/rfc3986#section-3): forward slashes (`/`), question marks (`?`), or hashes (`#`).
+See [URL Percent-Encoding](#url-percent-encoding) for additional guidance on escaping characters.
 
 The path templating is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax
 
@@ -1183,7 +1184,31 @@ In order to support common ways of serializing simple parameters, a set of `styl
 | pipeDelimited | `array`, `object` | `query` | Pipe separated array values or object properties and values. This option replaces `collectionFormat` equal to `pipes` from OpenAPI 2.0. |
 | deepObject | `object` | `query` | Allows objects with scalar properties to be represented using form parameters. The representation of array or object properties is not defined (but see [Extending Support for Querystring Formats](#extending-support-for-querystring-formats) for alternatives). |
 
-See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a discussion of percent-encoding, including when delimiters need to be percent-encoded and options for handling collisions with percent-encoded data.
+#### URL Percent-Encoding
+
+All API URLs MUST successfully parse and percent-decode using [[RFC3986]] rules.
+
+Content in the `application/x-www-form-urlencoded` format, including query strings produced by [Parameter Objects](#parameter-object) with `in: "query"`, MUST also successfully parse and percent-decode using [[RFC1866]] rules, including treating non-percent-encoded `+` as an escaped space character.
+
+These requirements are specified in terms of percent-_decoding_ rules, which are consistently tolerant across different versions of the various standards that apply to URIs.
+
+Percent-_encoding_ is performed in several places:
+
+* By [[RFC6570]] implementations (or simulations thereof; see [Appendix C](#appendix-c-using-rfc6570-based-serialization))
+* By the Parameter or [Encoding](#encoding-object) Objects when incorporating a value serialized with a [Media Type Object](#media-type-object) for a media type that does not already incorporate URI percent-encoding
+* By the user, prior to passing data through RFC6570's reserved expansion process
+
+When percent-encoding, the safest approach is to percent-encode all characters not in RFC3986's "unreserved" set, and for `form-urlencoded` to also percent-encode the tilde character (`~`) to align with the historical requirements of [[RFC1738]], which is cited by RFC1866.
+This approach is used in examples in this specification.
+
+For `form-urlencoded`, while the encoding algorithm given by RFC1866 requires escaping the space character as `+`, percent-encoding it as `%20` also meets the above requirements.
+Examples in this specification will prefer `%20` when using RFC6570's default (non-reserved) form-style expansion, and `+` otherwise.
+
+Reserved characters MUST NOT be percent-encoded when being used for reserved purposes such as `&=+` for `form-urlencoded` or `,` for delimiting non-exploded array and object values in RFC6570 expansions.
+The result of inserting non-percent-encoded delimiters into data using manual percent-encoding, including via RFC6570's reserved expansion rules, is undefined and will likely prevent implementations from parsing the results back into the correct data structures.
+In some cases, such as inserting `/` into path parameter values, doing so is [explicitly forbidden](#path-templating) by this specification.
+
+See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a thorough discussion of percent-encoding options, compatibility, and OAS-defined delimiters that are not allowed by RFC3986, and [Appendix C](#appendix-c-using-rfc6570-based-serialization) for guidance on using RFC6570 implementations.
 
 ##### Serialization and Examples
 

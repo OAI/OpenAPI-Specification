@@ -1988,7 +1988,8 @@ See [Appendix B](#appendix-b-data-type-conversion) for a discussion of data type
 | <a name="encoding-explode"></a>explode | `boolean` | When this is true, property values of type `array` or `object` generate separate parameters for each value of the array, or key-value-pair of the map. For other types of properties, or when [`style`](#encoding-style) is `"deepObject"`, this field has no effect. When `style` is `"form"`, the default value is `true`. For all other styles, the default value is `false`. This field SHALL be ignored if the media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
 | <a name="encoding-allow-reserved"></a>allowReserved | `boolean` | When this is true, parameter values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). Applications are still responsible for percent-encoding reserved characters that are not allowed in the target media type; see Appendices [C](#appendix-c-using-rfc6570-based-serialization) and [E](#appendix-e-percent-encoding-and-form-media-types) for details. The default value is `false`. This field SHALL be ignored if the media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
 
-See also [Appendix C: Using RFC6570 Implementations](#appendix-c-using-rfc6570-based-serialization) for additional guidance, including on difficulties caused by the interaction between RFC6570's percent-encoding rules and the `multipart/form-data` media type.
+When using RFC6570-style serialization for `multipart/form-data`, URI percent-encoding MUST NOT be applied, and the value of `allowReserved` has no effect.
+See also [Appendix C: Using RFC6570 Implementations](#appendix-c-using-rfc6570-based-serialization) for additional guidance.
 
 Note that the presence of at least one of `style`, `explode`, or `allowReserved` with an explicit value is equivalent to using `schema` with `in: "query"` Parameter Objects.
 The absence of all three of those fields is the equivalent of using `content`, but with the media type specified in `contentType` rather than through a Media Type Object.
@@ -4875,9 +4876,9 @@ Implementations of this specification MAY use an implementation of RFC6570 to pe
 
 Note that when using `style: "form"` RFC6570 expansion to produce an `application/x-www-form-urlencoded` HTTP message body, it is necessary to remove the `?` prefix that is produced to satisfy the URI query string syntax.
 
-When using `style` and similar keywords to produce a `multipart/form-data` body, the query string names are placed in the `name` parameter of the `Content-Disposition` part header, and the values are placed in the corresponding part body; the `?`, `=`, and `&` characters are not used.
+When using `style` and similar keywords to produce a `multipart/form-data` body, the query string names are placed in the `name` parameter of the `Content-Disposition` part header, and the values are placed in the corresponding part body; the `?`, `=`, and `&` characters are not used, and URI percent encoding is not applied, regardless of the value of `allowReserved`.
 Note that while [RFC7578](https://datatracker.ietf.org/doc/html/rfc7578) allows using [[RFC3986]] percent-encoding in "file names", it does not otherwise address the use of percent-encoding within the format.
-RFC7578 discusses character set and encoding issues for `multipart/form-data` in detail, and it is RECOMMENDED that OpenAPI Description authors read this guidance carefully before deciding to use RFC6570-based serialization with this media type.
+Users are expected to provide names and data with any escaping necessary for conformance with RFC7578 already applied.
 
 Note also that not all RFC6570 implementations support all four levels of operators, all of which are needed to fully support the OpenAPI Specification's usage.
 Using an implementation with a lower level of support will require additional manual construction of URI Templates to work around the limitations.
@@ -5180,8 +5181,9 @@ This means that while these three characters are reserved-but-allowed in query s
 
 [RFC7578](https://datatracker.ietf.org/doc/html/rfc7578#section-2) suggests RFC3986-based percent-encoding as a mechanism to keep text-based per-part header data such as file names within the ASCII character set.
 This suggestion was not part of older (pre-2015) specifications for `form-data`, so care must be taken to ensure interoperability.
+Users wishing to use percent-encoding in this way MUST provide the data in percent-encoded form, as percent-encoding is not automatically applied for this media type regardless of which Encoding Object fields are used.
 
-The `form-data` media type allows arbitrary text or binary data in its parts, so percent-encoding is not needed and is likely to cause interoperability problems unless the `Content-Type` of the part is defined to require it.
+The `form-data` media type allows arbitrary text or binary data in its parts, so percent-encoding or similar escaping is not needed in general.
 
 ### Generating and Validating URIs and `form-urlencoded` Strings
 

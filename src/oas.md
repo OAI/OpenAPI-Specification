@@ -64,6 +64,32 @@ Some examples of possible media type definitions:
   application/vnd.github.v3.patch
 ```
 
+### URI Percent-Encoding
+
+All URIs MUST successfully parse and percent-decode using [[RFC3986]] rules.
+
+Content in the `application/x-www-form-urlencoded` format, including query strings produced by [Parameter Objects](#parameter-object) with `in: "query"`, MUST also successfully parse and percent-decode using [[RFC1866]] rules, including treating non-percent-encoded `+` as an escaped space character.
+
+These requirements are specified in terms of percent-_decoding_ rules, which are consistently tolerant across different versions of the various standards that apply to URIs.
+
+Percent-_encoding_ is performed in several places:
+
+* By [[RFC6570]] implementations (or simulations thereof; see [Appendix C](#appendix-c-using-rfc6570-based-serialization))
+* By the Parameter or [Encoding](#encoding-object) Objects when incorporating a value serialized with a [Media Type Object](#media-type-object) for a media type that does not already incorporate URI percent-encoding
+* By the user, prior to passing data through RFC6570's reserved expansion process
+
+When percent-encoding, the safest approach is to percent-encode all characters not in RFC3986's "unreserved" set, and for `form-urlencoded` to also percent-encode the tilde character (`~`) to align with the historical requirements of [[RFC1738]], which is cited by RFC1866.
+This approach is used in examples in this specification.
+
+For `form-urlencoded`, while the encoding algorithm given by RFC1866 requires escaping the space character as `+`, percent-encoding it as `%20` also meets the above requirements.
+Examples in this specification will prefer `%20` when using RFC6570's default (non-reserved) form-style expansion, and `+` otherwise.
+
+Reserved characters MUST NOT be percent-encoded when being used for reserved purposes such as `&=+` for `form-urlencoded` or `,` for delimiting non-exploded array and object values in RFC6570 expansions.
+The result of inserting non-percent-encoded delimiters into data using manual percent-encoding, including via RFC6570's reserved expansion rules, is undefined and will likely prevent implementations from parsing the results back into the correct data structures.
+In some cases, such as inserting `/` into path parameter values, doing so is [explicitly forbidden](#path-templating) by this specification.
+
+See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a thorough discussion of percent-encoding options, compatibility, and OAS-defined delimiters that are not allowed by RFC3986, and [Appendix C](#appendix-c-using-rfc6570-based-serialization) for guidance on using RFC6570 implementations.
+
 ### HTTP Status Codes
 
 The HTTP Status Codes are used to indicate the status of the executed operation.

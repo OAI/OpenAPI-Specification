@@ -4531,7 +4531,7 @@ While `contentEncoding` also supports the `base64url` encoding, which is URL-saf
 
 Using `style: "form"` with `in: "cookie"` via an RFC6570 implementation requires stripping the `?` prefix, as when producing `application/x-www-form-urlencoded` message bodies.
 
-For multiple values, `style: "form"` is always incorrect, even if no characters are subject to percent-encoding, as name=value pairs in cookies are delimited by `; ` (a semicolon followed by a space character) rather than `&`.
+For multiple values, `style: "form"` is always incorrect, even if no characters are subject to percent-encoding, as name=value pairs in cookies are delimited by a semicolon followed by a space character rather than `&`.
 
 ## Appendix E: Percent-Encoding and Form Media Types
 

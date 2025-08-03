@@ -16,6 +16,15 @@ What's coming up? Look at `src/oas.md` on the relevant development branch for fu
 - `kind` to allow multiple categories of tag. The `kind` field is free-form text, however there are some expected/conventional values such as `nav` (in line with the most common current usage as grouping for documentation output).
 - A [registry](https://spec.openapis.org/registry/tag-kind/index.html) to establish conventions for values used in `kind`.
 
+### Document identity and URL resolution
+
+- Additional top-level field `$self` is added to allow users to define the base URI of the document, used to resolve relative references.
+  If no `$self` field is defined, then the retrieval URI is used - just as it was in previous versions of OpenAPI.
+- Other URL/URI handling does not change between 3.1 and 3.2 (but bears a recap in case you're wondering how it all goes together):
+    - Other URLs, such as to external documentation or a license, are resolved against the base URI.
+    - Relative links inside `description` fields are resolved relative to their rendered context, such as your published API documentation page.
+    - API endpoints are resolved against the URL in the Server Object, which itself might be relative and resolved against the base URI.
+
 ### Updated security schemes
 
 - Support for OAuth2 Device Authorization flow with additional `deviceAuthorization` field in the `flows` object and for the individual flow, a new field `deviceAuthorizationUrl` alongside `tokenUrl`.
@@ -27,7 +36,7 @@ What's coming up? Look at `src/oas.md` on the relevant development branch for fu
 
 - Clarify that server URLs should not include fragment or query.
 - Support new `name` field alongside `description`, `url` and `variables`.
-- Formal path templating support for variable substitution in server urls.
+- Formal path templating support for variable substitution in server urls, alongside guidance that each variable can only be used once in a URL.
 
 ### Better polymorphic support
 
@@ -36,10 +45,6 @@ What's coming up? Look at `src/oas.md` on the relevant development branch for fu
 - No change from previous versions: use `discriminator` to hint which entry in `anyOf` or `oneOf` is expected.
 - No change from previous versions: use `mapping` to link the discriminator property value to the Schema name if they aren't an exact match.
 - Implementations now SHOULD (rather than MAY) support templates/generics using `$dynamicRef`.
-
-### Reference resolution
-
-Additional top-level `$self` to be used as a base URI for resolving references in the OpenAPI description. If not present, the existing/earlier behaviour of using the retrieval URL as a base applies.
 
 ### Path templating
 
@@ -52,12 +57,12 @@ Additional top-level `$self` to be used as a base URI for resolving references i
 - `wrapped: true` deprecated in favor of `nodeType: element` (as `nodeType` defaults to `none` for arrays to preserve compatibility).
 - The `xml` keyword can be used in any Schema Object.
 - XML namespaces can be IRIs (rather than URIs).
-- Explanation and example on how to handle `null` in XML.
+- Explanation and examples for many use cases including handling `null`, handling arrays, replacing the name, and handling ordered elements.
 - Clarify that the root schema of an XML object should use the component name.
 
 ### Support for sequential media types
 
-- Support for sequential media types such as `text/event-stream` for server-sent events (SSE) and `application/jsonl`, `application/json-seq` and others for sequential data.
+- Support for sequential media types such as `text/event-stream` for server-sent events (SSE) and `multipart/mixed`, `application/jsonl`, `application/json-seq` and others for sequential data.
 - Responses can be a repeating data structure, and are treated as if they are an array of schema objects.
 - Use `itemSchema` in a mediatype entry to describe each item.
 - Related: a new media types registry is published to give more context for each of the media types.
@@ -69,6 +74,19 @@ Additional top-level `$self` to be used as a base URI for resolving references i
 - Parameters can therefore be `in` the `querystring` as an alternative to the existing `header`, `cookie`, `query` and `path` values.
 - `allowReserved` field is now permitted on headers and on parameters with any value of `in`.
 - Remove incorrect mention of Reference Object in the header `schema` field. The JSONSchema ref would be the correct thing to use in this context.
+- The `examples` (and older `example`) field is now supported with `content`.
+
+### Show examples in both structure and serialized forms
+
+- The Example Object (used in `examples` fields) gets two new fields: `dataValue` and `serializedValue`.
+- `dataValue` describes the example in structured format.
+- `serializedValue` shows how the example will be formatted when it is sent/received by the API.
+- The existing `value` field can still be used, which means that you can safely upgrade to 3.2 and then revisit these fields and update them to use either `dataValue` or `serializedValue` as appropriate.
+  Use the new fields for examples you add after upgrading to 3.2.
+- The existing `externalValue` field can still be used to give a reference to an example, but this is now clearly documented as being a serialized value.
+- There are lots of examples of the examples (ha!) and clear documentation of how the fields can be combined.
+- Summary of what to do: use `examples` over `example`, and use `dataValue` to show a clear, structured example of the data.
+  If your use case could benefit from an example of how the data will look when it's transmitted, use `serializedValue` as well.
 
 ### Flexible response metadata fields
 
@@ -78,7 +96,9 @@ Additional top-level `$self` to be used as a base URI for resolving references i
 ### Minor edits that are worth a mention
 
 - Streamlined to YAML examples (unless something specific to another format) to try to make it easier to follow.
-- Non-Schema examples no longer "override" Schema examples; tools are free to use the most appropriate example for any given use case
+- Non-Schema examples no longer "override" Schema examples; tools are free to use the most appropriate example for any given use case.
+- A new key `mediaTypes` is supported under `components` to support re-use of Media Type Objects.
+
 ### In-place updates to existing specifications and standards that we reference
 
 - Update to <https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html> of JSON Schema Specification.
@@ -89,10 +109,12 @@ Additional top-level `$self` to be used as a base URI for resolving references i
 ### Editorial changes
 
 - Extensive additions around media types, encoding, sequential media types, SSE examples, working with binary data.
-- Clarification that Example Objects can be used in Header Objects.
 - Better explanation and examples for using Encoding.
 - Clarify that Request Body Objects need to specify at least one media type to be meaningful.
 - How to more clearly indicate that responses will not have a body.
+- Explanation and examples of headers including `Link` and `Set-Cookie`.
+- No change but extensive additional notes on parsing and serializing JSON and non-JSON data formats.
+  Particularly if you are buildling OpenAPI tooling, this section gives much better guidance on some of those tricky edge cases.
 
 ## 3.1 Updates
 

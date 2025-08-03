@@ -78,7 +78,7 @@ Additional top-level `$self` to be used as a base URI for resolving references i
 ### Minor edits that are worth a mention
 
 - Streamlined to YAML examples (unless something specific to another format) to try to make it easier to follow.
-
+- Non-Schema examples no longer "override" Schema examples; tools are free to use the most appropriate example for any given use case
 ### In-place updates to existing specifications and standards that we reference
 
 - Update to <https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html> of JSON Schema Specification.

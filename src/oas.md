@@ -66,7 +66,7 @@ Some examples of possible media type definitions:
 
 ### URI Percent-Encoding
 
-All URIs MUST successfully parse and percent-decode using [[RFC3986]] rules.
+All API URLs MUST successfully parse and percent-decode using [[RFC3986]] rules.
 
 Content in the `application/x-www-form-urlencoded` format, including query strings produced by [Parameter Objects](#parameter-object) with `in: "query"`, MUST also successfully parse and percent-decode using [[RFC1866]] rules, including treating non-percent-encoded `+` as an escaped space character.
 

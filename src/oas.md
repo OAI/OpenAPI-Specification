@@ -1236,8 +1236,7 @@ The following table shows serialized examples, as would be shown with the `seria
 | spaceDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
 | pipeDelimited | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color=blue%7Cblack%7Cbrown</span> | <span style="white-space: nowrap;">color=R%7C100%7CG%7C200%7CB%7C150</span> |
 | pipeDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
-| deepObject | false | _n/a_ | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color%5BR%5D=100&color%5BG%5D=200&color%5BB%5D=150</span> |
-| deepObject | true | _n/a_ | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color%5BR%5D=100&color%5BG%5D=200&color%5BB%5D=150</span> |
+| deepObject | _n/a_ | _n/a_ | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color%5BR%5D=100&color%5BG%5D=200&color%5BB%5D=150</span> |
 
 ##### Extending Support for Querystring Formats
 

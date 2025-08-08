@@ -1165,7 +1165,10 @@ For simpler scenarios, a [`schema`](#parameter-schema) and [`style`](#parameter-
 When `example` or `examples` are provided in conjunction with the `schema` field, the example SHOULD match the specified schema and follow the prescribed serialization strategy for the parameter.
 The `example` and `examples` fields are mutually exclusive, and if either is present it SHALL _override_ any `example` in the schema.
 
-Serializing with `schema` is NOT RECOMMENDED for `in: "cookie"` parameters, `in: "header"` parameters that use HTTP header parameters (name=value pairs following a `;`) in their values, or `in: "header"` parameters where values might have non-URL-safe characters; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for details.
+When serializing `in: "header"` parameters with `schema`, URI percent-encoding MUST NOT be applied; if using an RFC6570 implementation that automatically applies it, it MUST be removed before use.
+Implementations MUST pass header values through unchanged rather than attempting to automatically quote header values, as the quoting rules vary too widely among different headers; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for guidance on quoting and escaping.
+
+Serializing with `schema` is NOT RECOMMENDED for `in: "cookie"` parameters; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for details.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
@@ -1181,7 +1184,7 @@ See also [Appendix C: Using RFC6570-Based Serialization](#appendix-c-using-rfc65
 ###### Fixed Fields for use with `content`
 
 For more complex scenarios, the [`content`](#parameter-content) field can define the media type and schema of the parameter, as well as give examples of its use.
-Using `content` with a `text/plain` media type is RECOMMENDED for `in: "header"` and `in: "cookie"` parameters where the `schema` strategy is not appropriate.
+Using `content` with a `text/plain` media type is RECOMMENDED for `in: "cookie"` parameters where the `schema` strategy's percent-encoding and/or delimiter rules are not appropriate.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
@@ -2589,7 +2592,8 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 For simpler scenarios, a [`schema`](#header-schema) and [`style`](#header-style) can describe the structure and syntax of the header.
 When `example` or `examples` are provided in conjunction with the `schema` field, the example MUST follow the prescribed serialization strategy for the header.
 
-Serializing with `schema` is NOT RECOMMENDED for headers with parameters (name=value pairs following a `;`) in their values, or where values might have non-URL-safe characters; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for details.
+When serializing headers with `schema`, URI percent-encoding MUST NOT be applied; if using an RFC6570 implementation that automatically applies it, it MUST be removed before use.
+Implementations MUST pass header values through unchanged rather than attempting to automatically quote header values, as the quoting rules vary too widely among different headers; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for guidance on quoting and escaping.
 
 When `example` or `examples` are provided in conjunction with the `schema` field, the example SHOULD match the specified schema and follow the prescribed serialization strategy for the header.
 The `example` and `examples` fields are mutually exclusive, and if either is present it SHALL _override_ any `example` in the schema.
@@ -2607,7 +2611,6 @@ See also [Appendix C: Using RFC6570-Based Serialization](#appendix-c-using-rfc65
 ###### Fixed Fields for use with `content`
 
 For more complex scenarios, the [`content`](#header-content) field can define the media type and schema of the header, as well as give examples of its use.
-Using `content` with a `text/plain` media type is RECOMMENDED for headers where the `schema` strategy is not appropriate.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
@@ -2638,13 +2641,9 @@ Requiring that a strong `ETag` header (with a value starting with `"` rather tha
 ```json
 "ETag": {
   "required": true,
-  "content": {
-    "text/plain": {
-      "schema": {
-        "type": "string",
-        "pattern": "^\""
-      }
-    }
+  "schema": {
+    "type": "string",
+    "pattern": "^\""
   }
 }
 ```
@@ -2652,11 +2651,9 @@ Requiring that a strong `ETag` header (with a value starting with `"` rather tha
 ```yaml
 ETag:
   required: true
-  content:
-    text/plain:
-      schema:
-        type: string
-        pattern: ^"
+  schema:
+    type: string
+    pattern: ^"
 ```
 
 #### Tag Object
@@ -4548,25 +4545,27 @@ This will expand to the result:
 
 ## Appendix D: Serializing Headers and Cookies
 
-[RFC6570](https://www.rfc-editor.org/rfc/rfc6570)'s percent-encoding behavior is not always appropriate for `in: "header"` and `in: "cookie"` parameters.
+HTTP headers have inconsistent rules regarding what characters are allowed, and how some or all disallowed characters can be escaped and included.
+While the `quoted-string` ABNF rule given in [[RFC7230]] [Section 3.2.6](https://httpwg.org/specs/rfc7230.html#field.components) is the most common escaping solution, it is not sufficiently universal to apply automatically.
+For example, a strong `ETag` looks like `"foo"` (with quotes, regardless of the contents), and a weak `ETag` looks like `W/"foo"` (note that only part of the value is quoted); the contents of the quotes for this header are also not escaped in the way `quoted-string` contents are.
+
+For this reason, any data being passed to a header by way of a [Parameter](#parameter-object) or [Header](#header-object) Object needs to be quoted and escaped prior to passing it to the OAS implementation, and the parsed header values are expected to contain the quotes and escapes.
+
+### Percent-Encoding and Cookies
+
+_**Note:** OAS v3.0.4 and v3.1.1 applied the advice in this section to avoid RFC6570-style serialization to both headers and cookies.
+However, further research has indicated that percent-encoding was never intended to apply to headers, so this section has been corrected to apply only to cookies._
+
+[RFC6570](https://www.rfc-editor.org/rfc/rfc6570)'s percent-encoding behavior is not always appropriate for `in: "cookie"` parameters.
 In many cases, it is more appropriate to use `content` with a media type such as `text/plain` and require the application to assemble the correct string.
 
-For both [RFC6265](https://www.rfc-editor.org/rfc/rfc6265) cookies and HTTP headers using the [RFC8941](https://www.rfc-editor.org/rfc/rfc8941) structured fields syntax, non-ASCII content is handled using base64 encoding (`contentEncoding: "base64"`).
+[RFC6265](https://www.rfc-editor.org/rfc/rfc6265) recommends (but does not strictly required) base64 encoding (`contentEncoding: "base64"`) if "arbitrary data" will be stored in a cookie.
 Note that the standard base64-encoding alphabet includes non-URL-safe characters that are percent-encoded by RFC6570 expansion; serializing values through both encodings is NOT RECOMMENDED.
 While `contentEncoding` also supports the `base64url` encoding, which is URL-safe, the header and cookie RFCs do not mention this encoding.
 
-Most HTTP headers predate the structured field syntax, and a comprehensive assessment of their syntax and encoding rules is well beyond the scope of this specification.
-While [RFC8187](https://www.rfc-editor.org/rfc/rfc8187) recommends percent-encoding HTTP (header or trailer) field parameters, these parameters appear after a `;` character.
-With `style: "simple"`, that delimiter would itself be percent-encoded, violating the general HTTP field syntax.
+Using `style: "form"` with `in: "cookie"` via an RFC6570 implementation requires stripping the `?` prefix, as when producing `application/x-www-form-urlencoded` message bodies.
 
-Using `style: "form"` with `in: "cookie"` is ambiguous for a single value, and incorrect for multiple values.
-This is true whether the multiple values are the result of using `explode: true` or not.
-
-This style is specified to be equivalent to RFC6570 form expansion which includes the `?` character (see [Appendix C](#appendix-c-using-rfc6570-based-serialization) for more details), which is not part of the cookie syntax.
-However, examples of this style in past versions of this specification have not included the `?` prefix, suggesting that the comparison is not exact.
-Because implementations that rely on an RFC6570 implementation and those that perform custom serialization based on the style example will produce different results, it is implementation-defined as to which of the two results is correct.
-
-For multiple values, `style: "form"` is always incorrect as name=value pairs in cookies are delimited by `;` (a semicolon followed by a space character) rather than `&`.
+For multiple values, `style: "form"` is always incorrect, even if no characters are subject to percent-encoding, as name=value pairs in cookies are delimited by a semicolon followed by a space character rather than `&`.
 
 ## Appendix E: Percent-Encoding and Form Media Types
 

@@ -17,5 +17,6 @@ echo Prepare release of $version
 
 cp EDITORS.md versions/$version-editors.md
 mv src/oas.md versions/$version.md
-rm -r src/schemas
-rm -r tests/schema
+rm -r src
+rm -r tests/schema/pass tests/schema/fail
+rm tests/schema/schema.test.mjs

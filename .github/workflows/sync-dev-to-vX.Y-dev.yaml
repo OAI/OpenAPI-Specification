@@ -42,10 +42,11 @@ jobs:
               continue
             fi
 
-            gh pr create --base $BASE --head $HEAD \
+            PR=$(gh pr create --base $BASE --head $HEAD \
               --label "Housekeeping" \
               --title "$BASE: update from $HEAD" \
-              --body "Merge \`$HEAD\` into \`$BASE\`."
+              --body "Merge \`$HEAD\` into \`$BASE\`.")
+            gh pr merge $PR --merge --admin
           done
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}

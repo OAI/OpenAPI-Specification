@@ -1250,7 +1250,7 @@ The following section illustrates these rules.
 
 ##### Style Examples
 
-Assume a parameter named `color` has one of the following values, where the value to the right of the `->` is what would be shown in the `dataValue` field of an Example Object:
+Assume a parameter named `color` has one of the following values:
 
 ```js
    string -> "blue"

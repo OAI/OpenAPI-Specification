@@ -9,17 +9,19 @@ const parseYamlFromFile = async (filePath) => {
 };
 
 export default async () => {
-  const dialect = await parseYamlFromFile("./src/schemas/validation/dialect.yaml");
-  const meta = await parseYamlFromFile("./src/schemas/validation/meta.yaml");
-  const oasBaseVocab = Object.keys(meta.$vocabulary)[0];
+  try {
+    const dialect = await parseYamlFromFile("./src/schemas/validation/dialect.yaml");
+    const meta = await parseYamlFromFile("./src/schemas/validation/meta.yaml");
+    const oasBaseVocab = Object.keys(meta.$vocabulary)[0];
 
-  defineVocabulary(oasBaseVocab, {
-    "discriminator": "https://spec.openapis.org/oas/3.0/keyword/discriminator",
-    "example": "https://spec.openapis.org/oas/3.0/keyword/example",
-    "externalDocs": "https://spec.openapis.org/oas/3.0/keyword/externalDocs",
-    "xml": "https://spec.openapis.org/oas/3.0/keyword/xml"
-  });
+    defineVocabulary(oasBaseVocab, {
+        "discriminator": "https://spec.openapis.org/oas/3.0/keyword/discriminator",
+        "example": "https://spec.openapis.org/oas/3.0/keyword/example",
+        "externalDocs": "https://spec.openapis.org/oas/3.0/keyword/externalDocs",
+        "xml": "https://spec.openapis.org/oas/3.0/keyword/xml"
+    });
 
-  registerSchema(meta);
-  registerSchema(dialect);
+    registerSchema(meta);
+    registerSchema(dialect);
+  } catch (error) {}
 };

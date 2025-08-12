@@ -27,9 +27,9 @@ A summary of the biggest changes.
 - Additional top-level field `$self` is added to allow users to define the base URI of the document, used to resolve relative references.
   If no `$self` field is defined, then the retrieval URI is used - just as it was in previous versions of OpenAPI.
 - Other URL/URI handling does not change between 3.1 and 3.2 (but bears a recap in case you're wondering how it all goes together):
-    - Other URLs, such as to external documentation or a license, are resolved against the base URI.
-    - Relative links inside `description` fields are resolved relative to their rendered context, such as your published API documentation page.
-    - API endpoints are resolved against the URL in the Server Object, which itself might be relative and resolved against the base URI.
+  - Other URLs, such as to external documentation or a license, are resolved against the base URI.
+  - Relative links inside `description` fields are resolved relative to their rendered context, such as your published API documentation page.
+  - API endpoints are resolved against the URL in the Server Object, which itself might be relative and resolved against the base URI.
 
 ### Data modeling and representation
 
@@ -79,39 +79,113 @@ OpenAPI specification v3.2 brings consistent, modular, and extensible media type
 
 ### Additional features
 
-That's not all! Here are the rest of the changes for this release.
+That's not all! Here are the rest of the changes for this release, each one is small but mighty!
 
 #### Updated security schemes
 
-- Support for OAuth2 Device Authorization flow with additional `deviceAuthorization` field in the `flows` object and for the individual flow, a new field `deviceAuthorizationUrl` alongside `tokenUrl`.
-- Additional security scheme field: `oauth2MetadataUrl` URL for auth server metadata.
+- Support for [OAuth2 Device Authorization flow](https://datatracker.ietf.org/doc/html/rfc8628) with additional `deviceAuthorization` field in the `flows` object and for the individual flow, a new field `deviceAuthorizationUrl` alongside `tokenUrl`. This flow is designed for devices that have limited inputs such as TVs, printers, and kiosks.
+- Additional security scheme field: `oauth2MetadataUrl` URL for auth server metadata, as described by the [OAuth2 Server Metadata Standard](https://datatracker.ietf.org/doc/html/rfc8414).
 - Additional `deprecated` field for security schemes (indicating that the scheme may still be supported, but that it should not be used).
 - Ability to reference a security scheme by URI rather than needing it declared in components.
+
+```yaml
+components:
+  securitySchemes:
+    cakeStoreOAuth:
+      type: oauth2
+      description: OAuth2 security for Cake Store API
+      flows:
+        deviceAuthorization:
+          deviceAuthorizationUrl: https://auth.cakestore.com/oauth/device/authorize
+          tokenUrl: https://auth.cakestore.com/oauth/token
+          scopes:
+            read:cakes: Read access to cake catalog
+            write:orders: Place cake orders from your device
+            device:monitor: Monitor cake order status
+
+```
 
 #### Servers
 
 - Clarify that server URLs should not include fragment or query.
 - Support new `name` field alongside `description`, `url` and `variables`.
-- Formal path templating support for variable substitution in server urls, alongside guidance that each variable can only be used once in a URL.
+- Formal ABNF syntax for the allowed variable substitution in server urls, alongside guidance that each variable can only be used once in a URL.
+
+Use the name field to refer to servers easily:
+
+```yaml
+servers:
+  - name: Production
+    url: https://api.cakestore.com/v1
+    description: Production server for live cake orders
+  - name: Staging
+    url: https://staging-api.cakestore.com/v1
+    description: Staging environment for testing new cake recipes and features
+  - name: Local
+    url: http://localhost:3000/v1
+    description: Local development server running on your machine
+```
 
 #### Better polymorphic support
 
+Discriminator is a great way to match the correct schema to a payload. This release gives more robustness by adding support for a default type so that unknown objects can be handled safely.
+
 - The discriminator `propertyName` can now be an optional field.
-- Additional `defaultMapping` field to indicate which schema to use if the `propertyName` is not set, or if the value is unrecognized.
+- New field `defaultMapping` to indicate which schema to use if the `propertyName` is not set, or if the value is unrecognized.
 - No change from previous versions: use `discriminator` to hint which entry in `anyOf` or `oneOf` is expected.
 - No change from previous versions: use `mapping` to link the discriminator property value to the Schema name if they aren't an exact match.
 - Implementations now SHOULD (rather than MAY) support templates/generics using `$dynamicRef`.
 
-#### Path templating
+Define the `mapping` and `discriminator` as before. The new field `defaultMapping` will be used if either the discriminator doesn't have a `propertyName` or when there is an object that doesn't match a `mapping` entry.
 
-**ABNF** (Augmented Backus–Naur Form) formalised for path templating, server variables, and runtime expressions in the Links object.
+```yaml
+  schemas:
+    Cake:
+      type: object
+      discriminator:
+        propertyName: cakeType
+        defaultMapping: sponge
+        mapping:
+          sponge: '#/components/schemas/SpongeCake'
+          chocolate: '#/components/schemas/ChocolateCake'
+          fruit: '#/components/schemas/FruitCake'
+      properties:
+        cakeType:
+          type: string
+          enum: [sponge, chocolate, fruit]
+        name:
+          type: string
+```
+
+#### Templates with formal syntax
+
+The specification now includes **ABNF** (Augmented Backus–Naur Form) for path templating, server variables, and runtime expressions in the Links object.
+This sounds terribly formal but it means that there is a clear syntax for what is supported in each of those locations, that existing tooling can understand.
+
+Next time you're wondering if you can do `/api/v{version}/users/{user-id}` in a path template, it'll be easy to check (spoiler: yes you can).
 
 #### Flexible response metadata fields
 
 - `description` field for responses are now optional (they used to be required but they could be empty).
 - Additional `summary` field for responses, useful when displaying responses in a list context.
 
-#### Minor edits that are worth a mention
+```yaml
+  /cakes:
+    get:
+      summary: List cakes
+      responses:
+        '200':
+          summary: Cake list
+          description: A list of cakes (this field is no longer required)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+```
+
+#### Minor updates that are worth a mention
 
 - Streamlined to YAML examples (unless something specific to another format) to try to make it easier to follow.
 - Non-Schema examples no longer "override" Schema examples; tools are free to use the most appropriate example for any given use case.

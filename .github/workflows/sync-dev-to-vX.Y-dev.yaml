@@ -24,7 +24,7 @@ jobs:
           private-key: ${{ secrets.OAI_SPEC_PUBLISHER_PRIVATE_KEY }}
     
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 

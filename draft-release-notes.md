@@ -83,6 +83,8 @@ That's not all! Here are the rest of the changes for this release, each one is s
 
 #### Updated security schemes
 
+Since the OpenAPI 3.1 release, there have been plenty of good innovations in API security. OpenAPI 3.2 brings support for some of the key areas so you can keep pace with best practice on security topics.
+
 - Support for [OAuth2 Device Authorization flow](https://datatracker.ietf.org/doc/html/rfc8628) with additional `deviceAuthorization` field in the `flows` object and for the individual flow, a new field `deviceAuthorizationUrl` alongside `tokenUrl`. This flow is designed for devices that have limited inputs such as TVs, printers, and kiosks.
 - Additional security scheme field: `oauth2MetadataUrl` URL for auth server metadata, as described by the [OAuth2 Server Metadata Standard](https://datatracker.ietf.org/doc/html/rfc8414).
 - Additional `deprecated` field for security schemes (indicating that the scheme may still be supported, but that it should not be used).

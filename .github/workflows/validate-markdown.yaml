@@ -18,7 +18,7 @@ jobs:
 
     steps:
   
-    - uses: actions/checkout@v4 # checkout repo content
+    - uses: actions/checkout@v5 # checkout repo content
       with:
         fetch-depth: 0
 

@@ -46,6 +46,9 @@ jobs:
               --label "Housekeeping" \
               --title "$BASE: update from $HEAD" \
               --body "Merge \`$HEAD\` into \`$BASE\`.")
+            echo "PR to sync $DEV_BRANCH: $PR"
+            
+            gh pr checks $PR --watch --required || continue
             gh pr merge $PR --merge --admin
           done
         env:

@@ -45,6 +45,10 @@ paths:
               operationRef: https://na2.gigantic-server.com/#/paths/~12.0~1repositories~1%7Busername%7D/get
               parameters:
                 username: $response.body#/username
+            withBody:
+              operationId: queryUserWithBody
+              requestBody:
+                userId: $request.path.id
   # the path item of the linked operation
   /users/{userid}/address:
     parameters:

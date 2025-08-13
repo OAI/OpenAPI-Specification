@@ -13,7 +13,7 @@ await registerOasSchema();
 await registerSchema("./src/schemas/validation/schema.yaml");
 const fixtures = './tests/schema';
 
-describe("v3.1", () => {
+describe("v3.2", () => {
   describe("Pass", () => {
     readdirSync(`${fixtures}/pass`, { withFileTypes: true })
       .filter((entry) => entry.isFile() && /\.yaml$/.test(entry.name))

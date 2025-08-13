@@ -1,0 +1,60 @@
+openapi: 3.2.0
+info:
+  not-allowed: here
+  contact:
+    not-allowed: here
+  license:
+    not-allowed: here
+tags:
+  - name: tag with unevaluated properties
+    not-allowed: here
+components:
+  schemas:
+    externalDocs-with-unevaluated-properties:
+      type: object
+      externalDocs:
+        not-allowed: here
+    discriminator-with-unevaluated-properties:
+      type: object
+      discriminator:
+        not-allowed: here
+  pathItems:
+    operation-with-unevaluated-properties:
+      get:
+        not-allowed: here
+        externalDocs:
+          not-allowed: here
+        responses:
+          not-allowed: here
+  parameters:
+    parameter-with-unevaluated-properties:
+      not-allowed: here
+  responses:
+    response-with-unevaluated-properties:
+      not-allowed: here
+  links:
+    link-with-unevaluated-properties:
+      not-allowed: here
+  headers:
+    header-with-unevaluated-properties:
+      not-allowed: here
+  securitySchemes:
+    security-scheme-with-unevaluated-properties:
+      not-allowed: here
+    oauth-with-unevaluated-properties:
+      type: oauth2
+      flows:
+        not-allowed: here
+    oauth-flows-with-unevaluated-properties:
+      type: oauth2
+      flows:
+        implicit:
+          not-allowed: here
+        password:
+          not-allowed: here
+        clientCredentials:
+          not-allowed: here
+        authorizationCode:
+          not-allowed: here
+        deviceAuthorization:
+          not-allowed: here

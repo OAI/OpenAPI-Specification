@@ -1285,7 +1285,6 @@ examples:
   Diṅnāga:
     dataValue: diṅnāga
     serializedValue: di%E1%B9%85n%C4%81ga
-examples:
   Al-Khwarizmi:
     dataValue: "الخوارزميّ"
     serializedValue: "%D8%A7%D9%84%D8%AE%D9%88%D8%A7%D8%B1%D8%B2%D9%85%D9%8A%D9%91"

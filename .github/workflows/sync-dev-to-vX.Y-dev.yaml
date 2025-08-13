@@ -46,7 +46,9 @@ jobs:
               --label "Housekeeping" \
               --title "$BASE: update from $HEAD" \
               --body "Merge \`$HEAD\` into \`$BASE\`.")
+            echo ""
             echo "PR to sync $DEV_BRANCH: $PR"
+            sleep 10 # allow status checks to be triggered
             
             gh pr checks $PR --watch --required || continue
             gh pr merge $PR --merge --admin

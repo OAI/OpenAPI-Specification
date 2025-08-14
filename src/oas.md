@@ -43,6 +43,7 @@ Path templating refers to the usage of template expressions, delimited by curly 
 Each template expression in the path MUST correspond to a path parameter that is included in the [Path Item](#path-item-object) itself and/or in each of the Path Item's [Operations](#operation-object). An exception is if the path item is empty, for example due to ACL constraints, matching path parameters are not required.
 
 The value for these path parameters MUST NOT contain any unescaped "generic syntax" characters described by [RFC3986](https://tools.ietf.org/html/rfc3986#section-3): forward slashes (`/`), question marks (`?`), or hashes (`#`).
+See [URL Percent-Encoding](#url-percent-encoding) for additional guidance on escaping characters.
 
 The path templating is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax
 
@@ -1147,13 +1148,16 @@ For simpler scenarios, a [`schema`](#parameter-schema) and [`style`](#parameter-
 
 These fields MUST NOT be used with `in: "querystring"`.
 
-Serializing with `schema` is NOT RECOMMENDED for `in: "cookie"` parameters, `in: "header"` parameters that use HTTP header parameters (name=value pairs following a `;`) in their values, or `in: "header"` parameters where values might have non-URL-safe characters; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for details.
+When serializing `in: "header"` parameters with `schema`, URI percent-encoding MUST NOT be applied; if using an RFC6570 implementation that automatically applies it, it MUST be removed before use.
+Implementations MUST pass header values through unchanged rather than attempting to automatically quote header values, as the quoting rules vary too widely among different headers; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for guidance on quoting and escaping.
+
+Serializing with `schema` is NOT RECOMMENDED for `in: "cookie"` parameters; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for details.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="parameter-style"></a>style | `string` | Describes how the parameter value will be serialized depending on the type of the parameter value. Default values (based on value of `in`): for `"query"` - `"form"`; for `"path"` - `"simple"`; for `"header"` - `"simple"`; for `"cookie"` - `"form"`. |
 | <a name="parameter-explode"></a>explode | `boolean` | When this is true, parameter values of type `array` or `object` generate separate parameters for each value of the array or key-value pair of the map. For other types of parameters, or when [`style`](#parameter-style) is `"deepObject"`, this field has no effect. When `style` is `"form"`, the default value is `true`. For all other styles, the default value is `false`. |
-| <a name="parameter-allow-reserved"></a>allowReserved | `boolean` | When this is true, parameter values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). Applications are still responsible for percent-encoding reserved characters that are not allowed by the rules of the `in` destination or media type, or are [not allowed in the path by this specification](#path-templating); see Appendices [C](#appendix-c-using-rfc6570-based-serialization) and [E](#appendix-e-percent-encoding-and-form-media-types) for details. The default value is `false`. |
+| <a name="parameter-allow-reserved"></a>allowReserved | `boolean` | When this is true, parameter values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). Applications are still responsible for percent-encoding reserved characters that are not allowed by the rules of the `in` destination or media type, or are [not allowed in the path by this specification](#path-templating); see [URL Percent-Encoding](#url-percent-encoding) for details. The default value is `false`. |
 | <a name="parameter-schema"></a>schema | [Schema Object](#schema-object) | The schema defining the type used for the parameter. |
 
 See also [Appendix C: Using RFC6570-Based Serialization](#appendix-c-using-rfc6570-based-serialization) for additional guidance.
@@ -1161,7 +1165,7 @@ See also [Appendix C: Using RFC6570-Based Serialization](#appendix-c-using-rfc65
 ###### Fixed Fields for use with `content`
 
 For more complex scenarios, the [`content`](#parameter-content) field can define the media type and schema of the parameter, as well as give examples of its use.
-Using `content` with a `text/plain` media type is RECOMMENDED for `in: "header"` and `in: "cookie"` parameters where the `schema` strategy is not appropriate.
+Using `content` with a `text/plain` media type is RECOMMENDED for `in: "cookie"` parameters where the `schema` strategy's percent-encoding and/or delimiter rules are not appropriate.
 
 For use with `in: "querystring"` and `application/x-www-form-urlencoded`, see [Encoding the `x-www-form-urlencoded` Media Type](#encoding-the-x-www-form-urlencoded-media-type).
 
@@ -1183,7 +1187,31 @@ In order to support common ways of serializing simple parameters, a set of `styl
 | pipeDelimited | `array`, `object` | `query` | Pipe separated array values or object properties and values. This option replaces `collectionFormat` equal to `pipes` from OpenAPI 2.0. |
 | deepObject | `object` | `query` | Allows objects with scalar properties to be represented using form parameters. The representation of array or object properties is not defined (but see [Extending Support for Querystring Formats](#extending-support-for-querystring-formats) for alternatives). |
 
-See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a discussion of percent-encoding, including when delimiters need to be percent-encoded and options for handling collisions with percent-encoded data.
+##### URL Percent-Encoding
+
+All API URLs MUST successfully parse and percent-decode using [[RFC3986]] rules.
+
+Content in the `application/x-www-form-urlencoded` format, including query strings produced by [Parameter Objects](#parameter-object) with `in: "query"`, MUST also successfully parse and percent-decode using [[RFC1866]] rules, including treating non-percent-encoded `+` as an escaped space character.
+
+These requirements are specified in terms of percent-_decoding_ rules, which are consistently tolerant across different versions of the various standards that apply to URIs.
+
+Percent-_encoding_ is performed in several places:
+
+* By [[RFC6570]] implementations (or simulations thereof; see [Appendix C](#appendix-c-using-rfc6570-based-serialization))
+* By the Parameter or [Encoding](#encoding-object) Objects when incorporating a value serialized with a [Media Type Object](#media-type-object) for a media type that does not already incorporate URI percent-encoding
+* By the user, prior to passing data through RFC6570's reserved expansion process
+
+When percent-encoding, the safest approach is to percent-encode all characters not in RFC3986's "unreserved" set, and for `form-urlencoded` to also percent-encode the tilde character (`~`) to align with the historical requirements of [[RFC1738]], which is cited by RFC1866.
+This approach is used in examples in this specification.
+
+For `form-urlencoded`, while the encoding algorithm given by RFC1866 requires escaping the space character as `+`, percent-encoding it as `%20` also meets the above requirements.
+Examples in this specification will prefer `%20` when using RFC6570's default (non-reserved) form-style expansion, and `+` otherwise.
+
+Reserved characters MUST NOT be percent-encoded when being used for reserved purposes such as `&=+` for `form-urlencoded` or `,` for delimiting non-exploded array and object values in RFC6570 expansions.
+The result of inserting non-percent-encoded delimiters into data using manual percent-encoding, including via RFC6570's reserved expansion rules, is undefined and will likely prevent implementations from parsing the results back into the correct data structures.
+In some cases, such as inserting `/` into path parameter values, doing so is [explicitly forbidden](#path-templating) by this specification.
+
+See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a thorough discussion of percent-encoding options, compatibility, and OAS-defined delimiters that are not allowed by RFC3986, and [Appendix C](#appendix-c-using-rfc6570-based-serialization) for guidance on using RFC6570 implementations.
 
 ##### Serialization and Examples
 
@@ -1216,11 +1244,11 @@ Assume a parameter named `color` has one of the following values, where the valu
 
 The following table shows serialized examples, as would be shown with the `serializedValue` field of an Example Object, of the different serializations for each value.
 
-* The value _empty_ denotes the empty string, and is unrelated to the `allowEmptyValue` field
-* The behavior of combinations marked _n/a_ is undefined
-* The `undefined` column replaces the `empty` column in previous versions of this specification in order to better align with [RFC6570](https://www.rfc-editor.org/rfc/rfc6570.html#section-2.3) terminology, which describes certain values including but not limited to `null` as "undefined" values with special handling; notably, the empty string is _not_ undefined
-* For `form` and the non-RFC6570 query string styles `spaceDelimited`, `pipeDelimited`, and `deepObject`, see [Appendix C](#appendix-c-using-rfc6570-based-serialization) for more information on constructing query strings from multiple parameters, and [Appendix D](#appendix-d-serializing-headers-and-cookies) for warnings regarding `form` and cookie parameters
-* The examples are percent-encoded as required by RFC6570 and RFC3986; see [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a thorough discussion of percent-encoding concerns, including why unencoded `|` (`%7C`), `[` (`%5B`), and `]` (`%5D`) seem to work in some environments despite not being compliant.
+* The value _empty_ denotes the empty string, and is unrelated to the `allowEmptyValue` field.
+* The behavior of combinations marked _n/a_ is undefined.
+* The `undefined` column replaces the `empty` column in previous versions of this specification in order to better align with [RFC6570](https://www.rfc-editor.org/rfc/rfc6570.html#section-2.3) terminology, which describes certain values including but not limited to `null` as "undefined" values with special handling; notably, the empty string is _not_ undefined.
+* For `form` and the non-RFC6570 query string styles `spaceDelimited`, `pipeDelimited`, and `deepObject`, see [Appendix C](#appendix-c-using-rfc6570-based-serialization) for more information on constructing query strings from multiple parameters, and [Appendix D](#appendix-d-serializing-headers-and-cookies) for warnings regarding `form` and cookie parameters.
+* The examples are percent-encoded as explained in the [URL Percent-Encoding](#url-percent-encoding) section above; see [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a thorough discussion of percent-encoding concerns, including why unencoded `|` (`%7C`), `[` (`%5B`), and `]` (`%5D`) seem to work in some environments despite not being compliant.
 
 | [`style`](#style-values) | `explode` | `undefined` | `string` | `array` | `object` |
 | ---- | ---- | ---- | ---- | ---- | ---- |
@@ -1960,9 +1988,10 @@ See [Appendix B](#appendix-b-data-type-conversion) for a discussion of data type
 | ---- | :----: | ---- |
 | <a name="encoding-style"></a>style | `string` | Describes how a specific property value will be serialized depending on its type. See [Parameter Object](#parameter-object) for details on the [`style`](#parameter-style) field. The behavior follows the same values as `query` parameters, including default values. Note that the initial `?` used in query strings is not used in `application/x-www-form-urlencoded` message bodies, and MUST be removed (if using an RFC6570 implementation) or simply not added (if constructing the string manually). This field SHALL be ignored if the media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
 | <a name="encoding-explode"></a>explode | `boolean` | When this is true, property values of type `array` or `object` generate separate parameters for each value of the array, or key-value-pair of the map. For other types of properties, or when [`style`](#encoding-style) is `"deepObject"`, this field has no effect. When `style` is `"form"`, the default value is `true`. For all other styles, the default value is `false`. This field SHALL be ignored if the media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
-| <a name="encoding-allow-reserved"></a>allowReserved | `boolean` | When this is true, parameter values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). Applications are still responsible for percent-encoding reserved characters that are not allowed in the target media type; see Appendices [C](#appendix-c-using-rfc6570-based-serialization) and [E](#appendix-e-percent-encoding-and-form-media-types) for details. The default value is `false`. This field SHALL be ignored if the media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
+| <a name="encoding-allow-reserved"></a>allowReserved | `boolean` | When this is true, parameter values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). Applications are still responsible for percent-encoding reserved characters that are not allowed in the target media type; see [URL Percent-Encoding](#url-percent-encoding) for details. The default value is `false`. This field SHALL be ignored if the media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
 
-See also [Appendix C: Using RFC6570 Implementations](#appendix-c-using-rfc6570-based-serialization) for additional guidance, including on difficulties caused by the interaction between RFC6570's percent-encoding rules and the `multipart/form-data` media type.
+When using RFC6570-style serialization for `multipart/form-data`, URI percent-encoding MUST NOT be applied, and the value of `allowReserved` has no effect.
+See also [Appendix C: Using RFC6570 Implementations](#appendix-c-using-rfc6570-based-serialization) for additional guidance.
 
 Note that the presence of at least one of `style`, `explode`, or `allowReserved` with an explicit value is equivalent to using `schema` with `in: "query"` Parameter Objects.
 The absence of all three of those fields is the equivalent of using `content`, but with the media type specified in `contentType` rather than through a Media Type Object.
@@ -2010,10 +2039,10 @@ With this example, consider an `id` of `f81d4fae-7dec-11d0-a765-00a0c91e6bf6` an
 }
 ```
 
-Assuming the most compact representation of the JSON value (with unnecessary whitespace removed), we would expect to see the following request body, where space characters have been replaced with `+` and `+`, `"`, `{`, and `}` have been percent-encoded to `%2B`, `%22`, `%7B`, and `%7D`, respectively:
+Assuming the most compact representation of the JSON value (with unnecessary whitespace removed), we would expect to see the following request body, where space characters have been replaced with `+` and `+`, `"`, `:`, `,`, `{`, and `}` have been percent-encoded to `%2B`, `%22`, `%3A`, `%2C`, `%7B`, and `%7D`, respectively:
 
 ```uri
-id=f81d4fae-7dec-11d0-a765-00a0c91e6bf6&address=%7B%22streetAddress%22:%22123+Example+Dr.%22,%22city%22:%22Somewhere%22,%22state%22:%22CA%22,%22zip%22:%2299999%2B1234%22%7D
+id=f81d4fae-7dec-11d0-a765-00a0c91e6bf6&address=%7B%22streetAddress%22%3A%22123+Example+Dr.%22%2C%22city%22%3A%22Somewhere%22%2C%22state%22%3A%22CA%22%2C%22zip%22%3A%2299999%2B1234%22%7D
 ```
 
 Note that the `id` keyword is treated as `text/plain` per the [Encoding Object](#encoding-object)'s default behavior, and is serialized as-is.
@@ -2900,9 +2929,8 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 
 For simpler scenarios, a [`schema`](#header-schema) and [`style`](#header-style) can describe the structure and syntax of the header.
 
-Serializing headers with `schema` can be problematic due to the URI percent-encoding that is automatically applied, which would percent-encode characters such as `;` that are used to separate primary header values from their parameters.
-The `allowReserved` field can disable most but not all of this behavior.
-See [Appendix D](#appendix-d-serializing-headers-and-cookies) for details and further guidance.
+When serializing headers with `schema`, URI percent-encoding MUST NOT be applied; if using an RFC6570 implementation that automatically applies it, it MUST be removed before use.
+Implementations MUST pass header values through unchanged rather than attempting to automatically quote header values, as the quoting rules vary too widely among different headers; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for guidance on quoting and escaping.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
@@ -2916,7 +2944,6 @@ See also [Appendix C: Using RFC6570-Based Serialization](#appendix-c-using-rfc65
 ###### Fixed Fields for use with `content`
 
 For more complex scenarios, the [`content`](#header-content) field can define the media type and schema of the header, as well as give examples of its use.
-Using `content` with a `text/plain` media type is RECOMMENDED for headers where the `schema` strategy is not appropriate.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
@@ -3079,20 +3106,18 @@ X-Rate-Limit-Limit:
     type: integer
 ```
 
-Requiring that a strong `ETag` header (with a value starting with `"` rather than `W/`) is present. Note the use of `content`, because using `schema` and `style` would require the `"` to be percent-encoded as `%22`:
+Requiring that a strong `ETag` header (with a value starting with `"` rather than `W/`) is present.
 
 ```yaml
 ETag:
   required: true
-  content:
-    text/plain:
-      schema:
-        type: string
-        # Note that quotation markes are part of the
-        # ETag value, unlike many other headers that
-        # use a quoted string purely for managing
-        # reserved characters.
-        pattern: ^"
+  schema:
+    type: string
+    # Note that quotation markes are part of the
+    # ETag value, unlike many other headers that
+    # use a quoted string purely for managing
+    # reserved characters.
+    pattern: ^"
   example: '"xyzzy"'
 ```
 
@@ -4849,9 +4874,9 @@ Implementations of this specification MAY use an implementation of RFC6570 to pe
 
 Note that when using `style: "form"` RFC6570 expansion to produce an `application/x-www-form-urlencoded` HTTP message body, it is necessary to remove the `?` prefix that is produced to satisfy the URI query string syntax.
 
-When using `style` and similar keywords to produce a `multipart/form-data` body, the query string names are placed in the `name` parameter of the `Content-Disposition` part header, and the values are placed in the corresponding part body; the `?`, `=`, and `&` characters are not used.
+When using `style` and similar keywords to produce a `multipart/form-data` body, the query string names are placed in the `name` parameter of the `Content-Disposition` part header, and the values are placed in the corresponding part body; the `?`, `=`, and `&` characters are not used, and URI percent encoding is not applied, regardless of the value of `allowReserved`.
 Note that while [RFC7578](https://datatracker.ietf.org/doc/html/rfc7578) allows using [[RFC3986]] percent-encoding in "file names", it does not otherwise address the use of percent-encoding within the format.
-RFC7578 discusses character set and encoding issues for `multipart/form-data` in detail, and it is RECOMMENDED that OpenAPI Description authors read this guidance carefully before deciding to use RFC6570-based serialization with this media type.
+Users are expected to provide names and data with any escaping necessary for conformance with RFC7578 already applied.
 
 Note also that not all RFC6570 implementations support all four levels of operators, all of which are needed to fully support the OpenAPI Specification's usage.
 Using an implementation with a lower level of support will require additional manual construction of URI Templates to work around the limitations.
@@ -5001,8 +5026,10 @@ Since the `.` usage is not automatic, we'll need to construct an appropriate inp
 
 We'll also need to pre-process the values for `formulas` because while `/` and most other reserved characters are allowed in the query string by RFC3986, `[`, `]`, and `#` [are not](https://datatracker.ietf.org/doc/html/rfc3986#appendix-A), and `&`, `=`, and `+` all have [special behavior](https://www.rfc-editor.org/rfc/rfc1866#section-8.2.1) in the `application/x-www-form-urlencoded` format, which is what we are using in the query string.
 
-Setting `allowReserved: true` does _not_ make reserved characters that are not allowed in URIs allowed, it just allows them to be _passed through expansion unchanged._
-Therefore, any tooling still needs to percent-encode those characters because reserved expansion will not do it, but it _will_ leave the percent-encoded triples unchanged.
+Setting `allowReserved: true` does _not_ make reserved characters that are not allowed in URIs allowed, it just allows them to be _passed through expansion unchanged_, for example because some other specification has defined a particular meaning for them.
+
+Therefore, users still need to percent-encode any reserved characters that are _not_ being passed through due to a special meaning because reserved expansion does not know which reserved characters are being used, and which should still be percent-encoded.
+However, reserved expansion, unlike regular expansion,  _will_ leave the pre-percent-encoded triples unchanged.
 See also [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for further guidance on percent-encoding and form media types, including guidance on handling the delimiter characters for `spaceDelimited`, `pipeDelimited`, and `deepObject` in parameter names and values.
 
 So here is our data structure that arranges the names and values to suit the template above, where values for `formulas` have `[]#&=+` pre-percent encoded (although only `+` appears in this example):
@@ -5093,28 +5120,30 @@ This will expand to the result:
 
 ## Appendix D: Serializing Headers and Cookies
 
-[RFC6570](https://www.rfc-editor.org/rfc/rfc6570)'s percent-encoding behavior is not always appropriate for `in: "header"` and `in: "cookie"` parameters.
+HTTP headers have inconsistent rules regarding what characters are allowed, and how some or all disallowed characters can be escaped and included.
+While the `quoted-string` ABNF rule given in [[RFC7230]] [Section 3.2.6](https://httpwg.org/specs/rfc7230.html#field.components) is the most common escaping solution, it is not sufficiently universal to apply automatically.
+For example, a strong `ETag` looks like `"foo"` (with quotes, regardless of the contents), and a weak `ETag` looks like `W/"foo"` (note that only part of the value is quoted); the contents of the quotes for this header are also not escaped in the way `quoted-string` contents are.
+
+For this reason, any data being passed to a header by way of a [Parameter](#parameter-object) or [Header](#header-object) Object needs to be quoted and escaped prior to passing it to the OAS implementation, and the parsed header values are expected to contain the quotes and escapes.
+
+### Percent-Encoding and Cookies
+
+_**Note:** OAS v3.0.4 and v3.1.1 applied the advice in this section to avoid RFC6570-style serialization to both headers and cookies.
+However, further research has indicated that percent-encoding was never intended to apply to headers, so this section has been corrected to apply only to cookies._
+
+[RFC6570](https://www.rfc-editor.org/rfc/rfc6570)'s percent-encoding behavior is not always appropriate for `in: "cookie"` parameters.
 In many cases, it is more appropriate to use `content` with a media type such as `text/plain` and require the application to assemble the correct string.
 Other media types, such as `application/linkset` (see [Modeling Link Headers](#modeling-link-headers)), are directly suitable for use as `content` for specific headers.
 
 In some cases, setting `allowReserved: true` will be sufficient to avoid incorrect encoding, however many characters are still percent-encoded with this field enabled, so care must be taken to ensure no unexpected percent-encoding will take place.
 
-For both [RFC6265](https://www.rfc-editor.org/rfc/rfc6265) cookies and HTTP headers using the [RFC8941](https://www.rfc-editor.org/rfc/rfc8941) structured fields syntax, non-ASCII content is handled using base64 encoding (`contentEncoding: "base64"`).
+[RFC6265](https://www.rfc-editor.org/rfc/rfc6265) recommends (but does not strictly required) base64 encoding (`contentEncoding: "base64"`) if "arbitrary data" will be stored in a cookie.
 Note that the standard base64-encoding alphabet includes non-URL-safe characters that are percent-encoded by RFC6570 expansion; serializing values through both encodings is NOT RECOMMENDED.
 While `contentEncoding` also supports the `base64url` encoding, which is URL-safe, the header and cookie RFCs do not mention this encoding.
 
-Most HTTP headers predate the structured field syntax, and a comprehensive assessment of their syntax and encoding rules is well beyond the scope of this specification.
-While [RFC8187](https://www.rfc-editor.org/rfc/rfc8187) recommends percent-encoding HTTP (header or trailer) field parameters, these parameters appear after a `;` character.
-With `style: "simple"`, that delimiter would itself be percent-encoded, violating the general HTTP field syntax.
+Using `style: "form"` with `in: "cookie"` via an RFC6570 implementation requires stripping the `?` prefix, as when producing `application/x-www-form-urlencoded` message bodies.
 
-Using `style: "form"` with `in: "cookie"` is ambiguous for a single value, and incorrect for multiple values.
-This is true whether the multiple values are the result of using `explode: true` or not.
-
-This style is specified to be equivalent to RFC6570 form expansion which includes the `?` character (see [Appendix C](#appendix-c-using-rfc6570-based-serialization) for more details), which is not part of the cookie syntax.
-However, examples of this style in past versions of this specification have not included the `?` prefix, suggesting that the comparison is not exact.
-Because implementations that rely on an RFC6570 implementation and those that perform custom serialization based on the style example will produce different results, it is implementation-defined as to which of the two results is correct.
-
-For multiple values, `style: "form"` is always incorrect as name=value pairs in cookies are delimited by `;` (a semicolon followed by a space character) rather than `&`.
+For multiple values, `style: "form"` is always incorrect, even if no characters are subject to percent-encoding, as name=value pairs in cookies are delimited by a semicolon followed by a space character rather than `&`.
 
 ## Appendix E: Percent-Encoding and Form Media Types
 
@@ -5154,14 +5183,15 @@ This means that while these three characters are reserved-but-allowed in query s
 
 [RFC7578](https://datatracker.ietf.org/doc/html/rfc7578#section-2) suggests RFC3986-based percent-encoding as a mechanism to keep text-based per-part header data such as file names within the ASCII character set.
 This suggestion was not part of older (pre-2015) specifications for `form-data`, so care must be taken to ensure interoperability.
+Users wishing to use percent-encoding in this way MUST provide the data in percent-encoded form, as percent-encoding is not automatically applied for this media type regardless of which Encoding Object fields are used.
 
-The `form-data` media type allows arbitrary text or binary data in its parts, so percent-encoding is not needed and is likely to cause interoperability problems unless the `Content-Type` of the part is defined to require it.
+The `form-data` media type allows arbitrary text or binary data in its parts, so percent-encoding or similar escaping is not needed in general.
 
 ### Generating and Validating URIs and `form-urlencoded` Strings
 
 URI percent encoding and the `form-urlencoded` media type have complex specification histories spanning multiple revisions and, in some cases, conflicting claims of ownership by different standards bodies.
 Unfortunately, these specifications each define slightly different percent-encoding rules, which need to be taken into account if the URIs or `form-urlencoded` message bodies will be subject to strict validation.
-(Note that many URI parsers do not perform validation by default.)
+(Note that many URI parsers do not perform validation by default, if at all.)
 
 This specification normatively cites the following relevant standards:
 
@@ -5171,13 +5201,11 @@ This specification normatively cites the following relevant standards:
 | [RFC6570](https://www.rfc-editor.org/rfc/rfc6570) | 03/2012 | style-based serialization | [[RFC3986]] | does not use `+` for <code>form&#8209;urlencoded</code> |
 | [RFC1866](https://datatracker.ietf.org/doc/html/rfc1866#section-8.2.1) | 11/1995 | content-based serialization | [[RFC1738]] | obsoleted by [[HTML401]] [Section 17.13.4.1](https://www.w3.org/TR/html401/interact/forms.html#h-17.13.4.1), [[URL]] [Section 5](https://url.spec.whatwg.org/#urlencoded-serializing) |
 
-Style-based serialization is used in the [Parameter Object](#parameter-object) when `schema` is present, and in the [Encoding Object](#encoding-object) when at least one of `style`, `explode`, or `allowReserved` is present.
+Style-based serialization with percent-encoding is used in the [Parameter Object](#parameter-object) when `schema` is present, and in the [Encoding Object](#encoding-object) when at least one of `style`, `explode`, or `allowReserved` is present.
 See [Appendix C](#appendix-c-using-rfc6570-based-serialization) for more details of RFC6570's two different approaches to percent-encoding, including an example involving `+`.
 
 Content-based serialization is defined by the [Media Type Object](#media-type-object), and used with the [Parameter Object](#parameter-object) and [Header Object](#header-object) when the `content` field is present, and with the [Encoding Object](#encoding-object) based on the `contentType` field when the fields `style`, `explode`, and `allowReserved` are absent.
-Each part is encoded based on the media type (e.g. `text/plain` or `application/json`), and must then be percent-encoded for use in a `form-urlencoded` string.
-
-Note that content-based serialization for `form-data` does not expect or require percent-encoding in the data, only in per-part header values.
+Each part is encoded based on the media type (e.g. `text/plain` or `application/json`), and must then be percent-encoded for use in a `form-urlencoded` string unless the media type already incorporates URI percent-encoding.
 
 #### Interoperability with Historical Specifications
 
@@ -5207,9 +5235,11 @@ The `[`, `]`, `|`, and space characters, which are used as delimiters for the `d
 This requires users to pre-encode the character(s) in some other way in parameter names and values to distinguish them from the delimiter usage when using one of these styles.
 
 The space character is always illegal and encoded in some way by all implementations of all versions of the relevant standards.
-While one could use the `form-urlencoded` convention of `+` to distinguish spaces in parameter names and values from `spaceDelimited` delimiters encoded as `%20`, the specifications define the decoding as a single pass, making it impossible to distinguish the different usages in the decoded result.
+While one could use the `form-urlencoded` convention of `+` to distinguish spaces in parameter names and values from `spaceDelimited` delimiters encoded as `%20`, the specifications define the decoding as a single pass, making it impossible to distinguish the different usages in the decoded result unless a non-standard parsing algorithm is used that separates based on one delimiter before decoding the other.
+Any such non-standard parsing approach will not be interoperable across all tools.
 
-Some environments use `[`, `]`, and possibly `|` unencoded in query strings without apparent difficulties, and WHATWG's generic query string rules do not require percent-encoding them.
+Some environments use `[`, `]`, and possibly `|` unencoded in query strings without apparent difficulties.
+WHATWG's generic query string rules do not require percent-encoding them in non-`form-urlencoded` query strings, although it also excludes them from the set of valid URL Unicode code points.
 Code that relies on leaving these delimiters unencoded, while using regular percent-encoding for them within names and values, is not guaranteed to be interoperable across all implementations.
 
 For maximum interoperability, it is RECOMMENDED to either define and document an additional escape convention while percent-encoding the delimiters for these styles, or to avoid these styles entirely.

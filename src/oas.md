@@ -3112,15 +3112,13 @@ Requiring that a strong `ETag` header (with a value starting with `"` rather tha
 ```yaml
 ETag:
   required: true
-  content:
-    text/plain:
-      schema:
-        type: string
-        # Note that quotation markes are part of the
-        # ETag value, unlike many other headers that
-        # use a quoted string purely for managing
-        # reserved characters.
-        pattern: ^"
+  schema:
+    type: string
+    # Note that quotation markes are part of the
+    # ETag value, unlike many other headers that
+    # use a quoted string purely for managing
+    # reserved characters.
+    pattern: ^"
   example: '"xyzzy"'
 ```
 

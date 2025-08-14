@@ -2652,8 +2652,10 @@ solely by the existence of a relationship.
 
 ##### `operationRef` Examples
 
-As references to `operationId` MAY NOT be possible (the `operationId` is an optional
-field in an [Operation Object](#operation-object)), references MAY also be made through a relative `operationRef`:
+As the `operationId` is an optional field in an [Operation Object](#operation-object), references MAY instead be made through a URI-reference with `operationRef`.
+Note that both of these examples reference operations that can be identified via the [Paths Object](#paths-object) to ensure that the operation's path template is unambiguous.
+
+A relative URI-reference `operationRef`:
 
 ```yaml
 links:
@@ -2664,7 +2666,7 @@ links:
       username: $response.body#/username
 ```
 
-or a URI `operationRef`:
+A non-relative URI `operationRef`:
 
 ```yaml
 links:
@@ -2675,8 +2677,9 @@ links:
       username: $response.body#/username
 ```
 
-Note that in the use of `operationRef` the _escaped forward-slash_ is necessary when
-using JSON Pointer, and it is necessary to URL-encode `{` and `}` as `%7B` and `%7D`, respectively, when using JSON Pointer as URI fragments.
+Note that in the use of `operationRef` the _escaped forward-slash_ (`~1`) is necessary when
+using JSON Pointer in URI fragments, and it is necessary to URL-encode `{` and `}` as `%7B` and `%7D`, respectively.
+The unescaped, percent-decoded path template in the above examples would be `/2.0/repositories/{username}`.
 
 #### Runtime Expressions
 

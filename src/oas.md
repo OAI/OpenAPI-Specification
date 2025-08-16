@@ -2509,7 +2509,7 @@ solely by the existence of a relationship.
 
 ###### `operationRef` Examples
 
-As the `operationId` is an optional field in an [Operation Object](#operation-object)), references MAY instead be made through a URI-reference with `operationRef`.
+As the `operationId` is an optional field in an [Operation Object](#operation-object), references MAY instead be made through a URI-reference with `operationRef`.
 Note that both of these examples reference operations that can be identified via the [Paths Object](#paths-object) to ensure that the operation's path template is unambiguous.
 
 A relative URI-reference `operationRef`:

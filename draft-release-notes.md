@@ -20,10 +20,108 @@ Tags get an upgrade, with some new fields to make them more useful and reflect s
    The `kind` field is free-form text, however there are some expected/conventional values such as `nav` (in line with the most common current usage as grouping for documentation output).
 - A [registry](https://spec.openapis.org/registry/tag-kind/index.html) to establish conventions for values used in `kind`.
 
+An example of nested tags using the new fields might be as follows:
+
+```yaml
+tags:
+  - name: products
+    summary: Products
+    description: All cake and bakery product operations
+    kind: nav
+  
+  - name: cakes
+    summary: Cakes and Treats
+    description: Cake catalog, ordering, and customization
+    parent: products
+    kind: nav
+  
+  - name: extra
+    summary: Accessories
+    description: Candles, decorations, and cake serving supplies
+    parent: products
+    kind: nav
+  
+  - name: seasonal
+    summary: Seasonal
+    description: Limited-time seasonal offerings
+    kind: badge
+    externalDocs:
+      description: Seasonal menu planning guide
+      url: https://docs.cakestore.com/seasonal-planning
+```
+
 #### Support additional HTTP methods
 
 - Support the new `query` method alongside the existing `get`/`post`/`put`/`delete`/`options`/`head`/`patch`/`trace`.
+  Query is a new method in the HTTP standard, designed to allow complex filtering query data to be sent in the body of a request when it doesn't fit in the query string.
 - Under an `additionalOperations` entry in a Path, use any other methods not listed as keys using the correct capitalization. e.g. do NOT add HEAD under this, use the existing sibling `head`.
+
+The following example describes both `query` and `link` methods for the `cakes/` endpoint:
+
+```yaml
+paths:
+  /cakes:
+    get:
+      summary: List available cakes
+      responses:
+        '200':
+          description: List of cakes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cake'
+    
+    query:
+      summary: Advanced cake search with complex filtering
+      description: Search cakes using advanced query syntax in request body
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filter:
+                  type: string
+                  example: "flavor:chocolate AND price:<20"
+                sort:
+                  type: array
+                  items:
+                    type: string
+                  example: ["price:asc", "rating:desc"]
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cake'
+    
+    additionalOperations:
+      LINK:
+        summary: Link related cake products
+        description: Create associations between cakes and accessories
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  targetResource:
+                    type: string
+                    example: "/accessories/candles/123"
+                  relationship:
+                    type: string
+                    example: "recommended-with"
+        responses:
+          '204':
+            description: Link created successfully
+```
 
 #### Document identity and URL resolution
 
@@ -33,6 +131,17 @@ Tags get an upgrade, with some new fields to make them more useful and reflect s
   - Other URLs, such as to external documentation or a license, are resolved against the base URI.
   - Relative links inside `description` fields are resolved relative to their rendered context, such as your published API documentation page.
   - API endpoints are resolved against the URL in the Server Object, which itself might be relative and resolved against the base URI.
+
+The following example shows the new `$self` field in use:
+
+```yaml
+openapi: 3.2.0
+$self: https://cake-api.example.com/openapi.yaml
+info:
+  title: Cake Store API
+  version: 1.0.3
+  description: API for managing cake orders and inventory
+```
 
 ### Data modeling and representation
 

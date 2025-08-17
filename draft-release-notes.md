@@ -12,9 +12,12 @@ A summary of the biggest changes.
 
 #### Nested, multipurpose tags
 
-- New `summary` field to allow short descriptions, used when displaying lists of tags. If you use the `x-displayName` extension, you can now use `summary` instead.
+Tags get an upgrade, with some new fields to make them more useful and reflect some of the features that need extensions to achieve today:
+
+- `summary` field to allow short descriptions, used when displaying lists of tags. If you use the `x-displayName` extension, you can now use `summary` instead.
 - `parent` field to point to the tag that this tag is nested under. If you use `x-tagGroups`, adjust to use a tags hierarchy.
-- `kind` to allow multiple categories of tag. The `kind` field is free-form text, however there are some expected/conventional values such as `nav` (in line with the most common current usage as grouping for documentation output).
+- `kind` field to allow a tag to be classified into a category such as navigation, or audience.
+   The `kind` field is free-form text, however there are some expected/conventional values such as `nav` (in line with the most common current usage as grouping for documentation output).
 - A [registry](https://spec.openapis.org/registry/tag-kind/index.html) to establish conventions for values used in `kind`.
 
 #### Support additional HTTP methods
@@ -35,6 +38,8 @@ A summary of the biggest changes.
 
 OpenAPI specification v3.2 brings consistent, modular, and extensible media type and parameter support, while also expanding the set of media types supported in response to both emerging and legacy use cases. In addition, the ambiguity regarding how to present examples in a variety of complex scenarios is reduced.
 
+There is also a new Media Types Registry, to provide further resources for working with different media types.
+
 #### Support for sequential media types
 
 - Support for sequential media types such as `text/event-stream` for server-sent events (SSE) and `multipart/mixed`, `application/jsonl`, `application/json-seq` and others for sequential data.
@@ -53,7 +58,15 @@ OpenAPI specification v3.2 brings consistent, modular, and extensible media type
 
 #### Multipart media types
 
-**TODO** this section with the additional items fields and examples.
+Multipart media types are much better supported in OpenAPI 3.2.
+
+- New `itemSchema` field, for the schema that describes each of the items in a sequential media type.
+  These sequential types may not be received or parsed in one go, so the `itemSchema` field supports ongoing parsing.
+- New fields `prefixEncoding` and `itemEncoding` can be used instead of `encoding` for multipart media types.
+    - Use `prefixEncoding` with an array of positional encoding information where the position of each item in the content is known.
+    - The `itemEncoding` is a single encoding entry that is used for information about multiple items.
+- The specification also contains examples of sequential JSON and Server-Sent events that show these fields in use.
+- Nested content types are supported to at least one level of nesting.
 
 #### Improvements for APIs using XML as a content format
 
@@ -65,7 +78,7 @@ OpenAPI specification v3.2 brings consistent, modular, and extensible media type
 - Explanation and examples for many use cases including handling `null`, handling arrays, replacing the name, and handling ordered elements.
 - Clarify that the root schema of an XML object should use the component name.
 
-#### Show examples in both structured and serialized forms
+#### Describe examples in both structured and serialized forms
 
 - The Example Object (used in `examples` fields) gets two new fields: `dataValue` and `serializedValue`.
 - `dataValue` describes the example in structured format.
@@ -189,7 +202,6 @@ Next time you're wondering if you can do `/api/v{version}/users/{user-id}` in a 
 
 #### Minor updates that are worth a mention
 
-- Streamlined to YAML examples (unless something specific to another format) to try to make it easier to follow.
 - Non-Schema examples no longer "override" Schema examples; tools are free to use the most appropriate example for any given use case.
 - A new key `mediaTypes` is supported under `components` to support re-use of Media Type Objects.
 
@@ -203,20 +215,24 @@ Next time you're wondering if you can do `/api/v{version}/users/{user-id}` in a 
 #### Editorial changes
 
 - Extensive additions around media types, encoding, sequential media types, SSE examples, working with binary data.
-- Better explanation and examples for using Encoding.
+- Streamlined to YAML examples (unless something specific to another format) to try to make it easier to follow.
+- Better explanation and examples for using Encoding and Serialization, and a note not to apply percent-encoding to headers.
 - Clarify that Request Body Objects need to specify at least one media type to be meaningful.
 - How to more clearly indicate that responses will not have a body.
 - Explanation and examples of headers including `Link` and `Set-Cookie`.
-- No change but extensive additional notes on parsing and serializing JSON and non-JSON data formats.
-  Particularly if you are building OpenAPI tooling, this section gives much better guidance on some of those tricky edge cases.
+- Detailed explanation of percent-encoding and -decoding, updated examples and references to match, including the Style Examples table.
+- Extensive additional notes on parsing and serializing JSON and non-JSON data formats.
+
+Particularly if you are building OpenAPI tooling, these sections give much better guidance on some of those tricky edge cases.
 
 ## 3.1 Updates
 
 Version 3.1.2 has no material changes but does contain editorial fixes.
 
-- Better explanation and examples for using Encoding.
-- Clarify that Request Body Objects need to specify at least one media type to be meaningful
-- How to more clearly indicate that no response will have a body
+- Detailed explanation of percent-encoding and -decoding, updated examples and references to match, including the Style Examples table.
+- Better explanation and examples for using Encoding and Serialization, and a note not to apply percent-encoding to headers.
+- Clarify that Request Body Objects need to specify at least one media type to be meaningful.
+- How to more clearly indicate that no response will have a body.
 - How to handle `null` in XML as an advisory note; since the functionality cannot be changed it is implementation-defined for 3.1 tooling.
 - Clarify that the root schema of an XML object should use the component name.
 

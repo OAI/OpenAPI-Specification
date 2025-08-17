@@ -4590,7 +4590,18 @@ For multiple values, `style: "form"` is always incorrect, even if no characters 
 _**NOTE:** In this section, the `application/x-www-form-urlencoded` and `multipart/form-data` media types are abbreviated as `form-urlencoded` and `form-data`, respectively, for readability._
 
 Percent-encoding is used in URIs and media types that derive their syntax from URIs.
-This process is concerned with three sets of characters, the names of which vary among specifications but are defined as follows for the purposes of this section:
+The fundamental rules of percent-encoding are:
+
+* The set of characters that MUST be encoded varies depending on which version of which specification you use, and (for URIs) in which part of the URI the character appears.
+* The way an unencoded `+` character is decoded depends on whether you are using `application/x-www-form-urlencoded` rules or more general URI rules; this is the only time where choice of decoding algorithm can change the outcome.
+* Encoding more characters than necessary is always safe in terms of the decoding process, but may produce non-normalized URIs.
+* In practice, some systems tolerate or even expect unencoded characters that some or all percent-encoding specifications require to be encoded; this can cause interoperability issues with more strictly compliant implementations.
+
+The rest of this appendix provides more detailed guidance based on the above rules.
+
+### Percent-Encoding Character Classes
+
+This process is concerned with three classes of characters, the names of which vary among specifications but are defined as follows for the purposes of this section:
 
 * _unreserved_ characters do not need to be percent-encoded; while it is safe to percent-encode them, doing so produces a URI that is [not normalized](https://datatracker.ietf.org/doc/html/rfc3986#section-6.2.2.2)
 * _reserved_ characters either have special behavior in the URI syntax (such as delimiting components) or are reserved for other specifications that need to define special behavior (e.g. `form-urlencoded` defines special behavior for `=`, `&`, and `+`)
@@ -4638,7 +4649,7 @@ Each part is encoded based on the media type (e.g. `text/plain` or `application/
 
 #### Interoperability with Historical Specifications
 
-In most cases, generating query strings in strict compliance with [[RFC3986]] is sufficient to pass validation (including JSON Schema's `format: "uri"` and `format: "uri-reference"`), but some `form-urlencoded` implementations still expect the slightly more restrictive [[RFC1738]] rules to be used.
+In most cases, generating query strings in strict compliance with [[RFC3986]] is sufficient to pass validation (including JSON Schema's `format: "uri"` and `format: "uri-reference"` when `format` validation is enabled), but some `form-urlencoded` implementations still expect the slightly more restrictive [[RFC1738]] rules to be used.
 
 Since all RFC1738-compliant URIs are compliant with RFC3986, applications needing to ensure historical interoperability SHOULD use RFC1738's rules.
 
@@ -4648,7 +4659,7 @@ WHATWG is a [web browser-oriented](https://whatwg.org/faq#what-is-the-whatwg-wor
 WHATWG's percent-encoding rules for query strings are different depending on whether the query string is [being treated as `form-urlencoded`](https://url.spec.whatwg.org/#application-x-www-form-urlencoded-percent-encode-set) (where it requires more percent-encoding than [[RFC1738]]) or [as part of the generic syntax](https://url.spec.whatwg.org/#query-percent-encode-set), where it allows characters that [[RFC3986]] forbids.
 
 Implementations needing maximum compatibility with web browsers SHOULD use WHATWG's `form-urlencoded` percent-encoding rules.
-However, they SHOULD NOT rely on WHATWG's less stringent generic query string rules, as the resulting URLs would fail RFC3986 validation, including JSON Schema's `format: uri` and `format: uri-reference`.
+However, they SHOULD NOT rely on WHATWG's less stringent generic query string rules, as the resulting URLs would fail RFC3986 validation, including JSON Schema's `format: uri` and `format: uri-reference` (when `format` validation is endabled).
 
 ### Decoding URIs and `form-urlencoded` Strings
 

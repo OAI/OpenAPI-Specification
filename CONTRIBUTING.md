@@ -210,11 +210,13 @@ The steps for creating a `vX.Y.Z-rel` branch are:
    - adjust and repeat until done
    - merge changes to `src/oas.md` back into `vX.Y-dev` via PR
 4. Create `vX.Y.Z-rel` from `vX.Y-dev` and adjust it
-   - move `src/oas.md` to `versions/X.Y.Z.md`
-   - copy `EDITORS.md` to `versions/X.Y.Z-editors.md`
-   - delete `src/schemas`
-   - delete version-specific files and folders from `tests/schema`
-   - bash script `scripts/adjust-release-branch.sh` performs these steps
+   - the bash script `scripts/adjust-release-branch.sh` does this:
+     - move file `src/oas.md` to `versions/X.Y.Z.md`
+     - copy file `EDITORS.md` to `versions/X.Y.Z-editors.md`
+     - delete folder `src/schemas`
+     - delete version-specific files and folders from `tests/schema`
+       - file `schema.test.mjs`
+       - folders `pass` and `fail`
 5. Merge `vX.Y.Z-rel` into `main` via PR
    - this PR should only add files `versions/X.Y.Z.md` and `versions/X.Y.Z-editors.md`
 
@@ -343,7 +345,7 @@ For information on the branch and release strategy for OAS 3.0.4 and 3.1.1 and e
 * `dev` is the primary branch for working with the `src` tree.  Development infrastructure that is not needed on `main` is maintained here, and can be merged out to other non-`main` branches as needed.
   Changes on `main` are automatically included in a pull request to `dev` (see the (section on [branch sync](#branch-sync-automation)).
 * `vX.Y-dev` is the minor release line development branch for X.Y, including both the initial X.Y.0 minor version and all subsequent X.Y.Z patch versions.  All PRs are made to oldest active `vX.Y-dev` branch to which the change is relevant, and then merged forward as shown in the diagram further down in this document.
-* `vX.Y.Z-rel` is the release branch for an X.Y.Z release (including when Z == 0).  It exists primarily for `git mv`-ing `src/oas.md` to the appropriate `versions/X.Y.Z.md` location before merging back to `main`, and can also be used for any emergency post-release fixes that come up, such as when a 3rd party changes URLs in a way that breaks published links.
+* `vX.Y.Z-rel` is the release branch for an X.Y.Z release (including when Z == 0).  It exists primarily for `git mv`-ing `src/oas.md` to the appropriate `versions/X.Y.Z.md` location and removing schema-related files before merging back to `main`, and can also be used for any emergency post-release fixes that come up, such as when a 3rd party changes URLs in a way that breaks published links.
 
 ### Branching and merging (3.1.2, 3.2.0, and later)
 

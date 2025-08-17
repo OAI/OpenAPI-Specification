@@ -65,7 +65,7 @@ OpenAPI specification v3.2 brings consistent, modular, and extensible media type
 - Explanation and examples for many use cases including handling `null`, handling arrays, replacing the name, and handling ordered elements.
 - Clarify that the root schema of an XML object should use the component name.
 
-#### Show examples in both structure and serialized forms
+#### Show examples in both structured and serialized forms
 
 - The Example Object (used in `examples` fields) gets two new fields: `dataValue` and `serializedValue`.
 - `dataValue` describes the example in structured format.

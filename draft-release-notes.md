@@ -208,7 +208,7 @@ Next time you're wondering if you can do `/api/v{version}/users/{user-id}` in a 
 - How to more clearly indicate that responses will not have a body.
 - Explanation and examples of headers including `Link` and `Set-Cookie`.
 - No change but extensive additional notes on parsing and serializing JSON and non-JSON data formats.
-  Particularly if you are buildling OpenAPI tooling, this section gives much better guidance on some of those tricky edge cases.
+  Particularly if you are building OpenAPI tooling, this section gives much better guidance on some of those tricky edge cases.
 
 ## 3.1 Updates
 

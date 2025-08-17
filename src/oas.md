@@ -270,7 +270,7 @@ Unless specified otherwise, relative references are resolved using the URLs defi
 
 Assume a retrieval URI of `https://device1.example.com` for the following OpenAPI Document:
 
-```YAML
+```yaml
 openapi: 3.2.0
 $self: https://apidescriptions.example.com/foo
 info:
@@ -5353,7 +5353,7 @@ For OpenAPI Documents, this source is the OpenAPI Object's `$self` field, while 
 
 Assume the retrieval URI of the following document is `file://home/someone/src/api/openapi.yaml`:
 
-```YAML
+```yaml
 openapi: 3.2.0
 $self: https://example.com/api/openapi
 info:
@@ -5368,7 +5368,7 @@ paths:
 
 Assume the retrieval URI for the following document is `https://git.example.com/shared/blob/main/shared/foo.yaml`:
 
-```YAML
+```yaml
 openapi: 3.2.0
 $self: https://example.com/api/shared/foo
 info:
@@ -5416,7 +5416,7 @@ Note that this is purely an example, and support for such multipart documents or
 
 RFC2557 was written to allow sending hyperlinked sets of documents as email attachments, in which case there would not be a retrieval URI for the multipart attachment (although the format could also be used in HTTP as well).
 
-```MULTIPART
+```multipart
 --boundary-example
 Content-Type: application/openapi+yaml
 Content-Location: https://example.com/api/openapi.yaml
@@ -5473,7 +5473,7 @@ If no base URI is provided from either of the previous sources, the next source 
 
 Assume this document was retrieved from `https://example.com/api/openapis.yaml`:
 
-```YAML
+```yaml
 openapi: 3.2.0
 info:
   title: Example API
@@ -5489,7 +5489,7 @@ components:
 
 Assume this document was retrieved from `https://example.com/api/schemas/foo`:
 
-```JSON
+```json
 {
   "type": "object",
   "properties": {
@@ -5514,7 +5514,7 @@ Let's re-consider the first example in this appendix, but with relative URI-refe
 
 Assume that the following is retrieved from `https://staging.example.com/api/openapi`:
 
-```YAML
+```yaml
 openapi: 3.2.0
 $self: /api/openapi
 info:
@@ -5529,7 +5529,7 @@ paths:
 
 Assume the retrieval URI for the following document is `https://staging.example.com/api/shared/foo`:
 
-```YAML
+```yaml
 openapi: 3.2.0
 $self: /api/shared/foo
 info:

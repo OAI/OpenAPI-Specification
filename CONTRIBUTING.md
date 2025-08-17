@@ -213,7 +213,7 @@ The steps for creating a `vX.Y.Z-rel` branch are:
    - move `src/oas.md` to `versions/X.Y.Z.md`
    - copy `EDITORS.md` to `versions/X.Y.Z-editors.md`
    - delete `src/schemas`
-   - delete `tests/schema`
+   - delete version-specific files and folders from `tests/schema`
    - bash script `scripts/adjust-release-branch.sh` performs these steps
 5. Merge `vX.Y.Z-rel` into `main` via PR
    - this PR should only add files `versions/X.Y.Z.md` and `versions/X.Y.Z-editors.md`

@@ -63,8 +63,8 @@ Multipart media types are much better supported in OpenAPI 3.2.
 - New `itemSchema` field, for the schema that describes each of the items in a sequential media type.
   These sequential types may not be received or parsed in one go, so the `itemSchema` field supports ongoing parsing.
 - New fields `prefixEncoding` and `itemEncoding` can be used instead of `encoding` for multipart media types.
-    - Use `prefixEncoding` with an array of positional encoding information where the position of each item in the content is known.
-    - The `itemEncoding` is a single encoding entry that is used for information about multiple items.
+  - Use `prefixEncoding` with an array of positional encoding information where the position of each item in the content is known.
+  - The `itemEncoding` is a single encoding entry that is used for information about multiple items.
 - The specification also contains examples of sequential JSON and Server-Sent events that show these fields in use.
 - Nested content types are supported to at least one level of nesting.
 

@@ -2553,13 +2553,13 @@ The runtime expression is defined by the following [ABNF](https://tools.ietf.org
                     ; %x2F ('/') and %x7E ('~') are excluded from 'unescaped'
     escaped         = "~" ( "0" / "1" )
                     ; representing '~' and '/', respectively
-    name = *( CHAR )
+    name = *char
     token = 1*tchar
     tchar = "!" / "#" / "$" / "%" / "&" / "'" / "*" / "+" / "-" / "."
           / "^" / "_" / "`" / "|" / "~" / DIGIT / ALPHA
 ```
 
-Here, `json-pointer` is taken from [RFC6901](https://tools.ietf.org/html/rfc6901), `CHAR` from [RFC7159](https://tools.ietf.org/html/rfc7159#section-7) and `token` from [RFC7230](https://tools.ietf.org/html/rfc7230#section-3.2.6).
+Here, `json-pointer` is taken from [RFC6901](https://tools.ietf.org/html/rfc6901), `char` from [RFC7159](https://tools.ietf.org/html/rfc7159#section-7) and `token` from [RFC7230](https://tools.ietf.org/html/rfc7230#section-3.2.6).
 
 The `name` identifier is case-sensitive, whereas `token` is not.
 

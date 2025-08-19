@@ -1,4 +1,5 @@
-# <a href="..">{{ page.collection }}</a>
+{% assign registry = site.collections | where:"label", page.collection  | first %}
+# <a href=".">{{ registry.name }}</a>
 
 ## {{ page.slug }} - {{ page.description }}
 

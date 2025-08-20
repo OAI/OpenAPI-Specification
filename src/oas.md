@@ -240,9 +240,9 @@ Unless specified otherwise, all fields that are URIs MAY be relative references 
 
 ##### Establishing the Base URI
 
-Relative URI references are resolved using the appropriate base URI, which MUST be determined in accordance with [[RFC3986]] [Section 5.1.1 – 5.1.4](https://tools.ietf.org/html/rfc3986#section-5.1.1) and, for Schema objects, [JSON Schema draft 2020-12 Section 8.2](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-8.2), as illustrated by the examles in [Appendix G: Examples of Base URI Determination and Reference Resolution](#appendix-g-examples-of-base-uri-determination-and-reference-resolution).
+Relative URI references are resolved using the appropriate base URI, which MUST be determined in accordance with [[RFC3986]] [Section 5.1.1 – 5.1.4](https://tools.ietf.org/html/rfc3986#section-5.1.1) and, for Schema objects, [JSON Schema draft 2020-12 Section 8.2](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-8.2), as illustrated by the examples in [Appendix G: Examples of Base URI Determination and Reference Resolution](#appendix-g-examples-of-base-uri-determination-and-reference-resolution).
 
-If `$self` is a relative URI-reference, it is resolved agains the next possible base URI source ([[RFC3986]] [Section 5.1.2 – 5.1.4](https://tools.ietf.org/html/rfc3986#section-5.1.2)) before being used for the resolution of other relative URI-references.
+If `$self` is a relative URI-reference, it is resolved against the next possible base URI source ([[RFC3986]] [Section 5.1.2 – 5.1.4](https://tools.ietf.org/html/rfc3986#section-5.1.2)) before being used for the resolution of other relative URI-references.
 
 The most common base URI source that is used in the event of a missing or relative `$self` (in the [OpenAPI Object](#openapi-object)) and (for [Schema Object](#schema-object)) `$id` is the retrieval URI.
 Implementations MAY support document retrieval, although see the [Security Considerations](#security-considerations) sections for additional guidance.
@@ -263,8 +263,8 @@ API endpoints are by definition accessed as locations, and are described by this
 
 Unless specified otherwise, all fields that are URLs MAY be relative references as defined by [RFC3986](https://tools.ietf.org/html/rfc3986#section-4.2).
 
-Because the API Is a distinct entity from the OpenAPI Document, RFC3986's base URI rules for the OpenAPI Document do not apply.
-Unless specified otherwise, relative references are resolved using the URLs defined in the [Server Object](#server-object) as a Base URL. Note that these themselves MAY be relative to the referring document.
+Because the API is a distinct entity from the OpenAPI Document, RFC3986's base URI rules for the OpenAPI Document do not apply.
+Unless specified otherwise, relative references are resolved using the URLs defined in the [Server Object](#server-object) as a base URL. Note that these themselves MAY be relative to the referring document.
 
 ##### Examples of API Base URL Determination
 
@@ -530,7 +530,7 @@ However, `multipart` media types can mix binary and text-based data, leaving imp
 1. Use a placeholder value, on the assumption that no assertions will apply to the binary data and no conditional schema keywords will cause the schema to treat the placeholder value differently (e.g. a part that could be either plain text or binary might behave unexpectedly if a string is used as a binary placeholder, as it would likely be treated as plain text and subject to different subschemas and keywords).
 2. Inspect the schema(s) to find the appropriate keywords (`properties`, `prefixItems`, etc.) in order to break up the subschemas and apply them separately to binary and JSON-compatible data.
 
-###### Migrating binary descriptions from OAS 3.0
+###### Migrating Binary Descriptions from OAS 3.0
 
 The following table shows how to migrate from OAS 3.0 binary data descriptions, continuing to use `image/png` as the example binary media type:
 
@@ -720,7 +720,7 @@ servers:
           - '443'
         default: '8443'
       basePath:
-        # open meaning there is the opportunity to use special base paths as assigned by the provider, default is `v2`
+        # open meaning there is the opportunity to use special base paths as assigned by the provider, default is "v2"
         default: v2
 ```
 
@@ -883,7 +883,7 @@ The path is appended to the URL from the [Server Object](#server-object) in orde
 
 | Field Pattern | Type | Description |
 | ---- | :----: | ---- |
-| <a name="paths-path"></a>/{path} | [Path Item Object](#path-item-object) | A relative path to an individual endpoint. The field name MUST begin with a forward slash (`/`). The path is **appended** (no relative URL resolution) to the resolved and template variable-substituted URL from the [Server Object](#server-object)'s `url` field in order to construct the full URL. [Path templating](#path-templating) is allowed. When matching URLs, concrete (non-templated) paths would be matched before their templated counterparts. Templated paths with the same hierarchy but different templated names MUST NOT exist as they are identical. In case of ambiguous matching, it's up to the tooling to decide which one to use. |
+| <a name="paths-path"></a>/{path} | [Path Item Object](#path-item-object) | A relative path to an individual endpoint. The field name MUST begin with a forward slash (`/`). The URL from the [Server Object](#server-object)'s `url` field, resolved and with template variables substituted, has the path **appended** (no relative URL resolution) to it in order to construct the full URL. [Path templating](#path-templating) is allowed. When matching URLs, concrete (non-templated) paths would be matched before their templated counterparts. Templated paths with the same hierarchy but different templated names MUST NOT exist as they are identical. In case of ambiguous matching, it's up to the tooling to decide which one to use. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
@@ -948,8 +948,8 @@ The path itself is still exposed to the documentation viewer but they will not k
 | <a name="path-item-head"></a>head | [Operation Object](#operation-object) | A definition of a HEAD operation on this path. |
 | <a name="path-item-patch"></a>patch | [Operation Object](#operation-object) | A definition of a PATCH operation on this path. |
 | <a name="path-item-trace"></a>trace | [Operation Object](#operation-object) | A definition of a TRACE operation on this path. |
-| <a name="path-item-query"></a>query | [Operation Object](#operation-object) | A definition of a QUERY operation, as defined in the most recent IETF draft ([draft-ietf-httpbis-safe-method-w-body-08](https://www.ietf.org/archive/id/draft-ietf-httpbis-safe-method-w-body-08.html) as of this writing) or its RFC successor, on this path. |
-| <a name="path-item-additional-operations"></a>additionalOperations | Map[`string`, [Operation Object](#operation-object)] | A map of additional operations on this path. The map key is the HTTP method with the same capitalization that is to be sent in the request. This map MUST NOT contain any entry for the methods that can be defined by other Operation Object fields (e.g. no `POST` entry, as the Operation Object field `post` is used for this method). |
+| <a name="path-item-query"></a>query | [Operation Object](#operation-object) | A definition of a QUERY operation, as defined in the most recent IETF draft ([draft-ietf-httpbis-safe-method-w-body-08](https://www.ietf.org/archive/id/draft-ietf-httpbis-safe-method-w-body-11.html) as of this writing) or its RFC successor, on this path. |
+| <a name="path-item-additional-operations"></a>additionalOperations | Map[`string`, [Operation Object](#operation-object)] | A map of additional operations on this path. The map key is the HTTP method with the same capitalization that is to be sent in the request. This map MUST NOT contain any entry for the methods that can be defined by other fixed fields with Operation Object values (e.g. no `POST` entry, as the `post` field is used for this method). |
 | <a name="path-item-servers"></a>servers | [[Server Object](#server-object)] | An alternative `servers` array to service all operations in this path. If a `servers` array is specified at the [OpenAPI Object](#oas-servers) level, it will be overridden by this value. |
 | <a name="path-item-parameters"></a>parameters | [[Parameter Object](#parameter-object) \| [Reference Object](#reference-object)] | A list of parameters that are applicable for all the operations described under this path. These parameters can be overridden at the operation level, but cannot be removed there. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a [name](#parameter-name) and [location](#parameter-in). The list can use the [Reference Object](#reference-object) to link to parameters that are defined in the [OpenAPI Object's `components.parameters`](#components-parameters). |
 
@@ -1561,12 +1561,12 @@ See also the [Media Type Registry](#media-type-registry).
 
 The `schema` field MUST be applied to the complete content, as defined by the media type and the context ([Request Body Object](#request-body-object), [Response Object](#response-object), [Parameter Object](#parameter-object), or [Header Object](#header-object).
 Because this requires loading the content into memory in its entirety, it poses a challenge for streamed content.
-Use cases where client is intended to choose when to stop reading are particularly challenging as there is no well-defined end to the stream.
+Use cases where clients are intended to choose when to stop reading are particularly challenging as there is no well-defined end to the stream.
 
 ###### Binary Streams
 
 The `maxLength` keyword MAY be used to set an expected upper bound on the length of a streaming payload that consists of either string data, including encoded binary data, or unencoded binary data.
-For unencoded binary, the length is the number of octets.
+For unencoded binary data, the length is the number of octets.
 For this use case, `maxLength` MAY be implemented outside of regular JSON Schema evaluation as JSON Schema does not directly apply to binary data, and an encoded binary stream may be impractical to store in memory in its entirety.
 
 ###### Streaming Sequential Media Types
@@ -1577,6 +1577,8 @@ Unlike `schema`, which is applied to the complete content (treated as an array a
 
 Both `schema` and `itemSchema` MAY be used in the same Media Type Object.
 However, doing so is unlikely to have significant advantages over using the `items` keyword within the `schema` field.
+
+<a name="considerations-event-stream"></a><!-- custom anchor needed because markdownlint and ReSpec treat a slash differently in auto-generated anchors -->
 
 ##### Special Considerations for `text/event-stream` Content
 
@@ -1653,7 +1655,7 @@ For form-related and `multipart` media type examples, see the [Encoding Object](
 
 ###### JSON
 
-Note that since this example is written in YAML, the Example Object `value` field can be formatted as YAML due to the trivial conversion to JSON.
+Note that since this example is written in YAML, the Example Object's `value` field can be formatted as YAML due to the trivial conversion to JSON.
 This avoids needing to embed JSON as a string.
 
 ```yaml
@@ -1821,7 +1823,7 @@ Our `application/json-seq` example has to be an external document because of the
 
 ###### Server-Sent Event Streams
 
-For this example, assume that the generic event schema provided in the "Special Considerations for `text/event-stream` Content" section is available at `#/components/schemas/Event`:
+For this example, assume that the generic event schema provided in the [Special Considerations for `text/event-stream` Content](#considerations-event-stream) section is available at `#/components/schemas/Event`:
 
 ```yaml
 description: A request body to add a stream of typed data.
@@ -1840,7 +1842,7 @@ content:
             const: addInt64
           data:
             $comment: |
-              Since the data field is a string,
+              Since the `data` field is a string,
               we need a format to signal that it
               should be handled as a 64-bit integer.
             format: int64
@@ -1853,7 +1855,7 @@ content:
               that the string value should
               be parsed and validated as a
               JSON document (since JSON is not
-              a binary format, contentEncoding
+              a binary format, `contentEncoding`
               is not needed)
             contentMediaType: application/json
             contentSchema:
@@ -2068,8 +2070,8 @@ requestBody:
           name:
             type: string
           icon:
-            # The default content type with "contentEncoding" present
-            # is application/octet-stream, so we need to set the correct
+            # The default content type with `contentEncoding` present
+            # is `application/octet-stream`, so we need to set the correct
             # image media type(s) in the Encoding Object.
             type: string
             contentEncoding: base64url
@@ -2197,7 +2199,7 @@ requestBody:
     multipart/form-data:
       schema:
         properties:
-          # The property name 'file' will be used for all files.
+          # The property name `file` will be used for all files.
           file:
             type: array
             items: {}
@@ -2786,7 +2788,7 @@ paths:
               # the target link operationId
               operationId: getUserAddress
               parameters:
-                # get the `id` field from the request path parameter named `id`
+                # get the `id` field from the request path parameter named "id"
                 userid: $request.path.id
   # the path item of the linked operation
   /users/{userid}/address:
@@ -3113,7 +3115,7 @@ ETag:
   required: true
   schema:
     type: string
-    # Note that quotation markes are part of the
+    # Note that quotation marks are part of the
     # ETag value, unlike many other headers that
     # use a quoted string purely for managing
     # reserved characters.
@@ -3241,7 +3243,7 @@ JSON Schema Draft 2020-12 supports [collecting annotations](https://www.ietf.org
 OAS implementations MAY use such annotations, including [extensions](https://spec.openapis.org/registry/extension/) not recognized as part of a declared JSON Schema vocabulary, as the basis for further validation.
 Note that JSON Schema Draft 2020-12 does not require an `x-` prefix for extensions.
 
-###### Non-validating constraint keywords
+###### Non-Validating Constraint Keywords
 
 The [`format` keyword (when using default format-annotation vocabulary)](https://www.ietf.org/archive/id/draft-bhutton-json-schema-validation-01.html#section-7.2.1) and the [`contentMediaType`, `contentEncoding`, and `contentSchema` keywords](https://www.ietf.org/archive/id/draft-bhutton-json-schema-validation-01.html#section-8.2) define constraints on the data, but are treated as annotations instead of being validated directly.
 Extended validation is one way that these constraints MAY be enforced.
@@ -3287,7 +3289,7 @@ Implementations SHOULD support defining generic or template data structures usin
 * `$dynamicAnchor` identifies a set of possible schemas (including a default placeholder schema) to which a `$dynamicRef` can resolve
 * `$dynamicRef` resolves to the first matching `$dynamicAnchor` encountered on its path from the schema entry point to the reference, as described in the JSON Schema specification
 
-An example is included in the "Schema Object Examples" section below, and further information can be found on the Learn OpenAPI site's ["Dynamic References"](https://learn.openapis.org/referencing/dynamic.html) page.
+An example is included in the [Schema Object Examples](#schema-object-examples) section below, and further information can be found on the Learn OpenAPI site's ["Dynamic References"](https://learn.openapis.org/referencing/dynamic.html) page.
 
 ###### Annotated Enumerations
 
@@ -3518,7 +3520,7 @@ components:
         - packSize
 ```
 
-###### Models with Polymorphism Support using allOf and a Discriminator Object
+###### Models with Polymorphism Support using `allOf` and a Discriminator Object
 
 It is also possible to describe polymorphic models using `allOf`. The following example uses `allOf` with a [Discriminator Object](#discriminator-object) to describe a polymorphic `Pet` model.
 
@@ -3664,7 +3666,7 @@ To ensure that an ambiguous value (e.g. `"foo"`) is treated as a relative URI re
 Mapping keys MUST be string values, but tooling MAY convert response values to strings for comparison.
 However, the exact nature of such conversions are implementation-defined.
 
-##### Optional discriminating property
+##### Optional Discriminating Property
 
 When the discriminating property is defined as optional, the [Discriminator Object](#discriminator-object) MUST include a `defaultMapping` field that specifies a schema that is expected to validate the structure of the model when the discriminating property is not present in the payload or contains a value for which there is no explicit or implicit mapping. This allows the schema to still be validated correctly even if the discriminating property is missing.
 
@@ -3886,8 +3888,8 @@ Note that placing two `text` nodes adjacent to each other is ambiguous for parsi
 The `element` and `attribute` node types require a name, which MUST be inferred from the schema as follows, unless overridden by the `name` field:
 
 * For schemas directly under the [Components Object's](#components-object) `schemas` field, the component name is the inferred name.
-* For property schemas, and for array item schemas under a property schema, the property name is the inferred name
-* In all other cases, such as an inline schema under a [Media Type Object's](#media-type-object) `schema` field, no name can be inferred and an XML Object with a `name` field MUST be present
+* For property schemas, and for array item schemas under a property schema, the property name is the inferred name.
+* In all other cases, such as an inline schema under a [Media Type Object's](#media-type-object) `schema` field, no name can be inferred and an XML Object with a `name` field MUST be present.
 
 Note that when using arrays, singular vs plural forms are _not_ inferred, and must be set explicitly.
 
@@ -3906,7 +3908,7 @@ However, implementations SHOULD handle `null` values as follows:
 
 * For elements, produce an empty element with an `xsi:nil="true"` attribute.
 * For attributes, omit the attribute.
-* For text and CDATA sections, see [Appendix B](#appendix-b-data-type-conversion) for a discussion of serializing non-text values to text
+* For text and CDATA sections, see [Appendix B](#appendix-b-data-type-conversion) for a discussion of serializing non-text values to text.
 
 Note that for attributes, this makes either a `null` value or a missing property serialize to an omitted attribute.
 As the Schema Object validates the in-memory representation, this allows handling the combination of `null` and a required property.
@@ -4040,7 +4042,7 @@ Where `./examples/Person.xml` would be:
 
 ```xml
 <Person id="123">
-    <sample:name xmlns:sample="https://example.com/schema/sample">example</sample:name>
+  <sample:name xmlns:sample="https://example.com/schema/sample">example</sample:name>
 </Person>
 ```
 
@@ -4382,10 +4384,7 @@ components:
             nodeType: cdata
 ```
 
-where `./examples/content.json` would be:
-
-
-`./examples/stored.xml` would be:
+where `./examples/stored.xml` would be:
 
 ```xml
 <StoredDocument>
@@ -4507,47 +4506,47 @@ This example does not define properties for `"related"` as it is showing how
 empty objects and `null` are handled.
 
 ```yaml
-appliaction/xml:
-schema:
-  xml:
-    name: product
-  type: object
-  required:
-  - count
-  - description
-  - related
-  properties:
-    count:
-      type:
-      - number
-      - "null"
-      xml:
-        nodeType: attribute
-    rating:
-      type: string
-      xml:
-        nodeType: attribute
-    description:
-      type: string
-    related:
-      type:
-      - object
-      - "null"
-examples:
-  productWithNulls:
-    dataValue: {
-      "count": null,
-      "description": "Thing",
-      "related": null
-    }
-    externalValue: ./examples/productWithNulls.xml
-  productNoNulls:
-    dataValue: {
-      "count": 42,
-      "description: "Thing"
-      "related": {}
-    }
-   externalValue: ./examples/productNoNulls.xml
+application/xml:
+  schema:
+    xml:
+      name: product
+    type: object
+    required:
+    - count
+    - description
+    - related
+    properties:
+      count:
+        type:
+        - number
+        - "null"
+        xml:
+          nodeType: attribute
+      rating:
+        type: string
+        xml:
+          nodeType: attribute
+      description:
+        type: string
+      related:
+        type:
+        - object
+        - "null"
+  examples:
+    productWithNulls:
+      dataValue: {
+        "count": null,
+        "description": "Thing",
+        "related": null
+      }
+      externalValue: ./examples/productWithNulls.xml
+    productNoNulls:
+      dataValue: {
+        "count": 42,
+        "description: "Thing"
+        "related": {}
+      }
+      externalValue: ./examples/productNoNulls.xml
 ```
 
 Where `./examples/productWithNulls.xml` would be:
@@ -4587,7 +4586,7 @@ Please note that as of 2020, the implicit flow is about to be deprecated by [OAu
 | <a name="security-scheme-bearer-format"></a>bearerFormat | `string` | `http` (`"bearer"`) | A hint to the client to identify how the bearer token is formatted. Bearer tokens are usually generated by an authorization server, so this information is primarily for documentation purposes. |
 | <a name="security-scheme-flows"></a>flows | [OAuth Flows Object](#oauth-flows-object) | `oauth2` | **REQUIRED**. An object containing configuration information for the flow types supported. |
 | <a name="security-scheme-open-id-connect-url"></a>openIdConnectUrl | `string` | `openIdConnect` | **REQUIRED**. [Well-known URL](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig) to discover the [[OpenID-Connect-Discovery]] [provider metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). |
-| <a name="security-scheme-oauth2-metadata-url"></a>oauth2MetadataUrl | `string` | `oauth2` | URL to the oauth2 authorization server metadata [RFC8414](https://datatracker.ietf.org/doc/html/rfc8414). TLS is required. |
+| <a name="security-scheme-oauth2-metadata-url"></a>oauth2MetadataUrl | `string` | `oauth2` | URL to the OAuth2 authorization server metadata [RFC8414](https://datatracker.ietf.org/doc/html/rfc8414). TLS is required. |
 | <a name="security-scheme-deprecated"></a>deprecated | `boolean` | Any | Declares this security scheme to be deprecated. Consumers SHOULD refrain from usage of the declared scheme. Default value is `false`. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
@@ -4814,6 +4813,7 @@ Certain fields allow the use of Markdown which can contain HTML including script
 | Version | Date | Notes |
 | ---- | ---- | ---- |
 | 3.2.0 | TBD | Release of the OpenAPI Specification 3.2.0 |
+| 3.1.2 | TBD | Patch release of the OpenAPI Specification 3.1.2 |
 | 3.1.1 | 2024-10-24 | Patch release of the OpenAPI Specification 3.1.1 |
 | 3.1.0 | 2021-02-15 | Release of the OpenAPI Specification 3.1.0 |
 | 3.1.0-rc1 | 2020-10-08 | rc1 of the 3.1 specification |
@@ -5395,7 +5395,7 @@ components:
 In this example, the retrieval URIs are irrelevant because both documents define `$self`.
 
 The relative `$ref` in the first document is resolved against `$self` to produce `https://example.com/api/shared/foo#/components/requestBodies/Foo`.
-The portion of that URI before the '#' matches the `$self` of the second document, so the reference target is resolved to `#/components/requestBodies/Foo` in that second document.
+The portion of that URI before the `#` matches the `$self` of the second document, so the reference target is resolved to `#/components/requestBodies/Foo` in that second document.
 
 In that document, the `$ref` in the Request Body Object is resolved using that document's `$self` as the base URI, producing `https://example.com/api/schemas/foo`.
 This matches the `$id` at `#/components/schemas/Foo/$id` so it points to that Schema Object.

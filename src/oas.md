@@ -3063,7 +3063,7 @@ components:
             lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT
             foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT
             urlSafeData: Hello%2C%20world%21
-    SetCookieWithSchemaAnd Style:
+    SetCookieWithSchemaAndStyle:
       schema:
         type: object
         required:
@@ -3075,7 +3075,7 @@ components:
             type: string
             pattern: ^[-_.%a-zA-Z0-9]+(;|$)
         additionalProperties:
-          # Require an Expires parameter
+          $comment: Require an Expires parameter
           pattern: "; *Expires="
       style: simple
       explode: true

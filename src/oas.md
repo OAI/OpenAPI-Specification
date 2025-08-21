@@ -3055,6 +3055,12 @@ components:
           # This demonstrates that the text is required to be provided
           # in the final format, and is not changed by serialization.
           # In practice, it is not necessary to show both value fields.
+          # Note that only the comma (%2C) would need to be percent-encoded
+          # if percent-encoding were only being done to make the value
+          # a valid cookie, as space (%20) and the exclamation point (%21)
+          # are allowed in cookies, but not in URLs.  See the cookie
+          # input parameter examples for an example of encoding only
+          # what is needed for the cookie syntax.
           dataValue: |
             lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT
             foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT
@@ -3097,6 +3103,7 @@ In an HTTP message, the serialized example would look like:
 ```http
 Set-Cookie: lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GM
 Set-Cookie: foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT
+Set-Cookie: urlSafeData=Hello%2C%20world%21
 ```
 
 ##### Header Object Example

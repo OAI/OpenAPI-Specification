@@ -21,11 +21,26 @@ We are [working on](https://github.com/OAI/OpenAPI-Specification/issues/4152) ho
 There are two schemas to choose from for versions 3.1 and greater, both of which have an `$id` that starts with `https://spec.openapis.org/oas/3.X/` and ends with the iteration date:
 
 * `https://spec.openapis.org/oas/3.X/schema/{date}`, source: `schema.yaml` — A self-contained schema that _does not_ validate Schema Objects beyond `type: [object, boolean]`
-* `https://spec.openapis.org/oas/3.X/meta/{date}`, source: `meta.yaml` — The vocabulary metaschema for OAS 3.X's extensions to draft 2020-12
-* `https://spec.openapis.org/oas/3.X/dialect/base/{date}`, source: `base.yaml` — The dialect metaschema that extends the standard `draft/2020-12` metaschema by adding the OAS "base" vocabulary
 * `https://spec.openapis.org/oas/3.1/schema-base/{date}`, source: `schema-base.yaml` — A schema that combines the self-contained schema and the "base" dialect schema to validate Schema Objects with the dialect; this schema does not allow changing `$schema` or `jsonSchemaDialect` to other dialects
 
+Two metaschemas define the OAS "base" dialect:
+
+* `https://spec.openapis.org/oas/3.X/meta/{date}`, source: `meta.yaml` — The vocabulary metaschema for OAS 3.X's extensions to draft 2020-12
+* `https://spec.openapis.org/oas/3.X/dialect/{date}`, source: `dialect.yaml` — The dialect metaschema that extends the standard `draft/2020-12` metaschema by adding the OAS "base" vocabulary
+
 The name "base" for the dialect was intended to indicate that the OAS dialect could be further extended.
+
+~~~mermaid
+flowchart LR
+    schema_base
+    schema
+    dialect
+    meta
+    schema --> |default| dialect
+    schema_base --> |$ref| schema
+    schema_base --> |$ref| dialect
+    dialect --> |$ref| meta
+~~~
 
 An additional schema that validates the Schema Object with the OAS 3.X dialect but does not restrict changing `$schema` is [under consideration](https://github.com/OAI/OpenAPI-Specification/issues/4147).
 

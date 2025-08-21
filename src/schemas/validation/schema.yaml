@@ -405,24 +405,72 @@ $defs:
             type: string
           explode:
             type: boolean
-          allowReserved:
-            default: false
-            type: boolean
+        if:
+          $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/percent-encoding-applies-to-style'
+        then:
+          properties:
+            allowReserved:
+              default: false
+              type: boolean
         allOf:
+          - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/explode-defaults'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-path'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-header'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-query'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-cookie'
-          - $ref: '#/$defs/styles-for-form'
 
         $defs:
+          percent-encoding-applies-to-style:
+            $comment: |
+              This is always for `in: "query"` or `in: "path"`,
+              but for `in: "cookie"`, it is only for `style: "form"`.
+              Note that `in` is already always required.
+            oneOf:
+              - properties:
+                  in:
+                    enum:
+                      - path
+                      - query
+              - $comment: |
+                  Note that `style` is not required, but if it is present,
+                  it must be `"form"`, which is the default when it is absent.
+                properties:
+                  in:
+                    const: form
+                  style:
+                    const: form
+          explode-defaults:
+            $comment: |
+              For these `in` values, `style` can either be absent,
+              in which case it defaults to "form", or it can
+              be explicitly set to "form" or "cookie".  In all other
+              cases, `explode` defaults to `false`.
+              Note that `in: "query", style: "cookie"` is prevented
+              by other parts of the schema.
+            if:
+              properties:
+                in:
+                  enum:
+                    - query
+                    - cookie
+                style:
+                  enum:
+                    - form
+                    - cookie
+            then:
+              properties:
+                explode:
+                  default: true
+            else:
+              properties:
+                explode:
+                  default: false
+
           styles-for-path:
             if:
               properties:
                 in:
                   const: path
-              required:
-                - in
             then:
               properties:
                 style:
@@ -441,8 +489,6 @@ $defs:
               properties:
                 in:
                   const: header
-              required:
-                - in
             then:
               properties:
                 style:
@@ -454,8 +500,6 @@ $defs:
               properties:
                 in:
                   const: query
-              required:
-                - in
             then:
               properties:
                 style:
@@ -471,13 +515,13 @@ $defs:
               properties:
                 in:
                   const: cookie
-              required:
-                - in
             then:
               properties:
                 style:
                   default: form
-                  const: form
+                  enum:
+                   - form
+                   - cookie
 
     unevaluatedProperties: false
 
@@ -598,9 +642,34 @@ $defs:
           $ref: '#/$defs/encoding'
       itemEncoding:
         $ref: '#/$defs/encoding'
+    if:
+      anyOf:
+      - properties:
+          style:
+            const: form
+        required:
+          - style
+      - $comment: |
+          `style` defaults to "form" if either
+          `explode` or `allowReserved` are present.
+        not:
+          required:
+            - style
+        anyOf:
+          - required:
+              - explode
+          - required:
+              - allowReserved
+    then:
+      properties:
+        explode:
+          default: true
+    else:
+      properties:
+        explode:
+          default: false
     allOf:
       - $ref: '#/$defs/specification-extensions'
-      - $ref: '#/$defs/styles-for-form'
       - dependentSchemas:
           encoding:
             properties:
@@ -1100,19 +1169,3 @@ $defs:
     type: object
     additionalProperties:
       type: string
-
-  styles-for-form:
-    if:
-      properties:
-        style:
-          const: form
-      required:
-        - style
-    then:
-      properties:
-        explode:
-          default: true
-    else:
-      properties:
-        explode:
-          default: false

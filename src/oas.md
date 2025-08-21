@@ -1148,15 +1148,13 @@ For simpler scenarios, a [`schema`](#parameter-schema) and [`style`](#parameter-
 
 These fields MUST NOT be used with `in: "querystring"`.
 
-When serializing `in: "header"` parameters with `schema`, URI percent-encoding MUST NOT be applied; if using an RFC6570 implementation that automatically applies it, it MUST be removed before use.
-Implementations MUST pass header values through unchanged rather than attempting to automatically quote header values, as the quoting rules vary too widely among different headers; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for guidance on quoting and escaping.
-
-Serializing with `schema` is NOT RECOMMENDED for `in: "cookie"` parameters; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for details.
+When serializing `in: "header"` or `in: "cookie", style: "cookie"` parameters with `schema`, URI percent-encoding MUST NOT be applied, and when parsing any apparent percent-encoding MUST NOT be decoded; if using an RFC6570 implementation that automatically performs these steps, the steps MUST be reversed before use.
+In these cases, implementations MUST pass values through unchanged rather than attempting to quote or escape them, as the quoting rules for headers and escaping conventions for cookies vary too widely to be performed automatically; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for guidance on quoting and escaping.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="parameter-style"></a>style | `string` | Describes how the parameter value will be serialized depending on the type of the parameter value. Default values (based on value of `in`): for `"query"` - `"form"`; for `"path"` - `"simple"`; for `"header"` - `"simple"`; for `"cookie"` - `"form"`. |
-| <a name="parameter-explode"></a>explode | `boolean` | When this is true, parameter values of type `array` or `object` generate separate parameters for each value of the array or key-value pair of the map. For other types of parameters, or when [`style`](#parameter-style) is `"deepObject"`, this field has no effect. When `style` is `"form"`, the default value is `true`. For all other styles, the default value is `false`. |
+| <a name="parameter-style"></a>style | `string` | Describes how the parameter value will be serialized depending on the type of the parameter value. Default values (based on value of `in`): for `"query"` - `"form"`; for `"path"` - `"simple"`; for `"header"` - `"simple"`; for `"cookie"` - `"form"` (for compatibility reasons; note that `style: "cookie"` SHOULD be used with `in: "cookie"`; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for details). |
+| <a name="parameter-explode"></a>explode | `boolean` | When this is true, parameter values of type `array` or `object` generate separate parameters for each value of the array or key-value pair of the map. For other types of parameters, or when [`style`](#parameter-style) is `"deepObject"`, this field has no effect. When `style` is `"form"` or `"cookie"`, the default value is `true`. For all other styles, the default value is `false`. |
 | <a name="parameter-allow-reserved"></a>allowReserved | `boolean` | When this is true, parameter values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). Applications are still responsible for percent-encoding reserved characters that are not allowed by the rules of the `in` destination or media type, or are [not allowed in the path by this specification](#path-templating); see [URL Percent-Encoding](#url-percent-encoding) for details. The default value is `false`. This field only applies to `in` and `style` values that automatically percent-encode. |
 | <a name="parameter-schema"></a>schema | [Schema Object](#schema-object) | The schema defining the type used for the parameter. |
 
@@ -1165,7 +1163,6 @@ See also [Appendix C: Using RFC6570-Based Serialization](#appendix-c-using-rfc65
 ###### Fixed Fields for use with `content`
 
 For more complex scenarios, the [`content`](#parameter-content) field can define the media type and schema of the parameter, as well as give examples of its use.
-Using `content` with a `text/plain` media type is RECOMMENDED for `in: "cookie"` parameters where the `schema` strategy's percent-encoding and/or delimiter rules are not appropriate.
 
 For use with `in: "querystring"` and `application/x-www-form-urlencoded`, see [Encoding the `x-www-form-urlencoded` Media Type](#encoding-the-x-www-form-urlencoded-media-type).
 
@@ -1186,6 +1183,7 @@ In order to support common ways of serializing simple parameters, a set of `styl
 | spaceDelimited | `array`, `object` | `query` | Space separated array values or object properties and values. This option replaces `collectionFormat` equal to `ssv` from OpenAPI 2.0. |
 | pipeDelimited | `array`, `object` | `query` | Pipe separated array values or object properties and values. This option replaces `collectionFormat` equal to `pipes` from OpenAPI 2.0. |
 | deepObject | `object` | `query` | Allows objects with scalar properties to be represented using form parameters. The representation of array or object properties is not defined (but see [Extending Support for Querystring Formats](#extending-support-for-querystring-formats) for alternatives). |
+| cookie | `primitive`, `array`, `object` | `cookie` | Analogous to `form`, but following [[RFC6265]] `Cookie` syntax rules, meaning that name-value pairs are separated by a semicolon followed by a single space (e.g. `n1=v1; n2=v2`), and no percent-encoding or other escaping is applied; data values that require any sort of escaping MUST be provided in escaped form. |
 
 ##### URL Percent-Encoding
 
@@ -1211,7 +1209,11 @@ Reserved characters MUST NOT be percent-encoded when being used for reserved pur
 The result of inserting non-percent-encoded delimiters into data using manual percent-encoding, including via RFC6570's reserved expansion rules, is undefined and will likely prevent implementations from parsing the results back into the correct data structures.
 In some cases, such as inserting `/` into path parameter values, doing so is [explicitly forbidden](#path-templating) by this specification.
 
-See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a thorough discussion of percent-encoding options, compatibility, and OAS-defined delimiters that are not allowed by RFC3986, and [Appendix C](#appendix-c-using-rfc6570-based-serialization) for guidance on using RFC6570 implementations.
+See also:
+
+* [Appendix C](#appendix-c-using-rfc6570-based-serialization) for guidance on using or simulating RFC6570 implementations.
+* [Appendix D](#appendix-d-serializing-headers-and-cookies) for guidance on percent-encoding and cookies, as well as other escaping approaches for headers and cookies
+* [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a thorough discussion of percent-encoding options, compatibility, and handling OAS-defined delimiters that are not allowed by RFC3986
 
 ##### Serialization and Examples
 
@@ -1265,6 +1267,8 @@ The following table shows serialized examples, as would be shown with the `seria
 | pipeDelimited | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color=blue%7Cblack%7Cbrown</span> | <span style="white-space: nowrap;">color=R%7C100%7CG%7C200%7CB%7C150</span> |
 | pipeDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
 | deepObject | _n/a_ | _n/a_ | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color%5BR%5D=100&color%5BG%5D=200&color%5BB%5D=150</span> |
+| cookie | false | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue,black,brown</span> | <span style="white-space: nowrap;">color=R,100,G,200,B,150</span> |
+| cookie | true | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue; color=black; color=brown</span> | <span style="white-space: nowrap;">R=100; G=200; B=150</span> |
 
 ##### Extending Support for Querystring Formats
 
@@ -1295,6 +1299,54 @@ examples:
   Tokens:
     dataValue: [12345678, 90099]
     serializedValue: "12345678,90099"
+```
+
+
+A cookie parameter with an exploded object (the default for `style: "cookie"`):
+
+```yaml
+name: cookie
+in: cookie
+style: cookie
+schema:
+  type: object
+  properties:
+    greeting:
+      type: string
+    code:
+      type: integer
+      minimum: 0
+examples:
+  Object:
+    description: |
+        Note that the comma (,) has been pre-percent-encoded
+        to "%2C" in the data, as it is forbidden in
+        cookie values.  However, the exclamation point (!)
+        is legal in cookies, so it can be left unencoded.
+    dataValue: {
+      "greeting": "Hello%2C world!",
+      "code": 42
+    }
+    serializedValue: "greeting=Hello%2C world!; code: 42"
+```
+
+A cookie parameter relying on the percent-encodingn behavior of the default `style: "form"`:
+
+```yaml
+name: greeting
+in: cookie
+schema:
+  type: string
+examples:
+  Greeting:
+    description: |
+      Note that in this approach, RFC6570's percent-encoding
+      process applies, so unsafe characters are not
+      pre-percent-encoded.  This results in all non-URL-safe
+      characters, rather than just the one non-cookie-safe
+      character, getting percent-encoded.
+    dataValue: "Hello, world!"
+    serializedValue: "greeting=Hello%2C%20world%21"
 ```
 
 A path parameter of a string value:
@@ -5127,22 +5179,14 @@ For this reason, any data being passed to a header by way of a [Parameter](#para
 
 ### Percent-Encoding and Cookies
 
-_**Note:** OAS v3.0.4 and v3.1.1 applied the advice in this section to avoid RFC6570-style serialization to both headers and cookies.
-However, further research has indicated that percent-encoding was never intended to apply to headers, so this section has been corrected to apply only to cookies._
-
 [RFC6570](https://www.rfc-editor.org/rfc/rfc6570)'s percent-encoding behavior is not always appropriate for `in: "cookie"` parameters.
-In many cases, it is more appropriate to use `content` with a media type such as `text/plain` and require the application to assemble the correct string.
-Other media types, such as `application/linkset` (see [Modeling Link Headers](#modeling-link-headers)), are directly suitable for use as `content` for specific headers.
+While percent-encoding seems more common as an escaping mechanism than the base64 encoding (`contentEncoding`: "base64") recommended by [[RFC6265]], [section 5.6 of draft-ietf-httpbis-rfc6265bis-20](https://www.ietf.org/archive/id/draft-ietf-httpbis-rfc6265bis-20.html#section-5.6), the proposed update to that RFC, notes that cookies sent in the `Set-Cookie` response header that appear to be percent-encoded MUST NOT be decoded when stored by the client, which would mean that they are already encoded when retrieved from that storage for use in the `Cookie` request header.
+The behavior of `style: "cookie"` assumes this usage, and _does not_ apply or remove percent-encoding.
 
-In some cases, setting `allowReserved: true` will be sufficient to avoid incorrect encoding, however many characters are still percent-encoded with this field enabled, so care must be taken to ensure no unexpected percent-encoding will take place.
-
-[RFC6265](https://www.rfc-editor.org/rfc/rfc6265) recommends (but does not strictly required) base64 encoding (`contentEncoding: "base64"`) if "arbitrary data" will be stored in a cookie.
-Note that the standard base64-encoding alphabet includes non-URL-safe characters that are percent-encoded by RFC6570 expansion; serializing values through both encodings is NOT RECOMMENDED.
-While `contentEncoding` also supports the `base64url` encoding, which is URL-safe, the header and cookie RFCs do not mention this encoding.
-
+If automatic percent-encoding is desired, `style: "form"` with a primitive value or with the non-default `explode` value of `false` provides this behavior.
+However, note that the default value of `explode: true` for `style: "form"` with non-primitive values uses the wrong delimiter for cookies (`&` instead of `;` followed by a single space) to set multiple cookie values.
 Using `style: "form"` with `in: "cookie"` via an RFC6570 implementation requires stripping the `?` prefix, as when producing `application/x-www-form-urlencoded` message bodies.
-
-For multiple values, `style: "form"` is always incorrect, even if no characters are subject to percent-encoding, as name=value pairs in cookies are delimited by a semicolon followed by a space character rather than `&`.
+To allow the full use of `style: "form"` with `in: "cookie"`, the `allowReserved` field is now supported for cookies.
 
 ## Appendix E: Percent-Encoding and Form Media Types
 

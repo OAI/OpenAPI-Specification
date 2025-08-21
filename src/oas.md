@@ -1191,7 +1191,7 @@ In order to support common ways of serializing simple parameters, a set of `styl
 
 All API URLs MUST successfully parse and percent-decode using [[RFC3986]] rules.
 
-Content in the `application/x-www-form-urlencoded` format, including query strings produced by [Parameter Objects](#parameter-object) with `in: "query"`, MUST also successfully parse and percent-decode using [[RFC1866]] rules, including treating non-percent-encoded `+` as an escaped space character.
+Content in the `application/x-www-form-urlencoded` format, including query strings produced by [Parameter Objects](#parameter-object) with `in: "query"`, MUST also successfully parse and percent-decode using [[WHATWG-URL]] rules, including treating non-percent-encoded `+` as an escaped space character.
 
 These requirements are specified in terms of percent-_decoding_ rules, which are consistently tolerant across different versions of the various standards that apply to URIs.
 
@@ -1201,10 +1201,10 @@ Percent-_encoding_ is performed in several places:
 * By the Parameter or [Encoding](#encoding-object) Objects when incorporating a value serialized with a [Media Type Object](#media-type-object) for a media type that does not already incorporate URI percent-encoding
 * By the user, prior to passing data through RFC6570's reserved expansion process
 
-When percent-encoding, the safest approach is to percent-encode all characters not in RFC3986's "unreserved" set, and for `form-urlencoded` to also percent-encode the tilde character (`~`) to align with the historical requirements of [[RFC1738]], which is cited by RFC1866.
+When percent-encoding, the safest approach is to percent-encode all characters not in RFC3986's "unreserved" set, and for `form-urlencoded` to also percent-encode the tilde character (`~`) to align with historical requirements that are traced back to [[RFC1738]], the URI RFC at the time `form-urlencoded` was created.
 This approach is used in examples in this specification.
 
-For `form-urlencoded`, while the encoding algorithm given by RFC1866 requires escaping the space character as `+`, percent-encoding it as `%20` also meets the above requirements.
+For `form-urlencoded`, while the encoding algorithm given by [[WHATWG-URL]] requires escaping the space character as `+`, percent-encoding it as `%20` also meets the above requirements.
 Examples in this specification will prefer `%20` when using RFC6570's default (non-reserved) form-style expansion, and `+` otherwise.
 
 Reserved characters MUST NOT be percent-encoded when being used for reserved purposes such as `&=+` for `form-urlencoded` or `,` for delimiting non-exploded array and object values in RFC6570 expansions.
@@ -2005,8 +2005,8 @@ Implementations MUST support one level of nesting, and MAY support additional le
 
 ##### Encoding the `x-www-form-urlencoded` Media Type
 
-To work with content using form url encoding via [RFC1866](https://tools.ietf.org/html/rfc1866), use the `application/x-www-form-urlencoded` media type in the [Media Type Object](#media-type-object).
-This configuration means that the content MUST be encoded per [RFC1866](https://tools.ietf.org/html/rfc1866) when passed to the server, after any complex objects have been serialized to a string representation.
+To work with content using form url encoding via [[WHATWG-URL]], use the `application/x-www-form-urlencoded` media type in the [Media Type Object](#media-type-object).
+This configuration means that the content MUST be percent-encoded per [[WHATWG-URL]]'s rules for that media type, after any complex objects have been serialized to a string representation.
 
 See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a detailed examination of percent-encoding concerns for form media types.
 

@@ -1148,7 +1148,10 @@ For simpler scenarios, a [`schema`](#parameter-schema) and [`style`](#parameter-
 
 These fields MUST NOT be used with `in: "querystring"`.
 
-When serializing `in: "header"` or `in: "cookie", style: "cookie"` parameters with `schema`, URI percent-encoding MUST NOT be applied, and when parsing any apparent percent-encoding MUST NOT be decoded; if using an RFC6570 implementation that automatically performs these steps, the steps MUST be reversed before use.
+Care is needed for parameters with `schema` that have `in: "header"` or `in: "cookie", style: "cookie"`:
+* When serializing these values, URI percent-encoding MUST NOT be applied.
+* When parsing these parameters, any apparent percent-encoding MUST NOT be decoded.
+* If using an RFC6570 implementation that automatically performs encoding or decoding steps, the steps MUST be undone before use.
 In these cases, implementations MUST pass values through unchanged rather than attempting to quote or escape them, as the quoting rules for headers and escaping conventions for cookies vary too widely to be performed automatically; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for guidance on quoting and escaping.
 
 | Field Name | Type | Description |
@@ -1212,8 +1215,8 @@ In some cases, such as inserting `/` into path parameter values, doing so is [ex
 See also:
 
 * [Appendix C](#appendix-c-using-rfc6570-based-serialization) for guidance on using or simulating RFC6570 implementations.
-* [Appendix D](#appendix-d-serializing-headers-and-cookies) for guidance on percent-encoding and cookies, as well as other escaping approaches for headers and cookies
-* [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a thorough discussion of percent-encoding options, compatibility, and handling OAS-defined delimiters that are not allowed by RFC3986
+* [Appendix D](#appendix-d-serializing-headers-and-cookies) for guidance on percent-encoding and cookies, as well as other escaping approaches for headers and cookies.
+* [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a thorough discussion of percent-encoding options, compatibility, and handling OAS-defined delimiters that are not allowed by RFC3986.
 
 ##### Serialization and Examples
 
@@ -1330,7 +1333,7 @@ examples:
     serializedValue: "greeting=Hello%2C world!; code: 42"
 ```
 
-A cookie parameter relying on the percent-encodingn behavior of the default `style: "form"`:
+A cookie parameter relying on the percent-encoding behavior of the default `style: "form"`:
 
 ```yaml
 name: greeting
@@ -5186,7 +5189,7 @@ The behavior of `style: "cookie"` assumes this usage, and _does not_ apply or re
 If automatic percent-encoding is desired, `style: "form"` with a primitive value or with the non-default `explode` value of `false` provides this behavior.
 However, note that the default value of `explode: true` for `style: "form"` with non-primitive values uses the wrong delimiter for cookies (`&` instead of `;` followed by a single space) to set multiple cookie values.
 Using `style: "form"` with `in: "cookie"` via an RFC6570 implementation requires stripping the `?` prefix, as when producing `application/x-www-form-urlencoded` message bodies.
-To allow the full use of `style: "form"` with `in: "cookie"`, the `allowReserved` field is now supported for cookies.
+To allow the full use of `style: "form"` with `in: "cookie"`, use the `allowReserved` field.
 
 ## Appendix E: Percent-Encoding and Form Media Types
 

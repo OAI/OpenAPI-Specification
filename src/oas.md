@@ -1216,7 +1216,7 @@ In some cases, such as inserting `/` into path parameter values, doing so is [ex
 
 See also:
 
-* [Appendix C](#appendix-c-using-rfc6570-based-serialization) for guidance on using or simulating RFC6570 implementations.
+* [Appendix C](#appendix-c-using-rfc6570-based-serialization) for guidance on using or simulating/extending RFC6570 implementations.
 * [Appendix D](#appendix-d-serializing-headers-and-cookies) for guidance on percent-encoding and cookies, as well as other escaping approaches for headers and cookies.
 * [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a thorough discussion of percent-encoding options, compatibility, and handling OAS-defined delimiters that are not allowed by RFC3986.
 
@@ -1332,7 +1332,7 @@ examples:
       "greeting": "Hello%2C world!",
       "code": 42
     }
-    serializedValue: "greeting=Hello%2C world!; code: 42"
+    serializedValue: "greeting=Hello%2C world!; code=42"
 ```
 
 A cookie parameter relying on the percent-encoding behavior of the default `style: "form"`:

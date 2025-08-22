@@ -5185,7 +5185,7 @@ For this reason, any data being passed to a header by way of a [Parameter](#para
 ### Percent-Encoding and Cookies
 
 [RFC6570](https://www.rfc-editor.org/rfc/rfc6570)'s percent-encoding behavior is not always appropriate for `in: "cookie"` parameters.
-While percent-encoding seems more common as an escaping mechanism than the base64 encoding (`contentEncoding`: "base64") recommended by [[RFC6265]], [section 5.6 of draft-ietf-httpbis-rfc6265bis-20](https://www.ietf.org/archive/id/draft-ietf-httpbis-rfc6265bis-20.html#section-5.6), the proposed update to that RFC, notes that cookies sent in the `Set-Cookie` response header that appear to be percent-encoded MUST NOT be decoded when stored by the client, which would mean that they are already encoded when retrieved from that storage for use in the `Cookie` request header.
+While percent-encoding seems more common as an escaping mechanism than the base64 encoding (`contentEncoding`: "base64") recommended by [[RFC6265]], [section 5.6 of draft-ietf-httpbis-rfc6265bis-20](https://www.ietf.org/archive/id/draft-ietf-httpbis-rfc6265bis-20.html#section-5.6), the proposed update to that RFC notes that cookies sent in the `Set-Cookie` response header that appear to be percent-encoded MUST NOT be decoded when stored by the client, which would mean that they are already encoded when retrieved from that storage for use in the `Cookie` request header.
 The behavior of `style: "cookie"` assumes this usage, and _does not_ apply or remove percent-encoding.
 
 If automatic percent-encoding is desired, `style: "form"` with a primitive value or with the non-default `explode` value of `false` provides this behavior.

@@ -321,8 +321,6 @@ An object representing a Server.
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
-See [Examples of API Base URL Determination](#examples-of-api-base-url-determination) for examples of resolving relative server URLs.
-
 #### Relative References in API URLs
 
 API endpoints are by definition accessed as locations, and are described by this specification as **_URLs_**.

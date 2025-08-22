@@ -5208,7 +5208,7 @@ For use in URIs, each part is encoded based on the media type (e.g. `text/plain`
 #### Interoperability with Historical Specifications
 
 Prior versions of this specification required [[?RFC1866]] and its use of [[?RFC1738]] percent-encoding rules in place of [[WHATWG-URL]].
-The [[WHATWG-URL]] `form-urlencoded` rules represent the current browser consensus on that media type, and avoid the ambiguity introduce by unclear paraphrasing of RFC1738 in RFC1866.
+The [[WHATWG-URL]] `form-urlencoded` rules represent the current browser consensus on that media type, and avoid the ambiguity introduced by unclear paraphrasing of RFC1738 in RFC1866.
 
 Users needing conformance with RFC1866/RFC1738 are advised to check their tooling and library behavior carefully.
 

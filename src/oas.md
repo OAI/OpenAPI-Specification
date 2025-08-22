@@ -49,7 +49,7 @@ Examples in this specification will be shown in YAML for brevity.
 All field names in the specification are **case sensitive**.
 This includes all fields that are used as keys in a map, except where explicitly noted that keys are **case insensitive**.
 
-The [schema](#schema) exposes two types of fields: _fixed fields_, which have a declared name, and _patterned fields_, which have a declared pattern for the field name.
+OAS [Objects](#objects-and-fields) expose two types of fields: _fixed fields_, which have a declared name, and _patterned fields_, which have a declared pattern for the field name.
 
 Patterned fields MUST have unique names within the containing object.
 
@@ -75,7 +75,7 @@ Where OpenAPI tooling renders rich text it MUST support, at a minimum, markdown 
 While the framing of CommonMark 0.27 as a minimum requirement means that tooling MAY choose to implement extensions on top of it, note that any such extensions are by definition implementation-defined and will not be interoperable.
 OpenAPI Description authors SHOULD consider how text using such extensions will be rendered by tools that offer only the minimum support.
 
-## Schema
+## Objects and Fields
 
 This section describes the structure of the OpenAPI Description format.
 This text is the only normative description of the format.

@@ -54,7 +54,7 @@ tags:
 
 - Support the new `query` method alongside the existing `get`/`post`/`put`/`delete`/`options`/`head`/`patch`/`trace`.
   Query is a new method in the HTTP standard, designed to allow complex filtering query data to be sent in the body of a request when it doesn't fit in the query string.
-- Under an `additionalOperations` entry in a Path, use any other methods not listed as keys using the correct capitalization. e.g. do NOT add HEAD under this, use the existing sibling `head`.
+- Under an `additionalOperations` entry in a Path, use any other methods not listed as keys using the correct capitalization, e.g. `LINK`. Do NOT add `HEAD` under this, use the existing sibling `head`.
 
 The following example describes both `query` and `link` methods for the `cakes/` endpoint:
 

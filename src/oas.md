@@ -3092,14 +3092,14 @@ For HTTP messages, this is purely a serialization concern, and no more of a prob
 
 However, because examples and values modeled with `content` do not incorporate the header name, for these fields `Set-Cookie` MUST be handled by placing each value on a separate line, without the header name or the `:` delimiter.
 
-The following example shows two different ways to describe `Set-Cookie` headers that require cookies named `"lang"` and `"foo"`.  The first uses `content` to preserve the necessary whitespace in the `"Expires"` cookie attribute, while the second shows the use of `style: "simple"` and forbids whitespace to ensure that values work with this serialization approach:
+Note also that any URI percent-encoding, base64 encoding, or other escaping MUST be performed prior to supplying the data to OAS tooling; see [Appendix D](appendix-d-serializing-headers-and-cookies) for details.
+
+The following example shows two different ways to describe `Set-Cookie` headers that require cookies named `"lang"` and `"foo"`, as well as a `"urlSafeData"` cookie that is expected to be percent-encoded.  The first uses `content` in order to show exactly how such examples are formatted, but also notes the limitations of schema constraints with multi-line text.  The second shows the use of `style: "simple"`, which produces the same serialized example text (with each line corresponding to one `Set-Cookie:` line in the HTTP response), but allows schema constraints on each cookie; note that the percent-encoding is already applied in the `dataValue` field of the example:
 
 ```yaml
 components:
   headers:
-    SetCookieWithExpires:
-      # Spaces within the Expires values prevent the use of `schema` and
-      # `style` as they would be percent-encoded, even with `allowReserved`.
+    SetCookieWithContent:
       content:
         text/plain:
           schema:
@@ -3111,46 +3111,55 @@ components:
           # This demonstrates that the text is required to be provided
           # in the final format, and is not changed by serialization.
           # In practice, it is not necessary to show both value fields.
+          # Note that only the comma (%2C) would need to be percent-encoded
+          # if percent-encoding were only being done to make the value
+          # a valid cookie, as space (%20) and the exclamation point (%21)
+          # are allowed in cookies, but not in URLs.  See the cookie
+          # input parameter examples for an example of encoding only
+          # what is needed for the cookie syntax.
           dataValue: |
             lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT
             foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT
+            urlSafeData: Hello%2C%20world%21
           serializedValue: |
             lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT
             foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT
-    SetCookieWithNoSpaces:
+            urlSafeData: Hello%2C%20world%21
+    SetCookieWithSchemaAndStyle:
       schema:
         type: object
         required:
         - lang
         - foo
+        - urlSafeData
+        properties:
+          urlSafeData:
+            type: string
+            pattern: ^[-_.%a-zA-Z0-9]+(;|$)
         additionalProperties:
-          type: string
-          pattern: "^[^[:space:]]*$"
+          $comment: Require an Expires parameter
+          pattern: "; *Expires="
       style: simple
       explode: true
       examples:
         SetCookies:
           dataValue: {
-            "lang": "en-US",
-            "foo": "bar"
+            "lang": "en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT"
+            "foo": "bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT"
+            "urlSafeData": "Hello%2C%20world%21"
           }
           serializedValue: |
-            lang=en-US
-            foo=bar
+            lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT
+            foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT
+            urlSafeData: Hello%2C%20world%21
 ```
 
-In an HTTP message, the serialized example with Expires would look like:
+In an HTTP message, the serialized example would look like:
 
 ```http
 Set-Cookie: lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GM
 Set-Cookie: foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT
-```
-
-and the example without Expires would look like:
-
-```http
-Set-Cookie: lang=en-US
-Set-Cookie: foo=bar
+Set-Cookie: urlSafeData=Hello%2C%20world%21
 ```
 
 ##### Header Object Example

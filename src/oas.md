@@ -1194,7 +1194,7 @@ In order to support common ways of serializing simple parameters, a set of `styl
 
 All API URLs MUST successfully parse and percent-decode using [[RFC3986]] rules.
 
-Content in the `application/x-www-form-urlencoded` format, including query strings produced by [Parameter Objects](#parameter-object) with `in: "query"`, MUST also successfully parse and percent-decode using [[RFC1866]] rules, including treating non-percent-encoded `+` as an escaped space character.
+Content in the `application/x-www-form-urlencoded` format, including query strings produced by [Parameter Objects](#parameter-object) with `in: "query"`, MUST also successfully parse and percent-decode using [[WHATWG-URL]] rules, including treating non-percent-encoded `+` as an escaped space character.
 
 These requirements are specified in terms of percent-_decoding_ rules, which are consistently tolerant across different versions of the various standards that apply to URIs.
 
@@ -1204,10 +1204,10 @@ Percent-_encoding_ is performed in several places:
 * By the Parameter or [Encoding](#encoding-object) Objects when incorporating a value serialized with a [Media Type Object](#media-type-object) for a media type that does not already incorporate URI percent-encoding
 * By the user, prior to passing data through RFC6570's reserved expansion process
 
-When percent-encoding, the safest approach is to percent-encode all characters not in RFC3986's "unreserved" set, and for `form-urlencoded` to also percent-encode the tilde character (`~`) to align with the historical requirements of [[RFC1738]], which is cited by RFC1866.
+When percent-encoding, the safest approach is to percent-encode all characters not in RFC3986's "unreserved" set, and for `form-urlencoded` to also percent-encode the tilde character (`~`) to align with historical requirements that are traced back to [[?RFC1738]], the URI RFC at the time `form-urlencoded` was created.
 This approach is used in examples in this specification.
 
-For `form-urlencoded`, while the encoding algorithm given by RFC1866 requires escaping the space character as `+`, percent-encoding it as `%20` also meets the above requirements.
+For `form-urlencoded`, while the encoding algorithm given by [[WHATWG-URL]] requires escaping the space character as `+`, percent-encoding it as `%20` also meets the above requirements.
 Examples in this specification will prefer `%20` when using RFC6570's default (non-reserved) form-style expansion, and `+` otherwise.
 
 Reserved characters MUST NOT be percent-encoded when being used for reserved purposes such as `&=+` for `form-urlencoded` or `,` for delimiting non-exploded array and object values in RFC6570 expansions.
@@ -2062,8 +2062,8 @@ Implementations MUST support one level of nesting, and MAY support additional le
 
 ##### Encoding the `x-www-form-urlencoded` Media Type
 
-To work with content using form url encoding via [RFC1866](https://tools.ietf.org/html/rfc1866), use the `application/x-www-form-urlencoded` media type in the [Media Type Object](#media-type-object).
-This configuration means that the content MUST be encoded per [RFC1866](https://tools.ietf.org/html/rfc1866) when passed to the server, after any complex objects have been serialized to a string representation.
+To work with content using form url encoding via [[WHATWG-URL]], use the `application/x-www-form-urlencoded` media type in the [Media Type Object](#media-type-object).
+This configuration means that the content MUST be percent-encoded per [[WHATWG-URL]]'s rules for that media type, after any complex objects have been serialized to a string representation.
 
 See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a detailed examination of percent-encoding concerns for form media types.
 
@@ -2082,7 +2082,6 @@ requestBody:
             type: string
             format: uuid
           address:
-            # complex types are stringified to support RFC 1866
             type: object
             properties: {}
 ```
@@ -2107,7 +2106,7 @@ id=f81d4fae-7dec-11d0-a765-00a0c91e6bf6&address=%7B%22streetAddress%22%3A%22123+
 Note that the `id` keyword is treated as `text/plain` per the [Encoding Object](#encoding-object)'s default behavior, and is serialized as-is.
 If it were treated as `application/json`, then the serialized value would be a JSON string including quotation marks, which would be percent-encoded as `%22`.
 
-Here is the `id` parameter (without `address`) serialized as `application/json` instead of `text/plain`, and then encoded per RFC1866:
+Here is the `id` parameter (without `address`) serialized as `application/json` instead of `text/plain`, and then encoded per [[WHATWG-URL]]'s `form-urlencoded` rules:
 
 ```uri
 id=%22f81d4fae-7dec-11d0-a765-00a0c91e6bf6%22
@@ -5089,7 +5088,7 @@ Here is one such template, using a made-up convention of `words.0` for the first
 RFC6570 [mentions](https://www.rfc-editor.org/rfc/rfc6570.html#section-2.4.2) the use of `.` "to indicate name hierarchy in substructures," but does not define any specific naming convention or behavior for it.
 Since the `.` usage is not automatic, we'll need to construct an appropriate input structure for this new template.
 
-We'll also need to pre-process the values for `formulas` because while `/` and most other reserved characters are allowed in the query string by RFC3986, `[`, `]`, and `#` [are not](https://datatracker.ietf.org/doc/html/rfc3986#appendix-A), and `&`, `=`, and `+` all have [special behavior](https://www.rfc-editor.org/rfc/rfc1866#section-8.2.1) in the `application/x-www-form-urlencoded` format, which is what we are using in the query string.
+We'll also need to pre-process the values for `formulas` because while `/` and most other reserved characters are allowed in the query string by RFC3986, `[`, `]`, and `#` [are not](https://datatracker.ietf.org/doc/html/rfc3986#appendix-A), and `&`, `=`, and `+` all have [special behavior](https://url.spec.whatwg.org/#application/x-www-form-urlencoded) in the `application/x-www-form-urlencoded` format, which is what we are using in the query string.
 
 Setting `allowReserved: true` does _not_ make reserved characters that are not allowed in URIs allowed, it just allows them to be _passed through expansion unchanged_, for example because some other specification has defined a particular meaning for them.
 
@@ -5254,29 +5253,30 @@ This specification normatively cites the following relevant standards:
 
 | Specification | Date | OAS Usage | Percent-Encoding | Notes |
 | ---- | ---- | ---- | ---- | ---- |
-| [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) | 01/2005 | URI/URL syntax | [[RFC3986]] | obsoletes [[RFC1738]], [[RFC2396]] |
-| [RFC6570](https://www.rfc-editor.org/rfc/rfc6570) | 03/2012 | style-based serialization | [[RFC3986]] | does not use `+` for <code>form&#8209;urlencoded</code> |
-| [RFC1866](https://datatracker.ietf.org/doc/html/rfc1866#section-8.2.1) | 11/1995 | content-based serialization | [[RFC1738]] | obsoleted by [[HTML401]] [Section 17.13.4.1](https://www.w3.org/TR/html401/interact/forms.html#h-17.13.4.1), [[URL]] [Section 5](https://url.spec.whatwg.org/#urlencoded-serializing) |
+| [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) | 01/2005 | URI/URL syntax, including non-`form-urlencoded` content-based serialization | [[RFC3986]] | obsoletes [[?RFC1738]], [[?RFC2396]] |
+| [RFC6570](https://www.rfc-editor.org/rfc/rfc6570) | 03/2012 | style-based serialization | [[RFC3986]] | does not use `+` for query strings |
+| [WHATWG-URL Section 5](https://url.spec.whatwg.org/#application/x-www-form-urlencoded) | "living" standard | content-based `form/url-encoded` serialization, including HTTP message contents | [WHATWG-URL Section 1.3](https://url.spec.whatwg.org/#application-x-www-form-urlencoded-percent-encode-set) | obsoletes [[?RFC1866]], [[?HTML401]] |
 
 Style-based serialization with percent-encoding is used in the [Parameter Object](#parameter-object) when `schema` is present, and in the [Encoding Object](#encoding-object) when at least one of `style`, `explode`, or `allowReserved` is present.
 See [Appendix C](#appendix-c-using-rfc6570-based-serialization) for more details of RFC6570's two different approaches to percent-encoding, including an example involving `+`.
 
 Content-based serialization is defined by the [Media Type Object](#media-type-object), and used with the [Parameter Object](#parameter-object) and [Header Object](#header-object) when the `content` field is present, and with the [Encoding Object](#encoding-object) based on the `contentType` field when the fields `style`, `explode`, and `allowReserved` are absent.
-Each part is encoded based on the media type (e.g. `text/plain` or `application/json`), and must then be percent-encoded for use in a `form-urlencoded` string unless the media type already incorporates URI percent-encoding.
+For use in URIs, each part is encoded based on the media type (e.g. `text/plain` or `application/json`), and must then be percent-encoded for use in a `form-urlencoded` string (in form-style query strings), or for general URI use in other URL components, unless the media type already incorporates URI percent-encoding.
 
 #### Interoperability with Historical Specifications
 
-In most cases, generating query strings in strict compliance with [[RFC3986]] is sufficient to pass validation (including JSON Schema's `format: "uri"` and `format: "uri-reference"` when `format` validation is enabled), but some `form-urlencoded` implementations still expect the slightly more restrictive [[RFC1738]] rules to be used.
+Prior versions of this specification required [[?RFC1866]] and its use of [[?RFC1738]] percent-encoding rules in place of [[WHATWG-URL]].
+The [[WHATWG-URL]] `form-urlencoded` rules represent the current browser consensus on that media type, and avoid the ambiguity introduced by unclear paraphrasing of RFC1738 in RFC1866.
 
-Since all RFC1738-compliant URIs are compliant with RFC3986, applications needing to ensure historical interoperability SHOULD use RFC1738's rules.
+Users needing conformance with RFC1866/RFC1738 are advised to check their tooling and library behavior carefully.
 
 #### Interoperability with Web Browser Environments
 
 WHATWG is a [web browser-oriented](https://whatwg.org/faq#what-is-the-whatwg-working-on) standards group that has defined a "URL Living Standard" for parsing and serializing URLs in a browser context, including parsing and serializing `form-urlencoded` data.
-WHATWG's percent-encoding rules for query strings are different depending on whether the query string is [being treated as `form-urlencoded`](https://url.spec.whatwg.org/#application-x-www-form-urlencoded-percent-encode-set) (where it requires more percent-encoding than [[RFC1738]]) or [as part of the generic syntax](https://url.spec.whatwg.org/#query-percent-encode-set), where it allows characters that [[RFC3986]] forbids.
+WHATWG's percent-encoding rules for query strings are different depending on whether the query string is [being treated as `form-urlencoded`](https://url.spec.whatwg.org/#application-x-www-form-urlencoded-percent-encode-set) (where it requires more percent-encoding than [[?RFC1738]]) or [as part of the generic syntax](https://url.spec.whatwg.org/#query-percent-encode-set), where its requirements differ from [[RFC3986]].
 
-Implementations needing maximum compatibility with web browsers SHOULD use WHATWG's `form-urlencoded` percent-encoding rules.
-However, they SHOULD NOT rely on WHATWG's less stringent generic query string rules, as the resulting URLs would fail RFC3986 validation, including JSON Schema's `format: uri` and `format: uri-reference` (when `format` validation is endabled).
+This specification only depends on WHATWG for its `form-urlencoded` specification.
+Implementations using the query string in other ways are advised that, the distinctions between WHATWG's non-`form-urlencoded` query string rules and RFC3986 require careful consideration, incorporating both WHATWG's percent-encoding sets and their set of valid Unicode code points for URLs; see [Percent-Encoding and Illegal or Reserved Delimiters](#percent-encoding-and-illegal-or-reserved-delimiters) for more information.
 
 ### Decoding URIs and `form-urlencoded` Strings
 

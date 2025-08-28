@@ -1396,9 +1396,7 @@ The `maxLength` keyword MAY be used to set an expected upper bound on the length
 For unencoded binary data, the length is the number of octets.
 For this use case, `maxLength` MAY be implemented outside of regular JSON Schema evaluation as JSON Schema does not directly apply to binary data, and an encoded binary stream may be impractical to store in memory in its entirety.
 
-<a name="considerations-event-stream"></a><!-- custom anchor needed because markdownlint and ReSpec treat a slash differently in auto-generated anchors -->
-
-#### Special Considerations for `text/event-stream` Content
+#### Special Considerations for Server-Sent Events
 
 For `text/event-stream`, implementations MUST work with event data after it has been parsed according to the [`text/event-stream` specification](https://html.spec.whatwg.org/multipage/server-sent-events.html#parsing-an-event-stream), including all guidance on ignoring certain fields (including comments) and/or values, and on combining values split across multiple lines.
 
@@ -1641,7 +1639,7 @@ Our `application/json-seq` example has to be an external document because of the
 
 ##### Server-Sent Event Streams
 
-For this example, assume that the generic event schema provided in the [Special Considerations for `text/event-stream` Content](#considerations-event-stream) section is available at `#/components/schemas/Event`:
+For this example, assume that the generic event schema provided in the [Special Considerations for `text/event-stream` Content](#special-considerations-for-server-sent-events) section is available at `#/components/schemas/Event`:
 
 ```yaml
 description: A request body to add a stream of typed data.

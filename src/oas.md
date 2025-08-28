@@ -5172,7 +5172,7 @@ This will expand to the result:
 ## Appendix D: Serializing Headers and Cookies
 
 HTTP headers have inconsistent rules regarding what characters are allowed, and how some or all disallowed characters can be escaped and included.
-While the `quoted-string` ABNF rule given in [[RFC7230]] [Section 3.2.6](https://httpwg.org/specs/rfc7230.html#field.components) is the most common escaping solution, it is not sufficiently universal to apply automatically.
+While the `quoted-string` ABNF rule given in [[RFC9110]] [Section 5.4.6](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.4) is the most common escaping solution, it is not sufficiently universal to apply automatically.
 For example, a strong `ETag` looks like `"foo"` (with quotes, regardless of the contents), and a weak `ETag` looks like `W/"foo"` (note that only part of the value is quoted); the contents of the quotes for this header are also not escaped in the way `quoted-string` contents are.
 
 For this reason, any data being passed to a header by way of a [Parameter](#parameter-object) or [Header](#header-object) Object needs to be quoted and escaped prior to passing it to the OAS implementation, and the parsed header values are expected to contain the quotes and escapes.

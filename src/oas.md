@@ -92,6 +92,8 @@ This is the root object of the [OpenAPI Description](#openapi-description-struct
 
 #### Fixed Fields
 
+In addition to the required fields, at least one of the `components`, `paths`, or `webhooks` fields MUST be present.
+
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="oas-version"></a>openapi | `string` | **REQUIRED**. This string MUST be the [version number](#versions) of the OpenAPI Specification that the OpenAPI Document uses. The `openapi` field SHOULD be used by tooling to interpret the OpenAPI Document. This is _not_ related to the API [`info.version`](#info-version) string. |
@@ -113,35 +115,40 @@ Implementations MAY choose to support referencing by other URIs such as the retr
 
 #### OpenAPI Description Structure
 
-An OpenAPI Description (OAD) formally describes the surface of an API and its semantics. It is composed of an [entry document](#openapi-description-structure), which must be an OpenAPI Document, and any/all of its referenced documents. An OAD uses and conforms to the OpenAPI Specification, and MUST contain at least one [paths](#paths-object) field, [components](#oas-components) field, or [webhooks](#oas-webhooks) field.
+An **OpenAPI Description** (**OAD**) formally describes the surface of an API and its semantics.
 
-An OpenAPI Document is a single JSON or YAML document that conforms to the OpenAPI Specification. An OpenAPI Document compatible with OAS 3.\*.\* contains a required [`openapi`](#oas-version) field which designates the version of the OAS that it uses.
+An **OpenAPI Document** is a single JSON or YAML document that conforms to the OpenAPI Specification by having an OpenAPI Object with its required [`openapi`](#oas-version) field which designates the version of the OAS that it uses.
 
-An OpenAPI Description (OAD) MAY be made up of a single JSON or YAML document or be divided into multiple, connected parts at the discretion of the author. In the latter case, [Reference Object](#reference-object), [Path Item Object](#path-item-object) and [Schema Object](#schema-object) `$ref` fields, as well as the [Link Object](#link-object) `operationRef` field, and the URI form of the [Discriminator Object](#discriminator-object) `mapping` field, are used to identify the referenced elements.
+An OpenAPI Description MAY be made up of a single JSON or YAML OpenAPI Document  or be divided into multiple, connected parts at the discretion of the author.
+In the latter case, [Reference Object](#reference-object), [Path Item Object](#path-item-object) and [Schema Object](#schema-object) `$ref` fields, as well as the [Link Object](#link-object) `operationRef` field, and the URI form of the [Discriminator Object](#discriminator-object) `mapping` field, are used to identify the referenced elements.
 
 In a multi-document OAD, the document containing the OpenAPI Object where parsing begins is known as that OAD's **entry document**.
-
-It is RECOMMENDED that the entry document of an OAD be named: `openapi.json` or `openapi.yaml`.
+It is RECOMMENDED that the entry document of an OAD be named `openapi.json` or `openapi.yaml`.
 
 ##### Parsing Documents
 
-In order to properly handle [Schema Objects](#schema-object), OAS 3.1 inherits the parsing requirements of [JSON Schema Specification Draft 2020-12](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-9), with appropriate modifications regarding base URIs as specified in [Relative References In URIs](#relative-references-in-api-description-uris).
+Each OpenAPI Document in an OAD MUST be fully parsed in order to locate possible reference targets, including the OpenAPI Object's [`$self`](#oas-self) field and the [Schema Object's](#schema-object) `$id`, `$anchor`, and `$dynamicAnchor` keyword.
+This includes the parsing requirements of [JSON Schema Specification Draft 2020-12](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-9), with appropriate modifications regarding base URIs as specified in [Relative References In URIs](#relative-references-in-api-description-uris).
 
-This includes a requirement to parse complete documents before deeming a Schema Object reference to be unresolvable, in order to detect keywords that might provide the reference target or impact the determination of the appropriate base URI.
+Implementations MUST NOT treat a reference as unresolvable before completely parsing all Documents provided to the implementation as possible parts of the OAD.
 
-A special case of parsing fragments of OAS content would be if such fragments are embedded in another format, referred to as an _embedding format_ with respect to the OAS.
+When all documents in an OAD are OpenAPI Documents, each of which is parsed as a complete document, the parsing-behavior is well-defined.
+
+If some referenced (non-entry) documents have an Object other than an OpenAPI Object as its root, or containes additional non-OpenAPI content, or if only the referenced part of the document is parsed, the resulting behavior can be implementation-defined or undefined; see [Appendix G: Parsing and Resolution Guidance](#appendix-g-parsing-and-resolution-guidance) for details.
+
+A special case of parsing fragments of OAD content would be if such fragments are embedded in another format, referred to as an _embedding format_ with respect to the OAS.
 Note that the OAS itself is an embedding format with respect to JSON Schema, which is embedded as Schema Objects.
 It is the responsibility of an embedding format to define how to parse embedded content, and OAS implementations that do not document support for an embedding format cannot be expected to parse embedded OAS content correctly.
 
 ##### Relative References in API Description URIs
 
-URIs used as references within an OpenAPI Description, or to external documentation or other supplementary information such as a license, are resolved as _identifiers_, and described by this specification as **_URIs_**.
-As noted under [Parsing Documents](#parsing-documents), this specification inherits JSON Schema Specification Draft 2020-12's requirements for [loading documents](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-9) and associating them with their expected URIs, which might not match their current location.
-This feature is used both for working in development or test environments without having to change the URIs, and for working within restrictive network configurations or security policies.
-
+URIs used as references within an OpenAPI Description, or to external documentation or other supplementary information such as a license, are resolved as _identifiers_, and described by this specification as **_URIs_**, in contrast with [API URLs](#relative-references-in-api-urls).
 Note that some URI fields are named `url` for historical reasons, but the descriptive text for those fields uses the correct "URI" terminology.
 
-Unless specified otherwise, all fields that are URIs MAY be relative references as defined by [RFC3986](https://tools.ietf.org/html/rfc3986#section-4.2).
+As noted under [Parsing Documents](#parsing-documents), several fields can be used to associate an OpenAPI Document or a Schema Object with a URI, which might not match the Document or schema's location.
+This allows the same references to be used in different deployment environments, including local filesystems or networks restricted by security policies or connectivity limitations.
+
+Unless specified otherwise, all fields that are URIs MAY be relative references as defined by [[RFC3986]] [Section 4.2](https://tools.ietf.org/html/rfc3986#section-4.2).
 
 ###### Establishing the Base URI
 
@@ -152,7 +159,7 @@ If `$self` is a relative URI-reference, it is resolved against the next possible
 The most common base URI source that is used in the event of a missing or relative `$self` (in the [OpenAPI Object](#openapi-object)) and (for [Schema Object](#schema-object)) `$id` is the retrieval URI.
 Implementations MAY support document retrieval, although see the [Security Considerations](#security-considerations) sections for additional guidance.
 Even if retrieval is supported, it may be impossible due to network configuration or server unavailability (including the server hosting an older version while a new version is in development), or undesirable due to performance impacts.
-Therefore, all implementations SHOULD allow users to provide the intended retrieval URI for each document so that references can be resolved as if retrievals were performed.
+Therefore, all implementations SHOULD allow users to provide documents with their intended retrieval URIs so that references can be resolved as if retrievals were performed.
 
 ###### Resolving URI fragments
 
@@ -167,9 +174,14 @@ Relative references in CommonMark hyperlinks are resolved in their rendered cont
 Several features of this specification require resolution of non-URI-based connections to some other part of the OpenAPI Description (OAD).
 
 These connections are unambiguously resolved in single-document OADs, but the resolution process in multi-document OADs is _implementation-defined_, within the constraints described in this section.
-In some cases, an unambiguous URI-based alternative is available, and OAD authors are RECOMMENDED to always use the alternative:
+In some cases, an unambiguous URI-based alternative is available, and OAD authors are RECOMMENDED to use the alternative to maximize interoperability.
+
+For resolving [Components Object](#components-object) and [Tag Object](#tag-object) names from a referenced (non-entry) document, it is RECOMMENDED that tools resolve from the entry document, rather than the current document.
+For resolving an [Operation Object](#operation-object) based on an `operationId`, it is RECOMMENDED to consider all Operation Objects from all parsed documents.
 
 Note that no aspect of implicit connection resolution changes how [URIs are resolved](#relative-references-in-api-description-uris), or restricts their possible targets.
+
+See [Appendix G: Parsing and Resolution Guidance](#appendix-g-parsing-and-resolution-guidance) for more details, including a list of Objects and fields using implicit connections.
 
 ### Info Object
 
@@ -4701,7 +4713,7 @@ An empty Security Requirement Object (`{}`) indicates anonymous access is suppor
 
 #### Security Requirement Object Examples
 
-See also [Implicit Connection Resolution Examples](#implicit-connection-resolution-examples) in [Appendix G](#appendix-g-parsing-and-resolution-guidance) for an example using Security Requirement Objects in multi-document OpenAPI Descriptions.
+See also [Implicit Connection Resolution Examples](#implicit-connection-resolution-examples) in [Appendix G: Parsing and Resolution Guidance](#appendix-g-parsing-and-resolution-guidance) for an example using Security Requirement Objects in multi-document OpenAPI Descriptions.
 
 ##### Non-OAuth2 Security Requirement
 
@@ -5392,7 +5404,7 @@ Resolving the `$ref: schemas/foo` against the retrieval URI of the OpenAPI Docum
 ### Application-Specific Default Base URI
 
 When constructing an OpenAPI Document in memory that does not have a `$self`, or an encapsulating entity, or a retrieval URI, applications can resolve internal (fragment-only) references by assuming a default base URI (RFC3986 Section 5.1.4).
-While this sort of internal resolution an be performed in practice without choosing a base URI, choosing one, such as a URN with a randomly generated UUID (e.g. `urn:uuid:f26cdaad-3193-4398-a838-4ecb7326c4c5`) avoids the need to implement it as a special case.
+While this sort of internal resolution can be performed in practice without choosing a base URI, choosing one, such as a URN with a randomly generated UUID (e.g. `urn:uuid:f26cdaad-3193-4398-a838-4ecb7326c4c5`) avoids the need to implement it as a special case.
 
 ### Resolving Relative `$self` and `$id`
 
@@ -5458,7 +5470,7 @@ Implementations MAY support complete-document parsing in any of the following wa
 
 Implementations that parse referenced fragments of OpenAPI content without regard for the content of the rest of the containing document will miss keywords that change the meaning and behavior of the reference target.
 In particular, failing to take into account keywords that change the base URI introduces security risks by causing references to resolve to unintended URIs, with unpredictable results.
-While some implementations support this sort of parsing due to the requirements of past versions of this specification, in version 3.1, the result of parsing fragments in isolation is _undefined_ and likely to contradict the requirements of this specification.
+While some implementations support this sort of parsing due to the requirements of past versions of this specification, in version 3.1 and later, the result of parsing fragments in isolation is _undefined_ and likely to contradict the requirements of this specification.
 
 While it is possible to structure certain OpenAPI Descriptions to ensure that they will behave correctly when references are parsed as isolated fragments, depending on this is NOT RECOMMENDED.
 This specification does not explicitly enumerate the conditions under which such behavior is safe and provides no guarantee for continued safety in any future versions of the OAS.
@@ -5468,12 +5480,14 @@ This specification does not explicitly enumerate the conditions under which such
 JSON or YAML objects within an OAD are interpreted as specific Objects (such as [Operation Objects](#operation-object), [Response Objects](#response-object), [Reference Objects](#reference-object), etc.) based on their context. Depending on how references are arranged, a given JSON or YAML object can be interpreted in multiple different contexts:
 
 * As the root object of the [entry document](#openapi-description-structure), which is always interpreted as an OpenAPI Object
-* As the Object type implied by its parent Object within the document
+* As the Object type implied by its parent Object's field within the document
 * As a reference target, with the Object type matching the reference source's context
 
 If the same JSON/YAML object is parsed multiple times and the respective contexts require it to be parsed as _different_ Object types, the resulting behavior is _implementation defined_, and MAY be treated as an error if detected. An example would be referencing an empty Schema Object under `#/components/schemas` where a Path Item Object is expected, as an empty object is valid for both types. For maximum interoperability, it is RECOMMENDED that OpenAPI Description authors avoid such scenarios.
 
 ### Guidance Regarding Implicit Connections
+
+The following Objects and Fields involve the use of implicit connections:
 
 | Source | Target | Alternative |
 | ---- | ---- | ---- |
@@ -5482,11 +5496,8 @@ If the same JSON/YAML object is parsed multiple times and the respective context
 | [Operation Object](#operation-object) `tags` | [Tag Object](#tag-object) `name` (in the [OpenAPI Object](#openapi-object)'s `tags` array) | _n/a_ |
 | [Link Object](#link-object) `operationId` | [Operation Object](#operation-object) `operationId` | `operationRef` |
 
-A fifth implicit connection involves appending the templated URL paths of the [Paths Object](#paths-object) to the appropriate [Server Object](#server-object)'s `url` field.
-This is unambiguous because only the entry document's Paths Object contributes URLs to the described API.
-
-It is RECOMMENDED to consider all Operation Objects from all parsed documents when resolving any Link Object `operationId`.
-This requires parsing all referenced documents prior to determining an `operationId` to be unresolvable.
+An additional implicit connection involves appending the templated URL paths of the [Paths Object](#paths-object) to the appropriate [Server Object](#server-object)'s `url` field.
+This connection is unambiguous because only the entry document's Paths Object contributes URLs to the described API.
 
 The implicit connections in the Security Requirement Object and Discriminator Object rely on the _component name_, which is the name of the property holding the component in the appropriately typed sub-object of the Components Object.
 For example, the component name of the Schema Object at `#/components/schemas/Foo` is `Foo`.
@@ -5494,18 +5505,17 @@ The implicit connection of `tags` in the Operation Object uses the `name` field 
 This means resolving component names and tag names both depend on starting from the correct OpenAPI Object.
 
 For resolving component and tag name connections from a referenced (non-entry) document, it is RECOMMENDED that tools resolve from the entry document, rather than the current document.
-This allows Security Scheme Objects and Tag Objects to be defined next to the API's deployment information (the top-level array of Server Objects), and treated as an interface for referenced documents to access.
+Resolving component and tag name connections from a referenced (non-entry) document to the entry document as recommended under [Resolving Implicit Connections](#resolving-implicit-connections) allows components and Tag Objects to be defined next to the API's deployment information in the top-level array of Server Objects and treated as an interface for referenced documents to access.
 
-The interface approach can also work for Discriminator Objects and Schema Objects, but it is also possible to keep the Discriminator Object's behavior within a single document using the relative URI-reference syntax of `mapping`.
+For Security Requirement Objects and Discriminator Objects, it is also possible to keep the resolution within the referenced document by using the URI-reference form that these Objects offer.
 
 There are no URI-based alternatives for the Operation Object's `tags` field.
 OAD authors are advised to use external solutions such as the OpenAPI Initiative's Overlay Specification to simulate sharing [Tag Objects](#tag-object) across multiple documents.
 
-The behavior for Discriminator Object non-URI mappings and for the Operation Object's `tags` field operate on the same principles.
-
 #### Implicit Connection Resolution Examples
 
-This appendix shows how to retrieve an HTTP-accessible multi-document OpenAPI Description (OAD) and resolve a [Security Requirement Object](#security-requirement-object) in the referenced (non-entry) document. See [Resolving Implicit Connections](#resolving-implicit-connections) for more information.
+This section shows how to retrieve an HTTP-accessible multi-document OpenAPI Description (OAD) and resolve a [Security Requirement Object](#security-requirement-object) in the referenced (non-entry) document.
+The behavior for Discriminator Object non-URI mappings and for the Operation Object's `tags` field operate on the same principles.
 
 First, the [entry document](#openapi-description-structure) is where parsing begins. It defines the `MySecurity` security scheme to be JWT-based, and it defines a Path Item as a reference to a component in another document:
 
@@ -5597,4 +5607,4 @@ components:
           - MySecurity: []
 ```
 
-In the `other` document, the referenced path item has a Security Requirement for a Security Scheme, `MySecurity`. The same Security Scheme exists in the original entry document. As outlined in [Resolving Implicit Connections](#resolving-implicit-connections), `MySecurity` is resolved with an [implementation-defined behavior](#undefined-and-implementation-defined-behavior). However, documented in that section, it is RECOMMENDED that tools resolve component names from the [entry document](#openapi-description-structure). As with all implementation-defined behavior, it is important to check tool documentation to determine which behavior is supported.
+In the `other` document, the referenced path item has a Security Requirement for a Security Scheme, `MySecurity`. The same Security Scheme exists in the original entry document. As outlined in [Resolving Implicit Connections](#resolving-implicit-connections), `MySecurity` is resolved with an [implementation-defined behavior](#undefined-and-implementation-defined-behavior), but the section formally recommends that tools resolve component names from the [entry document](#openapi-description-structure). As with all implementation-defined behavior, it is important to check tool documentation to determine which behavior is supported.

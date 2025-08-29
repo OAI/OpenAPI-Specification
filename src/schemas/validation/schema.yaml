@@ -392,12 +392,6 @@ $defs:
         then:
           required:
             - content
-          not:
-            required:
-              - schema
-              - style
-              - explode
-              - allowReserved
     dependentSchemas:
       schema:
         properties:

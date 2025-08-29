@@ -1,0 +1,14 @@
+openapi: 3.2.0
+info:
+  title: API
+  version: 1.0.0
+components:
+  parameters:
+    content-not-with-style:
+      in: querystring
+      name: json
+      content:
+        application/json:
+          schema:
+            type: object
+      style: simple

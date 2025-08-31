@@ -10,7 +10,7 @@ All the changes in the OpenAPI 3.2 release.
 
 A summary of the biggest changes.
 
-#### Nested, multipurpose tags
+#### Tags: nested, multipurpose, and not just for documentation
 
 Tags get an upgrade, with some new fields to make them more useful and reflect some of the features that need extensions to achieve today:
 
@@ -165,7 +165,7 @@ There is also a new Media Types Registry, to provide further resources for worki
 - Remove incorrect mention of Reference Object in the header `schema` field. The JSONSchema ref would be the correct thing to use in this context.
 - The `examples` (and older `example`) field is now supported with `content`.
 
-### Specific `style` option for cookies
+#### Specific `style` option for cookies
 
 - Additional `style` option `cookie` for content in a cookie, which uses semicolon as a separator and does not encode data values.
   The `form` style is a close fit, but you may wish to switch to `cookie` for more correct description.
@@ -185,7 +185,7 @@ Multipart media types are much better supported in OpenAPI 3.2.
 #### Improvements for APIs using XML as a content format
 
 - New `nodeType` field allows mapping schemas to common XML node types: `element`, `attribute`, `text`, `cdata`, or `none`.
-- `attribute: true` deprecated in favor of `nodeType: attribute`.
+- `attribute: true` is now deprecated in favor of `nodeType: attribute`.
 - `wrapped: true` deprecated in favor of `nodeType: element` (as `nodeType` defaults to `none` for arrays to preserve compatibility).
 - The `xml` keyword can be used in any Schema Object.
 - XML namespaces can be IRIs (rather than URIs).

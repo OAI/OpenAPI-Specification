@@ -236,9 +236,7 @@ $defs:
         items:
           $ref: '#/$defs/server'
       parameters:
-        type: array
-        items:
-          $ref: '#/$defs/parameter-or-reference'
+        $ref: '#/$defs/parameters'
       additionalOperations:
         type: object
         additionalProperties:
@@ -295,9 +293,7 @@ $defs:
       operationId:
         type: string
       parameters:
-        type: array
-        items:
-          $ref: '#/$defs/parameter-or-reference'
+        $ref: '#/$defs/parameters'
       requestBody:
         $ref: '#/$defs/request-body-or-reference'
       responses:
@@ -333,6 +329,36 @@ $defs:
       - url
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
+
+  parameters:
+    type: array
+    items:
+      $ref: '#/$defs/parameter-or-reference'
+    not:
+      allOf:
+        - contains:
+            type: object
+            properties:
+              in:
+                const: query
+            required:
+              - in
+        - contains:
+            type: object
+            properties:
+              in:
+                const: querystring
+            required:
+              - in
+    contains:
+      type: object
+      properties:
+        in:
+          const: querystring
+      required:
+        - in
+    minContains: 0
+    maxContains: 1
 
   parameter:
     $comment: https://spec.openapis.org/oas/v3.2#parameter-object

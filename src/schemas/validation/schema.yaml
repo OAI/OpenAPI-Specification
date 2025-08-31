@@ -369,8 +369,8 @@ $defs:
         - schema
       - required:
         - content
+    $ref: '#/$defs/specification-extensions'
     allOf:
-      - $ref: '#/$defs/specification-extensions'
       - if:
           properties:
             in:
@@ -539,14 +539,14 @@ $defs:
           $ref: '#/$defs/encoding'
       itemEncoding:
         $ref: '#/$defs/encoding'
+    dependentSchemas:
+      encoding:
+        properties:
+          prefixEncoding: false
+          itemEncoding: false
     allOf:
       - $ref: '#/$defs/examples'
       - $ref: '#/$defs/specification-extensions'
-      - dependentSchemas:
-          encoding:
-            properties:
-              prefixEncoding: false
-              itemEncoding: false
     unevaluatedProperties: false
 
   media-type-or-reference:
@@ -592,14 +592,14 @@ $defs:
           $ref: '#/$defs/encoding'
       itemEncoding:
         $ref: '#/$defs/encoding'
+    dependentSchemas:
+      encoding:
+        properties:
+          prefixEncoding: false
+          itemEncoding: false
     allOf:
       - $ref: '#/$defs/specification-extensions'
       - $ref: '#/$defs/styles-for-form'
-      - dependentSchemas:
-          encoding:
-            properties:
-              prefixEncoding: false
-              itemEncoding: false
     unevaluatedProperties: false
 
   responses:
@@ -784,8 +784,7 @@ $defs:
             default: false
             type: boolean
         $ref: '#/$defs/examples'
-    allOf:
-    - $ref: '#/$defs/specification-extensions'
+    $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
 
   header-or-reference:

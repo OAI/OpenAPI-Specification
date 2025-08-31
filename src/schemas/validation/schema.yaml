@@ -1089,6 +1089,10 @@ $defs:
         type: object
         additionalProperties:
           $ref: '#/$defs/example-or-reference'
+    not:
+      required:
+        - example
+        - examples
 
   map-of-strings:
     type: object

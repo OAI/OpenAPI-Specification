@@ -370,7 +370,6 @@ $defs:
       - required:
         - content
     allOf:
-      - $ref: '#/$defs/examples'
       - $ref: '#/$defs/specification-extensions'
       - if:
           properties:
@@ -403,6 +402,7 @@ $defs:
             default: false
             type: boolean
         allOf:
+          - $ref: '#/$defs/examples'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-path'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-header'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-query'
@@ -785,7 +785,6 @@ $defs:
             type: boolean
         $ref: '#/$defs/examples'
     allOf:
-    - $ref: '#/$defs/examples'
     - $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
 

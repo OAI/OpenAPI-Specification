@@ -990,7 +990,7 @@ As these are not standards, and often contradict each other, the OAS does not at
 Two avenues are available for supporting such formats with `in: "querystring"`:
 
 * Use `content` and `text/plain` with a schema of `type: "string"` and define the format outside of OpenAPI.  While this requires more work to document and construct or parse the format, which is seen as a plain string from the OpenAPI perspective, it provides the easiest flexible option
-* Define a media type (which need not necessarily be [IANA-registered](https://www.rfc-editor.org/rfc/rfc6838.html)) and a process for mapping in-memory data to the serialized  media type.  To increase the likelihood of support across multiple tools, submit a registration for the media type and process to the OpenAPI Initiative's [Media Type Registry](#media-type-registry).
+* Define a media type (which need not necessarily be [IANA-registered](https://www.rfc-editor.org/rfc/rfc6838.html)) and a process for mapping in-memory data to the serialized  media type.  To increase the likelihood of support across multiple tools, submit a registration for the media type and process to the OpenAPI Initiative's [Media Type Registry](#openapi-media-type-registry).
 
 #### Parameter Object Examples
 
@@ -1241,7 +1241,7 @@ examples:
     serializedValue: "%24.a.b%5B1%3A1%5D"
 ```
 
-As there is not, as of this writing, a [registered](#media-type-registry) mapping between the JSON Schema data model and JSONPath, the details of the string's allowed structure would need to be conveyed either in a human-readable `description` field, or through a mechanism outside of the OpenAPI Description, such as a JSON Schema for the data structure to be queried.
+As there is not, as of this writing, a [registered](#openapi-media-type-registry) mapping between the JSON Schema data model and JSONPath, the details of the string's allowed structure would need to be conveyed either in a human-readable `description` field, or through a mechanism outside of the OpenAPI Description, such as a JSON Schema for the data structure to be queried.
 
 Assuming a path of `/foo` and a server of `https://example.com`, the full URL incorporating the value from `serializedValue` would be:
 
@@ -1319,40 +1319,19 @@ See [Working With Examples](#working-with-examples) for further guidance regardi
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
-See also the [Media Type Registry](#media-type-registry).
-
 #### Media Types
 
-Media type definitions are spread across several resources.
-The media type definitions SHOULD be in compliance with [RFC6838](https://tools.ietf.org/html/rfc6838).
+Media types are publicly registered with the [IANA media types registry](https://www.iana.org/assignments/media-types/media-types.xhtml), through process documented in [[?RFC6838]].
 
-Some examples of possible media type definitions:
+APIs also sometimes define private media types such as GitHub's `application/vnd.github.v3+json`, which are not registered, and other media types such as `application/schema+json` become widely used before an intended registration.
 
-```text
-  text/plain; charset=utf-8
-  application/json
-  application/vnd.github+json
-  application/vnd.github.v3+json
-  application/vnd.github.v3.raw+json
-  application/vnd.github.v3.text+json
-  application/vnd.github.v3.html+json
-  application/vnd.github.v3.full+json
-  application/vnd.github.v3.diff
-  application/vnd.github.v3.patch
-```
+See [Parsing and Serializing](#parsing-and-serializing) under the [Schema Object](#schema-object) for guidance on using schemas with a variety of media types.
 
-JSON-based and JSON-compatible YAML-based media types can make direct use of the [Schema Object](#schema-object) as the Object uses JSON Schema.
-The use of the Schema Object with other media types is handled by mapping them into the JSON Schema [instance data model](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#name-instance-data-model).
-These mappings may be implicit based on the media type, or explicit based on the values of particular fields.
-Each mapping is addressed where the relevant media type is discussed in this section or under the [Media Type Object](#media-type-object) or [Encoding Object](#encoding-object)
+##### OpenAPI Media Type Registry
 
-##### Media Type Registry
-
-While the [Schema Object](#schema-object) is designed to describe and validate JSON, several other media types are commonly used in APIs.
-Requirements regarding support for other media types are documented in this Media Types section and in several Object sections later in this specification.
-For convenience and future extensibility, these are cataloged in the OpenAPI Initiative's [Media Type Registry](https://spec.openapis.org/registry/media-type/), which indicates where in this specification the relevant requirements can be found.
-
-See also the [Media Type Object](#media-type-object) for further information on working with specific media types.
+The OpenAPI Initiative maintains a [Media Type Registry](https://spec.openapis.org/registry/media-type/) summarizing media type support expected by this specification and providing an index to which sections address which media types.
+It also links to IANA registrations (where they exist) and to the most notable specification document(s) related to each media type.
+Any additional media types added to this registry as extensions or for later versions of this or other OpenAPI specifications MAY be supported by implementations of this version of the OAS.
 
 #### Complete vs Streaming Content
 

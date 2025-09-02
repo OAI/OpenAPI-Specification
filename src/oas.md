@@ -1789,7 +1789,7 @@ See [Appendix B](#appendix-b-data-type-conversion) for a discussion of data type
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="encoding-style"></a>style | `string` | Describes how a specific property value will be serialized depending on its type. See [Parameter Object](#parameter-object) for details on the [`style`](#parameter-style) field. The behavior follows the same values as `query` parameters, including the default value of `"form"` which applies if either `explode` or `allowReserved` are explicitly specified. Note that the initial `?` used in query strings is not used in `application/x-www-form-urlencoded` message bodies, and MUST be removed (if using an RFC6570 implementation) or simply not added (if constructing the string manually). This field SHALL be ignored if the media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
+| <a name="encoding-style"></a>style | `string` | Describes how a specific property value will be serialized depending on its type. See [Parameter Object](#parameter-object) for details on the [`style`](#parameter-style) field. The behavior follows the same values as `query` parameters, including the default value of `"form"` which applies only when `contentType` is _not_ being used due to one or both of `explode` or `allowReserved` being explicitly specified. Note that the initial `?` used in query strings is not used in `application/x-www-form-urlencoded` message bodies, and MUST be removed (if using an RFC6570 implementation) or simply not added (if constructing the string manually). This field SHALL be ignored if the media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
 | <a name="encoding-explode"></a>explode | `boolean` | When this is true, property values of type `array` or `object` generate separate parameters for each value of the array, or key-value-pair of the map. For other types of properties, or when [`style`](#encoding-style) is `"deepObject"`, this field has no effect. When `style` is `"form"`, the default value is `true`. For all other styles, the default value is `false`. This field SHALL be ignored if the media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
 | <a name="encoding-allow-reserved"></a>allowReserved | `boolean` | When this is true, parameter values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). Applications are still responsible for percent-encoding reserved characters that are not allowed in the target media type; see [URL Percent-Encoding](#url-percent-encoding) for details. The default value is `false`. This field SHALL be ignored if the media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
 
@@ -2631,8 +2631,10 @@ solely by the existence of a relationship.
 
 ##### `operationRef` Examples
 
-As references to `operationId` MAY NOT be possible (the `operationId` is an optional
-field in an [Operation Object](#operation-object)), references MAY also be made through a relative `operationRef`:
+As the `operationId` is an optional field in an [Operation Object](#operation-object), references MAY instead be made through a URI-reference with `operationRef`.
+Note that both of these examples reference operations that can be identified via the [Paths Object](#paths-object) to ensure that the operation's path template is unambiguous.
+
+A relative URI-reference `operationRef`:
 
 ```yaml
 links:
@@ -2643,7 +2645,7 @@ links:
       username: $response.body#/username
 ```
 
-or a URI `operationRef`:
+A non-relative URI `operationRef`:
 
 ```yaml
 links:
@@ -2654,8 +2656,9 @@ links:
       username: $response.body#/username
 ```
 
-Note that in the use of `operationRef` the _escaped forward-slash_ is necessary when
-using JSON Pointer, and it is necessary to URL-encode `{` and `}` as `%7B` and `%7D`, respectively, when using JSON Pointer as URI fragments.
+Note that in the use of `operationRef` the _escaped forward-slash_ (`~1`) is necessary when
+using JSON Pointer in URI fragments, and it is necessary to URL-encode `{` and `}` as `%7B` and `%7D`, respectively.
+The unescaped, percent-decoded path template in the above examples would be `/2.0/repositories/{username}`.
 
 #### Runtime Expressions
 
@@ -5148,7 +5151,7 @@ This will expand to the result:
 ## Appendix D: Serializing Headers and Cookies
 
 HTTP headers have inconsistent rules regarding what characters are allowed, and how some or all disallowed characters can be escaped and included.
-While the `quoted-string` ABNF rule given in [[RFC7230]] [Section 3.2.6](https://httpwg.org/specs/rfc7230.html#field.components) is the most common escaping solution, it is not sufficiently universal to apply automatically.
+While the `quoted-string` ABNF rule given in [[RFC9110]] [Section 5.4.6](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.4) is the most common escaping solution, it is not sufficiently universal to apply automatically.
 For example, a strong `ETag` looks like `"foo"` (with quotes, regardless of the contents), and a weak `ETag` looks like `W/"foo"` (note that only part of the value is quoted); the contents of the quotes for this header are also not escaped in the way `quoted-string` contents are.
 
 For this reason, any data being passed to a header by way of a [Parameter](#parameter-object) or [Header](#header-object) Object needs to be quoted and escaped prior to passing it to the OAS implementation, and the parsed header values are expected to contain the quotes and escapes.

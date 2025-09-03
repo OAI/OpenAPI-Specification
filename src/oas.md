@@ -8,27 +8,25 @@ This document is licensed under [The Apache License, Version 2.0](https://www.ap
 
 ## Introduction
 
-The OpenAPI Specification (OAS) defines a standard, language-agnostic interface to HTTP APIs which allows both humans and computers to discover and understand the capabilities of the service without access to source code, documentation, or through network traffic inspection. When properly defined, a consumer can understand and interact with the remote service with a minimal amount of implementation logic.
+The OpenAPI Specification (OAS) defines a standard, language-agnostic interface to HTTP APIs which allows both humans and computers to discover and understand the capabilities of the service without access to source code, documentation, or through network traffic inspection. When properly defined, a consumer can understand and interact with the remote service by [parsing and serializing](#parsing-and-serializing) HTTP messages to and from a [data model](#data-types) with a minimal amount of implementation logic.
 
-An OpenAPI Description can then be used by documentation generation tools to display the API, code generation tools to generate servers and clients in various programming languages, testing tools, and many other use cases.
+An [OpenAPI Description](#openapi-description-structure) (OAD) can then be used by documentation generation tools to display the API, code generation tools to generate servers and clients in various programming languages, testing tools, and many other use cases.
 
 For examples of OpenAPI usage and additional documentation, please visit [[?OpenAPI-Learn]].
 
 For extension registries and other specifications published by the OpenAPI Initiative, as well as the authoritative rendering of this specification, please visit [spec.openapis.org](https://spec.openapis.org/).
 
-### Versions
+### Versions and Deprecation
 
 The OpenAPI Specification is versioned using a `major`.`minor`.`patch` versioning scheme. The `major`.`minor` portion of the version string (for example `3.1`) SHALL designate the OAS feature set. _`.patch`_ versions address errors in, or provide clarifications to, this document, not the feature set. Tooling which supports OAS 3.1 SHOULD be compatible with all OAS 3.1.\* versions. The patch version SHOULD NOT be considered by tooling, making no distinction between `3.1.0` and `3.1.1` for example.
-
-Occasionally, non-backwards compatible changes may be made in `minor` versions of the OAS where impact is believed to be low relative to the benefit provided.
-
-### Deprecation
 
 Certain fields or features may be marked **Deprecated**.
 These fields and features remain part of the specification and can be used like any other field or feature.
 However, OpenAPI Description authors should use newer fields and features documented to replace the deprecated ones whenever possible.
 
 At this time, such elements are expected to remain part of the OAS until the next major version, although a future minor version of this specification may define a policy for later removal of deprecated elements.
+
+Occasionally, non-backwards compatible changes may be made in `minor` versions of the OAS where impact is believed to be low relative to the benefit provided.
 
 ### Undefined and Implementation-Defined Behavior
 
@@ -51,7 +49,7 @@ Examples in this specification will be shown in YAML for brevity.
 All field names in the specification are **case sensitive**.
 This includes all fields that are used as keys in a map, except where explicitly noted that keys are **case insensitive**.
 
-The [schema](#schema) exposes two types of fields: _fixed fields_, which have a declared name, and _patterned fields_, which have a declared pattern for the field name.
+OAS [Objects](#objects-and-fields) expose two types of fields: _fixed fields_, which have a declared name, and _patterned fields_, which have a declared pattern for the field name.
 
 Patterned fields MUST have unique names within the containing object.
 
@@ -77,7 +75,7 @@ Where OpenAPI tooling renders rich text it MUST support, at a minimum, markdown 
 While the framing of CommonMark 0.27 as a minimum requirement means that tooling MAY choose to implement extensions on top of it, note that any such extensions are by definition implementation-defined and will not be interoperable.
 OpenAPI Description authors SHOULD consider how text using such extensions will be rendered by tools that offer only the minimum support.
 
-## Schema
+## Objects and Fields
 
 This section describes the structure of the OpenAPI Description format.
 This text is the only normative description of the format.
@@ -94,7 +92,7 @@ This is the root object of the [OpenAPI Description](#openapi-description).
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="oas-version"></a>openapi | `string` | **REQUIRED**. This string MUST be the [version number](#versions) of the OpenAPI Specification that the OpenAPI Document uses. The `openapi` field SHOULD be used by tooling to interpret the OpenAPI Document. This is _not_ related to the API [`info.version`](#info-version) string. |
+| <a name="oas-version"></a>openapi | `string` | **REQUIRED**. This string MUST be the [version number](#versions-and-deprecation) of the OpenAPI Specification that the OpenAPI Document uses. The `openapi` field SHOULD be used by tooling to interpret the OpenAPI Document. This is _not_ related to the API [`info.version`](#info-version) string. |
 | <a name="oas-self"></a>$self | `string` | This string MUST be in the form of a URI-reference as defined by [[RFC3986]] [Section 4.1](https://www.rfc-editor.org/rfc/rfc3986#section-4.1). The `$self` field provides the self-assigned URI of this document, which also serves as its base URI in accordance with [[RFC3986]] [Section 5.1.1](https://www.rfc-editor.org/rfc/rfc3986#section-5.1.1). Implementations MUST support identifying the targets of [API description URIs](#relative-references-in-api-description-uris) using the URI defined by this field when it is present. See [Establishing the Base URI](#establishing-the-base-uri) for the base URI behavior when `$self` is absent or relative, and see [Appendix G]((#appendix-g-examples-of-base-uri-determination-and-reference-resolution)) for examples of using `$self` to resolve references. |
 | <a name="oas-info"></a>info | [Info Object](#info-object) | **REQUIRED**. Provides metadata about the API. The metadata MAY be used by tooling as required. |
 | <a name="oas-json-schema-dialect"></a> jsonSchemaDialect | `string` | The default value for the `$schema` keyword within [Schema Objects](#schema-object) contained within this OAS document. This MUST be in the form of a URI. |
@@ -322,8 +320,6 @@ An object representing a Server.
 | <a name="server-variables"></a>variables | Map[`string`, [Server Variable Object](#server-variable-object)] | A map between a variable name and its value. The value is used for substitution in the server's URL template. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
-
-See [Examples of API Base URL Determination](#examples-of-api-base-url-determination) for examples of resolving relative server URLs.
 
 #### Relative References in API URLs
 
@@ -1379,9 +1375,7 @@ The `maxLength` keyword MAY be used to set an expected upper bound on the length
 For unencoded binary data, the length is the number of octets.
 For this use case, `maxLength` MAY be implemented outside of regular JSON Schema evaluation as JSON Schema does not directly apply to binary data, and an encoded binary stream may be impractical to store in memory in its entirety.
 
-<a name="considerations-event-stream"></a><!-- custom anchor needed because markdownlint and ReSpec treat a slash differently in auto-generated anchors -->
-
-#### Special Considerations for `text/event-stream` Content
+#### Special Considerations for Server-Sent Events
 
 For `text/event-stream`, implementations MUST work with event data after it has been parsed according to the [`text/event-stream` specification](https://html.spec.whatwg.org/multipage/server-sent-events.html#parsing-an-event-stream), including all guidance on ignoring certain fields (including comments) and/or values, and on combining values split across multiple lines.
 
@@ -1624,7 +1618,7 @@ Our `application/json-seq` example has to be an external document because of the
 
 ##### Server-Sent Event Streams
 
-For this example, assume that the generic event schema provided in the [Special Considerations for `text/event-stream` Content](#considerations-event-stream) section is available at `#/components/schemas/Event`:
+For this example, assume that the generic event schema provided in the [Special Considerations for `text/event-stream` Content](#special-considerations-for-server-sent-events) section is available at `#/components/schemas/Event`:
 
 ```yaml
 description: A request body to add a stream of typed data.

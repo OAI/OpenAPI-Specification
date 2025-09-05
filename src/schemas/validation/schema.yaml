@@ -783,7 +783,6 @@ $defs:
           allowReserved:
             default: false
             type: boolean
-        $ref: '#/$defs/examples'
     allOf:
     - $ref: '#/$defs/examples'
     - $ref: '#/$defs/specification-extensions'

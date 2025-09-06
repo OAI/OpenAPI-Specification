@@ -204,7 +204,7 @@ $defs:
         additionalProperties:
           $ref: '#/$defs/media-type-or-reference'
     patternProperties:
-      '^(schemas|responses|parameters|examples|requestBodies|headers|securitySchemes|links|callbacks|pathItems|mediaTypes)$':
+      '^(?:schemas|responses|parameters|examples|requestBodies|headers|securitySchemes|links|callbacks|pathItems|mediaTypes)$':
         $comment: Enumerating all of the property names in the regex above is necessary for unevaluatedProperties to work as expected
         propertyNames:
           pattern: '^[a-zA-Z0-9._-]+$'

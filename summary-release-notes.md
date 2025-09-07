@@ -29,7 +29,7 @@ What's coming up? Look at `src/oas.md` on the relevant development branch for fu
 - Streaming support: sequential media types including SSE
 
     - Support for sequential media types such as `text/event-stream` for server-sent events (SSE) and `multipart/mixed`, `application/jsonl`, `application/json-seq` and others for sequential data.
-    - Responses can be a repeating data structure, and are treated as if they are an array of schema objects.
+    - Responses can be a repeating data structure, and are treated as if they are an array of Schema Objects.
     - Use `itemSchema` in a mediatype entry to describe each item.
     - A media types registry is published to give more context for each of the media types.
 
@@ -57,9 +57,9 @@ What's coming up? Look at `src/oas.md` on the relevant development branch for fu
     - The `xml` keyword can be used in any Schema Object.
     - XML namespaces can be IRIs (rather than URIs).
     - Explanation and examples for many use cases including handling `null`, handling arrays, replacing the name, and handling ordered elements.
-    - Clarify that the root schema of an XML object should use the component name.
+    - Clarify that the root schema of an XML Object should use the component name.
 
-- Examples as either structured or serialised values
+- Examples as either structured or serialized values
 
     - The Example Object (used in `examples` fields) gets two new fields: `dataValue` and `serializedValue`.
     - `dataValue` describes the example in structured format.
@@ -75,7 +75,7 @@ What's coming up? Look at `src/oas.md` on the relevant development branch for fu
     - Additional `deprecated` field for security schemes (indicating that the scheme may still be supported, but that it should not be used).
     - Ability to reference a security scheme by URI rather than declaring it in components.
 
-- Improvements to the Servers object
+- Improvements to the Server Object
 
     - Clarify that server URLs should not include fragment or query.
     - Support new `name` field alongside `description`, `url` and `variables`.
@@ -88,11 +88,11 @@ What's coming up? Look at `src/oas.md` on the relevant development branch for fu
 
 - Templates with formal syntax
 
-    - The specification now includes **ABNF** (Augmented Backus–Naur Form) for path templating, server variables, and runtime expressions in the Links object.
+    - The specification now includes **ABNF** (Augmented Backus–Naur Form) for path templating, server variables, and runtime expressions in the Link Object.
 
-- Flexible metadata fields in the Response object
+- Flexible metadata fields in the Response Object
 
-    - `description` field for responses are now optional.
+    - `description` field for responses is now optional.
     - Additional `summary` field for responses.
 
 - Additional updates
@@ -122,7 +122,7 @@ What's coming up? Look at `src/oas.md` on the relevant development branch for fu
 
 Version 3.1.2 has no material changes but does contain editorial fixes, additional examples, and clarifications.
 
-- Clarify that `$ref` in a Schema Object is a JSONSchema `$ref` keyword.
+- Clarify that `$ref` in a Schema Object is a JSON Schema `$ref` keyword.
 - Detailed explanation of percent-encoding and -decoding, updated examples and references to match, including the Style Examples table.
 - Better explanation and examples for using Encoding and Serialization, and a note not to apply percent-encoding to headers.
 - Clarify that Request Body Objects need to specify at least one media type to be meaningful.

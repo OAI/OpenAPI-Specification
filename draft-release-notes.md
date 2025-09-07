@@ -162,7 +162,7 @@ There is also a new Media Types Registry, to provide further resources for worki
 - Additional parameter location `querystring`, to allow parsing the entire query string as a single field similar to the way a request body is handled, using the `content` field. Useful for complex or unconventional query data. Mutually exclusive with the `query` field.
 - Parameters can therefore be `in` the `querystring` as an alternative to the existing `header`, `cookie`, `query` and `path` values.
 - `allowReserved` field is now permitted on headers and on parameters with any value of `in`, and applies where the combination of `in` and `style` automatically percent-encode the value.
-- Remove incorrect mention of Reference Object in the header `schema` field. The JSONSchema ref would be the correct thing to use in this context.
+- Remove incorrect mention of Reference Object in the header `schema` field. The JSON Schema `$ref` would be the correct thing to use in this context.
 - The `examples` (and older `example`) field is now supported with `content`.
 
 #### Specific `style` option for cookies
@@ -343,7 +343,7 @@ Particularly if you are building OpenAPI tooling, these sections give much bette
 
 Version 3.1.2 has no material changes but does contain editorial fixes, additional examples, and clarifications.
 
-- Clarify that `$ref` in a Schema Object is a JSONSchema `$ref` keyword.
+- Clarify that `$ref` in a Schema Object is a JSON Schema `$ref` keyword.
 - Detailed explanation of percent-encoding and -decoding, updated examples and references to match, including the Style Examples table.
 - Better explanation and examples for using Encoding and Serialization, and a note not to apply percent-encoding to headers.
 - Clarify that Request Body Objects need to specify at least one media type to be meaningful.

@@ -21,7 +21,7 @@ references:
     anchor: xml-object
   - section: XML Modeling
     anchor: xml-modeling
-    parent: Schema Object
+    parentObject: Schema Object
     parentAnchor: schema-object
 layout: default
 ---

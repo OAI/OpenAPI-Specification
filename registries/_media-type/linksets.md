@@ -18,7 +18,7 @@ media_types:
 references:
   - section: Modeling Link Headers
     anchor: modeling-link-headers
-    parent: Header Object
+    parentObject: Header Object
     parentAnchor: header-object
 layout: default
 ---

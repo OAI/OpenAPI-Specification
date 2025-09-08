@@ -1,4 +1,6 @@
-# <a href=".">Media Type Registry</a>
+{% assign registry = site.collections | where:"label", page.collection  | first %}
+# <a href=".">{{ registry.name }}</a>
+
 
 ## {{ page.name }}: {{ page.description }}
 
@@ -13,7 +15,7 @@ This page also applies to any unrecognized {{ page.default_for }} media type.
 {% if page.references %}
 **OAS References:**
 
-{% for ref in page.references %}• [{{ ref.section }}](https://spec.openapis.org/oas/latest.html#{{ ref.anchor }}){% if ref.parent %} ([{{ ref.parent }}](https://spec.openapis.org/oas/latest.html#{{ ref.parentAnchor }})){% endif %}{% unless forloop.last %}<br />{% endunless %}{% endfor %}
+{% for ref in page.references %}• [{{ ref.section }}](https://spec.openapis.org/oas/latest.html#{{ ref.anchor }}){% if ref.parentObject %} ([{{ ref.parentObject }}](https://spec.openapis.org/oas/latest.html#{{ ref.parentAnchor }})){% endif %}{% unless forloop.last %}<br />{% endunless %}{% endfor %}
 {% endif %}
 
 ## Summary

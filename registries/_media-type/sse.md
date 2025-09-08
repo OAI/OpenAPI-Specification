@@ -13,16 +13,16 @@ media_types:
 references:
   - section: Sequential Media Types
     anchor: sequential-media-types
-    parent: Media Types
-    parentAnchor: media-types
-  - section: Special Considerations for `text/event-stream` Content
-    anchor: special-considerations-for-text-event-stream-conten
-    parent: Media Type Object
+    parentObject: Media Type Object
     parentAnchor: media-type-object
-  - section: Server-Sent Event Stream
+  - section: Special Considerations for Server-Sent Events
+    anchor: special-considerations-for-server-sent-events
+    parentObject: Media Type Object
+    parentAnchor: media-type-object
+  - section: Server-Sent Event Stream (Examples)
     anchor: server-sent-event-streams
-    parent: Media Type Examples
-    parentAnchor: media-type-examples
+    parentObject: Media Type Object
+    parentAnchor: media-type-object
 layout: default
 ---
 

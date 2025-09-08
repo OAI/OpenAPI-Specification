@@ -8,7 +8,7 @@ parent: Registry
 # Media Type Registry
 
 This registry lists the non-JSON media types addressed by the OpenAPI Specification (OAS), and links to the appropriate OAS sections and external specifications.
-See [Working With Data](https://spec.openapis.org/oas/latest.html#working-with-data) and [Parsing and Serializing](https://spec.openapis.org/oas/latest.html#parsing-and-serializing) for a discussion of serialized, schema-ready, and application forms of data, and how to convert among the forms.
+See [Parsing and Serializing](https://spec.openapis.org/oas/latest.html#parsing-and-serializing) for a discussion of serialized, schema-ready, and application forms of data, and how to convert among the forms.
 
 ## Specification Versions
 

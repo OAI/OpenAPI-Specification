@@ -35,15 +35,15 @@ default_for: binary
 references:
   - section: Working with Binary Data
     anchor: working-with-binary-data
-    parent: Working with Data
-    parentAnchor: Working with Data
+    parentObject: Schema Object
+    parentAnchor: schema-object
   - section: Binary Streams
     anchor: binary-streams
-    parent: Media Type Object
+    parentObject: Media Type Object
     parentAnchor: media-type-object
   - section: "`Content-Transfer-Encoding` and `contentEncoding`"
     anchor: content-transfer-encoding-and-contentencoding
-    parent: Encoding Object
+    parentObject: Encoding Object
     parentAnchor: encoding-object
 layout: default
 ---

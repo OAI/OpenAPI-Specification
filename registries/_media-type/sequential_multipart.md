@@ -39,11 +39,11 @@ media_types:
 references:
   - section: Encoding By Position
     anchor: encoding-by-position
-    parent: Encoding Usage and Restrictions
-    parentAnchor: encoding-usage-and-restrictions
+    parentObject: Media Type Object
+    parentAnchor: media-type-object
   - section: Encoding `multipart` Media Types
     anchor: encoding-multipart-media-types
-    parent: Encoding Object
+    parentObject: Encoding Object
     parentAnchor: encoding-object
 layout: default
 ---

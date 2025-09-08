@@ -10,11 +10,11 @@
 * Miguel Quintero [@miqui](https://github.com/miqui)
 * Mike Kistler [@mikekistler](https://github.com/mikekistler)
 * Ralf Handl [@ralfhandl](https://github.com/ralfhandl)
-* Ron Ratovsky [@webron](https://github.com/webron)
 * Vincent Biret [@baywet](https://github.com/baywet)
 
 ## Emeritus
 
+* Ron Ratovsky [@webron](https://github.com/webron)
 * Darrel Miller [@darrelmiller](https://github.com/darrelmiller)
 * Mike Ralphson [@MikeRalphson](https://github.com/MikeRalphson)
 * Uri Sarid [@usarid](https://github.com/usarid)

@@ -129,8 +129,9 @@ It is the responsibility of an embedding format to define how to parse embedded 
 
 ##### Parsing Documents
 
-Each document in an OAD MUST be fully parsed in order to locate possible reference targets, including the OpenAPI Object's [`$self`](#oas-self) field and the [Schema Object's](#schema-object) `$id`, `$anchor`, and `$dynamicAnchor` keywords.
+Each document in an OAD MUST be fully parsed in order to locate possible reference targets.
 This includes the parsing requirements of [JSON Schema Specification Draft 2020-12](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-9), with appropriate modifications regarding base URIs as specified in [Relative References In URIs](#relative-references-in-api-description-uris).
+Reference targets are defined by fields including the OpenAPI Object's [`$self`](#oas-self) field and the [Schema Object's](#schema-object) `$id`, `$anchor`, and `$dynamicAnchor` keywords.
 
 Implementations MUST NOT treat a reference as unresolvable before completely parsing all documents provided to the implementation as possible parts of the OAD.
 

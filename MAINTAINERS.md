@@ -4,7 +4,6 @@
 
 * Jeremy Whitlock [@whitlockjc](https://github.com/whitlockjc)
 * Marsh Gardiner [@earth2marsh](https://github.com/earth2marsh)
-* Ron Ratovsky [@webron](https://github.com/webron)
 * Lorna Mitchell [@lornajane](https://github.com/lornajane)
 * Mike Kistler [@mikekistler](https://github.com/mikekistler)
 * Miguel Quintero [@miqui](https://github.com/miqui)
@@ -12,6 +11,7 @@
 
 ## Emeritus
 
+* Ron Ratovsky [@webron](https://github.com/webron)
 * Darrel Miller [@darrelmiller](https://github.com/darrelmiller)
 * Mike Ralphson [@MikeRalphson](https://github.com/MikeRalphson)
 * Uri Sarid [@usarid](https://github.com/usarid)

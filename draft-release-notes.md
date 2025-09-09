@@ -53,10 +53,10 @@ tags:
 #### Support additional HTTP methods
 
 - Support the new `query` method alongside the existing `get`/`post`/`put`/`delete`/`options`/`head`/`patch`/`trace`.
-  Query is a new method in the HTTP standard, designed to allow complex filtering query data to be sent in the body of a request when it doesn't fit in the query string.
+  QUERY is a [draft standard](https://www.ietf.org/archive/id/draft-ietf-httpbis-safe-method-w-body-11.html) new HTTP method nearing final publication, which is designed to allow complex filtering query data to be sent in the body of a request when it doesn't fit in the query string.
 - Under an `additionalOperations` entry in a Path, use any other methods not listed as keys using the correct capitalization, e.g. `LINK`. Do NOT add `HEAD` under this, use the existing sibling `head`.
 
-The following example describes both `query` and `link` methods for the `cakes/` endpoint:
+The following example describes both QUERY and LINK methods for the `cakes/` endpoint:
 
 ```yaml
 paths:
@@ -128,7 +128,7 @@ paths:
 - Additional top-level field `$self` is added to allow users to define the base URI of the document, used to resolve relative references.
   If no `$self` field is defined, then the retrieval URI is used - just as it was in previous versions of OpenAPI.
 - Other URL/URI handling does not change between 3.1 and 3.2 (but bears a recap in case you're wondering how it all goes together):
-  - Other URLs, such as to external documentation or a license, are resolved against the base URI.
+  - Other URIs, such as to external documentation or a license, are resolved against the base URI.
   - Relative links inside `description` fields are resolved relative to their rendered context, such as your published API documentation page.
   - API endpoints are resolved against the URL in the Server Object, which itself might be relative and resolved against the base URI.
 
@@ -154,26 +154,27 @@ There is also a new Media Types Registry, to provide further resources for worki
 - Support for sequential media types such as `text/event-stream` for server-sent events (SSE) and `multipart/mixed`, `application/jsonl`, `application/json-seq` and others for sequential data.
 - Responses can be a repeating data structure, and are treated as if they are an array of schema objects.
 - Use `itemSchema` in a mediatype entry to describe each item.
-- Related: a new media types registry is published to give more context for each of the media types.
-- Also a "Complete vs Streaming Content" section for guidance on streaming binary payloads.
+- Related: a new media types registry is published to give more context for each of the media types and allow registration of future media type support outside of the OAS publication schedule.
+- Also a "Complete vs Streaming Content" section for guidance on streaming payloads.
 
 #### Parameter and header changes
 
-- Additional parameter location `querystring`, to allow parsing the entire query string as a single field similar to the way a request body is handled, using the `content` field. Useful for complex or unconventional query data. Mutually exclusive with the `query` field.
+- Additional parameter location `querystring`, to allow parsing the entire query string as a single field similar to the way a request body is handled, using the `content` field. Useful for complex or unconventional query data. Mutually exclusive with the `query` location.
 - Parameters can therefore be `in` the `querystring` as an alternative to the existing `header`, `cookie`, `query` and `path` values.
-- `allowReserved` field is now permitted on headers and on parameters with any value of `in`, and applies where the combination of `in` and `style` automatically percent-encode the value.
-- Remove incorrect mention of Reference Object in the header `schema` field. The JSON Schema `$ref` would be the correct thing to use in this context.
+- `allowReserved` now applies anywhere the combination of `in` and `style` automatically percent-encode the value.
+- Remove incorrect mention of Reference Object in the header `schema` field, which is redundant with the `$ref` coming from JSON Schema itself.
 - The `examples` (and older `example`) field is now supported with `content`.
 
 #### Specific `style` option for cookies
 
 - Additional `style` option `cookie` for content in a cookie, which uses semicolon as a separator and does not encode data values.
-  The `form` style is a close fit, but you may wish to switch to `cookie` for more correct description.
+  The `form` style is a close fit, but you may wish to switch to `cookie` for a more correct description.
 
 #### Multipart media types
 
 Multipart media types are much better supported in OpenAPI 3.2.
 
+- `multipart/mixed`, on which most other `multipart` formats are based, is now supported
 - New `itemSchema` field, for the schema that describes each of the items in a sequential media type.
   These sequential types may not be received or parsed in one go, so the `itemSchema` field supports ongoing parsing.
 - New fields `prefixEncoding` and `itemEncoding` can be used instead of `encoding` for multipart media types.
@@ -184,9 +185,9 @@ Multipart media types are much better supported in OpenAPI 3.2.
 
 #### Improvements for APIs using XML as a content format
 
-- New `nodeType` field allows mapping schemas to common XML node types: `element`, `attribute`, `text`, `cdata`, or `none`.
+- New `nodeType` field allows mapping schemas to common XML node types: `element`, `attribute`, `text`, `cdata`, or `none`, defaulting to `element` for most data types, or `none` for arrays.
 - `attribute: true` is now deprecated in favor of `nodeType: attribute`.
-- `wrapped: true` deprecated in favor of `nodeType: element` (as `nodeType` defaults to `none` for arrays to preserve compatibility).
+- `wrapped: true` for arrays deprecated in favor of `nodeType: element` (set explicitly to override the default `nodeType: none` for arrays)
 - The `xml` keyword can be used in any Schema Object.
 - XML namespaces can be IRIs (rather than URIs).
 - Explanation and examples for many use cases including handling `null`, handling arrays, replacing the name, and handling ordered elements.
@@ -324,8 +325,8 @@ Next time you're wondering if you can do `/api/v{version}/users/{user-id}` in a 
 - Update to <https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html> of JSON Schema Specification.
 - Update to <https://www.ietf.org/archive/id/draft-bhutton-json-schema-validation-01.html> of JSON Schema Validation Specification.
 - Use [RFC8529](https://tools.ietf.org/html/rfc8259) for JSON.
+- Use [RFC9512](https://www.rfc-editor.org/rfc/rfc9512.html) for YAML, particularly for defining JSON-compatible YAML.
 - Use [RFC9110](https://tools.ietf.org/html/rfc9110) for HTTP.
-
 #### Editorial changes
 
 - Extensive additions around media types, encoding, sequential media types, SSE examples, working with binary data.

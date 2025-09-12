@@ -62,7 +62,6 @@ paths:
               # Allow an arbitrary JSON object to keep
               # the example simple
               type: object
-            example: {
-              "numbers": [1, 2],
-              "flag": null
-            }
+            example:
+              numbers: [1, 2]
+              flag: null

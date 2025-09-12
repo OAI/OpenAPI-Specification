@@ -1571,7 +1571,7 @@ Our `application/json-seq` example has to be an external document because of the
 
 ##### Server-Sent Event Streams
 
-For this example, assume that the generic event schema provided in the [Special Considerations for `text/event-stream` Content](#special-considerations-for-server-sent-events) section is available at `#/components/schemas/Event`:
+For this example, assume that the generic event schema provided in the [Special Considerations for Server-Sent Events](#special-considerations-for-server-sent-events) section is available at `#/components/schemas/Event`:
 
 ```yaml
 description: A request body to add a stream of typed data.

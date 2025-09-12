@@ -12,7 +12,7 @@ layout: default
 
 ## Schema Iterations
 
-_Note that while schemas can catch many errors, they are not guaranteed to catch all specification violations.  In the event of a disagreement between the schemas and the corresponding specificaton text, the specification text is presumed to be correct._
+_Note that while schemas can catch many errors, they are not guaranteed to catch all specification violations.  In the event of a disagreement between the schemas and the corresponding specification text, the specification text is presumed to be correct._
 
 Note that the OAS 3.1 `schema/YYYY-MM-DD` schema does _not_ validate the Schema Object, as it makes no assumptions about the JSON Schema dialect in use.  The OAS 3.1 `schema-base/YYYY-MM-DD` schema _does_ validate the Schema Object, and requires that if `jsonSchemaDialect` or `$schema` are present, that they use the appropriate `dialect/YYYY-MM-DD`.  The name `schema-base` comes from the JSON Schema dialect including the OAS extensions being referred to as the "base dialect" in the specification.
 

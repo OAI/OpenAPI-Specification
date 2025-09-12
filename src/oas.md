@@ -1338,7 +1338,7 @@ Some users of `text/event-stream` use a format such as JSON for field values, pa
 Use JSON Schema's keywords for working with the [contents of string-encoded data](https://www.ietf.org/archive/id/draft-bhutton-json-schema-validation-01.html#name-a-vocabulary-for-the-conten), particularly `contentMediaType` and `contentSchema`, to describe and validate such fields with more detail than string-related validation keywords such as `pattern` can support.
 Note that `contentSchema` is [not automatically validated by default](https://www.ietf.org/archive/id/draft-bhutton-json-schema-validation-01.html#name-implementation-requirements-2) (see also the [Non-validating constraint keywords](#non-validating-constraint-keywords) section of this specification).
 
-The following Schema Object is a generic schema for the `text/event-stream` media type as documented by the HTML specification as of the time of this writing:
+The following Schema Object is a generic schema for the `text/event-stream` media type as documented by the [[?HTML]] specification as of the time of this writing:
 
 ```yaml
 type: object

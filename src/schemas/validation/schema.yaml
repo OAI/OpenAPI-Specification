@@ -376,8 +376,6 @@ $defs:
           properties:
             in:
               const: query
-          required:
-            - in
         then:
           properties:
             allowEmptyValue:
@@ -387,8 +385,6 @@ $defs:
           properties:
             in:
               const: querystring
-          required:
-            - in
         then:
           required:
             - content
@@ -415,8 +411,6 @@ $defs:
               properties:
                 in:
                   const: path
-              required:
-                - in
             then:
               properties:
                 style:
@@ -435,8 +429,6 @@ $defs:
               properties:
                 in:
                   const: header
-              required:
-                - in
             then:
               properties:
                 style:
@@ -448,8 +440,6 @@ $defs:
               properties:
                 in:
                   const: query
-              required:
-                - in
             then:
               properties:
                 style:
@@ -465,8 +455,6 @@ $defs:
               properties:
                 in:
                   const: cookie
-              required:
-                - in
             then:
               properties:
                 style:
@@ -871,8 +859,6 @@ $defs:
           properties:
             type:
               const: apiKey
-          required:
-            - type
         then:
           properties:
             name:
@@ -891,8 +877,6 @@ $defs:
           properties:
             type:
               const: http
-          required:
-            - type
         then:
           properties:
             scheme:
@@ -921,8 +905,6 @@ $defs:
           properties:
             type:
               const: oauth2
-          required:
-            - type
         then:
           properties:
             flows:
@@ -938,8 +920,6 @@ $defs:
           properties:
             type:
               const: openIdConnect
-          required:
-            - type
         then:
           properties:
             openIdConnectUrl:

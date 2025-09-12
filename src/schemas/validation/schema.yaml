@@ -485,7 +485,9 @@ $defs:
               properties:
                 style:
                   default: form
-                  const: form
+                  enum:
+                    - form
+                    - cookie
 
     unevaluatedProperties: false
 

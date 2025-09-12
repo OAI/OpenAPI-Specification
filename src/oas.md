@@ -142,7 +142,7 @@ If only the referenced part of the document is parsed when resolving a reference
 URIs used as references within an OpenAPI Description, or to external documentation or other supplementary information such as a license, are resolved as _identifiers_, and described by this specification as **_URIs_**, in contrast with [API URLs](#relative-references-in-api-urls).
 Note that some URI fields are named `url` for historical reasons, but the descriptive text for those fields uses the correct "URI" terminology.
 
-As noted under [Parsing Documents](#parsing-documents), several fields can be used to associate an OpenAPI document or a Schema Object with a URI, which might not match the document or schema's location.
+As noted under [Parsing Documents](#parsing-documents), several fields can be used to associate an OpenAPI document or a Schema Object with a URI, which might not match the document's or schema's location.
 This allows the same references to be used in different deployment environments, including local filesystems or networks restricted by security policies or connectivity limitations.
 
 Unless specified otherwise, all fields that are URIs MAY be relative references as defined by [[RFC3986]] [Section 4.2](https://tools.ietf.org/html/rfc3986#section-4.2).

@@ -97,7 +97,6 @@ What's coming up? Look at `src/oas.md` on the relevant development branch for fu
 
 - Additional updates
 
-    - Non-Schema examples no longer "override" Schema examples; tools are free to use the most appropriate example for any given use case.
     - A new key `mediaTypes` is supported under `components` to support re-use of Media Type Objects.
 
 - Updates to referenced standards

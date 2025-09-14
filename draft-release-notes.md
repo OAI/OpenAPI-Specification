@@ -126,11 +126,11 @@ paths:
 #### Document identity and URL resolution
 
 - Additional top-level field `$self` is added to allow users to define the base URI of the document, used to resolve relative references.
-  If no `$self` field is defined, then the retrieval URI is used - just as it was in previous versions of OpenAPI.
+  If no `$self` field is defined, then the base URI behaves as it did in previous versions of OpenAPI - in most cases the retrieval URL.
 - Other URL/URI handling does not change between 3.1 and 3.2 (but bears a recap in case you're wondering how it all goes together):
   - Other URIs, such as to external documentation or a license, are resolved against the base URI.
   - Relative links inside `description` fields are resolved relative to their rendered context, such as your published API documentation page.
-  - API endpoints are resolved against the URL in the Server Object, which itself might be relative and resolved against the base URI.
+  - API paths are appended to the URL in the Server Object, which itself might be relative and resolved against the retrieval URI of the document.
 
 The following example shows the new `$self` field in use:
 
@@ -153,7 +153,7 @@ There is also a new Media Types Registry, to provide further resources for worki
 
 - Support for sequential media types such as `text/event-stream` for server-sent events (SSE) and `multipart/mixed`, `application/jsonl`, `application/json-seq` and others for sequential data.
 - Responses can be a repeating data structure, and are treated as if they are an array of schema objects.
-- Use `itemSchema` in a mediatype entry to describe each item.
+- Use `itemSchema` in a media type entry to describe each item.
 - Related: a new media types registry is published to give more context for each of the media types and allow registration of future media type support outside of the OAS publication schedule.
 - Also a "Complete vs Streaming Content" section for guidance on streaming payloads.
 
@@ -196,11 +196,11 @@ Multipart media types are much better supported in OpenAPI 3.2.
 #### Describe examples in both structured and serialized forms
 
 - The Example Object (used in `examples` fields) gets two new fields: `dataValue` and `serializedValue`.
-- `dataValue` describes the example in structured format.
-- `serializedValue` shows how the example will be formatted when it is sent/received by the API.
+- `dataValue` describes the example in structured format, suitable for evaluating with a schema.
+- `serializedValue` shows how a UTF-8 compatible serialization of the example will be formatted when it is sent/received by the API.
+- The existing `externalValue` field can still be used to give a reference to an example; this is the best way to include examples where the serialization is not UTF-8 compatible.
 - The existing `value` field can still be used, which means that you can safely upgrade to 3.2 and then revisit these fields and update them to use either `dataValue` or `serializedValue` as appropriate.
   Use the new fields for examples you add after upgrading to 3.2.
-- The existing `externalValue` field can still be used to give a reference to an example, but this is now clearly documented as being a serialized value.
 - There are lots of examples of the examples (ha!) and clear documentation of how the fields can be combined.
 - Summary of what to do: use `examples` over `example`, and use `dataValue` to show a clear, structured example of the data.
   If your use case could benefit from an example of how the data will look when it's transmitted, use `serializedValue` as well.
@@ -264,7 +264,6 @@ Discriminator is a great way to match the correct schema to a payload. This rele
 - New field `defaultMapping` to indicate which schema to use if the `propertyName` is not set, or if the value is unrecognized.
 - No change from previous versions: use `discriminator` to hint which entry in `anyOf` or `oneOf` is expected.
 - No change from previous versions: use `mapping` to link the discriminator property value to the Schema name if they aren't an exact match.
-- Implementations now SHOULD (rather than MAY) support templates/generics using `$dynamicRef`.
 
 Define the `mapping` and `discriminator` as before. The new field `defaultMapping` will be used if either the discriminator doesn't have a `propertyName` or when there is an object that doesn't match a `mapping` entry.
 
@@ -317,8 +316,8 @@ Next time you're wondering if you can do `/api/v{version}/users/{user-id}` in a 
 
 #### Minor updates that are worth a mention
 
-- Non-Schema examples no longer "override" Schema examples; tools are free to use the most appropriate example for any given use case.
 - A new key `mediaTypes` is supported under `components` to support re-use of Media Type Objects.
+- Implementations now SHOULD (rather than MAY) support templates/generics using `$dynamicRef`.
 
 #### In-place updates to existing specifications and standards that we reference
 
@@ -327,8 +326,11 @@ Next time you're wondering if you can do `/api/v{version}/users/{user-id}` in a 
 - Use [RFC8529](https://tools.ietf.org/html/rfc8259) for JSON.
 - Use [RFC9512](https://www.rfc-editor.org/rfc/rfc9512.html) for YAML, particularly for defining JSON-compatible YAML.
 - Use [RFC9110](https://tools.ietf.org/html/rfc9110) for HTTP.
+
 #### Editorial changes
 
+- Re-organization of the top-level sections to group more content with the most relevant Objects and bring the start of the Objects and Fields (formerly Schema) section close to the top of the specification.
+- Substantial streamlining and simplification of document parsing, relative URI-reference resolution, and implicit connection resolution, including examples of base URI determination
 - Extensive additions around media types, encoding, sequential media types, SSE examples, working with binary data.
 - Streamlined to YAML examples (unless something specific to another format) to try to make it easier to follow.
 - Better explanation and examples for using Encoding and Serialization, and a note not to apply percent-encoding to headers.

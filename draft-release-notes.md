@@ -54,7 +54,7 @@ tags:
 
 - Support the new `query` method alongside the existing `get`/`post`/`put`/`delete`/`options`/`head`/`patch`/`trace`.
   QUERY is a [draft standard](https://www.ietf.org/archive/id/draft-ietf-httpbis-safe-method-w-body-11.html) new HTTP method nearing final publication, which is designed to allow complex filtering query data to be sent in the body of a request when it doesn't fit in the query string.
-- Under an `additionalOperations` entry in a Path, use any other methods not listed as keys using the correct capitalization, e.g. `LINK`. Do NOT add `HEAD` under this, use the existing sibling `head`.
+- Under an `additionalOperations` entry in a Path, use any other methods not listed as keys using the correct capitalization, e.g. you can add `LINK` under this field, but do NOT add `HEAD`; use the existing Operation Object `head` field.
 
 The following example describes both QUERY and LINK methods for the `cakes/` endpoint:
 

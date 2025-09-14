@@ -1174,7 +1174,7 @@ Assuming a path of `/foo`, a server of `https://example.com`, the full URL incor
 https://example.com/foo?%7B%22numbers%22%3A%5B1%2C2%5D%2C%22flag%22%3Anull%7D
 ```
 
-A querystring parameter that uses JSONPath.
+A querystring parameter that uses [[?RFC9535|JSONPath]].
 Note that in this example we not only do not repeat `dataValue`, but we use the shorthand `example` because the `application/jsonpath` value is a string that, at the media type level, is serialized as-is:
 
 ```yaml

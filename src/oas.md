@@ -5222,7 +5222,7 @@ This section shows each of the four possible sources of base URIs, followed by a
 
 ### Base URI Within Content
 
-A base URI within the resource's content (RFC3986 Section 5.1.1) is the highest-precedence source of a base URI.
+A base URI within the resource's content ([RFC3986](https://tools.ietf.org/html/rfc3986#section-5.1.1)) is the highest-precedence source of a base URI.
 For OpenAPI documents, this source is the OpenAPI Object's `$self` field, while for Schema Objects that contain a `$id`, or are a subschema of a Schema Object containing a `$id`, the source is the `$id` field:
 
 Assume the retrieval URI of the following document is `file://home/someone/src/api/openapi.yaml`:
@@ -5282,7 +5282,7 @@ Note also that it is impossible for the reference at `#/components/schemas/Foo/p
 
 ### Base URI From Encapsulating Entity
 
-If no base URI can be determined within the content, the next location to search is any encapsulating entity (RFC3986 Section 5.1.2).
+If no base URI can be determined within the content, the next location to search is any encapsulating entity ([RFC3986](https://tools.ietf.org/html/rfc3986#section-5.1.2)).
 
 This is common for Schema Objects encapsulated within an OpenAPI document.
 An example of an OpenAPI Object itself being encapsulated in another entity would be a `multipart/related` archive ([[?RFC2557]]), such as the following `multipart/related; boundary="boundary-example"; type="application/openapi+yaml"` document.
@@ -5343,7 +5343,7 @@ Similarly, the `url` field of the [External Documentation Object](#external-docu
 
 ### Base URI From the Retrieval URI
 
-If no base URI is provided from either of the previous sources, the next source is the retrieval URI (RFC 3986 Section 5.1.3).
+If no base URI is provided from either of the previous sources, the next source is the retrieval URI ([RFC3986](https://tools.ietf.org/html/rfc3986#section-5.1.3)).
 
 Assume this document was retrieved from `https://example.com/api/openapis.yaml`:
 
@@ -5378,7 +5378,7 @@ Resolving the `$ref: schemas/foo` against the retrieval URI of the OpenAPI docum
 
 ### Application-Specific Default Base URI
 
-When constructing an OpenAPI document in memory that does not have a `$self`, or an encapsulating entity, or a retrieval URI, applications can resolve internal (fragment-only) references by assuming a default base URI (RFC3986 Section 5.1.4).
+When constructing an OpenAPI document in memory that does not have a `$self`, or an encapsulating entity, or a retrieval URI, applications can resolve internal (fragment-only) references by assuming a default base URI ([RFC3986](https://tools.ietf.org/html/rfc3986#section-5.1.4)).
 While this sort of internal resolution can be performed in practice without choosing a base URI, choosing one, such as a URN with a randomly generated UUID (e.g. `urn:uuid:f26cdaad-3193-4398-a838-4ecb7326c4c5`) avoids the need to implement it as a special case.
 
 ### Resolving Relative `$self` and `$id`

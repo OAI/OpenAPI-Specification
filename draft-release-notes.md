@@ -130,7 +130,7 @@ paths:
 - Other URL/URI handling does not change between 3.1 and 3.2 (but bears a recap in case you're wondering how it all goes together):
   - Other URIs, such as to external documentation or a license, are resolved against the base URI.
   - Relative links inside `description` fields are resolved relative to their rendered context, such as your published API documentation page.
-  - API paths are appended to the URL in the Server Object, which itself might be relative and resolved against the retrieval URI of the document.
+  - API paths are appended to the URL in the Server Object, which itself might be relative and resolved against the retrieval URI of the document 
 
 The following example shows the new `$self` field in use:
 

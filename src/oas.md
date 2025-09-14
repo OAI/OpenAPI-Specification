@@ -114,7 +114,7 @@ Implementations MAY choose to support referencing by other URIs such as the retr
 #### OpenAPI Description Structure
 
 An **OpenAPI Description** (**OAD**) formally describes the surface of an API and its semantics.
-An OAD MAY be made up of a single document, or be distributed across multiple documents that are connected by various fields using [URI references](#relative-references-in-api-description-uris) and [implicit connections](#resolving implicit connections).
+An OAD MAY be made up of a single document, or be distributed across multiple documents that are connected by various fields using [URI references](#relative-references-in-api-description-uris) and [implicit connections](#resolving-implicit-connections).
 
 In order for parsing behavior to be well-defined, all documents in an OAD MUST have either an OpenAPI Object or a Schema Object at the root, and MUST be parsed as complete documents, as described in the next section.
 

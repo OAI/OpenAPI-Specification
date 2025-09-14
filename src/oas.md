@@ -893,8 +893,6 @@ For headers, the header name MUST NOT be included as part of the serialization, 
 However, names produced by `style: "simple", explode: "true"` are included as they appear within the header value, not as separate headers.
 See the [Header Object](#header-object) for special rules for showing examples of the `Set-Cookie` response header, which violates the normal rules for multiple header values.
 
-The following section illustrates these rules.
-
 #### Style Examples
 
 Assume a parameter named `color` has one of the following values, where the value to the right of the `->` is what would be shown in the `dataValue` field of an Example Object:

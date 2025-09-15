@@ -1192,7 +1192,7 @@ Using `content` with a `text/plain` media type is RECOMMENDED for `in: "cookie"`
 
 ##### Style Values
 
-In order to support common ways of serializing simple parameters, a set of `style` values are defined.
+In order to support common ways of serializing simple parameters, a set of `style` values are defined. Combinations not represented in this table are not permitted.
 
 | `style` | [`type`](#data-types) | `in` | Comments |
 | ---- | ---- | ---- | ---- |

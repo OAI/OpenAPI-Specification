@@ -193,7 +193,7 @@ $defs:
         additionalProperties:
           $ref: '#/$defs/path-item'
     patternProperties:
-      '^(schemas|responses|parameters|examples|requestBodies|headers|securitySchemes|links|callbacks|pathItems)$':
+      '^(?:schemas|responses|parameters|examples|requestBodies|headers|securitySchemes|links|callbacks|pathItems)$':
         $comment: Enumerating all of the property names in the regex above is necessary for unevaluatedProperties to work as expected
         propertyNames:
           pattern: '^[a-zA-Z0-9._-]+$'

@@ -956,7 +956,9 @@ schema:
 style: simple
 examples:
   Tokens:
-    dataValue: [12345678, 90099]
+    dataValue:
+      - 12345678
+      - 90099
     serializedValue: "12345678,90099"
 ```
 
@@ -982,10 +984,9 @@ examples:
         to "%2C" in the data, as it is forbidden in
         cookie values.  However, the exclamation point (!)
         is legal in cookies, so it can be left unencoded.
-    dataValue: {
-      "greeting": "Hello%2C world!",
-      "code": 42
-    }
+    dataValue:
+      greeting: Hello%2C world!
+      code: 42
     serializedValue: "greeting=Hello%2C world!; code=42"
 ```
 
@@ -1004,7 +1005,7 @@ examples:
       pre-percent-encoded.  This results in all non-URL-safe
       characters, rather than just the one non-cookie-safe
       character, getting percent-encoded.
-    dataValue: "Hello, world!"
+    dataValue: Hello, world!
     serializedValue: "greeting=Hello%2C%20world%21"
 ```
 
@@ -1044,7 +1045,9 @@ style: form
 explode: true
 examples:
   ObjectList:
-    dataValue: ["one thing", "another thing"]
+    dataValue:
+      - one thing
+      - another thing
     serializedValue: "thing=one%20thing&thing=another%20thing"
 ```
 
@@ -1060,10 +1063,9 @@ schema:
 style: form
 examples:
   Pagination:
-    dataValue: {
-      "page": 4,
-      "pageSize": 50
-    }
+    dataValue:
+      page: 4
+      pageSize: 50
     serializeValue: page=4&pageSize=50
 ```
 
@@ -1085,16 +1087,14 @@ content:
         long:
           type: number
     examples:
-      dataValue: {
-        "lat": 10,
-        "long": 60
-      }
+      dataValue:
+        lat: 10
+        long: 60
       serializedValue: '{"lat":10,"long":60}'
 examples:
-  dataValue: {
-    "lat": 10,
-    "long": 60
-  }
+  dataValue:
+    lat: 10
+    long: 60
   serializedValue: coordinates=%7B%22lat%22%3A10%2C%22long%22%3A60%7D
 ```
 
@@ -1152,17 +1152,19 @@ content:
     examples:
       TwoNoFlag:
         description: Serialize with minimized whitespace
-        dataValue: {
-          "numbers": [1, 2],
-          "flag": null
-        }
+        dataValue:
+          numbers:
+            - 1
+            - 2
+          flag: null
         serializedValue: '{"numbers":[1,2],"flag":null}'
 examples:
   TwoNoFlag:
-    dataValue: {
-      "numbers": [1, 2],
-      "flag": null
-    }
+    dataValue:
+      numbers:
+        - 1
+        - 2
+      flag: null
     serializedValue: "%7B%22numbers%22%3A%5B1%2C2%5D%2C%22flag%22%3Anull%7D"
 ```
 
@@ -2426,10 +2428,9 @@ content:
     examples:
       noRating:
         summary: A not-yet-rated work
-        dataValue: {
-          "author": "A. Writer",
-          "title": "The Newest Book"
-        }
+        dataValue:
+          author: A. Writer
+          title: The Newest Book
       withRating:
         summary: A work with an average rating of 4.5 stars
         dataValue:
@@ -3912,7 +3913,7 @@ application/xml:
   examples:
     pets:
       dataValue:
-        animals: "dog, cat, hamster"
+        animals: dog, cat, hamster
       serializedValue: |
         <document>
           <animals>dog, cat, hamster</animals>
@@ -3935,7 +3936,10 @@ application/xml:
   examples:
     pets:
       dataValue:
-        animals: [dog, cat, hamster]
+        animals:
+          - dog
+          - cat
+          - hamster
       externalValue: ./examples/pets.xml
 ```
 
@@ -3965,7 +3969,10 @@ application/xml:
   examples:
     pets:
       dataValue:
-        animals: [dog, cat, hamster]
+        animals:
+          - dog
+          - cat
+          - hamster
       externalValue: ./examples/pets.xml
 ```
 
@@ -4041,7 +4048,10 @@ application/xml:
   examples:
     pets:
       dataValue:
-        animals: [dog, cat, hamster]
+        animals:
+          - dog
+          - cat
+          - hamster
       externalValue: ./examples/pets.xml
 ```
 
@@ -4075,7 +4085,10 @@ application/xml:
   examples:
     pets:
       dataValue:
-        animals: [dog, cat, hamster]
+        animals:
+          - dog
+          - cat
+          - hamster
       externalValue: ./examples/pets.xml
 ```
 
@@ -4107,7 +4120,10 @@ application/xml:
   examples:
     pets:
       dataValue:
-        animals: [dog, cat, hamster]
+        animals:
+          - dog
+          - cat
+          - hamster
       externalValue: ./examples/pets.xml
 ```
 
@@ -4143,7 +4159,10 @@ application/xml:
   examples:
     pets:
       dataValue:
-        animals: [dog, cat, hamster]
+        animals:
+          - dog
+          - cat
+          - hamster
       externalValue: ./examples/pets.xml
 ```
 
@@ -4180,7 +4199,10 @@ application/xml:
   examples:
     pets:
       dataValue:
-        animals: [dog, cat, hamster]
+        animals:
+          - dog
+          - cat
+          - hamster
       externalValue: ./examples/pets.xml
 ```
 
@@ -4215,7 +4237,10 @@ application/xml:
   examples:
     pets:
       dataValue:
-        animals: [dog, cat, hamster]
+        animals:
+          - dog
+          - cat
+          - hamster
       externalValue: ./examples/pets.xml
 ```
 
@@ -4323,9 +4348,8 @@ paths:
                 $ref: "#/components/schemas/Documentation"
               examples:
                 stored:
-                  dataValue: {
-                    "content": "<html><head><title>Awesome Docs</title></head><body></body><html>"
-                  }
+                  dataValue:
+                    content: <html><head><title>Awesome Docs</title></head><body></body><html>
                   externalValue: ./examples/stored.xml
     put:
       requestBody:
@@ -4339,9 +4363,8 @@ paths:
               $ref: "#/components/schemas/Documentation"
             examples:
               updated:
-                dataValue: {
-                  "content": "<html><head><title>Awesome Docs</title></head><body></body><html>"
-                }
+                dataValue:
+                  content: <html><head><title>Awesome Docs</title></head><body></body><html>
                 externalValue: ./examples/updated.xml
       responses:
         "201": {}
@@ -4418,12 +4441,10 @@ application/xml:
       - "null"
   examples:
     OneTwoThree:
-      dataValue: [
-        "Some text",
-        {
-          "unit": "cubits"
-          "value": 42
-        },
+      dataValue:
+        - Some text
+        - unit: cubits
+          value: 42
         null
       ]
       externalValue: ./examples/OneTwoThree.xml
@@ -4460,11 +4481,10 @@ application/xml:
       type: string
   examples:
     Report:
-      dataValue: [
-        "Some preamble text.",
-        42,
-        "Some postamble text."
-      ]
+      dataValue:
+        - Some preamble text.
+        - 42
+        - Some postamble text.
       externalValue: ./examples/Report.xml
 ```
 
@@ -4509,18 +4529,16 @@ application/xml:
         - "null"
   examples:
     productWithNulls:
-      dataValue: {
-        "count": null,
-        "description": "Thing",
-        "related": null
-      }
+      dataValue:
+        count: null
+        description: Thing
+        related: null
       externalValue: ./examples/productWithNulls.xml
     productNoNulls:
-      dataValue: {
-        "count": 42,
-        "description: "Thing"
-        "related": {}
-      }
+      dataValue:
+        count: 42
+        description: Thing
+        related: {}
       externalValue: ./examples/productNoNulls.xml
 ```
 

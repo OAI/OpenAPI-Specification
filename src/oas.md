@@ -62,10 +62,10 @@ In order to preserve the ability to round-trip between YAML and JSON formats, YA
 The recommendation in previous versions of this specification to restrict YAML to its "JSON" [schema ruleset](https://yaml.org/spec/1.2/spec.html#id2803231) allowed for the inclusion of certain values that (despite the name) cannot be represented in JSON.
 OAD authors SHOULD NOT rely on any such JSON-incompatible YAML values.
 
-### Case-Sensitivity
+### Case Sensitivity
 
 As most field names and values in the OpenAPI Specification are case-sensitive, this document endeavors to call out any case-insensitive names and values.
-However, the case-sensitivity of field names and values that map directly to HTTP concepts follow the case-sensitivity rules of HTTP, even if this document does not make a note of every concept.
+However, the case sensitivity of field names and values that map directly to HTTP concepts follow the case sensitivity rules of HTTP, even if this document does not make a note of every concept.
 
 ### Rich Text Formatting
 

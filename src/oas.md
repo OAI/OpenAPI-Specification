@@ -95,7 +95,7 @@ In addition to the required fields, at least one of the `components`, `paths`, o
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="oas-version"></a>openapi | `string` | **REQUIRED**. This string MUST be the major and minor [version number](#versions-and-deprecation) of the OpenAPI Specification that the OpenAPI document uses (e.g. `"3.2"`), and MAY also contain the patch number (e.g. `"3.2.0"`). The major and minor version numbers from the `openapi` field MUST be used by tooling to interpret the OpenAPI document, while the patch number SHOULD be ignored. This field is _not_ related to the [`info.version`](#info-version) string, which describes the OpenAPI document's version. |
-| <a name="oas-self"></a>$self | `string` | This string MUST be in the form of a URI-reference as defined by [[RFC3986]] [Section 4.1](https://www.rfc-editor.org/rfc/rfc3986#section-4.1). The `$self` field provides the self-assigned URI of this document, which also serves as its base URI in accordance with [[RFC3986]] [Section 5.1.1](https://www.rfc-editor.org/rfc/rfc3986#section-5.1.1). Implementations MUST support identifying the targets of [API description URIs](#relative-references-in-api-description-uris) using the URI defined by this field when it is present. See [Establishing the Base URI](#establishing-the-base-uri) for the base URI behavior when `$self` is absent or relative, and see [Appendix F]((#appendix-f-examples-of-base-uri-determination-and-reference-resolution)) for examples of using `$self` to resolve references. |
+| <a name="oas-self"></a>$self | `string` | This string MUST be in the form of a URI reference as defined by [[RFC3986]] [Section 4.1](https://www.rfc-editor.org/rfc/rfc3986#section-4.1). The `$self` field provides the self-assigned URI of this document, which also serves as its base URI in accordance with [[RFC3986]] [Section 5.1.1](https://www.rfc-editor.org/rfc/rfc3986#section-5.1.1). Implementations MUST support identifying the targets of [API description URIs](#relative-references-in-api-description-uris) using the URI defined by this field when it is present. See [Establishing the Base URI](#establishing-the-base-uri) for the base URI behavior when `$self` is absent or relative, and see [Appendix F]((#appendix-f-examples-of-base-uri-determination-and-reference-resolution)) for examples of using `$self` to resolve references. |
 | <a name="oas-info"></a>info | [Info Object](#info-object) | **REQUIRED**. Provides metadata about the API. The metadata MAY be used by tooling as required. |
 | <a name="oas-json-schema-dialect"></a> jsonSchemaDialect | `string` | The default value for the `$schema` keyword within [Schema Objects](#schema-object) contained within this OAS document. This MUST be in the form of a URI. |
 | <a name="oas-servers"></a>servers | [[Server Object](#server-object)] | An array of Server Objects, which provide connectivity information to a target server. If the `servers` field is not provided, or is an empty array, the default value would be an array consisting of a single [Server Object](#server-object) with a [url](#server-url) value of `/`. |
@@ -114,7 +114,7 @@ Implementations MAY choose to support referencing by other URIs such as the retr
 #### OpenAPI Description Structure
 
 An **OpenAPI Description** (**OAD**) formally describes the surface of an API and its semantics.
-An OAD MAY be made up of a single document, or be distributed across multiple documents that are connected by various fields using [URI references](#relative-references-in-api-description-uris) and [implicit connections](#resolving implicit connections).
+An OAD MAY be made up of a single document, or be distributed across multiple documents that are connected by various fields using [URI references](#relative-references-in-api-description-uris) and [implicit connections](#resolving-implicit-connections).
 
 In order for parsing behavior to be well-defined, all documents in an OAD MUST have either an OpenAPI Object or a Schema Object at the root, and MUST be parsed as complete documents, as described in the next section.
 
@@ -142,7 +142,7 @@ If only the referenced part of the document is parsed when resolving a reference
 URIs used as references within an OpenAPI Description, or to external documentation or other supplementary information such as a license, are resolved as _identifiers_, and described by this specification as **_URIs_**, in contrast with [API URLs](#relative-references-in-api-urls).
 Note that some URI fields are named `url` for historical reasons, but the descriptive text for those fields uses the correct "URI" terminology.
 
-As noted under [Parsing Documents](#parsing-documents), several fields can be used to associate an OpenAPI document or a Schema Object with a URI, which might not match the document or schema's location.
+As noted under [Parsing Documents](#parsing-documents), several fields can be used to associate an OpenAPI document or a Schema Object with a URI, which might not match the document's or schema's location.
 This allows the same references to be used in different deployment environments, including local filesystems or networks restricted by security policies or connectivity limitations.
 
 Unless specified otherwise, all fields that are URIs MAY be relative references as defined by [[RFC3986]] [Section 4.2](https://tools.ietf.org/html/rfc3986#section-4.2).
@@ -151,7 +151,7 @@ Unless specified otherwise, all fields that are URIs MAY be relative references 
 
 Relative URI references are resolved using the appropriate base URI, which MUST be determined in accordance with [[RFC3986]] [Section 5.1.1 – 5.1.4](https://tools.ietf.org/html/rfc3986#section-5.1.1) and, for Schema objects, [JSON Schema draft 2020-12 Section 8.2](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-8.2), as illustrated by the examples in [Appendix F: Examples of Base URI Determination and Reference Resolution](#appendix-f-examples-of-base-uri-determination-and-reference-resolution).
 
-If `$self` is a relative URI-reference, it is resolved against the next possible base URI source ([[RFC3986]] [Section 5.1.2 – 5.1.4](https://tools.ietf.org/html/rfc3986#section-5.1.2)) before being used for the resolution of other relative URI-references.
+If `$self` is a relative URI reference, it is resolved against the next possible base URI source ([[RFC3986]] [Section 5.1.2 – 5.1.4](https://tools.ietf.org/html/rfc3986#section-5.1.2)) before being used for the resolution of other relative URI references.
 
 The most common base URI source that is used in the event of a missing or relative `$self` (in the [OpenAPI Object](#openapi-object)) and (for [Schema Object](#schema-object)) `$id` is the retrieval URI.
 Implementations MAY support document retrieval, although see the [Security Considerations](#security-considerations) sections for additional guidance.
@@ -160,7 +160,7 @@ Therefore, all implementations SHOULD allow users to provide documents with thei
 
 ###### Resolving URI fragments
 
-If a URI contains a fragment identifier, then the fragment should be resolved per the fragment resolution mechanism of the referenced document. If the representation of the referenced document is JSON or YAML, then the fragment identifier SHOULD be interpreted as a JSON-Pointer as per [RFC6901](https://tools.ietf.org/html/rfc6901).
+If a URI contains a fragment identifier, then the fragment should be resolved per the fragment resolution mechanism of the referenced document. If the representation of the referenced document is JSON or YAML, then the fragment identifier SHOULD be interpreted as a JSON Pointer as per [RFC6901](https://tools.ietf.org/html/rfc6901).
 
 ###### Relative URI References in CommonMark Fields
 
@@ -893,8 +893,6 @@ For headers, the header name MUST NOT be included as part of the serialization, 
 However, names produced by `style: "simple", explode: "true"` are included as they appear within the header value, not as separate headers.
 See the [Header Object](#header-object) for special rules for showing examples of the `Set-Cookie` response header, which violates the normal rules for multiple header values.
 
-The following section illustrates these rules.
-
 #### Style Examples
 
 Assume a parameter named `color` has one of the following values, where the value to the right of the `->` is what would be shown in the `dataValue` field of an Example Object:
@@ -910,7 +908,7 @@ The following table shows serialized examples, as would be shown with the `seria
 * The value _empty_ denotes the empty string, and is unrelated to the `allowEmptyValue` field.
 * The behavior of combinations marked _n/a_ is undefined.
 * The `undefined` column replaces the `empty` column in previous versions of this specification in order to better align with [RFC6570](https://www.rfc-editor.org/rfc/rfc6570.html#section-2.3) terminology, which describes certain values including but not limited to `null` as "undefined" values with special handling; notably, the empty string is _not_ undefined.
-* For `form` and the non-RFC6570 query string styles `spaceDelimited`, `pipeDelimited`, and `deepObject`, see [Appendix C](#appendix-c-using-rfc6570-based-serialization) for more information on constructing query strings from multiple parameters, and [Appendix D](#appendix-d-serializing-headers-and-cookies) for warnings regarding `form` and cookie parameters.
+* For `form` and the non-RFC6570 query string styles `spaceDelimited`, `pipeDelimited`, and `deepObject`, see [Appendix C](#appendix-c-using-rfc6570-based-serialization) for more information on constructing query strings from multiple parameters, and [Appendix D](#appendix-d-serializing-headers-and-cookies) for warnings regarding `form` and `cookie` parameters.
 * The examples are percent-encoded as explained in the [URL Percent-Encoding](#url-percent-encoding) section above; see [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a thorough discussion of percent-encoding concerns, including why unencoded `|` (`%7C`), `[` (`%5B`), and `]` (`%5D`) seem to work in some environments despite not being compliant.
 
 | [`style`](#style-values) | `explode` | `undefined` | `string` | `array` | `object` |
@@ -1174,7 +1172,7 @@ Assuming a path of `/foo`, a server of `https://example.com`, the full URL incor
 https://example.com/foo?%7B%22numbers%22%3A%5B1%2C2%5D%2C%22flag%22%3Anull%7D
 ```
 
-A querystring parameter that uses JSONPath.
+A querystring parameter that uses [[?RFC9535|JSONPath]].
 Note that in this example we not only do not repeat `dataValue`, but we use the shorthand `example` because the `application/jsonpath` value is a string that, at the media type level, is serialized as-is:
 
 ```yaml
@@ -1338,7 +1336,7 @@ Some users of `text/event-stream` use a format such as JSON for field values, pa
 Use JSON Schema's keywords for working with the [contents of string-encoded data](https://www.ietf.org/archive/id/draft-bhutton-json-schema-validation-01.html#name-a-vocabulary-for-the-conten), particularly `contentMediaType` and `contentSchema`, to describe and validate such fields with more detail than string-related validation keywords such as `pattern` can support.
 Note that `contentSchema` is [not automatically validated by default](https://www.ietf.org/archive/id/draft-bhutton-json-schema-validation-01.html#name-implementation-requirements-2) (see also the [Non-validating constraint keywords](#non-validating-constraint-keywords) section of this specification).
 
-The following Schema Object is a generic schema for the `text/event-stream` media type as documented by the HTML specification as of the time of this writing:
+The following Schema Object is a generic schema for the `text/event-stream` media type as documented by the [[?HTML]] specification as of the time of this writing:
 
 ```yaml
 type: object
@@ -1358,7 +1356,7 @@ properties:
 
 #### Encoding Usage and Restrictions
 
-These encoding fields define how to map each [Encoding Object](#encoding object) to a specific value in the data.
+These encoding fields define how to map each [Encoding Object](#encoding-object) to a specific value in the data.
 Each field has its own set of media types with which it can be used; for all other media types all three fields SHALL be ignored.
 
 ##### Encoding By Name
@@ -1571,7 +1569,7 @@ Our `application/json-seq` example has to be an external document because of the
 
 ##### Server-Sent Event Streams
 
-For this example, assume that the generic event schema provided in the [Special Considerations for `text/event-stream` Content](#special-considerations-for-server-sent-events) section is available at `#/components/schemas/Event`:
+For this example, assume that the generic event schema provided in the [Special Considerations for Server-Sent Events](#special-considerations-for-server-sent-events) section is available at `#/components/schemas/Event`:
 
 ```yaml
 description: A request body to add a stream of typed data.
@@ -2331,7 +2329,7 @@ The various fields and types of examples are explained in more detail under [Wor
 | <a name="example-description"></a>description | `string` | Long description for the example. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="example-data-value"></a>dataValue | Any | An example of the data structure that MUST be valid according to the relevant [Schema Object](#schema-object).  If this field is present, `value` MUST be absent. |
 | <a name="example-serialized-value"></a>serializedValue | `string` | An example of the serialized form of the value, including encoding and escaping as described under [Validating Examples](#validating-examples).  If `dataValue` is present, then this field SHOULD contain the serialization of the given data.  Otherwise, it SHOULD be the valid serialization of a data value that itself MUST be valid as described for `dataValue`.  This field SHOULD NOT be used if the serialization format is JSON, as the data form is easier to work with. If this field is present, `value`, and `externalValue` MUST be absent. |
-| <a name="example-external-value"></a>externalValue | `string` | A URI that identifies the serialized example in a separate document, allowing for values not easily or readably expressed as a Unicode string.  If `dataValue` is present, then this field SHOULD identify a serialization of the given data.  Otherwise, the value SHOULD be the valid serialization of a data value that itself MUST be valid as described for `dataValue`. If this field is present, `serializedValue`, and `value` MUST be absent. See also the rules for resolving [Relative References](#relative-references-in-api-description-uris). |
+| <a name="example-external-value"></a>externalValue | `string` | A URI that identifies the serialized example in a separate document, allowing for values not easily or readably expressed as a Unicode string.  If `dataValue` is present, then this field SHOULD identify a serialization of the given data.  Otherwise, the value SHOULD be the valid serialization of a data value that itself MUST be valid as described for `dataValue`. If this field is present, `serializedValue` and `value` MUST be absent. See also the rules for resolving [Relative References](#relative-references-in-api-description-uris). |
 | <a name="example-value"></a>value | Any | Embedded literal example. The `value` field and `externalValue` field are mutually exclusive. To represent examples of media types that cannot naturally be represented in JSON or YAML, use a string value to contain the example, escaping where necessary.<br><br>**Deprecated for non-JSON serialization targets:** Use `dataValue` and/or `serializedValue`, which both have unambiguous syntax and semantics, instead. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
@@ -2578,10 +2576,10 @@ solely by the existence of a relationship.
 
 ##### `operationRef` Examples
 
-As the `operationId` is an optional field in an [Operation Object](#operation-object), references MAY instead be made through a URI-reference with `operationRef`.
+As the `operationId` is an optional field in an [Operation Object](#operation-object), references MAY instead be made through a URI reference with `operationRef`.
 Note that both of these examples reference operations that can be identified via the [Paths Object](#paths-object) to ensure that the operation's path template is unambiguous.
 
-A relative URI-reference `operationRef`:
+A relative URI reference `operationRef`:
 
 ```yaml
 links:
@@ -5222,7 +5220,7 @@ This section shows each of the four possible sources of base URIs, followed by a
 
 ### Base URI Within Content
 
-A base URI within the resource's content (RFC3986 Section 5.1.1) is the highest-precedence source of a base URI.
+A base URI within the resource's content ([RFC3986](https://tools.ietf.org/html/rfc3986#section-5.1.1)) is the highest-precedence source of a base URI.
 For OpenAPI documents, this source is the OpenAPI Object's `$self` field, while for Schema Objects that contain a `$id`, or are a subschema of a Schema Object containing a `$id`, the source is the `$id` field:
 
 Assume the retrieval URI of the following document is `file://home/someone/src/api/openapi.yaml`:
@@ -5282,7 +5280,7 @@ Note also that it is impossible for the reference at `#/components/schemas/Foo/p
 
 ### Base URI From Encapsulating Entity
 
-If no base URI can be determined within the content, the next location to search is any encapsulating entity (RFC3986 Section 5.1.2).
+If no base URI can be determined within the content, the next location to search is any encapsulating entity ([RFC3986](https://tools.ietf.org/html/rfc3986#section-5.1.2)).
 
 This is common for Schema Objects encapsulated within an OpenAPI document.
 An example of an OpenAPI Object itself being encapsulated in another entity would be a `multipart/related` archive ([[?RFC2557]]), such as the following `multipart/related; boundary="boundary-example"; type="application/openapi+yaml"` document.
@@ -5343,7 +5341,7 @@ Similarly, the `url` field of the [External Documentation Object](#external-docu
 
 ### Base URI From the Retrieval URI
 
-If no base URI is provided from either of the previous sources, the next source is the retrieval URI (RFC 3986 Section 5.1.3).
+If no base URI is provided from either of the previous sources, the next source is the retrieval URI ([RFC3986](https://tools.ietf.org/html/rfc3986#section-5.1.3)).
 
 Assume this document was retrieved from `https://example.com/api/openapis.yaml`:
 
@@ -5378,12 +5376,12 @@ Resolving the `$ref: schemas/foo` against the retrieval URI of the OpenAPI docum
 
 ### Application-Specific Default Base URI
 
-When constructing an OpenAPI document in memory that does not have a `$self`, or an encapsulating entity, or a retrieval URI, applications can resolve internal (fragment-only) references by assuming a default base URI (RFC3986 Section 5.1.4).
+When constructing an OpenAPI document in memory that does not have a `$self`, or an encapsulating entity, or a retrieval URI, applications can resolve internal (fragment-only) references by assuming a default base URI ([RFC3986](https://tools.ietf.org/html/rfc3986#section-5.1.4)).
 While this sort of internal resolution can be performed in practice without choosing a base URI, choosing one, such as a URN with a randomly generated UUID (e.g. `urn:uuid:f26cdaad-3193-4398-a838-4ecb7326c4c5`) avoids the need to implement it as a special case.
 
 ### Resolving Relative `$self` and `$id`
 
-Let's re-consider the first example in this appendix, but with relative URI-references for `$self` and `$id`, and retrieval URIs that support that relative usage:
+Let's re-consider the first example in this appendix, but with relative URI references for `$self` and `$id`, and retrieval URIs that support that relative usage:
 
 
 Assume that the following is retrieved from `https://staging.example.com/api/openapi`:
@@ -5427,7 +5425,7 @@ components:
       type: string
 ```
 
-In this example, all of the `$self` and `$id` values are relative URI-references consisting of an absolute path.
+In this example, all of the `$self` and `$id` values are relative URI references consisting of an absolute path.
 This allows the retrieval URI to set the host (and scheme), in this case `https://staging.example.com`, resulting in the first document's `$self` being `https://staging.example.com/openapi`, and the second document's `$self` being `https://staging.example.com/api/shared/foo`, with `$id` values of `https://staging.example.com/api/schemas/foo` and `https://staging.example.com/api/schemas/bar`.
 Relative `$self` and `$id` values of this sort  allow the same set of documents to work when deployed to other hosts, e.g. `https://example.com` (production) or `https://localhost:8080` (local development).
 

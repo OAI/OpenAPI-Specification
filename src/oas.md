@@ -46,8 +46,8 @@ Unlike undefined behavior, it is safe to rely on implementation-defined behavior
 An OpenAPI document that conforms to the OpenAPI Specification is itself a JSON object, which may be represented either in [[RFC8259|JSON]] or [[YAML|YAML]] format.
 Examples in this specification will be shown in YAML for brevity.
 
-All field names in the specification are **case sensitive**.
-This includes all fields that are used as keys in a map, except where explicitly noted that keys are **case insensitive**.
+All field names in the specification are **case-sensitive**.
+This includes all fields that are used as keys in a map, except where explicitly noted that keys are **case-insensitive**.
 
 OAS [Objects](#objects-and-fields) expose two types of fields: _fixed fields_, which have a declared name, and _patterned fields_, which have a declared pattern for the field name.
 
@@ -768,7 +768,7 @@ There are five possible parameter locations specified by the `in` field:
 * path - Used together with [Path Templating](#path-templating), where the parameter value is actually part of the operation's URL. This does not include the host or base path of the API. For example, in `/items/{itemId}`, the path parameter is `itemId`.
 * query - Parameters that are appended to the URL. For example, in `/items?id=###`, the query parameter is `id`; MUST NOT appear in the same operation as an `in: "querystring"` parameter.
 * querystring - A parameter that treats the entire URL query string as a value which MUST be specified using the `content` field, most often with media type `application/x-www-form-urlencoded` using [Encoding Objects](#encoding-object) in the same way as with request bodies of that media type; MUST NOT appear more than once, and MUST NOT appear in the same operation as any `in: "query"` parameters.
-* header - Custom headers that are expected as part of the request. Note that [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.1) states header names are case insensitive.
+* header - Custom headers that are expected as part of the request. Note that [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.1) states header names are case-insensitive.
 * cookie - Used to pass a specific cookie value to the API.
 
 #### Fixed Fields
@@ -785,7 +785,7 @@ The `example` and `examples` fields are mutually exclusive; see [Working with Ex
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="parameter-name"></a>name | `string` | **REQUIRED**. The name of the parameter. Parameter names are _case sensitive_. <ul><li>If [`in`](#parameter-in) is `"path"`, the `name` field MUST correspond to a single template expression occurring within the [path](#paths-path) field in the [Paths Object](#paths-object). See [Path Templating](#path-templating) for further information.<li>If [`in`](#parameter-in) is `"header"` and the `name` field is `"Accept"`, `"Content-Type"` or `"Authorization"`, the parameter definition SHALL be ignored.<li>If `in` is `"querystring"`, or for [certain combinations](#style-examples) of [`style`](#parameter-style) and [`explode`](#parameter-explode), the value of `name` is not used in the parameter serialization.<li>For all other cases, the `name` corresponds to the parameter name used by the [`in`](#parameter-in) field.</ul> |
+| <a name="parameter-name"></a>name | `string` | **REQUIRED**. The name of the parameter. Parameter names are _case-sensitive_. <ul><li>If [`in`](#parameter-in) is `"path"`, the `name` field MUST correspond to a single template expression occurring within the [path](#paths-path) field in the [Paths Object](#paths-object). See [Path Templating](#path-templating) for further information.<li>If [`in`](#parameter-in) is `"header"` and the `name` field is `"Accept"`, `"Content-Type"` or `"Authorization"`, the parameter definition SHALL be ignored.<li>If `in` is `"querystring"`, or for [certain combinations](#style-examples) of [`style`](#parameter-style) and [`explode`](#parameter-explode), the value of `name` is not used in the parameter serialization.<li>For all other cases, the `name` corresponds to the parameter name used by the [`in`](#parameter-in) field.</ul> |
 | <a name="parameter-in"></a>in | `string` | **REQUIRED**. The location of the parameter. Possible values are `"query"`, `"querystring"`, `"header"`, `"path"` or `"cookie"`. |
 | <a name="parameter-description"></a>description | `string` | A brief description of the parameter. This could contain examples of use. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="parameter-required"></a>required | `boolean` | Determines whether this parameter is mandatory. If the [parameter location](#parameter-in) is `"path"`, this field is **REQUIRED** and its value MUST be `true`. Otherwise, the field MAY be included and its default value is `false`. |
@@ -2157,7 +2157,7 @@ Describes a single response from an API operation, including design-time, static
 | ---- | :----: | ---- |
 | <a name="response-summary"></a>summary | `string` | A short summary of the meaning of the response. |
 | <a name="response-description"></a>description | `string` | A description of the response. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
-| <a name="response-headers"></a>headers | Map[`string`, [Header Object](#header-object) \| [Reference Object](#reference-object)] | Maps a header name to its definition. [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.1) states header names are case insensitive. If a response header is defined with the name `"Content-Type"`, it SHALL be ignored. |
+| <a name="response-headers"></a>headers | Map[`string`, [Header Object](#header-object) \| [Reference Object](#reference-object)] | Maps a header name to its definition. [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.1) states header names are case-insensitive. If a response header is defined with the name `"Content-Type"`, it SHALL be ignored. |
 | <a name="response-content"></a>content | Map[`string`, [Media Type Object](#media-type-object) \| [Reference Object](#reference-object)] | A map containing descriptions of potential response payloads. The key is a media type or [media type range](https://www.rfc-editor.org/rfc/rfc9110.html#appendix-A) and the value describes it. For responses that match multiple keys, only the most specific key is applicable. e.g. `"text/plain"` overrides `"text/*"` |
 | <a name="response-links"></a>links | Map[`string`, [Link Object](#link-object) \| [Reference Object](#reference-object)] | A map of operations links that can be followed from the response. The key of the map is a short name for the link, following the naming constraints of the names for [Component Objects](#components-object). |
 

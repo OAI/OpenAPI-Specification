@@ -766,8 +766,8 @@ See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a detail
 There are five possible parameter locations specified by the `in` field:
 
 * path - Used together with [Path Templating](#path-templating), where the parameter value is actually part of the operation's URL. This does not include the host or base path of the API. For example, in `/items/{itemId}`, the path parameter is `itemId`.
-* query - Parameters that are appended to the URL. For example, in `/items?id=###`, the query parameter is `id`; MUST NOT appear in the same operation as an `in: "querystring"` parameter.
-* querystring - A parameter that treats the entire URL query string as a value which MUST be specified using the `content` field, most often with media type `application/x-www-form-urlencoded` using [Encoding Objects](#encoding-object) in the same way as with request bodies of that media type; MUST NOT appear more than once, and MUST NOT appear in the same operation as any `in: "query"` parameters.
+* query - Parameters that are appended to the URL. For example, in `/items?id=###`, the query parameter is `id`; MUST NOT appear in the same operation (or in the operation's path-item) as an `in: "querystring"` parameter.
+* querystring - A parameter that treats the entire URL query string as a value which MUST be specified using the `content` field, most often with media type `application/x-www-form-urlencoded` using [Encoding Objects](#encoding-object) in the same way as with request bodies of that media type; MUST NOT appear more than once, and MUST NOT appear in the same operation (or in the operation's path-item) as any `in: "query"` parameters.
 * header - Custom headers that are expected as part of the request. Note that [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.1) states header names are case-insensitive.
 * cookie - Used to pass a specific cookie value to the API.
 
@@ -833,18 +833,18 @@ For use with `in: "querystring"` and `application/x-www-form-urlencoded`, see [E
 
 #### Style Values
 
-In order to support common ways of serializing simple parameters, a set of `style` values are defined.
+In order to support common ways of serializing simple parameters, a set of `style` values are defined. Combinations not represented in this table are not permitted.
 
 | `style` | [`type`](#data-types) | `in` | Comments |
 | ---- | ---- | ---- | ---- |
-| matrix | `primitive`, `array`, `object` | `path` | Path-style parameters defined by [RFC6570](https://tools.ietf.org/html/rfc6570#section-3.2.7) |
-| label | `primitive`, `array`, `object` | `path` | Label style parameters defined by [RFC6570](https://tools.ietf.org/html/rfc6570#section-3.2.5) |
-| simple | `primitive`, `array`, `object` | `path`, `header` | Simple style parameters defined by [RFC6570](https://tools.ietf.org/html/rfc6570#section-3.2.2). This option replaces `collectionFormat` with a `csv` value from OpenAPI 2.0. |
-| form | `primitive`, `array`, `object` | `query`, `cookie` | Form style parameters defined by [RFC6570](https://tools.ietf.org/html/rfc6570#section-3.2.8). This option replaces `collectionFormat` with a `csv` (when `explode` is false) or `multi` (when `explode` is true) value from OpenAPI 2.0. |
-| spaceDelimited | `array`, `object` | `query` | Space separated array values or object properties and values. This option replaces `collectionFormat` equal to `ssv` from OpenAPI 2.0. |
-| pipeDelimited | `array`, `object` | `query` | Pipe separated array values or object properties and values. This option replaces `collectionFormat` equal to `pipes` from OpenAPI 2.0. |
-| deepObject | `object` | `query` | Allows objects with scalar properties to be represented using form parameters. The representation of array or object properties is not defined (but see [Extending Support for Querystring Formats](#extending-support-for-querystring-formats) for alternatives). |
-| cookie | `primitive`, `array`, `object` | `cookie` | Analogous to `form`, but following [[RFC6265]] `Cookie` syntax rules, meaning that name-value pairs are separated by a semicolon followed by a single space (e.g. `n1=v1; n2=v2`), and no percent-encoding or other escaping is applied; data values that require any sort of escaping MUST be provided in escaped form. |
+| `matrix` | primitive, `array`, `object` | `path` | Path-style parameters defined by [RFC6570](https://tools.ietf.org/html/rfc6570#section-3.2.7) |
+| `label` | primitive, `array`, `object` | `path` | Label style parameters defined by [RFC6570](https://tools.ietf.org/html/rfc6570#section-3.2.5) |
+| `simple` | primitive, `array`, `object` | `path`, `header` | Simple style parameters defined by [RFC6570](https://tools.ietf.org/html/rfc6570#section-3.2.2). This option replaces `collectionFormat` with a `csv` value from OpenAPI 2.0. |
+| `form` | primitive, `array`, `object` | `query`, `cookie` | Form style parameters defined by [RFC6570](https://tools.ietf.org/html/rfc6570#section-3.2.8). This option replaces `collectionFormat` with a `csv` (when `explode` is false) or `multi` (when `explode` is true) value from OpenAPI 2.0. |
+| `spaceDelimited` | `array`, `object` | `query` | Space separated array values or object properties and values. This option replaces `collectionFormat` equal to `ssv` from OpenAPI 2.0. |
+| `pipeDelimited` | `array`, `object` | `query` | Pipe separated array values or object properties and values. This option replaces `collectionFormat` equal to `pipes` from OpenAPI 2.0. |
+| `deepObject` | `object` | `query` | Allows objects with scalar properties to be represented using form parameters. The representation of array or object properties is not defined (but see [Extending Support for Querystring Formats](#extending-support-for-querystring-formats) for alternatives). |
+| `cookie` | primitive, `array`, `object` | `cookie` | Analogous to `form`, but following [[RFC6265]] `Cookie` syntax rules, meaning that name-value pairs are separated by a semicolon followed by a single space (e.g. `n1=v1; n2=v2`), and no percent-encoding or other escaping is applied; data values that require any sort of escaping MUST be provided in escaped form. |
 
 #### URL Percent-Encoding
 
@@ -956,7 +956,9 @@ schema:
 style: simple
 examples:
   Tokens:
-    dataValue: [12345678, 90099]
+    dataValue:
+      - 12345678
+      - 90099
     serializedValue: "12345678,90099"
 ```
 
@@ -982,10 +984,9 @@ examples:
         to "%2C" in the data, as it is forbidden in
         cookie values.  However, the exclamation point (!)
         is legal in cookies, so it can be left unencoded.
-    dataValue: {
-      "greeting": "Hello%2C world!",
-      "code": 42
-    }
+    dataValue:
+      greeting: Hello%2C world!
+      code: 42
     serializedValue: "greeting=Hello%2C world!; code=42"
 ```
 
@@ -1004,7 +1005,7 @@ examples:
       pre-percent-encoded.  This results in all non-URL-safe
       characters, rather than just the one non-cookie-safe
       character, getting percent-encoded.
-    dataValue: "Hello, world!"
+    dataValue: Hello, world!
     serializedValue: "greeting=Hello%2C%20world%21"
 ```
 
@@ -1044,7 +1045,9 @@ style: form
 explode: true
 examples:
   ObjectList:
-    dataValue: ["one thing", "another thing"]
+    dataValue:
+      - one thing
+      - another thing
     serializedValue: "thing=one%20thing&thing=another%20thing"
 ```
 
@@ -1060,10 +1063,9 @@ schema:
 style: form
 examples:
   Pagination:
-    dataValue: {
-      "page": 4,
-      "pageSize": 50
-    }
+    dataValue:
+      page: 4
+      pageSize: 50
     serializeValue: page=4&pageSize=50
 ```
 
@@ -1085,16 +1087,14 @@ content:
         long:
           type: number
     examples:
-      dataValue: {
-        "lat": 10,
-        "long": 60
-      }
+      dataValue:
+        lat: 10
+        long: 60
       serializedValue: '{"lat":10,"long":60}'
 examples:
-  dataValue: {
-    "lat": 10,
-    "long": 60
-  }
+  dataValue:
+    lat: 10
+    long: 60
   serializedValue: coordinates=%7B%22lat%22%3A10%2C%22long%22%3A60%7D
 ```
 
@@ -1152,17 +1152,19 @@ content:
     examples:
       TwoNoFlag:
         description: Serialize with minimized whitespace
-        dataValue: {
-          "numbers": [1, 2],
-          "flag": null
-        }
+        dataValue:
+          numbers:
+            - 1
+            - 2
+          flag: null
         serializedValue: '{"numbers":[1,2],"flag":null}'
 examples:
   TwoNoFlag:
-    dataValue: {
-      "numbers": [1, 2],
-      "flag": null
-    }
+    dataValue:
+      numbers:
+        - 1
+        - 2
+      flag: null
     serializedValue: "%7B%22numbers%22%3A%5B1%2C2%5D%2C%22flag%22%3Anull%7D"
 ```
 
@@ -2426,10 +2428,9 @@ content:
     examples:
       noRating:
         summary: A not-yet-rated work
-        dataValue: {
-          "author": "A. Writer",
-          "title": "The Newest Book"
-        }
+        dataValue:
+          author: A. Writer
+          title: The Newest Book
       withRating:
         summary: A work with an average rating of 4.5 stars
         dataValue:
@@ -3912,7 +3913,7 @@ application/xml:
   examples:
     pets:
       dataValue:
-        animals: "dog, cat, hamster"
+        animals: dog, cat, hamster
       serializedValue: |
         <document>
           <animals>dog, cat, hamster</animals>
@@ -3935,7 +3936,10 @@ application/xml:
   examples:
     pets:
       dataValue:
-        animals: [dog, cat, hamster]
+        animals:
+          - dog
+          - cat
+          - hamster
       externalValue: ./examples/pets.xml
 ```
 
@@ -3965,7 +3969,10 @@ application/xml:
   examples:
     pets:
       dataValue:
-        animals: [dog, cat, hamster]
+        animals:
+          - dog
+          - cat
+          - hamster
       externalValue: ./examples/pets.xml
 ```
 
@@ -4041,7 +4048,10 @@ application/xml:
   examples:
     pets:
       dataValue:
-        animals: [dog, cat, hamster]
+        animals:
+          - dog
+          - cat
+          - hamster
       externalValue: ./examples/pets.xml
 ```
 
@@ -4075,7 +4085,10 @@ application/xml:
   examples:
     pets:
       dataValue:
-        animals: [dog, cat, hamster]
+        animals:
+          - dog
+          - cat
+          - hamster
       externalValue: ./examples/pets.xml
 ```
 
@@ -4107,7 +4120,10 @@ application/xml:
   examples:
     pets:
       dataValue:
-        animals: [dog, cat, hamster]
+        animals:
+          - dog
+          - cat
+          - hamster
       externalValue: ./examples/pets.xml
 ```
 
@@ -4143,7 +4159,10 @@ application/xml:
   examples:
     pets:
       dataValue:
-        animals: [dog, cat, hamster]
+        animals:
+          - dog
+          - cat
+          - hamster
       externalValue: ./examples/pets.xml
 ```
 
@@ -4180,7 +4199,10 @@ application/xml:
   examples:
     pets:
       dataValue:
-        animals: [dog, cat, hamster]
+        animals:
+          - dog
+          - cat
+          - hamster
       externalValue: ./examples/pets.xml
 ```
 
@@ -4215,7 +4237,10 @@ application/xml:
   examples:
     pets:
       dataValue:
-        animals: [dog, cat, hamster]
+        animals:
+          - dog
+          - cat
+          - hamster
       externalValue: ./examples/pets.xml
 ```
 
@@ -4323,9 +4348,8 @@ paths:
                 $ref: "#/components/schemas/Documentation"
               examples:
                 stored:
-                  dataValue: {
-                    "content": "<html><head><title>Awesome Docs</title></head><body></body><html>"
-                  }
+                  dataValue:
+                    content: <html><head><title>Awesome Docs</title></head><body></body><html>
                   externalValue: ./examples/stored.xml
     put:
       requestBody:
@@ -4339,9 +4363,8 @@ paths:
               $ref: "#/components/schemas/Documentation"
             examples:
               updated:
-                dataValue: {
-                  "content": "<html><head><title>Awesome Docs</title></head><body></body><html>"
-                }
+                dataValue:
+                  content: <html><head><title>Awesome Docs</title></head><body></body><html>
                 externalValue: ./examples/updated.xml
       responses:
         "201": {}
@@ -4418,12 +4441,10 @@ application/xml:
       - "null"
   examples:
     OneTwoThree:
-      dataValue: [
-        "Some text",
-        {
-          "unit": "cubits"
-          "value": 42
-        },
+      dataValue:
+        - Some text
+        - unit: cubits
+          value: 42
         null
       ]
       externalValue: ./examples/OneTwoThree.xml
@@ -4460,11 +4481,10 @@ application/xml:
       type: string
   examples:
     Report:
-      dataValue: [
-        "Some preamble text.",
-        42,
-        "Some postamble text."
-      ]
+      dataValue:
+        - Some preamble text.
+        - 42
+        - Some postamble text.
       externalValue: ./examples/Report.xml
 ```
 
@@ -4509,18 +4529,16 @@ application/xml:
         - "null"
   examples:
     productWithNulls:
-      dataValue: {
-        "count": null,
-        "description": "Thing",
-        "related": null
-      }
+      dataValue:
+        count: null
+        description: Thing
+        related: null
       externalValue: ./examples/productWithNulls.xml
     productNoNulls:
-      dataValue: {
-        "count": 42,
-        "description: "Thing"
-        "related": {}
-      }
+      dataValue:
+        count: 42
+        description: Thing
+        related: {}
       externalValue: ./examples/productNoNulls.xml
 ```
 

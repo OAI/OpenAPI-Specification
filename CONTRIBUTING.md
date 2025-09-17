@@ -3,7 +3,7 @@
 ## Building the site
 
 The registry site uses [jekyll](https://jekyllrb.com/),
-a Ruby based static site generator, with the Dinky theme.
+a Ruby based static site generator, with [Just the Docs](https://github.com/just-the-docs/just-the-docs).
 
 ### Docker dev
 
@@ -26,7 +26,7 @@ bundle install
 With all the gems (dependencies) installed, you can launch the jekyll server.
 
 ``` bash
-bundle exec jekyll serve
+bundle exec jekyll serve --livereload
 ```
 
 It will show output like this, and you can grab the Server address

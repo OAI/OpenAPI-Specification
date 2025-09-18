@@ -1,5 +1,5 @@
 # including External Documentation Object Example
-openapi: 3.2.0
+openapi: "3.2"
 $self: https://example.com/openapi
 info:
   title: Example Pet Store App

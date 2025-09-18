@@ -10,4 +10,3 @@ components:
     invalid_null: null
     invalid_number: 0
     invalid_array: []
-

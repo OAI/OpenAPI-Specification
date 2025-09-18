@@ -29,7 +29,7 @@ components:
               summary: This is a text example
               externalValue: https://foo.bar/examples/address-example.txt
   parameters:
-    with-example:   
+    with-example:
       name: zipCode
       in: query
       schema:

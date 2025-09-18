@@ -193,7 +193,7 @@ $defs:
         additionalProperties:
           $ref: '#/$defs/path-item'
     patternProperties:
-      '^(schemas|responses|parameters|examples|requestBodies|headers|securitySchemes|links|callbacks|pathItems)$':
+      '^(?:schemas|responses|parameters|examples|requestBodies|headers|securitySchemes|links|callbacks|pathItems)$':
         $comment: Enumerating all of the property names in the regex above is necessary for unevaluatedProperties to work as expected
         propertyNames:
           pattern: '^[a-zA-Z0-9._-]+$'
@@ -341,8 +341,6 @@ $defs:
       properties:
         in:
           const: query
-      required:
-        - in
     then:
       properties:
         allowEmptyValue:
@@ -369,8 +367,6 @@ $defs:
               properties:
                 in:
                   const: path
-              required:
-                - in
             then:
               properties:
                 style:
@@ -389,8 +385,6 @@ $defs:
               properties:
                 in:
                   const: header
-              required:
-                - in
             then:
               properties:
                 style:
@@ -402,8 +396,6 @@ $defs:
               properties:
                 in:
                   const: query
-              required:
-                - in
             then:
               properties:
                 style:
@@ -422,8 +414,6 @@ $defs:
               properties:
                 in:
                   const: cookie
-              required:
-                - in
             then:
               properties:
                 style:
@@ -504,7 +494,6 @@ $defs:
         additionalProperties:
           $ref: '#/$defs/header-or-reference'
       style:
-        default: form
         enum:
           - form
           - spaceDelimited
@@ -513,8 +502,22 @@ $defs:
       explode:
         type: boolean
       allowReserved:
-        default: false
         type: boolean
+    dependentSchemas:
+      style:
+        properties:
+          allowReserved:
+            default: false
+      explode:
+        properties:
+          style:
+            default: form
+          allowReserved:
+            default: false
+      allowReserved:
+        properties:
+          style:
+            default: form
     allOf:
       - $ref: '#/$defs/specification-extensions'
       - $ref: '#/$defs/styles-for-form'
@@ -760,8 +763,6 @@ $defs:
           properties:
             type:
               const: apiKey
-          required:
-            - type
         then:
           properties:
             name:
@@ -780,8 +781,6 @@ $defs:
           properties:
             type:
               const: http
-          required:
-            - type
         then:
           properties:
             scheme:
@@ -810,8 +809,6 @@ $defs:
           properties:
             type:
               const: oauth2
-          required:
-            - type
         then:
           properties:
             flows:
@@ -824,8 +821,6 @@ $defs:
           properties:
             type:
               const: openIdConnect
-          required:
-            - type
         then:
           properties:
             openIdConnectUrl:

@@ -52,6 +52,14 @@ paths:
                   type: number
                 long:
                   type: number
+      - in: cookie
+        name: my_cookie1
+        style: form
+        schema: {}
+      - in: cookie
+        name: my_cookie2
+        style: cookie
+        schema: {}
   /user:
     parameters:
       - in: querystring
@@ -62,7 +70,6 @@ paths:
               # Allow an arbitrary JSON object to keep
               # the example simple
               type: object
-            example: {
-              "numbers": [1, 2],
-              "flag": null
-            }
+            example:
+              numbers: [1, 2]
+              flag: null

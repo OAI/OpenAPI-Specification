@@ -12,7 +12,6 @@ paths:
           # the example simple
           type: object
           # DEPRECATED: don't use example keyword inside Schema Object
-          example: {
-            "numbers": [1, 2],
-            "flag": null
-          }
+          example:
+            numbers: [1, 2]
+            flag: null

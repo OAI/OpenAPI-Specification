@@ -204,7 +204,7 @@ $defs:
         additionalProperties:
           $ref: '#/$defs/media-type-or-reference'
     patternProperties:
-      '^(schemas|responses|parameters|examples|requestBodies|headers|securitySchemes|links|callbacks|pathItems|mediaTypes)$':
+      '^(?:schemas|responses|parameters|examples|requestBodies|headers|securitySchemes|links|callbacks|pathItems|mediaTypes)$':
         $comment: Enumerating all of the property names in the regex above is necessary for unevaluatedProperties to work as expected
         propertyNames:
           pattern: '^[a-zA-Z0-9._-]+$'
@@ -236,9 +236,7 @@ $defs:
         items:
           $ref: '#/$defs/server'
       parameters:
-        type: array
-        items:
-          $ref: '#/$defs/parameter-or-reference'
+        $ref: '#/$defs/parameters'
       additionalOperations:
         type: object
         additionalProperties:
@@ -295,9 +293,7 @@ $defs:
       operationId:
         type: string
       parameters:
-        type: array
-        items:
-          $ref: '#/$defs/parameter-or-reference'
+        $ref: '#/$defs/parameters'
       requestBody:
         $ref: '#/$defs/request-body-or-reference'
       responses:
@@ -333,6 +329,36 @@ $defs:
       - url
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
+
+  parameters:
+    type: array
+    items:
+      $ref: '#/$defs/parameter-or-reference'
+    not:
+      allOf:
+        - contains:
+            type: object
+            properties:
+              in:
+                const: query
+            required:
+              - in
+        - contains:
+            type: object
+            properties:
+              in:
+                const: querystring
+            required:
+              - in
+    contains:
+      type: object
+      properties:
+        in:
+          const: querystring
+      required:
+        - in
+    minContains: 0
+    maxContains: 1
 
   parameter:
     $comment: https://spec.openapis.org/oas/v3.2#parameter-object
@@ -376,8 +402,6 @@ $defs:
           properties:
             in:
               const: query
-          required:
-            - in
         then:
           properties:
             allowEmptyValue:
@@ -387,8 +411,6 @@ $defs:
           properties:
             in:
               const: querystring
-          required:
-            - in
         then:
           required:
             - content
@@ -415,8 +437,6 @@ $defs:
               properties:
                 in:
                   const: path
-              required:
-                - in
             then:
               properties:
                 style:
@@ -435,8 +455,6 @@ $defs:
               properties:
                 in:
                   const: header
-              required:
-                - in
             then:
               properties:
                 style:
@@ -448,8 +466,6 @@ $defs:
               properties:
                 in:
                   const: query
-              required:
-                - in
             then:
               properties:
                 style:
@@ -465,13 +481,13 @@ $defs:
               properties:
                 in:
                   const: cookie
-              required:
-                - in
             then:
               properties:
                 style:
                   default: form
-                  const: form
+                  enum:
+                    - form
+                    - cookie
 
     unevaluatedProperties: false
 
@@ -539,14 +555,14 @@ $defs:
           $ref: '#/$defs/encoding'
       itemEncoding:
         $ref: '#/$defs/encoding'
+    dependentSchemas:
+      encoding:
+        properties:
+          prefixEncoding: false
+          itemEncoding: false
     allOf:
       - $ref: '#/$defs/examples'
       - $ref: '#/$defs/specification-extensions'
-      - dependentSchemas:
-          encoding:
-            properties:
-              prefixEncoding: false
-              itemEncoding: false
     unevaluatedProperties: false
 
   media-type-or-reference:
@@ -571,7 +587,6 @@ $defs:
         additionalProperties:
           $ref: '#/$defs/header-or-reference'
       style:
-        default: form
         enum:
           - form
           - spaceDelimited
@@ -580,7 +595,6 @@ $defs:
       explode:
         type: boolean
       allowReserved:
-        default: false
         type: boolean
       encoding:
         type: object
@@ -592,14 +606,28 @@ $defs:
           $ref: '#/$defs/encoding'
       itemEncoding:
         $ref: '#/$defs/encoding'
+    dependentSchemas:
+      encoding:
+        properties:
+          prefixEncoding: false
+          itemEncoding: false
+      style:
+        properties:
+          allowReserved:
+            default: false
+      explode:
+        properties:
+          style:
+            default: form
+          allowReserved:
+            default: false
+      allowReserved:
+        properties:
+          style:
+            default: form
     allOf:
       - $ref: '#/$defs/specification-extensions'
       - $ref: '#/$defs/styles-for-form'
-      - dependentSchemas:
-          encoding:
-            properties:
-              prefixEncoding: false
-              itemEncoding: false
     unevaluatedProperties: false
 
   responses:
@@ -783,7 +811,6 @@ $defs:
           allowReserved:
             default: false
             type: boolean
-        $ref: '#/$defs/examples'
     allOf:
     - $ref: '#/$defs/examples'
     - $ref: '#/$defs/specification-extensions'
@@ -872,8 +899,6 @@ $defs:
           properties:
             type:
               const: apiKey
-          required:
-            - type
         then:
           properties:
             name:
@@ -892,8 +917,6 @@ $defs:
           properties:
             type:
               const: http
-          required:
-            - type
         then:
           properties:
             scheme:
@@ -922,8 +945,6 @@ $defs:
           properties:
             type:
               const: oauth2
-          required:
-            - type
         then:
           properties:
             flows:
@@ -939,8 +960,6 @@ $defs:
           properties:
             type:
               const: openIdConnect
-          required:
-            - type
         then:
           properties:
             openIdConnectUrl:

@@ -15,7 +15,8 @@ type:
 properties:
   discriminator:
     $ref: '#/$defs/discriminator'
-  example: true
+  example:
+    deprecated: true
   externalDocs:
     $ref: '#/$defs/external-docs'
   xml:

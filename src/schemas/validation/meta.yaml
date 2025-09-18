@@ -15,7 +15,8 @@ type:
 properties:
   discriminator:
     $ref: '#/$defs/discriminator'
-  example: true
+  example:
+    deprecated: true
   externalDocs:
     $ref: '#/$defs/external-docs'
   xml:
@@ -33,8 +34,6 @@ $defs:
         type: string
       propertyName:
         type: string
-    required:
-      - propertyName
     type: object
     unevaluatedProperties: false
 
@@ -74,8 +73,10 @@ $defs:
         type: string
       attribute:
         type: boolean
+        deprecated: true
       wrapped:
         type: boolean
+        deprecated: true
     type: object
     dependentSchemas:
       nodeType:

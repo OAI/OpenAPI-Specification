@@ -74,8 +74,10 @@ $defs:
         type: string
       attribute:
         type: boolean
+        deprecated: true
       wrapped:
         type: boolean
+        deprecated: true
     type: object
     dependentSchemas:
       nodeType:

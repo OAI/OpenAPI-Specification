@@ -358,7 +358,7 @@ The server URL templating is defined by the following [ABNF](https://tools.ietf.
 ```abnf
 server-url-template  = 1*( literals / server-variable )
 server-variable      = "{" server-variable-name "}"
-server-variable-name = 1*( %x00-7A / %x7C / %x7E-10FFFF ) ; every UTF8 character except { and }
+server-variable-name = 1*( %x00-7A / %x7C / %x7E-10FFFF ) ; every Unicode character except { and }
 
 literals       = 1*( %x21 / %x23-24 / %x26-3B / %x3D / %x3F-5B
                / %x5D / %x5F / %x61-7A / %x7E / ucschar / iprivate
@@ -528,7 +528,7 @@ path-template                  = "/" *( path-segment "/" ) [ path-segment ]
 path-segment                   = 1*( path-literal / template-expression )
 path-literal                   = 1*pchar
 template-expression            = "{" template-expression-param-name "}"
-template-expression-param-name = 1*( %x00-7A / %x7C / %x7E-10FFFF ) ; every UTF8 character except { and }
+template-expression-param-name = 1*( %x00-7A / %x7C / %x7E-10FFFF ) ; every Unicode character except { and }
 
 pchar               = unreserved / pct-encoded / sub-delims / ":" / "@"
 unreserved          = ALPHA / DIGIT / "-" / "." / "_" / "~"

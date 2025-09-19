@@ -4259,7 +4259,7 @@ Certain fields allow the use of Markdown which can contain HTML including script
 
 | Version | Date | Notes |
 | ---- | ---- | ---- |
-| 3.1.2 | TBD | Patch release of the OpenAPI Specification 3.1.2 |
+| 3.1.2 | 2025-09-19 | Patch release of the OpenAPI Specification 3.1.2 |
 | 3.1.1 | 2024-10-24 | Patch release of the OpenAPI Specification 3.1.1 |
 | 3.1.0 | 2021-02-15 | Release of the OpenAPI Specification 3.1.0 |
 | 3.1.0-rc1 | 2020-10-08 | rc1 of the 3.1 specification |

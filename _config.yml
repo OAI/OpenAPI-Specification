@@ -18,6 +18,11 @@ collections:
     name: Format Registry
     output: true
     permalink: /registry/:collection/:title
+  media-type:
+    slug: media-type
+    name: Media Type Registry
+    output: true
+    permalink: /registry/:collection/:title
   extension:
     slug: extension
     name: Specification Extension Registry

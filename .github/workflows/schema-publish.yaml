@@ -52,7 +52,7 @@ jobs:
         delete-branch: true
         path: deploy
         labels: Housekeeping,Schema
-        reviewers: darrelmiller,webron,earth2marsh,webron,lornajane,mikekistler,miqui,ralfhandl,handrews,karenetheridge
+        reviewers: darrelmiller,webron,earth2marsh,lornajane,mikekistler,miqui,ralfhandl,handrews,karenetheridge
         title: '${{ github.ref_name }}: publish OpenAPI schema iterations'
         commit-message: New OpenAPI schema iterations
         signoff: true

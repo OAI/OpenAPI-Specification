@@ -966,7 +966,7 @@ examples:
     dataValue:
       - 12345678
       - 90099
-    serializedValue: "12345678,90099"
+    serializedValue: 12345678,90099
 ```
 
 
@@ -993,7 +993,7 @@ examples:
     dataValue:
       greeting: Hello%2C%20world!
       code: 42
-    serializedValue: "greeting=Hello%2C%20world!; code=42"
+    serializedValue: greeting=Hello%2C%20world!; code=42
 ```
 
 A cookie parameter relying on the percent-encoding behavior of the default `style: "form"`:
@@ -1012,7 +1012,7 @@ examples:
       characters, rather than just the one non-cookie-safe
       character, getting percent-encoded.
     dataValue: Hello, world!
-    serializedValue: "greeting=Hello%2C%20world%21"
+    serializedValue: greeting=Hello%2C%20world%21
 ```
 
 A path parameter of a string value:
@@ -1025,7 +1025,7 @@ required: true
 schema:
   type: string
 examples:
-  "Edsger Dijkstra":
+  Edsger Dijkstra:
     dataValue: edijkstra
     serializedValue: edijkstra
   Diṅnāga:
@@ -1033,7 +1033,7 @@ examples:
     serializedValue: di%E1%B9%85n%C4%81ga
   Al-Khwarizmi:
     dataValue: "الخوارزميّ"
-    serializedValue: "%D8%A7%D9%84%D8%AE%D9%88%D8%A7%D8%B1%D8%B2%D9%85%D9%8A%D9%91"
+    serializedValue: %D8%A7%D9%84%D8%AE%D9%88%D8%A7%D8%B1%D8%B2%D9%85%D9%8A%D9%91
 ```
 
 An optional query parameter of a string value, allowing multiple values by repeating the query parameter
@@ -1054,7 +1054,7 @@ examples:
     dataValue:
       - one thing
       - another thing
-    serializedValue: "thing=one%20thing&thing=another%20thing"
+    serializedValue: thing=one%20thing&thing=another%20thing
 ```
 
 A free-form query parameter, allowing arbitrary parameters of `type: "integer"`:
@@ -1174,7 +1174,7 @@ examples:
         - 1
         - 2
       flag: null
-    serializedValue: "%7B%22numbers%22%3A%5B1%2C2%5D%2C%22flag%22%3Anull%7D"
+    serializedValue: %7B%22numbers%22%3A%5B1%2C2%5D%2C%22flag%22%3Anull%7D
 ```
 
 Assuming a path of `/foo`, a server of `https://example.com`, the full URL incorporating the value from `serializedValue` would be:
@@ -1449,22 +1449,20 @@ application/json:
   examples:
     cat:
       summary: An example of a cat
-      value: {
-        "name": "Fluffy",
-        "petType": "Cat",
-        "color": "White",
-        "gender": "male",
-        "breed": "Persian"
-      }
+      value:
+        name: Fluffy
+        petType: Cat
+        color: White
+        gender: male
+        breed: Persian
     dog:
       summary: An example of a dog with a cat's name
-      value: {
-        "name": "Puma",
-        "petType": "Dog",
-        "color": "Black",
-        "gender": "Female",
-        "breed": "Mixed"
-      }
+      value:
+        name: Puma
+        petType: Dog
+        color: Black
+        gender: Female
+        breed: Mixed
     frog:
       $ref: '#/components/examples/frog-example'
 ```
@@ -1509,7 +1507,7 @@ components:
       description: JSONL and NDJSON are identical for this example
       # Note that the value must be written as a string with newlines,
       # as JSONL and NDJSON are not valid YAML
-      value: |
+      serializedValue: |
         {"timestamp": "1985-04-12T23:20:50.52Z", "level": 1, "message": "Hi!"}
         {"timestamp": "1985-04-12T23:20:51.37Z", "level": 1, "message": "Bye!"}
   responses:
@@ -2446,12 +2444,7 @@ content:
           author: A. Writer
           title: An Older Book
           rating: 4.5
-        serializedValue: |
-          {
-            "author": "A. Writer",
-            "title": "An Older Book",
-            "rating": 4.5
-          }
+        serializedValue: {"author":"A. Writer","title":"An Older Book","rating":4.5}
 ```
 
 ##### Binary Examples
@@ -2478,10 +2471,10 @@ required: true
 schema:
   type: boolean
 examples:
-  "true":
+  'true':
     dataValue: true
     serializedValue: flag=true
-  "false":
+  'false':
     dataValue: false
     serializedValue: flag=false
 ```
@@ -2849,11 +2842,10 @@ components:
       explode: true
       examples:
         SetCookies:
-          dataValue: {
-            "lang": "en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT"
-            "foo": "bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT"
-            "urlSafeData": "Hello%2C%20world%21"
-          }
+          dataValue:
+            lang: en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT
+            foo: bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT
+            urlSafeData: Hello%2C%20world%21
           serializedValue: |
             lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT
             foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT

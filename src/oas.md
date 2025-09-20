@@ -1,6 +1,6 @@
 # OpenAPI Specification
 
-## Version 3.2.0
+## Version 3.3.0
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14) [RFC2119](https://tools.ietf.org/html/rfc2119) [RFC8174](https://tools.ietf.org/html/rfc8174) when, and only when, they appear in all capitals, as shown here.
 
@@ -95,7 +95,7 @@ In addition to the required fields, at least one of the `components`, `paths`, o
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="oas-version"></a>openapi | `string` | **REQUIRED**. This string MUST be the [version number](#versions-and-deprecation) of the OpenAPI Specification that the OpenAPI document uses. The `openapi` field SHOULD be used by tooling to interpret the OpenAPI document. This is _not_ related to the [`info.version`](#info-version) string, which describes the OpenAPI document's version. |
-| <a name="oas-self"></a>$self | `string` | This string MUST be in the form of a URI reference as defined by [[RFC3986]] [Section 4.1](https://www.rfc-editor.org/rfc/rfc3986#section-4.1). The `$self` field provides the self-assigned URI of this document, which also serves as its base URI in accordance with [[RFC3986]] [Section 5.1.1](https://www.rfc-editor.org/rfc/rfc3986#section-5.1.1). Implementations MUST support identifying the targets of [API description URIs](#relative-references-in-api-description-uris) using the URI defined by this field when it is present. See [Establishing the Base URI](#establishing-the-base-uri) for the base URI behavior when `$self` is absent or relative, and see [Appendix F]((#appendix-f-examples-of-base-uri-determination-and-reference-resolution)) for examples of using `$self` to resolve references. |
+| <a name="oas-self"></a>$self | `string` | This string MUST be in the form of a URI reference as defined by [[RFC3986]] [Section 4.1](https://www.rfc-editor.org/rfc/rfc3986#section-4.1). The `$self` field provides the self-assigned URI of this document, which also serves as its base URI in accordance with [[RFC3986]] [Section 5.1.1](https://www.rfc-editor.org/rfc/rfc3986#section-5.1.1). Implementations MUST support identifying the targets of [API description URIs](#relative-references-in-api-description-uris) using the URI defined by this field when it is present. See [Establishing the Base URI](#establishing-the-base-uri) for the base URI behavior when `$self` is absent or relative, and see [Appendix F](#appendix-f-examples-of-base-uri-determination-and-reference-resolution) for examples of using `$self` to resolve references. |
 | <a name="oas-info"></a>info | [Info Object](#info-object) | **REQUIRED**. Provides metadata about the API. The metadata MAY be used by tooling as required. |
 | <a name="oas-json-schema-dialect"></a> jsonSchemaDialect | `string` | The default value for the `$schema` keyword within [Schema Objects](#schema-object) contained within this OAS document. This MUST be in the form of a URI. |
 | <a name="oas-servers"></a>servers | [[Server Object](#server-object)] | An array of Server Objects, which provide connectivity information to a target server. If the `servers` field is not provided, or is an empty array, the default value would be an array consisting of a single [Server Object](#server-object) with a [url](#server-url) value of `/`. |
@@ -4805,8 +4805,9 @@ Certain fields allow the use of Markdown which can contain HTML including script
 
 | Version | Date | Notes |
 | ---- | ---- | ---- |
-| 3.2.0 | TBD | Release of the OpenAPI Specification 3.2.0 |
-| 3.1.2 | TBD | Patch release of the OpenAPI Specification 3.1.2 |
+| 3.3.0 | TBD | Release of the OpenAPI Specification 3.3.0 |
+| 3.2.0 | 2025-09-19 | Release of the OpenAPI Specification 3.2.0 |
+| 3.1.2 | 2025-09-19 | Patch release of the OpenAPI Specification 3.1.2 |
 | 3.1.1 | 2024-10-24 | Patch release of the OpenAPI Specification 3.1.1 |
 | 3.1.0 | 2021-02-15 | Release of the OpenAPI Specification 3.1.0 |
 | 3.1.0-rc1 | 2020-10-08 | rc1 of the 3.1 specification |

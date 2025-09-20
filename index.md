@@ -37,7 +37,7 @@ Registry shortcuts:
 
 _Note that while schemas can catch many errors, they are not guaranteed to catch all specification violations.  In the event of a disagreement between the schemas and the corresponding specificaton text, the specification text is presumed to be correct._
 
-All schemas for a given minor release (e.g. OAS 3.1) apply to all patch releases within that minor release (e.g. 3.1.0, 3.1.1, 3.1.2, etc.).  The dates are purely a way to uniquely identify the revision, and are not intended to be correlated with patch release publication dates.  The latest date within a minor release is always the most correct schema for all patch releases, and previous versions are obsolete.
+A minor release (e.g. OAS 3.1) has one or more published schemas, identified with the release 3.1 and a revision date like 2021-03-02.  All schemas for a given minor release apply to all patch releases within that minor release (e.g. 3.1.0, 3.1.1, 3.1.2, etc.).  The dates are purely a way to uniquely identify the revision, and are not intended to be correlated with patch release publication dates.  The latest date within a minor release is always the most correct schema for all patch releases, and previous versions are obsolete.
 
 ### Arazzo Schemas
 

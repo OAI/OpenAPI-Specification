@@ -13,14 +13,14 @@ await registerOasSchema();
 await registerSchema("./src/schemas/validation/schema.yaml");
 const fixtures = './tests/schema';
 
-describe("v3.1", () => {
+describe("v3.0", () => {
   describe("Pass", () => {
     readdirSync(`${fixtures}/pass`, { withFileTypes: true })
       .filter((entry) => entry.isFile() && /\.yaml$/.test(entry.name))
       .forEach((entry) => {
         test(entry.name, async () => {
           const instance = parseYamlFromFile(`${fixtures}/pass/${entry.name}`);
-          await expect(instance).to.matchJsonSchema("./src/schemas/validation/schema-base.yaml");
+          await expect(instance).to.matchJsonSchema("./src/schemas/validation/schema.yaml");
         });
       });
   });
@@ -31,7 +31,7 @@ describe("v3.1", () => {
       .forEach((entry) => {
         test(entry.name, async () => {
           const instance = parseYamlFromFile(`${fixtures}/fail/${entry.name}`);
-          await expect(instance).to.not.matchJsonSchema("./src/schemas/validation/schema-base.yaml");
+          await expect(instance).to.not.matchJsonSchema("./src/schemas/validation/schema.yaml");
         });
       });
   });

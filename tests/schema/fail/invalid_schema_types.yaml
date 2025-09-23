@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.0.0
 
-# this example shows invalid types for the schemaObject
+# this example shows invalid types for the Schema Object
 
 info:
   title: API
@@ -10,4 +10,6 @@ components:
     invalid_null: null
     invalid_number: 0
     invalid_array: []
-
+    anything_boolean: true
+    nothing_boolean: false
+paths: {}

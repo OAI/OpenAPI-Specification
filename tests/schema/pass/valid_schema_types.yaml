@@ -1,14 +1,12 @@
-openapi: 3.1.1
+openapi: 3.0.0
 
-# this example shows that top-level schemaObjects MAY be booleans
+# top-level Schema Objects MUST be objects in OpenAPI 3.0
 
 info:
   title: API
   version: 1.0.0
 components:
   schemas:
-    anything_boolean: true
-    nothing_boolean: false
     anything_object: {}
     nothing_object: { not: {} }
-
+paths: {}

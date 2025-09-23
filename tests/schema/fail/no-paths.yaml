@@ -1,0 +1,7 @@
+openapi: "3.0.0"
+
+# this example should fail as there are no paths
+
+info:
+  title: API
+  version: 1.0.0

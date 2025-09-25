@@ -140,6 +140,7 @@ definitions:
             oneOf:
               - $ref: '#/definitions/Schema'
               - $ref: '#/definitions/Reference'
+        additionalProperties: false
       responses:
         type: object
         patternProperties:
@@ -147,6 +148,7 @@ definitions:
             oneOf:
               - $ref: '#/definitions/Reference'
               - $ref: '#/definitions/Response'
+        additionalProperties: false
       parameters:
         type: object
         patternProperties:
@@ -154,6 +156,7 @@ definitions:
             oneOf:
               - $ref: '#/definitions/Reference'
               - $ref: '#/definitions/Parameter'
+        additionalProperties: false
       examples:
         type: object
         patternProperties:
@@ -161,6 +164,7 @@ definitions:
             oneOf:
               - $ref: '#/definitions/Reference'
               - $ref: '#/definitions/Example'
+        additionalProperties: false
       requestBodies:
         type: object
         patternProperties:
@@ -168,6 +172,7 @@ definitions:
             oneOf:
               - $ref: '#/definitions/Reference'
               - $ref: '#/definitions/RequestBody'
+        additionalProperties: false
       headers:
         type: object
         patternProperties:
@@ -175,6 +180,7 @@ definitions:
             oneOf:
               - $ref: '#/definitions/Reference'
               - $ref: '#/definitions/Header'
+        additionalProperties: false
       securitySchemes:
         type: object
         patternProperties:
@@ -182,6 +188,7 @@ definitions:
             oneOf:
               - $ref: '#/definitions/Reference'
               - $ref: '#/definitions/SecurityScheme'
+        additionalProperties: false
       links:
         type: object
         patternProperties:
@@ -189,6 +196,7 @@ definitions:
             oneOf:
               - $ref: '#/definitions/Reference'
               - $ref: '#/definitions/Link'
+        additionalProperties: false
       callbacks:
         type: object
         patternProperties:
@@ -196,6 +204,7 @@ definitions:
             oneOf:
               - $ref: '#/definitions/Reference'
               - $ref: '#/definitions/Callback'
+        additionalProperties: false
     patternProperties:
       '^x-': {}
     additionalProperties: false

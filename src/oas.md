@@ -1099,7 +1099,7 @@ examples:
 ```
 
 A querystring parameter using regular form encoding, but managed with a Media Type Object.
-This shows spaces being handled per the `application/x-www-form-urlencoded` media type rules (encode as `+`) rather than the RFC6570 process (encode as `%20`); see [Appendix E](appendix-e-percent-encoding-and-form-media-types) for further guidance on this distinction.
+This shows spaces being handled per the `application/x-www-form-urlencoded` media type rules (encode as `+`) rather than the RFC6570 process (encode as `%20`); see [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for further guidance on this distinction.
 Examples are shown at both the media type and parameter level to emphasize that, since `application/x-www-form-urlencoded` is suitable for use in query strings by definition, no further encoding or escaping is applied to the serialized media type value:
 
 ```yaml
@@ -1991,7 +1991,7 @@ multipart/mixed:
 As described in [[?RFC2557]], a set of resources making up a web page can be sent in a `multipart/related` payload, preserving links from the `text/html` document to subsidiary resources such as scripts, style sheets, and images by defining a `Content-Location` header for each page.
 The first part is used as the root resource (unless using `Content-ID`, which RFC2557 advises against and is forbidden in this example), so we use `prefixItems` and `prefixEncoding` to define that it must be an HTML resource, and then allow any of several different types of resources in any order to follow.
 
-The `Content-Location` header is defined using `content: {text/plain: {...}}` to avoid percent-encoding its URI value; see [Appendix D](appendix-d-serializing-headers-and-cookies) for further details.
+The `Content-Location` header is defined using `content: {text/plain: {...}}` to avoid percent-encoding its URI value; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for further details.
 
 ```yaml
 components:
@@ -2051,7 +2051,7 @@ multipart/mixed:
 
 For `multipart/byteranges` [[RFC9110]] [Section 14.6](https://www.rfc-editor.org/rfc/rfc9110.html#section-14.6), a `Content-Range` header is required:
 
-See [Appendix D](appendix-d-serializing-headers-and-cookies) for an explanation of why `content: {text/plain: {...}}` is used to describe the header value.
+See [Appendix D](#appendix-d-serializing-headers-and-cookies) for an explanation of why `content: {text/plain: {...}}` is used to describe the header value.
 
 ```yaml
 multipart/byteranges:
@@ -2789,7 +2789,7 @@ For HTTP messages, this is purely a serialization concern, and no more of a prob
 
 However, because examples and values modeled with `content` do not incorporate the header name, for these fields `Set-Cookie` MUST be handled by placing each value on a separate line, without the header name or the `:` delimiter.
 
-Note also that any URI percent-encoding, base64 encoding, or other escaping MUST be performed prior to supplying the data to OAS tooling; see [Appendix D](appendix-d-serializing-headers-and-cookies) for details.
+Note also that any URI percent-encoding, base64 encoding, or other escaping MUST be performed prior to supplying the data to OAS tooling; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for details.
 
 The following example shows two different ways to describe `Set-Cookie` headers that require cookies named `"lang"` and `"foo"`, as well as a `"urlSafeData"` cookie that is expected to be percent-encoded.  The first uses `content` in order to show exactly how such examples are formatted, but also notes the limitations of schema constraints with multi-line text.  The second shows the use of `style: "simple"`, which produces the same serialized example text (with each line corresponding to one `Set-Cookie:` line in the HTTP response), but allows schema constraints on each cookie; note that the percent-encoding is already applied in the `dataValue` field of the example:
 

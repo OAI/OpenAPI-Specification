@@ -1,16 +1,20 @@
 ---
-title: Registry
+title: Registries
 layout: default
 permalink: /registry/index.html
 has_children: true
 children:
-- title: Alternative Schema Registry
+- title: Alternative Schema Type Registry
 - title: Draft Features Registry
+- title: Specification Extension Registry
 - title: Format Registry
+- title: Media Type Registry
 - title: Namespace Registry
 - title: Tag Kinds Registry
 has_toc: false
 ---
+
+# Registries
 
 ## Contributing
 

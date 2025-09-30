@@ -2976,7 +2976,7 @@ Where JSON Schema indicates that behavior is defined by the application (e.g. fo
 
 The OpenAPI Schema Object [dialect](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-4.3.3) is defined as requiring the [OAS base vocabulary](#base-vocabulary), in addition to the vocabularies as specified in the JSON Schema Specification Draft 2020-12 [general purpose meta-schema](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-8).
 
-The OpenAPI Schema Object dialect for this version of the specification is identified by the URI `https://spec.openapis.org/oas/3.1/dialect/base` (the <a name="dialect-schema-id"></a>"OAS dialect schema id").
+The OpenAPI Schema Object dialect for this version of the specification is identified by the URI of the form `https://spec.openapis.org/oas/3.2/dialect/YYYY-MM-DD` (the <a name="dialect-schema-id"></a>"OAS dialect schema id" -- see [the list of current schemas](https://spec.openapis.org/oas/) for the specific URI).
 
 The following keywords are taken from the JSON Schema specification but their definitions have been extended by the OAS:
 

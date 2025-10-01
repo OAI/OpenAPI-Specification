@@ -47,7 +47,7 @@ jobs:
         delete-branch: true
         path: deploy
         labels: Housekeeping
-        reviewers: darrelmiller,webron,earth2marsh,lornajane,mikekistler,miqui,ralfhandl,handrews,karenetheridge
+        reviewers: earth2marsh,lornajane,mikekistler,miqui,ralfhandl,handrews,karenetheridge
         title: Update ReSpec-rendered specification versions
         commit-message: Update ReSpec-rendered specification versions
         signoff: true

@@ -9,6 +9,7 @@ layout: default
 ## Specification Versions
 
 {% include specification-version-list.md specification="oas" %}
+* **[v2.0]({{ site.baseurl }}/oas/v2.0.html)**
 
 ## Schema Iterations
 

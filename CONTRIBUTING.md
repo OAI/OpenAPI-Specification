@@ -375,14 +375,14 @@ config:
     git2: "#eedd88"
     git3: "#ccbb66"
     git4: "#aa9944"
-    git5: "#887722"
-    git6: "#99ccff"
-    git7: "#77aadd"
+    git5: "#44ff77"
+    git6: "#22cc22"
+    git7: "#11aa11"
     gitBranchLabel1: "#000000"
     gitBranchLabel2: "#000000"
     gitBranchLabel3: "#000000"
     gitBranchLabel4: "#000000"
-    gitBranchLabel5: "#ffffff"
+    gitBranchLabel5: "#000000"
     gitBranchLabel6: "#000000"
     gitBranchLabel7: "#000000"
 ---
@@ -397,9 +397,8 @@ gitGraph TB:
   commit id:"update version in src/oas.md to 3.2.0"
   commit id:"some 3.2.0 work"
   checkout v3.1-dev
-  commit id:"a 3.1.x fix"
-  checkout v3.2-dev
-  merge v3.1-dev id:"merge 3.1.2 fixes"
+  commit id:"a 3.1.2 fix"
+
   checkout v3.1-dev
   branch v3.1.2-rel order:3
   commit id:"rename src/oas.md to versions/3.1.2.md"
@@ -416,10 +415,9 @@ gitGraph TB:
   commit id:"more 3.2.0 work"
   checkout v3.1-dev
   commit id:"update version in src/oas.md to 3.1.3"
-  commit id:"another 3.1.x fix"
+  commit id:"a 3.1.3 fix"
   checkout v3.2-dev
   commit id:"still more 3.2.0 work"
-  merge v3.1-dev id:"merge 3.1.3 fixes before releasing"
 
   checkout v3.1-dev
   branch v3.1.3-rel order:4
@@ -448,30 +446,18 @@ gitGraph TB:
 
   checkout v3.2-dev
   branch v3.3-dev order:9
-  checkout v3.1-dev
-  commit id:"update version in src/oas.md to 3.1.4"
   checkout v3.2-dev
   commit id:"update version in src/oas.md to 3.2.1"
   checkout v3.3-dev
   commit id:"update version in src/oas.md to 3.3.0"
 
-  checkout v3.1-dev
-  commit id:"a 3.1.4 fix"
   checkout v3.2-dev
   commit id:"a 3.2.1 fix"
-  merge v3.1-dev id:"merge 3.1.4 fixes before releasing"
-  checkout v3.3-dev
-  merge v3.2-dev id:"merge 3.1.4 / 3.2.1 fixes"
 
-  checkout v3.1-dev
-  branch v3.1.4-rel order:5
-  commit id:"rename src/oas.md to versions/3.1.4.md"
   checkout v3.2-dev
   branch v3.2.1-rel order:8
   commit id:"rename src/oas.md to versions/3.2.1.md"
 
-  checkout main
-  merge v3.1.4-rel tag:"3.1.4"
   checkout dev
   merge main id:"   auto-sync from main"
   checkout v3.1-dev

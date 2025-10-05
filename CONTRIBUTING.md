@@ -493,7 +493,7 @@ To keep changes in sync, we have some GitHub actions that open pull requests to 
 
 These need a single approval from either maintainers or TSC and can be merged.
 The aim is to bring build script and repository documentation changes to the other branches.
-Published versions of the specifications and schemas will also move across branches with this approach.
+Published versions of the specifications will also move across branches with this approach.
 
 ## Appendix: Issue Automation
 

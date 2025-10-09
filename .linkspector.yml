@@ -2,7 +2,7 @@ files:
   - src/oas.md
   - CONTRIBUTING.md
   - EDITORS.md
-  # - GOVERNANCE.md
+  - GOVERNANCE.md
   - IMPLEMENTATIONS.md
   - MAINTAINERS.md
   - README.md

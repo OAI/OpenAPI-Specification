@@ -33,4 +33,4 @@ jobs:
         with:
           reporter: github-check
           fail_level: any
-          filter_mode: nofilter
+          filter_mode: file

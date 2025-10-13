@@ -7,7 +7,7 @@ type: object
 properties:
   openapi:
     type: string
-    pattern: '^3\.2\.\d+(-.+)?$'
+    pattern: '^3\.3\.\d+(-.+)?$'
   $self:
     type: string
     format: uri-reference

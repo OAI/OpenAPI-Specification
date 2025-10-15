@@ -1,0 +1,34 @@
+openapi: 3.2.0
+info:
+  title: API
+  version: 1.0.0
+paths:
+  /something:
+    put:
+      requestBody:
+        description: user to add to the system
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+            examples:
+              user:
+                summary: User example
+                externalValue: https://foo.bar/examples/user-example.json
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/User'
+            examples:
+              user:
+                summary: User example in XML
+                externalValue: https://foo.bar/examples/user-example.xml
+          text/plain:
+            examples:
+              user:
+                summary: User example in plain text
+                externalValue: https://foo.bar/examples/user-example.txt
+          '*/*':
+            examples:
+              user:
+                summary: User example in other format
+                externalValue: https://foo.bar/examples/user-example.whatever

@@ -1,0 +1,13 @@
+openapi: 3.2.0
+info:
+  title: API
+  version: 1.0.0
+components:
+  requestBodies:
+    encoding-with-prefixEncoding-not-allowed:
+      content:
+        multipart/mixed:
+          prefixEncoding:
+          - contentType: multipart/mixed
+            encoding: {}
+            prefixEncoding: []

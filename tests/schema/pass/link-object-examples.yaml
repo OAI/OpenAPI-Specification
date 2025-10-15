@@ -1,0 +1,66 @@
+openapi: 3.1.0
+info:
+  title: API
+  version: 1.0.0
+paths:
+  /users/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: the user identifier, as userId
+        schema:
+          type: string
+    get:
+      responses:
+        '200':
+          description: the user being returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uuid: # the unique user id
+                    type: string
+                    format: uuid
+          links:
+            address:
+              # the target link operationId
+              operationId: getUserAddress
+              parameters:
+                # get the `id` field from the request path parameter named `id`
+                userid: $request.path.id
+            address2:
+              operationId: getUserAddressByUUID
+              parameters:
+                # get the `uuid` field from the `uuid` field in the response body
+                userUuid: $response.body#/uuid
+            UserRepositories:
+              # returns array of '#/components/schemas/repository'
+              operationRef: '#/paths/~12.0~1repositories~1%7Busername%7D/get'
+              parameters:
+                username: $response.body#/username
+            UserRepositories2:
+              # returns array of '#/components/schemas/repository'
+              operationRef: https://na2.gigantic-server.com/#/paths/~12.0~1repositories~1%7Busername%7D/get
+              parameters:
+                username: $response.body#/username
+            withBody:
+              operationId: queryUserWithBody
+              requestBody:
+                userId: $request.path.id
+  # the path item of the linked operation
+  /users/{userid}/address:
+    parameters:
+      - name: userid
+        in: path
+        required: true
+        description: the user identifier, as userId
+        schema:
+          type: string
+    # linked operation
+    get:
+      operationId: getUserAddress
+      responses:
+        '200':
+          description: the user's address

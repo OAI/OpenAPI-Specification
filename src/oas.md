@@ -1,6 +1,6 @@
 # OpenAPI Specification
 
-## Version 3.1.1
+## Version 3.1.2
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14) [RFC2119](https://tools.ietf.org/html/rfc2119) [RFC8174](https://tools.ietf.org/html/rfc8174) when, and only when, they appear in all capitals, as shown here.
 
@@ -43,6 +43,7 @@ Path templating refers to the usage of template expressions, delimited by curly 
 Each template expression in the path MUST correspond to a path parameter that is included in the [Path Item](#path-item-object) itself and/or in each of the Path Item's [Operations](#operation-object). An exception is if the path item is empty, for example due to ACL constraints, matching path parameters are not required.
 
 The value for these path parameters MUST NOT contain any unescaped "generic syntax" characters described by [RFC3986](https://tools.ietf.org/html/rfc3986#section-3): forward slashes (`/`), question marks (`?`), or hashes (`#`).
+See [URL Percent-Encoding](#url-percent-encoding) for additional guidance on escaping characters.
 
 ### Media Types
 
@@ -176,7 +177,7 @@ In some cases, an unambiguous URI-based alternative is available, and OAD author
 | [Security Requirement Object](#security-requirement-object) `{name}` | [Security Scheme Object](#security-scheme-object) name under the [Components Object](#components-object) | _n/a_ |
 | [Discriminator Object](#discriminator-object) `mapping` _(implicit, or explicit name syntax)_ | [Schema Object](#schema-object) name under the Components Object | `mapping` _(explicit URI syntax)_ |
 | [Operation Object](#operation-object) `tags` | [Tag Object](#tag-object) `name` (in the [OpenAPI Object](#openapi-object)'s `tags` array) | _n/a_ |
-| [Link Object](#link-object) `operationId` | [Path Item Object](#path-item-object) `operationId` | `operationRef` |
+| [Link Object](#link-object) `operationId` | [Operation Object](#operation-object) `operationId` | `operationRef` |
 
 A fifth implicit connection involves appending the templated URL paths of the [Paths Object](#paths-object) to the appropriate [Server Object](#server-object)'s `url` field.
 This is unambiguous because only the entry document's Paths Object contributes URLs to the described API.
@@ -198,7 +199,7 @@ There are no URI-based alternatives for the Security Requirement Object or for t
 These limitations are expected to be addressed in a future release.
 
 See [Appendix F: Resolving Security Requirements in a Referenced Document](#appendix-f-resolving-security-requirements-in-a-referenced-document) for an example of the possible resolutions, including which one is recommended by this section.
-The behavior for Discrimator Object non-URI mappings and for the Operation Object's `tags` field operate on the same principles.
+The behavior for Discriminator Object non-URI mappings and for the Operation Object's `tags` field operate on the same principles.
 
 Note that no aspect of implicit connection resolution changes how [URIs are resolved](#relative-references-in-api-description-uris), or restricts their possible targets.
 
@@ -321,7 +322,7 @@ This is the root object of the [OpenAPI Description](#openapi-description).
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="oas-version"></a>openapi | `string` | **REQUIRED**. This string MUST be the [version number](#versions) of the OpenAPI Specification that the OpenAPI Document uses. The `openapi` field SHOULD be used by tooling to interpret the OpenAPI Document. This is _not_ related to the API [`info.version`](#info-version) string. |
+| <a name="oas-version"></a>openapi | `string` | **REQUIRED**. This string MUST be the [version number](#versions) of the OpenAPI Specification that the OpenAPI Document uses. The `openapi` field SHOULD be used by tooling to interpret the OpenAPI Document. This is _not_ related to the [`info.version`](#info-version) string, which is the version of the OpenAPI Document. |
 | <a name="oas-info"></a>info | [Info Object](#info-object) | **REQUIRED**. Provides metadata about the API. The metadata MAY be used by tooling as required. |
 | <a name="oas-json-schema-dialect"></a> jsonSchemaDialect | `string` | The default value for the `$schema` keyword within [Schema Objects](#schema-object) contained within this OAS document. This MUST be in the form of a URI. |
 | <a name="oas-servers"></a>servers | [[Server Object](#server-object)] | An array of Server Objects, which provide connectivity information to a target server. If the `servers` field is not provided, or is an empty array, the default value would be a [Server Object](#server-object) with a [url](#server-url) value of `/`. |
@@ -455,7 +456,7 @@ An object representing a Server.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="server-url"></a>url | `string` | **REQUIRED**. A URL to the target host. This URL supports Server Variables and MAY be relative, to indicate that the host location is relative to the location where the document containing the Server Object is being served. Variable substitutions will be made when a variable is named in `{`braces`}`. |
+| <a name="server-url"></a>url | `string` | **REQUIRED**. A URL to the target host. This URL supports Server Variables and MAY be relative, to indicate that the host location is relative to the location where the document containing the Server Object is being served. Query and fragment MUST NOT be part of this URL. Variable substitutions will be made when a variable is named in `{`braces`}`. |
 | <a name="server-description"></a>description | `string` | An optional string describing the host designated by the URL. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="server-variables"></a>variables | Map[`string`, [Server Variable Object](#server-variable-object)] | A map between a variable name and its value. The value is used for substitution in the server's URL template. |
 
@@ -549,7 +550,7 @@ servers:
           - '443'
         default: '8443'
       basePath:
-        # open meaning there is the opportunity to use special base paths as assigned by the provider, default is `v2`
+        # open meaning there is the opportunity to use special base paths as assigned by the provider, default is "v2"
         default: v2
 ```
 
@@ -582,7 +583,7 @@ All objects defined within the Components Object will have no effect on the API 
 | <a name="components-examples"></a> examples | Map[`string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Example Objects](#example-object). |
 | <a name="components-request-bodies"></a> requestBodies | Map[`string`, [Request Body Object](#request-body-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Request Body Objects](#request-body-object). |
 | <a name="components-headers"></a> headers | Map[`string`, [Header Object](#header-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Header Objects](#header-object). |
-| <a name="security-scheme-object"></a> securitySchemes | Map[`string`, [Security Scheme Object](#security-scheme-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Security Scheme Objects](#security-scheme-object). |
+| <a name="components-security-schemes"></a> securitySchemes | Map[`string`, [Security Scheme Object](#security-scheme-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Security Scheme Objects](#security-scheme-object). |
 | <a name="components-links"></a> links | Map[`string`, [Link Object](#link-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Link Objects](#link-object). |
 | <a name="components-callbacks"></a> callbacks | Map[`string`, [Callback Object](#callback-object) \| [Reference Object](#reference-object)] | An object to hold reusable [Callback Objects](#callback-object). |
 | <a name="components-path-items"></a> pathItems | Map[`string`, [Path Item Object](#path-item-object)] | An object to hold reusable [Path Item Objects](#path-item-object). |
@@ -1164,13 +1165,16 @@ For simpler scenarios, a [`schema`](#parameter-schema) and [`style`](#parameter-
 When `example` or `examples` are provided in conjunction with the `schema` field, the example SHOULD match the specified schema and follow the prescribed serialization strategy for the parameter.
 The `example` and `examples` fields are mutually exclusive, and if either is present it SHALL _override_ any `example` in the schema.
 
-Serializing with `schema` is NOT RECOMMENDED for `in: "cookie"` parameters, `in: "header"` parameters that use HTTP header parameters (name=value pairs following a `;`) in their values, or `in: "header"` parameters where values might have non-URL-safe characters; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for details.
+When serializing `in: "header"` parameters with `schema`, URI percent-encoding MUST NOT be applied; if using an RFC6570 implementation that automatically applies it, it MUST be removed before use.
+Implementations MUST pass header values through unchanged rather than attempting to automatically quote header values, as the quoting rules vary too widely among different headers; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for guidance on quoting and escaping.
+
+Serializing with `schema` is NOT RECOMMENDED for `in: "cookie"` parameters; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for details.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="parameter-style"></a>style | `string` | Describes how the parameter value will be serialized depending on the type of the parameter value. Default values (based on value of `in`): for `"query"` - `"form"`; for `"path"` - `"simple"`; for `"header"` - `"simple"`; for `"cookie"` - `"form"`. |
 | <a name="parameter-explode"></a>explode | `boolean` | When this is true, parameter values of type `array` or `object` generate separate parameters for each value of the array or key-value pair of the map. For other types of parameters this field has no effect. When [`style`](#parameter-style) is `"form"`, the default value is `true`. For all other styles, the default value is `false`. Note that despite `false` being the default for `deepObject`, the combination of `false` with `deepObject` is undefined. |
-| <a name="parameter-allow-reserved"></a>allowReserved | `boolean` | When this is true, parameter values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). Applications are still responsible for percent-encoding reserved characters that are [not allowed in the query string](https://datatracker.ietf.org/doc/html/rfc3986#section-3.4) (`[`, `]`, `#`), or have a special meaning in `application/x-www-form-urlencoded` (`-`, `&`, `+`); see Appendices [C](#appendix-c-using-rfc6570-based-serialization) and [E](#appendix-e-percent-encoding-and-form-media-types) for details. This field only applies to parameters with an `in` value of `query`. The default value is `false`. |
+| <a name="parameter-allow-reserved"></a>allowReserved | `boolean` | When this is true, parameter values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). Applications are still responsible for percent-encoding reserved characters that are [not allowed in the query string](https://datatracker.ietf.org/doc/html/rfc3986#section-3.4) (`[`, `]`, `#`), or have a special meaning in `application/x-www-form-urlencoded` (`-`, `&`, `+`); see [URL Percent-Encoding](#url-percent-encoding) for details. This field only applies to parameters with an `in` value of `query`. The default value is `false`. |
 | <a name="parameter-schema"></a>schema | [Schema Object](#schema-object) | The schema defining the type used for the parameter. |
 | <a name="parameter-example"></a>example | Any | Example of the parameter's potential value; see [Working With Examples](#working-with-examples). |
 | <a name="parameter-examples"></a>examples | Map[ `string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | Examples of the parameter's potential value; see [Working With Examples](#working-with-examples). |
@@ -1180,7 +1184,7 @@ See also [Appendix C: Using RFC6570-Based Serialization](#appendix-c-using-rfc65
 ###### Fixed Fields for use with `content`
 
 For more complex scenarios, the [`content`](#parameter-content) field can define the media type and schema of the parameter, as well as give examples of its use.
-Using `content` with a `text/plain` media type is RECOMMENDED for `in: "header"` and `in: "cookie"` parameters where the `schema` strategy is not appropriate.
+Using `content` with a `text/plain` media type is RECOMMENDED for `in: "cookie"` parameters where the `schema` strategy's percent-encoding and/or delimiter rules are not appropriate.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
@@ -1200,7 +1204,49 @@ In order to support common ways of serializing simple parameters, a set of `styl
 | pipeDelimited | `array`, `object` | `query` | Pipe separated array values or object properties and values. This option replaces `collectionFormat` equal to `pipes` from OpenAPI 2.0. |
 | deepObject | `object` | `query` | Allows objects with scalar properties to be represented using form parameters. The representation of array or object properties is not defined. |
 
-See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a discussion of percent-encoding, including when delimiters need to be percent-encoded and options for handling collisions with percent-encoded data.
+##### URL Percent-Encoding
+
+All API URLs MUST successfully parse and percent-decode using [[RFC3986]] rules.
+
+Content in the `application/x-www-form-urlencoded` format, including query strings produced by [Parameter Objects](#parameter-object) with `in: "query"`, MUST also successfully parse and percent-decode using [[RFC1866]] rules, including treating non-percent-encoded `+` as an escaped space character.
+
+These requirements are specified in terms of percent-_decoding_ rules, which are consistently tolerant across different versions of the various standards that apply to URIs.
+
+Percent-_encoding_ is performed in several places:
+
+* By [[RFC6570]] implementations (or simulations thereof; see [Appendix C](#appendix-c-using-rfc6570-based-serialization))
+* By the Parameter or [Encoding](#encoding-object) Objects when incorporating a value serialized with a [Media Type Object](#media-type-object) for a media type that does not already incorporate URI percent-encoding
+* By the user, prior to passing data through RFC6570's reserved expansion process
+
+When percent-encoding, the safest approach is to percent-encode all characters not in RFC3986's "unreserved" set, and for `form-urlencoded` to also percent-encode the tilde character (`~`) to align with the historical requirements of [[RFC1738]], which is cited by RFC1866.
+This approach is used in examples in this specification.
+
+For `form-urlencoded`, while the encoding algorithm given by RFC1866 requires escaping the space character as `+`, percent-encoding it as `%20` also meets the above requirements.
+Examples in this specification will prefer `%20` when using RFC6570's default (non-reserved) form-style expansion, and `+` otherwise.
+
+Reserved characters MUST NOT be percent-encoded when being used for reserved purposes such as `&=+` for `form-urlencoded` or `,` for delimiting non-exploded array and object values in RFC6570 expansions.
+The result of inserting non-percent-encoded delimiters into data using manual percent-encoding, including via RFC6570's reserved expansion rules, is undefined and will likely prevent implementations from parsing the results back into the correct data structures.
+In some cases, such as inserting `/` into path parameter values, doing so is [explicitly forbidden](#path-templating) by this specification.
+
+See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a thorough discussion of percent-encoding options, compatibility, and OAS-defined delimiters that are not allowed by RFC3986, and [Appendix C](#appendix-c-using-rfc6570-based-serialization) for guidance on using RFC6570 implementations.
+
+##### Serialization and Examples
+
+The rules in this section apply to both the Parameter and [Header](#header-object) Objects, both of which use the same mechanisms.
+
+When showing serialized examples using the `example` field or [Example Objects](#example-object), in most cases the value to show is just the value, with all relevant percent-encoding or other encoding/escaping applied, and also including any delimiters produced by the `style` and `explode` configuration.
+
+In cases where the name is an inherent part of constructing the serialization, such as the `name=value` pairs produced by `style: "form"` or the combination of `style: "simple", explode: true`, the name and any delimiter between the name and value MUST be included.
+
+The `matrix` and `label` styles produce a leading delimiter which is always a valid part of the serialization and MUST be included.
+The RFC6570 operators corresponding to `style: "form"` produce a leading delimiter of either `?` or `&` depending on the exact syntax used.
+As the suitability of either delimiter depends on where in the query string the parameter occurs, as well as whether it is in a URI or in `application/x-www-form-urlencoded` content, this leading delimiter MUST NOT be included in examples of individual parameters or media type documents.
+For `in: "cookie", style: "form"`, neither the `&` nor `?` delimiters are ever correct; see [Appendix D: Serializing Headers and Cookies](#appendix-d-serializing-headers-and-cookies) for more details.
+
+For headers, the header name MUST NOT be included as part of the serialization, as it is never part of the RFC6570-derived result.
+However, names produced by `style: "simple", explode: "true"` are included as they appear within the header value, not as separate headers.
+
+The following section illustrates these rules.
 
 ##### Style Examples
 
@@ -1212,14 +1258,13 @@ Assume a parameter named `color` has one of the following values:
    object -> { "R": 100, "G": 200, "B": 150 }
 ```
 
-The following table shows examples, as would be shown with the `example` or `examples` keywords, of the different serializations for each value.
+The following table shows serialized examples, as would be shown with the `example` or `examples` keywords, of the different serializations for each value.
 
-* The value _empty_ denotes the empty string, and is unrelated to the `allowEmptyValue` field
-* The behavior of combinations marked _n/a_ is undefined
-* The `undefined` column replaces the `empty` column in previous versions of this specification in order to better align with [RFC6570](https://www.rfc-editor.org/rfc/rfc6570.html#section-2.3) terminology, which describes certain values including but not limited to `null` as "undefined" values with special handling; notably, the empty string is _not_ undefined
-* For `form` and the non-RFC6570 query string styles `spaceDelimited`, `pipeDelimited`, and `deepObject`, each example is shown prefixed with `?` as if it were the only query parameter; see [Appendix C](#appendix-c-using-rfc6570-based-serialization) for more information on constructing query strings from multiple parameters, and [Appendix D](#appendix-d-serializing-headers-and-cookies) for warnings regarding `form` and cookie parameters
-* Note that the `?` prefix is not appropriate for serializing `application/x-www-form-urlencoded` HTTP message bodies, and MUST be stripped or (if constructing the string manually) not added when used in that context; see the [Encoding Object](#encoding-object) for more information
-* The examples are percent-encoded as required by RFC6570 and RFC3986; see [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a thorough discussion of percent-encoding concerns, including why unencoded `|` (`%7C`), `[` (`%5B`), and `]` (`%5D`) seem to work in some environments despite not being compliant.
+* The value _empty_ denotes the empty string, and is unrelated to the `allowEmptyValue` field.
+* The behavior of combinations marked _n/a_ is undefined.
+* The `undefined` column replaces the `empty` column in previous versions of this specification in order to better align with [RFC6570](https://www.rfc-editor.org/rfc/rfc6570.html#section-2.3) terminology, which describes certain values including but not limited to `null` as "undefined" values with special handling; notably, the empty string is _not_ undefined.
+* For `form` and the non-RFC6570 query string styles `spaceDelimited`, `pipeDelimited`, and `deepObject`, see [Appendix C](#appendix-c-using-rfc6570-based-serialization) for more information on constructing query strings from multiple parameters, and [Appendix D](#appendix-d-serializing-headers-and-cookies) for warnings regarding `form` and cookie parameters.
+* The examples are percent-encoded as explained in the [URL Percent-Encoding](#url-percent-encoding) section above; see [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a thorough discussion of percent-encoding concerns, including why unencoded `|` (`%7C`), `[` (`%5B`), and `]` (`%5D`) seem to work in some environments despite not being compliant.
 
 | [`style`](#style-values) | `explode` | `undefined` | `string` | `array` | `object` |
 | ---- | ---- | ---- | ---- | ---- | ---- |
@@ -1229,14 +1274,14 @@ The following table shows examples, as would be shown with the `example` or `exa
 | label | true | . | .blue | .blue.black.brown | .R=100.G=200.B=150 |
 | simple | false | _empty_ | blue | blue,black,brown | R,100,G,200,B,150 |
 | simple | true | _empty_ | blue | blue,black,brown | R=100,G=200,B=150 |
-| form | false | <span style="white-space: nowrap;">?color=</span> | <span style="white-space: nowrap;">?color=blue</span> | <span style="white-space: nowrap;">?color=blue,black,brown</span> | <span style="white-space: nowrap;">?color=R,100,G,200,B,150</span> |
-| form | true | <span style="white-space: nowrap;">?color=</span> | <span style="white-space: nowrap;">?color=blue</span> | <span style="white-space: nowrap;">?color=blue&color=black&color=brown</span> | <span style="white-space: nowrap;">?R=100&G=200&B=150</span> |
-| spaceDelimited</span> | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">?color=blue%20black%20brown</span> | <span style="white-space: nowrap;">?color=R%20100%20G%20200%20B%20150</span> |
+| form | false | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue,black,brown</span> | <span style="white-space: nowrap;">color=R,100,G,200,B,150</span> |
+| form | true | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue&color=black&color=brown</span> | <span style="white-space: nowrap;">R=100&G=200&B=150</span> |
+| spaceDelimited</span> | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color=blue%20black%20brown</span> | <span style="white-space: nowrap;">color=R%20100%20G%20200%20B%20150</span> |
 | spaceDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
-| pipeDelimited | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">?color=blue%7Cblack%7Cbrown</span> | <span style="white-space: nowrap;">?color=R%7C100%7CG%7C200%7CB%7C150</span> |
+| pipeDelimited | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color=blue%7Cblack%7Cbrown</span> | <span style="white-space: nowrap;">color=R%7C100%7CG%7C200%7CB%7C150</span> |
 | pipeDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
 | deepObject | false | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
-| deepObject | true | _n/a_ | _n/a_ | _n/a_ | <span style="white-space: nowrap;">?color%5BR%5D=100&color%5BG%5D=200&color%5BB%5D=150</span> |
+| deepObject | true | _n/a_ | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color%5BR%5D=100&color%5BG%5D=200&color%5BB%5D=150</span> |
 
 ##### Parameter Object Examples
 
@@ -1404,7 +1449,7 @@ Describes a single request body.
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="request-body-description"></a>description | `string` | A brief description of the request body. This could contain examples of use. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
-| <a name="request-body-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | **REQUIRED**. The content of the request body. The key is a media type or [media type range](https://tools.ietf.org/html/rfc7231#appendix-D) and the value describes it. For requests that match multiple keys, only the most specific key is applicable. e.g. `"text/plain"` overrides `"text/*"` |
+| <a name="request-body-content"></a>content | Map[`string`, [Media Type Object](#media-type-object)] | **REQUIRED**. The content of the request body. The key is a media type or [media type range](https://tools.ietf.org/html/rfc7231#appendix-D) and the value describes it. The map SHOULD have at least one entry; if it does not, the behavior is implementation-defined. For requests that match multiple keys, only the most specific key is applicable. e.g. `"text/plain"` overrides `"text/*"` |
 | <a name="request-body-required"></a>required | `boolean` | Determines if the request body is required in the request. Defaults to `false`. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
@@ -1670,11 +1715,12 @@ See [Appendix B](#appendix-b-data-type-conversion) for a discussion of data type
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="encoding-style"></a>style | `string` | Describes how a specific property value will be serialized depending on its type. See [Parameter Object](#parameter-object) for details on the [`style`](#parameter-style) field. The behavior follows the same values as `query` parameters, including default values. Note that the initial `?` used in query strings is not used in `application/x-www-form-urlencoded` message bodies, and MUST be removed (if using an RFC6570 implementation) or simply not added (if constructing the string manually). This field SHALL be ignored if the request body media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
+| <a name="encoding-style"></a>style | `string` | Describes how a specific property value will be serialized depending on its type. See [Parameter Object](#parameter-object) for details on the [`style`](#parameter-style) field. The behavior follows the same values as `query` parameters, including the default value of `"form"` which applies only when `contentType` is _not_ being used due to one or both of `explode` or `allowReserved` being explicitly specified. Note that the initial `?` used in query strings is not used in `application/x-www-form-urlencoded` message bodies, and MUST be removed (if using an RFC6570 implementation) or simply not added (if constructing the string manually). This field SHALL be ignored if the request body media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
 | <a name="encoding-explode"></a>explode | `boolean` | When this is true, property values of type `array` or `object` generate separate parameters for each value of the array, or key-value-pair of the map. For other types of properties this field has no effect. When [`style`](#encoding-style) is `"form"`, the default value is `true`. For all other styles, the default value is `false`. Note that despite `false` being the default for `deepObject`, the combination of `false` with `deepObject` is undefined. This field SHALL be ignored if the request body media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
-| <a name="encoding-allow-reserved"></a>allowReserved | `boolean` | When this is true, parameter values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). Applications are still responsible for percent-encoding reserved characters that are [not allowed in the query string](https://datatracker.ietf.org/doc/html/rfc3986#section-3.4) (`[`, `]`, `#`), or have a special meaning in `application/x-www-form-urlencoded` (`-`, `&`, `+`); see Appendices [C](#appendix-c-using-rfc6570-based-serialization) and [E](#appendix-e-percent-encoding-and-form-media-types) for details. The default value is `false`. This field SHALL be ignored if the request body media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
+| <a name="encoding-allow-reserved"></a>allowReserved | `boolean` | When this is true, parameter values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). Applications are still responsible for percent-encoding reserved characters that are [not allowed in the query string](https://datatracker.ietf.org/doc/html/rfc3986#section-3.4) (`[`, `]`, `#`), or have a special meaning in `application/x-www-form-urlencoded` (`-`, `&`, `+`); see [URL Percent-Encoding](#url-percent-encoding) for details. The default value is `false`. This field SHALL be ignored if the request body media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
 
-See also [Appendix C: Using RFC6570 Implementations](#appendix-c-using-rfc6570-based-serialization) for additional guidance, including on difficulties caused by the interaction between RFC6570's percent-encoding rules and the `multipart/form-data` media type.
+When using RFC6570-style serialization for `multipart/form-data`, URI percent-encoding MUST NOT be applied, and the value of `allowReserved` has no effect.
+See also [Appendix C: Using RFC6570 Implementations](#appendix-c-using-rfc6570-based-serialization) for additional guidance.
 
 Note that the presence of at least one of `style`, `explode`, or `allowReserved` with an explicit value is equivalent to using `schema` with `in: "query"` Parameter Objects.
 The absence of all three of those fields is the equivalent of using `content`, but with the media type specified in `contentType` rather than through a Media Type Object.
@@ -1717,10 +1763,10 @@ With this example, consider an `id` of `f81d4fae-7dec-11d0-a765-00a0c91e6bf6` an
 }
 ```
 
-Assuming the most compact representation of the JSON value (with unnecessary whitespace removed), we would expect to see the following request body, where space characters have been replaced with `+` and `+`, `"`, `{`, and `}` have been percent-encoded to `%2B`, `%22`, `%7B`, and `%7D`, respectively:
+Assuming the most compact representation of the JSON value (with unnecessary whitespace removed), we would expect to see the following request body, where space characters have been replaced with `+` and `+`, `"`, `:`, `,`, `{`, and `}` have been percent-encoded to `%2B`, `%22`, `%3A`, `%2C`, `%7B`, and `%7D`, respectively:
 
 ```uri
-id=f81d4fae-7dec-11d0-a765-00a0c91e6bf6&address=%7B%22streetAddress%22:%22123+Example+Dr.%22,%22city%22:%22Somewhere%22,%22state%22:%22CA%22,%22zip%22:%2299999%2B1234%22%7D
+id=f81d4fae-7dec-11d0-a765-00a0c91e6bf6&address=%7B%22streetAddress%22%3A%22123+Example+Dr.%22%2C%22city%22%3A%22Somewhere%22%2C%22state%22%3A%22CA%22%2C%22zip%22%3A%2299999%2B1234%22%7D
 ```
 
 Note that the `id` keyword is treated as `text/plain` per the [Encoding Object](#encoding-object)'s default behavior, and is serialized as-is.
@@ -1746,8 +1792,9 @@ requestBody:
           name:
             type: string
           icon:
-            # The default with "contentEncoding" is application/octet-stream,
-            # so we need to set image media type(s) in the Encoding Object.
+            # The default content type with `contentEncoding` present
+            # is "application/octet-stream", so we need to set the correct
+            # image media type(s) in the Encoding Object.
             type: string
             contentEncoding: base64url
   encoding:
@@ -1781,8 +1828,8 @@ Note that there are significant restrictions on what headers can be used with `m
 
 Note also that `Content-Transfer-Encoding` is deprecated for `multipart/form-data` ([RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.7)) where binary data is supported, as it is in HTTP.
 
-+Using `contentEncoding` for a multipart field is equivalent to specifying an [Encoding Object](#encoding-object) with a `headers` field containing `Content-Transfer-Encoding` with a schema that requires the value used in `contentEncoding`.
-+If `contentEncoding` is used for a multipart field that has an Encoding Object with a `headers` field containing `Content-Transfer-Encoding` with a schema that disallows the value from `contentEncoding`, the result is undefined for serialization and parsing.
+Using `contentEncoding` for a multipart field is equivalent to specifying an [Encoding Object](#encoding-object) with a `headers` field containing `Content-Transfer-Encoding` with a schema that requires the value used in `contentEncoding`.
+If `contentEncoding` is used for a multipart field that has an Encoding Object with a `headers` field containing `Content-Transfer-Encoding` with a schema that disallows the value from `contentEncoding`, the result is undefined for serialization and parsing.
 
 Note that as stated in [Working with Binary Data](#working-with-binary-data), if the Encoding Object's `contentType`, whether set explicitly or implicitly through its default value rules, disagrees with the `contentMediaType` in a Schema Object, the `contentMediaType` SHALL be ignored.
 Because of this, and because the Encoding Object's `contentType` defaulting rules do not take the Schema Object's`contentMediaType` into account, the use of `contentMediaType` with an Encoding Object is NOT RECOMMENDED.
@@ -1800,17 +1847,20 @@ requestBody:
       schema:
         type: object
         properties:
+          # default content type for a string without `contentEncoding`
+          # is "text/plain"
           id:
-            # default for primitives without a special format is text/plain
             type: string
             format: uuid
-          profileImage:
-            # default for string with binary format is `application/octet-stream`
-            type: string
-            format: binary
+
+          # default content type for a schema without `type`
+          # is "application/octet-stream"
+          profileImage: {}
+
+          # default content type for arrays is based on the type
+          # in the `items` subschema, which is an object here,
+          # so the default content type for each item is "application/json"
           addresses:
-            # default for arrays is based on the type in the `items`
-            # subschema, which is an object, so `application/json`
             type: array
             items:
               $ref: '#/components/schemas/Address'
@@ -1828,31 +1878,27 @@ requestBody:
       schema:
         type: object
         properties:
+          # No Encoding Object, so use default "text/plain"
           id:
-            # default is `text/plain`
             type: string
             format: uuid
+
+          # Encoding Object overrides the default "application/json" content type
+          # for each item in the array with "application/xml; charset=utf-8"
           addresses:
-            # default based on the `items` subschema would be
-            # `application/json`, but we want these address objects
-            # serialized as `application/xml` instead
             description: addresses in XML format
             type: array
             items:
               $ref: '#/components/schemas/Address'
-          profileImage:
-            # default is application/octet-stream, but we can declare
-            # a more specific image type or types
-            type: string
-            format: binary
+
+          # Encoding Object accepts only PNG or JPEG, and also describes
+          # a custom header for just this part in the multipart format
+          profileImage: {}
+
       encoding:
         addresses:
-          # require XML Content-Type in utf-8 encoding
-          # This is applied to each address part corresponding
-          # to each address in he array
           contentType: application/xml; charset=utf-8
         profileImage:
-          # only accept png or jpeg
           contentType: image/png, image/jpeg
           headers:
             X-Rate-Limit-Limit:
@@ -1871,7 +1917,7 @@ requestBody:
     multipart/form-data:
       schema:
         properties:
-          # The property name 'file' will be used for all files.
+          # The property name `file` will be used for all files.
           file:
             type: array
             items: {}
@@ -2211,19 +2257,19 @@ Tooling implementations MAY choose to validate compatibility automatically, and 
 
 ##### Working with Examples
 
-Example Objects can be used in both [Parameter Objects](#parameter-object) and [Media Type Objects](#media-type-object).
-In both Objects, this is done through the `examples` (plural) field.
-However, there are several other ways to provide examples: The `example` (singular) field that is mutually exclusive with `examples` in both Objects, and two keywords (the deprecated singular `example` and the current plural `examples`, which takes an array of examples) in the [Schema Object](#schema-object) that appears in the `schema` field of both Objects.
+Example Objects can be used in [Parameter Objects](#parameter-object), [Header Objects](#header-object), and [Media Type Objects](#media-type-object).
+In all three Objects, this is done through the `examples` (plural) field.
+However, there are several other ways to provide examples: The `example` (singular) field that is mutually exclusive with `examples` in all three Objects, and two keywords (the deprecated singular `example` and the current plural `examples`, which takes an array of examples) in the [Schema Object](#schema-object) that appears in the `schema` field of all three Objects.
 Each of these fields has slightly different considerations.
 
 The Schema Object's fields are used to show example values without regard to how they might be formatted as parameters or within media type representations.
 The `examples` array is part of JSON Schema and is the preferred way to include examples in the Schema Object, while `example` is retained purely for compatibility with older versions of the OpenAPI Specification.
 
-The mutually exclusive fields in the Parameter or Media Type Objects are used to show example values which SHOULD both match the schema and be formatted as they would appear as a serialized parameter or within a media type representation.
-The exact serialization and encoding is determined by various fields in the Parameter Object, or in the Media Type Object's [Encoding Object](#encoding-object).
+The mutually exclusive fields in the Parameter, Header, or Media Type Objects are used to show example values which SHOULD both match the schema and be formatted as they would appear as a serialized parameter, serialized header, or within a media type representation.
+The exact serialization and encoding is determined by various fields in the Parameter Object, Header Object, or in the Media Type Object's [Encoding Object](#encoding-object).
 Because examples using these fields represent the final serialized form of the data, they SHALL _override_ any `example` in the corresponding Schema Object.
 
-The singular `example` field in the Parameter or Media Type Object is concise and convenient for simple examples, but does not offer any other advantages over using Example Objects under `examples`.
+The singular `example` field in the Parameter, Header, or Media Type Object is concise and convenient for simple examples, but does not offer any other advantages over using Example Objects under `examples`.
 
 Some examples cannot be represented directly in JSON or YAML.
 For all three ways of providing examples, these can be shown as string values with any escaping necessary to make the string valid in the JSON or YAML format of documents that comprise the OpenAPI Description.
@@ -2386,7 +2432,7 @@ For computing links and providing instructions to execute them, a [runtime expre
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
 A linked operation MUST be identified using either an `operationRef` or `operationId`.
-The identified or reference operation MUST be unique, and in the case of an `operationId`, it MUST be resolved within the scope of the OpenAPI Description (OAD).
+The identified or referenced operation MUST be unique, and in the case of an `operationId`, it MUST be resolved within the scope of the OpenAPI Description (OAD).
 Because of the potential for name clashes, the `operationRef` syntax is preferred for multi-document OADs.
 However, because use of an operation depends on its URL path template in the [Paths Object](#paths-object), operations from any [Path Item Object](#path-item-object) that is referenced multiple times within the OAD cannot be resolved unambiguously.
 In such ambiguous cases, the resulting behavior is implementation-defined and MAY result in an error.
@@ -2425,7 +2471,7 @@ paths:
               # the target link operationId
               operationId: getUserAddress
               parameters:
-                # get the `id` field from the request path parameter named `id`
+                # use the value of the request path parameter named "id"
                 userid: $request.path.id
   # the path item of the linked operation
   /users/{userid}/address:
@@ -2453,7 +2499,7 @@ links:
   address:
     operationId: getUserAddressByUUID
     parameters:
-      # get the `uuid` field from the `uuid` field in the response body
+      # use the value of the `uuid` field in the response body
       userUuid: $response.body#/uuid
 ```
 
@@ -2461,33 +2507,34 @@ Clients follow all links at their discretion.
 Neither permissions nor the capability to make a successful call to that link is guaranteed
 solely by the existence of a relationship.
 
-##### `operationRef` Examples
+###### `operationRef` Examples
 
-As references to `operationId` MAY NOT be possible (the `operationId` is an optional
-field in an [Operation Object](#operation-object)), references MAY also be made through a relative `operationRef`:
+As the `operationId` is an optional field in an [Operation Object](#operation-object), references MAY instead be made through a URI-reference with `operationRef`.
+Note that both of these examples reference operations that can be identified via the [Paths Object](#paths-object) to ensure that the operation's path template is unambiguous.
+
+A relative URI-reference `operationRef`:
 
 ```yaml
 links:
   UserRepositories:
-    # returns array of '#/components/schemas/repository'
     operationRef: '#/paths/~12.0~1repositories~1%7Busername%7D/get'
     parameters:
       username: $response.body#/username
 ```
 
-or a URI `operationRef`:
+A non-relative URI `operationRef`:
 
 ```yaml
 links:
   UserRepositories:
-    # returns array of '#/components/schemas/repository'
     operationRef: https://na2.gigantic-server.com/#/paths/~12.0~1repositories~1%7Busername%7D/get
     parameters:
       username: $response.body#/username
 ```
 
-Note that in the use of `operationRef` the _escaped forward-slash_ is necessary when
-using JSON Pointer, and it is necessary to URL-encode `{` and `}` as `%7B` and `%7D`, respectively, when using JSON Pointer as URI fragments.
+Note that in the use of `operationRef` the _escaped forward-slash_ (`~1`) is necessary when
+using JSON Pointer in URI fragments, and it is necessary to URL-encode `{` and `}` as `%7B` and `%7D`, respectively.
+The unescaped, percent-decoded path template in the above examples would be `/2.0/repositories/{username}`.
 
 ##### Runtime Expressions
 
@@ -2509,7 +2556,7 @@ The runtime expression is defined by the following [ABNF](https://tools.ietf.org
                     ; %x2F ('/') and %x7E ('~') are excluded from 'unescaped'
     escaped         = "~" ( "0" / "1" )
                     ; representing '~' and '/', respectively
-    name = *( CHAR )
+    name = *char
     token = 1*tchar
     tchar = "!" / "#" / "$" / "%" / "&" / "'" / "*" / "+" / "-" / "."
           / "^" / "_" / "`" / "|" / "~" / DIGIT / ALPHA
@@ -2521,7 +2568,7 @@ The `name` identifier is case-sensitive, whereas `token` is not.
 
 The table below provides examples of runtime expressions and examples of their use in a value:
 
-##### Examples
+###### Example Expressions
 
 | Source Location | example expression | notes |
 | ---- | :---- | :---- |
@@ -2565,7 +2612,8 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 For simpler scenarios, a [`schema`](#header-schema) and [`style`](#header-style) can describe the structure and syntax of the header.
 When `example` or `examples` are provided in conjunction with the `schema` field, the example MUST follow the prescribed serialization strategy for the header.
 
-Serializing with `schema` is NOT RECOMMENDED for headers with parameters (name=value pairs following a `;`) in their values, or where values might have non-URL-safe characters; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for details.
+When serializing headers with `schema`, URI percent-encoding MUST NOT be applied; if using an RFC6570 implementation that automatically applies it, it MUST be removed before use.
+Implementations MUST pass header values through unchanged rather than attempting to automatically quote header values, as the quoting rules vary too widely among different headers; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for guidance on quoting and escaping.
 
 When `example` or `examples` are provided in conjunction with the `schema` field, the example SHOULD match the specified schema and follow the prescribed serialization strategy for the header.
 The `example` and `examples` fields are mutually exclusive, and if either is present it SHALL _override_ any `example` in the schema.
@@ -2574,7 +2622,7 @@ The `example` and `examples` fields are mutually exclusive, and if either is pre
 | ---- | :----: | ---- |
 | <a name="header-style"></a>style | `string` | Describes how the header value will be serialized. The default (and only legal value for headers) is `"simple"`. |
 | <a name="header-explode"></a>explode | `boolean` | When this is true, header values of type `array` or `object` generate a single header whose value is a comma-separated list of the array items or key-value pairs of the map, see [Style Examples](#style-examples). For other data types this field has no effect. The default value is `false`. |
-| <a name="header-schema"></a>schema | [Schema Object](#schema-object) \| [Reference Object](#reference-object) | The schema defining the type used for the header. |
+| <a name="header-schema"></a>schema | [Schema Object](#schema-object) | The schema defining the type used for the header. |
 | <a name="header-example"></a>example | Any | Example of the header's potential value; see [Working With Examples](#working-with-examples). |
 | <a name="header-examples"></a>examples | Map[ `string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | Examples of the header's potential value; see [Working With Examples](#working-with-examples). |
 
@@ -2583,7 +2631,6 @@ See also [Appendix C: Using RFC6570-Based Serialization](#appendix-c-using-rfc65
 ###### Fixed Fields for use with `content`
 
 For more complex scenarios, the [`content`](#header-content) field can define the media type and schema of the header, as well as give examples of its use.
-Using `content` with a `text/plain` media type is RECOMMENDED for headers where the `schema` strategy is not appropriate.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
@@ -2609,18 +2656,14 @@ X-Rate-Limit-Limit:
     type: integer
 ```
 
-Requiring that a strong `ETag` header (with a value starting with `"` rather than `W/`) is present. Note the use of `content`, because using `schema` and `style` would require the `"` to be percent-encoded as `%22`:
+Requiring that a strong `ETag` header (with a value starting with `"` rather than `W/`) is present.
 
 ```json
 "ETag": {
   "required": true,
-  "content": {
-    "text/plain": {
-      "schema": {
-        "type": "string",
-        "pattern": "^\""
-      }
-    }
+  "schema": {
+    "type": "string",
+    "pattern": "^\""
   }
 }
 ```
@@ -2628,11 +2671,9 @@ Requiring that a strong `ETag` header (with a value starting with `"` rather tha
 ```yaml
 ETag:
   required: true
-  content:
-    text/plain:
-      schema:
-        type: string
-        pattern: ^"
+  schema:
+    type: string
+    pattern: ^"
 ```
 
 #### Tag Object
@@ -3396,7 +3437,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/Pet'
         - type: object
-          # all other properties specific to a `Cat`
+          # all other properties specific to a "Cat"
           properties:
             name:
               type: string
@@ -3404,7 +3445,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/Pet'
         - type: object
-          # all other properties specific to a `Dog`
+          # all other properties specific to a "Dog"
           properties:
             bark:
               type: string
@@ -3412,7 +3453,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/Pet'
         - type: object
-          # all other properties specific to a `Lizard`
+          # all other properties specific to a "Lizard"
           properties:
             lovesRocks:
               type: boolean
@@ -3449,7 +3490,7 @@ See examples for expected behavior.
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="xml-name"></a>name | `string` | Replaces the name of the element/attribute used for the described schema property. When defined within `items`, it will affect the name of the individual XML elements within the list. When defined alongside `type` being `"array"` (outside the `items`), it will affect the wrapping element if and only if `wrapped` is `true`. If `wrapped` is `false`, it will be ignored. |
+| <a name="xml-name"></a>name | `string` | Replaces the inferred name of the element/attribute used for the described schema property. For the root schema object of a [schema component](#components-schemas), the inferred name is the name of the component; for other schemas the name is inferred from the parent property name.  When defined within `items`, it will affect the name of the individual XML elements within the list. When defined alongside `type` being `"array"` (outside the `items`), it will affect the wrapping element if and only if `wrapped` is `true`. If `wrapped` is `false`, it will be ignored. |
 | <a name="xml-namespace"></a>namespace | `string` | The URI of the namespace definition. Value MUST be in the form of a non-relative URI. |
 | <a name="xml-prefix"></a>prefix | `string` | The prefix to be used for the [name](#xml-name). |
 | <a name="xml-attribute"></a>attribute | `boolean` | Declares whether the property definition translates to an attribute instead of an element. Default value is `false`. |
@@ -3457,11 +3498,28 @@ See examples for expected behavior.
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
+##### Namespace Limitations
+
 The `namespace` field is intended to match the syntax of [XML namespaces](https://www.w3.org/TR/xml-names11/), although there are a few caveats:
 
 * Versions 3.1.0, 3.0.3, and earlier of this specification erroneously used the term "absolute URI" instead of "non-relative URI", so authors using namespaces that include a fragment should check tooling support carefully.
 * XML allows but discourages relative URI-references, while this specification outright forbids them.
 * XML 1.1 allows IRIs ([RFC3987](https://datatracker.ietf.org/doc/html/rfc3987)) as namespaces, and specifies that namespaces are compared without any encoding or decoding, which means that IRIs encoded to meet this specification's URI syntax requirement cannot be compared to IRIs as-is.
+
+##### Handling `null` Values
+
+XML does not, by default, have a concept equivalent to `null`, and to preserve compatibility with version 3.1.1 and earlier of this specification, the behavior of serializing `null` values is implementation-defined.
+
+However, implementations SHOULD handle `null` values as follows:
+
+* For elements, produce an empty element with an `xsi:nil="true"` attribute.
+* For attributes, omit the attribute.
+
+Note that for attributes, this makes either a `null` value or a missing property serialize to an omitted attribute.
+As the Schema Object validates the in-memory representation, this allows handling the combination of `null` and a required property.
+However, because there is no distinct way to represent `null` as an attribute, it is RECOMMENDED to make attribute properties optional rather than use `null`.
+
+To ensure correct round-trip behavior, when parsing an element that omits an attribute, implementations SHOULD set the corresponding property to `null` if the schema allows for that value (e.g. `type: ["number", "null"]`), and omit the property otherwise (e.g.`type: "number"`).
 
 ##### XML Object Examples
 
@@ -3541,25 +3599,30 @@ animals:
 
 ###### XML Attribute, Prefix and Namespace
 
-In this example, a full model definition is shown.
+In this example, a full [schema component](#components-schemas) definition is shown.
+Note that the name of the root XML element comes from the component name.
 
 ```json
 {
-  "Person": {
-    "type": "object",
-    "properties": {
-      "id": {
-        "type": "integer",
-        "format": "int32",
-        "xml": {
-          "attribute": true
-        }
-      },
-      "name": {
-        "type": "string",
-        "xml": {
-          "namespace": "https://example.com/schema/sample",
-          "prefix": "sample"
+  "components": {
+    "schemas": {
+      "Person": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "xml": {
+              "attribute": true
+            }
+          },
+          "name": {
+            "type": "string",
+            "xml": {
+              "namespace": "https://example.com/schema/sample",
+              "prefix": "sample"
+            }
+          }
         }
       }
     }
@@ -3568,19 +3631,21 @@ In this example, a full model definition is shown.
 ```
 
 ```yaml
-Person:
-  type: object
-  properties:
-    id:
-      type: integer
-      format: int32
-      xml:
-        attribute: true
-    name:
-      type: string
-      xml:
-        namespace: https://example.com/schema/sample
-        prefix: sample
+components:
+  schemas:
+    Person:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          xml:
+            attribute: true
+        name:
+          type: string
+          xml:
+            namespace: https://example.com/schema/sample
+            prefix: sample
 ```
 
 ```xml
@@ -3798,6 +3863,84 @@ animals:
 </aliens>
 ```
 
+###### XML With `null` Values
+
+Recall that the schema validates the in-memory data, not the XML document itself.
+
+```json
+{
+  "product": {
+    "type": "object",
+    "required": ["count", "description", "related"],
+    "properties": {
+      "count": {
+        "type": ["number", "null"],
+        "xml": {
+          "attribute": true
+        }
+      },
+      "rating": {
+        "type": "string",
+        "xml": {
+          "attribute": true
+        }
+      },
+      "description": {
+        "type": "string"
+      },
+      "related": {
+        "type": ["object", "null"]
+      }
+    }
+  }
+}
+```
+
+```yaml
+product:
+  type: object
+  required:
+  - count
+  - description
+  - related
+  properties:
+    count:
+      type:
+      - number
+      - "null"
+      xml:
+        attribute: true
+    rating:
+      type: string
+      xml:
+        attribute: true
+    description:
+      type: string
+    related:
+      type:
+      - object
+      - "null"
+```
+
+```xml
+<product>
+  <description>Thing</description>
+  <related xsi:nil="true" />
+</product>
+```
+
+The above XML example corresponds to the following in-memory instance:
+
+```json
+{
+  "product": {
+    "count": null,
+    "description": "Thing",
+    "related": null
+  }
+}
+```
+
 #### Security Scheme Object
 
 Defines a security scheme that can be used by the operations.
@@ -3983,7 +4126,7 @@ flows:
 #### Security Requirement Object
 
 Lists the required security schemes to execute this operation.
-The name used for each property MUST correspond to a security scheme declared in the [Security Schemes](#security-scheme-object) under the [Components Object](#components-object).
+The name used for each property MUST correspond to a security scheme declared in the [Security Schemes](#components-security-schemes) under the [Components Object](#components-object).
 
 A Security Requirement Object MAY refer to multiple security schemes in which case all schemes MUST be satisfied for a request to be authorized.
 This enables support for scenarios where multiple query parameters or HTTP headers are required to convey security information.
@@ -3997,7 +4140,7 @@ An empty Security Requirement Object (`{}`) indicates anonymous access is suppor
 
 | Field Pattern | Type | Description |
 | ---- | :----: | ---- |
-| <a name="security-requirements-name"></a>{name} | [`string`] | Each name MUST correspond to a security scheme which is declared in the [Security Schemes](#security-scheme-object) under the [Components Object](#components-object). If the security scheme is of type `"oauth2"` or `"openIdConnect"`, then the value is a list of scope names required for the execution, and the list MAY be empty if authorization does not require a specified scope. For other security scheme types, the array MAY contain a list of role names which are required for the execution, but are not otherwise defined or exchanged in-band. |
+| <a name="security-requirements-name"></a>{name} | [`string`] | Each name MUST correspond to a security scheme which is declared in the [Security Schemes](#components-security-schemes) under the [Components Object](#components-object). If the security scheme is of type `"oauth2"` or `"openIdConnect"`, then the value is a list of scope names required for the execution, and the list MAY be empty if authorization does not require a specified scope. For other security scheme types, the array MAY contain a list of role names which are required for the execution, but are not otherwise defined or exchanged in-band. |
 
 ##### Security Requirement Object Examples
 
@@ -4116,6 +4259,7 @@ Certain fields allow the use of Markdown which can contain HTML including script
 
 | Version | Date | Notes |
 | ---- | ---- | ---- |
+| 3.1.2 | TBD | Patch release of the OpenAPI Specification 3.1.2 |
 | 3.1.1 | 2024-10-24 | Patch release of the OpenAPI Specification 3.1.1 |
 | 3.1.0 | 2021-02-15 | Release of the OpenAPI Specification 3.1.0 |
 | 3.1.0-rc1 | 2020-10-08 | rc1 of the 3.1 specification |
@@ -4176,9 +4320,9 @@ Implementations of this specification MAY use an implementation of RFC6570 to pe
 
 Note that when using `style: "form"` RFC6570 expansion to produce an `application/x-www-form-urlencoded` HTTP message body, it is necessary to remove the `?` prefix that is produced to satisfy the URI query string syntax.
 
-When using `style` and similar keywords to produce a `multipart/form-data` body, the query string names are placed in the `name` parameter of the `Content-Disposition` part header, and the values are placed in the corresponding part body; the `?`, `=`, and `&` characters are not used.
+When using `style` and similar keywords to produce a `multipart/form-data` body, the query string names are placed in the `name` parameter of the `Content-Disposition` part header, and the values are placed in the corresponding part body; the `?`, `=`, and `&` characters are not used, and URI percent encoding is not applied, regardless of the value of `allowReserved`.
 Note that while [RFC7578](https://datatracker.ietf.org/doc/html/rfc7578) allows using [[RFC3986]] percent-encoding in "file names", it does not otherwise address the use of percent-encoding within the format.
-RFC7578 discusses character set and encoding issues for `multipart/form-data` in detail, and it is RECOMMENDED that OpenAPI Description authors read this guidance carefully before deciding to use RFC6570-based serialization with this media type.
+Users are expected to provide names and data with any escaping necessary for conformance with RFC7578 already applied.
 
 Note also that not all RFC6570 implementations support all four levels of operators, all of which are needed to fully support the OpenAPI Specification's usage.
 Using an implementation with a lower level of support will require additional manual construction of URI Templates to work around the limitations.
@@ -4328,8 +4472,10 @@ Since the `.` usage is not automatic, we'll need to construct an appropriate inp
 
 We'll also need to pre-process the values for `formulas` because while `/` and most other reserved characters are allowed in the query string by RFC3986, `[`, `]`, and `#` [are not](https://datatracker.ietf.org/doc/html/rfc3986#appendix-A), and `&`, `=`, and `+` all have [special behavior](https://www.rfc-editor.org/rfc/rfc1866#section-8.2.1) in the `application/x-www-form-urlencoded` format, which is what we are using in the query string.
 
-Setting `allowReserved: true` does _not_ make reserved characters that are not allowed in URIs allowed, it just allows them to be _passed through expansion unchanged._
-Therefore, any tooling still needs to percent-encode those characters because reserved expansion will not do it, but it _will_ leave the percent-encoded triples unchanged.
+Setting `allowReserved: true` does _not_ make reserved characters that are not allowed in URIs allowed, it just allows them to be _passed through expansion unchanged_, for example because some other specification has defined a particular meaning for them.
+
+Therefore, users still need to percent-encode any reserved characters that are _not_ being passed through due to a special meaning because reserved expansion does not know which reserved characters are being used, and which should still be percent-encoded.
+However, reserved expansion, unlike regular expansion,  _will_ leave the pre-percent-encoded triples unchanged.
 See also [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for further guidance on percent-encoding and form media types, including guidance on handling the delimiter characters for `spaceDelimited`, `pipeDelimited`, and `deepObject` in parameter names and values.
 
 So here is our data structure that arranges the names and values to suit the template above, where values for `formulas` have `[]#&=+` pre-percent encoded (although only `+` appears in this example):
@@ -4420,32 +4566,45 @@ This will expand to the result:
 
 ## Appendix D: Serializing Headers and Cookies
 
-[RFC6570](https://www.rfc-editor.org/rfc/rfc6570)'s percent-encoding behavior is not always appropriate for `in: "header"` and `in: "cookie"` parameters.
+HTTP headers have inconsistent rules regarding what characters are allowed, and how some or all disallowed characters can be escaped and included.
+While the `quoted-string` ABNF rule given in [[RFC7230]] [Section 3.2.6](https://httpwg.org/specs/rfc7230.html#field.components) is the most common escaping solution, it is not sufficiently universal to apply automatically.
+For example, a strong `ETag` looks like `"foo"` (with quotes, regardless of the contents), and a weak `ETag` looks like `W/"foo"` (note that only part of the value is quoted); the contents of the quotes for this header are also not escaped in the way `quoted-string` contents are.
+
+For this reason, any data being passed to a header by way of a [Parameter](#parameter-object) or [Header](#header-object) Object needs to be quoted and escaped prior to passing it to the OAS implementation, and the parsed header values are expected to contain the quotes and escapes.
+
+### Percent-Encoding and Cookies
+
+_**Note:** OAS v3.0.4 and v3.1.1 applied the advice in this section to avoid RFC6570-style serialization to both headers and cookies.
+However, further research has indicated that percent-encoding was never intended to apply to headers, so this section has been corrected to apply only to cookies._
+
+[RFC6570](https://www.rfc-editor.org/rfc/rfc6570)'s percent-encoding behavior is not always appropriate for `in: "cookie"` parameters.
 In many cases, it is more appropriate to use `content` with a media type such as `text/plain` and require the application to assemble the correct string.
 
-For both [RFC6265](https://www.rfc-editor.org/rfc/rfc6265) cookies and HTTP headers using the [RFC8941](https://www.rfc-editor.org/rfc/rfc8941) structured fields syntax, non-ASCII content is handled using base64 encoding (`contentEncoding: "base64"`).
+[RFC6265](https://www.rfc-editor.org/rfc/rfc6265) recommends (but does not strictly required) base64 encoding (`contentEncoding: "base64"`) if "arbitrary data" will be stored in a cookie.
 Note that the standard base64-encoding alphabet includes non-URL-safe characters that are percent-encoded by RFC6570 expansion; serializing values through both encodings is NOT RECOMMENDED.
 While `contentEncoding` also supports the `base64url` encoding, which is URL-safe, the header and cookie RFCs do not mention this encoding.
 
-Most HTTP headers predate the structured field syntax, and a comprehensive assessment of their syntax and encoding rules is well beyond the scope of this specification.
-While [RFC8187](https://www.rfc-editor.org/rfc/rfc8187) recommends percent-encoding HTTP (header or trailer) field parameters, these parameters appear after a `;` character.
-With `style: "simple"`, that delimiter would itself be percent-encoded, violating the general HTTP field syntax.
+Using `style: "form"` with `in: "cookie"` via an RFC6570 implementation requires stripping the `?` prefix, as when producing `application/x-www-form-urlencoded` message bodies.
 
-Using `style: "form"` with `in: "cookie"` is ambiguous for a single value, and incorrect for multiple values.
-This is true whether the multiple values are the result of using `explode: true` or not.
-
-This style is specified to be equivalent to RFC6570 form expansion which includes the `?` character (see [Appendix C](#appendix-c-using-rfc6570-based-serialization) for more details), which is not part of the cookie syntax.
-However, examples of this style in past versions of this specification have not included the `?` prefix, suggesting that the comparison is not exact.
-Because implementations that rely on an RFC6570 implementation and those that perform custom serialization based on the style example will produce different results, it is implementation-defined as to which of the two results is correct.
-
-For multiple values, `style: "form"` is always incorrect as name=value pairs in cookies are delimited by `;` (a semicolon followed by a space character) rather than `&`.
+For multiple values, `style: "form"` is always incorrect, even if no characters are subject to percent-encoding, as name=value pairs in cookies are delimited by a semicolon followed by a space character rather than `&`.
 
 ## Appendix E: Percent-Encoding and Form Media Types
 
 _**NOTE:** In this section, the `application/x-www-form-urlencoded` and `multipart/form-data` media types are abbreviated as `form-urlencoded` and `form-data`, respectively, for readability._
 
 Percent-encoding is used in URIs and media types that derive their syntax from URIs.
-This process is concerned with three sets of characters, the names of which vary among specifications but are defined as follows for the purposes of this section:
+The fundamental rules of percent-encoding are:
+
+* The set of characters that MUST be encoded varies depending on which version of which specification you use, and (for URIs) in which part of the URI the character appears.
+* The way an unencoded `+` character is decoded depends on whether you are using `application/x-www-form-urlencoded` rules or more general URI rules; this is the only time where choice of decoding algorithm can change the outcome.
+* Encoding more characters than necessary is always safe in terms of the decoding process, but may produce non-normalized URIs.
+* In practice, some systems tolerate or even expect unencoded characters that some or all percent-encoding specifications require to be encoded; this can cause interoperability issues with more strictly compliant implementations.
+
+The rest of this appendix provides more detailed guidance based on the above rules.
+
+### Percent-Encoding Character Classes
+
+This process is concerned with three classes of characters, the names of which vary among specifications but are defined as follows for the purposes of this section:
 
 * _unreserved_ characters do not need to be percent-encoded; while it is safe to percent-encode them, doing so produces a URI that is [not normalized](https://datatracker.ietf.org/doc/html/rfc3986#section-6.2.2.2)
 * _reserved_ characters either have special behavior in the URI syntax (such as delimiting components) or are reserved for other specifications that need to define special behavior (e.g. `form-urlencoded` defines special behavior for `=`, `&`, and `+`)
@@ -4467,14 +4626,15 @@ This means that while these three characters are reserved-but-allowed in query s
 
 [RFC7578](https://datatracker.ietf.org/doc/html/rfc7578#section-2) suggests RFC3986-based percent-encoding as a mechanism to keep text-based per-part header data such as file names within the ASCII character set.
 This suggestion was not part of older (pre-2015) specifications for `form-data`, so care must be taken to ensure interoperability.
+Users wishing to use percent-encoding in this way MUST provide the data in percent-encoded form, as percent-encoding is not automatically applied for this media type regardless of which Encoding Object fields are used.
 
-The `form-data` media type allows arbitrary text or binary data in its parts, so percent-encoding is not needed and is likely to cause interoperability problems unless the `Content-Type` of the part is defined to require it.
+The `form-data` media type allows arbitrary text or binary data in its parts, so percent-encoding or similar escaping is not needed in general.
 
 ### Generating and Validating URIs and `form-urlencoded` Strings
 
 URI percent encoding and the `form-urlencoded` media type have complex specification histories spanning multiple revisions and, in some cases, conflicting claims of ownership by different standards bodies.
 Unfortunately, these specifications each define slightly different percent-encoding rules, which need to be taken into account if the URIs or `form-urlencoded` message bodies will be subject to strict validation.
-(Note that many URI parsers do not perform validation by default.)
+(Note that many URI parsers do not perform validation by default, if at all.)
 
 This specification normatively cites the following relevant standards:
 
@@ -4484,17 +4644,15 @@ This specification normatively cites the following relevant standards:
 | [RFC6570](https://www.rfc-editor.org/rfc/rfc6570) | 03/2012 | style-based serialization | [[RFC3986]] | does not use `+` for <code>form&#8209;urlencoded</code> |
 | [RFC1866](https://datatracker.ietf.org/doc/html/rfc1866#section-8.2.1) | 11/1995 | content-based serialization | [[RFC1738]] | obsoleted by [[HTML401]] [Section 17.13.4.1](https://www.w3.org/TR/html401/interact/forms.html#h-17.13.4.1), [[URL]] [Section 5](https://url.spec.whatwg.org/#urlencoded-serializing) |
 
-Style-based serialization is used in the [Parameter Object](#parameter-object) when `schema` is present, and in the [Encoding Object](#encoding-object) when at least one of `style`, `explode`, or `allowReserved` is present.
+Style-based serialization with percent-encoding is used in the [Parameter Object](#parameter-object) when `schema` is present, and in the [Encoding Object](#encoding-object) when at least one of `style`, `explode`, or `allowReserved` is present.
 See [Appendix C](#appendix-c-using-rfc6570-based-serialization) for more details of RFC6570's two different approaches to percent-encoding, including an example involving `+`.
 
-Content-based serialization is defined by the [Media Type Object](#media-type-object), and used with the [Parameter Object](#parameter-object) when the `content` field is present, and with the [Encoding Object](#encoding-object) based on the `contentType` field when the fields `style`, `explode`, and `allowReserved` are absent.
-Each part is encoded based on the media type (e.g. `text/plain` or `application/json`), and must then be percent-encoded for use in a `form-urlencoded` string.
-
-Note that content-based serialization for `form-data` does not expect or require percent-encoding in the data, only in per-part header values.
+Content-based serialization is defined by the [Media Type Object](#media-type-object), and used with the [Parameter Object](#parameter-object) and [Header Object](#header-object) when the `content` field is present, and with the [Encoding Object](#encoding-object) based on the `contentType` field when the fields `style`, `explode`, and `allowReserved` are absent.
+Each part is encoded based on the media type (e.g. `text/plain` or `application/json`), and must then be percent-encoded for use in a `form-urlencoded` string unless the media type already incorporates URI percent-encoding.
 
 #### Interoperability with Historical Specifications
 
-In most cases, generating query strings in strict compliance with [[RFC3986]] is sufficient to pass validation (including JSON Schema's `format: "uri"` and `format: "uri-reference"`), but some `form-urlencoded` implementations still expect the slightly more restrictive [[RFC1738]] rules to be used.
+In most cases, generating query strings in strict compliance with [[RFC3986]] is sufficient to pass validation (including JSON Schema's `format: "uri"` and `format: "uri-reference"` when `format` validation is enabled), but some `form-urlencoded` implementations still expect the slightly more restrictive [[RFC1738]] rules to be used.
 
 Since all RFC1738-compliant URIs are compliant with RFC3986, applications needing to ensure historical interoperability SHOULD use RFC1738's rules.
 
@@ -4504,7 +4662,7 @@ WHATWG is a [web browser-oriented](https://whatwg.org/faq#what-is-the-whatwg-wor
 WHATWG's percent-encoding rules for query strings are different depending on whether the query string is [being treated as `form-urlencoded`](https://url.spec.whatwg.org/#application-x-www-form-urlencoded-percent-encode-set) (where it requires more percent-encoding than [[RFC1738]]) or [as part of the generic syntax](https://url.spec.whatwg.org/#query-percent-encode-set), where it allows characters that [[RFC3986]] forbids.
 
 Implementations needing maximum compatibility with web browsers SHOULD use WHATWG's `form-urlencoded` percent-encoding rules.
-However, they SHOULD NOT rely on WHATWG's less stringent generic query string rules, as the resulting URLs would fail RFC3986 validation, including JSON Schema's `format: uri` and `format: uri-reference`.
+However, they SHOULD NOT rely on WHATWG's less stringent generic query string rules, as the resulting URLs would fail RFC3986 validation, including JSON Schema's `format: uri` and `format: uri-reference` (when `format` validation is endabled).
 
 ### Decoding URIs and `form-urlencoded` Strings
 
@@ -4520,9 +4678,11 @@ The `[`, `]`, `|`, and space characters, which are used as delimiters for the `d
 This requires users to pre-encode the character(s) in some other way in parameter names and values to distinguish them from the delimiter usage when using one of these styles.
 
 The space character is always illegal and encoded in some way by all implementations of all versions of the relevant standards.
-While one could use the `form-urlencoded` convention of `+` to distinguish spaces in parameter names and values from `spaceDelimited` delimiters encoded as `%20`, the specifications define the decoding as a single pass, making it impossible to distinguish the different usages in the decoded result.
+While one could use the `form-urlencoded` convention of `+` to distinguish spaces in parameter names and values from `spaceDelimited` delimiters encoded as `%20`, the specifications define the decoding as a single pass, making it impossible to distinguish the different usages in the decoded result unless a non-standard parsing algorithm is used that separates based on one delimiter before decoding the other.
+Any such non-standard parsing approach will not be interoperable across all tools.
 
-Some environments use `[`, `]`, and possibly `|` unencoded in query strings without apparent difficulties, and WHATWG's generic query string rules do not require percent-encoding them.
+Some environments use `[`, `]`, and possibly `|` unencoded in query strings without apparent difficulties.
+WHATWG's generic query string rules do not require percent-encoding them in non-`form-urlencoded` query strings, although it also excludes them from the set of valid URL Unicode code points.
 Code that relies on leaving these delimiters unencoded, while using regular percent-encoding for them within names and values, is not guaranteed to be interoperable across all implementations.
 
 For maximum interoperability, it is RECOMMENDED to either define and document an additional escape convention while percent-encoding the delimiters for these styles, or to avoid these styles entirely.

@@ -1,0 +1,17 @@
+openapi: 3.1.1
+
+# this example should fail, as example cannot be used together with examples.
+
+info:
+  title: API
+  version: 1.0.0
+components:
+  parameters:
+    animal:
+      name: animal
+      in: header
+      schema: {}
+      example: bear
+      examples:
+        a mammalian example:
+          value: bear

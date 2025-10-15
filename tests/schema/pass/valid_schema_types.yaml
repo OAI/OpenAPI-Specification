@@ -11,4 +11,3 @@ components:
     nothing_boolean: false
     anything_object: {}
     nothing_object: { not: {} }
-

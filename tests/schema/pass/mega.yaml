@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   summary: My API's summary
   title: My API
@@ -19,6 +19,12 @@ components:
   securitySchemes:
     mtls:
       type: mutualTLS
+  schemas:
+    Foo:
+      type: object
+      properties:
+        type:
+          const: foo
   pathItems:
     myPathItem:
       post:
@@ -27,6 +33,9 @@ components:
           content:
             'application/json':
               schema:
+                externalDocs:
+                  description: More docs!
+                  url: https://example.com/elsewhere.html
                 type: object
                 properties:
                   type:
@@ -44,5 +53,10 @@ components:
                     type: ['string','null']
                 discriminator:
                   propertyName: type
+                  mapping:
+                    foo: Foo
+                  defaultMapping: Bar
                   x-extension: true
+                anyOf:
+                - $ref: "#/components/schemas/Foo"
                 myArbitraryKeyword: true

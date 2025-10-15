@@ -1,4 +1,4 @@
-openapi: 3.1.1
+openapi: 3.2.1
 
 # this example shows that top-level schemaObjects MAY be booleans
 

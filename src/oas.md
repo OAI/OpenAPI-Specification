@@ -1692,7 +1692,7 @@ To upload multiple files, a `multipart` media type MUST be used as shown under [
 
 ### Encoding Object
 
-A single encoding definition applied to a single value, with the mapping of Encoding Objects to values determined by the [Media Type Object](@media-type-object) as described under [Encoding Usage and Restrictions](#encoding-usage-and-restrictions).
+A single encoding definition applied to a single value, with the mapping of Encoding Objects to values determined by the [Media Type Object](#media-type-object) as described under [Encoding Usage and Restrictions](#encoding-usage-and-restrictions).
 
 See [Appendix B](#appendix-b-data-type-conversion) for a discussion of converting values of various types to string representations.
 

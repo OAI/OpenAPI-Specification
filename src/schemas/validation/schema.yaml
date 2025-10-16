@@ -1,13 +1,13 @@
-$id: 'https://spec.openapis.org/oas/3.2/schema/WORK-IN-PROGRESS'
+$id: 'https://spec.openapis.org/oas/3.3/schema/WORK-IN-PROGRESS'
 $schema: 'https://json-schema.org/draft/2020-12/schema'
 
-description: The description of OpenAPI v3.2.x Documents without Schema Object validation
+description: The description of OpenAPI v3.3.x Documents without Schema Object validation
 
 type: object
 properties:
   openapi:
     type: string
-    pattern: '^3\.2\.\d+(-.+)?$'
+    pattern: '^3\.3\.\d+(-.+)?$'
   $self:
     type: string
     format: uri-reference
@@ -18,7 +18,7 @@ properties:
   jsonSchemaDialect:
     type: string
     format: uri-reference
-    default: 'https://spec.openapis.org/oas/3.2/dialect/WORK-IN-PROGRESS'
+    default: 'https://spec.openapis.org/oas/3.3/dialect/WORK-IN-PROGRESS'
   servers:
     type: array
     items:
@@ -58,7 +58,7 @@ unevaluatedProperties: false
 
 $defs:
   info:
-    $comment: https://spec.openapis.org/oas/v3.2#info-object
+    $comment: https://spec.openapis.org/oas/v3.3#info-object
     type: object
     properties:
       title:
@@ -83,7 +83,7 @@ $defs:
     unevaluatedProperties: false
 
   contact:
-    $comment: https://spec.openapis.org/oas/v3.2#contact-object
+    $comment: https://spec.openapis.org/oas/v3.3#contact-object
     type: object
     properties:
       name:
@@ -98,7 +98,7 @@ $defs:
     unevaluatedProperties: false
 
   license:
-    $comment: https://spec.openapis.org/oas/v3.2#license-object
+    $comment: https://spec.openapis.org/oas/v3.3#license-object
     type: object
     properties:
       name:
@@ -119,7 +119,7 @@ $defs:
     unevaluatedProperties: false
 
   server:
-    $comment: https://spec.openapis.org/oas/v3.2#server-object
+    $comment: https://spec.openapis.org/oas/v3.3#server-object
     type: object
     properties:
       url:
@@ -138,7 +138,7 @@ $defs:
     unevaluatedProperties: false
 
   server-variable:
-    $comment: https://spec.openapis.org/oas/v3.2#server-variable-object
+    $comment: https://spec.openapis.org/oas/v3.3#server-variable-object
     type: object
     properties:
       enum:
@@ -156,7 +156,7 @@ $defs:
     unevaluatedProperties: false
 
   components:
-    $comment: https://spec.openapis.org/oas/v3.2#components-object
+    $comment: https://spec.openapis.org/oas/v3.3#components-object
     type: object
     properties:
       schemas:
@@ -212,7 +212,7 @@ $defs:
     unevaluatedProperties: false
 
   paths:
-    $comment: https://spec.openapis.org/oas/v3.2#paths-object
+    $comment: https://spec.openapis.org/oas/v3.3#paths-object
     type: object
     patternProperties:
       '^/':
@@ -221,7 +221,7 @@ $defs:
     unevaluatedProperties: false
 
   path-item:
-    $comment: https://spec.openapis.org/oas/v3.2#path-item-object
+    $comment: https://spec.openapis.org/oas/v3.3#path-item-object
     type: object
     properties:
       $ref:
@@ -277,7 +277,7 @@ $defs:
     unevaluatedProperties: false
 
   operation:
-    $comment: https://spec.openapis.org/oas/v3.2#operation-object
+    $comment: https://spec.openapis.org/oas/v3.3#operation-object
     type: object
     properties:
       tags:
@@ -317,7 +317,7 @@ $defs:
     unevaluatedProperties: false
 
   external-documentation:
-    $comment: https://spec.openapis.org/oas/v3.2#external-documentation-object
+    $comment: https://spec.openapis.org/oas/v3.3#external-documentation-object
     type: object
     properties:
       description:
@@ -361,7 +361,7 @@ $defs:
     maxContains: 1
 
   parameter:
-    $comment: https://spec.openapis.org/oas/v3.2#parameter-object
+    $comment: https://spec.openapis.org/oas/v3.3#parameter-object
     type: object
     properties:
       name:
@@ -502,7 +502,7 @@ $defs:
       $ref: '#/$defs/parameter'
 
   request-body:
-    $comment: https://spec.openapis.org/oas/v3.2#request-body-object
+    $comment: https://spec.openapis.org/oas/v3.3#request-body-object
     type: object
     properties:
       description:
@@ -528,7 +528,7 @@ $defs:
       $ref: '#/$defs/request-body'
 
   content:
-    $comment: https://spec.openapis.org/oas/v3.2#fixed-fields-10
+    $comment: https://spec.openapis.org/oas/v3.3#fixed-fields-10
     type: object
     additionalProperties:
       $ref: '#/$defs/media-type-or-reference'
@@ -536,7 +536,7 @@ $defs:
       format: media-range
 
   media-type:
-    $comment: https://spec.openapis.org/oas/v3.2#media-type-object
+    $comment: https://spec.openapis.org/oas/v3.3#media-type-object
     type: object
     properties:
       description:
@@ -576,7 +576,7 @@ $defs:
       $ref: '#/$defs/media-type'
 
   encoding:
-    $comment: https://spec.openapis.org/oas/v3.2#encoding-object
+    $comment: https://spec.openapis.org/oas/v3.3#encoding-object
     type: object
     properties:
       contentType:
@@ -631,7 +631,7 @@ $defs:
     unevaluatedProperties: false
 
   responses:
-    $comment: https://spec.openapis.org/oas/v3.2#responses-object
+    $comment: https://spec.openapis.org/oas/v3.3#responses-object
     type: object
     properties:
       default:
@@ -650,7 +650,7 @@ $defs:
       required: [default]
 
   response:
-    $comment: https://spec.openapis.org/oas/v3.2#response-object
+    $comment: https://spec.openapis.org/oas/v3.3#response-object
     type: object
     properties:
       summary:
@@ -681,7 +681,7 @@ $defs:
       $ref: '#/$defs/response'
 
   callbacks:
-    $comment: https://spec.openapis.org/oas/v3.2#callback-object
+    $comment: https://spec.openapis.org/oas/v3.3#callback-object
     type: object
     $ref: '#/$defs/specification-extensions'
     additionalProperties:
@@ -698,7 +698,7 @@ $defs:
       $ref: '#/$defs/callbacks'
 
   example:
-    $comment: https://spec.openapis.org/oas/v3.2#example-object
+    $comment: https://spec.openapis.org/oas/v3.3#example-object
     type: object
     properties:
       summary:
@@ -743,7 +743,7 @@ $defs:
       $ref: '#/$defs/example'
 
   link:
-    $comment: https://spec.openapis.org/oas/v3.2#link-object
+    $comment: https://spec.openapis.org/oas/v3.3#link-object
     type: object
     properties:
       operationRef:
@@ -777,7 +777,7 @@ $defs:
       $ref: '#/$defs/link'
 
   header:
-    $comment: https://spec.openapis.org/oas/v3.2#header-object
+    $comment: https://spec.openapis.org/oas/v3.3#header-object
     type: object
     properties:
       description:
@@ -827,7 +827,7 @@ $defs:
       $ref: '#/$defs/header'
 
   tag:
-    $comment: https://spec.openapis.org/oas/v3.2#tag-object
+    $comment: https://spec.openapis.org/oas/v3.3#tag-object
     type: object
     properties:
       name:
@@ -848,7 +848,7 @@ $defs:
     unevaluatedProperties: false
 
   reference:
-    $comment: https://spec.openapis.org/oas/v3.2#reference-object
+    $comment: https://spec.openapis.org/oas/v3.3#reference-object
     type: object
     properties:
       $ref:
@@ -860,14 +860,14 @@ $defs:
         type: string
 
   schema:
-    $comment: https://spec.openapis.org/oas/v3.2#schema-object
+    $comment: https://spec.openapis.org/oas/v3.3#schema-object
     $dynamicAnchor: meta
     type:
       - object
       - boolean
 
   security-scheme:
-    $comment: https://spec.openapis.org/oas/v3.2#security-scheme-object
+    $comment: https://spec.openapis.org/oas/v3.3#security-scheme-object
     type: object
     properties:
       type:
@@ -1089,7 +1089,7 @@ $defs:
         unevaluatedProperties: false
 
   security-requirement:
-    $comment: https://spec.openapis.org/oas/v3.2#security-requirement-object
+    $comment: https://spec.openapis.org/oas/v3.3#security-requirement-object
     type: object
     additionalProperties:
       type: array
@@ -1097,7 +1097,7 @@ $defs:
         type: string
 
   specification-extensions:
-    $comment: https://spec.openapis.org/oas/v3.2#specification-extensions
+    $comment: https://spec.openapis.org/oas/v3.3#specification-extensions
     patternProperties:
       '^x-': true
 

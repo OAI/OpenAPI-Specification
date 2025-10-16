@@ -1,4 +1,4 @@
-openapi: 3.2.0
+openapi: 3.3.0
 
 # this example should fail, as servers must be an array, not an object
 

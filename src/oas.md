@@ -1,6 +1,6 @@
 # OpenAPI Specification
 
-## Version 3.2.0
+## Version 3.3.0
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14) [RFC2119](https://tools.ietf.org/html/rfc2119) [RFC8174](https://tools.ietf.org/html/rfc8174) when, and only when, they appear in all capitals, as shown here.
 
@@ -4805,6 +4805,7 @@ Certain fields allow the use of Markdown which can contain HTML including script
 
 | Version | Date | Notes |
 | ---- | ---- | ---- |
+| 3.3.0 | TBD | Release of the OpenAPI Specification 3.3.0 |
 | 3.2.0 | 2025-09-19 | Release of the OpenAPI Specification 3.2.0 |
 | 3.1.2 | 2025-09-19 | Patch release of the OpenAPI Specification 3.1.2 |
 | 3.1.1 | 2024-10-24 | Patch release of the OpenAPI Specification 3.1.1 |

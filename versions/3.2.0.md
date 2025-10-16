@@ -1857,7 +1857,7 @@ Using `contentEncoding` for a multipart field is equivalent to specifying an [En
 If `contentEncoding` is used for a multipart field that has an Encoding Object with a `headers` field containing `Content-Transfer-Encoding` with a schema that disallows the value from `contentEncoding`, the result is undefined for serialization and parsing.
 
 Note that as stated in [Working with Binary Data](#working-with-binary-data), if the Encoding Object's `contentType`, whether set explicitly or implicitly through its default value rules, disagrees with the `contentMediaType` in a Schema Object, the `contentMediaType` SHALL be ignored.
-Because of this, and because the Encoding Object's `contentType` defaulting rules do not take the Schema Object's `contentMediaType` into account, the use of `contentMediaType` with an Encoding Object is NOT RECOMMENDED.
+Because of this, and because the Encoding Object's `contentType` defaulting rules do not take the Schema Object's`contentMediaType` into account, the use of `contentMediaType` with an Encoding Object is NOT RECOMMENDED.
 
 Note also that `Content-Transfer-Encoding` is deprecated for `multipart/form-data` ([RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.7)) where binary data is supported, as it is in HTTP.
 
@@ -4805,8 +4805,8 @@ Certain fields allow the use of Markdown which can contain HTML including script
 
 | Version | Date | Notes |
 | ---- | ---- | ---- |
-| 3.2.0 | TBD | Release of the OpenAPI Specification 3.2.0 |
-| 3.1.2 | TBD | Patch release of the OpenAPI Specification 3.1.2 |
+| 3.2.0 | 2025-09-19 | Release of the OpenAPI Specification 3.2.0 |
+| 3.1.2 | 2025-09-19 | Patch release of the OpenAPI Specification 3.1.2 |
 | 3.1.1 | 2024-10-24 | Patch release of the OpenAPI Specification 3.1.1 |
 | 3.1.0 | 2021-02-15 | Release of the OpenAPI Specification 3.1.0 |
 | 3.1.0-rc1 | 2020-10-08 | rc1 of the 3.1 specification |

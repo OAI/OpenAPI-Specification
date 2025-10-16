@@ -7,6 +7,7 @@ present on the main branch, only on the development branches).
 
 * 3.1.x spec and schemas: v3.1-dev branch
 * 3.2.x spec and schemas: v3.2-dev branch
+* 3.3.x spec and schemas: v3.3-dev branch
 * registry templates: gh-pages branch, registry/...
 * registry contents: gh-pages branch, registries/...
 * process documentation and build infrastructure: main

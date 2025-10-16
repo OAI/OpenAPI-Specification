@@ -10,7 +10,8 @@ branch=$(git branch --show-current)
 
 if [ -z "$1" ]; then
   if [[ $branch =~ ^v([0-9]+\.[0-9]+)-dev$ ]]; then
-    deploydir="./deploy/oas/${BASH_REMATCH[1]}"
+    version="${BASH_REMATCH[1]}"
+    deploydir="./deploy/oas/${version}"
   else
     echo "Unable to determine version from branch name; should be vX.Y-dev"
     exit 1
@@ -36,7 +37,7 @@ publish_schema() {
   # replace the WORK-IN-PROGRESS placeholders
   sed ${sedCmd[@]} $schemaDir/$schema | npx yaml --json --indent 2 --single > $target
 
-  # Find the jekyll lander markdown file for this iteration.
+  # Find the jekyll lander markdown file for this version.
   local jekyllLander=$(find "$deploydir/$base" -maxdepth 1 -name "*.md")
 
   # Move the jekyll lander markdown for this iteration to the deploy destination.
@@ -45,7 +46,19 @@ publish_schema() {
     mv $jekyllLander $target.md
     echo " * $newestCommitDate: $schema & jekyll lander $(basename $jekyllLander)"
   else
-    echo " * $newestCommitDate: $schema"
+    # Find the most recent preceding version.
+    local lastdir=""; for fn in $(dirname $deploydir)/?.?; do test "$fn" "<" "$deploydir" && lastdir="$fn"; done
+    local lastVersion=$(basename $lastdir)
+    # Find the jekyll lander markdown file for the preceding version.
+    local lastLander=$(find "$lastdir/$base" -maxdepth 1 -name "*.md")
+
+    if [ ! -z "$lastLander" ]; then
+      # copy and adjust the lander file from the preceding version
+      sed "s/$lastVersion/$version/g" $lastLander > $target.md
+      echo " * $newestCommitDate: $schema & jekyll lander $(basename $lastLander) of $lastVersion"
+    else
+      echo " * $newestCommitDate: $schema"
+    fi
   fi
 
 }

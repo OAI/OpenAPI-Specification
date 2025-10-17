@@ -27,7 +27,7 @@ jobs:
           owner: OAI
           repositories: spec.openapis.org
 
-      - uses: actions/checkout@v4 # checkout main branch
+      - uses: actions/checkout@v5 # checkout main branch
         with:
           fetch-depth: 0
 

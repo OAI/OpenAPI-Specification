@@ -52,13 +52,13 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ steps.generate-token.outputs.token }}
-          branch: update-openapi-spec-versions
+          branch: openapi-spec-versions
           base: main
           delete-branch: true
           path: deploy
           labels: OpenAPI,Specification
           reviewers: earth2marsh,lornajane,mikekistler,miqui,ralfhandl,whitlockjc,handrews,karenetheridge
-          title: OpenAPI - Update ReSpec-rendered specification versions
+          title: OpenAPI - update ReSpec-rendered specification versions
           commit-message: Update ReSpec-rendered specification versions
           signoff: true
           body: |

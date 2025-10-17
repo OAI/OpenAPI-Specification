@@ -9,7 +9,7 @@ branch=$(git branch --show-current)
 
 
 if [ -z "$1" ]; then
-  if [[ $branch =~ ^v([0-9]+\.[0-9]+)-dev$ ]]; then
+  if [[ $branch =~ ^v([0-9]+\.[0-9]+)-dev ]]; then
     version="${BASH_REMATCH[1]}"
     deploydir="./deploy/oas/${version}"
   else

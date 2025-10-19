@@ -3,13 +3,12 @@ name: validate-markdown
 # Author: @MikeRalphson
 # Issue: https://github.com/OAI/OpenAPI-Specification/issues/2130
 
-#
 # This workflow validates markdown files in the project root.
 # It also validates the work-in-progress specification file src/oas.md with slightly different rules.
-#
 
-# run this on push to any branch and creation of pull-requests
-on: [push, pull_request]
+# run this on pull requests (which includes pushes to their head branch)
+on:
+  - pull_request
 
 jobs:
   lint:

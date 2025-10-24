@@ -32,5 +32,6 @@ Any other business (add comments below to suggest topics) | TDC | |
 [Approved spec PRs](https://github.com/OAI/OpenAPI-Specification/pulls?q=is%3Apr+is%3Aopen+review%3Aapproved) | @OAI/tsc | |
 [Active Projects](https://github.com/OAI/OpenAPI-Specification/projects?query=is%3Aopen) | @OAI/openapi-maintainers | |
 [New issues needing attention](https://github.com/search?q=repo%3Aoai%2Fopenapi-specification+is%3Aissue+comments%3A0+no%3Alabel+is%3Aopen) | @OAI/triage  | |
+Identify next week's meeting host (2 mins) | All | Comment on next week's agenda |
 
 /cc [@OAI/tsc](https://github.com/orgs/OAI/teams/tsc) please suggest items for inclusion.

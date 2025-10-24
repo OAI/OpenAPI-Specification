@@ -10,7 +10,7 @@ Exceptions may be made when links to external URLs have been changed by a 3rd pa
 
 Published versions of the specification are in the `versions/` folder.
 The under-development versions of the specification are in the file `src/oas.md` on the appropriately-versioned branch.
-For example, work on the next release for 3.2 is on `v3.2-dev` in the file `src/oas.md`.
+For example, work on the next patch release for 3.2 is on `v3.2-dev` in the file `src/oas.md`, and work on the next minor release with additional features for 3.3 is on `v3.3-dev`.
 
 The [spec site](https://spec.openapis.org) is the source of truth for the OpenAPI specification as it contains all the citations and author credits (the markdown in this repository was previously the authoritative version until 2024).
 
@@ -24,7 +24,8 @@ The current active specification releases are:
 | Version | Branch | Notes |
 | ------- | ------ | ----- |
 | 3.1.2 | `v3.1-dev` | active patch release line |
-| 3.2.0 | `v3.2-dev` | minor release in development |
+| 3.2.0 | `v3.2-dev` | active patch release line |
+| 3.3.0 | `v3.3-dev` | minor release in development |
 | 4.0.0 | [OAI/sig-moonwalk](https://github.com/OAI/sig-moonwalk) | [discussions only](https://github.com/OAI/sig-moonwalk/discussions) |
 
 

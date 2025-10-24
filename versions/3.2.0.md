@@ -1,6 +1,6 @@
 # OpenAPI Specification
 
-## Version 3.2.1
+## Version 3.2.0
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14) [RFC2119](https://tools.ietf.org/html/rfc2119) [RFC8174](https://tools.ietf.org/html/rfc8174) when, and only when, they appear in all capitals, as shown here.
 
@@ -1857,7 +1857,7 @@ Using `contentEncoding` for a multipart field is equivalent to specifying an [En
 If `contentEncoding` is used for a multipart field that has an Encoding Object with a `headers` field containing `Content-Transfer-Encoding` with a schema that disallows the value from `contentEncoding`, the result is undefined for serialization and parsing.
 
 Note that as stated in [Working with Binary Data](#working-with-binary-data), if the Encoding Object's `contentType`, whether set explicitly or implicitly through its default value rules, disagrees with the `contentMediaType` in a Schema Object, the `contentMediaType` SHALL be ignored.
-Because of this, and because the Encoding Object's `contentType` defaulting rules do not take the Schema Object's `contentMediaType` into account, the use of `contentMediaType` with an Encoding Object is NOT RECOMMENDED.
+Because of this, and because the Encoding Object's `contentType` defaulting rules do not take the Schema Object's`contentMediaType` into account, the use of `contentMediaType` with an Encoding Object is NOT RECOMMENDED.
 
 Note also that `Content-Transfer-Encoding` is deprecated for `multipart/form-data` ([RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.7)) where binary data is supported, as it is in HTTP.
 
@@ -2976,7 +2976,7 @@ Where JSON Schema indicates that behavior is defined by the application (e.g. fo
 
 The OpenAPI Schema Object [dialect](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-4.3.3) is defined as requiring the [OAS base vocabulary](#base-vocabulary), in addition to the vocabularies as specified in the JSON Schema Specification Draft 2020-12 [general purpose meta-schema](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-8).
 
-The OpenAPI Schema Object dialect for this version of the specification is identified by the URI of the form `https://spec.openapis.org/oas/3.2/dialect/YYYY-MM-DD` (the <a name="dialect-schema-id"></a>"OAS dialect schema id" -- see [the list of current schemas](https://spec.openapis.org/oas/) for the specific URI).
+The OpenAPI Schema Object dialect for this version of the specification is identified by the URI `https://spec.openapis.org/oas/3.1/dialect/base` (the <a name="dialect-schema-id"></a>"OAS dialect schema id").
 
 The following keywords are taken from the JSON Schema specification but their definitions have been extended by the OAS:
 
@@ -4805,7 +4805,6 @@ Certain fields allow the use of Markdown which can contain HTML including script
 
 | Version | Date | Notes |
 | ---- | ---- | ---- |
-| 3.2.1 | TBD | Release of the OpenAPI Specification 3.2.1 |
 | 3.2.0 | 2025-09-19 | Release of the OpenAPI Specification 3.2.0 |
 | 3.1.2 | 2025-09-19 | Patch release of the OpenAPI Specification 3.1.2 |
 | 3.1.1 | 2024-10-24 | Patch release of the OpenAPI Specification 3.1.1 |

@@ -23,11 +23,10 @@ The current active specification releases are:
 
 | Version | Branch | Notes |
 | ------- | ------ | ----- |
-| 3.1.2 | `v3.1-dev` | active patch release line |
-| 3.2.0 | `v3.2-dev` | active patch release line |
+| 3.1.3 | `v3.1-dev` | active patch release line |
+| 3.2.1 | `v3.2-dev` | active patch release line |
 | 3.3.0 | `v3.3-dev` | minor release in development |
 | 4.0.0 | [OAI/sig-moonwalk](https://github.com/OAI/sig-moonwalk) | [discussions only](https://github.com/OAI/sig-moonwalk/discussions) |
-
 
 ## How to contribute
 

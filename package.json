@@ -27,7 +27,7 @@
     "yargs": "^18.0.0"
   },
   "devDependencies": {
-    "@hyperjump/json-schema-coverage": "^1.1.1",
+    "@hyperjump/json-schema-coverage": "^1.1.2",
     "@umbrelladocs/linkspector": "^0.4.7",
     "@vitest/coverage-v8": "^4.0.3",
     "c8": "^10.1.3",

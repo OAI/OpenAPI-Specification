@@ -11,6 +11,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch: {}
 
 jobs:
   sync-branch:
@@ -25,22 +26,36 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          token: ${{ steps.generate-token.outputs.token }}
 
       - name: Create pull request
         id: pull_request
         shell: bash
         run: |
-          EXISTS=$(gh pr list --base $BASE --head $HEAD \
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          SYNC="$BASE-sync-with-$HEAD"
+
+          git checkout -b $SYNC origin/$SYNC || git checkout -b $SYNC origin/$BASE
+          git merge origin/$HEAD -m "Merge $HEAD into $SYNC"
+          git checkout origin/$BASE src/*
+          git checkout origin/$BASE tests/*
+          git commit -m "Restored src/* and tests/*" || echo ""
+          git push -u origin $SYNC
+
+          EXISTS=$(gh pr list --base $BASE --head $SYNC \
             --json number --jq '.[] | .number')
           if [ ! -z "$EXISTS" ]; then
-            echo "PR #$EXISTS already wants to merge $HEAD into $BASE"
+            echo "PR #$EXISTS already wants to merge $SYNC into $BASE"
             exit 0
           fi
 
-          gh pr create --base $BASE --head $HEAD \
+          gh pr create --base $BASE --head $SYNC \
             --label "Housekeeping" \
-            --title "$BASE: update from $HEAD" \
-            --body "Merge \`$HEAD\` into \`$BASE\`."
+            --title "$BASE: sync with $HEAD" \
+            --body "Merge relevant changes from \`$HEAD\` into \`$BASE\`."
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
           HEAD: main

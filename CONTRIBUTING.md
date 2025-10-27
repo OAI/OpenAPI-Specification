@@ -211,9 +211,9 @@ The steps for creating a `vX.Y.Z-rel` branch are:
    - merge changes to `src/oas.md` back into `vX.Y-dev` via PR
 4. Create `vX.Y.Z-rel` from `vX.Y-dev` and adjust it
    - the bash script `scripts/adjust-release-branch.sh` does this:
-     - move file `src/oas.md` to `versions/X.Y.Z.md`
+     - copy file `src/oas.md` to `versions/X.Y.Z.md` and replace the release date placeholder `| TBD |` in the history table of Appendix A with the current date
      - copy file `EDITORS.md` to `versions/X.Y.Z-editors.md`
-     - delete folder `src/schemas`
+     - delete folder `src`
      - delete version-specific files and folders from `tests/schema`
        - file `schema.test.mjs`
        - folders `pass` and `fail`

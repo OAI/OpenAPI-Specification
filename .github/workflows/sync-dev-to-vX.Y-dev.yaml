@@ -15,6 +15,7 @@ on:
 
 jobs:
   sync-branches:
+    if: github.repository == 'OAI/OpenAPI-Specification'
     runs-on: ubuntu-latest
     steps:
       - name: Generate access token
@@ -61,11 +62,11 @@ jobs:
               --title "$BASE: sync with $HEAD" \
               --body "Merge relevant changes from \`$HEAD\` into \`$BASE\`.")
             echo ""
-            echo "PR to sync $DEV_BRANCH: $PR"
+            echo "PR to sync $BASE with $HEAD: $PR"
             sleep 10 # allow status checks to be triggered
             
             gh pr checks $PR --watch --required || continue
-            # gh pr merge $PR --merge --admin
+            gh pr merge $PR --merge --admin
           done
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}

@@ -37,19 +37,18 @@ publish_schema() {
   # replace the WORK-IN-PROGRESS placeholders
   sed ${sedCmd[@]} $schemaDir/$schema | npx yaml --json --indent 2 --single > $target
 
-  # Find the jekyll lander markdown file for this version.
+  # find the jekyll lander markdown file
   local jekyllLander=$(find "$deploydir/$base" -maxdepth 1 -name "*.md")
 
-  # Move the jekyll lander markdown for this iteration to the deploy destination.
-  # The lander files only exist in the gh-pages branch.
+  # rename or create the jekyll lander markdown file for this iteration
   if [ ! -z "$jekyllLander" ]; then
     mv $jekyllLander $target.md
     echo " * $newestCommitDate: $schema & jekyll lander $(basename $jekyllLander)"
   else
-    # Find the most recent preceding version.
+    # find the most recent preceding version
     local lastdir=""; for fn in $(dirname $deploydir)/?.?; do test "$fn" "<" "$deploydir" && lastdir="$fn"; done
     local lastVersion=$(basename $lastdir)
-    # Find the jekyll lander markdown file for the preceding version.
+    # find the jekyll lander markdown file for the preceding version
     local lastLander=$(find "$lastdir/$base" -maxdepth 1 -name "*.md")
 
     if [ ! -z "$lastLander" ]; then
@@ -68,7 +67,7 @@ echo === Building schemas into $deploydir
 # list of schemas to process, dependent schemas come first
 schemas=(meta.yaml dialect.yaml schema.yaml schema-base.yaml)
 
-# publish each schema using its or any of its dependencies newest commit date.
+# publish each schema using its or any of its dependencies newest commit date
 maxDate=""
 sedCmds=()
 for schema in "${schemas[@]}"; do
@@ -81,7 +80,7 @@ for schema in "${schemas[@]}"; do
     fi
 
     base=$(basename $schema '.yaml')
-    # Add the replacement for this schema's placeholder to list of sed commands.
+    # add the replacement for this schema's placeholder to list of sed commands
     sedCmds+=("s/${base}\/WORK-IN-PROGRESS/${base}\/${maxDate}/g")
 
     publish_schema "$schema" "$maxDate" $(printf '%s;' "${sedCmds[@]}")

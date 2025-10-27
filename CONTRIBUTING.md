@@ -222,6 +222,34 @@ The steps for creating a `vX.Y.Z-rel` branch are:
 
 The HTML renderings of the specification versions are generated from the `versions` directory on `main` by manually triggering the [`respec` workflow](https://github.com/OAI/OpenAPI-Specification/blob/main/.github/workflows/respec.yaml), which generates a pull request for publishing the HTML renderings to the [spec site](https://spec.openapis.org).
 
+#### Start Next Patch Version
+
+Once the released specification version is [synced](#branch-sync-automation) back to the `vX.Y-dev` branch, the next patch version X.Y.(Z+1) can be started:
+
+1. Run bash script `scripts/start-release.sh` in branch `vX.Y-dev` to
+   - create branch `vX.Y-dev-start-X.Y.(Z+1)`
+   - initialize `src/oas.md` with empty history and content from `versions/X.Y.Z.md`
+   - change version heading to X.Y.(Z+1) and add a new line to the version history table in Appendix A of  `src/oas.md`
+   - commit and push changes
+2. Merge `vX.Y-dev-start-X.Y.(Z+1)` into  `vX.Y-dev` via pull request
+
+Alternatively, if no patch version X.Y.(Z+1) is planned, delete file `src/oas.md` from branch `vX.Y-dev` via pull request.
+
+#### Start New Minor or Major Version
+
+A new minor version X.(Y+1).0 or major version (X+1).0.0 is started similarly:
+
+1. Create branch `vX'.Y'-dev` from `vX.Y-dev`
+2. Run bash script `scripts/start-release.sh` in the new branch to
+   - create branch `vX'.Y'-dev-start-X'.Y'.0`
+   - initialize `src/oas.md` with empty history and content from `versions/X.Y.Z.md`
+   - change version heading to X'.Y'.0 and add a new line to the version history table in Appendix A of  `src/oas.md`
+   - change version in all schema files `src/schemas/validation/.yaml`
+   - change version in schema test script `tests/schema/schema.test.mjs`
+   - change version in schema test fixtures in folders `tests/schema/pass` and `tests/schema/fail`
+   - commit and push changes
+3. Merge `vX'.Y'-dev-start-X'.Y'.0` into `vX'.Y'-dev` via pull request
+
 ### Schema Iterations
 
 The schema iterations are published independently from the specification releases [in the schema section on the spec site](https://spec.openapis.org/#openapi-specification-schemas).

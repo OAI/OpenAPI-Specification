@@ -23,11 +23,10 @@ The current active specification releases are:
 
 | Version | Branch | Notes |
 | ------- | ------ | ----- |
-| 3.1.2 | `v3.1-dev` | active patch release line |
-| 3.2.0 | `v3.2-dev` | active patch release line |
+| 3.1.3 | `v3.1-dev` | active patch release line |
+| 3.2.1 | `v3.2-dev` | active patch release line |
 | 3.3.0 | `v3.3-dev` | minor release in development |
 | 4.0.0 | [OAI/sig-moonwalk](https://github.com/OAI/sig-moonwalk) | [discussions only](https://github.com/OAI/sig-moonwalk/discussions) |
-
 
 ## How to contribute
 
@@ -212,9 +211,9 @@ The steps for creating a `vX.Y.Z-rel` branch are:
    - merge changes to `src/oas.md` back into `vX.Y-dev` via PR
 4. Create `vX.Y.Z-rel` from `vX.Y-dev` and adjust it
    - the bash script `scripts/adjust-release-branch.sh` does this:
-     - move file `src/oas.md` to `versions/X.Y.Z.md`
+     - copy file `src/oas.md` to `versions/X.Y.Z.md` and replace the release date placeholder `| TBD |` in the history table of Appendix A with the current date
      - copy file `EDITORS.md` to `versions/X.Y.Z-editors.md`
-     - delete folder `src/schemas`
+     - delete folder `src`
      - delete version-specific files and folders from `tests/schema`
        - file `schema.test.mjs`
        - folders `pass` and `fail`
@@ -222,6 +221,34 @@ The steps for creating a `vX.Y.Z-rel` branch are:
    - this PR should only add files `versions/X.Y.Z.md` and `versions/X.Y.Z-editors.md`
 
 The HTML renderings of the specification versions are generated from the `versions` directory on `main` by manually triggering the [`respec` workflow](https://github.com/OAI/OpenAPI-Specification/blob/main/.github/workflows/respec.yaml), which generates a pull request for publishing the HTML renderings to the [spec site](https://spec.openapis.org).
+
+#### Start Next Patch Version
+
+Once the released specification version is [synced](#branch-sync-automation) back to the `vX.Y-dev` branch, the next patch version X.Y.(Z+1) can be started:
+
+1. Run bash script `scripts/start-release.sh` in branch `vX.Y-dev` to
+   - create branch `vX.Y-dev-start-X.Y.(Z+1)`
+   - initialize `src/oas.md` with empty history and content from `versions/X.Y.Z.md`
+   - change version heading to X.Y.(Z+1) and add a new line to the version history table in Appendix A of  `src/oas.md`
+   - commit and push changes
+2. Merge `vX.Y-dev-start-X.Y.(Z+1)` into  `vX.Y-dev` via pull request
+
+Alternatively, if no patch version X.Y.(Z+1) is planned, delete file `src/oas.md` from branch `vX.Y-dev` via pull request.
+
+#### Start New Minor or Major Version
+
+A new minor version X.(Y+1).0 or major version (X+1).0.0 is started similarly:
+
+1. Create branch `vX'.Y'-dev` from `vX.Y-dev`
+2. Run bash script `scripts/start-release.sh` in the new branch to
+   - create branch `vX'.Y'-dev-start-X'.Y'.0`
+   - initialize `src/oas.md` with empty history and content from `versions/X.Y.Z.md`
+   - change version heading to X'.Y'.0 and add a new line to the version history table in Appendix A of  `src/oas.md`
+   - change version in all schema files `src/schemas/validation/.yaml`
+   - change version in schema test script `tests/schema/schema.test.mjs`
+   - change version in schema test fixtures in folders `tests/schema/pass` and `tests/schema/fail`
+   - commit and push changes
+3. Merge `vX'.Y'-dev-start-X'.Y'.0` into `vX'.Y'-dev` via pull request
 
 ### Schema Iterations
 
@@ -503,10 +530,9 @@ gitGraph TB:
 
 To keep changes in sync, we have some GitHub actions that open pull requests to take changes from `main` onto the `dev` branch, and from `dev` to each active version branch.
 
-- `sync-main-to-dev` opens a pull request with all the changes from the `main` branch that aren't yet included on `dev`.
-- `sync-dev-to-vX.Y-dev` opens pull requests with all the changes from `dev` that aren't yet included on the corresponding `vX.Y-dev` branch.
+- `sync-main-to-dev` opens a pull request with all the changes from the `main` branch that aren't yet included on `dev`. This pull request needs a single approval from either maintainers or TSC and can be merged.
+- `sync-dev-to-vX.Y-dev` opens pull requests with all the changes from `dev` that aren't yet included on the corresponding `vX.Y-dev` branch. These pull requests are automatically merged if all required status checks pass.
 
-These need a single approval from either maintainers or TSC and can be merged.
 The aim is to bring build script and repository documentation changes to the other branches.
 Published versions of the specifications and schemas will also move across branches with this approach.
 

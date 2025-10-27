@@ -15,6 +15,7 @@ on:
 
 jobs:
   sync-branch:
+    if: github.repository == 'OAI/OpenAPI-Specification'
     runs-on: ubuntu-latest
     steps:
       - name: Generate access token

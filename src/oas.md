@@ -519,6 +519,9 @@ Path templating refers to the usage of template expressions, delimited by curly 
 Each template expression in the path MUST correspond to a path parameter that is included in the [Path Item](#path-item-object) itself and/or in each of the Path Item's [Operations](#operation-object). An exception is if the path item is empty, for example due to ACL constraints, matching path parameters are not required.
 
 The value for these path parameters MUST NOT contain any unescaped "generic syntax" characters described by [RFC3986](https://tools.ietf.org/html/rfc3986#section-3): forward slashes (`/`), question marks (`?`), or hashes (`#`).
+This means that when matching templates to request URLs, no values that include a forward slash are matched.
+For example, the template `/foo/{bar}` cannot match the URI path "/foo/alpha/beta" because the value of the template variable "bar" would have to be "alpha/beta".
+
 See [URL Percent-Encoding](#url-percent-encoding) for additional guidance on escaping characters.
 
 The path templating is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax

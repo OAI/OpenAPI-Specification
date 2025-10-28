@@ -353,7 +353,7 @@ servers:
 
 An object representing a Server Variable for server URL template substitution.
 
-The server URL templating is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax.
+The server URL templating is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax:
 
 ```abnf
 server-url-template  = 1*( literals / server-variable )
@@ -524,7 +524,7 @@ For example, the template `/foo/{bar}` cannot match the URI path "/foo/alpha/bet
 
 See [URL Percent-Encoding](#url-percent-encoding) for additional guidance on escaping characters.
 
-The path templating is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax
+The path templating is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax:
 
 ```abnf
 path-template                  = "/" *( path-segment "/" ) [ path-segment ]
@@ -2615,7 +2615,7 @@ The unescaped, percent-decoded path template in the above examples would be `/2.
 Runtime expressions allow defining values based on information that will only be available within the HTTP message in an actual API call.
 This mechanism is used by [Link Objects](#link-object) and [Callback Objects](#callback-object).
 
-The runtime expression is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax
+The runtime expression is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax:
 
 ```abnf
     expression = "$url" / "$method" / "$statusCode" / "$request." source / "$response." source

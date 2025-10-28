@@ -1238,7 +1238,7 @@ The rules in this section apply to both the Parameter and [Header](#header-objec
 
 When showing serialized examples using the `example` field or [Example Objects](#example-object), in most cases the value to show is just the value, with all relevant percent-encoding or other encoding/escaping applied, and also including any delimiters produced by the `style` and `explode` configuration.
 
-In cases where the name is an inherent part of constructing the serialization, such as the `name=value` pairs produced by `style: "form"` or the combination of `style: "simple", explode: true`, the name and any delimiter between the name and value MUST be included.
+In cases where the parameter name is an inherent part of constructing the serialization, such as the `name=value` pairs produced by the combination of `style: "form", explode: false`, the name and any delimiter between the name and value MUST be included.
 
 The `matrix` and `label` styles produce a leading delimiter which is always a valid part of the serialization and MUST be included.
 The RFC6570 operators corresponding to `style: "form"` produce a leading delimiter of either `?` or `&` depending on the exact syntax used.

@@ -1253,6 +1253,7 @@ The following section illustrates these rules.
 Assume a parameter named `color` has one of the following values:
 
 ```js
+   undefined -> null
    string -> "blue"
    array -> ["blue", "black", "brown"]
    object -> { "R": 100, "G": 200, "B": 150 }
@@ -1268,10 +1269,10 @@ The following table shows serialized examples, as would be shown with the `examp
 
 | [`style`](#style-values) | `explode` | `undefined` | `string` | `array` | `object` |
 | ---- | ---- | ---- | ---- | ---- | ---- |
-| matrix | false | ;color | ;color=blue | ;color=blue,black,brown | ;color=R,100,G,200,B,150 |
-| matrix | true | ;color | ;color=blue | ;color=blue;color=black;color=brown | ;R=100;G=200;B=150 |
-| label | false | . | .blue | .blue,black,brown | .R,100,G,200,B,150 |
-| label | true | . | .blue | .blue.black.brown | .R=100.G=200.B=150 |
+| matrix | false | _empty_ | ;color=blue | ;color=blue,black,brown | ;color=R,100,G,200,B,150 |
+| matrix | true | _empty_ | ;color=blue | ;color=blue;color=black;color=brown | ;R=100;G=200;B=150 |
+| label | false | _empty_ | .blue | .blue,black,brown | .R,100,G,200,B,150 |
+| label | true | _empty_ | .blue | .blue.black.brown | .R=100.G=200.B=150 |
 | simple | false | _empty_ | blue | blue,black,brown | R,100,G,200,B,150 |
 | simple | true | _empty_ | blue | blue,black,brown | R=100,G=200,B=150 |
 | form | false | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue,black,brown</span> | <span style="white-space: nowrap;">color=R,100,G,200,B,150</span> |

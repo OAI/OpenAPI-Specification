@@ -1261,7 +1261,7 @@ Assume a parameter named `color` has one of the following values:
    object -> { "R": 100, "G": 200, "B": 150 }
 ```
 
-The following table shows serialized examples, as would be shown with the `example` or `examples` keywords, of the different serializations for each value.
+The following table shows serialized examples, as would be shown with the `example` or `examples` keywords, of the different serializations for the value of each supported type.
 
 * The value _empty_ denotes the empty string, and is unrelated to the `allowEmptyValue` field.
 * The behavior of combinations marked _n/a_ is undefined.

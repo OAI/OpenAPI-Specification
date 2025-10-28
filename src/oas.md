@@ -898,6 +898,7 @@ See the [Header Object](#header-object) for special rules for showing examples o
 Assume a parameter named `color` has one of the following values, where the value to the right of the `->` is what would be shown in the `dataValue` field of an Example Object:
 
 ```js
+   undefined -> null
    string -> "blue"
    array -> ["blue", "black", "brown"]
    object -> { "R": 100, "G": 200, "B": 150 }
@@ -913,10 +914,10 @@ The following table shows serialized examples, as would be shown with the `seria
 
 | [`style`](#style-values) | `explode` | `undefined` | `string` | `array` | `object` |
 | ---- | ---- | ---- | ---- | ---- | ---- |
-| matrix | false | ;color | ;color=blue | ;color=blue,black,brown | ;color=R,100,G,200,B,150 |
-| matrix | true | ;color | ;color=blue | ;color=blue;color=black;color=brown | ;R=100;G=200;B=150 |
-| label | false | . | .blue | .blue,black,brown | .R,100,G,200,B,150 |
-| label | true | . | .blue | .blue.black.brown | .R=100.G=200.B=150 |
+| matrix | false | _empty_ | ;color=blue | ;color=blue,black,brown | ;color=R,100,G,200,B,150 |
+| matrix | true | _empty_ | ;color=blue | ;color=blue;color=black;color=brown | ;R=100;G=200;B=150 |
+| label | false | _empty_ | .blue | .blue,black,brown | .R,100,G,200,B,150 |
+| label | true | _empty_ | .blue | .blue.black.brown | .R=100.G=200.B=150 |
 | simple | false | _empty_ | blue | blue,black,brown | R,100,G,200,B,150 |
 | simple | true | _empty_ | blue | blue,black,brown | R=100,G=200,B=150 |
 | form | false | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue,black,brown</span> | <span style="white-space: nowrap;">color=R,100,G,200,B,150</span> |

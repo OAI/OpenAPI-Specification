@@ -2544,7 +2544,7 @@ The unescaped, percent-decoded path template in the above examples would be `/2.
 Runtime expressions allow defining values based on information that will only be available within the HTTP message in an actual API call.
 This mechanism is used by [Link Objects](#link-object) and [Callback Objects](#callback-object).
 
-The runtime expression is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax
+The runtime expression is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax:
 
 ```abnf
     expression = "$url" / "$method" / "$statusCode" / "$request." source / "$response." source

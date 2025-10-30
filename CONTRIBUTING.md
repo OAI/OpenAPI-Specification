@@ -371,7 +371,7 @@ For information on the branch and release strategy for OAS 3.0.4 and 3.1.1 and e
 
 * `main` is used to publish finished work and hold the authoritative versions of general documentation such as this document, which can be merged out to other branches as needed.  The `src` tree is _**not**_ present on `main`.
 * `dev` is the primary branch for working with the `src` tree.  Development infrastructure that is not needed on `main` is maintained here, and can be merged out to other non-`main` branches as needed.
-  Changes on `main` are automatically included in a pull request to `dev` (see the (section on [branch sync](#branch-sync-automation)).
+  Changes on `main` are automatically included in a pull request to `dev` (see the section on [branch sync](#branch-sync-automation)).
 * `vX.Y-dev` is the minor release line development branch for X.Y, including both the initial X.Y.0 minor version and all subsequent X.Y.Z patch versions.  All PRs are made to oldest active `vX.Y-dev` branch to which the change is relevant, and then merged forward as shown in the diagram further down in this document.
 * `vX.Y.Z-rel` is the release branch for an X.Y.Z release (including when Z == 0).  It exists primarily for `git mv`-ing `src/oas.md` to the appropriate `versions/X.Y.Z.md` location and removing schema-related files before merging back to `main`, and is deleted once merged into `main` via a pull request.
 
@@ -403,14 +403,14 @@ config:
     git2: "#eedd88"
     git3: "#ccbb66"
     git4: "#aa9944"
-    git5: "#887722"
-    git6: "#99ccff"
-    git7: "#77aadd"
+    git5: "#44ff77"
+    git6: "#22cc22"
+    git7: "#11aa11"
     gitBranchLabel1: "#000000"
     gitBranchLabel2: "#000000"
     gitBranchLabel3: "#000000"
     gitBranchLabel4: "#000000"
-    gitBranchLabel5: "#ffffff"
+    gitBranchLabel5: "#000000"
     gitBranchLabel6: "#000000"
     gitBranchLabel7: "#000000"
 ---
@@ -425,9 +425,8 @@ gitGraph TB:
   commit id:"update version in src/oas.md to 3.2.0"
   commit id:"some 3.2.0 work"
   checkout v3.1-dev
-  commit id:"a 3.1.x fix"
-  checkout v3.2-dev
-  merge v3.1-dev id:"merge 3.1.2 fixes"
+  commit id:"a 3.1.2 fix"
+
   checkout v3.1-dev
   branch v3.1.2-rel order:3
   commit id:"rename src/oas.md to versions/3.1.2.md"
@@ -444,10 +443,9 @@ gitGraph TB:
   commit id:"more 3.2.0 work"
   checkout v3.1-dev
   commit id:"update version in src/oas.md to 3.1.3"
-  commit id:"another 3.1.x fix"
+  commit id:"a 3.1.3 fix"
   checkout v3.2-dev
   commit id:"still more 3.2.0 work"
-  merge v3.1-dev id:"merge 3.1.3 fixes before releasing"
 
   checkout v3.1-dev
   branch v3.1.3-rel order:4
@@ -476,30 +474,18 @@ gitGraph TB:
 
   checkout v3.2-dev
   branch v3.3-dev order:9
-  checkout v3.1-dev
-  commit id:"update version in src/oas.md to 3.1.4"
   checkout v3.2-dev
   commit id:"update version in src/oas.md to 3.2.1"
   checkout v3.3-dev
   commit id:"update version in src/oas.md to 3.3.0"
 
-  checkout v3.1-dev
-  commit id:"a 3.1.4 fix"
   checkout v3.2-dev
   commit id:"a 3.2.1 fix"
-  merge v3.1-dev id:"merge 3.1.4 fixes before releasing"
-  checkout v3.3-dev
-  merge v3.2-dev id:"merge 3.1.4 / 3.2.1 fixes"
 
-  checkout v3.1-dev
-  branch v3.1.4-rel order:5
-  commit id:"rename src/oas.md to versions/3.1.4.md"
   checkout v3.2-dev
   branch v3.2.1-rel order:8
   commit id:"rename src/oas.md to versions/3.2.1.md"
 
-  checkout main
-  merge v3.1.4-rel tag:"3.1.4"
   checkout dev
   merge main id:"   auto-sync from main"
   checkout v3.1-dev
@@ -534,7 +520,7 @@ To keep changes in sync, we have some GitHub actions that open pull requests to 
 - `sync-dev-to-vX.Y-dev` opens pull requests with all the changes from `dev` that aren't yet included on the corresponding `vX.Y-dev` branch. These pull requests are automatically merged if all required status checks pass.
 
 The aim is to bring build script and repository documentation changes to the other branches.
-Published versions of the specifications and schemas will also move across branches with this approach.
+Published versions of the specifications will also move across branches with this approach.
 
 ## Appendix: Issue Automation
 

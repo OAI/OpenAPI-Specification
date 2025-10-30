@@ -353,7 +353,7 @@ servers:
 
 An object representing a Server Variable for server URL template substitution.
 
-The server URL templating is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax.
+The server URL templating is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax:
 
 ```abnf
 server-url-template  = 1*( literals / server-variable )
@@ -519,9 +519,12 @@ Path templating refers to the usage of template expressions, delimited by curly 
 Each template expression in the path MUST correspond to a path parameter that is included in the [Path Item](#path-item-object) itself and/or in each of the Path Item's [Operations](#operation-object). An exception is if the path item is empty, for example due to ACL constraints, matching path parameters are not required.
 
 The value for these path parameters MUST NOT contain any unescaped "generic syntax" characters described by [RFC3986](https://tools.ietf.org/html/rfc3986#section-3): forward slashes (`/`), question marks (`?`), or hashes (`#`).
+This means that when matching templates to request URLs, no values that include a forward slash are matched.
+For example, the template `/foo/{bar}` cannot match the URI path "/foo/alpha/beta" because the value of the template variable "bar" would have to be "alpha/beta".
+
 See [URL Percent-Encoding](#url-percent-encoding) for additional guidance on escaping characters.
 
-The path templating is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax
+The path templating is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax:
 
 ```abnf
 path-template                  = "/" *( path-segment "/" ) [ path-segment ]
@@ -882,7 +885,7 @@ The rules in this section apply to both the Parameter and [Header](#header-objec
 
 When showing serialized examples, such as with the [Example Object's](#example-object) `serializedValue` or `externalValue` fields, in most cases the value to show is just the value, with all relevant percent-encoding or other encoding/escaping applied, and also including any delimiters produced by the `style` and `explode` configuration.
 
-In cases where the name is an inherent part of constructing the serialization, such as the `name=value` pairs produced by `style: "form"` or the combination of `style: "simple", explode: true`, the name and any delimiter between the name and value MUST be included.
+In cases where the parameter name is an inherent part of constructing the serialization, such as the `name=value` pairs produced by the combination of `style: "form", explode: false`, the name and any delimiter between the name and value MUST be included.
 
 The `matrix` and `label` styles produce a leading delimiter which is always a valid part of the serialization and MUST be included.
 The RFC6570 operators corresponding to `style: "form"` produce a leading delimiter of either `?` or `&` depending on the exact syntax used.
@@ -898,12 +901,13 @@ See the [Header Object](#header-object) for special rules for showing examples o
 Assume a parameter named `color` has one of the following values, where the value to the right of the `->` is what would be shown in the `dataValue` field of an Example Object:
 
 ```js
+   undefined -> null
    string -> "blue"
    array -> ["blue", "black", "brown"]
    object -> { "R": 100, "G": 200, "B": 150 }
 ```
 
-The following table shows serialized examples, as would be shown with the `serializedValue` field of an Example Object, of the different serializations for each value.
+The following table shows serialized examples, as would be shown with the `serializedValue` field of an Example Object, of the different serializations for the value of each supported type.
 
 * The value _empty_ denotes the empty string, and is unrelated to the `allowEmptyValue` field.
 * The behavior of combinations marked _n/a_ is undefined.
@@ -913,10 +917,10 @@ The following table shows serialized examples, as would be shown with the `seria
 
 | [`style`](#style-values) | `explode` | `undefined` | `string` | `array` | `object` |
 | ---- | ---- | ---- | ---- | ---- | ---- |
-| matrix | false | ;color | ;color=blue | ;color=blue,black,brown | ;color=R,100,G,200,B,150 |
-| matrix | true | ;color | ;color=blue | ;color=blue;color=black;color=brown | ;R=100;G=200;B=150 |
-| label | false | . | .blue | .blue,black,brown | .R,100,G,200,B,150 |
-| label | true | . | .blue | .blue.black.brown | .R=100.G=200.B=150 |
+| matrix | false | _empty_ | ;color=blue | ;color=blue,black,brown | ;color=R,100,G,200,B,150 |
+| matrix | true | _empty_ | ;color=blue | ;color=blue;color=black;color=brown | ;R=100;G=200;B=150 |
+| label | false | _empty_ | .blue | .blue,black,brown | .R,100,G,200,B,150 |
+| label | true | _empty_ | .blue | .blue.black.brown | .R=100.G=200.B=150 |
 | simple | false | _empty_ | blue | blue,black,brown | R,100,G,200,B,150 |
 | simple | true | _empty_ | blue | blue,black,brown | R=100,G=200,B=150 |
 | form | false | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue,black,brown</span> | <span style="white-space: nowrap;">color=R,100,G,200,B,150</span> |
@@ -2611,7 +2615,7 @@ The unescaped, percent-decoded path template in the above examples would be `/2.
 Runtime expressions allow defining values based on information that will only be available within the HTTP message in an actual API call.
 This mechanism is used by [Link Objects](#link-object) and [Callback Objects](#callback-object).
 
-The runtime expression is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax
+The runtime expression is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax:
 
 ```abnf
     expression = "$url" / "$method" / "$statusCode" / "$request." source / "$response." source

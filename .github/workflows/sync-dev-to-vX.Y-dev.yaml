@@ -45,9 +45,9 @@ jobs:
             
             git checkout -b $SYNC origin/$SYNC || git checkout -b $SYNC origin/$BASE
             git merge origin/$HEAD -m "Merge $HEAD into $SYNC"
-            git checkout origin/$BASE src/*
-            git checkout origin/$BASE tests/*
-            git commit -m "Restored src/* and tests/*" || echo ""
+            git checkout origin/$BASE src/
+            git checkout origin/$BASE tests/schema/
+            git commit -m "Restored src/ and tests/schema/" || echo ""
             git push -u origin $SYNC
 
             EXISTS=$(gh pr list --base $BASE --head $SYNC \

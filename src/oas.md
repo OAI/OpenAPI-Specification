@@ -923,15 +923,15 @@ The following table shows serialized examples, as would be shown with the `seria
 | label | true | _empty_ | .blue | .blue.black.brown | .R=100.G=200.B=150 |
 | simple | false | _empty_ | blue | blue,black,brown | R,100,G,200,B,150 |
 | simple | true | _empty_ | blue | blue,black,brown | R=100,G=200,B=150 |
-| form | false | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue,black,brown</span> | <span style="white-space: nowrap;">color=R,100,G,200,B,150</span> |
-| form | true | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue&color=black&color=brown</span> | <span style="white-space: nowrap;">R=100&G=200&B=150</span> |
-| spaceDelimited</span> | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color=blue%20black%20brown</span> | <span style="white-space: nowrap;">color=R%20100%20G%20200%20B%20150</span> |
+| form | false | color= | color=blue | color=blue,black,brown | color=R,100,G,200,B,150 |
+| form | true | color= | color=blue | color=blue&color=black&color=brown | R=100&G=200&B=150 |
+| spaceDelimited | false | _n/a_ | _n/a_ | color=blue%20black%20brown | color=R%20100%20G%20200%20B%20150 |
 | spaceDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
-| pipeDelimited | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color=blue%7Cblack%7Cbrown</span> | <span style="white-space: nowrap;">color=R%7C100%7CG%7C200%7CB%7C150</span> |
+| pipeDelimited | false | _n/a_ | _n/a_ | color=blue%7Cblack%7Cbrown | color=R%7C100%7CG%7C200%7CB%7C150 |
 | pipeDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
-| deepObject | _n/a_ | _n/a_ | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color%5BR%5D=100&color%5BG%5D=200&color%5BB%5D=150</span> |
-| cookie | false | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue,black,brown</span> | <span style="white-space: nowrap;">color=R,100,G,200,B,150</span> |
-| cookie | true | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue; color=black; color=brown</span> | <span style="white-space: nowrap;">R=100; G=200; B=150</span> |
+| deepObject | _n/a_ | _n/a_ | _n/a_ | _n/a_ | color%5BR%5D=100&color%5BG%5D=200&color%5BB%5D=150 |
+| cookie | false | color= | color=blue | color=blue,black,brown | color=R,100,G,200,B,150 |
+| cookie | true | color= | color=blue | color=blue; color=black; color=brown | R=100; G=200; B=150 |
 
 #### Extending Support for Querystring Formats
 

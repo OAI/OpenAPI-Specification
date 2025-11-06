@@ -4,9 +4,10 @@ This agenda gives visibility into discussion topics for the weekly Technical Dev
 
 Whether attending or not, **anyone can comment on this issue prior to the meeting to suggest topics or to add comments on planned topics or proposals**.
 
-Meetings take place over Zoom: [https://zoom.us/j/975841675](https://zoom.us/j/975841675?pwd=SUh4MjRLaEFKNlI3RElpWTdhRDVVUT09), dial-in passcode: 763054
+Meetings take place over Zoom: https://zoom-lfx.platform.linuxfoundation.org/meeting/92028872923?password=9ddcd542-4f5b-484a-a254-e00d8a8b15d8
 
 ### Accessibility & Etiquette
+
 * Participants must abide by our [Code-of-Conduct](https://github.com/OAI/OpenAPI-Specification?tab=coc-ov-file).
 
 * Meetings are recorded for future reference, and for those who are not able to attend in-person.

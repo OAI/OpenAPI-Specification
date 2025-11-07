@@ -97,6 +97,12 @@ if [ "$nextPatch" == "0" ]; then
         "$file" > "$temp"
     mv -f "$temp" "$file"
   done
+
+  for file in src/schemas/validation/*.md; do
+    sed -e "s/$lastMinor/$minor/g" \
+        "$file" > "$temp"
+    mv -f "$temp" "$file"
+  done
   
   echo === Adjust tests for new version $minor
 

@@ -1140,7 +1140,7 @@ There are four possible parameter locations specified by the `in` field:
 
 ##### Fixed Fields
 
-The rules for serialization of the parameter are specified in one of two ways.
+The rules for serialization and deserialization of the parameter are specified in one of two ways.
 Parameter Objects MUST include either a `content` field or a `schema` field, but not both.
 See [Appendix B](#appendix-b-data-type-conversion) for a discussion of converting values of various types to string representations.
 

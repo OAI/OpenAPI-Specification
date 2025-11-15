@@ -1134,7 +1134,7 @@ See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a detail
 There are four possible parameter locations specified by the `in` field:
 
 * path - Used together with [Path Templating](#path-templating), where the parameter value is actually part of the operation's URL. This does not include the host or base path of the API. For example, in `/items/{itemId}`, the path parameter is `itemId`.
-* query - Parameters that are appended to the URL. For example, in `/items?id=###`, the query parameter is `id`.
+* query - Parameters that are appended to the URL with the `?` character (or for subsequent query parameters, with the `&` character).
 * header - Custom headers that are expected as part of the request. Note that [RFC7230](https://tools.ietf.org/html/rfc7230#section-3.2) states header names are case insensitive.
 * cookie - Used to pass a specific cookie value to the API.
 

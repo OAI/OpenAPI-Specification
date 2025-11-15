@@ -3073,7 +3073,7 @@ Serializing data into such formats requires either examining the schema-validate
 
 When inspecting schemas, given a starting point schema, implementations MUST examine that schema and all schemas that can be reached from it by following only `$ref` and `allOf` keywords.
 These schemas are guaranteed to apply to any instance.
-When searching schemas for `type`, if the `type` keyword's value is a list of types and the serialized value can be successfully parsed as more than one of the types in the list, and no other findable `type` keyword disambiguates the actual required type, the behavior is implementation-defined.
+When searching schemas for `type`, if the `type` keyword's value is a list of types and the serialized value can be successfully parsed as more than one of the types in the list, and no other findable `type` keyword disambiguates the actual required type, the behavior is implementation-defined and must be documented.
 Schema Objects that do not contain `type` MUST be considered to allow all types, regardless of which other keywords are present (e.g. `maximum` applies to numbers, but _does not_ require the instance to be a number).
 
 Implementations MAY inspect subschemas or possible reference targets of other keywords such as `oneOf` or `$dynamicRef`, but MUST NOT attempt to resolve ambiguities.

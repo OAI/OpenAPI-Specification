@@ -4964,9 +4964,9 @@ parameters:
     type: object
     additionalProperties:
       type: string
-  explode: true
 - name: words
   in: query
+  explode: false
   schema:
     type: array
     items:
@@ -4994,16 +4994,14 @@ To do that, we'll add `allowReserved: true` to `formulas`, and change to `style:
 parameters:
 - name: formulas
   in: query
+  allowReserved: true
   schema:
     type: object
     additionalProperties:
       type: string
-  explode: true
-  allowReserved: true
 - name: words
   in: query
   style: spaceDelimited
-  explode: false
   schema:
     type: array
     items:

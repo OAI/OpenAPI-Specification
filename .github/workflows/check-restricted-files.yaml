@@ -14,7 +14,7 @@ jobs:
   check-files:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5 # checkout repo content
+      - uses: actions/checkout@v6 # checkout repo content
         with:
           fetch-depth: 0
 

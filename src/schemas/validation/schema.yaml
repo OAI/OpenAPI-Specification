@@ -426,7 +426,6 @@ $defs:
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-header'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-query'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-cookie'
-          - $ref: '#/$defs/styles-for-form'
 
         $defs:
           styles-for-path:
@@ -446,6 +445,8 @@ $defs:
                     - simple
                 required:
                   const: true
+                explode:
+                  default: false
                 allowReserved:
                   type: boolean
                   default: false
@@ -462,6 +463,8 @@ $defs:
                 style:
                   default: simple
                   const: simple
+                explode:
+                  default: false
 
           styles-for-query:
             if:
@@ -480,6 +483,7 @@ $defs:
                 allowReserved:
                   type: boolean
                   default: false
+              $ref: '#/$defs/explode-for-form'
 
           styles-for-cookie:
             if:
@@ -493,6 +497,8 @@ $defs:
                   enum:
                     - form
                     - cookie
+                explode:
+                  default: true
               if:
                 properties:
                   style:
@@ -502,6 +508,7 @@ $defs:
                   allowReserved:
                     type: boolean
                     default: false
+              $ref: '#/$defs/explode-for-form'
 
     unevaluatedProperties: false
 
@@ -610,7 +617,6 @@ $defs:
         type: boolean
       allowReserved:
         type: boolean
-        default: false
       encoding:
         type: object
         additionalProperties:
@@ -627,7 +633,10 @@ $defs:
           prefixEncoding: false
           itemEncoding: false
       style:
-        $ref: '#/$defs/styles-for-form'
+        properties:
+          allowReserved:
+            default: false
+        $ref: '#/$defs/explode-for-form'
       explode:
         properties:
           style:
@@ -638,7 +647,7 @@ $defs:
         properties:
           style:
             default: form
-        $ref: '#/$defs/styles-for-form'
+        $ref: '#/$defs/explode-for-form'
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
 
@@ -1127,13 +1136,12 @@ $defs:
     additionalProperties:
       type: string
 
-  styles-for-form:
+  explode-for-form:
+    $comment: for encoding objects, and query and cookie parameters, style=form is the default
     if:
       properties:
         style:
           const: form
-      required:
-        - style
     then:
       properties:
         explode:

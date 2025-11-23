@@ -421,9 +421,6 @@ $defs:
             type: string
           explode:
             type: boolean
-          allowReserved:
-            default: false
-            type: boolean
         allOf:
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-path'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-header'
@@ -449,6 +446,9 @@ $defs:
                     - simple
                 required:
                   const: true
+                allowReserved:
+                  type: boolean
+                  default: false
               required:
                 - required
 
@@ -477,6 +477,9 @@ $defs:
                     - spaceDelimited
                     - pipeDelimited
                     - deepObject
+                allowReserved:
+                  type: boolean
+                  default: false
 
           styles-for-cookie:
             if:
@@ -490,6 +493,15 @@ $defs:
                   enum:
                     - form
                     - cookie
+              if:
+                properties:
+                  style:
+                    const: form
+              then:
+                properties:
+                  allowReserved:
+                    type: boolean
+                    default: false
 
     unevaluatedProperties: false
 
@@ -598,6 +610,7 @@ $defs:
         type: boolean
       allowReserved:
         type: boolean
+        default: false
       encoding:
         type: object
         additionalProperties:
@@ -614,9 +627,7 @@ $defs:
           prefixEncoding: false
           itemEncoding: false
       style:
-        properties:
-          allowReserved:
-            default: false
+        $ref: '#/$defs/styles-for-form'
       explode:
         properties:
           style:
@@ -627,9 +638,8 @@ $defs:
         properties:
           style:
             default: form
-    allOf:
-      - $ref: '#/$defs/specification-extensions'
-      - $ref: '#/$defs/styles-for-form'
+        $ref: '#/$defs/styles-for-form'
+    $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
 
   responses:
@@ -808,9 +818,6 @@ $defs:
             default: simple
             const: simple
           explode:
-            default: false
-            type: boolean
-          allowReserved:
             default: false
             type: boolean
     allOf:

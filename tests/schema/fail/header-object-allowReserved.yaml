@@ -1,0 +1,12 @@
+openapi: 3.1.0
+info:
+  title: "allowReserved only permitted with in: query"
+  version: 1.0.0
+components:
+  headers:
+    Style:
+      schema:
+        type: array
+      style: simple
+      explode: true
+      allowReserved: true

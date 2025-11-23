@@ -421,6 +421,7 @@ $defs:
                 style:
                   default: form
                   const: form
+              $ref: '#/$defs/explode-for-form'
 
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
@@ -510,6 +511,7 @@ $defs:
         properties:
           allowReserved:
             default: false
+        $ref: '#/$defs/styles-for-form'
       explode:
         properties:
           style:
@@ -520,9 +522,8 @@ $defs:
         properties:
           style:
             default: form
-    allOf:
-      - $ref: '#/$defs/specification-extensions'
-      - $ref: '#/$defs/styles-for-form'
+        $ref: '#/$defs/styles-for-form'
+    $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
 
   responses:

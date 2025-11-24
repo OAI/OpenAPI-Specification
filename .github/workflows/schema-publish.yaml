@@ -30,7 +30,7 @@ jobs:
           owner: OAI
           repositories: spec.openapis.org
 
-      - uses: actions/checkout@v5 # checkout main branch of this repo
+      - uses: actions/checkout@v6 # checkout main branch of this repo
         with:
           fetch-depth: 0
 
@@ -41,7 +41,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - uses: actions/checkout@v5 # checkout main branch of website repo
+      - uses: actions/checkout@v6 # checkout main branch of website repo
         with:
           token: ${{ steps.generate-token.outputs.token }}
           repository: OAI/spec.openapis.org

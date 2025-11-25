@@ -439,6 +439,8 @@ $defs:
                   const: path
             then:
               properties:
+                name:
+                  pattern: '^[^{}]+$'
                 style:
                   default: simple
                   enum:

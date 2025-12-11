@@ -52,7 +52,7 @@ jobs:
         run: scripts/schema-publish.sh
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ steps.generate-token.outputs.token }}
           branch: openapi-${{ github.ref_name }}-schema-iterations

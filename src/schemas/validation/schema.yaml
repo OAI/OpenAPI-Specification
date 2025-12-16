@@ -508,7 +508,6 @@ $defs:
                   allowReserved:
                     type: boolean
                     default: false
-              $ref: '#/$defs/explode-for-form'
 
     unevaluatedProperties: false
 

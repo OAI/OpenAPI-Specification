@@ -4452,8 +4452,7 @@ application/xml:
         - Some text
         - unit: cubits
           value: 42
-        null
-      ]
+        - null
       externalValue: ./examples/OneTwoThree.xml
 ```
 

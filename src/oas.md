@@ -935,7 +935,7 @@ The following table shows serialized examples, as would be shown with the `seria
 
 #### Extending Support for Querystring Formats
 
-Many frameworks define query string syntax for complex values, such as appending array indices to parameter names or indicating multiple levels of of nested objects, which go well beyond the capabilities of the `deepObject` style.
+Many frameworks define query string syntax for complex values, such as appending array indices to parameter names or indicating multiple levels of nested objects, which go well beyond the capabilities of the `deepObject` style.
 
 As these are not standards, and often contradict each other, the OAS does not attempt to support them directly.
 Two avenues are available for supporting such formats with `in: "querystring"`:

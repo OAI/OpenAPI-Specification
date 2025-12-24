@@ -2861,7 +2861,7 @@ components:
 In an HTTP message, the serialized example would look like:
 
 ```http
-Set-Cookie: lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GM
+Set-Cookie: lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT
 Set-Cookie: foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT
 Set-Cookie: urlSafeData=Hello%2C%20world%21
 ```

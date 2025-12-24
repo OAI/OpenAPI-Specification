@@ -2386,7 +2386,7 @@ The `serializedValue` and `externalValue` fields both MUST show the serialized f
 For Media Type Objects, this is a document of the appropriate media type, with any Encoding Object effects applied.
 For Parameter and Header Objects using `schema` and `style` rather than a Media Type Object, see [Style Examples](#style-examples) for what constitutes a serialized value.
 
-##### Criteria for `serializedExample`
+##### Criteria for `serializedValue`
 
 A serialization can be represented as a valid Unicode string in `serializedValue` if any of the following are true of the serialization:
 

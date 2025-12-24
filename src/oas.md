@@ -1070,7 +1070,7 @@ examples:
     dataValue:
       page: 4
       pageSize: 50
-    serializeValue: page=4&pageSize=50
+    serializedValue: page=4&pageSize=50
 ```
 
 A complex parameter using `content` to define serialization, with multiple levels and types of examples shown to make the example usage options clear — note that `dataValue` is the same at both levels and does not need to be shown in both places in normal usage, but `serializedValue` is different:

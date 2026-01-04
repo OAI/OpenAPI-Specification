@@ -925,7 +925,7 @@ The following table shows serialized examples, as would be shown with the `seria
 | simple | true | _empty_ | blue | blue,black,brown | R=100,G=200,B=150 |
 | form | false | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue,black,brown</span> | <span style="white-space: nowrap;">color=R,100,G,200,B,150</span> |
 | form | true | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue&color=black&color=brown</span> | <span style="white-space: nowrap;">R=100&G=200&B=150</span> |
-| spaceDelimited</span> | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color=blue%20black%20brown</span> | <span style="white-space: nowrap;">color=R%20100%20G%20200%20B%20150</span> |
+| spaceDelimited | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color=blue%20black%20brown</span> | <span style="white-space: nowrap;">color=R%20100%20G%20200%20B%20150</span> |
 | spaceDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
 | pipeDelimited | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color=blue%7Cblack%7Cbrown</span> | <span style="white-space: nowrap;">color=R%7C100%7CG%7C200%7CB%7C150</span> |
 | pipeDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
@@ -935,7 +935,7 @@ The following table shows serialized examples, as would be shown with the `seria
 
 #### Extending Support for Querystring Formats
 
-Many frameworks define query string syntax for complex values, such as appending array indices to parameter names or indicating multiple levels of of nested objects, which go well beyond the capabilities of the `deepObject` style.
+Many frameworks define query string syntax for complex values, such as appending array indices to parameter names or indicating multiple levels of nested objects, which go well beyond the capabilities of the `deepObject` style.
 
 As these are not standards, and often contradict each other, the OAS does not attempt to support them directly.
 Two avenues are available for supporting such formats with `in: "querystring"`:
@@ -1070,7 +1070,7 @@ examples:
     dataValue:
       page: 4
       pageSize: 50
-    serializeValue: page=4&pageSize=50
+    serializedValue: page=4&pageSize=50
 ```
 
 A complex parameter using `content` to define serialization, with multiple levels and types of examples shown to make the example usage options clear — note that `dataValue` is the same at both levels and does not need to be shown in both places in normal usage, but `serializedValue` is different:
@@ -2383,7 +2383,7 @@ The `serializedValue` and `externalValue` fields both MUST show the serialized f
 For Media Type Objects, this is a document of the appropriate media type, with any Encoding Object effects applied.
 For Parameter and Header Objects using `schema` and `style` rather than a Media Type Object, see [Style Examples](#style-examples) for what constitutes a serialized value.
 
-##### Criteria for `serializedExample`
+##### Criteria for `serializedValue`
 
 A serialization can be represented as a valid Unicode string in `serializedValue` if any of the following are true of the serialization:
 
@@ -2858,7 +2858,7 @@ components:
 In an HTTP message, the serialized example would look like:
 
 ```http
-Set-Cookie: lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GM
+Set-Cookie: lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT
 Set-Cookie: foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT
 Set-Cookie: urlSafeData=Hello%2C%20world%21
 ```
@@ -4449,8 +4449,7 @@ application/xml:
         - Some text
         - unit: cubits
           value: 42
-        null
-      ]
+        - null
       externalValue: ./examples/OneTwoThree.xml
 ```
 

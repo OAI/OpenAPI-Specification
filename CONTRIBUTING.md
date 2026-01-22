@@ -257,6 +257,24 @@ Schemas are updated in and directly published from the `vX.Y-dev` branches.
 
 As part of the publishing process, the YAML source files are converted to JSON, renamed to the relevant last-changed dates, and `WORK-IN-PROGRESS` placeholders are replaced with these dates as appropriate. This is usually done by the [`schema-publish` workflow](https://github.com/OAI/OpenAPI-Specification/blob/main/.github/workflows/schema-publish.yaml) which detects changes on each `vX.Y-dev` branch, which generates a pull request for publishing the new schema iterations to the [spec site](https://spec.openapis.org). The workflow can also be run manually if required.
 
+#### Schemas and OAS Requirements
+
+Not all uses of OAS Objects and fields are necessarily useful.
+However, the OAS does not forbid various questionable combinations, for
+reasons ranging from preserving possible future use with new features to
+maintaining compatibility with past versions that neglected to forbid something.
+
+The schemas published by the OpenAPI Initiative _only_ validate mandatory
+OAS requirements.  This means that a field value or combination with another
+field is only forbidden in a schema if there is a corresponding MUST / MUST NOT /
+SHALL / SHALL NOT requirement that prevents it.
+
+Schemas that apply further restrictions to enforce desired usage are outside
+of the scope of the OpenAPI Initiative.  When opening an issue or PR for
+schema changes, please ensure that the changes are backed by clear OAS
+requirements.  Otherwise, the issue or PR will be closed with a note pointing
+to this section.
+
 ## Release Process and Scope
 
 This section relates to the 3.x versions only.

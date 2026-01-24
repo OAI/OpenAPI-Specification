@@ -1091,15 +1091,17 @@ content:
         long:
           type: number
     examples:
-      dataValue:
-        lat: 10
-        long: 60
-      serializedValue: '{"lat":10,"long":60}'
+      'New York':
+        dataValue:
+          lat: 40.6
+          long: -73.9
+        serializedValue: '{"lat":40.6,"long":-73.9}'
 examples:
-  dataValue:
-    lat: 10
-    long: 60
-  serializedValue: coordinates=%7B%22lat%22%3A10%2C%22long%22%3A60%7D
+  'New York':
+    dataValue:
+      lat: 40.6
+      long: -73.9
+    serializedValue: coordinates=%7B%22lat%22%3A40.6%2C%22long%22%3A-73.9%7D
 ```
 
 A querystring parameter using regular form encoding, but managed with a Media Type Object.
@@ -1108,6 +1110,7 @@ Examples are shown at both the media type and parameter level to emphasize that,
 
 ```yaml
 in: querystring
+name: metadata
 content:
   application/x-www-form-urlencoded:
     schema:
@@ -4970,6 +4973,7 @@ parameters:
     type: array
     items:
       type: string
+  explode: false
 ```
 
 This translates to the following URI Template:

@@ -4423,6 +4423,7 @@ parameters:
     type: array
     items:
       type: string
+  explode: false
 ```
 
 This translates to the following URI Template:

@@ -259,11 +259,6 @@ As part of the publishing process, the YAML source files are converted to JSON, 
 
 #### Schemas and OAS Requirements
 
-Not all uses of OAS Objects and fields are necessarily useful.
-However, the OAS does not forbid various questionable combinations, for
-reasons ranging from preserving possible future use with new features to
-maintaining compatibility with past versions that neglected to forbid something.
-
 The schemas published by the OpenAPI Initiative _only_ validate mandatory
 OAS requirements.  This means that a field value or combination with another
 field is only forbidden in a schema if there is a corresponding MUST / MUST NOT /

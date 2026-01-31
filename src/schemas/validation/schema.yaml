@@ -421,15 +421,11 @@ $defs:
             type: string
           explode:
             type: boolean
-          allowReserved:
-            default: false
-            type: boolean
         allOf:
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-path'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-header'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-query'
           - $ref: '#/$defs/parameter/dependentSchemas/schema/$defs/styles-for-cookie'
-          - $ref: '#/$defs/styles-for-form'
 
         $defs:
           styles-for-path:
@@ -439,6 +435,8 @@ $defs:
                   const: path
             then:
               properties:
+                name:
+                  pattern: '^[^{}]+$'
                 style:
                   default: simple
                   enum:
@@ -447,6 +445,11 @@ $defs:
                     - simple
                 required:
                   const: true
+                explode:
+                  default: false
+                allowReserved:
+                  type: boolean
+                  default: false
               required:
                 - required
 
@@ -460,6 +463,8 @@ $defs:
                 style:
                   default: simple
                   const: simple
+                explode:
+                  default: false
 
           styles-for-query:
             if:
@@ -475,6 +480,10 @@ $defs:
                     - spaceDelimited
                     - pipeDelimited
                     - deepObject
+                allowReserved:
+                  type: boolean
+                  default: false
+              $ref: '#/$defs/explode-for-form'
 
           styles-for-cookie:
             if:
@@ -488,6 +497,17 @@ $defs:
                   enum:
                     - form
                     - cookie
+                explode:
+                  default: true
+              if:
+                properties:
+                  style:
+                    const: form
+              then:
+                properties:
+                  allowReserved:
+                    type: boolean
+                    default: false
 
     unevaluatedProperties: false
 
@@ -615,6 +635,7 @@ $defs:
         properties:
           allowReserved:
             default: false
+        $ref: '#/$defs/explode-for-form'
       explode:
         properties:
           style:
@@ -625,9 +646,8 @@ $defs:
         properties:
           style:
             default: form
-    allOf:
-      - $ref: '#/$defs/specification-extensions'
-      - $ref: '#/$defs/styles-for-form'
+        $ref: '#/$defs/explode-for-form'
+    $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
 
   responses:
@@ -806,9 +826,6 @@ $defs:
             default: simple
             const: simple
           explode:
-            default: false
-            type: boolean
-          allowReserved:
             default: false
             type: boolean
     allOf:
@@ -1118,13 +1135,12 @@ $defs:
     additionalProperties:
       type: string
 
-  styles-for-form:
+  explode-for-form:
+    $comment: for encoding objects, and query and cookie parameters, style=form is the default
     if:
       properties:
         style:
           const: form
-      required:
-        - style
     then:
       properties:
         explode:

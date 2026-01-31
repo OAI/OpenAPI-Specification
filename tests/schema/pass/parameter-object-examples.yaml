@@ -9,21 +9,23 @@ paths:
         in: header
         description: token to be passed as a header
         required: true
+        explode: false
         schema:
           type: array
           items:
             type: integer
             format: int64
         style: simple
-      - name: username
+      - name: usernames
         in: path
-        description: username to fetch
+        description: usernames to fetch
         required: true
+        explode: false
         schema:
-          type: string
+          type: array
       - name: id
         in: query
-        description: ID of the object to fetch
+        description: IDs of the object to fetch
         required: false
         schema:
           type: array
@@ -55,10 +57,12 @@ paths:
       - in: cookie
         name: my_cookie1
         style: form
+        explode: false
         schema: {}
       - in: cookie
         name: my_cookie2
         style: cookie
+        explode: true
         schema: {}
   /user:
     parameters:

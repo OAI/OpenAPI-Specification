@@ -1,0 +1,12 @@
+openapi: 3.3.0
+info:
+  title: allowReserved only permitted with in and style values that percent-encode
+  version: 1.0.0
+components:
+  parameters:
+    my_cookie:
+      name: my_cookie
+      in: cookie
+      style: cookie
+      allowReserved: true
+      schema: {}

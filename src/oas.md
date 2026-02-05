@@ -769,14 +769,14 @@ See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a detail
 There are five possible parameter locations specified by the `in` field:
 
 * path - Used together with [Path Templating](#path-templating), where the parameter value is actually part of the operation's URL. This does not include the host or base path of the API. For example, in `/items/{itemId}`, the path parameter is `itemId`.
-* query - Parameters that are appended to the URL. For example, in `/items?id=###`, the query parameter is `id`; MUST NOT appear in the same operation (or in the operation's path-item) as an `in: "querystring"` parameter.
+* query - Parameters that are appended to the URL with the `?` character (or for subsequent query parameters, with the `&` character); MUST NOT appear in the same operation (or in the operation's path-item) as an `in: "querystring"` parameter.
 * querystring - A parameter that treats the entire URL query string as a value which MUST be specified using the `content` field, most often with media type `application/x-www-form-urlencoded` using [Encoding Objects](#encoding-object) in the same way as with request bodies of that media type; MUST NOT appear more than once, and MUST NOT appear in the same operation (or in the operation's path-item) as any `in: "query"` parameters.
 * header - Custom headers that are expected as part of the request. Note that [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.1) states header names are case-insensitive.
 * cookie - Used to pass a specific cookie value to the API.
 
 #### Fixed Fields
 
-The rules for serialization of the parameter are specified in one of two ways.
+The rules for serialization and deserialization of the parameter are specified in one of two ways.
 Parameter Objects MUST include either a `content` field or a `schema` field, but not both.
 See [Appendix B](#appendix-b-data-type-conversion) for a discussion of converting values of various types to string representations.
 
@@ -819,8 +819,8 @@ In these cases, implementations MUST pass values through unchanged rather than a
 | ---- | :----: | ---- |
 | <a name="parameter-style"></a>style | `string` | Describes how the parameter value will be serialized depending on the type of the parameter value. Default values (based on value of `in`): for `"query"` - `"form"`; for `"path"` - `"simple"`; for `"header"` - `"simple"`; for `"cookie"` - `"form"` (for compatibility reasons; note that `style: "cookie"` SHOULD be used with `in: "cookie"`; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for details). |
 | <a name="parameter-explode"></a>explode | `boolean` | When this is true, parameter values of type `array` or `object` generate separate parameters for each value of the array or key-value pair of the map. For other types of parameters, or when [`style`](#parameter-style) is `"deepObject"`, this field has no effect. When `style` is `"form"` or `"cookie"`, the default value is `true`. For all other styles, the default value is `false`. |
-| <a name="parameter-allow-reserved"></a>allowReserved | `boolean` | When this is true, parameter values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). Applications are still responsible for percent-encoding reserved characters that are not allowed by the rules of the `in` destination or media type, or are [not allowed in the path by this specification](#path-templating); see [URL Percent-Encoding](#url-percent-encoding) for details. The default value is `false`. This field only applies to `in` and `style` values that automatically percent-encode. |
-| <a name="parameter-schema"></a>schema | [Schema Object](#schema-object) | The schema defining the type used for the parameter. |
+| <a name="parameter-allow-reserved"></a>allowReserved | `boolean` | When this is true, parameter values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). Applications are still responsible for percent-encoding reserved characters that are not allowed by the rules of the `in` destination or media type, or are [not allowed in the path by this specification](#path-templating); see [URL Percent-Encoding](#url-percent-encoding) for details. The default value is `false`. This field only applies to `in` and `style` values that automatically percent-encode (that is: `in: path`, `in: query`, and `in: cookie` with `style: form`). |
+| <a name="parameter-schema"></a>schema | [Schema Object](#schema-object) | The schema defining the type and other constraints used for the parameter. |
 
 See also [Appendix C: Using RFC6570-Based Serialization](#appendix-c-using-rfc6570-based-serialization) for additional guidance.
 
@@ -923,15 +923,15 @@ The following table shows serialized examples, as would be shown with the `seria
 | label | true | _empty_ | .blue | .blue.black.brown | .R=100.G=200.B=150 |
 | simple | false | _empty_ | blue | blue,black,brown | R,100,G,200,B,150 |
 | simple | true | _empty_ | blue | blue,black,brown | R=100,G=200,B=150 |
-| form | false | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue,black,brown</span> | <span style="white-space: nowrap;">color=R,100,G,200,B,150</span> |
-| form | true | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue&color=black&color=brown</span> | <span style="white-space: nowrap;">R=100&G=200&B=150</span> |
-| spaceDelimited | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color=blue%20black%20brown</span> | <span style="white-space: nowrap;">color=R%20100%20G%20200%20B%20150</span> |
+| form | false | color= | color=blue | color=blue,black,brown | color=R,100,G,200,B,150 |
+| form | true | color= | color=blue | color=blue&color=black&color=brown | R=100&G=200&B=150 |
+| spaceDelimited | false | _n/a_ | _n/a_ | color=blue%20black%20brown | color=R%20100%20G%20200%20B%20150 |
 | spaceDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
-| pipeDelimited | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color=blue%7Cblack%7Cbrown</span> | <span style="white-space: nowrap;">color=R%7C100%7CG%7C200%7CB%7C150</span> |
+| pipeDelimited | false | _n/a_ | _n/a_ | color=blue%7Cblack%7Cbrown | color=R%7C100%7CG%7C200%7CB%7C150 |
 | pipeDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
-| deepObject | _n/a_ | _n/a_ | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color%5BR%5D=100&color%5BG%5D=200&color%5BB%5D=150</span> |
-| cookie | false | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue,black,brown</span> | <span style="white-space: nowrap;">color=R,100,G,200,B,150</span> |
-| cookie | true | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue; color=black; color=brown</span> | <span style="white-space: nowrap;">R=100; G=200; B=150</span> |
+| deepObject | _n/a_ | _n/a_ | _n/a_ | _n/a_ | color%5BR%5D=100&color%5BG%5D=200&color%5BB%5D=150 |
+| cookie | false | color= | color=blue | color=blue,black,brown | color=R,100,G,200,B,150 |
+| cookie | true | color= | color=blue | color=blue; color=black; color=brown | R=100; G=200; B=150 |
 
 #### Extending Support for Querystring Formats
 
@@ -1091,15 +1091,17 @@ content:
         long:
           type: number
     examples:
-      dataValue:
-        lat: 10
-        long: 60
-      serializedValue: '{"lat":10,"long":60}'
+      'New York':
+        dataValue:
+          lat: 40.6
+          long: -73.9
+        serializedValue: '{"lat":40.6,"long":-73.9}'
 examples:
-  dataValue:
-    lat: 10
-    long: 60
-  serializedValue: coordinates=%7B%22lat%22%3A10%2C%22long%22%3A60%7D
+  'New York':
+    dataValue:
+      lat: 40.6
+      long: -73.9
+    serializedValue: coordinates=%7B%22lat%22%3A40.6%2C%22long%22%3A-73.9%7D
 ```
 
 A querystring parameter using regular form encoding, but managed with a Media Type Object.
@@ -1108,6 +1110,7 @@ Examples are shown at both the media type and parameter level to emphasize that,
 
 ```yaml
 in: querystring
+name: metadata
 content:
   application/x-www-form-urlencoded:
     schema:
@@ -4908,7 +4911,7 @@ parameters:
     type: string
 ```
 
-This example is equivalent to RFC6570's `{?foo*,bar}`, and **NOT** `{?foo*}{&bar}`. The latter is problematic because if `foo` is not defined, the result will be an invalid URI.
+This example is equivalent to RFC6570's `{?foo*,bar}`, and **NOT** `{?foo*}{&bar}`. The latter is problematic because if `foo` is not defined (see [RFC6570 §3.2](https://www.rfc-editor.org/rfc/rfc6570#section-3.2) for details on what is considered undefined), the result will be an invalid URI.
 The `&` prefix operator has no equivalent in the Parameter Object.
 
 Note that RFC6570 does not specify behavior for compound values beyond the single level addressed by `explode`. The result of using objects or arrays where no behavior is clearly specified for them is implementation-defined.
@@ -4970,6 +4973,7 @@ parameters:
     type: array
     items:
       type: string
+  explode: false
 ```
 
 This translates to the following URI Template:

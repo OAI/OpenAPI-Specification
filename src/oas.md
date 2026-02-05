@@ -3043,7 +3043,7 @@ API data has several forms:
 
 1. The serialized form, which is either a document of a particular media type, an HTTP header value, or part of a URI.
 2. The data form, intended for use with a [Schema Object](#schema-object).
-3. The application form, which incorporates any additional information conveyed by JSON Schema keywords such as `format` and `contentType`, and possibly additional information such as class hierarchies that are beyond the scope of this specification, although they MAY be based on specification elements such as the [Discriminator Object](#discriminator-object) or guidance regarding [Data Modeling Techniques](#data-modeling-techniques).
+3. The application form, which incorporates any additional information conveyed by JSON Schema keywords such as `format` and `contentMediaType`, and possibly additional information such as class hierarchies that are beyond the scope of this specification, although they MAY be based on specification elements such as the [Discriminator Object](#discriminator-object) or guidance regarding [Data Modeling Techniques](#data-modeling-techniques).
 
 ##### JSON Data
 

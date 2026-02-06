@@ -110,3 +110,5 @@ components:
         application/json:
           schema:
             type: object
+  schemas:
+    SomePayload: {}

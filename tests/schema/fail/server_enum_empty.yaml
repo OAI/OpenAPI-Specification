@@ -1,6 +1,7 @@
 openapi: 3.2.0
 
-# this example should fail as the server variable enum is empty, and so does not contain the default value
+# this example should fail as the server variable enum is empty
+# (it also does not contain the default value, but this is not checked by the schema)
 
 info:
   title: API

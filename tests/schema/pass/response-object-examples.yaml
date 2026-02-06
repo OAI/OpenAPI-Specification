@@ -40,3 +40,5 @@ components:
             type: integer
     no-return-value:
       description: object created
+  schemas:
+    VeryComplexType: {}

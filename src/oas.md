@@ -1134,13 +1134,13 @@ See [Appendix E](#appendix-e-percent-encoding-and-form-media-types) for a detail
 There are four possible parameter locations specified by the `in` field:
 
 * path - Used together with [Path Templating](#path-templating), where the parameter value is actually part of the operation's URL. This does not include the host or base path of the API. For example, in `/items/{itemId}`, the path parameter is `itemId`.
-* query - Parameters that are appended to the URL. For example, in `/items?id=###`, the query parameter is `id`.
+* query - Parameters that are appended to the URL with the `?` character (or for subsequent query parameters, with the `&` character).
 * header - Custom headers that are expected as part of the request. Note that [RFC7230](https://tools.ietf.org/html/rfc7230#section-3.2) states header names are case insensitive.
 * cookie - Used to pass a specific cookie value to the API.
 
 ##### Fixed Fields
 
-The rules for serialization of the parameter are specified in one of two ways.
+The rules for serialization and deserialization of the parameter are specified in one of two ways.
 Parameter Objects MUST include either a `content` field or a `schema` field, but not both.
 See [Appendix B](#appendix-b-data-type-conversion) for a discussion of converting values of various types to string representations.
 
@@ -1177,7 +1177,7 @@ Serializing with `schema` is NOT RECOMMENDED for `in: "cookie"` parameters; see 
 | <a name="parameter-style"></a>style | `string` | Describes how the parameter value will be serialized depending on the type of the parameter value. Default values (based on value of `in`): for `"query"` - `"form"`; for `"path"` - `"simple"`; for `"header"` - `"simple"`; for `"cookie"` - `"form"`. |
 | <a name="parameter-explode"></a>explode | `boolean` | When this is true, parameter values of type `array` or `object` generate separate parameters for each value of the array or key-value pair of the map. For other types of parameters this field has no effect. When [`style`](#parameter-style) is `"form"`, the default value is `true`. For all other styles, the default value is `false`. Note that despite `false` being the default for `deepObject`, the combination of `false` with `deepObject` is undefined. |
 | <a name="parameter-allow-reserved"></a>allowReserved | `boolean` | When this is true, parameter values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). Applications are still responsible for percent-encoding reserved characters that are [not allowed in the query string](https://datatracker.ietf.org/doc/html/rfc3986#section-3.4) (`[`, `]`, `#`), or have a special meaning in `application/x-www-form-urlencoded` (`-`, `&`, `+`); see [URL Percent-Encoding](#url-percent-encoding) for details. This field only applies to parameters with an `in` value of `query`. The default value is `false`. |
-| <a name="parameter-schema"></a>schema | [Schema Object](#schema-object) | The schema defining the type used for the parameter. |
+| <a name="parameter-schema"></a>schema | [Schema Object](#schema-object) | The schema defining the type and other constraints used for the parameter. |
 | <a name="parameter-example"></a>example | Any | Example of the parameter's potential value; see [Working With Examples](#working-with-examples). |
 | <a name="parameter-examples"></a>examples | Map[ `string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | Examples of the parameter's potential value; see [Working With Examples](#working-with-examples). |
 
@@ -1277,14 +1277,14 @@ The following table shows serialized examples, as would be shown with the `examp
 | label | true | _empty_ | .blue | .blue.black.brown | .R=100.G=200.B=150 |
 | simple | false | _empty_ | blue | blue,black,brown | R,100,G,200,B,150 |
 | simple | true | _empty_ | blue | blue,black,brown | R=100,G=200,B=150 |
-| form | false | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue,black,brown</span> | <span style="white-space: nowrap;">color=R,100,G,200,B,150</span> |
-| form | true | <span style="white-space: nowrap;">color=</span> | <span style="white-space: nowrap;">color=blue</span> | <span style="white-space: nowrap;">color=blue&color=black&color=brown</span> | <span style="white-space: nowrap;">R=100&G=200&B=150</span> |
-| spaceDelimited</span> | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color=blue%20black%20brown</span> | <span style="white-space: nowrap;">color=R%20100%20G%20200%20B%20150</span> |
+| form | false | color= | color=blue | color=blue,black,brown | color=R,100,G,200,B,150 |
+| form | true | color= | color=blue | color=blue&color=black&color=brown | R=100&G=200&B=150 |
+| spaceDelimited | false | _n/a_ | _n/a_ | color=blue%20black%20brown | color=R%20100%20G%20200%20B%20150 |
 | spaceDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
-| pipeDelimited | false | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color=blue%7Cblack%7Cbrown</span> | <span style="white-space: nowrap;">color=R%7C100%7CG%7C200%7CB%7C150</span> |
+| pipeDelimited | false | _n/a_ | _n/a_ | color=blue%7Cblack%7Cbrown | color=R%7C100%7CG%7C200%7CB%7C150 |
 | pipeDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
 | deepObject | false | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
-| deepObject | true | _n/a_ | _n/a_ | _n/a_ | <span style="white-space: nowrap;">color%5BR%5D=100&color%5BG%5D=200&color%5BB%5D=150</span> |
+| deepObject | true | _n/a_ | _n/a_ | _n/a_ | color%5BR%5D=100&color%5BG%5D=200&color%5BB%5D=150 |
 
 ##### Parameter Object Examples
 
@@ -4361,7 +4361,7 @@ parameters:
     type: string
 ```
 
-This example is equivalent to RFC6570's `{?foo*,bar}`, and **NOT** `{?foo*}{&bar}`. The latter is problematic because if `foo` is not defined, the result will be an invalid URI.
+This example is equivalent to RFC6570's `{?foo*,bar}`, and **NOT** `{?foo*}{&bar}`. The latter is problematic because if `foo` is not defined (see [RFC6570 §2.3](https://www.rfc-editor.org/rfc/rfc6570#section-2.3) for details on what is considered undefined), the result will be an invalid URI.
 The `&` prefix operator has no equivalent in the Parameter Object.
 
 Note that RFC6570 does not specify behavior for compound values beyond the single level addressed by `explode`. The result of using objects or arrays where no behavior is clearly specified for them is implementation-defined.
@@ -4423,6 +4423,7 @@ parameters:
     type: array
     items:
       type: string
+  explode: false
 ```
 
 This translates to the following URI Template:

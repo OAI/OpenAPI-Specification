@@ -1,0 +1,11 @@
+openapi: 3.1.0
+info:
+  title: allowReserved only permitted with in and style values that percent-encode
+  version: 1.0.0
+components:
+  parameters:
+    header:
+      name: my-header
+      in: header
+      allowReserved: false
+      schema: {}

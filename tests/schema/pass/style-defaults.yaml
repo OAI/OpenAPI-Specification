@@ -1,0 +1,102 @@
+openapi: 3.1.0
+info:
+  title: various permutations of parameter objects, with non-required values left to their defaults
+  version: 1.0.0
+components:
+  parameters:
+    encoding_object_defaults:
+      name: encoding_object_defaults
+      in: path
+      content:
+        encoding_object_defaults:   # media type name
+          encoding:
+            no_styles:              # property name
+              x-comment: "style, explode and allowReserved are not present, so contentType is used; no defaults expected as default contentType cannot be determined by the schema"
+            style_form:
+              x-comment: "expecting defaults: explode=true, allowReserved=false"
+              style: form
+            style_spaceDelimited:
+              x-comment: "expecting defaults: explode=false, allowReserved=false"
+              style: spaceDelimited
+            explode:
+              x-comment: "expecting defaults: style=form, allowReserved=false"
+              explode: false
+            allowReserved:
+              x-comment: "expecting default: style=form, explode=true"
+              allowReserved: true
+    path_media_type:
+      x-comment: "expecting defaults: deprecated=false"
+      name: path_media-type
+      in: path
+      required: true
+      content:
+        text/*:
+          schema: {}
+    path_simple:
+      x-comment: "expecting defaults: deprecated=false, style=simple, explode=false, allowReserved=false"
+      name: path_simple
+      in: path
+      required: true
+      schema: {}
+    path_matrix:
+      x-comment: "expecting defaults: deprecated=false, explode=false, allowReserved=false"
+      name: path_matrix
+      in: path
+      required: true
+      style: matrix
+      schema: {}
+    path_label:
+      x-comment: "expecting defaults: deprecated=false, explode=false, allowReserved=false"
+      name: path_label
+      in: path
+      required: true
+      style: label
+      schema: {}
+    query_media_type:
+      x-comment: "expecting defaults: required=false, deprecated=false, allowEmptyValue=false"
+      name: query_media_type
+      in: query
+      content:
+        text/*:
+          schema: {}
+    query_form:
+      x-comment: "expecting defaults: required=false, deprecated=false, allowEmptyValue=false, style=form, explode=true, allowReserved=false"
+      name: query_form
+      in: query
+      schema: {}
+    query_spaceDelimited:
+      x-comment: "expecting defaults: required=false, deprecated=false, allowEmptyValue=false, explode=false, allowReserved=false"
+      name: query_spaceDelimited
+      in: query
+      style: spaceDelimited
+      schema: {}
+    query_pipeDelimited:
+      x-comment: "expecting defaults: required=false, deprecated=false, allowEmptyValue=false, explode=false, allowReserved=false"
+      name: query_pipeDelimited
+      in: query
+      style: pipeDelimited
+      schema: {}
+    query_deepObject:
+      x-comment: "expecting defaults: required=false, deprecated=false, allowEmptyValue=false, allowReserved=false"
+      name: query_deepObject
+      in: query
+      style: deepObject
+      schema: {}
+    header:
+      x-comment: "expecting defaults: deprecated=false, style=simple, explode=false, allowReserved=false"
+      name: header
+      in: path
+      required: true
+      schema: {}
+    cookie_media_type:
+      x-comment: "expecting defaults: required=false, deprecated=false"
+      name: cookie_media_type
+      in: cookie
+      content:
+        text/*:
+          schema: {}
+    cookie_form:
+      x-comment: "expecting defaults: required=false, deprecated=false, style=form, explode=true, allowReserved=false"
+      name: cookie_form
+      in: cookie
+      schema: {}

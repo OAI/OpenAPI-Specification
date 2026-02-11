@@ -23,4 +23,3 @@ components:
         type: array
       style: simple
       explode: true
-      allowReserved: true

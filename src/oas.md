@@ -3063,6 +3063,16 @@ properties:
 Some applications might leave the string as a string regardless of programming language, while others might notice the `format` and use it as a `datetime.datetime` instance in Python, or a `java.time.ZonedDateTime` in Java.
 This specification only requires that the data is valid according to the schema, and that [annotations](#extended-validation-with-annotations) such as `format` are available in accordance with the JSON Schema specification.
 
+##### JSON-Compatible Data
+
+Some media types are more-or-less compatible with JSON, in which case their JSON-compatible subsets can be modeled the same way as JSON.  Some examples include:
+
+* `text/toon`, which is an alternate encoding format for the JSON data model, although with some constraints such as object property ordering that are not defined by JSON
+* `application/toml`, which is mostly an alternate encoding for a subset of JSON data structures, but also distinguishes between integers and floats in a way that JSON and JSON Schema do not
+* `application/yaml`, which has much more functionality than JSON, but provides guidance on JSON compatibility in [[RFC9512]] [Section 3.4](https://www.rfc-editor.org/rfc/rfc9512.html#section-3.4)
+
+In many cases, modeling these media types as if they were JSON will suffice, but care must be taken in areas where the specifications diverge.  See the [OpenAPI Media Type Registry](#openapi-media-type-registry) for guidance on specific JSON-like data formats.
+
 ##### Non-JSON Data
 
 Non-JSON serializations can be substantially different from their corresponding data form, and might require several steps to parse.

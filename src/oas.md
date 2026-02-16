@@ -4911,7 +4911,7 @@ parameters:
     type: string
 ```
 
-This example is equivalent to RFC6570's `{?foo*,bar}`, and **NOT** `{?foo*}{&bar}`. The latter is problematic because if `foo` is not defined (see [RFC6570 §3.2](https://www.rfc-editor.org/rfc/rfc6570#section-3.2) for details on what is considered undefined), the result will be an invalid URI.
+This example is equivalent to RFC6570's `{?foo*,bar}`, and **NOT** `{?foo*}{&bar}`. The latter is problematic because if `foo` is not defined (see [RFC6570 §2.3](https://www.rfc-editor.org/rfc/rfc6570#section-2.3) for details on what is considered undefined), the result will be an invalid URI.
 The `&` prefix operator has no equivalent in the Parameter Object.
 
 Note that RFC6570 does not specify behavior for compound values beyond the single level addressed by `explode`. The result of using objects or arrays where no behavior is clearly specified for them is implementation-defined.

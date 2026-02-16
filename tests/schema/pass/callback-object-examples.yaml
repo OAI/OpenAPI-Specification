@@ -28,3 +28,5 @@ components:
           responses:
             '200':
               description: callback successfully processed
+  schemas:
+    SomePayload: {}

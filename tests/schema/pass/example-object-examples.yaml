@@ -3,6 +3,12 @@ info:
   title: API
   version: 1.0.0
 components:
+  examples:
+    zip-example: {}
+    confirmation-success: {}
+  schemas:
+    SuccessResponse: {}
+    Address: {}
   requestBodies:
     with-example:
       content:

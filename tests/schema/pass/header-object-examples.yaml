@@ -17,7 +17,7 @@ components:
             type: string
             pattern: ^"
     Reference:
-      $ref: '#/components/schemas/ETag'
+      $ref: '#/components/headers/ETag'
     Style:
       schema:
         type: array

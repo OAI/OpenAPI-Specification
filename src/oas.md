@@ -1603,7 +1603,7 @@ content:
             format: int64
       - properties:
           event:
-            const: addJson
+            const: addJSON
           data:
             $comment: |
               These content fields indicate

@@ -4292,6 +4292,7 @@ application/xml:
         name: Fluffy
       - kind: Dog
         name: Fido
+      externalValue: ./examples/pets.xml
 ```
 
 Where `./examples/pets.xml` would be:

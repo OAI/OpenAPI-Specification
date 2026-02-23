@@ -2769,7 +2769,7 @@ components:
       content:
         application/linkset+json:
           schema:
-            $ref: '#/components/mediaTypes/CollectionLinks'
+            $ref: '#/components/schemas/CollectionLinks'
 ```
 
 #### Representing the `Set-Cookie` Header

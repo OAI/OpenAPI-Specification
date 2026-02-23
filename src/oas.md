@@ -2847,11 +2847,10 @@ components:
       explode: true
       examples:
         SetCookies:
-          dataValue: {
-            "lang": "en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT"
-            "foo": "bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT"
-            "urlSafeData": "Hello%2C%20world%21"
-          }
+          dataValue:
+            lang: "en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT"
+            foo: "bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT"
+            urlSafeData: "Hello%2C%20world%21"
           serializedValue: |
             lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT
             foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT

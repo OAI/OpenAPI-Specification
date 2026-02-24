@@ -4291,14 +4291,15 @@ application/xml:
         name: Fluffy
       - kind: Dog
         name: Fido
+      externalValue: ./examples/pets.xml
 ```
 
 Where `./examples/pets.xml` would be:
 
 ```xml
 <animals>
-  <animal kind="Cat">Fluffy</animals>
-  <animal kind="Dog">Fido</animals>
+  <animal kind="Cat">Fluffy</animal>
+  <animal kind="Dog">Fido</animal>
 <animals>
 ```
 

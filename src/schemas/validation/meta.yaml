@@ -34,6 +34,8 @@ $defs:
         type: string
       propertyName:
         type: string
+    required:
+      - propertyName
     type: object
     unevaluatedProperties: false
 

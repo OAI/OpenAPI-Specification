@@ -7,4 +7,5 @@ components:
     discriminator-with-unevaluated-properties:
       type: object
       discriminator:
+        propertyName: foo
         not-allowed: here

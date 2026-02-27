@@ -112,7 +112,7 @@
 
 # Schema Object allows additional properties
 
-# Discriminator Object is defined in meta.yaml, test case fail/discriminator-unexpected-property.yaml
+# Discriminator Object is defined in meta.yaml, test case fail/discriminator-object-unexpected-property.yaml
 
 # XML Object is defined in meta.yaml
 

@@ -10,7 +10,7 @@ export default defineConfig({
       thresholds: process.env.BASE !== "dev" ? {
         statements: 100,    // JSON Schema keywords
         lines: 100,
-        // functions: 100,  // subschemas, for example with `properties` - to be discussed
+        functions: 100,     // subschemas, for example with `properties`
         // branches: 56.77, // branch coverage isn't that useful
       } : {}
     },

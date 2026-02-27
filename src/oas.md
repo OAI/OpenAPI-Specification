@@ -4319,15 +4319,16 @@ components:
           xml:
             nodeType: cdata
   responses:
-    content:
-      application/xml:
-        schema:
-          $ref: "#/components/schemas/Documentation"
-        examples:
-          docs:
-            dataValue:
-              content: <html><head><title>Awesome Docs</title></head><body></body><html>
-            externalValue: ./examples/docs.xml
+    AwesomeDocs:
+      content:
+        application/xml:
+          schema:
+            $ref: "#/components/schemas/Documentation"
+          examples:
+            docs:
+              dataValue:
+                content: <html><head><title>Awesome Docs</title></head><body></body><html>
+              externalValue: ./examples/docs.xml
 ```
 
 Where `./examples/docs.xml` would be:

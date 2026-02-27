@@ -4,6 +4,11 @@ info:
   title: API
   version: 1.0.0
 components:
+  examples:
+    frog-example: {}
+  schemas:
+    Address: {}
+    Pet: {}
   mediaTypes:
     StreamingPets:
       description: |
@@ -11,7 +16,7 @@ components:
         suitable for use with any of the streaming JSON
         media types.
       itemSchema:
-        $ref: '#components/schemas/Pet'
+        $ref: '#/components/schemas/Pet'
 paths:
   /something:
     put:

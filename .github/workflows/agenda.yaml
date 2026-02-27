@@ -30,11 +30,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v5 # checkout repo content
+    - uses: actions/checkout@v6 # checkout repo content
 
     # we want to close old agenda issues before creating a new one because there's a limit of 3 pinned items on a repo
     - name: Close old agenda issues
       run: gh issue list -l ${{ env.LABEL }} --author "app/github-actions" --json number,title | ConvertFrom-Json | Where-Object { $_.title -like "${{ env.TITLE_PREFIX }}*" -and ([datetime]::UtcNow - [datetime]::Parse([regex]::Replace($_.title.Replace("${{ env.TITLE_PREFIX }}", ""), "\([^)]+\)", ""))) -ge [timespan]::FromDays([int]::Parse("${{ env.POST_MEETING_CLOSE_DURATION_IN_DAYS }}"))} | ForEach-Object { gh issue close $_.number && gh issue unpin $_.number }
+      shell: pwsh
+    
+    - name: Unpin any issue that was closed manually
+      run: gh issue list -l ${{ env.LABEL }} --author "app/github-actions" --json "number,title,isPinned" -s closed | ConvertFrom-Json | Where-Object { $_.isPinned -eq $true -and $_.title -like "${{ env.TITLE_PREFIX }}*" -and ([datetime]::UtcNow - [datetime]::Parse([regex]::Replace($_.title.Replace("${{ env.TITLE_PREFIX }}", ""), "\([^)]+\)", ""))) -ge [timespan]::FromDays([int]::Parse("${{ env.POST_MEETING_CLOSE_DURATION_IN_DAYS }}"))} | ForEach-Object { gh issue unpin $_.number }
       shell: pwsh
 
     - name: Create agenda issue

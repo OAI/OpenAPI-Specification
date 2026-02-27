@@ -10,6 +10,7 @@ properties:
     pattern: '^3\.2\.\d+(-.+)?$'
   $self:
     type: string
+    $comment: resolved against the retrieval uri
     format: uri-reference
     $comment: MUST NOT contain a fragment
     pattern: '^[^#]*$'
@@ -17,9 +18,11 @@ properties:
     $ref: '#/$defs/info'
   jsonSchemaDialect:
     type: string
+    $comment: resolved against the resolved version of $self
     format: uri-reference
     default: 'https://spec.openapis.org/oas/3.2/dialect/WORK-IN-PROGRESS'
   servers:
+    $comment: server urls are resolved against the HTTP request uri itself (template matching ideally happens first, because of url encoding, but matching the template parts separately may produce ambiguous results, so in my implementation I concatenate the server url template with the path template and then match that against the entire uri)
     type: array
     items:
       $ref: '#/$defs/server'
@@ -68,6 +71,7 @@ $defs:
       description:
         type: string
       termsOfService:
+        $comment: resolved against the resolved version of $self
         type: string
         format: uri-reference
       contact:
@@ -89,6 +93,7 @@ $defs:
       name:
         type: string
       url:
+        $comment: resolved against the resolved version of $self
         type: string
         format: uri-reference
       email:
@@ -106,6 +111,7 @@ $defs:
       identifier:
         type: string
       url:
+        $comment: resolved against the resolved version of $self
         type: string
         format: uri-reference
     required:
@@ -225,6 +231,7 @@ $defs:
     type: object
     properties:
       $ref:
+        $comment: resolved against the resolved version of $self
         type: string
         format: uri-reference
       summary:
@@ -323,6 +330,7 @@ $defs:
       description:
         type: string
       url:
+        $comment: resolved against ???
         type: string
         format: uri-reference
     required:
@@ -730,6 +738,7 @@ $defs:
         type: string
       value: true
       externalValue:
+        $comment: resolved against the resolved version of $self
         type: string
         format: uri-reference
     allOf:
@@ -767,6 +776,7 @@ $defs:
     type: object
     properties:
       operationRef:
+        $comment: resolved against the resolved version of $self
         type: string
         format: uri-reference
       operationId:
@@ -869,6 +879,7 @@ $defs:
     type: object
     properties:
       $ref:
+        $comment: resolved against the resolved version of $self
         type: string
         format: uri-reference
       summary:
@@ -967,6 +978,7 @@ $defs:
             flows:
               $ref: '#/$defs/oauth-flows'
             oauth2MetadataUrl:
+              $comment: resolved against the matching and de-templated server url
               type: string
               format: uri-reference
           required:
@@ -980,6 +992,7 @@ $defs:
         then:
           properties:
             openIdConnectUrl:
+              $comment: resolved against the matching and de-templated server url
               type: string
               format: uri-reference
           required:
@@ -1013,6 +1026,7 @@ $defs:
 
     $defs:
       implicit:
+        $comment: references are resolved against the matching and de-templated server url
         type: object
         properties:
           authorizationUrl:
@@ -1030,6 +1044,7 @@ $defs:
         unevaluatedProperties: false
 
       password:
+        $comment: references are resolved against the matching and de-templated server url
         type: object
         properties:
           tokenUrl:
@@ -1047,6 +1062,7 @@ $defs:
         unevaluatedProperties: false
 
       client-credentials:
+        $comment: references are resolved against the matching and de-templated server url
         type: object
         properties:
           tokenUrl:
@@ -1064,6 +1080,7 @@ $defs:
         unevaluatedProperties: false
 
       authorization-code:
+        $comment: references are resolved against the matching and de-templated server url
         type: object
         properties:
           authorizationUrl:
@@ -1085,6 +1102,7 @@ $defs:
         unevaluatedProperties: false
 
       device-authorization:
+        $comment: references are resolved against the matching and de-templated server url
         type: object
         properties:
           deviceAuthorizationUrl:

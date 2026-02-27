@@ -1829,9 +1829,9 @@ requestBody:
             # image media type(s) in the Encoding Object.
             type: string
             contentEncoding: base64url
-  encoding:
-    icon:
-      contentType: image/png, image/jpeg
+      encoding:
+        icon:
+          contentType: image/png, image/jpeg
 ```
 
 Given a name of `example` and a solid red 2x2-pixel PNG for `icon`, this

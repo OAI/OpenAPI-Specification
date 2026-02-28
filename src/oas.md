@@ -3157,7 +3157,7 @@ This means that the data form of this serialization is equivalent to the followi
 ```json
 {
   "code": "1234",
-  "count": 42
+  "count": 42,
   "extra": {
     "info": "abc"
   }

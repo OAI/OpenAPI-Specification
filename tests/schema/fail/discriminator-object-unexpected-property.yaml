@@ -1,0 +1,11 @@
+openapi: 3.3.0
+info:
+  title: API
+  version: 1.0.0
+components:
+  schemas:
+    discriminator-with-unevaluated-properties:
+      type: object
+      discriminator:
+        propertyName: foo
+        not-allowed: here

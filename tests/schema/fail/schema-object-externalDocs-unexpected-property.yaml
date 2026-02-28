@@ -1,0 +1,11 @@
+openapi: 3.3.0
+info:
+  title: API
+  version: 1.0.0
+components:
+  schemas:
+    externalDocs-with-unevaluated-properties:
+      type: object
+      externalDocs:
+        url: https://example.com/docs
+        not-allowed: here

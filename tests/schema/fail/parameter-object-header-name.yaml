@@ -1,0 +1,10 @@
+openapi: 3.2.0
+info:
+  title: header name has a constrained syntax
+  version: 1.0.0
+components:
+  parameters:
+    BadHeader:
+      name: 'Bad[Header]'
+      in: header
+      schema: {}

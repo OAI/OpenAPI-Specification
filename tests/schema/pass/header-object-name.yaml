@@ -1,0 +1,8 @@
+openapi: 3.3.0
+info:
+  title: header name has a constrained syntax, but the component name is not the header name
+  version: 1.0.0
+components:
+  headers:
+    'Still=Legal':
+      schema: {}

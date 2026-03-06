@@ -1,0 +1,161 @@
+# Minimal instances of Objects defined in the OpenAPI specification
+#
+# Each instance includes only the required properties for that Object.
+# These instances are used to verify that the Object does not allow additional properties.
+
+# OpenAPI Object has separate test cases
+
+- objectName: Info Object
+  subSchemaPath: /$defs/info
+  minimalInstance:
+    title: Sample API
+    version: 1.0.0
+
+- objectName: Contact Object
+  subSchemaPath: /$defs/contact
+  minimalInstance: {}
+
+- objectName: License Object
+  subSchemaPath: /$defs/license
+  minimalInstance:
+    name: Apache 2.0
+
+- objectName: Server Object
+  subSchemaPath: /$defs/server
+  minimalInstance:
+    url: https://example.com/docs
+
+- objectName: Server Variable Object
+  subSchemaPath: /$defs/server-variable
+  minimalInstance:
+    default: defaultValue
+
+- objectName: Components Object
+  subSchemaPath: /$defs/components
+  minimalInstance: {}
+
+- objectName: Paths Object
+  subSchemaPath: /$defs/paths
+  minimalInstance: {}
+
+- objectName: Path Item Object
+  subSchemaPath: /$defs/path-item
+  minimalInstance: {}
+
+- objectName: Operation Object
+  subSchemaPath: /$defs/operation
+  minimalInstance: {}
+
+- objectName: External Documentation Object
+  subSchemaPath: /$defs/external-documentation
+  minimalInstance:
+    url: https://example.com/docs
+
+- objectName: Parameter Object
+  subSchemaPath: /$defs/parameter
+  minimalInstance:
+    name: sampleParam
+    in: query
+    schema: # content could also be used, one of them is required
+      type: string
+
+- objectName: Request Body Object
+  subSchemaPath: /$defs/request-body
+  minimalInstance:
+    content:
+      application/json:
+        schema:
+          type: object
+
+- objectName: Media Type Object
+  subSchemaPath: /$defs/media-type
+  minimalInstance: {}
+
+- objectName: Encoding Object
+  subSchemaPath: /$defs/encoding
+  minimalInstance: {}
+
+- objectName: Responses Object
+  subSchemaPath: /$defs/responses
+  minimalInstance:
+    default: {} # or "200": {}, any response would do, Responses Object requires at least one response
+
+- objectName: Response Object
+  subSchemaPath: /$defs/response
+  minimalInstance: {}
+
+- objectName: Callback Object
+  subSchemaPath: /$defs/callbacks
+  minimalInstance: {}
+
+- objectName: Example Object
+  subSchemaPath: /$defs/example
+  minimalInstance: {}
+
+- objectName: Link Object
+  subSchemaPath: /$defs/link
+  minimalInstance:
+    operationId: sampleOperation # operationRef could also be used, one of them is required
+
+- objectName: Header Object
+  subSchemaPath: /$defs/header
+  minimalInstance:
+    schema: # content could also be used, one of them is required
+      type: string
+
+- objectName: Tag Object
+  subSchemaPath: /$defs/tag
+  minimalInstance:
+    name: Sample Tag
+
+# Reference Object allows additional properties (which SHALL be ignored)
+
+# Schema Object allows additional properties
+
+# Discriminator Object is defined in meta.yaml, test case fail/discriminator-object-unexpected-property.yaml
+
+# XML Object is defined in meta.yaml
+
+- objectName: Security Scheme Object (HTTP Basic)
+  subSchemaPath: /$defs/security-scheme
+  minimalInstance:
+    type: http
+    scheme: basic
+
+- objectName: OAuth Flows Object
+  subSchemaPath: /$defs/oauth-flows
+  minimalInstance: {}
+
+- objectName: OAuth Flow Object (implicit)
+  subSchemaPath: /$defs/oauth-flows/$defs/implicit
+  minimalInstance:
+    authorizationUrl: https://example.com/auth
+    scopes: {}
+
+- objectName: OAuth Flow Object (password)
+  subSchemaPath: /$defs/oauth-flows/$defs/password
+  minimalInstance:
+    tokenUrl: https://example.com/token
+    scopes: {}
+
+- objectName: OAuth Flow Object (clientCredentials)
+  subSchemaPath: /$defs/oauth-flows/$defs/client-credentials
+  minimalInstance:
+    tokenUrl: https://example.com/token
+    scopes: {}
+
+- objectName: OAuth Flow Object (authorizationCode)
+  subSchemaPath: /$defs/oauth-flows/$defs/authorization-code
+  minimalInstance:
+    authorizationUrl: https://example.com/auth
+    tokenUrl: https://example.com/token
+    scopes: {}
+
+- objectName: OAuth Flow Object (deviceAuthorization)
+  subSchemaPath: /$defs/oauth-flows/$defs/device-authorization
+  minimalInstance:
+    deviceAuthorizationUrl: https://example.com/device
+    tokenUrl: https://example.com/auth
+    scopes: {}
+
+# Security Requirement Object allows additional properties

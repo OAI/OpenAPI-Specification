@@ -42,24 +42,27 @@ publish_schema() {
 
   # rename or create the jekyll lander markdown file for this iteration
   if [ ! -z "$jekyllLander" ]; then
-    mv $jekyllLander $target.md
-    echo " * $newestCommitDate: $schema & jekyll lander $(basename $jekyllLander)"
+    if [ "$jekyllLander" = "$target.md" ]; then
+      echo " * $base did not change since $date"
+    else
+      mv $jekyllLander $target.md
+      echo " * $base: $date added & jekyll lander moved from $(basename $jekyllLander)"
+    fi
   else
     # find the most recent preceding version
     local lastdir=""; for fn in $(dirname $deploydir)/?.?; do test "$fn" "<" "$deploydir" && lastdir="$fn"; done
     local lastVersion=$(basename $lastdir)
     # find the jekyll lander markdown file for the preceding version
-    local lastLander=$(find "$lastdir/$base" -maxdepth 1 -name "*.md")
+    local lastLander=$(find "$lastdir/$base" -maxdepth 1 -name "*.md" 2>/dev/null)
 
     if [ ! -z "$lastLander" ]; then
       # copy and adjust the lander file from the preceding version
       sed "s/$lastVersion/$version/g" $lastLander > $target.md
-      echo " * $newestCommitDate: $schema & jekyll lander $(basename $lastLander) of $lastVersion"
+      echo " * $base: $date added & jekyll lander copied from $(basename $lastLander) of $lastVersion"
     else
-      echo " * $newestCommitDate: $schema"
+      echo " * $base: $date added"
     fi
   fi
-
 }
 
 echo === Building schemas into $deploydir
@@ -72,7 +75,7 @@ maxDate=""
 sedCmds=()
 for schema in "${schemas[@]}"; do
   if [ -f  "$schemaDir/$schema" ]; then
-    newestCommitDate=$(git log -1 --format="%ad" --date=short "$schemaDir/$schema")
+    newestCommitDate=$(git log -1 --format="%cd" --date=short "$schemaDir/$schema")
 
     # the newest date across a schema and all its dependencies is its date stamp
     if [ "$newestCommitDate" \> "$maxDate" ]; then

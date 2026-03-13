@@ -29,7 +29,7 @@
   "devDependencies": {
     "@hyperjump/json-schema-coverage": "^1.2.1",
     "@umbrelladocs/linkspector": "^0.4.7",
-    "@vitest/coverage-v8": "^4.0.18",
+    "@vitest/coverage-v8": "^4.1.0",
     "c8": "^11.0.0",
     "markdownlint-cli2": "^0.21.0",
     "vitest": "^4.0.1",

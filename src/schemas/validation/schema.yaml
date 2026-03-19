@@ -417,10 +417,20 @@ $defs:
       - if:
           properties:
             in:
+              const: path
+        then:
+          properties:
+            name:
+              $comment: 'see OAS 3.2.0 §4.8.2'
+              pattern: '^[^{}]+$'
+      - if:
+          properties:
+            in:
               const: header
         then:
           properties:
             name:
+              $comment: 'see RFC9110 §5.1'
               $ref: '#/$defs/token'
     dependentSchemas:
       schema:

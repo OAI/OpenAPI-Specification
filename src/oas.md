@@ -810,6 +810,9 @@ These fields MUST NOT be used with `in: "querystring"`.
 Care is needed for parameters with `schema` that have `in: "header"` or `in: "cookie", style: "cookie"`:
 
 * When serializing these values, URI percent-encoding MUST NOT be applied.
+* The Cookie header prohibits unencoded commas (see
+[RFC6265](https://datatracker.ietf.org/doc/html/rfc6265#section-4.2.1) for the complete ABNF),
+therefore `"explode": false` is invalid with `"in": "cookie"` (both `"style": "form"` and `"style": "cookie"`).
 * When parsing these parameters, any apparent percent-encoding MUST NOT be decoded.
 * If using an RFC6570 implementation that automatically performs encoding or decoding steps, the steps MUST be undone before use.
 
@@ -930,7 +933,7 @@ The following table shows serialized examples, as would be shown with the `seria
 | pipeDelimited | false | _n/a_ | _n/a_ | color=blue%7Cblack%7Cbrown | color=R%7C100%7CG%7C200%7CB%7C150 |
 | pipeDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
 | deepObject | _n/a_ | _n/a_ | _n/a_ | _n/a_ | color%5BR%5D=100&color%5BG%5D=200&color%5BB%5D=150 |
-| cookie | false | color= | color=blue | color=blue,black,brown | color=R,100,G,200,B,150 |
+| cookie | false | color= | color=blue | _n/a_ | _n/a_ |
 | cookie | true | color= | color=blue | color=blue; color=black; color=brown | R=100; G=200; B=150 |
 
 #### Extending Support for Querystring Formats
@@ -984,14 +987,13 @@ schema:
 examples:
   Object:
     description: |
-        Note that the comma (,) has been pre-percent-encoded
-        to "%2C" in the data, as it is forbidden in
-        cookie values.  However, the exclamation point (!)
-        is legal in cookies, so it can be left unencoded.
+        Note that the comma (,) and space ( ) have been pre-percent-encoded
+        in the data, as they are forbidden in cookie values. However, the
+        exclamation point (!) is legal in cookies, so it can be left unencoded.
     dataValue:
-      greeting: Hello%2C world!
+      greeting: Hello%2C%20world!
       code: 42
-    serializedValue: "greeting=Hello%2C world!; code=42"
+    serializedValue: "greeting=Hello%2C%20world!; code=42"
 ```
 
 A cookie parameter relying on the percent-encoding behavior of the default `style: "form"`:
@@ -5133,10 +5135,12 @@ For this reason, any data being passed to a header by way of a [Parameter](#para
 While percent-encoding seems more common as an escaping mechanism than the base64 encoding (`contentEncoding`: "base64") recommended by [[RFC6265]], [section 5.6 of draft-ietf-httpbis-rfc6265bis-20](https://www.ietf.org/archive/id/draft-ietf-httpbis-rfc6265bis-20.html#section-5.6), the proposed update to that RFC notes that cookies sent in the `Set-Cookie` response header that appear to be percent-encoded MUST NOT be decoded when stored by the client, which would mean that they are already encoded when retrieved from that storage for use in the `Cookie` request header.
 The behavior of `style: "cookie"` assumes this usage, and _does not_ apply or remove percent-encoding.
 
-If automatic percent-encoding is desired, `style: "form"` with a primitive value or with the non-default `explode` value of `false` provides this behavior.
+If automatic percent-encoding is desired, `style: "form"` with a primitive value provides this behavior (note that the non-default `explode` value of `false` produces cookie values containing a comma (`,`), which are invalid).
+
 However, note that the default value of `explode: true` for `style: "form"` with non-primitive values uses the wrong delimiter for cookies (`&` instead of `;` followed by a single space) to set multiple cookie values.
 Using `style: "form"` with `in: "cookie"` via an RFC6570 implementation requires stripping the `?` prefix, as when producing `application/x-www-form-urlencoded` message bodies.
-To allow the full use of `style: "form"` with `in: "cookie"`, use the `allowReserved` field.
+To allow the full use of `style: "form"` with `in: "cookie"`, use the `allowReserved` field, taking
+care to still escape the characters that are invalid in the Cookie header (see [RFC6265](https://datatracker.ietf.org/doc/html/rfc6265#section-4.2.1) for the complete ABNF).
 
 ## Appendix E: Percent-Encoding and Form Media Types
 

@@ -608,8 +608,8 @@ $defs:
     type: object
     properties:
       contentType:
+        $comment: one or more comma-separated media-ranges
         type: string
-        format: media-range
       headers:
         type: object
         propertyNames:

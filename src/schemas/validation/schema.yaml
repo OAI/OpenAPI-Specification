@@ -566,7 +566,12 @@ $defs:
       $ref: '#/$defs/request-body'
 
   content:
-    $comment: https://spec.openapis.org/oas/v3.2#fixed-fields-10
+    $comment: |
+      The `content` object is a property of:
+      Parameter Object: https://spec.openapis.org/oas/v3.2#parameter-object
+      Request Body Object: https://spec.openapis.org/oas/v3.2#request-body-object
+      Response Object: https://spec.openapis.org/oas/v3.2#response-object
+      Header Object: https://spec.openapis.org/oas/v3.2#header-object
     type: object
     additionalProperties:
       $ref: '#/$defs/media-type-or-reference'

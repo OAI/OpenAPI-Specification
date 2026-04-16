@@ -63,8 +63,7 @@
   minimalInstance:
     content:
       application/json:
-        schema:
-          type: object
+        schema: {}
 
 - objectName: Media Type Object
   subSchemaPath: /$defs/media-type
@@ -99,8 +98,7 @@
 - objectName: Header Object
   subSchemaPath: /$defs/header
   minimalInstance:
-    schema: # content could also be used, one of them is required
-      type: string
+    schema: {} # content could also be used, one of them is required
 
 - objectName: Tag Object
   subSchemaPath: /$defs/tag

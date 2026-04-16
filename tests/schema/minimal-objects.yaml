@@ -56,8 +56,7 @@
   minimalInstance:
     name: sampleParam
     in: query
-    schema: # content could also be used, one of them is required
-      type: string
+    schema: {} # content could also be used, one of them is required
 
 - objectName: Request Body Object
   subSchemaPath: /$defs/request-body

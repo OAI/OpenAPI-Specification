@@ -607,7 +607,7 @@ The path itself is still exposed to the documentation viewer but they will not k
 | <a name="path-item-head"></a>head | [Operation Object](#operation-object) | A definition of a HEAD operation on this path. |
 | <a name="path-item-patch"></a>patch | [Operation Object](#operation-object) | A definition of a PATCH operation on this path. |
 | <a name="path-item-trace"></a>trace | [Operation Object](#operation-object) | A definition of a TRACE operation on this path. |
-| <a name="path-item-query"></a>query | [Operation Object](#operation-object) | A definition of a QUERY operation, as defined in the most recent IETF draft ([draft-ietf-httpbis-safe-method-w-body-08](https://www.ietf.org/archive/id/draft-ietf-httpbis-safe-method-w-body-11.html) as of this writing) or its RFC successor, on this path. |
+| <a name="path-item-query"></a>query | [Operation Object](#operation-object) | A definition of a QUERY operation, as defined in the most recent IETF draft ([draft-ietf-httpbis-safe-method-w-body-14](https://www.ietf.org/archive/id/draft-ietf-httpbis-safe-method-w-body-14.html) as of this writing) or its RFC successor, on this path. |
 | <a name="path-item-additional-operations"></a>additionalOperations | Map[`string`, [Operation Object](#operation-object)] | A map of additional operations on this path. The map key is the HTTP method with the same capitalization that is to be sent in the request. This map MUST NOT contain any entry for the methods that can be defined by other fixed fields with Operation Object values (e.g. no `POST` entry, as the `post` field is used for this method). |
 | <a name="path-item-servers"></a>servers | [[Server Object](#server-object)] | An alternative `servers` array to service all operations in this path. If a `servers` array is specified at the [OpenAPI Object](#oas-servers) level, it will be overridden by this value. |
 | <a name="path-item-parameters"></a>parameters | [[Parameter Object](#parameter-object) \| [Reference Object](#reference-object)] | A list of parameters that are applicable for all the operations described under this path. These parameters can be overridden at the operation level, but cannot be removed there. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a [name](#parameter-name) and [location](#parameter-in). The list can use the [Reference Object](#reference-object) to link to parameters that are defined in the [OpenAPI Object's `components.parameters`](#components-parameters). |
@@ -810,6 +810,9 @@ These fields MUST NOT be used with `in: "querystring"`.
 Care is needed for parameters with `schema` that have `in: "header"` or `in: "cookie", style: "cookie"`:
 
 * When serializing these values, URI percent-encoding MUST NOT be applied.
+* The Cookie header prohibits unencoded commas (see
+[RFC6265](https://datatracker.ietf.org/doc/html/rfc6265#section-4.2.1) for the complete ABNF),
+therefore `"explode": false` is invalid with `"in": "cookie"` (both `"style": "form"` and `"style": "cookie"`).
 * When parsing these parameters, any apparent percent-encoding MUST NOT be decoded.
 * If using an RFC6570 implementation that automatically performs encoding or decoding steps, the steps MUST be undone before use.
 
@@ -930,7 +933,7 @@ The following table shows serialized examples, as would be shown with the `seria
 | pipeDelimited | false | _n/a_ | _n/a_ | color=blue%7Cblack%7Cbrown | color=R%7C100%7CG%7C200%7CB%7C150 |
 | pipeDelimited | true | _n/a_ | _n/a_ | _n/a_ | _n/a_ |
 | deepObject | _n/a_ | _n/a_ | _n/a_ | _n/a_ | color%5BR%5D=100&color%5BG%5D=200&color%5BB%5D=150 |
-| cookie | false | color= | color=blue | color=blue,black,brown | color=R,100,G,200,B,150 |
+| cookie | false | color= | color=blue | _n/a_ | _n/a_ |
 | cookie | true | color= | color=blue | color=blue; color=black; color=brown | R=100; G=200; B=150 |
 
 #### Extending Support for Querystring Formats
@@ -984,14 +987,13 @@ schema:
 examples:
   Object:
     description: |
-        Note that the comma (,) has been pre-percent-encoded
-        to "%2C" in the data, as it is forbidden in
-        cookie values.  However, the exclamation point (!)
-        is legal in cookies, so it can be left unencoded.
+        Note that the comma (,) and space ( ) have been pre-percent-encoded
+        in the data, as they are forbidden in cookie values. However, the
+        exclamation point (!) is legal in cookies, so it can be left unencoded.
     dataValue:
-      greeting: Hello%2C world!
+      greeting: Hello%2C%20world!
       code: 42
-    serializedValue: "greeting=Hello%2C world!; code=42"
+    serializedValue: "greeting=Hello%2C%20world!; code=42"
 ```
 
 A cookie parameter relying on the percent-encoding behavior of the default `style: "form"`:
@@ -1603,7 +1605,7 @@ content:
             format: int64
       - properties:
           event:
-            const: addJson
+            const: addJSON
           data:
             $comment: |
               These content fields indicate
@@ -1829,9 +1831,9 @@ requestBody:
             # image media type(s) in the Encoding Object.
             type: string
             contentEncoding: base64url
-  encoding:
-    icon:
-      contentType: image/png, image/jpeg
+      encoding:
+        icon:
+          contentType: image/png, image/jpeg
 ```
 
 Given a name of `example` and a solid red 2x2-pixel PNG for `icon`, this
@@ -2338,7 +2340,7 @@ The various fields and types of examples are explained in more detail under [Wor
 | <a name="example-description"></a>description | `string` | Long description for the example. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="example-data-value"></a>dataValue | Any | An example of the data structure that MUST be valid according to the relevant [Schema Object](#schema-object).  If this field is present, `value` MUST be absent. |
 | <a name="example-serialized-value"></a>serializedValue | `string` | An example of the serialized form of the value, including encoding and escaping as described under [Validating Examples](#validating-examples).  If `dataValue` is present, then this field SHOULD contain the serialization of the given data.  Otherwise, it SHOULD be the valid serialization of a data value that itself MUST be valid as described for `dataValue`.  This field SHOULD NOT be used if the serialization format is JSON, as the data form is easier to work with. If this field is present, `value`, and `externalValue` MUST be absent. |
-| <a name="example-external-value"></a>externalValue | `string` | A URI that identifies the serialized example in a separate document, allowing for values not easily or readably expressed as a Unicode string.  If `dataValue` is present, then this field SHOULD identify a serialization of the given data.  Otherwise, the value SHOULD be the valid serialization of a data value that itself MUST be valid as described for `dataValue`. If this field is present, `serializedValue` and `value` MUST be absent. See also the rules for resolving [Relative References](#relative-references-in-api-description-uris). |
+| <a name="example-external-value"></a>externalValue | `string` | A URI that identifies the serialized example in a separate document, allowing for values not easily or readably expressed as a Unicode string.  If `dataValue` is present, then this field SHOULD identify a serialization of the given data.  Otherwise, the value SHOULD identify the valid serialization of a data value that itself MUST be valid as described for `dataValue`. If this field is present, `serializedValue` and `value` MUST be absent. See also the rules for resolving [Relative References](#relative-references-in-api-description-uris). |
 | <a name="example-value"></a>value | Any | Embedded literal example. The `value` field and `externalValue` field are mutually exclusive. To represent examples of media types that cannot naturally be represented in JSON or YAML, use a string value to contain the example, escaping where necessary.<br><br>**Deprecated for non-JSON serialization targets:** Use `dataValue` and/or `serializedValue`, which both have unambiguous syntax and semantics, instead. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
@@ -2769,7 +2771,7 @@ components:
       content:
         application/linkset+json:
           schema:
-            $ref: '#/components/mediaTypes/CollectionLinks'
+            $ref: '#/components/schemas/CollectionLinks'
 ```
 
 #### Representing the `Set-Cookie` Header
@@ -2847,11 +2849,10 @@ components:
       explode: true
       examples:
         SetCookies:
-          dataValue: {
-            "lang": "en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT"
-            "foo": "bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT"
-            "urlSafeData": "Hello%2C%20world%21"
-          }
+          dataValue:
+            lang: "en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT"
+            foo: "bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT"
+            urlSafeData: "Hello%2C%20world%21"
           serializedValue: |
             lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT
             foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT
@@ -3158,7 +3159,7 @@ This means that the data form of this serialization is equivalent to the followi
 ```json
 {
   "code": "1234",
-  "count": 42
+  "count": 42,
   "extra": {
     "info": "abc"
   }
@@ -4320,15 +4321,16 @@ components:
           xml:
             nodeType: cdata
   responses:
-    content:
-      application/xml:
-        schema:
-          $ref: "#/components/schemas/Documentation"
-        examples:
-          docs:
-            dataValue:
-              content: <html><head><title>Awesome Docs</title></head><body></body><html>
-            externalValue: ./examples/docs.xml
+    AwesomeDocs:
+      content:
+        application/xml:
+          schema:
+            $ref: "#/components/schemas/Documentation"
+          examples:
+            docs:
+              dataValue:
+                content: <html><head><title>Awesome Docs</title></head><body></body><html>
+              externalValue: ./examples/docs.xml
 ```
 
 Where `./examples/docs.xml` would be:
@@ -5134,10 +5136,12 @@ For this reason, any data being passed to a header by way of a [Parameter](#para
 While percent-encoding seems more common as an escaping mechanism than the base64 encoding (`contentEncoding`: "base64") recommended by [[RFC6265]], [section 5.6 of draft-ietf-httpbis-rfc6265bis-20](https://www.ietf.org/archive/id/draft-ietf-httpbis-rfc6265bis-20.html#section-5.6), the proposed update to that RFC notes that cookies sent in the `Set-Cookie` response header that appear to be percent-encoded MUST NOT be decoded when stored by the client, which would mean that they are already encoded when retrieved from that storage for use in the `Cookie` request header.
 The behavior of `style: "cookie"` assumes this usage, and _does not_ apply or remove percent-encoding.
 
-If automatic percent-encoding is desired, `style: "form"` with a primitive value or with the non-default `explode` value of `false` provides this behavior.
+If automatic percent-encoding is desired, `style: "form"` with a primitive value provides this behavior (note that the non-default `explode` value of `false` produces cookie values containing a comma (`,`), which are invalid).
+
 However, note that the default value of `explode: true` for `style: "form"` with non-primitive values uses the wrong delimiter for cookies (`&` instead of `;` followed by a single space) to set multiple cookie values.
 Using `style: "form"` with `in: "cookie"` via an RFC6570 implementation requires stripping the `?` prefix, as when producing `application/x-www-form-urlencoded` message bodies.
-To allow the full use of `style: "form"` with `in: "cookie"`, use the `allowReserved` field.
+To allow the full use of `style: "form"` with `in: "cookie"`, use the `allowReserved` field, taking
+care to still escape the characters that are invalid in the Cookie header (see [RFC6265](https://datatracker.ietf.org/doc/html/rfc6265#section-4.2.1) for the complete ABNF).
 
 ## Appendix E: Percent-Encoding and Form Media Types
 
@@ -5332,7 +5336,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/api/schemas/Foo"
+            $ref: "#/components/schemas/Foo"
   schemas:
     Foo:
       properties:
@@ -5453,7 +5457,7 @@ components:
 ```
 
 In this example, all of the `$self` and `$id` values are relative URI references consisting of an absolute path.
-This allows the retrieval URI to set the host (and scheme), in this case `https://staging.example.com`, resulting in the first document's `$self` being `https://staging.example.com/openapi`, and the second document's `$self` being `https://staging.example.com/api/shared/foo`, with `$id` values of `https://staging.example.com/api/schemas/foo` and `https://staging.example.com/api/schemas/bar`.
+This allows the retrieval URI to set the host (and scheme), in this case `https://staging.example.com`, resulting in the first document's `$self` being `https://staging.example.com/api/openapi`, and the second document's `$self` being `https://staging.example.com/api/shared/foo`, with `$id` values of `https://staging.example.com/api/schemas/foo` and `https://staging.example.com/api/schemas/bar`.
 Relative `$self` and `$id` values of this sort  allow the same set of documents to work when deployed to other hosts, e.g. `https://example.com` (production) or `https://localhost:8080` (local development).
 
 ## Appendix G: Parsing and Resolution Guidance

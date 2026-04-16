@@ -243,7 +243,7 @@ $defs:
           $ref: '#/$defs/operation'
         propertyNames:
           $comment: RFC9110 restricts methods to "1*tchar" in ABNF
-          pattern: "^[a-zA-Z0-9!#$%&'*+.^_`|~-]+$"
+          $ref: '#/$defs/token'
           not:
             enum:
               - GET
@@ -414,6 +414,14 @@ $defs:
         then:
           required:
             - content
+      - if:
+          properties:
+            in:
+              const: header
+        then:
+          properties:
+            name:
+              $ref: '#/$defs/token'
     dependentSchemas:
       schema:
         properties:
@@ -600,10 +608,12 @@ $defs:
     type: object
     properties:
       contentType:
+        $comment: one or more comma-separated media-ranges
         type: string
-        format: media-range
       headers:
         type: object
+        propertyNames:
+          $ref: '#/$defs/token'
         additionalProperties:
           $ref: '#/$defs/header-or-reference'
       style:
@@ -679,6 +689,8 @@ $defs:
         type: string
       headers:
         type: object
+        propertyNames:
+          $ref: '#/$defs/token'
         additionalProperties:
           $ref: '#/$defs/header-or-reference'
       content:
@@ -1149,3 +1161,8 @@ $defs:
       properties:
         explode:
           default: false
+
+  token:
+    $comment: see https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.2
+    type: string
+    pattern: ^[0-9A-Za-z!#$%&'*+.^_`|~-]+$

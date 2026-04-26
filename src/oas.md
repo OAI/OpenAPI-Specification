@@ -5335,7 +5335,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/api/schemas/Foo"
+            $ref: "#/components/schemas/Foo"
   schemas:
     Foo:
       properties:
@@ -5456,7 +5456,7 @@ components:
 ```
 
 In this example, all of the `$self` and `$id` values are relative URI references consisting of an absolute path.
-This allows the retrieval URI to set the host (and scheme), in this case `https://staging.example.com`, resulting in the first document's `$self` being `https://staging.example.com/openapi`, and the second document's `$self` being `https://staging.example.com/api/shared/foo`, with `$id` values of `https://staging.example.com/api/schemas/foo` and `https://staging.example.com/api/schemas/bar`.
+This allows the retrieval URI to set the host (and scheme), in this case `https://staging.example.com`, resulting in the first document's `$self` being `https://staging.example.com/api/openapi`, and the second document's `$self` being `https://staging.example.com/api/shared/foo`, with `$id` values of `https://staging.example.com/api/schemas/foo` and `https://staging.example.com/api/schemas/bar`.
 Relative `$self` and `$id` values of this sort  allow the same set of documents to work when deployed to other hosts, e.g. `https://example.com` (production) or `https://localhost:8080` (local development).
 
 ## Appendix G: Parsing and Resolution Guidance

@@ -1,0 +1,10 @@
+openapi: 3.3.0
+info:
+  title: path parameter name has a constrained syntax
+  version: 1.0.0
+components:
+  parameters:
+    BadPath:
+      name: 'Bad{Path}'
+      in: path
+      schema: {}

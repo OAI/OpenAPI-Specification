@@ -607,7 +607,7 @@ The path itself is still exposed to the documentation viewer but they will not k
 | <a name="path-item-head"></a>head | [Operation Object](#operation-object) | A definition of a HEAD operation on this path. |
 | <a name="path-item-patch"></a>patch | [Operation Object](#operation-object) | A definition of a PATCH operation on this path. |
 | <a name="path-item-trace"></a>trace | [Operation Object](#operation-object) | A definition of a TRACE operation on this path. |
-| <a name="path-item-query"></a>query | [Operation Object](#operation-object) | A definition of a QUERY operation, as defined in the most recent IETF draft ([draft-ietf-httpbis-safe-method-w-body-08](https://www.ietf.org/archive/id/draft-ietf-httpbis-safe-method-w-body-11.html) as of this writing) or its RFC successor, on this path. |
+| <a name="path-item-query"></a>query | [Operation Object](#operation-object) | A definition of a QUERY operation, as defined in the most recent IETF draft ([draft-ietf-httpbis-safe-method-w-body-14](https://www.ietf.org/archive/id/draft-ietf-httpbis-safe-method-w-body-14.html) as of this writing) or its RFC successor, on this path. |
 | <a name="path-item-additional-operations"></a>additionalOperations | Map[`string`, [Operation Object](#operation-object)] | A map of additional operations on this path. The map key is the HTTP method with the same capitalization that is to be sent in the request. This map MUST NOT contain any entry for the methods that can be defined by other fixed fields with Operation Object values (e.g. no `POST` entry, as the `post` field is used for this method). |
 | <a name="path-item-servers"></a>servers | [[Server Object](#server-object)] | An alternative `servers` array to service all operations in this path. If a `servers` array is specified at the [OpenAPI Object](#oas-servers) level, it will be overridden by this value. |
 | <a name="path-item-parameters"></a>parameters | [[Parameter Object](#parameter-object) \| [Reference Object](#reference-object)] | A list of parameters that are applicable for all the operations described under this path. These parameters can be overridden at the operation level, but cannot be removed there. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a [name](#parameter-name) and [location](#parameter-in). The list can use the [Reference Object](#reference-object) to link to parameters that are defined in the [OpenAPI Object's `components.parameters`](#components-parameters). |
@@ -788,7 +788,7 @@ The `example` and `examples` fields are mutually exclusive; see [Working with Ex
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="parameter-name"></a>name | `string` | **REQUIRED**. The name of the parameter. Parameter names are _case-sensitive_. <ul><li>If [`in`](#parameter-in) is `"path"`, the `name` field MUST correspond to a single template expression occurring within the [path](#paths-path) field in the [Paths Object](#paths-object). See [Path Templating](#path-templating) for further information.<li>If [`in`](#parameter-in) is `"header"` and the `name` field is `"Accept"`, `"Content-Type"` or `"Authorization"`, the parameter definition SHALL be ignored.<li>If `in` is `"querystring"`, or for [certain combinations](#style-examples) of [`style`](#parameter-style) and [`explode`](#parameter-explode), the value of `name` is not used in the parameter serialization.<li>For all other cases, the `name` corresponds to the parameter name used by the [`in`](#parameter-in) field.</ul> |
+| <a name="parameter-name"></a>name | `string` | **REQUIRED**. The name of the parameter. Parameter names are _case-sensitive_. <ul><li>If [`in`](#parameter-in) is `"path"`, the `name` field MUST correspond to a single template expression occurring within the [path](#paths-path) field in the [Paths Object](#paths-object). See [Path Templating](#path-templating) for further information.</li><li>If [`in`](#parameter-in) is `"header"` and the `name` field is `"Accept"`, `"Content-Type"` or `"Authorization"`, the parameter definition SHALL be ignored.</li><li>If `in` is `"querystring"`, or for [certain combinations](#style-examples) of [`style`](#parameter-style) and [`explode`](#parameter-explode), the value of `name` is not used in the parameter serialization.</li><li>For all other cases, the `name` corresponds to the parameter name used by the [`in`](#parameter-in) field.</li></ul> |
 | <a name="parameter-in"></a>in | `string` | **REQUIRED**. The location of the parameter. Possible values are `"query"`, `"querystring"`, `"header"`, `"path"` or `"cookie"`. |
 | <a name="parameter-description"></a>description | `string` | A brief description of the parameter. This could contain examples of use. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="parameter-required"></a>required | `boolean` | Determines whether this parameter is mandatory. If the [parameter location](#parameter-in) is `"path"`, this field is **REQUIRED** and its value MUST be `true`. Otherwise, the field MAY be included and its default value is `false`. |
@@ -1605,7 +1605,7 @@ content:
             format: int64
       - properties:
           event:
-            const: addJson
+            const: addJSON
           data:
             $comment: |
               These content fields indicate
@@ -1831,9 +1831,9 @@ requestBody:
             # image media type(s) in the Encoding Object.
             type: string
             contentEncoding: base64url
-  encoding:
-    icon:
-      contentType: image/png, image/jpeg
+      encoding:
+        icon:
+          contentType: image/png, image/jpeg
 ```
 
 Given a name of `example` and a solid red 2x2-pixel PNG for `icon`, this
@@ -1851,7 +1851,7 @@ However, this is not guaranteed, so it may be more interoperable to keep the pad
 
 See [Encoding Usage and Restrictions](#encoding-usage-and-restrictions) for guidance on correlating schema properties with parts.
 
-Note that there are significant restrictions on what headers can be used with `multipart` media types in general ([RFC2046](https://www.rfc-editor.org/rfc/rfc2046.html#section-5.1)) and `multi-part/form-data` in particular ([RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.8)).
+Note that there are significant restrictions on what headers can be used with `multipart` media types in general ([RFC2046](https://www.rfc-editor.org/rfc/rfc2046.html#section-5.1)) and `multipart/form-data` in particular ([RFC7578](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.8)).
 
 ##### Handling Multiple `contentType` Values
 
@@ -2340,7 +2340,7 @@ The various fields and types of examples are explained in more detail under [Wor
 | <a name="example-description"></a>description | `string` | Long description for the example. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="example-data-value"></a>dataValue | Any | An example of the data structure that MUST be valid according to the relevant [Schema Object](#schema-object).  If this field is present, `value` MUST be absent. |
 | <a name="example-serialized-value"></a>serializedValue | `string` | An example of the serialized form of the value, including encoding and escaping as described under [Validating Examples](#validating-examples).  If `dataValue` is present, then this field SHOULD contain the serialization of the given data.  Otherwise, it SHOULD be the valid serialization of a data value that itself MUST be valid as described for `dataValue`.  This field SHOULD NOT be used if the serialization format is JSON, as the data form is easier to work with. If this field is present, `value`, and `externalValue` MUST be absent. |
-| <a name="example-external-value"></a>externalValue | `string` | A URI that identifies the serialized example in a separate document, allowing for values not easily or readably expressed as a Unicode string.  If `dataValue` is present, then this field SHOULD identify a serialization of the given data.  Otherwise, the value SHOULD be the valid serialization of a data value that itself MUST be valid as described for `dataValue`. If this field is present, `serializedValue` and `value` MUST be absent. See also the rules for resolving [Relative References](#relative-references-in-api-description-uris). |
+| <a name="example-external-value"></a>externalValue | `string` | A URI that identifies the serialized example in a separate document, allowing for values not easily or readably expressed as a Unicode string.  If `dataValue` is present, then this field SHOULD identify a serialization of the given data.  Otherwise, the value SHOULD identify the valid serialization of a data value that itself MUST be valid as described for `dataValue`. If this field is present, `serializedValue` and `value` MUST be absent. See also the rules for resolving [Relative References](#relative-references-in-api-description-uris). |
 | <a name="example-value"></a>value | Any | Embedded literal example. The `value` field and `externalValue` field are mutually exclusive. To represent examples of media types that cannot naturally be represented in JSON or YAML, use a string value to contain the example, escaping where necessary.<br><br>**Deprecated for non-JSON serialization targets:** Use `dataValue` and/or `serializedValue`, which both have unambiguous syntax and semantics, instead. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
@@ -2771,7 +2771,7 @@ components:
       content:
         application/linkset+json:
           schema:
-            $ref: '#/components/mediaTypes/CollectionLinks'
+            $ref: '#/components/schemas/CollectionLinks'
 ```
 
 #### Representing the `Set-Cookie` Header
@@ -2849,11 +2849,10 @@ components:
       explode: true
       examples:
         SetCookies:
-          dataValue: {
-            "lang": "en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT"
-            "foo": "bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT"
-            "urlSafeData": "Hello%2C%20world%21"
-          }
+          dataValue:
+            lang: "en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT"
+            foo: "bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT"
+            urlSafeData: "Hello%2C%20world%21"
           serializedValue: |
             lang=en-US; Expires=Wed, 09 Jun 2021 10:18:14 GMT
             foo=bar; Expires=Wed, 09 Jun 2021 10:18:14 GMT
@@ -3160,7 +3159,7 @@ This means that the data form of this serialization is equivalent to the followi
 ```json
 {
   "code": "1234",
-  "count": 42
+  "count": 42,
   "extra": {
     "info": "abc"
   }
@@ -4293,14 +4292,15 @@ application/xml:
         name: Fluffy
       - kind: Dog
         name: Fido
+      externalValue: ./examples/pets.xml
 ```
 
 Where `./examples/pets.xml` would be:
 
 ```xml
 <animals>
-  <animal kind="Cat">Fluffy</animals>
-  <animal kind="Dog">Fido</animals>
+  <animal kind="Cat">Fluffy</animal>
+  <animal kind="Dog">Fido</animal>
 <animals>
 ```
 
@@ -4321,15 +4321,16 @@ components:
           xml:
             nodeType: cdata
   responses:
-    content:
-      application/xml:
-        schema:
-          $ref: "#/components/schemas/Documentation"
-        examples:
-          docs:
-            dataValue:
-              content: <html><head><title>Awesome Docs</title></head><body></body><html>
-            externalValue: ./examples/docs.xml
+    AwesomeDocs:
+      content:
+        application/xml:
+          schema:
+            $ref: "#/components/schemas/Documentation"
+          examples:
+            docs:
+              dataValue:
+                content: <html><head><title>Awesome Docs</title></head><body></body><html>
+              externalValue: ./examples/docs.xml
 ```
 
 Where `./examples/docs.xml` would be:

@@ -1632,7 +1632,7 @@ data: across two lines
 retry: 5
 
 event: addInt64
-data: 1234.5678
+data: 1234
 unknownField: this is ignored
 
 : This is a comment
@@ -1644,7 +1644,7 @@ To more clearly see how this stream is handled, the following is the equivalent 
 
 ```jsonl
 {"event": "addString", "data": "This data is formatted\nacross two lines", "retry": 5}
-{"event": "addInt64", "data": "1234.5678"}
+{"event": "addInt64", "data": "1234"}
 {"event": "addJSON", "data": "{\"foo\": 42}"}
 ```
 

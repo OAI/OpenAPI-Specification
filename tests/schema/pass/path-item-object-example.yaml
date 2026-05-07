@@ -6,8 +6,14 @@ components:
   schemas:
     Pet: {}
     ErrorModel: {}
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
 paths:
   /pets/{id}:
+    security:
+    - Basic: []
     get:
       description: Returns pets based on ID
       summary: Find pets by ID

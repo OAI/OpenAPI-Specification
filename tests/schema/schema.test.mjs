@@ -53,4 +53,19 @@ describe("v3.3", () => {
         });
       });
   });
+
+  describe("Unevaluated properties in schema.yaml subschemas", () => {
+    const schema = "https://spec.openapis.org/oas/3.3/schema/WORK-IN-PROGRESS";
+    const minimalObjects = parseYamlFromFile("./tests/schema/minimal-objects.yaml");
+
+    for (const { objectName, subSchemaPath, minimalInstance } of minimalObjects) {
+      test(objectName, async () => {
+        // verify that minimal instance passes
+        await expect(minimalInstance).to.matchJsonSchema(`${schema}#${subSchemaPath}`);
+        // verify that adding a very unlikely property fails
+        const extendedInstance = { ...minimalInstance, not_allowed: true };
+        await expect(extendedInstance).to.not.matchJsonSchema(`${schema}#${subSchemaPath}`);
+      });
+    }
+  });
 });

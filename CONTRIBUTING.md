@@ -15,7 +15,16 @@ For example, work on the next patch release for 3.2 is on `v3.2-dev` in the file
 The [spec site](https://spec.openapis.org) is the source of truth for the OpenAPI specification as it contains all the citations and author credits (the markdown in this repository was previously the authoritative version until 2024).
 
 The OpenAPI project is almost entirely staffed by volunteers.
-Please be patient with the people in this project, who all have other jobs and are active here because we believe this project has a positive impact in the world.
+We expect you to contribute here respectfully, politely, and with good intentions.
+When you engage with this project, please:
+
+- review existing content: check the existing specification, documentation, and issues/discussions before starting a new discussion, issue or pull request.
+- respect everyone's time: keep your communication relevant and concise.
+- hold responsibility for your work: you should be able to explain or answer questions about anything you have posted to the project as your own.
+
+We actively close interactions that don't meet these expectations, so please don't be offended as we protect the time and energy of our volunteers.
+If you do think that something was closed in error, you are welcome to reach out to us to follow up.
+
 
 ### Active branches
 
@@ -50,6 +59,8 @@ Please do come and start a discussion to:
 - give feedback
 
 Anyone can start a discussion and you're very welcome to do so! Write a message and pick a relevant discussion category.
+
+When you participate in discussions, keep your remarks concise and on-topic at all times.
 
 ### Discussion management
 

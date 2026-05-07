@@ -231,6 +231,10 @@ $defs:
         type: string
       description:
         type: string
+      security:
+        type: array
+        items:
+          $ref: '#/$defs/security-requirement'
       servers:
         type: array
         items:

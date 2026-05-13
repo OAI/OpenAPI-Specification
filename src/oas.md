@@ -1393,7 +1393,7 @@ See [Encoding `multipart` Media Types](#encoding-multipart-media-types) for furt
 Most `multipart` media types, including `multipart/mixed` which defines the underlying rules for parsing all `multipart` types, do not have named parts.
 Data for these media types are modeled as an array, with one item per part, in order.
 
-To use the `prefixEncoding` and/or `itemEncoding` fields, either `itemSchema` or an array `schema` MUST be present.
+To use the `prefixEncoding` and/or `itemEncoding` fields, either `itemSchema` or a [`schema` indicating an array type](#non-json-data) MUST be present.
 These fields are analogous to the `prefixItems` and `items` JSON Schema keywords, with `prefixEncoding` (if present) providing an array of Encoding Objects that are each applied to the value at the same position in the data array, and `itemEncoding` applying its single Encoding Object to all remaining items in the array.
 As with `prefixItems`, it is _not_ an error if the instance array is shorter than the `prefixEncoding` array; the additional Encoding Objects SHALL be ignored.
 

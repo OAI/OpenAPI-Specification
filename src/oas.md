@@ -1395,7 +1395,7 @@ Data for these media types are modeled as an array, with one item per part, in o
 
 For applications that wish to preserve part order, `multipart/form-data` content may also be modelled as an array, with one item per part, in order (where each item consists of an object containing the name/value pair); the `schema` SHALL be used to determine whether deserializing to an `object` or an `array` is preferred. See examples in [Media Type Registry: Forms](https://spec.openapis.org/registry/media-type/forms).
 
-To use the `prefixEncoding` and/or `itemEncoding` fields, either `itemSchema` or an array `schema` MUST be present.
+To use the `prefixEncoding` and/or `itemEncoding` fields, either `itemSchema` or a [`schema` indicating an array type](#non-json-data) MUST be present.
 These fields are analogous to the `prefixItems` and `items` JSON Schema keywords, with `prefixEncoding` (if present) providing an array of Encoding Objects that are each applied to the value at the same position in the data array, and `itemEncoding` applying its single Encoding Object to all remaining items in the array.
 As with `prefixItems`, it is _not_ an error if the instance array is shorter than the `prefixEncoding` array; the additional Encoding Objects SHALL be ignored.
 

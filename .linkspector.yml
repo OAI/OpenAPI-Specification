@@ -13,3 +13,4 @@ files:
 ignorePatterns:
   - pattern: 'clientdomain.com'
   - pattern: 'example.org'
+  - pattern: 'https://www.w3.org/TR/xml-names11/'

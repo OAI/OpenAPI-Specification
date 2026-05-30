@@ -1962,6 +1962,7 @@ requestBody:
   content:
     multipart/form-data:
       schema:
+        type: object
         properties:
           # The property name `file` will be used for all files.
           file:

@@ -1375,11 +1375,13 @@ Each field has its own set of media types with which it can be used; for all oth
 The behavior of the `encoding` field is designed to support web forms, and is therefore only defined for media types structured as name-value pairs that allow repeat values, most notably `application/x-www-form-urlencoded` and `multipart/form-data`.
 
 To use the `encoding` field, each key under the field MUST exist in the data instance as a property; `encoding` entries with no corresponding property SHALL be ignored.
-Array properties MUST be handled by applying the given Encoding Object to produce one encoded value per array item, each with the same `name`, as is recommended by [[!RFC7578]] [Section 4.3](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3) for supplying multiple values per form field.
-For all other value types for both top-level non-array properties and for values, including array values, within a top-level array, the Encoding Object MUST be applied to the entire value.
+When serializing, property values of the array type MUST be handled by applying the given Encoding Object to produce one encoded value per array item, each with the same `name`, as is recommended by [[!RFC7578]] [Section 4.3](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3) for supplying multiple values per form field; when deserializing, the Encoding object is applied to each item of the array property of the same name.
+For deserialization to an object, multiple values with the same `name` MUST be collapsed into an array value for that named property, with one item per value, in order.
+For all other value types for both top-level non-array property values and for other values, including items of the array type within a top-level array, the Encoding Object MUST be applied to the entire value.
+
 The order of these name-value pairs in the target media type is implementation-defined when not explicitly defined by that media-type's specification.
 
-For `application/x-www-form-urlencoded`, the `encoding` keys MUST map to parameter names, with the values produced according to the rules of the [Encoding Object](#encoding-object).
+For `application/x-www-form-urlencoded`, the `encoding` keys MUST map to parameter names, with the serialized values produced according to the rules of the [Encoding Object](#encoding-object).
 See [Encoding the `x-www-form-urlencoded` Media Type](#encoding-the-x-www-form-urlencoded-media-type) for guidance and examples, both with and without the `encoding` field.
 
 For `multipart` types that decode to an object, such as `multipart/form-data`, the `encoding` keys MUST map to the [`name` parameter](https://www.rfc-editor.org/rfc/rfc7578#section-4.2) of the `Content-Disposition: form-data` header of each part, as is defined for `multipart/form-data` in [[!RFC7578]].
@@ -1926,10 +1928,18 @@ requestBody:
       schema:
         type: object
         properties:
-          # No Encoding Object, so use default `text/plain`
+          # No Encoding Object for this property, so use string default `text/plain`
           id:
             type: string
             format: uuid
+
+          # An Encoding object allows multiple values to be provided for this
+          # property, without any attempt to decode the array as application/json
+          alias:
+            type: [ string, array ]
+            pattern: '^[A-Z][a-z]*$'
+            items:
+                pattern: '^[A-Z][a-z]*$'
 
           # Encoding Object overrides the default `application/json` content type
           # for each item in the array with `application/xml; charset=utf-8`
@@ -1944,6 +1954,8 @@ requestBody:
           profileImage: {}
 
       encoding:
+        alias:
+          contentType: text/plain
         addresses:
           contentType: application/xml; charset=utf-8
         profileImage:

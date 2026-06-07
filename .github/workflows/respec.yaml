@@ -22,7 +22,7 @@ jobs:
         id: generate-token
         uses: actions/create-github-app-token@v3
         with:
-          app-id: ${{ secrets.OAI_SPEC_PUBLISHER_APPID }}
+          client-id: ${{ secrets.OAI_SPEC_PUBLISHER_APPID }}
           private-key: ${{ secrets.OAI_SPEC_PUBLISHER_PRIVATE_KEY }}
           owner: OAI
           repositories: spec.openapis.org

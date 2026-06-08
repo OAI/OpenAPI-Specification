@@ -14,3 +14,5 @@ ignorePatterns:
   - pattern: 'clientdomain.com'
   - pattern: 'example.org'
   - pattern: 'https://www.w3.org/TR/xml-names11/'
+  - pattern: 'https://www.npmjs.com/package/markdownlint'
+  - pattern: 'https://www.merriam-webster.com/dictionary/'

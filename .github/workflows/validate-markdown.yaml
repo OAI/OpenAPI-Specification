@@ -38,6 +38,7 @@ jobs:
       - name: Check links in markdown files
         uses: umbrelladocs/action-linkspector@v1
         with:
+          config_file: .linkspector.yml
           reporter: github-check
           fail_level: any
           filter_mode: file

@@ -2000,8 +2000,6 @@ multipart/mixed:
 As described in [[?RFC2557]], a set of resources making up a web page can be sent in a `multipart/related` payload, preserving links from the `text/html` document to subsidiary resources such as scripts, style sheets, and images by defining a `Content-Location` header for each page.
 The first part is used as the root resource (unless using `Content-ID`, which RFC2557 advises against and is forbidden in this example), so we use `prefixItems` and `prefixEncoding` to define that it must be an HTML resource, and then allow any of several different types of resources in any order to follow.
 
-The `Content-Location` header is defined using `content: {text/plain: {...}}` to avoid percent-encoding its URI value; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for further details.
-
 ```yaml
 components:
   headers:
@@ -2010,12 +2008,10 @@ components:
       schema: false
     RFC2557ContentLocation:
       required: true
-      content:
-        text/plain:
-          schema:
-            $comment: Use a full URI (not a relative reference)
-            type: string
-            format: uri
+      schema:
+        $comment: Use a full URI (not a relative reference)
+        type: string
+        format: uri
   requestBodies:
     RFC2557:
       content:
@@ -2060,8 +2056,6 @@ multipart/mixed:
 
 For `multipart/byteranges` [[RFC9110]] [Section 14.6](https://www.rfc-editor.org/rfc/rfc9110.html#section-14.6), a `Content-Range` header is required:
 
-See [Appendix D](#appendix-d-serializing-headers-and-cookies) for an explanation of why `content: {text/plain: {...}}` is used to describe the header value.
-
 ```yaml
 multipart/byteranges:
   itemSchema:
@@ -2071,12 +2065,10 @@ multipart/byteranges:
     headers:
       Content-Range:
         required: true
-        content:
-          text/plain:
-            schema:
-              # The `pattern` regular expression that would
-              # be included in practice is omitted for simplicity
-              type: string
+        schema:
+          # The `pattern` regular expression that would
+          # be included in practice is omitted for simplicity
+          type: string
 ```
 
 ##### Example: Nested `multipart/mixed`

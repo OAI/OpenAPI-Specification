@@ -1377,7 +1377,7 @@ The behavior of the `encoding` field is designed to support web forms, and is th
 To use the `encoding` field, each key under the field MUST exist in the data instance as a property; `encoding` entries with no corresponding property SHALL be ignored.
 Array properties MUST be handled by applying the given Encoding Object to produce one encoded value per array item, each with the same `name`, as is recommended by [[!RFC7578]] [Section 4.3](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3) for supplying multiple values per form field.
 For all other value types for both top-level non-array properties and for values, including array values, within a top-level array, the Encoding Object MUST be applied to the entire value.
-The order of these name-value pairs in the target media type is implementation-defined.
+The order of these name-value pairs in the target media type is implementation-defined when not explicitly defined by that media-type's specification.
 
 For `application/x-www-form-urlencoded`, the `encoding` keys MUST map to parameter names, with the values produced according to the rules of the [Encoding Object](#encoding-object).
 See [Encoding the `x-www-form-urlencoded` Media Type](#encoding-the-x-www-form-urlencoded-media-type) for guidance and examples, both with and without the `encoding` field.

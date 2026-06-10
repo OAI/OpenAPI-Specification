@@ -1716,7 +1716,7 @@ These fields MAY be used either with or without the RFC6570-style serialization 
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="encoding-content-type"></a>contentType | `string` | The `Content-Type` for encoding a specific property. The value is a comma-separated list, each element of which is either a specific media type (e.g. `image/png`) or a wildcard media type (e.g. `image/*`). The default value depends on the type as shown in the table below. |
+| <a name="encoding-content-type"></a>contentType | `string` | The `Content-Type` for encoding a specific property. The value is a comma-separated list, each element of which is either a specific media type (e.g. `image/png`) or a [media type range](https://www.rfc-editor.org/rfc/rfc9110.html#appendix-A) (e.g. `image/*`). The default value depends on the type as shown in the table below. |
 | <a name="encoding-headers"></a>headers | Map[`string`, [Header Object](#header-object) \| [Reference Object](#reference-object)] | A map allowing additional information to be provided as headers. `Content-Type` is described separately and SHALL be ignored in this section. This field SHALL be ignored if the media type is not a `multipart`. |
 | <a name="encoding-encoding"></a>encoding | Map[`string`, [Encoding Object](#encoding-object)] | Applies nested Encoding Objects in the same manner as the [Media Type Object](#media-type-object)'s `encoding` field. |
 | <a name="encoding-prefix-encoding"></a>prefixEncoding | [[Encoding Object](#encoding-object)] | Applies nested Encoding Objects in the same manner as the [Media Type Object](#media-type-object)'s `prefixEncoding` field. |
@@ -1741,6 +1741,14 @@ Therefore the `array` row in this table applies only to array values inside of a
 Determining how to handle a `type` value of `null` depends on how `null` values are being serialized.
 If `null` values are entirely omitted, then the `contentType` is irrelevant.
 See [Appendix B](#appendix-b-data-type-conversion) for a discussion of data type conversion options.
+
+The contentType field is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax:
+
+```abnf
+encoding-content-type = media-range *( "," OWS media-range )
+```
+
+Here, media-range and OWS are taken from [[RFC9110]].
 
 ##### Fixed Fields for RFC6570-style Serialization
 

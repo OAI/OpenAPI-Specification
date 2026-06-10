@@ -36,12 +36,9 @@ jobs:
           echo "PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome" >> $GITHUB_ENV
 
       - name: Check links in markdown files
-        # uses: umbrelladocs/action-linkspector@v1
-        # with:
-        #   reporter: github-check
-        #   fail_level: any
-        #   filter_mode: file
-        run: |
-          npm ci
-          npx linkspector --version
-          npx linkspector check
+        uses: umbrelladocs/action-linkspector@v1
+        with:
+          config_file: .linkspector.yml
+          reporter: github-check
+          fail_level: any
+          filter_mode: file

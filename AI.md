@@ -39,7 +39,6 @@ Discussions in OpenAPI Initiative projects are for humans.
 Comments that restate or summarise what has already been said, without advancing the conversation, add burden to volunteers and will be removed.
 A useful comment adds new information, identifies a constraint, asks a precise question, or proposes a concrete resolution.
 We expect you to make good-faith contributions that are concise and to the intended point; overly verbose or general contributions will be hidden or removed.
-Users who frequently have comments removed may be blocked from OpenAPI Initiative repositories.
 
 Do not use AI to generate issue comments, discussion replies, or PR descriptions. These are the primary record of design reasoning for the project; they must reflect genuine human thought.
 

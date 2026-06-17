@@ -10,3 +10,6 @@ deploy-preview/
 coverage/
 _site/
 Gemfile.lock
+# ignore local claude AI agent config
+.claude/settings.local.json
+.claude/*.local.json

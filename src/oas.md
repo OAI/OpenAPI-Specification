@@ -1378,7 +1378,7 @@ The behavior of the `encoding` field is designed to support web forms, and is th
 To use the `encoding` field, each key under the field MUST exist in the data instance as a property; `encoding` entries with no corresponding property SHALL be ignored.
 Array properties MUST be handled by applying the given Encoding Object to produce one encoded value per array item, each with the same `name`, as is recommended by [[!RFC7578]] [Section 4.3](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3) for supplying multiple values per form field.
 For all other value types for both top-level non-array properties and for values, including array values, within a top-level array, the Encoding Object MUST be applied to the entire value.
-The order of these name-value pairs in the target media type is implementation-defined.
+The order of these name-value pairs in the target media type is implementation-defined when not explicitly defined by that media-type's specification.
 
 For `application/x-www-form-urlencoded`, the `encoding` keys MUST map to parameter names, with the values produced according to the rules of the [Encoding Object](#encoding-object).
 See [Encoding the `x-www-form-urlencoded` Media Type](#encoding-the-x-www-form-urlencoded-media-type) for guidance and examples, both with and without the `encoding` field.
@@ -1393,6 +1393,8 @@ See [Encoding `multipart` Media Types](#encoding-multipart-media-types) for furt
 Most `multipart` media types, including `multipart/mixed` which defines the underlying rules for parsing all `multipart` types, do not have named parts.
 Data for these media types are modeled as an array, with one item per part, in order.
 
+For applications that wish to preserve part order, `multipart/form-data` content may also be modelled as an array, with one item per part, in order (where each item consists of an object containing the name/value pair); the `schema` SHALL be used to determine whether deserializing to an `object` or an `array` is preferred. See examples in [Media Type Registry: Forms](https://spec.openapis.org/registry/media-type/forms).
+
 To use the `prefixEncoding` and/or `itemEncoding` fields, either `itemSchema` or an array `schema` MUST be present.
 These fields are analogous to the `prefixItems` and `items` JSON Schema keywords, with `prefixEncoding` (if present) providing an array of Encoding Objects that are each applied to the value at the same position in the data array, and `itemEncoding` applying its single Encoding Object to all remaining items in the array.
 As with `prefixItems`, it is _not_ an error if the instance array is shorter than the `prefixEncoding` array; the additional Encoding Objects SHALL be ignored.
@@ -1401,8 +1403,8 @@ The `itemEncoding` field can also be used with `itemSchema` to support streaming
 
 ##### Additional Encoding Approaches
 
-The `prefixEncoding` field can be used with any `multipart` content to require a fixed part order.
-This includes `multipart/form-data`, for which the Encoding Object's `headers` field MUST be used to provide the `Content-Disposition` and part name, as no property names exist to provide the names automatically.
+The `prefixEncoding` and/or `itemEncoding` fields, and/or usage of a [`schema` indicating an array type](#non-json-data) (or `itemSchema`), can be used with any `multipart` content to require a fixed part order.
+This includes `multipart/form-data`, in which the property name of each item are used to populate the `Content-Disposition` headers with the part name.
 
 Prior versions of this specification advised using the [`name` parameter](https://www.rfc-editor.org/rfc/rfc7578#section-4.2) of the `Content-Disposition: form-data` header of each part with `multipart` media types other than `multipart/form-data` in order to work around the limitations of the `encoding` field.
 Implementations MAY choose to support this workaround, but as this usage is not common, implementations of non-`form-data` `multipart` media types are unlikely to support it.

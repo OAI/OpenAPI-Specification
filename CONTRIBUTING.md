@@ -2,8 +2,8 @@
 
 ## Key information
 
-This project is covered by our [Code of Conduct](https://github.com/OAI/OpenAPI-Specification?tab=coc-ov-file#readme).
-All participants are expected to read and follow this code.
+This project is covered by our [Code of Conduct](https://github.com/OAI/OpenAPI-Specification?tab=coc-ov-file#readme) and [AI policy](AI.md).
+All participants are expected to read and follow these policies.
 
 No changes, however trivial, are ever made to the contents of published specifications (the files in the `versions/` folder).
 Exceptions may be made when links to external URLs have been changed by a 3rd party, in order to keep our documents accurate.

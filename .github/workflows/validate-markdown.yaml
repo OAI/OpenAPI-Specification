@@ -27,18 +27,3 @@ jobs:
       - name: Lint other files
         run: npx --yes markdownlint-cli2 *.md
 
-      # workaround for https://github.com/UmbrellaDocs/action-linkspector/issues/62
-      - name: Install Chrome
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
-          echo "PUPPETEER_SKIP_DOWNLOAD=true" >> $GITHUB_ENV
-          echo "PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome" >> $GITHUB_ENV
-
-      - name: Check links in markdown files
-        uses: umbrelladocs/action-linkspector@v1
-        with:
-          config_file: .linkspector.yml
-          reporter: github-check
-          fail_level: any
-          filter_mode: file

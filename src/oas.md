@@ -4897,11 +4897,12 @@ When using `style` and/or `explode` to produce a `multipart/form-data` body, the
 Note that while [RFC7578](https://datatracker.ietf.org/doc/html/rfc7578) allows using [[RFC3986]] percent-encoding in "file names", it does not otherwise address the use of percent-encoding within the format.
 Users are expected to provide names and data with any escaping necessary for conformance with RFC7578 already applied.
 
-Due to these restrictions, the only `style` and `explode` combinations that can be used in `multipart/form-data` are:
+Due to these restrictions, the only `style` and `explode` combinations that can safely be used in `multipart/form-data` are:
 - `style: form` with any primitive type
 - `style: form` and `explode: false` with arrays and objects (note that due to the omission of the query string name, this serialization is equivalent to `style: simple`)
 - `style: spaceDelimited` or `style: pipeDelimited` and `explode: false` with arrays and objects
 
+The behavior of other combinations with `multipart/form-data` is undefined.
 Note also that not all RFC6570 implementations support all four levels of operators, all of which are needed to fully support the OpenAPI Specification's usage.
 Using an implementation with a lower level of support will require additional manual construction of URI Templates to work around the limitations.
 

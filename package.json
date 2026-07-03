@@ -16,19 +16,12 @@
     "build": "oai-spec-build",
     "build-src": "npm run validate-markdown && oai-spec-build src && oai-spec-publish-schemas src",
     "publish-schemas": "oai-spec-publish-schemas",
-    "test": "c8 --100 vitest run --coverage",
+    "test": "oai-spec-test",
     "format-markdown": "oai-spec-format-markdown",
     "validate-markdown": "oai-spec-validate-markdown"
   },
   "dependencies": {
     "@oai/build-infra": "file:../build-infra"
-  },
-  "devDependencies": {
-    "@hyperjump/json-schema-coverage": "^1.2.1",
-    "@vitest/coverage-v8": "^4.1.9",
-    "c8": "^11.0.0",
-    "vitest": "^4.0.1",
-    "yaml": "^2.9.0"
   },
   "keywords": [
     "OpenAPI",

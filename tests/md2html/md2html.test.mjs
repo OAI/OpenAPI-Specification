@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { execFile } from "node:child_process";
 import { resolve } from "node:path";
-import { describe, test, expect } from "vitest";
+import { describe, test, expect } from "@oai/build-infra/test";
 import assert from "node:assert";
 
 const folder = "./tests/md2html/fixtures/";

@@ -21,9 +21,8 @@ jobs:
         with:
           node-version: "24.x"
 
-      - name: Lint work-in-progress spec
-        run: npx --yes markdownlint-cli2 --config spec.markdownlint.yaml src/oas.md
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Lint other files
-        run: npx --yes markdownlint-cli2 *.md
-
+      - name: Validate Markdown
+        run: npm run validate-markdown

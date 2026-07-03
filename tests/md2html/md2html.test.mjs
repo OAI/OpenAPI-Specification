@@ -16,6 +16,8 @@ describe("md2html", async () => {
         ); 
         const output = await md2html(
           [
+            "--spec-config",
+            "spec.config.json",
             "--maintainers",
             entry.name.replace(".md", ".maintainers"),
             entry.name,
@@ -32,7 +34,7 @@ function md2html(args, cwd) {
   return new Promise((res) => {
     execFile(
       "node",
-      [`${resolve("./scripts/md2html/md2html.js")}`, ...args],
+      [`${resolve("./node_modules/@oai/build-infra/src/md2html/md2html.js")}`, ...args],
       { cwd },
       (error, stdout, stderr) => {
         res({

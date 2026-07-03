@@ -49,7 +49,7 @@ jobs:
           path: deploy
 
       - name: run main script
-        run: scripts/schema-publish.sh
+        run: npm run publish-schemas
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8

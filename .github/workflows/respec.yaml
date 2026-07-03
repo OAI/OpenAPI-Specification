@@ -46,7 +46,7 @@ jobs:
           path: deploy
 
       - name: run main script
-        run: scripts/md2html/build.sh
+        run: npm run build
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8

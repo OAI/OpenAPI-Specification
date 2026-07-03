@@ -1120,9 +1120,6 @@ $defs:
       saml2-bearer:
         type: object
         properties:
-          samlMetadataUrl:
-            type: string
-            format: uri-reference
           tokenUrl:
             type: string
             format: uri-reference

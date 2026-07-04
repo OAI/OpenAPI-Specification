@@ -13,9 +13,11 @@
   },
   "license": "Apache-2.0",
   "scripts": {
+    "adjust-release-branch": "oai-spec-adjust-release-branch",
     "build": "oai-spec-build",
     "build-src": "npm run validate-markdown && oai-spec-build src && oai-spec-publish-schemas src",
     "publish-schemas": "oai-spec-publish-schemas",
+    "start-release": "oai-spec-start-release",
     "test": "oai-spec-test",
     "format-markdown": "oai-spec-format-markdown",
     "validate-markdown": "oai-spec-validate-markdown"

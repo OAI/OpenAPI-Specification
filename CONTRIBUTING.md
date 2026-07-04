@@ -221,7 +221,7 @@ The steps for creating a `vX.Y.Z-rel` branch are:
    - adjust and repeat until done
    - merge changes to `src/oas.md` back into `vX.Y-dev` via PR
 4. Create `vX.Y.Z-rel` from `vX.Y-dev` and adjust it
-   - the bash script `scripts/adjust-release-branch.sh` does this:
+   - `npm run adjust-release-branch` does this:
      - copy file `src/oas.md` to `versions/X.Y.Z.md` and replace the release date placeholder `| TBD |` in the history table of Appendix A with the current date
      - copy file `EDITORS.md` to `versions/X.Y.Z-editors.md`
      - delete folder `src`
@@ -237,7 +237,7 @@ The HTML renderings of the specification versions are generated from the `versio
 
 Once the released specification version is [synced](#branch-sync-automation) back to the `vX.Y-dev` branch, the next patch version X.Y.(Z+1) can be started:
 
-1. Run bash script `scripts/start-release.sh` in branch `vX.Y-dev` to
+1. Run `npm run start-release` in branch `vX.Y-dev` to
    - create branch `vX.Y-dev-start-X.Y.(Z+1)`
    - initialize `src/oas.md` with empty history and content from `versions/X.Y.Z.md`
    - change version heading to X.Y.(Z+1) and add a new line to the version history table in Appendix A of  `src/oas.md`
@@ -251,7 +251,7 @@ Alternatively, if no patch version X.Y.(Z+1) is planned, delete file `src/oas.md
 A new minor version X.(Y+1).0 or major version (X+1).0.0 is started similarly:
 
 1. Create branch `vX'.Y'-dev` from `vX.Y-dev`
-2. Run bash script `scripts/start-release.sh` in the new branch to
+2. Run `npm run start-release` in the new branch to
    - create branch `vX'.Y'-dev-start-X'.Y'.0`
    - initialize `src/oas.md` with empty history and content from `versions/X.Y.Z.md`
    - change version heading to X'.Y'.0 and add a new line to the version history table in Appendix A of  `src/oas.md`
@@ -563,4 +563,3 @@ This process makes use of the following labels:
 An issue is opened every week, 7 days in advance, for the Technical Developer Community (TDC), it provides the information to connect the meeting, and serves as a placeholder to build the agenda for the meeting. Anyone is welcome to attend the meeting, or to add items to the agenda as long as they plan on attending to present the item. These issues are also automatically pinned for visibility and labeled with "Housekeeping".
 
 Ten (10) days after the meeting date is passed (date in the title of the issue), it gets closed and unpinned automatically.
-

@@ -8,7 +8,7 @@ present on the main branch, only on the development branches).
 * 3.1.x spec and schemas: v3.1-dev branch
 * 3.2.x spec and schemas: v3.2-dev branch
 * 3.3.x spec and schemas: v3.3-dev branch
-* process documentation and build infrastructure: main
+* process documentation and shared infrastructure: main
 
 Note that we do not accept changes to published specifications.
 -->

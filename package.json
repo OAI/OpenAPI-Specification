@@ -23,7 +23,7 @@
     "validate-markdown": "oai-spec-validate-markdown"
   },
   "dependencies": {
-    "@oai/build-infra": "file:../build-infra"
+    "@oai/build-infra": "git+https://github.com/OAI/build-infra.git#main"
   },
   "keywords": [
     "OpenAPI",

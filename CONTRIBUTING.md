@@ -25,6 +25,23 @@ When you engage with this project, please:
 We actively close interactions that don't meet these expectations, so please don't be offended as we protect the time and energy of our volunteers.
 If you do think that something was closed in error, you are welcome to reach out to us to follow up.
 
+## Shared infrastructure
+
+This repository uses the shared OpenAPI Initiative infrastructure package
+[`@oai/build-infra`](https://github.com/OAI/build-infra) for Markdown
+validation, HTML builds, schema publication, schema tests, and release helper
+commands. The npm scripts in this repository are intentionally thin wrappers
+around that package.
+
+The shared infrastructure docs explain how the tooling works and how to maintain
+it:
+
+- [build-infra README](https://github.com/OAI/build-infra/blob/main/README.md)
+- [build-infra CONTRIBUTING](https://github.com/OAI/build-infra/blob/main/CONTRIBUTING.md)
+
+Most contributors only need the commands shown below. Maintainers changing the
+tooling itself should read the build-infra docs first.
+
 
 ### Active branches
 
@@ -232,6 +249,11 @@ The steps for creating a `vX.Y.Z-rel` branch are:
    - this PR should only add files `versions/X.Y.Z.md` and `versions/X.Y.Z-editors.md`
 
 The HTML renderings of the specification versions are generated from the `versions` directory on `main` by manually triggering the [`respec` workflow](https://github.com/OAI/OpenAPI-Specification/blob/main/.github/workflows/respec.yaml), which generates a pull request for publishing the HTML renderings to the [spec site](https://spec.openapis.org).
+
+The release commands are implemented in
+[`OAI/build-infra`](https://github.com/OAI/build-infra). If a command behaves
+unexpectedly, check this repository's `spec.config.json` first, then see the
+[build-infra release documentation](https://github.com/OAI/build-infra/blob/main/README.md#release-process-summary).
 
 #### Start Next Patch Version
 

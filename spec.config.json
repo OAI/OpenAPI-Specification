@@ -38,5 +38,24 @@
     "dialect.yaml",
     "schema.yaml",
     "schema-base.yaml"
-  ]
+  ],
+  "release": {
+    "sourcePath": "src/oas.md",
+    "releaseHistoryNote": "$releaseType of the OpenAPI Specification $version",
+    "removeOnReleaseBranch": [
+      "src",
+      "tests/schema/pass",
+      "tests/schema/fail",
+      "tests/schema/schema.test.mjs"
+    ],
+    "schemaVersionRewrite": {
+      "enabled": true,
+      "paths": [
+        "src/schemas/validation/*.yaml",
+        "tests/schema/schema.test.mjs",
+        "tests/schema/pass/*.yaml",
+        "tests/schema/fail/*.yaml"
+      ]
+    }
+  }
 }

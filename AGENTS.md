@@ -6,7 +6,7 @@ It combines the repository's documented contribution and validation workflow wit
 
 ## Purpose
 
-Use this repository carefully. The OpenAPI Specification is standards work, not ordinary product documentation, so contributions must be precise, context-aware, and inexpensive for volunteer maintainers to review.
+Use this repository carefully. The OpenAPI Specification (OAS) is standards work, not ordinary product documentation, so contributions must be precise, context-aware, and inexpensive for volunteer maintainers to review.
 
 ## Operating principles
 
@@ -70,6 +70,7 @@ The following behavioral rules apply in addition to normal repository rules.
 ### Quality bar
 
 Do not submit AI-assisted work unless it is all of the following:
+
 - accurate
 - concise
 - non-repetitive
@@ -86,7 +87,7 @@ Low-effort, inaccurate, overly verbose, or generic contributions should be disca
 - Edit only the relevant `src/oas.md` on the appropriate active development branch for normal specification work.
 - Keep patch-line changes editorial or clarifying only; do not introduce schema requirements in patch releases.
 - For minor or major work, include related schema updates when the specification change requires them.
-- Support changes with realistic use cases and migration awareness, not hypothetical novelty alone.[cite:52]
+- Support changes with realistic use cases and migration awareness, not hypothetical novelty alone.
 
 ### Published versions
 
@@ -114,12 +115,13 @@ For changes that affect `src/oas.md`:
 - Prefer opening an issue before substantial implementation work unless the change is obviously small.
 - Use Draft PRs for incomplete or dependent work.
 - Keep each PR focused on a single logical change set.
-- Expect one Maintainer or TSC approval for all PRs, and two TSC approvals for PRs that change `src/oas.md`.
+- Expect one Maintainer or Technical Steering Committee (TSC) approval for all PRs, and two TSC approvals for PRs that change `src/oas.md`.
 - If AI materially assisted the contribution, ensure disclosure is present, but the final PR description itself should be authored by a human under the supplied AI policy.
 
 ## Safe agent behavior
 
 Agents should:
+
 - make the smallest complete change that addresses the request
 - explain branch choice and file choice clearly in handoff notes
 - surface uncertainty early when the correct release line or process is unclear
@@ -127,6 +129,7 @@ Agents should:
 - prefer concrete diffs, checklists, and validation notes over persuasive prose
 
 Agents should not:
+
 - generate content meant for direct posting into discussions, issue threads, or PR descriptions
 - create filler text or "summary" comments that add no new information
 - speculate about approval status or community consensus
@@ -152,6 +155,7 @@ AI assistance disclosure: AI was used to help draft or edit parts of this change
 ## Stop
 
 Pause and ask for human guidance when:
-- the request conflicts with branch strategy or contribution process rules 
-- the correct target branch is ambiguous 
+
+- the request conflicts with branch strategy or contribution process rules
+- the correct target branch is ambiguous
 - the task is to generate a discussion reply, issue comment, or PR description for direct posting

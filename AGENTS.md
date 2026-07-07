@@ -27,7 +27,7 @@ Use this repository carefully. The OpenAPI Specification (OAS) is standards work
 Use this routing model before editing files.
 
 | Request type | Primary files | Target branch |
-|---|---|---|
+| --- | --- | --- |
 | Active specification text | `src/oas.md` | Earliest relevant active `vX.Y-dev` branch |
 | Schema changes tied to active spec work | Relevant schema files | Same active `vX.Y-dev` branch |
 | Repository docs, scripts, workflow files, guidance | Non-spec support files on `main` | `main` |

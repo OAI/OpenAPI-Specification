@@ -4898,6 +4898,7 @@ Note that while [RFC7578](https://datatracker.ietf.org/doc/html/rfc7578) allows 
 Users are expected to provide names and data with any escaping necessary for conformance with RFC7578 already applied.
 
 Due to these restrictions, the only `style` and `explode` combinations that can safely be used in `multipart/form-data` are:
+
 - `style: form` with any primitive type
 - `style: form` and `explode: false` with arrays and objects (note that due to the omission of the query string name, this serialization is equivalent to `style: simple`)
 - `style: spaceDelimited` or `style: pipeDelimited` and `explode: false` with arrays and objects

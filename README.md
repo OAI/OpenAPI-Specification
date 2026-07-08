@@ -33,6 +33,13 @@ Looking to see how you can create your own OpenAPI definition, present it, or ot
 The current process for developing the OpenAPI Specification is described in
 the [Contributing Guidelines](CONTRIBUTING.md).
 
+Build, test, schema publication, and release command infrastructure is shared
+with other OpenAPI Initiative specification repositories through
+[OAI/build-infra](https://github.com/OAI/build-infra). See that repository's
+[README](https://github.com/OAI/build-infra/blob/main/README.md) and
+[CONTRIBUTING guide](https://github.com/OAI/build-infra/blob/main/CONTRIBUTING.md)
+for details on the shared tooling.
+
 Developing the next version of the OpenAPI Specification is guided by the [Technical Steering Committee (TSC)](MAINTAINERS.md). This group of committers bring their API expertise, incorporate feedback from the community, and expand the group of committers as appropriate. All development activity on the future specification will be performed as features and merged into this branch. Upon release of the future specification, this branch will be merged to `main`.
 
 The TSC holds weekly web conferences to review open pull requests and discuss open issues related to the evolving OpenAPI Specification. Participation in weekly calls and scheduled working sessions is open to the community. You can view the entire OpenAPI [technical meeting calendar](https://calendar.google.com/calendar/u/0/embed?src=c_fue82vsncog6ahhjvuokjo8qsk@group.calendar.google.com) online.
@@ -50,5 +57,4 @@ Not all feedback can be accommodated, and there may be solid arguments for or ag
 ## Licensing
 
 See: [License (Apache-2.0)](https://github.com/OAI/OpenAPI-Specification/blob/main/LICENSE)
-
 

@@ -1,0 +1,61 @@
+{
+  "slug": "oas",
+  "shortName": "OAS",
+  "titleName": "OpenAPI Specification",
+  "specSrc": "oas.md",
+  "titleSuffix": "| Introduction, Definitions, & More",
+  "abstractQuestion": "What is the OpenAPI Specification?",
+  "abstractText": "The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs, which allows both humans and computers to discover and understand the capabilities of a service without requiring access to source code, additional documentation, or inspection of network traffic. When properly defined via OpenAPI, a consumer can understand and interact with the remote service with a minimal amount of implementation logic. Similar to what interface descriptions have done for lower-level programming, the OpenAPI Specification removes guesswork in calling a service.",
+  "metaDescription": "The OpenAPI Specification (OAS) defines a standard, programming language-agnostic interface description for HTTP APIs.",
+  "copyright": "the Linux Foundation",
+  "edDraftURI": "https://github.com/OAI/OpenAPI-Specification/",
+  "logo": {
+    "src": "https://raw.githubusercontent.com/OAI/OpenAPI-Style-Guide/master/graphics/bitmap/OpenAPI_Logo_Pantone.png",
+    "alt": "OpenAPI Initiative",
+    "height": 48,
+    "url": "https://openapis.org/"
+  },
+  "participateLinks": [
+    {
+      "value": "GitHub OAI/OpenAPI-Specification",
+      "href": "https://github.com/OAI/OpenAPI-Specification/"
+    },
+    {
+      "value": "File a bug",
+      "href": "https://github.com/OAI/OpenAPI-Specification/issues"
+    },
+    {
+      "value": "Commit history",
+      "href": "https://github.com/OAI/OpenAPI-Specification/commits/main/versions/30.0.1.md"
+    },
+    {
+      "value": "Pull requests",
+      "href": "https://github.com/OAI/OpenAPI-Specification/pulls"
+    }
+  ],
+  "schemas": [
+    "meta.yaml",
+    "dialect.yaml",
+    "schema.yaml",
+    "schema-base.yaml"
+  ],
+  "release": {
+    "sourcePath": "src/oas.md",
+    "releaseHistoryNote": "$releaseType of the OpenAPI Specification $version",
+    "removeOnReleaseBranch": [
+      "src",
+      "tests/schema/pass",
+      "tests/schema/fail",
+      "tests/schema/schema.test.mjs"
+    ],
+    "schemaVersionRewrite": {
+      "enabled": true,
+      "paths": [
+        "src/schemas/validation/*.yaml",
+        "tests/schema/schema.test.mjs",
+        "tests/schema/pass/*.yaml",
+        "tests/schema/fail/*.yaml"
+      ]
+    }
+  }
+}

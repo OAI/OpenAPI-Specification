@@ -16,3 +16,4 @@ ignorePatterns:
   - pattern: 'https://www.w3.org/TR/xml-names11/'
   - pattern: 'https://www.npmjs.com/package/markdownlint'
   - pattern: 'https://www.merriam-webster.com/dictionary/'
+  - pattern: 'https://github.com/OAI/build-infra/blob/main/CONTRIBUTING.md'

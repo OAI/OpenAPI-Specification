@@ -31,7 +31,7 @@
     "@umbrelladocs/linkspector": "0.5.5",
     "@vitest/coverage-v8": "^4.1.10",
     "c8": "^11.0.0",
-    "markdownlint-cli2": "^0.22.1",
+    "markdownlint-cli2": "^0.23.0",
     "vitest": "^4.0.1",
     "yaml": "^2.9.0"
   },

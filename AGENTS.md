@@ -44,6 +44,7 @@ Example of the patch-line boundary: rewording "The value MUST be a string" to cl
 ## Validation
 
 ```sh
+# all commands run from the repo root
 npm install
 npm run validate-markdown   # markdownlint + link check only — fast loop while editing
 npm run format-markdown     # auto-fix markdownlint violations

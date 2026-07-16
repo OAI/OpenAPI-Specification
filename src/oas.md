@@ -1272,8 +1272,8 @@ See [Working With Examples](#working-with-examples) for further guidance regardi
 | <a name="media-type-example"></a>example | Any | Example of the media type; see [Working With Examples](#working-with-examples). |
 | <a name="media-type-examples"></a>examples | Map[ `string`, [Example Object](#example-object) \| [Reference Object](#reference-object)] | Examples of the media type; see [Working With Examples](#working-with-examples). |
 | <a name="media-type-encoding"></a>encoding | Map[`string`, [Encoding Object](#encoding-object)] | A map between a property name and its encoding information, as defined under [Encoding By Name](#encoding-by-name).  The `encoding` field SHALL only apply when the media type is `multipart` or `application/x-www-form-urlencoded`. If no Encoding Object is provided for a property, the behavior is determined by the default values documented for the Encoding Object. This field MUST NOT be present if `prefixEncoding` or `itemEncoding` are present. |
-| <a name="media-type-prefix-encoding"></a>prefixEncoding | [[Encoding Object](#encoding-object)] | An array of positional encoding information, as defined under [Encoding By Position](#encoding-by-position).  The `prefixEncoding` field SHALL only apply when the media type is `multipart`. If no Encoding Object is provided for a property, the behavior is determined by the default values documented for the Encoding Object. This field MUST NOT be present if `encoding` is present. |
-| <a name="media-type-item-encoding"></a>itemEncoding | [Encoding Object](#encoding-object) | A single Encoding Object that provides encoding information for multiple array items, as defined under [Encoding By Position](#encoding-by-position). The `itemEncoding` field SHALL only apply when the media type is `multipart`. If no Encoding Object is provided for a property, the behavior is determined by the default values documented for the Encoding Object. This field MUST NOT be present if `encoding` is present. |
+| <a name="media-type-prefix-encoding"></a>prefixEncoding | [[Encoding Object](#encoding-object)] | An array of positional encoding information, as defined under [Encoding By Position](#encoding-by-position).  The `prefixEncoding` field SHALL only apply when the media type is `multipart`. If no Encoding Object is provided for an item, the behavior is determined by the default values documented for the Encoding Object. This field MUST NOT be present if `encoding` is present. |
+| <a name="media-type-item-encoding"></a>itemEncoding | [Encoding Object](#encoding-object) | A single Encoding Object that provides encoding information for multiple array items, as defined under [Encoding By Position](#encoding-by-position). The `itemEncoding` field SHALL only apply when the media type is `multipart`. If no Encoding Object is provided for an item, the behavior is determined by the default values documented for the Encoding Object. This field MUST NOT be present if `encoding` is present. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
@@ -1374,15 +1374,17 @@ Each field has its own set of media types with which it can be used; for all oth
 
 The behavior of the `encoding` field is designed to support web forms, and is therefore only defined for media types structured as name-value pairs that allow repeat values, most notably `application/x-www-form-urlencoded` and `multipart/form-data`.
 
-To use the `encoding` field, each key under the field MUST exist as a property; `encoding` entries with no corresponding property SHALL be ignored.
-Array properties MUST be handled by applying the given Encoding Object to produce one encoded value per array item, each with the same `name`, as is recommended by [[!RFC7578]] [Section 4.3](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3) for supplying multiple values per form field.
-For all other value types for both top-level non-array properties and for values, including array values, within a top-level array, the Encoding Object MUST be applied to the entire value.
-The order of these name-value pairs in the target media type is implementation-defined.
+To use the `encoding` field, each key under the field MUST exist in the data instance as a property; `encoding` entries with no corresponding property SHALL be ignored.
+When serializing, property values of the array type MUST be handled by applying the given Encoding Object to produce one encoded value per array item, each with the same `name`, as is recommended by [[!RFC7578]] [Section 4.3](https://www.rfc-editor.org/rfc/rfc7578.html#section-4.3) for supplying multiple values per form field; when deserializing, the Encoding object is applied to each item of the array property of the same name.
+For deserialization to an object, multiple values with the same `name` MUST be collapsed into an array value for that named property, with one item per value, in order.
+For all other value types for both top-level non-array property values and for other values, including items of the array type within a top-level array, the Encoding Object MUST be applied to the entire value.
 
-For `application/x-www-form-urlencoded`, the encoding keys MUST map to parameter names, with the values produced according to the rules of the [Encoding Object](#encoding-object).
+The order of these name-value pairs in the target media type is implementation-defined when not explicitly defined by that media-type's specification.
+
+For `application/x-www-form-urlencoded`, the `encoding` keys MUST map to parameter names, with the serialized values produced according to the rules of the [Encoding Object](#encoding-object).
 See [Encoding the `x-www-form-urlencoded` Media Type](#encoding-the-x-www-form-urlencoded-media-type) for guidance and examples, both with and without the `encoding` field.
 
-For `multipart`, the encoding keys MUST map to the [`name` parameter](https://www.rfc-editor.org/rfc/rfc7578#section-4.2) of the `Content-Disposition: form-data` header of each part, as is defined for `multipart/form-data` in [[!RFC7578]].
+For `multipart` types that decode to an object, such as `multipart/form-data`, the `encoding` keys MUST map to the [`name` parameter](https://www.rfc-editor.org/rfc/rfc7578#section-4.2) of the `Content-Disposition: form-data` header of each part, as is defined for `multipart/form-data` in [[!RFC7578]].
 See [[!RFC7578]] [Section 5](https://www.rfc-editor.org/rfc/rfc7578.html#section-5) for guidance regarding non-ASCII part names.
 
 See [Encoding `multipart` Media Types](#encoding-multipart-media-types) for further guidance and examples, both with and without the `encoding` field.
@@ -1392,7 +1394,9 @@ See [Encoding `multipart` Media Types](#encoding-multipart-media-types) for furt
 Most `multipart` media types, including `multipart/mixed` which defines the underlying rules for parsing all `multipart` types, do not have named parts.
 Data for these media types are modeled as an array, with one item per part, in order.
 
-To use the `prefixEncoding` and/or `itemEncoding` fields, either `itemSchema` or an array `schema` MUST be present.
+For applications that wish to preserve part order, `multipart/form-data` content may also be modelled as an array, with one item per part, in order (where each item consists of an object containing the name/value pair); the `schema` SHALL be used to determine whether deserializing to an `object` or an `array` is preferred. See examples in [Media Type Registry: Forms](https://spec.openapis.org/registry/media-type/forms).
+
+To use the `prefixEncoding` and/or `itemEncoding` fields, either `itemSchema` or a [`schema` indicating an array type](#non-json-data) MUST be present.
 These fields are analogous to the `prefixItems` and `items` JSON Schema keywords, with `prefixEncoding` (if present) providing an array of Encoding Objects that are each applied to the value at the same position in the data array, and `itemEncoding` applying its single Encoding Object to all remaining items in the array.
 As with `prefixItems`, it is _not_ an error if the instance array is shorter than the `prefixEncoding` array; the additional Encoding Objects SHALL be ignored.
 
@@ -1715,7 +1719,7 @@ These fields MAY be used either with or without the RFC6570-style serialization 
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="encoding-content-type"></a>contentType | `string` | The `Content-Type` for encoding a specific property. The value is a comma-separated list, each element of which is either a specific media type (e.g. `image/png`) or a wildcard media type (e.g. `image/*`), with ABNF: `media-range *( "," OWS media-range )`. The default value depends on the type as shown in the table below. |
+| <a name="encoding-content-type"></a>contentType | `string` | The `Content-Type` for encoding a specific property. The value is a comma-separated list, each element of which is either a specific media type (e.g. `image/png`) or a [media type range](https://www.rfc-editor.org/rfc/rfc9110.html#appendix-A) (e.g. `image/*`). The default value depends on the type as shown in the table below. |
 | <a name="encoding-headers"></a>headers | Map[`string`, [Header Object](#header-object) \| [Reference Object](#reference-object)] | A map allowing additional information to be provided as headers. `Content-Type` is described separately and SHALL be ignored in this section. This field SHALL be ignored if the media type is not a `multipart`. |
 | <a name="encoding-encoding"></a>encoding | Map[`string`, [Encoding Object](#encoding-object)] | Applies nested Encoding Objects in the same manner as the [Media Type Object](#media-type-object)'s `encoding` field. |
 | <a name="encoding-prefix-encoding"></a>prefixEncoding | [[Encoding Object](#encoding-object)] | Applies nested Encoding Objects in the same manner as the [Media Type Object](#media-type-object)'s `prefixEncoding` field. |
@@ -1741,13 +1745,21 @@ Determining how to handle a `type` value of `null` depends on how `null` values 
 If `null` values are entirely omitted, then the `contentType` is irrelevant.
 See [Appendix B](#appendix-b-data-type-conversion) for a discussion of data type conversion options.
 
+The contentType field is defined by the following [ABNF](https://tools.ietf.org/html/rfc5234) syntax:
+
+```abnf
+encoding-content-type = media-range *( "," OWS media-range )
+```
+
+Here, media-range and OWS are taken from [[RFC9110]].
+
 ##### Fixed Fields for RFC6570-style Serialization
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
-| <a name="encoding-style"></a>style | `string` | Describes how a specific property value will be serialized depending on its type. See [Parameter Object](#parameter-object) for details on the [`style`](#parameter-style) field. The behavior follows the same values as `query` parameters, including the default value of `"form"` which applies only when `contentType` is _not_ being used due to one or both of `explode` or `allowReserved` being explicitly specified. Note that the initial `?` used in query strings is not used in `application/x-www-form-urlencoded` message bodies, and MUST be removed (if using an RFC6570 implementation) or simply not added (if constructing the string manually). This field SHALL be ignored if the media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
-| <a name="encoding-explode"></a>explode | `boolean` | When this is true, property values of type `array` or `object` generate separate parameters for each value of the array, or key-value-pair of the map. For other types of properties, or when [`style`](#encoding-style) is `"deepObject"`, this field has no effect. When `style` is `"form"`, the default value is `true`. For all other styles, the default value is `false`. This field SHALL be ignored if the media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
-| <a name="encoding-allow-reserved"></a>allowReserved | `boolean` | When this is true, parameter values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). Applications are still responsible for percent-encoding reserved characters that are not allowed in the target media type; see [URL Percent-Encoding](#url-percent-encoding) for details. The default value is `false`. This field SHALL be ignored if the media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
+| <a name="encoding-style"></a>style | `string` | Describes how a specific value will be serialized depending on its type. See [Parameter Object](#parameter-object) for details on the [`style`](#parameter-style) field. The behavior follows the same values as `query` parameters, including the default value of `"form"` which applies only when `contentType` is _not_ being used due to one or both of `explode` or `allowReserved` being explicitly specified. Note that the initial `?` used in query strings is not used in `application/x-www-form-urlencoded` message bodies, and MUST be removed (if using an RFC6570 implementation) or simply not added (if constructing the string manually). This field SHALL be ignored if the media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
+| <a name="encoding-explode"></a>explode | `boolean` | When this is true, values of type `array` or `object` generate separate parameters for each value of the array, or key-value-pair of the map. For other types of properties, or when [`style`](#encoding-style) is `"deepObject"`, this field has no effect. When `style` is `"form"`, the default value is `true`. For all other styles, the default value is `false`. This field SHALL be ignored if the media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
+| <a name="encoding-allow-reserved"></a>allowReserved | `boolean` | When this is true, values are serialized using reserved expansion, as defined by [RFC6570](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3), which allows [RFC3986's reserved character set](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2), as well as percent-encoded triples, to pass through unchanged, while still percent-encoding all other disallowed characters (including `%` outside of percent-encoded triples). Applications are still responsible for percent-encoding reserved characters that are not allowed in the target media type; see [URL Percent-Encoding](#url-percent-encoding) for details. The default value is `false`. This field SHALL be ignored if the media type is not `application/x-www-form-urlencoded` or `multipart/form-data`. If a value is explicitly defined, then the value of [`contentType`](#encoding-content-type) (implicit or explicit) SHALL be ignored. |
 
 When using RFC6570-style serialization for `multipart/form-data`, URI percent-encoding MUST NOT be applied, and the value of `allowReserved` has no effect.
 See also [Appendix C: Using RFC6570 Implementations](#appendix-c-using-rfc6570-based-serialization) for additional guidance.
@@ -1916,10 +1928,18 @@ requestBody:
       schema:
         type: object
         properties:
-          # No Encoding Object, so use default `text/plain`
+          # No Encoding Object for this property, so use string default `text/plain`
           id:
             type: string
             format: uuid
+
+          # An Encoding object allows multiple values to be provided for this
+          # property, without any attempt to decode the array as application/json
+          alias:
+            type: [ string, array ]
+            pattern: '^[A-Z][a-z]*$'
+            items:
+                pattern: '^[A-Z][a-z]*$'
 
           # Encoding Object overrides the default `application/json` content type
           # for each item in the array with `application/xml; charset=utf-8`
@@ -1934,6 +1954,8 @@ requestBody:
           profileImage: {}
 
       encoding:
+        alias:
+          contentType: text/plain
         addresses:
           contentType: application/xml; charset=utf-8
         profileImage:
@@ -1954,6 +1976,7 @@ requestBody:
   content:
     multipart/form-data:
       schema:
+        type: object
         properties:
           # The property name `file` will be used for all files.
           file:
@@ -2000,8 +2023,6 @@ multipart/mixed:
 As described in [[?RFC2557]], a set of resources making up a web page can be sent in a `multipart/related` payload, preserving links from the `text/html` document to subsidiary resources such as scripts, style sheets, and images by defining a `Content-Location` header for each page.
 The first part is used as the root resource (unless using `Content-ID`, which RFC2557 advises against and is forbidden in this example), so we use `prefixItems` and `prefixEncoding` to define that it must be an HTML resource, and then allow any of several different types of resources in any order to follow.
 
-The `Content-Location` header is defined using `content: {text/plain: {...}}` to avoid percent-encoding its URI value; see [Appendix D](#appendix-d-serializing-headers-and-cookies) for further details.
-
 ```yaml
 components:
   headers:
@@ -2010,12 +2031,10 @@ components:
       schema: false
     RFC2557ContentLocation:
       required: true
-      content:
-        text/plain:
-          schema:
-            $comment: Use a full URI (not a relative reference)
-            type: string
-            format: uri
+      schema:
+        $comment: Use a full URI (not a relative reference)
+        type: string
+        format: uri
   requestBodies:
     RFC2557:
       content:
@@ -2060,8 +2079,6 @@ multipart/mixed:
 
 For `multipart/byteranges` [[RFC9110]] [Section 14.6](https://www.rfc-editor.org/rfc/rfc9110.html#section-14.6), a `Content-Range` header is required:
 
-See [Appendix D](#appendix-d-serializing-headers-and-cookies) for an explanation of why `content: {text/plain: {...}}` is used to describe the header value.
-
 ```yaml
 multipart/byteranges:
   itemSchema:
@@ -2071,12 +2088,10 @@ multipart/byteranges:
     headers:
       Content-Range:
         required: true
-        content:
-          text/plain:
-            schema:
-              # The `pattern` regular expression that would
-              # be included in practice is omitted for simplicity
-              type: string
+        schema:
+          # The `pattern` regular expression that would
+          # be included in practice is omitted for simplicity
+          type: string
 ```
 
 ##### Example: Nested `multipart/mixed`
@@ -2129,7 +2144,7 @@ call.
 
 | Field Pattern | Type | Description |
 | ---- | :----: | ---- |
-| <a name="responses-code"></a>[HTTP Status Code](#http-status-codes) | [Response Object](#response-object) \| [Reference Object](#reference-object) | Any [HTTP status code](#http-status-codes) can be used as the property name, but only one property per code, to describe the expected response for that HTTP status code. This field MUST be enclosed in quotation marks (for example, `"200"`) for compatibility between JSON and YAML. To define a range of response codes, this field MAY contain the uppercase wildcard character `X`. For example, `2XX` represents all response codes between `200` and `299`. Only the following range definitions are allowed: `1XX`, `2XX`, `3XX`, `4XX`, and `5XX`. If a response is defined using an explicit code, the explicit code definition takes precedence over the range definition for that code. |
+| <a name="responses-code"></a>[HTTP Status Code](#http-status-codes) | [Response Object](#response-object) \| [Reference Object](#reference-object) | Any [HTTP status code](#http-status-codes) can be used as the property name, but only one property per code, to describe the expected response for that HTTP status code. This field MUST be represented by a string (for example, `"200"` enclosed in quotes in YAML) for compatibility between JSON and YAML. To define a range of response codes, this field MAY contain the uppercase wildcard character `X`. For example, `2XX` represents all response codes between `200` and `299`. Only the following range definitions are allowed: `1XX`, `2XX`, `3XX`, `4XX`, and `5XX`. If a response is defined using an explicit code, the explicit code definition takes precedence over the range definition for that code. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 

@@ -97,7 +97,7 @@ In addition to the required fields, at least one of the `components`, `paths`, o
 | <a name="oas-version"></a>openapi | `string` | **REQUIRED**. This string MUST be the [version number](#versions-and-deprecation) of the OpenAPI Specification that the OpenAPI document uses. The `openapi` field SHOULD be used by tooling to interpret the OpenAPI document. This is _not_ related to the [`info.version`](#info-version) string, which describes the OpenAPI document's version. |
 | <a name="oas-self"></a>$self | `string` | This string MUST be in the form of a URI reference as defined by [[RFC3986]] [Section 4.1](https://www.rfc-editor.org/rfc/rfc3986#section-4.1). The `$self` field provides the self-assigned URI of this document, which also serves as its base URI in accordance with [[RFC3986]] [Section 5.1.1](https://www.rfc-editor.org/rfc/rfc3986#section-5.1.1). Implementations MUST support identifying the targets of [API description URIs](#relative-references-in-api-description-uris) using the URI defined by this field when it is present. See [Establishing the Base URI](#establishing-the-base-uri) for the base URI behavior when `$self` is absent or relative, and see [Appendix F](#appendix-f-examples-of-base-uri-determination-and-reference-resolution) for examples of using `$self` to resolve references. |
 | <a name="oas-info"></a>info | [Info Object](#info-object) | **REQUIRED**. Provides metadata about the API. The metadata MAY be used by tooling as required. |
-| <a name="oas-json-schema-dialect"></a> jsonSchemaDialect | `string` | The default value for the `$schema` keyword within [Schema Objects](#schema-object) contained within this OAS document. This MUST be in the form of a URI. |
+| <a name="oas-json-schema-dialect"></a> jsonSchemaDialect | `string` | The default value for the `$schema` keyword within [Schema Objects](#schema-object) contained within this OAS document. This MUST be in the form of a URI. See [JSON Schema Keywords](#json-schema-keywords) to determine the default value. |
 | <a name="oas-servers"></a>servers | [[Server Object](#server-object)] | An array of Server Objects, which provide connectivity information to a target server. If the `servers` field is not provided, or is an empty array, the default value would be an array consisting of a single [Server Object](#server-object) with a [url](#server-url) value of `/`. |
 | <a name="oas-paths"></a>paths | [Paths Object](#paths-object) | The available paths and operations for the API. |
 | <a name="oas-webhooks"></a>webhooks | Map[`string`, [Path Item Object](#path-item-object)] | The incoming webhooks that MAY be received as part of this API and that the API consumer MAY choose to implement. Closely related to the `callbacks` feature, this section describes requests initiated other than by an API call, for example by an out of band registration. The key name is a unique string to refer to each webhook, while the (optionally referenced) Path Item Object describes a request that may be initiated by the API provider and the expected responses. An [example](https://learn.openapis.org/examples/v3.1/webhook-example.html) is available. |
@@ -2988,8 +2988,9 @@ $ref: definitions.yaml#/Pet
 
 ### Schema Object
 
-The Schema Object allows the definition of input and output data types.
-These types can be objects, but also primitives and arrays. This object is a superset of the [JSON Schema Specification Draft 2020-12](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html). The empty schema (which allows any instance to validate) MAY be represented by the boolean value `true` and a schema which allows no instance to validate MAY be represented by the boolean value `false`.
+The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays.
+
+By default, this object is a superset of the [JSON Schema Specification Draft 2020-12](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html). The empty schema (which allows any instance to validate) MAY be represented by the boolean value `true` and a schema which allows no instance to validate MAY be represented by the boolean value `false`.
 
 For more information about the keywords, see [JSON Schema Core](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html) and [JSON Schema Validation](https://www.ietf.org/archive/id/draft-bhutton-json-schema-validation-01.html).
 
@@ -3000,7 +3001,7 @@ Where JSON Schema indicates that behavior is defined by the application (e.g. fo
 
 The OpenAPI Schema Object [dialect](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-4.3.3) is defined as requiring the [OAS base vocabulary](#base-vocabulary), in addition to the vocabularies as specified in the JSON Schema Specification Draft 2020-12 [general purpose meta-schema](https://www.ietf.org/archive/id/draft-bhutton-json-schema-01.html#section-8).
 
-The OpenAPI Schema Object dialect for this version of the specification is identified by the URI of the form `https://spec.openapis.org/oas/3.3/dialect/YYYY-MM-DD` (the <a name="dialect-schema-id"></a>"OAS dialect schema id" -- see [the list of current schemas](https://spec.openapis.org/oas/) for the specific URI).
+The default OpenAPI Schema Object dialect for this version of the specification (that is, the default for the `$schema` keyword in Schema Objects, and the `jsonSchemaDialect` keyword in the OpenAPI Description itself) is identified by the URI of the form `https://spec.openapis.org/oas/3.3/dialect/YYYY-MM-DD` (the <a name="dialect-schema-id"></a>"OAS dialect schema id" -- see [the list of current schemas](https://spec.openapis.org/oas/) for the specific URI).
 
 The following keywords are taken from the JSON Schema specification but their definitions have been extended by the OAS:
 

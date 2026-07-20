@@ -1405,7 +1405,7 @@ The `itemEncoding` field can also be used with `itemSchema` to support streaming
 
 ##### Additional Encoding Approaches
 
-The `prefixEncoding` and/or `itemEncoding` fields, and/or usage of a [`schema` indicating an array type](#non-json-data) (or `itemSchema`), can be used with any `multipart` content to require a fixed part order.
+Usage of a [`schema` indicating an array type](#non-json-data) (or `itemSchema`), can be used with any `multipart` content to produce a fixed part order.
 This includes `multipart/form-data`, in which the property name of each item is used to populate the `Content-Disposition` headers with the part name.
 
 Prior versions of this specification advised using the [`name` parameter](https://www.rfc-editor.org/rfc/rfc7578#section-4.2) of the `Content-Disposition: form-data` header of each part with `multipart` media types other than `multipart/form-data` in order to work around the limitations of the `encoding` field.

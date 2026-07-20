@@ -1,3 +1,4 @@
+
 # AGENTS.md
 
 Guidance for coding agents working in the [OAI/OpenAPI-Specification](https://github.com/OAI/OpenAPI-Specification) repository. This file contains only what agents need at session start. Deeper procedure lives in the linked documents — read them when a task touches their area, and treat them as authoritative if this file ever disagrees.
@@ -14,7 +15,7 @@ Guidance for coding agents working in the [OAI/OpenAPI-Specification](https://gi
 
 Pause and request human guidance before editing when:
 
-- The correct target branch is ambiguous.
+- The correct target branch is ambiguous, including when it's unclear whether a change also applies to older active lines (which would call for targeting the earliest applicable one instead of the newest).
 - The request conflicts with the branch strategy or contribution process below.
 - The task asks you to draft a discussion reply, issue comment, or PR description for direct posting (prohibited above).
 - The request touches `versions/` or asks for a schema requirement on a patch release line.
@@ -28,11 +29,15 @@ Pause and request human guidance before editing when:
 | Repo docs, scripts, workflows | Support files | `main` |
 | Published spec text | `versions/` | Do not edit |
 
-Default to the newest active `vX.Y-dev` branch even when the same text also exists on older active lines — do not retarget to the earliest branch on the assumption that the change will carry forward. Backporting to an older active line is a separate, deliberate PR, opened only when actually pursued.
+Default to the newest active `vX.Y-dev` branch when the change is clearly scoped to it. Backporting to an older active line, once pursued, is a separate, deliberate PR — not something a single PR should try to cover across multiple lines.
 
-Target an older active line directly instead of the newest one when the request originates as a report against that specific released version (e.g., an issue filed against 3.1.3) or the human explicitly asks for that branch.
+Target an older active line directly instead of the newest one when the request originates as a report against that specific released version (e.g., an issue filed against 3.1.3) or the human explicitly says the change applies there.
 
-Example: a clarifying cross-reference added to `src/oas.md` targets the current active dev branch (e.g. `v3.3-dev`), even though the same text also exists on `v3.1-dev` and `v3.2-dev` — never `versions/3.1.1.md`. If the same fix is also wanted on those older lines, that's a separate PR per branch, not part of this one.
+If it's genuinely unclear whether a change should also apply to older active lines — the text being changed happens to also exist there, but nothing confirms it's in scope — stop and ask a human rather than guessing either default.
+
+Example: "fix this typo in the 3.3-only `webhooks` example" targets `src/oas.md` on `v3.3-dev` — never `versions/`, and never an older line the feature doesn't exist on.
+
+Example needing a pause: a clarifying cross-reference touches text that's word-for-word identical on `v3.1-dev`, `v3.2-dev`, and `v3.3-dev`. That identical wording doesn't by itself establish the change is in scope for the older lines — stop and ask the human (or the contributor, if reviewing someone else's PR) whether it's meant to apply there too before picking a branch.
 
 To discover which `vX.Y-dev` branches are currently active, check [CONTRIBUTING.md § Active branches](CONTRIBUTING.md#active-branches) or list remote branches matching `v*-dev`. Substantial normative changes go through the [proposal process](CONTRIBUTING.md#propose-a-specification-change) before any PR.
 

@@ -23,12 +23,16 @@ Pause and request human guidance before editing when:
 
 | Request type | Primary files | Target branch |
 | --- | --- | --- |
-| Active specification text | `src/oas.md` | Earliest relevant active `vX.Y-dev` branch |
+| Active specification text | `src/oas.md` | Newest active `vX.Y-dev` branch, unless the request is scoped to an older active patch line |
 | Schema changes tied to spec work | Schema files | Same `vX.Y-dev` branch |
 | Repo docs, scripts, workflows | Support files | `main` |
 | Published spec text | `versions/` | Do not edit |
 
-Example: "fix this typo in the 3.1 spec" targets `src/oas.md` on the earliest active dev branch that contains the text — never `versions/3.1.1.md`, even though that is where the typo was noticed.
+Default to the newest active `vX.Y-dev` branch even when the same text also exists on older active lines — do not retarget to the earliest branch on the assumption that the change will carry forward. Backporting to an older active line is a separate, deliberate PR, opened only when actually pursued.
+
+Target an older active line directly instead of the newest one when the request originates as a report against that specific released version (e.g., an issue filed against 3.1.3) or the human explicitly asks for that branch.
+
+Example: a clarifying cross-reference added to `src/oas.md` targets the current active dev branch (e.g. `v3.3-dev`), even though the same text also exists on `v3.1-dev` and `v3.2-dev` — never `versions/3.1.1.md`. If the same fix is also wanted on those older lines, that's a separate PR per branch, not part of this one.
 
 To discover which `vX.Y-dev` branches are currently active, check [CONTRIBUTING.md § Active branches](CONTRIBUTING.md#active-branches) or list remote branches matching `v*-dev`. Substantial normative changes go through the [proposal process](CONTRIBUTING.md#propose-a-specification-change) before any PR.
 

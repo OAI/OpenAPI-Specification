@@ -1733,6 +1733,10 @@ This table is based on the value to which the Encoding Object is being applied a
 Note that in the case of [Encoding By Name](#encoding-by-name), this value is the array item for properties of type `"array"`, and the entire value for all other types.
 Therefore the `array` row in this table applies only to array values inside of a top-level array when encoding by name.
 
+When deserializing a multipart message, if a `Content-Type` header is present in the specific part, its value SHALL be used instead of these values. Behavior is undefined when both this header and `contentType` are defined but with different values.
+If the `contentType` field is absent but `Content-Type` is present, it is RECOMMENDED to use the value of `Content-Type`.  However, this behavior may produce unexpected results due to the possibility that the `schema` is not structured for the received `Content-Type`.
+
+
 | `type` | `contentEncoding` | Default `contentType` |
 | ---- | ---- | ---- |
 | [_absent_](#working-with-binary-data) | _n/a_ | `application/octet-stream` |
@@ -1868,7 +1872,7 @@ Note that there are significant restrictions on what headers can be used with `m
 
 ##### Handling Multiple `contentType` Values
 
-When multiple values are provided for `contentType`, parsing remains straightforward as the part's actual `Content-Type` is included in the document.
+When multiple values are provided for `contentType`, deserializing remains straightforward as the part's actual `Content-Type` SHOULD be included as a header of that part and SHOULD match one of the provided `contentType` values.
 
 For encoding and serialization, implementations MUST provide a mechanism for applications to indicate which media type is intended.
 Implementations MAY choose to offer media type sniffing ([[SNIFF]]) as an alternative, but this MUST NOT be the default behavior due to the security risks inherent in the process.

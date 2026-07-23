@@ -179,16 +179,23 @@ Draft pull requests can still be reviewed while in draft state.
 > [!NOTE]
 > `npm run build-src` calls bash scripts. Use [Git Bash](https://gitforwindows.org/) on Windows, or use the Windows Subsystem for Linux (WSL).
 
-The markdown source files are converted to HTML before publishing.
-To do this locally, please
+Before creating a pull request or marking a draft pull request as ready for review, validate your changes locally:
 
 1. Install [Node.js](https://nodejs.org/)
 2. Check out this repo, go to the repo root, and switch to a development branch
 3. Execute `npm install` (once, repeat after merging upstream changes)
-4. Execute `npm run build-src` after changing `src/oas.md` (this first executes `npm run validate-markdown`, which can also be run separately)
-5. Open output file `deploy-preview/oas.html` with a browser and check your changes
+4. Run the commands relevant to what you changed:
 
-Please make sure the markdown validates and builds using the above steps before creating a pull request or marking a draft pull request as ready for review.
+   | Command | What it does |
+   | ------- | ------------- |
+   | `npm run validate-markdown` | markdownlint + link check only — fast loop while editing |
+   | `npm run format-markdown` | auto-fix markdownlint violations |
+   | `npm run build-src` | full check: validation, HTML build, schema publish |
+   | `npm test` | runs the JSON Schema and build tooling test suites |
+
+5. After `npm run build-src`, open output file `deploy-preview/oas.html` with a browser and check your changes
+
+Please make sure the markdown validates and builds, and that `npm test` passes, before creating a pull request or marking a draft pull request as ready for review.
 
 ## Reviewers
 

@@ -37,6 +37,8 @@ properties:
     type: array
     items:
       $ref: '#/$defs/security-requirement'
+  parameters:
+    $ref: '#/$defs/parameters'
   tags:
     type: array
     items:

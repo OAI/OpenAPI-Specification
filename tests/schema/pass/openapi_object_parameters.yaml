@@ -1,0 +1,18 @@
+openapi: 3.3.0
+info:
+  title: API
+  version: 1.0.0
+parameters:
+  - name: limit
+    in: query
+    schema:
+      type: integer
+      minimum: 0
+paths:
+  /things:
+    summary: Lots of things
+    get:
+      summary: Get a list of things
+      responses:
+        default:
+          description: A list of things

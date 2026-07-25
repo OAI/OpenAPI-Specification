@@ -28,6 +28,25 @@ At this time, such elements are expected to remain part of the OAS until the nex
 
 Occasionally, non-backwards compatible changes may be made in `minor` versions of the OAS where impact is believed to be low relative to the benefit provided.
 
+### Standardized API Features
+
+Many API features have behavior that is difficult or impossible to infer from
+descriptions of paths, parameters, headers, or other operation elements that
+this specification supports.
+
+We refer to such features that are standardized by other standards bodies
+as Standardized API Features, or SAFs.  These features benefit from special
+handling, such as how the `Authorization` header is managed through the
+Security Scheme Object rather than the Parameter Object.  Security features
+also illustrate another aspect of SAFs, which is that they often evolve
+at a more rapid pace than the core of HTTP.
+
+To better support security features and expand into other SAFs, the OpenAPI
+Initiative is introducing companion specifications grouping independently
+versioned SAFs.  These specifications describe opt-in rules that establish
+SAF-specific Objects as well as exception rules such as those regarding
+the `Authorization` header and Security Schemes.
+
 ### Undefined and Implementation-Defined Behavior
 
 This specification deems certain situations to have either _undefined_ or _implementation-defined_ behavior.
@@ -95,6 +114,7 @@ In addition to the required fields, at least one of the `components`, `paths`, o
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="oas-version"></a>openapi | `string` | **REQUIRED**. This string MUST be the [version number](#versions-and-deprecation) of the OpenAPI Specification that the OpenAPI document uses. The `openapi` field SHOULD be used by tooling to interpret the OpenAPI document. This is _not_ related to the [`info.version`](#info-version) string, which describes the OpenAPI document's version. |
+| <a name="using-features"></a>usingFeatures | Map[`string`, `string`] | A map of [SAF](#standardized-api-features) names, as defined in various companion specifications, to a valid version string for the named SAF.  Implementations MUST apply the SAF's rules, such as treating header parameters that are managed by the SAF as illegal in Parameter Objects,  while processing the current document.  The default is `{"legacySecurity": "3.3.0"}`. |
 | <a name="oas-self"></a>$self | `string` | This string MUST be in the form of a URI reference as defined by [[RFC3986]] [Section 4.1](https://www.rfc-editor.org/rfc/rfc3986#section-4.1). The `$self` field provides the self-assigned URI of this document, which also serves as its base URI in accordance with [[RFC3986]] [Section 5.1.1](https://www.rfc-editor.org/rfc/rfc3986#section-5.1.1). Implementations MUST support identifying the targets of [API description URIs](#relative-references-in-api-description-uris) using the URI defined by this field when it is present. See [Establishing the Base URI](#establishing-the-base-uri) for the base URI behavior when `$self` is absent or relative, and see [Appendix F](#appendix-f-examples-of-base-uri-determination-and-reference-resolution) for examples of using `$self` to resolve references. |
 | <a name="oas-info"></a>info | [Info Object](#info-object) | **REQUIRED**. Provides metadata about the API. The metadata MAY be used by tooling as required. |
 | <a name="oas-json-schema-dialect"></a> jsonSchemaDialect | `string` | The default value for the `$schema` keyword within [Schema Objects](#schema-object) contained within this OAS document. This MUST be in the form of a URI. See [JSON Schema Keywords](#json-schema-keywords) to determine the default value. |
@@ -126,6 +146,25 @@ It is RECOMMENDED that the entry document of an OAD be named `openapi.json` or `
 
 An OpenAPI Object MAY be embedded in another format, called the **embedding format**, just as JSON Schema is embedded in the OAS in the form of Schema Objects.
 It is the responsibility of an embedding format to define how to parse embedded content, and OAS implementations that do not document support for an embedding format cannot be expected to parse embedded OAS content correctly.
+
+##### OpenAPI and SAF Versions Across Multiple Documents
+
+The `openapi` and `usingFeatures` fields define how the document that contains
+them is to be parsed.  When using multiple documents in an OAD, interoperability
+is only guaranteed if the SAFs in `usingFeatures` are the same in all
+documents, and the major and minor version numbers for `openapi` and each
+SAF in `usingFeatures` match.
+
+Implementations MUST raise an error if different SAFs are included in
+different documents within the OAD, and SHOULD raise an error if any
+SAF or `openapi` version in a referenced document is not compatible
+with the corresponding version in the entry document.  Implementations
+MAY raise an error if the major and minor versions are compatible but
+not the same; otherise the behavior is implementation-defined.
+
+Only the major and minor version numbers determine compatibility.
+However, note that while OAS v3.1 is compatible with v3.2, which is compatible
+with v3.3, OAS 3.0 is not compatible with any other version.
 
 ##### Parsing Documents
 

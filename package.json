@@ -24,7 +24,7 @@
     "highlight.js": "^11.11.1",
     "markdown-it": "^14.2.0",
     "respec": "37.1.0",
-    "yargs": "^18.0.0"
+    "yargs": "^18.1.0"
   },
   "devDependencies": {
     "@hyperjump/json-schema-coverage": "^1.2.1",

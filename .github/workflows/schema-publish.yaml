@@ -39,7 +39,7 @@ jobs:
           node-version: "24.x"
 
       - name: Install dependencies
-        run: npm ci --allow-git=top
+        run: npm ci --allow-git=root
 
       - uses: actions/checkout@v7 # checkout main branch of website repo
         with:

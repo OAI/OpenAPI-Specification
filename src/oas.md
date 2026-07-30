@@ -1872,7 +1872,7 @@ Note that there are significant restrictions on what headers can be used with `m
 
 ##### Handling Multiple `contentType` Values
 
-When multiple values are provided for `contentType`, deserializing remains straightforward as the part's actual `Content-Type` SHOULD be included as a header of that part and SHOULD match one of the provided `contentType` values.
+When multiple values are provided for `contentType`, deserializing remains straightforward as, per [[RFC 2046]] [Section 5.1](https://datatracker.ietf.org/doc/html/rfc2046#section-5.1) each part will include a `Content-Type` header, or can reasonably be assumed to be `text/plain; charset=US-ASCII`.  To ensure interoperability, OAD authors SHOULD ensure that all reasonably expected media types are provided in `contentType`.
 
 For encoding and serialization, implementations MUST provide a mechanism for applications to indicate which media type is intended.
 Implementations MAY choose to offer media type sniffing ([[SNIFF]]) as an alternative, but this MUST NOT be the default behavior due to the security risks inherent in the process.

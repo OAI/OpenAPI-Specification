@@ -1396,7 +1396,8 @@ Data for these media types are modeled as an array, with one item per part, in o
 
 For applications that wish to preserve part order, `multipart/form-data` content may also be modelled as an array, with one item per part, in order (where each item consists of an object containing the name/value pair); the `schema` SHALL be used to determine whether deserializing to an `object` or an `array` is preferred. See examples in [Media Type Registry: Forms](https://spec.openapis.org/registry/media-type/forms).
 
-To use the `prefixEncoding` and/or `itemEncoding` fields, either `itemSchema` or a [`schema` indicating an array type](#non-json-data) MUST be present.
+To use the `prefixEncoding` and/or `itemEncoding` fields, each item referenced by the field MUST exist in the data instance; `prefixEncoding` and `itemEncoding` entries with no corresponding item SHALL be ignored.
+
 These fields are analogous to the `prefixItems` and `items` JSON Schema keywords, with `prefixEncoding` (if present) providing an array of Encoding Objects that are each applied to the value at the same position in the data array, and `itemEncoding` applying its single Encoding Object to all remaining items in the array.
 As with `prefixItems`, it is _not_ an error if the instance array is shorter than the `prefixEncoding` array; the additional Encoding Objects SHALL be ignored.
 
@@ -1404,8 +1405,8 @@ The `itemEncoding` field can also be used with `itemSchema` to support streaming
 
 ##### Additional Encoding Approaches
 
-The `prefixEncoding` field can be used with any `multipart` content to require a fixed part order.
-This includes `multipart/form-data`, for which the Encoding Object's `headers` field MUST be used to provide the `Content-Disposition` and part name, as no property names exist to provide the names automatically.
+Usage of a [`schema` indicating an array type](#non-json-data) (or `itemSchema`), can be used with any `multipart` content to produce a fixed part order.
+This includes `multipart/form-data`, in which the property name of each item is used to populate the `Content-Disposition` headers with the part name.
 
 Prior versions of this specification advised using the [`name` parameter](https://www.rfc-editor.org/rfc/rfc7578#section-4.2) of the `Content-Disposition: form-data` header of each part with `multipart` media types other than `multipart/form-data` in order to work around the limitations of the `encoding` field.
 Implementations MAY choose to support this workaround, but as this usage is not common, implementations of non-`form-data` `multipart` media types are unlikely to support it.

@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7 # checkout repo content
 
-      - uses: actions/setup-node@v6 # setup Node.js
+      - uses: actions/setup-node@v7 # setup Node.js
         with:
           node-version: "24.x"
 

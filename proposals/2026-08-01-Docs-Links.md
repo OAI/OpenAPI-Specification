@@ -9,7 +9,7 @@
 |Review Manager |TBD |
 |Status |Proposal|
 |Implementations |[Click Here](https://github.com/OAI/OpenAPI-Specification/tree/main/proposals/{YYYY-MM-DD-Short-Name}/implementations.md)|
-|Issues |[#1034](https://github.com/OAI/OpenAPI-Specification/issues/1034)|
+|Issues |[#1034](https://github.com/OAI/OpenAPI-Specification/issues/1034) [#2409](https://github.com/OAI/OpenAPI-Specification/issues/2409)|
 |Previous Revisions ||
 
 ## Change Log

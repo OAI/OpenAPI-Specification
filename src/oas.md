@@ -1940,7 +1940,7 @@ requestBody:
             type: [ string, array ]
             pattern: '^[A-Z][a-z]*$'
             items:
-                pattern: '^[A-Z][a-z]*$'
+              pattern: '^[A-Z][a-z]*$'
 
           # Encoding Object overrides the default `application/json` content type
           # for each item in the array with `application/xml; charset=utf-8`

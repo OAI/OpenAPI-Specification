@@ -390,7 +390,7 @@ The triage team keeps an eye on the backlog and closes issues and discussions th
 
 To get in touch with other people on the project, ask questions, or anything else:
 
-- Find us [on the OpenAPI Slack](https://communityinviter.com/apps/open-api/openapi).
+- Find us [on the OpenAPI Slack](https://join.slack.com/t/open-api/shared_invite/zt-45j57ones-BcErzGqJKA5Ib4wrM83Cgw).
 - Start a [GitHub Discussion](https://github.com/OAI/OpenAPI-Specification/discussions/).
 - Join one of our weekly meetings by checking the [issues list for an upcoming meetings](https://github.com/OAI/OpenAPI-Specification/issues?q=is%3Aissue%20state%3Aopen%20label%3AHousekeeping).
 

@@ -11,6 +11,7 @@ files:
   - style-guide.md
   - TOB.md
 ignorePatterns:
+  - pattern: 'slack.com'  # Slack invite links 403 with linkspector
   - pattern: 'clientdomain.com'
   - pattern: 'example.org'
   - pattern: 'https://www.w3.org/TR/xml-names11/'

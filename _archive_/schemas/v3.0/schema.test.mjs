@@ -1,12 +1,14 @@
 import { readdirSync, readFileSync } from "node:fs";
-import YAML from "yaml";
-import { validate, setMetaSchemaOutputFormat } from "@hyperjump/json-schema/openapi-3-0";
-import { BASIC } from "@hyperjump/json-schema/experimental";
-import { describe, test, expect } from "vitest";
-
-import contentTypeParser from "content-type";
-import { addMediaTypePlugin } from "@hyperjump/browser";
-import { buildSchemaDocument } from "@hyperjump/json-schema/experimental";
+import { describe, test, expect } from "@oai/build-infra/test";
+import {
+  addMediaTypePlugin,
+  BASIC,
+  buildSchemaDocument,
+  contentTypeParser,
+  setMetaSchemaOutputFormat,
+  validate,
+  YAML
+} from "@oai/build-infra/schema/openapi-3-0-test";
 
 addMediaTypePlugin("application/schema+yaml", {
     parse: async (response) => {

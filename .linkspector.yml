@@ -14,6 +14,6 @@ ignorePatterns:
   - pattern: 'slack.com'  # Slack invite links 403 with linkspector
   - pattern: 'clientdomain.com'
   - pattern: 'example.org'
-  - pattern: 'https://www.w3.org/TR/xml-names11/'
+  - pattern: 'w3.org' # W3 returns 403 for automated requests
   - pattern: 'https://www.npmjs.com/package/markdownlint'
   - pattern: 'https://www.merriam-webster.com/dictionary/'

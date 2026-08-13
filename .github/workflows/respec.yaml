@@ -36,7 +36,7 @@ jobs:
           node-version: "24.x"
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --allow-git=root
 
       - uses: actions/checkout@v7 # checkout main branch of website repo
         with:
@@ -46,7 +46,7 @@ jobs:
           path: deploy
 
       - name: run main script
-        run: scripts/md2html/build.sh
+        run: npm run build
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8

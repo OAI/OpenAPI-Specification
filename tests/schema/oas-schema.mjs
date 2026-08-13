@@ -1,3 +1,5 @@
+// Configure through our build-infra package so that we
+// do not need to maintain the dependencies here.
 import { createTestConfig } from "@oai/build-infra/schema/test-config";
 
 export default createTestConfig({

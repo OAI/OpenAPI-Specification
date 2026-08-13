@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { execFile } from "node:child_process";
 import { resolve } from "node:path";
-import { describe, test, expect } from "vitest";
+import { describe, test, expect } from "@oai/build-infra/test";
 import assert from "node:assert";
 
 const folder = "./tests/md2html/fixtures/";
@@ -16,6 +16,8 @@ describe("md2html", async () => {
         ); 
         const output = await md2html(
           [
+            "--spec-config",
+            "spec.config.json",
             "--maintainers",
             entry.name.replace(".md", ".maintainers"),
             entry.name,
@@ -32,7 +34,7 @@ function md2html(args, cwd) {
   return new Promise((res) => {
     execFile(
       "node",
-      [`${resolve("./scripts/md2html/md2html.js")}`, ...args],
+      [`${resolve("./node_modules/@oai/build-infra/src/md2html/md2html.js")}`, ...args],
       { cwd },
       (error, stdout, stderr) => {
         res({

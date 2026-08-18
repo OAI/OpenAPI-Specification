@@ -1,0 +1,70 @@
+name: Documentation Validation
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - '**/*.md'
+      - '**/*.markdown'
+      - '**/*.asc'
+      - '**/*.adoc'
+      - '.github/workflows/docs-validation.yml'
+      - '.docs-validator.toml'
+
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - '**/*.md'
+      - '**/*.markdown'
+      - '**/*.asc'
+      - '**/*.adoc'
+      - '.github/workflows/docs-validation.yml'
+      - '.docs-validator.toml'
+
+  workflow_dispatch:
+    inputs:
+      target_path:
+        description: 'Path to scan'
+        required: false
+        default: '.'
+      fail_on_error:
+        description: 'Fail pipeline on errors'
+        required: false
+        type: boolean
+        default: true
+
+jobs:
+  validate-docs:
+    name: Validate Documentation Links
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install docs-validator
+        run: |
+          python -m pip install --upgrade pip
+          pip install git+https://github.com/Nokhrin/docs-validator.git
+
+      - name: Run documentation validation
+        run: |
+          FAIL_FLAG=""
+          if [ "${{ github.event.inputs.fail_on_error }}" = "true" ] || [ -z "${{ github.event.inputs.fail_on_error }}" ]; then
+            FAIL_FLAG="--fail-on-error"
+          fi
+          TARGET_PATH="${{ github.event.inputs.target_path || '.' }}"
+          docs-validator scan "$TARGET_PATH" --validate $FAIL_FLAG --report markdown --output docs-validation-report.md
+
+      - name: Upload validation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-validation-report
+          path: docs-validation-report.md
+          retention-days: 7

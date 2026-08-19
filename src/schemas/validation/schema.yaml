@@ -1037,6 +1037,8 @@ $defs:
         $ref: '#/$defs/oauth-flows/$defs/client-credentials'
       authorizationCode:
         $ref: '#/$defs/oauth-flows/$defs/authorization-code'
+      saml2Bearer:
+        $ref: '#/$defs/oauth-flows/$defs/saml2-bearer'
       deviceAuthorization:
         $ref: '#/$defs/oauth-flows/$defs/device-authorization'
     $ref: '#/$defs/specification-extensions'
@@ -1110,6 +1112,23 @@ $defs:
             $ref: '#/$defs/map-of-strings'
         required:
           - authorizationUrl
+          - tokenUrl
+          - scopes
+        $ref: '#/$defs/specification-extensions'
+        unevaluatedProperties: false
+
+      saml2-bearer:
+        type: object
+        properties:
+          tokenUrl:
+            type: string
+            format: uri-reference
+          refreshUrl:
+            type: string
+            format: uri-reference
+          scopes:
+            $ref: '#/$defs/map-of-strings'
+        required:
           - tokenUrl
           - scopes
         $ref: '#/$defs/specification-extensions'

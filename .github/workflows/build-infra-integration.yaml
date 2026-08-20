@@ -1,0 +1,32 @@
+name: build-infra-integration
+
+on:
+  pull_request: {}
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24.x"
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Build latest published specification
+        if: ${{ hashFiles('versions/*.md') != '' }}
+        run: yarn build latest
+
+      - name: Build source specification
+        if: ${{ hashFiles('src/*.md') != '' }}
+        run: yarn build src

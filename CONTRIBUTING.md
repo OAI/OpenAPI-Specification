@@ -30,7 +30,7 @@ If you do think that something was closed in error, you are welcome to reach out
 This repository uses the shared OpenAPI Initiative infrastructure package
 [`@oai/build-infra`](https://github.com/OAI/build-infra) for Markdown
 validation, HTML builds, schema publication, schema tests, and release helper
-commands. The npm scripts in this repository are intentionally thin wrappers
+commands. The package scripts in this repository are intentionally thin wrappers
 around that package.
 
 The shared infrastructure docs explain how the tooling works and how to maintain
@@ -194,25 +194,26 @@ Draft pull requests can still be reviewed while in draft state.
 ### Preview specification HTML locally
 
 > [!NOTE]
-> `npm run build-src` calls bash scripts. Use [Git Bash](https://gitforwindows.org/) on Windows, or use the Windows Subsystem for Linux (WSL).
+> `yarn build-src` calls bash scripts. Use [Git Bash](https://gitforwindows.org/) on Windows, or use the Windows Subsystem for Linux (WSL).
 
 Before creating a pull request or marking a draft pull request as ready for review, validate your changes locally:
 
-1. Install [Node.js](https://nodejs.org/)
+1. Install Node.js 24 and run `corepack enable` once to make the repository's
+   pinned Yarn version available
 2. Check out this repo, go to the repo root, and switch to a development branch
-3. Execute `npm install` (once, repeat after merging upstream changes)
+3. Execute `yarn install --immutable` (repeat after merging upstream changes)
 4. Run the commands relevant to what you changed:
 
    | Command | What it does |
    | ------- | ------------- |
-   | `npm run validate-markdown` | markdownlint + link check only — fast loop while editing |
-   | `npm run format-markdown` | auto-fix markdownlint violations |
-   | `npm run build-src` | full check: validation, HTML build, schema publish |
-   | `npm test` | runs the JSON Schema and build tooling test suites |
+   | `yarn validate-markdown` | markdownlint + link check only — fast loop while editing |
+   | `yarn format-markdown` | auto-fix markdownlint violations |
+   | `yarn build-src` | full check: validation, HTML build, schema publish |
+   | `yarn test` | runs the JSON Schema and build tooling test suites |
 
-5. After `npm run build-src`, open output file `deploy-preview/oas.html` with a browser and check your changes
+5. After `yarn build-src`, open output file `deploy-preview/oas.html` with a browser and check your changes
 
-Please make sure the markdown validates and builds, and that `npm test` passes, before creating a pull request or marking a draft pull request as ready for review.
+Please make sure the markdown validates and builds, and that `yarn test` passes, before creating a pull request or marking a draft pull request as ready for review.
 
 ## Reviewers
 
@@ -239,13 +240,13 @@ The steps for creating a `vX.Y.Z-rel` branch are:
 2. Merge `main` into `dev` and `dev` into `vX.Y-dev` via PRs
    - sync PRs are automatically created by workflows `sync-main-to-dev` and `sync-dev-to-vX.Y-dev`
 3. Prepare spec files in `vX.Y-dev`
-   - `npm run format-markdown`
-   - `npm run build-src`
+   - `yarn format-markdown`
+   - `yarn build-src`
    - open `deploy-preview/oas.html` in browser and verify correct formatting
    - adjust and repeat until done
    - merge changes to `src/oas.md` back into `vX.Y-dev` via PR
 4. Create `vX.Y.Z-rel` from `vX.Y-dev` and adjust it
-   - `npm run adjust-release-branch` does this:
+   - `yarn adjust-release-branch` does this:
      - copy file `src/oas.md` to `versions/X.Y.Z.md` and replace the release date placeholder `| TBD |` in the history table of Appendix A with the current date
      - copy file `EDITORS.md` to `versions/X.Y.Z-editors.md`
      - delete folder `src`
@@ -266,7 +267,7 @@ unexpectedly, check this repository's `spec.config.json` first, then see the
 
 Once the released specification version is [synced](#branch-sync-automation) back to the `vX.Y-dev` branch, the next patch version X.Y.(Z+1) can be started:
 
-1. Run `npm run start-release` in branch `vX.Y-dev` to
+1. Run `yarn start-release` in branch `vX.Y-dev` to
    - create branch `vX.Y-dev-start-X.Y.(Z+1)`
    - initialize `src/oas.md` with empty history and content from `versions/X.Y.Z.md`
    - change version heading to X.Y.(Z+1) and add a new line to the version history table in Appendix A of  `src/oas.md`
@@ -280,7 +281,7 @@ Alternatively, if no patch version X.Y.(Z+1) is planned, delete file `src/oas.md
 A new minor version X.(Y+1).0 or major version (X+1).0.0 is started similarly:
 
 1. Create branch `vX'.Y'-dev` from `vX.Y-dev`
-2. Run `npm run start-release` in the new branch to
+2. Run `yarn start-release` in the new branch to
    - create branch `vX'.Y'-dev-start-X'.Y'.0`
    - initialize `src/oas.md` with empty history and content from `versions/X.Y.Z.md`
    - change version heading to X'.Y'.0 and add a new line to the version history table in Appendix A of  `src/oas.md`

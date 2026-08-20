@@ -12,10 +12,14 @@
     "url": "https://github.com/OAI/OpenAPI-Specification.git"
   },
   "license": "Apache-2.0",
+  "packageManager": "yarn@4.18.0",
+  "engines": {
+    "node": ">=24 <25"
+  },
   "scripts": {
     "adjust-release-branch": "oai-spec-adjust-release-branch",
     "build": "oai-spec-build",
-    "build-src": "npm run validate-markdown && oai-spec-build src && oai-spec-publish-schemas src",
+    "build-src": "yarn validate-markdown && oai-spec-build src && oai-spec-publish-schemas src",
     "publish-schemas": "oai-spec-publish-schemas",
     "start-release": "oai-spec-start-release",
     "test": "oai-spec-test",
@@ -24,6 +28,11 @@
   },
   "dependencies": {
     "@oai/build-infra": "git+https://github.com/OAI/build-infra.git#main"
+  },
+  "dependenciesMeta": {
+    "puppeteer": {
+      "built": true
+    }
   },
   "keywords": [
     "OpenAPI",

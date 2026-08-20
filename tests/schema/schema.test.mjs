@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import YAML from "yaml";
-import { describe, test, expect } from "vitest";
-import { registerSchema } from "@hyperjump/json-schema-coverage/vitest";
+import { describe, test, expect } from "@oai/build-infra/test";
+import { registerSchema, toMatchJsonSchema } from "@oai/build-infra/schema/vitest";
 import registerOasSchema from "./oas-schema.mjs";
 
 const parseYamlFromFile = (filePath) => {
@@ -10,6 +10,7 @@ const parseYamlFromFile = (filePath) => {
 };
 
 await registerOasSchema();
+expect.extend({ toMatchJsonSchema });
 await registerSchema("./src/schemas/validation/schema.yaml");
 const fixtures = './tests/schema';
 

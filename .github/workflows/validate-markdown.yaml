@@ -21,8 +21,11 @@ jobs:
         with:
           node-version: "24.x"
 
+      - name: Enable Corepack
+        run: corepack enable
+
       - name: Install dependencies
-        run: npm ci --allow-git=root
+        run: yarn install --immutable
 
       - name: Validate Markdown
-        run: npm run validate-markdown
+        run: yarn validate-markdown

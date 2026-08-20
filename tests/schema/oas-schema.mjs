@@ -1,7 +1,6 @@
-import { registerSchema } from "@hyperjump/json-schema/draft-2020-12";
-import { defineVocabulary } from "@hyperjump/json-schema/experimental";
-import { readFile } from "node:fs/promises";
-import YAML from "yaml";
+// Configure through our build-infra package so that we
+// do not need to maintain the dependencies here.
+import { createTestConfig } from "@oai/build-infra/schema/test-config";
 
 const parseYamlFromFile = async (filePath) => {
   const schemaYaml = await readFile(filePath, "utf8");

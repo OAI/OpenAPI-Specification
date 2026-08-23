@@ -23,7 +23,14 @@ Describe more and different external resources by allowing more links with more 
 
 ## Motivation
 
-The existing `externalDocs` allows a single name/url combination to be referenced from each place that the field is supported (description root, tags, operations, and schemas). It doesn't say what sort of docs it is, and doesn't allow more than one. By supporting multiple links, we could allow an API description to provide API docs and a changelog and the list of error codes and a link to some other information.
+The existing `externalDocs` allows a single name/url combination to be referenced from each place that the field is supported:
+
+- description root
+- tags
+- operations
+- schemas
+
+The existing `externalDocs` field doesn't say what sort of docs it is, and doesn't allow more than one. By supporting multiple links, we could allow an API description to provide API docs and a changelog and the list of error codes and a link to some other information.
 
 I see a lot of links in description fields, or additions such as `x-documentation` extensions, to compensate for the limitations in `externalDocs`. This should be supported in the API description format, and **is our second most upvoted issue**.
 
@@ -32,7 +39,7 @@ I see a lot of links in description fields, or additions such as `x-documentatio
 I propose a two-part solution: 
 
 * add a new field `externalLinks` that supports an array of External Docuemntation objects, everywhere that `externalDocs` is currently supported, and deprecate the `externalDocs` field
-* improve/extend the External Documentation object to include an optional `summary` field alongside the existing `url` (required) and `description` (optional, supports CommonMark) fields
+* improve/extend the External Documentation object to include optional `summary` and `kind` fields alongside the existing `url` (required) and `description` (optional, supports CommonMark) fields
 
 By keeping the documentation objects that we aready have and switching to an array of the instead of a single one, the upgrade path is very easy for anyone wanting to adopt the new field.
 A mechanism for multiple links gives the opportunity to link to multiple different resources in support on an API, operation, tag or schema.
@@ -51,9 +58,11 @@ title: Very Interesting Test API
 externalLinks:
   - url: https://example.com/api-docs
     summary: API Documentation
+    kind: api-docs
   - url: https://example.com/docs/authenticating-your-api-client
     summary: Authentication Overview
     description: Details on authentication and how to register for application keys
+    kind: auth
 ```
 
 ## Detailed design
@@ -82,6 +91,7 @@ Allows referencing an external resource for external documentation or additional
 | <a name="external-doc-summary"></a>summary | `string` | A short summary of the linked resource, used for display purposes. |
 | <a name="external-doc-description"></a>description | `string` | A description of the linked resource. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="external-doc-url"></a>url | `string` | **REQUIRED**. The URI for the linked resource. This MUST be in the form of a URI. |
+| <a name="external-doc--kind"></a>kind | `string` | A machine-readable string to categorize what sort of resource is linked. Any string value can be used; a [registry of the most commonly used values](https://spec.openapis.org/registry/tag-kind/) is available. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
@@ -91,6 +101,7 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 name: API reference
 description: Interactive API documentation
 url: https://example.com/api-docs
+kind: api-docs
 ```
 
 <hr>
@@ -105,7 +116,6 @@ Although the existing field is marked deprecated, tooling can continue to suppor
 
 Considered:
  - naming it `docLinks` which is a bit catchier and not so similar to be confusing (but maybe so different that the relationship isn't obvious).
- - adding a `kind` field and going down a whole registry path of different types of docs - we could still do this, now or later, but I don't think it's essential.
  - using `name` rather than `summary` but since it's an optional field and it's going alongside description, summary is more in keeping with our existing patterns.
  - only permitting this new field at the top level; but I think it could make sense in any context so we should not be restrictive.
 

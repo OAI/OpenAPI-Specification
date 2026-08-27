@@ -263,7 +263,7 @@ __metadata:
 
 "@oai/build-infra@git+https://github.com/OAI/build-infra.git#main":
   version: 0.0.0
-  resolution: "@oai/build-infra@https://github.com/OAI/build-infra.git#commit=efada0c867950970e88a8c6c8dd6d03f69bd1f38"
+  resolution: "@oai/build-infra@https://github.com/OAI/build-infra.git#commit=b9b8777366b3d636ce18d2fe43f4449f6f8f67ea"
   dependencies:
     "@hyperjump/browser": "npm:1.5.0"
     "@hyperjump/json-schema": "npm:1.17.8"
@@ -291,7 +291,7 @@ __metadata:
     oai-spec-start-release: ./bin/oai-spec-start-release
     oai-spec-test: ./bin/oai-spec-test
     oai-spec-validate-markdown: ./bin/oai-spec-validate-markdown
-  checksum: 10c0/62fec06449272bafadabca54b994beff8a067a70c3833a9d68de975b082596c01be987c14bc1f2e5be152f9e223fba6b2a1edc317c229cea5400d98dd7422e81
+  checksum: 10c0/6a9145849e897776e0b4a8e1ac06b0bd5cc789857712c1909f6981402f704f26b341e6910e93560a21fcaa9329174804f05c4efd432d1f0332a9f399a405c59e
   languageName: node
   linkType: hard
 

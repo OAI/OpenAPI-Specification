@@ -8,6 +8,13 @@ properties:
   openapi:
     type: string
     pattern: '^3\.3\.\d+(-.+)?$'
+  usingFeatures:
+    type: object
+    additionalProperties:
+      type: string
+      pattern: '^\d\.\d\.\d'
+    default:
+      legacySecurity: '3.3.0'
   $self:
     type: string
     format: uri-reference

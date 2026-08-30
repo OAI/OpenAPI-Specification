@@ -288,7 +288,7 @@ Unless specified otherwise, relative references are resolved using the URLs defi
 Assume a retrieval URI of `https://device1.example.com` for the following OpenAPI document:
 
 ```yaml
-openapi: 3.2.0
+openapi: 3.3.0
 $self: https://apidescriptions.example.com/foo
 info:
   title: Example API
@@ -5285,7 +5285,7 @@ For OpenAPI documents, this source is the OpenAPI Object's `$self` field, while 
 Assume the retrieval URI of the following document is `file://home/someone/src/api/openapi.yaml`:
 
 ```yaml
-openapi: 3.2.0
+openapi: 3.3.0
 $self: https://example.com/api/openapi
 info:
   title: Example API
@@ -5300,7 +5300,7 @@ paths:
 Assume the retrieval URI for the following document is `https://git.example.com/shared/blob/main/shared/foo.yaml`:
 
 ```yaml
-openapi: 3.2.0
+openapi: 3.3.0
 $self: https://example.com/api/shared/foo
 info:
   title: Shared components for all APIs
@@ -5352,7 +5352,7 @@ RFC2557 was written to allow sending hyperlinked sets of documents as email atta
 Content-Type: application/openapi+yaml
 Content-Location: https://example.com/api/openapi.yaml
 
-openapi: 3.2.0
+openapi: 3.3.0
 info:
   title: Example API
   version: 1.0
@@ -5405,7 +5405,7 @@ If no base URI is provided from either of the previous sources, the next source 
 Assume this document was retrieved from `https://example.com/api/openapis.yaml`:
 
 ```yaml
-openapi: 3.2.0
+openapi: 3.3.0
 info:
   title: Example API
   version: 1.0
@@ -5446,7 +5446,7 @@ Let's re-consider the first example in this appendix, but with relative URI refe
 Assume that the following is retrieved from `https://staging.example.com/api/openapi`:
 
 ```yaml
-openapi: 3.2.0
+openapi: 3.3.0
 $self: /api/openapi
 info:
   title: Example API
@@ -5461,7 +5461,7 @@ paths:
 Assume the retrieval URI for the following document is `https://staging.example.com/api/shared/foo`:
 
 ```yaml
-openapi: 3.2.0
+openapi: 3.3.0
 $self: /api/shared/foo
 info:
   title: Shared components for all APIs

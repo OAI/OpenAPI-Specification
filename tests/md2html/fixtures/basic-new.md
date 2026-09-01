@@ -67,7 +67,7 @@ https://foo.com/bar{?baz*,qux}
 Content-Type: application/openapi+yaml
 Content-Location: https://inaccessible-domain.com/api/openapi.yaml
 
-openapi: 3.2.0
+openapi: 3.3.0
 info:
   title: Example API
   version: 1.0

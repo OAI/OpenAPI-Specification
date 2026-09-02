@@ -1039,6 +1039,8 @@ $defs:
         $ref: '#/$defs/oauth-flows/$defs/authorization-code'
       deviceAuthorization:
         $ref: '#/$defs/oauth-flows/$defs/device-authorization'
+      tokenExchange:
+        $ref: '#/$defs/oauth-flows/$defs/token-exchange'
     $ref: '#/$defs/specification-extensions'
     unevaluatedProperties: false
 
@@ -1131,6 +1133,23 @@ $defs:
             $ref: '#/$defs/map-of-strings'
         required:
           - deviceAuthorizationUrl
+          - tokenUrl
+          - scopes
+        $ref: '#/$defs/specification-extensions'
+        unevaluatedProperties: false
+
+      token-exchange:
+        type: object
+        properties:
+          tokenUrl:
+            type: string
+            format: uri-reference
+          refreshUrl:
+            type: string
+            format: uri-reference
+          scopes:
+            $ref: '#/$defs/map-of-strings'
+        required:
           - tokenUrl
           - scopes
         $ref: '#/$defs/specification-extensions'

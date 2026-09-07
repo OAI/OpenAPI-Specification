@@ -176,6 +176,8 @@ In some cases, an unambiguous URI-based alternative is available, and OAD author
 For resolving [Components Object](#components-object) and [Tag Object](#tag-object) names from a referenced (non-entry) document, it is RECOMMENDED that tools resolve from the entry document, rather than the current document.
 For resolving an [Operation Object](#operation-object) based on an `operationId`, it is RECOMMENDED to consider all Operation Objects from all parsed documents.
 
+These recommendations may be revisited in a subsequent version of the specification.
+
 Note that no aspect of implicit connection resolution changes how [URIs are resolved](#relative-references-in-api-description-uris), or restricts their possible targets.
 
 See [Appendix G: Parsing and Resolution Guidance](#appendix-g-parsing-and-resolution-guidance) for more details, including a list of Objects and fields using implicit connections.

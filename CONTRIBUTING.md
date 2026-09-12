@@ -235,6 +235,7 @@ The specification versions are published to the [spec site](https://spec.openapi
 This renaming on the `vX.Y.Z-rel` branch preserves the commit history for the published file on `main` when using `git log --follow` (as is the case for all older published files).
 
 Before you start check that you have:
+
 - release notes
 - approval by TSC vote for the content you are releasing
 

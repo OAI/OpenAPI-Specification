@@ -234,7 +234,11 @@ Reviews requesting changes should have their changes addressed regardless of how
 The specification versions are published to the [spec site](https://spec.openapis.org/oas) by creating an `vX.Y.Z-rel` branch where `src/oas.md` is renamed to the appropriate `versions/X.Y.Z.md` file and then merged to `main`.
 This renaming on the `vX.Y.Z-rel` branch preserves the commit history for the published file on `main` when using `git log --follow` (as is the case for all older published files).
 
-The steps for creating a `vX.Y.Z-rel` branch are:
+Before you start check that you have:
+- release notes
+- approval by TSC vote for the content you are releasing
+
+The steps for publishing a new specification version are:
 
 1. Update `EDITORS.md` on `main`
 2. Merge `main` into `dev` and `dev` into `vX.Y-dev` via PRs
@@ -245,18 +249,24 @@ The steps for creating a `vX.Y.Z-rel` branch are:
    - open `deploy-preview/oas.html` in browser and verify correct formatting
    - adjust and repeat until done
    - merge changes to `src/oas.md` back into `vX.Y-dev` via PR
-4. Create `vX.Y.Z-rel` from `vX.Y-dev` and adjust it
-   - `yarn adjust-release-branch` does this:
+4. Create a branch `vX.Y.Z-rel` from `vX.Y-dev` and use `yarn adjust-release-branch` to adjust it.
+   - `yarn adjust-release-branch` does the following:
      - copy file `src/oas.md` to `versions/X.Y.Z.md` and replace the release date placeholder `| TBD |` in the history table of Appendix A with the current date
      - copy file `EDITORS.md` to `versions/X.Y.Z-editors.md`
      - delete folder `src`
      - delete version-specific files and folders from `tests/schema`
        - file `schema.test.mjs`
        - folders `pass` and `fail`
+   - the changes are now staged; use `git diff --cached` to review them (it is expected that a lot of files show as deleted)
+   - commit the changes
 5. Merge `vX.Y.Z-rel` into `main` via PR
    - this PR should only add files `versions/X.Y.Z.md` and `versions/X.Y.Z-editors.md`
+6. Tag a release using GitHub's Releases feature; add the release notes as the description (don't autogenerate release notes).
+7. Manually trigger the [`respec` workflow](https://github.com/OAI/OpenAPI-Specification/blob/main/.github/workflows/respec.yaml). This workflow:
+   - generates HTML renderings of the files in the `versions/` directory of the main branch on this repository
+   - opens a pull request on the [repository for the spec site](https://github.com/OAI/spec.openapis.org)
 
-The HTML renderings of the specification versions are generated from the `versions` directory on `main` by manually triggering the [`respec` workflow](https://github.com/OAI/OpenAPI-Specification/blob/main/.github/workflows/respec.yaml), which generates a pull request for publishing the HTML renderings to the [spec site](https://spec.openapis.org).
+   When that pull request is merged, the specification is included on the [spec site](https://spec.openapis.org)
 
 The release commands are implemented in
 [`OAI/build-infra`](https://github.com/OAI/build-infra). If a command behaves

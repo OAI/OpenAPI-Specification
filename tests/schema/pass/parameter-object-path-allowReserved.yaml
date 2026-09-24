@@ -1,0 +1,12 @@
+openapi: 3.2.0
+info:
+  title: api
+  version: 1.0.0
+components:
+  parameters:
+    path:
+      name: my-path
+      in: path
+      required: true
+      allowReserved: false
+      schema: {}

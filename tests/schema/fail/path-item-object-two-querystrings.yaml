@@ -1,0 +1,20 @@
+openapi: 3.2.0
+info:
+  title: API
+  version: 1.0.0
+components:
+  pathItems:
+    my-path-item:
+      description: querystring cannot be used twice
+      parameters:
+        - name: myquerystring1
+          in: querystring
+          content:
+            application/json:
+              schema: {}
+        - name: myquerystring2
+          in: querystring
+          content:
+            application/json:
+              schema: {}
+      get: {}

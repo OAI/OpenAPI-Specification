@@ -1,0 +1,12 @@
+openapi: 3.2.0
+info:
+  title: allowReserved only permitted with in and style values that percent-encode
+  version: 1.0.0
+components:
+  headers:
+    Style:
+      schema:
+        type: array
+      style: simple
+      explode: true
+      allowReserved: true

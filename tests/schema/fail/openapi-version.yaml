@@ -1,0 +1,5 @@
+openapi: 3.2.৪
+info:
+  title: BENGALI DIGIT FOUR is a valid digit, but not an ascii digit
+  version: 1.0.0
+paths: {}

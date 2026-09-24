@@ -1,0 +1,18 @@
+openapi: 3.2.0
+info:
+  title: allowReserved only permitted with in and style values that percent-encode
+  version: 1.0.0
+components:
+  parameters:
+    style_form:
+      name: my_form_cookie
+      in: cookie
+      # default style is form, therefore allowReserved is allowed
+      allowReserved: true
+      schema: {}
+    style_cookie:
+      name: my_cookie_cookie
+      in: cookie
+      style: cookie
+      # no percent decoding for style=cookie, therefore allowReserved is not allowed
+      schema: {}

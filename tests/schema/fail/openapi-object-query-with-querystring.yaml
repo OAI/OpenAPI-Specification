@@ -1,0 +1,15 @@
+openapi: 3.3.0
+info:
+  title: API
+  version: 1.0.0
+  parameters:
+    - name: myquerystring
+      in: querystring
+      content:
+        application/json:
+          schema:
+            type: string
+    - name: myquery
+      in: query
+      schema:
+        type: string

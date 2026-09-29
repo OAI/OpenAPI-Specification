@@ -56,6 +56,6 @@ You are always welcome to reach out to us via GitHub or Slack to discuss any of 
 
 This policy builds on and acknowledges the work of:
 
-- [Mastodon AI Contribution Policy](https://github.com/mastodon/mastodon/blob/main/AI_POLICY.md)
+- [Mastodon AI Contribution Policy](https://github.com/mastodon/.github/blob/main/AI_POLICY.md)
 - [W3C: Use of Large Language Models in Standards Work](https://www.w3.org/TR/llms-standards/)
 - [FastAPI / tiangolo contributing guidelines](https://tiangolo.com/open-source/contributing/#automated-code-and-ai), in particular the framing of low-effort AI submissions as a denial-of-service attack on human effort

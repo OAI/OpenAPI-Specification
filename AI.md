@@ -49,7 +49,7 @@ Do not use AI to summarise discussion content and then reply to the summary. The
 Maintainers reserve the right to close any pull request, issue, or discussion thread that appears to represent low-effort or undisclosed AI-generated content, without providing detailed justification.
 Repeated violations may result in a block from OpenAPI Initiative repositories.
 
-Reviewer time and expertise are the scarcest resources this project has, and so this policy is there to protect them and ensure the long-term healthy and viability of the project.
+Reviewer time and expertise are the scarcest resources this project has, and so this policy is there to protect them and ensure the long-term health and viability of the project.
 You are always welcome to reach out to us via GitHub or Slack to discuss any of these points or their application.
 
 ## Acknowledgements

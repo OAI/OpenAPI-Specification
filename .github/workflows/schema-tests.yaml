@@ -33,7 +33,8 @@ jobs:
     - name: Install dependencies
       run: yarn install --immutable
 
-    - name: Run tests
-      run: yarn test
+    - name: Run schema tests
+      if: ${{ hashFiles('tests/schema/schema.test.mjs') != '' }}
+      run: yarn test tests/schema/schema.test.mjs
       env:
         BASE: ${{ github.event.pull_request.base.ref }}

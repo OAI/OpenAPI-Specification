@@ -114,7 +114,7 @@ In addition to the required fields, at least one of the `components`, `paths`, o
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="oas-version"></a>openapi | `string` | **REQUIRED**. This string MUST be the [version number](#versions-and-deprecation) of the OpenAPI Specification that the OpenAPI document uses. The `openapi` field SHOULD be used by tooling to interpret the OpenAPI document. This is _not_ related to the [`info.version`](#info-version) string, which describes the OpenAPI document's version. |
-| <a name="using-features"></a>usingFeatures | Map[`string`, `string`] | A map of [SAF](#standardized-api-features) names, as defined in various companion specifications, to a valid version string for the named SAF.  Implementations MUST apply the SAF's rules, such as treating header parameters that are managed by the SAF as illegal in Parameter Objects,  while processing the current document.  The default is `{"legacySecurity": "3.3.0"}`. |
+| <a name="using-features"></a>usingFeatures | Map[`string`, `string`] | A map of [SAF](#standardized-api-features) names, as defined in various companion specifications, to a valid version string for the named SAF.  Implementations MUST apply the SAF's rules, such as treating header parameters that are managed by the SAF as illegal in Parameter Objects,  while processing the current document.  The default is `{"legacySecurity": "3.3.0"}` (see below). |
 | <a name="oas-self"></a>$self | `string` | This string MUST be in the form of a URI reference as defined by [[RFC3986]] [Section 4.1](https://www.rfc-editor.org/rfc/rfc3986#section-4.1). The `$self` field provides the self-assigned URI of this document, which also serves as its base URI in accordance with [[RFC3986]] [Section 5.1.1](https://www.rfc-editor.org/rfc/rfc3986#section-5.1.1). Implementations MUST support identifying the targets of [API description URIs](#relative-references-in-api-description-uris) using the URI defined by this field when it is present. See [Establishing the Base URI](#establishing-the-base-uri) for the base URI behavior when `$self` is absent or relative, and see [Appendix F](#appendix-f-examples-of-base-uri-determination-and-reference-resolution) for examples of using `$self` to resolve references. |
 | <a name="oas-info"></a>info | [Info Object](#info-object) | **REQUIRED**. Provides metadata about the API. The metadata MAY be used by tooling as required. |
 | <a name="oas-json-schema-dialect"></a> jsonSchemaDialect | `string` | The default value for the `$schema` keyword within [Schema Objects](#schema-object) contained within this OAS document. This MUST be in the form of a URI. See [JSON Schema Keywords](#json-schema-keywords) to determine the default value. |
@@ -127,6 +127,9 @@ In addition to the required fields, at least one of the `components`, `paths`, o
 | <a name="oas-external-docs"></a>externalDocs | [External Documentation Object](#external-documentation-object) | Additional external documentation. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
+
+The default value for `usingFeatures` preserves compatible behavior for the
+[Security Scheme](#security-scheme-object), [OAuth Flows](#oauth-flows-object), [OAuth Flow](#oauth-flow-object), and [Security Requirement](#security-requirement-object) Objects.
 
 To ensure interoperability, references MUST use the target document's `$self` URI if the `$self` field is present.
 Implementations MAY choose to support referencing by other URIs such as the retrieval URI even when `$self` is present, however this behavior is not interoperable and relying on it is NOT RECOMMENDED.
@@ -165,6 +168,19 @@ not the same; otherise the behavior is implementation-defined.
 Only the major and minor version numbers determine compatibility.
 However, note that while OAS v3.1 is compatible with v3.2, which is compatible
 with v3.3, OAS 3.0 is not compatible with any other version.
+
+In this example, the `legacySecurity` SAF from the OAS Security Specification
+and the `deprecation` SAF from the OAS Lifecycle Specification are being
+used.  Note that while `legacySecurity: 3.3.0` is the default value for the
+`usingFeatures` field, if an explicit value is given for the field, the
+`legacySecurity` SAF MUST be explicitly specified for it to be used.
+
+```yaml
+openapi: 3.3.0
+usingFeatures:
+  legacySecurity: 3.3.0
+  deprecation: 1.0.0
+```
 
 ##### Parsing Documents
 

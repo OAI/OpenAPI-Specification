@@ -1,4 +1,4 @@
-## Weekly meetings happen on Thursdays at 9am - 10am Pacific
+## Weekly meetings happen on Thursdays at 9am - 10am Pacific Standard Time / Pacific Daylight Time (UTC-0800, UTC-0700)
 
 This agenda gives visibility into discussion topics for the weekly Technical Developer Community (TDC) meetings. Sharing agenda items in advance allows people to plan to attend meetings where they have an interest in specific topics. 
 

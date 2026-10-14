@@ -42,6 +42,7 @@
   "tests": {
     "md2html": {
       "fixtures": "tests/md2html/fixtures",
+      "config": "spec.config.json",
       "otherVersions": [
         "path/31.0.0.md",
         "path/30.0.1.md",

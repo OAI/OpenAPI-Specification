@@ -29,6 +29,11 @@
   "dependencies": {
     "@oai/build-infra": "git+https://github.com/OAI/build-infra.git#main"
   },
+  "resolutions": {
+    "markdownlint-cli2/smol-toml": "~1.9.0",
+    "markdownlint-cli2/js-yaml": "~5.4.1",
+    "markdownlint-cli2/markdown-it": "~14.3.1"
+  },
   "dependenciesMeta": {
     "puppeteer": {
       "built": true

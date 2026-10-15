@@ -1,5 +1,7 @@
 # including External Documentation Object Example
 openapi: 3.3.0
+usingFeatures:
+  legacySecurity: 3.3.0
 $self: https://example.com/openapi
 info:
   title: Example Pet Store App

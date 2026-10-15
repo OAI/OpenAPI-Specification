@@ -114,7 +114,7 @@ In addition to the required fields, at least one of the `components`, `paths`, o
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
 | <a name="oas-version"></a>openapi | `string` | **REQUIRED**. This string MUST be the [version number](#versions-and-deprecation) of the OpenAPI Specification that the OpenAPI document uses. The `openapi` field SHOULD be used by tooling to interpret the OpenAPI document. This is _not_ related to the [`info.version`](#info-version) string, which describes the OpenAPI document's version. |
-| <a name="feature-versions"></a>featureVersions | Map[`string`, `string`] | A map of [SAF](#standardized-api-features) specification names, as defined in various companion specifications, to a valid version string for the named specification.  Implementations MUST apply the SAF specification's rules, such as treating header parameters that are managed by the SAF as illegal in Parameter Objects,  while processing the current document.  The default is `{"security": "1.0.0"}` (see below). |
+| <a name="feature-versions"></a>featureVersions | Map[`string`, `string`] | A map of [SAF](#standardized-api-features) specification names, as defined in various companion specifications, to a valid version string for the named specification.  Implementations MUST apply the SAF specification's rules, such as treating header parameters that are managed by the SAF specifications as illegal in Parameter Objects,  while processing the current document.  The default is `{"security": "1.0.0"}` (see below). |
 | <a name="oas-self"></a>$self | `string` | This string MUST be in the form of a URI reference as defined by [[RFC3986]] [Section 4.1](https://www.rfc-editor.org/rfc/rfc3986#section-4.1). The `$self` field provides the self-assigned URI of this document, which also serves as its base URI in accordance with [[RFC3986]] [Section 5.1.1](https://www.rfc-editor.org/rfc/rfc3986#section-5.1.1). Implementations MUST support identifying the targets of [API description URIs](#relative-references-in-api-description-uris) using the URI defined by this field when it is present. See [Establishing the Base URI](#establishing-the-base-uri) for the base URI behavior when `$self` is absent or relative, and see [Appendix F](#appendix-f-examples-of-base-uri-determination-and-reference-resolution) for examples of using `$self` to resolve references. |
 | <a name="oas-info"></a>info | [Info Object](#info-object) | **REQUIRED**. Provides metadata about the API. The metadata MAY be used by tooling as required. |
 | <a name="oas-json-schema-dialect"></a> jsonSchemaDialect | `string` | The default value for the `$schema` keyword within [Schema Objects](#schema-object) contained within this OAS document. This MUST be in the form of a URI. See [JSON Schema Keywords](#json-schema-keywords) to determine the default value. |
@@ -156,14 +156,15 @@ The `openapi` and `featureVersions` fields define how the document that contains
 them is to be parsed.  When using multiple documents in an OAD, interoperability
 is only guaranteed if the SAF specification versions in `featureVersions`
 are the same in all documents, and the major and minor version numbers for
-`openapi` and each SAF in `featureVersions` match.
+`openapi` and each SAF specification in `featureVersions` match.
 
 Implementations MUST raise an error if different SAFs are included in
 different documents within the OAD, and SHOULD raise an error if any
-SAF or `openapi` version in a referenced document is not compatible
+SAF specification version or `openapi` version in a referenced document
+is not compatible
 with the corresponding version in the entry document.  Implementations
 MAY raise an error if the major and minor versions are compatible but
-not the same; otherise the behavior is implementation-defined.
+not the same; otherwise the behavior is implementation-defined.
 
 Only the major and minor version numbers determine compatibility.
 However, note that while OAS v3.1 is compatible with v3.2, which is compatible

@@ -1,12 +1,8 @@
 name: sync-main-to-dev
 
-# author: @ralfhandl
+# Create a PR to update dev with shared changes from main. The build-infra
+# action preserves paths listed in spec.config.json release.removeOnReleaseBranch.
 
-#
-# This workflow creates PRs to update the dev branch with the latest changes from main
-#
-
-# run this on push to main
 on:
   push:
     branches:
@@ -18,50 +14,10 @@ jobs:
     if: github.repository == 'OAI/OpenAPI-Specification'
     runs-on: ubuntu-latest
     steps:
-      - name: Generate access token
-        id: generate-token
-        uses: actions/create-github-app-token@v3
+      - name: Synchronize dev with main
+        uses: OAI/build-infra/actions/sync-branches@main
         with:
-          client-id: ${{ secrets.OAI_SPEC_PUBLISHER_APPID }}
+          app-id: ${{ secrets.OAI_SPEC_PUBLISHER_APPID }}
           private-key: ${{ secrets.OAI_SPEC_PUBLISHER_PRIVATE_KEY }}
-
-      - name: Checkout repository
-        uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
-          token: ${{ steps.generate-token.outputs.token }}
-
-      - name: Create pull request
-        id: pull_request
-        shell: bash
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          SYNC="$BASE-sync-with-$HEAD"
-
-          git checkout -b $SYNC origin/$SYNC || git checkout -b $SYNC origin/$BASE
-          git merge origin/$HEAD -m "Merge $HEAD into $SYNC"
-          git checkout origin/$BASE src/
-          # exclude mjs files because we want to sync from the head
-          # neutralizes non-zero exit code because an empty selection result returns 1
-          git checkout origin/$BASE -- tests/schema/ ':!*.mjs' || echo ""
-          # Preserve the destination branch's schema test runner.
-          git checkout "origin/$BASE" -- tests/schema/schema.test.mjs
-          git commit -m "Restored src/ and tests/schema/" || echo ""
-          git push -u origin $SYNC
-
-          EXISTS=$(gh pr list --base $BASE --head $SYNC \
-            --json number --jq '.[] | .number')
-          if [ ! -z "$EXISTS" ]; then
-            echo "PR #$EXISTS already wants to merge $SYNC into $BASE"
-            exit 0
-          fi
-
-          gh pr create --base $BASE --head $SYNC \
-            --label "Housekeeping" \
-            --title "$BASE: sync with $HEAD" \
-            --body "Merge relevant changes from \`$HEAD\` into \`$BASE\`."
-        env:
-          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
-          HEAD: main
-          BASE: dev
+          head: main
+          base: dev

@@ -46,16 +46,16 @@ Do not use AI to summarise discussion content and then reply to the summary. The
 
 ## Enforcement
 
-Maintainers reserve the right to close any pull request, issue, or discussion thread that appears to represent low-effort or AI-generated content, without providing detailed justification.
+Maintainers reserve the right to close any pull request, issue, or discussion thread that appears to represent low-effort or undisclosed AI-generated content, without providing detailed justification.
 Repeated violations may result in a block from OpenAPI Initiative repositories.
 
-Reviewer time and expertise are the scarcest resources this project has, and so this policy is there to protect them and ensure the long-term healthy and viability of the project.
+Reviewer time and expertise are the scarcest resources this project has, and so this policy is there to protect them and ensure the long-term health and viability of the project.
 You are always welcome to reach out to us via GitHub or Slack to discuss any of these points or their application.
 
 ## Acknowledgements
 
 This policy builds on and acknowledges the work of:
 
-- [Mastodon AI Contribution Policy](https://github.com/mastodon/mastodon/blob/main/AI_POLICY.md)
+- [Mastodon AI Contribution Policy](https://github.com/mastodon/.github/blob/main/AI_POLICY.md)
 - [W3C: Use of Large Language Models in Standards Work](https://www.w3.org/TR/llms-standards/)
 - [FastAPI / tiangolo contributing guidelines](https://tiangolo.com/open-source/contributing/#automated-code-and-ai), in particular the framing of low-effort AI submissions as a denial-of-service attack on human effort

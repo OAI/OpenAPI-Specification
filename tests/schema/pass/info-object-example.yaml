@@ -1,6 +1,6 @@
 # including External Documentation Object Example
 openapi: 3.3.0
-featureVersions:
+features:
   security: 1.0.0
   lifecycle: 1.1.0
 $self: https://example.com/openapi

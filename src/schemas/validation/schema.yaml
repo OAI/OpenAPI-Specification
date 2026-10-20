@@ -8,7 +8,7 @@ properties:
   openapi:
     type: string
     pattern: '^3\.3\.[0-9]+(-.+)?$'
-  featureVersions:
+  features:
     type: object
     propertyNames:
       type: string

@@ -180,7 +180,7 @@ Note that while `security: 1.0.0` is the default value for the
 openapi: 3.3.0
 featureVersions:
   security: 1.0.0
-  deprecation: 1.1.0
+  lifecycle: 1.1.0
 ```
 
 ##### Parsing Documents

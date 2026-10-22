@@ -104,7 +104,8 @@ In addition to the required fields, at least one of the `components`, `paths`, o
 | <a name="oas-components"></a>components | [Components Object](#components-object) | An element to hold various Objects for the OpenAPI Description. |
 | <a name="oas-security"></a>security | [[Security Requirement Object](#security-requirement-object)] | A declaration of which security mechanisms can be used across the API. The list of values includes alternative Security Requirement Objects that can be used. Only one of the Security Requirement Objects need to be satisfied to authorize a request. Individual operations can override this definition. The list can be incomplete, up to being empty or absent. To make security explicitly optional, an empty security requirement (`{}`) can be included in the array. |
 | <a name="oas-tags"></a>tags | [[Tag Object](#tag-object)] | A list of tags used by the OpenAPI Description with additional metadata. The order of the tags can be used to reflect on their order by the parsing tools. Not all tags that are used by the [Operation Object](#operation-object) must be declared. The tags that are not declared MAY be organized randomly or based on the tools' logic. Each tag name in the list MUST be unique. |
-| <a name="oas-external-docs"></a>externalDocs | [External Documentation Object](#external-documentation-object) | Additional external documentation. |
+| <a name="oas-external-docs"></a>externalDocs | [External Documentation Object](#external-documentation-object) | Additional external documentation. <br><br>**Deprecated:** The `externalDocs` field has been deprecated in favor of the `externalLinks` keyword that supports an array of objects. |
+| <a name="oas-external-links"></a>externalLinks | [[External Links Object](#external-links-object)] | An array of additional resources such as documentation. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
@@ -680,7 +681,8 @@ Describes a single API operation on a path.
 | <a name="operation-tags"></a>tags | [`string`] | A list of tags for API documentation control. Tags can be used for logical grouping of operations by resources or any other qualifier. |
 | <a name="operation-summary"></a>summary | `string` | A short summary of what the operation does. |
 | <a name="operation-description"></a>description | `string` | A verbose explanation of the operation behavior. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
-| <a name="operation-external-docs"></a>externalDocs | [External Documentation Object](#external-documentation-object) | Additional external documentation for this operation. |
+| <a name="operation-external-docs"></a>externalDocs | [External Documentation Object](#external-documentation-object) | Additional external documentation for this operation. <br><br>**Deprecated:** The `externalDocs` field has been deprecated in favor of the `externalLinks` keyword that supports an array of objects. |
+| <a name="operation-external-links"></a>externalLinks | [[External Links Object](#external-links-object)] | An array of additional resources such as documentation associated with this operation. |
 | <a name="operation-id"></a>operationId | `string` | Unique string used to identify the operation. The id MUST be unique among all operations described in the API. The operationId value is **case-sensitive**. Tools and libraries MAY use the operationId to uniquely identify an operation, therefore, it is RECOMMENDED to follow common programming naming conventions. |
 | <a name="operation-parameters"></a>parameters | [[Parameter Object](#parameter-object) \| [Reference Object](#reference-object)] | A list of parameters that are applicable for this operation. If a parameter is already defined at the [Path Item](#path-item-parameters), the new definition will override it but can never remove it. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a [name](#parameter-name) and [location](#parameter-in). The list can use the [Reference Object](#reference-object) to link to parameters that are defined in the [OpenAPI Object's `components.parameters`](#components-parameters). |
 | <a name="operation-request-body"></a>requestBody | [Request Body Object](#request-body-object) \| [Reference Object](#reference-object) | The request body applicable for this operation. The `requestBody` is fully supported in HTTP methods where the HTTP specification [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.3) has explicitly defined semantics for request bodies. In other cases where the HTTP spec discourages message content (such as [GET](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.3.1) and [DELETE](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.3.5)), `requestBody` is permitted but does not have well-defined semantics and SHOULD be avoided if possible. |
@@ -755,6 +757,30 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 ```yaml
 description: Find more info here
 url: https://example.com
+```
+
+### External Links Object
+
+Allows referencing an external resource for external documentation or additional context.
+
+#### Fixed Fields
+
+| Field Name | Type | Description |
+| ---- | :----: | ---- |
+| <a name="external-doc-summary"></a>summary | `string` | A short summary of the linked resource, used for display purposes. |
+| <a name="external-doc-description"></a>description | `string` | A description of the linked resource. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
+| <a name="external-doc-url"></a>url | `string` | **REQUIRED**. The URI for the linked resource. This MUST be in the form of a URI. |
+| <a name="external-doc--kind"></a>kind | `string` | A machine-readable string to categorize what sort of resource is linked. Any string value can be used; a [registry of the most commonly used values](https://spec.openapis.org/registry/tag-kind/) is available. |
+
+This object MAY be extended with [Specification Extensions](#specification-extensions).
+
+#### External Links Object Example
+
+```yaml
+summary: API reference
+description: Interactive API documentation
+url: https://example.com/api-docs
+kind: api-docs
 ```
 
 ### Parameter Object
@@ -2925,7 +2951,8 @@ It is not mandatory to have a Tag Object per tag defined in the Operation Object
 | <a name="tag-name"></a>name | `string` | **REQUIRED**. The name of the tag. Use this value in the `tags` array of an Operation. |
 | <a name="tag-summary"></a>summary | `string` | A short summary of the tag, used for display purposes. |
 | <a name="tag-description"></a>description | `string` | A description for the tag. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
-| <a name="tag-external-docs"></a>externalDocs | [External Documentation Object](#external-documentation-object) | Additional external documentation for this tag. |
+| <a name="tag-external-docs"></a>externalDocs | [External Documentation Object](#external-documentation-object) | Additional external documentation for this tag. <br><br>**Deprecated:** The `externalDocs` field has been deprecated in favor of the `externalLinks` keyword that supports an array of objects. |
+| <a name="tag-external-links"></a>externalLinks | [[External Links Object](#external-links-object)] | An array of additional resources such as documentation associated with this tag. |
 | <a name="tag-parent"></a>parent | `string` | The `name` of a tag that this tag is nested under. The named tag MUST exist in the API description, and circular references between parent and child tags MUST NOT be used. |
 | <a name="tag-kind"></a>kind | `string` | A machine-readable string to categorize what sort of tag it is. Any string value can be used; common uses are `nav` for Navigation, `badge` for visible badges, `audience` for APIs used by different groups. A [registry of the most commonly used values](https://spec.openapis.org/registry/tag-kind/) is available. |
 
@@ -3023,7 +3050,8 @@ JSON Schema implementations MAY choose to treat keywords defined by the OpenAPI 
 | ---- | :----: | ---- |
 | <a name="schema-discriminator"></a>discriminator | [Discriminator Object](#discriminator-object) | The discriminator provides a "hint" for which of a set of schemas a payload is expected to satisfy. See [Composition and Inheritance](#composition-and-inheritance-polymorphism) for more details. |
 | <a name="schema-xml"></a>xml | [XML Object](#xml-object) | Adds additional metadata to describe the XML representation of this schema. |
-| <a name="schema-external-docs"></a>externalDocs | [External Documentation Object](#external-documentation-object) | Additional external documentation for this schema. |
+| <a name="schema-external-docs"></a>externalDocs | [External Documentation Object](#external-documentation-object) | Additional external documentation for this schema. <br><br>**Deprecated:** The `externalDocs` field has been deprecated in favor of the `externalLinks` keyword that supports an array of objects. |
+| <a name="schema-external-links"></a>externalLinks | [[External Links Object](#external-links-object)] | An array of additional resources such as documentation associated with this schema. |
 | <a name="schema-example"></a>example | Any | A free-form field to include an example of an instance for this schema. To represent examples that cannot be naturally represented in JSON or YAML, a string value can be used to contain the example with escaping where necessary.<br><br>**Deprecated:** The `example` field has been deprecated in favor of the JSON Schema `examples` keyword. Use of `example` is discouraged, and later versions of this specification may remove it. |
 
 This object MAY be extended with [Specification Extensions](#specification-extensions), though as noted, additional properties MAY omit the `x-` prefix within this object.
@@ -5396,7 +5424,7 @@ In this example, the URI for each part, which also serves as its base URI, comes
 Since the Schema Object at `#/components/schemas/Foo` does not contain an `$id`, the reference in its subschema uses the OpenAPI document's base URI, which is taken from the `Content-Location` header of its part within the `multipart/related` format.
 The resulting reference to `https://example.com/schemas/bar` matches the `Content-Location` header of the second part, which according to RFC2557 allows the reference target to be located within the multipart archive.
 
-Similarly, the `url` field of the [External Documentation Object](#external-documentation-object) is resolved against the base URI from `Content-Location`, producing `https://example.com/api/docs.html` which matches the `Content-Location` of the third part.
+Similarly, the `url` field of the [External Documentation Object](#external-documentation-object) is resolved against the base URI from `Content-Location`, producing `https://example.com/api/docs.html` which matches the `Content-Location` of the third part. [External Links Object](#external-links-object) entries are resolved in the same manner.
 
 ### Base URI From the Retrieval URI
 

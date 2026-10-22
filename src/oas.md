@@ -777,7 +777,7 @@ This object MAY be extended with [Specification Extensions](#specification-exten
 #### External Links Object Example
 
 ```yaml
-name: API reference
+summary: API reference
 description: Interactive API documentation
 url: https://example.com/api-docs
 kind: api-docs

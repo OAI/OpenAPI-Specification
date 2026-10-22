@@ -30,22 +30,23 @@ Occasionally, non-backwards compatible changes may be made in `minor` versions o
 
 ### Standardized API Features
 
-Many API features have behavior that is difficult or impossible to infer from
-descriptions of paths, parameters, headers, or other operation elements that
-this specification supports.
+Standardized API Features (SAFs) are features defined by other standards
+bodies and referred to from an OpenAPI Description.  SAFs are defined for
+use with OpenAPI in companion specifications, which are versioned independently
+of this specification.  A companion specification describes opt-in rules for
+SAF-specific Objects, and can also define exceptions to the rules of this
+specification.
 
-We refer to such features that are standardized by other standards bodies
-as Standardized API Features, or SAFs.  These features benefit from special
-handling, such as how the `Authorization` header is managed through the
-Security Scheme Object rather than the Parameter Object.  Security features
-also illustrate another aspect of SAFs, which is that they often evolve
-at a more rapid pace than the core of HTTP.
+Many SAFs have behavior that is difficult or impossible to infer from
+descriptions of paths, parameters, headers, or other operation elements,
+and so benefit from special handling.  For example, the Authorization header
+is managed through the Security Scheme Object rather than the Parameter Object.
 
-To better support security features and expand into other SAFs, the OpenAPI
-Initiative is introducing companion specifications that are versioned
-independently of this specification.  These new specifications describe
-opt-in rules that establish SAF-specific Objects, as well as exception rules
-such as those regarding the `Authorization` header and Security Schemes.
+Defining SAFs separately keeps this specification focused: an OpenAPI
+Description uses only the companion specifications it needs, and tools can
+state which ones they support.  Independent versioning also lets companion
+specifications keep pace with SAFs that evolve faster than HTTP or this
+specification.
 
 ### Undefined and Implementation-Defined Behavior
 
@@ -128,8 +129,10 @@ In addition to the required fields, at least one of the `components`, `paths`, o
 
 This object MAY be extended with [Specification Extensions](#specification-extensions).
 
-The default value for `features` preserves compatible behavior for the
-[Security Scheme](#security-scheme-object), [OAuth Flows](#oauth-flows-object), [OAuth Flow](#oauth-flow-object), and [Security Requirement](#security-requirement-object) Objects.
+The default value for `features` preserves compatibility with OAS 3.2
+behavior for the [Security Scheme](#security-scheme-object),
+[OAuth Flows](#oauth-flows-object), [OAuth Flow](#oauth-flow-object),
+and [Security Requirement](#security-requirement-object) Objects.
 
 To ensure interoperability, references MUST use the target document's `$self` URI if the `$self` field is present.
 Implementations MAY choose to support referencing by other URIs such as the retrieval URI even when `$self` is present, however this behavior is not interoperable and relying on it is NOT RECOMMENDED.

@@ -66,4 +66,4 @@ components:
       type: openIdConnect
       openIdConnectUrl: https://example.com/api/oauth/openid
     external:
-      $ref: 'https://example.com/api/openapi.json#/components/externalDocs/ThingExternalDocs'
+      $ref: 'https://example.com/api/openapi.json#/components/securitySchemes/ExternalSecurityThing'

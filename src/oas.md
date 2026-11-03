@@ -1267,6 +1267,7 @@ See [Working With Examples](#working-with-examples) for further guidance regardi
 
 | Field Name | Type | Description |
 | ---- | :----: | ---- |
+| <a name="media-type-description"></a>description | `string` | An optional description for the media type. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation. |
 | <a name="media-type-schema"></a>schema | [Schema Object](#schema-object) | A schema describing the complete content of the request, response, parameter, or header. |
 | <a name="media-type-item-schema"></a>itemSchema | [Schema Object](#schema-object) | A schema describing each item within a [sequential media type](#sequential-media-types). |
 | <a name="media-type-example"></a>example | Any | Example of the media type; see [Working With Examples](#working-with-examples). |

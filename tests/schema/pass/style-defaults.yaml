@@ -8,7 +8,7 @@ components:
       name: encoding_object_defaults
       in: path
       content:
-        encoding_object_defaults:   # media type name
+        text/plain:   # media type name
           encoding:
             no_styles:              # property name
               x-comment: "style, explode and allowReserved are not present, so contentType is used; no defaults expected as default contentType cannot be determined by the schema"

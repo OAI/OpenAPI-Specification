@@ -2,6 +2,11 @@ openapi: 3.1.0
 info:
   title: API
   version: 1.0.0
+components:
+  securitySchemes:
+    petstore_auth:
+      type: http
+      scheme: basic
 paths:
   /pets/{id}:
     put:
@@ -10,7 +15,7 @@ paths:
       summary: Updates a pet in the store with form data
       operationId: updatePetWithForm
       parameters:
-        - name: petId
+        - name: id
           in: path
           description: ID of pet that needs to be updated
           required: true

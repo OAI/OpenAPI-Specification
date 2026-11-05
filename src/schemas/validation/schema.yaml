@@ -7,7 +7,7 @@ type: object
 properties:
   openapi:
     type: string
-    pattern: '^3\.1\.\d+(-.+)?$'
+    pattern: '^3\.1\.[0-9]+(-.+)?$'
   info:
     $ref: '#/$defs/info'
   jsonSchemaDialect:

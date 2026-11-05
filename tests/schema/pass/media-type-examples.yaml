@@ -88,6 +88,15 @@ paths:
                   type: object
                   xml:
                     nodeType: none
+                forCoverage:
+                  type: object
+                  $ref: '#/components/schemas/Address'
+                  xml: {}
+                forCoverage2:
+                  type: object
+                  $dynamicRef: '#/components/schemas/Address'
+                  xml: {}
+                forCoverage3: true
           application/x-www-form-urlencoded:
             schema:
               type: object

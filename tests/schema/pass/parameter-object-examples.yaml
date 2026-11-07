@@ -16,7 +16,7 @@ paths:
             type: integer
             format: int64
         style: simple
-      - name: usernames
+      - name: username
         in: path
         description: usernames to fetch
         required: true

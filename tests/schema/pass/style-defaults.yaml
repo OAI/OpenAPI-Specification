@@ -83,10 +83,9 @@ components:
       style: deepObject
       schema: {}
     header:
-      x-comment: "expecting defaults: deprecated=false, style=simple, explode=false, allowReserved=false"
+      x-comment: "expecting defaults: required=false, deprecated=false, style=simple, explode=false"
       name: header
-      in: path
-      required: true
+      in: header
       schema: {}
     cookie_media_type:
       x-comment: "expecting defaults: required=false, deprecated=false"

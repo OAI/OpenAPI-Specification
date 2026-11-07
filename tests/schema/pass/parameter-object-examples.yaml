@@ -18,7 +18,7 @@ paths:
         style: simple
       - name: username
         in: path
-        description: usernames to fetch
+        description: username to fetch
         required: true
         explode: false
         schema:

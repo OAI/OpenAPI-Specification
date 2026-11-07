@@ -83,7 +83,7 @@ components:
       style: deepObject
       schema: {}
     header:
-      x-comment: "expecting defaults: deprecated=false, style=simple, explode=false, allowReserved=false"
+      x-comment: "expecting defaults: required=false, deprecated=false, style=simple, explode=false"
       name: header
       in: header
       schema: {}

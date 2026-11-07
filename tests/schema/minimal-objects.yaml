@@ -155,4 +155,10 @@
     tokenUrl: https://example.com/auth
     scopes: {}
 
+- objectName: OAuth Flow Object (tokenExchange)
+  subSchemaPath: /$defs/oauth-flows/$defs/token-exchange
+  minimalInstance:
+    tokenUrl: https://example.com/token
+    scopes: {}
+
 # Security Requirement Object allows additional properties

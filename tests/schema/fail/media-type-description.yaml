@@ -1,0 +1,11 @@
+openapi: 3.2.0
+info:
+  title: API
+  version: 1.0.0
+components:
+  mediaTypes:
+    description_not_allowed:
+      description: |
+        we added 'description' to the schema in 3.2.0 but it was not added to the specification.
+        it will be added for real in 3.3.0.
+      schema: {}

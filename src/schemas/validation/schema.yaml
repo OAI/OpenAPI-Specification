@@ -582,8 +582,6 @@ $defs:
     $comment: https://spec.openapis.org/oas/v3.2#media-type-object
     type: object
     properties:
-      description:
-        type: string
       schema:
         $dynamicRef: '#meta'
       itemSchema:

@@ -11,10 +11,6 @@ components:
     Pet: {}
   mediaTypes:
     StreamingPets:
-      description: |
-        Streaming sequence of JSON pet representations,
-        suitable for use with any of the streaming JSON
-        media types.
       itemSchema:
         $ref: '#/components/schemas/Pet'
 paths:

@@ -53,6 +53,11 @@ components:
           scopes:
             read:pets: read your pets
           refreshUrl: https://example.com/api/oauth/refresh
+        tokenExchange:
+          tokenUrl: https://example.com/api/oauth/token
+          scopes:
+            read:pets: read your pets
+          refreshUrl: https://example.com/api/oauth/refresh
     OAuth2Old:
       deprecated: true
       type: oauth2

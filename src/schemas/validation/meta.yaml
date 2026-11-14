@@ -21,6 +21,34 @@ properties:
     $ref: '#/$defs/external-docs'
   xml:
     $ref: '#/$defs/xml'
+if:
+  type: object
+  required:
+    - xml
+then:
+  if:
+    anyOf:
+      - required:
+          - $ref
+      - required:
+          - $dynamicRef
+      - required:
+          - type
+        properties:
+          type:
+            const: array
+  then:
+    properties:
+      xml:
+        properties:
+          nodeType:
+            default: none
+  else:
+    properties:
+      xml:
+        properties:
+          nodeType:
+            default: element
 
 $defs:
   discriminator:
